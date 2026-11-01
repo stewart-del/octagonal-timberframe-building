@@ -1,0 +1,19 @@
+name: Check static viewer
+on: [push, pull_request]
+permissions:
+  contents: read
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: python3 scripts/build.py
+      - run: node tests/check_viewer.cjs
+      - run: node tests/viewer-regression.cjs dist/index.html
+      - run: python3 tests/validate_model.py dist/index.html

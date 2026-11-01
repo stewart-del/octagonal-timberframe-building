@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1320" height="690" viewBox="0 0 1320 690"><rect width="1320" height="690" fill="#fafbf9"/>
+<style>text{font-family:Arial,sans-serif;fill:#1d2831}.title{font-size:25px;font-weight:700}.sub{font-size:16px}.tiny{font-size:14px}.metric{font-size:19px;font-weight:700}</style>
+<text class="title" x="30" y="42">B0 — measured cross-sections through actual fitted solid</text>
+<text class="sub" x="30" y="73">Light gray = original stock section. Orange = retained wood. Gray remaining visible represents material removed from this piece.</text>
+<text class="metric" text-anchor="middle" x="220" y="125">s = 60.931 mm / 2.3988 in</text>
+<polygon points="94.2703,527.6400 345.7303,527.6400 345.7303,192.3600 94.2703,192.3600" fill="#e3e7e9" stroke="#76828a" stroke-width="1.4"/>
+<polygon points="272.2093,527.6400 345.7303,527.6400 345.7303,506.7220" fill="#e48737" stroke="#bc5922" stroke-width="0.45"/>
+<polygon points="263.4296,427.0560 270.2920,427.0560 270.2920,292.9440 263.4296,292.9440" fill="#e48737" stroke="#bc5922" stroke-width="0.45"/>
+<text class="metric" text-anchor="middle" x="220" y="565">620.49 mm² retained / 2.004%</text>
+<text class="tiny" text-anchor="middle" x="220" y="590">Original stock: 30,967.68 mm²</text>
+<text class="metric" text-anchor="middle" x="660" y="125">s = 70.931 mm / 2.7925 in</text>
+<polygon points="534.2703,527.6400 785.7303,527.6400 785.7303,192.3600 534.2703,192.3600" fill="#e3e7e9" stroke="#76828a" stroke-width="1.4"/>
+<polygon points="719.0439,527.6400 785.7303,527.6400 785.7303,508.6665" fill="#e48737" stroke="#bc5922" stroke-width="0.45"/>
+<polygon points="710.2641,427.0560 710.2920,427.0560 710.2920,292.9440 710.2641,292.9440" fill="#e48737" stroke="#bc5922" stroke-width="0.45"/>
+<text class="metric" text-anchor="middle" x="660" y="565">233.75 mm² retained / 0.755%</text>
+<text class="tiny" text-anchor="middle" x="660" y="590">Original stock: 30,967.68 mm²</text>
+<text class="metric" text-anchor="middle" x="1100" y="125">s = 80.931 mm / 3.1862 in</text>
+<polygon points="974.2703,527.6400 1225.7303,527.6400 1225.7303,192.3600 974.2703,192.3600" fill="#e3e7e9" stroke="#76828a" stroke-width="1.4"/>
+<polygon points="1165.8784,527.6400 1225.7303,527.6400 1225.7303,510.6110" fill="#e48737" stroke="#bc5922" stroke-width="0.45"/>
+<polygon points="1215.6807,513.4703 1225.7303,510.6110 1225.7303,192.3600 1215.6807,192.3600" fill="#e48737" stroke="#bc5922" stroke-width="0.45"/>
+<polygon points="1110.4762,427.0560 1150.2920,427.0560 1150.2920,292.9440 1110.4762,292.9440" fill="#e48737" stroke="#bc5922" stroke-width="0.45"/>
+<text class="metric" text-anchor="middle" x="1100" y="565">3,328.57 mm² retained / 10.749%</text>
+<text class="tiny" text-anchor="middle" x="1100" y="590">Original stock: 30,967.68 mm²</text>
+<text class="tiny" x="30" y="635">s is measured along the original member axis from its A-end axis_start, in the fittedparts.json Y-up coordinate system.</text>
+<text class="tiny" x="30" y="659">Sections are geometric evidence only. Area percentages are not strength ratios. Center station is a sampled minimum, not a proven global minimum.</text></svg>

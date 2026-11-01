@@ -1,0 +1,28 @@
+{
+  "moving_piece": "J0-0",
+  "other_piece": "B0",
+  "moving_offset_m": [
+    3.2415578497372857,
+    3.8,
+    -0.6183063211763115
+  ],
+  "other_offset_m": [
+    2.124922912315954,
+    0.8,
+    -0.8801719245208194
+  ],
+  "relative_offset_m": [
+    1.1166349374213316,
+    3.0,
+    0.2618656033445079
+  ],
+  "animation_fraction": 0.0010000107356325488,
+  "overlap_volume_m3": 1.6503324899990388e-06,
+  "moving_cell": 2,
+  "other_cell": 3,
+  "continuous_collision_fraction_interval": [
+    1.0735632548715584e-08,
+    0.03267251253985054
+  ],
+  "scope": "Both pieces move linearly from assembled to exploded transforms, 0 <= animation fraction <= 1. One positive collision disproves collision-free animation; no exhaustive pair count claimed."
+}

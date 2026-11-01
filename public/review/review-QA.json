@@ -1,0 +1,84 @@
+{
+  "status": "PASS",
+  "source_hashes": {
+    "fitted-cells.json": "3fc343bb990fc2c592024f33013131b9ba1e4e60936cdba59039b7a58c7a6645",
+    "fittedparts.json": "21a9501a235681e3cfd0cbc3d39c53db12ba11d45fe2bf2c392a36e4ff09d3cf"
+  },
+  "scope": "Code review, source freshness, six independent slab sections, all 832 saved 50 mm collision witnesses, and five independent wall witness segments. Full motion/section scans not rerun.",
+  "selected_net_sections": [
+    {
+      "part": "B0",
+      "reported_area_mm2": 233.748195337391,
+      "independent_slab_estimate_mm2": 233.7481338113007,
+      "absolute_difference_mm2": 6.152609029186351e-05
+    },
+    {
+      "part": "J0-0",
+      "reported_area_mm2": 1238.7055485682947,
+      "independent_slab_estimate_mm2": 1238.70564110323,
+      "absolute_difference_mm2": 9.253493522010103e-05
+    },
+    {
+      "part": "K0-A",
+      "reported_area_mm2": 479.9315727659348,
+      "independent_slab_estimate_mm2": 479.93156241334253,
+      "absolute_difference_mm2": 1.0352592255458148e-05
+    },
+    {
+      "part": "T0",
+      "reported_area_mm2": 9599.980640183103,
+      "independent_slab_estimate_mm2": 9599.98066221603,
+      "absolute_difference_mm2": 2.2032927518012002e-05
+    },
+    {
+      "part": "R0",
+      "reported_area_mm2": 33052.43894588144,
+      "independent_slab_estimate_mm2": 33052.43886822147,
+      "absolute_difference_mm2": 7.765996997477487e-05
+    },
+    {
+      "part": "C0",
+      "reported_area_mm2": 14729.403509880547,
+      "independent_slab_estimate_mm2": 14729.40351991618,
+      "absolute_difference_mm2": 1.0035633749794215e-05
+    }
+  ],
+  "T0_body_statistic_confirmed": true,
+  "short_path_witnesses_reproduced": 832,
+  "minimum_reproduced_short_path_overlap_m3": 1.6307658563889043e-10,
+  "max_short_path_witness_distance_mm": 42.640024382932815,
+  "wall_witnesses": [
+    {
+      "part": "P0",
+      "thickness_mm": 1.000000000000334,
+      "normal_segment_fully_inside_solid": true
+    },
+    {
+      "part": "P2",
+      "thickness_mm": 0.9999999999998899,
+      "normal_segment_fully_inside_solid": true
+    },
+    {
+      "part": "T0",
+      "thickness_mm": 2.0,
+      "normal_segment_fully_inside_solid": true
+    },
+    {
+      "part": "R0",
+      "thickness_mm": 2.0,
+      "normal_segment_fully_inside_solid": true
+    },
+    {
+      "part": "C0",
+      "thickness_mm": 2.0,
+      "normal_segment_fully_inside_solid": true
+    }
+  ],
+  "qualifications": [
+    "Direction search is finite, does not prove all assembly methods impossible.",
+    "Reported stations are witness positions, not first-contact times.",
+    "Section fractions are geometric area ratios, not strength ratios.",
+    "Thin-wall witnesses do not establish global minimum thickness.",
+    "No geometry modified."
+  ]
+}

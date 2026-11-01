@@ -1,0 +1,13 @@
+.DS_Store
+dist/
+tests/embedded-model.json
+tests/viewer-script-check.js
+__pycache__/
+*.pyc
+.env
+.env.*
+!.env.example
+.sites-runtime/
+node_modules/
+public/downloads/Octagon-model-and-review.zip
+public/downloads/Octagon-model-and-review.zip.tmp

@@ -1,0 +1,44 @@
+[
+  {
+    "id": "S1",
+    "title": "TFEC 1-2019, Standard for Design of Timber Frame Structures",
+    "url": "https://www.tfguild.org/timber-frame-engineering-council/standards/view/104/download",
+    "use": "Sections 2\u20133: member design, seasoning, notches and connections. Design must address net sections and actual force transfer; the carved solids are not a design calculation.",
+    "accessed": "2026-11-01"
+  },
+  {
+    "id": "S2",
+    "title": "TFEC 2-2018, Code of Standard Practice",
+    "url": "https://www.tfguild.org/timber-frame-engineering-council/standards/view/105/download",
+    "use": "Sections 4\u20136: joint detailing, erection shoring/bracing and tolerances. An unspecified tolerance is not assumed to be zero. Fabrication tolerances are not a license to leave bearing faces unsupported.",
+    "accessed": "2026-11-01"
+  },
+  {
+    "id": "S3",
+    "title": "TFEC Technical Bulletin 2011-03, Rules of Timber Joinery Design",
+    "url": "https://www.tfguild.org/timber-frame-engineering-council/technical-bulletins/view/112/download",
+    "use": "Bearing load transfer, preservation of member strength, shrinkage-compatible geometry and explicit consideration of failure modes.",
+    "accessed": "2026-11-01"
+  },
+  {
+    "id": "S4",
+    "title": "USDA Forest Products Laboratory, Wood Handbook (2021), Chapter 4",
+    "url": "https://research.fs.usda.gov/download/treesearch/62243.pdf",
+    "use": "Moisture-dependent, directional dimensional change and variability between pieces. A universal clearance cannot be inferred from a digital fit.",
+    "accessed": "2026-11-01"
+  },
+  {
+    "id": "S5",
+    "title": "American Wood Council, 2024 NDS and NDS Supplement",
+    "url": "https://awc.org/resources/2024-nds-supplement",
+    "use": "Use the governing adopted design standard and matching design values. Species, grade, section and applicable adjustment factors remain unconfirmed; the listed edition is not a determination of local code.",
+    "accessed": "2026-11-01"
+  },
+  {
+    "id": "S6",
+    "title": "ASCE, About the Hazard Tool",
+    "url": "https://www.asce.org/publications-and-news/asce-hazard-tool/about/",
+    "use": "Location-specific hazard parameters require project inputs and the applicable standard. No site hazard values were assumed for this review.",
+    "accessed": "2026-11-01"
+  }
+]

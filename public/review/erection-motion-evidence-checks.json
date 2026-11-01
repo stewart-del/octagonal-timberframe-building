@@ -1,0 +1,21 @@
+{
+  "status": "PASS: all reported collision witnesses reproduced; erection remains unverified",
+  "analytic_unit_checks": [
+    "axis crossing interval analytic match",
+    "withdrawal away from obstacle clear",
+    "transverse separated axes clear",
+    "initial face touching moving away clear",
+    "diagonal crossing interval analytic match",
+    "clipped coincident unit cubes volume 1 m3"
+  ],
+  "reproduced_collision_witness_count": 832,
+  "largest_same_cell_pair_overlap_at_assembled_position_m3": 1.874585556227437e-15,
+  "smallest_positive_collision_witness_m3": 1.239247874467972e-10,
+  "positive_overlap_threshold_m3": 1e-10,
+  "local_50mm_path_count": 832,
+  "local_50mm_positive_collision_count": 832,
+  "sha256": {
+    "fitted-cells.json": "3fc343bb990fc2c592024f33013131b9ba1e4e60936cdba59039b7a58c7a6645",
+    "fittedparts.json": "21a9501a235681e3cfd0cbc3d39c53db12ba11d45fe2bf2c392a36e4ff09d3cf"
+  }
+}

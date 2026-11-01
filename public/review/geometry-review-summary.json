@@ -1,0 +1,302 @@
+{
+  "review_status": "NOT READY FOR FABRICATION OR ERECTION; CAPACITY UNVERIFIED",
+  "scope": "Independent geometric measurements only; no load rating, engineer approval, fabrication clearance or erection approval.",
+  "area_percentage_warning": "Retained cross-sectional area percentages are not strength percentages. Minima are sampled, not analytically proven global minima.",
+  "source_sha256": {
+    "fitted-cells.json": "3fc343bb990fc2c592024f33013131b9ba1e4e60936cdba59039b7a58c7a6645",
+    "fittedparts.json": "21a9501a235681e3cfd0cbc3d39c53db12ba11d45fe2bf2c392a36e4ff09d3cf",
+    "GEOMETRY-METHOD.md": "c37a3bd97758a456532142d770770fee34c81c0bbdb5574b29ca621da56ca242"
+  },
+  "method_file": "review_net_sections.py",
+  "full_measurements_file": "net-section-measurements.json",
+  "report_file": "GEOMETRY-ENGINEERING-RED-FLAGS.md",
+  "section_figures": [
+    "B0-net-sections.svg",
+    "J0-0-net-sections.svg"
+  ],
+  "measurements": [
+    {
+      "part_id": "B0",
+      "measurement": {
+        "station_from_axis_start_mm": 70.93073823635842,
+        "fitted_area_mm2": 233.748195337391,
+        "stock_area_mm2": 30967.67999999983,
+        "retained_section_fraction": 0.007548133904037767,
+        "distance_from_stock_extent_ends_mm": 102.49388640000001,
+        "distance_from_fitted_extent_ends_mm": 102.49388642206524
+      },
+      "station_from_axis_start_in": 2.79254874946293,
+      "source_axis_start_m": [
+        4.571999788284302,
+        2.2860000133514404,
+        0.0
+      ],
+      "source_axis_direction": [
+        -0.3826833561365775,
+        0.0,
+        -0.9238795640861667
+      ],
+      "actual_fitted_extent_from_axis_start_mm": [
+        -31.563148185706822,
+        3530.8203042663213
+      ],
+      "cut_face_ids": [
+        "FC-B0-001",
+        "FC-B0-064",
+        "FC-B0-065",
+        "FC-B0-066",
+        "FC-B0-067",
+        "FC-B0-075",
+        "FC-B0-076",
+        "FC-B0-077"
+      ],
+      "mate_provenance": [
+        "R0"
+      ]
+    },
+    {
+      "part_id": "J0-0",
+      "measurement": {
+        "station_from_axis_start_mm": 940.4509865613488,
+        "fitted_area_mm2": 1238.7055485682947,
+        "stock_area_mm2": 7741.919999999972,
+        "retained_section_fraction": 0.15999978668964535,
+        "distance_from_stock_extent_ends_mm": 940.4510166000005,
+        "distance_from_fitted_extent_ends_mm": 940.4510165827369
+      },
+      "station_from_axis_start_in": 37.02562939217909,
+      "source_axis_start_m": [
+        5.134775638580322,
+        2.022295117378235,
+        -0.9794254451990128
+      ],
+      "source_axis_direction": [
+        -0.9338046681662668,
+        0.31029516787614314,
+        0.17811723808661706
+      ],
+      "actual_fitted_extent_from_axis_start_mm": [
+        -3.002138804220067e-05,
+        4465.206195047413
+      ],
+      "cut_face_ids": [
+        "FC-J0-0-019",
+        "FC-J0-0-020",
+        "FC-J0-0-021",
+        "FC-J0-0-023",
+        "FC-J0-0-024",
+        "FC-J0-0-026"
+      ],
+      "mate_provenance": [
+        "B0"
+      ]
+    },
+    {
+      "part_id": "R0",
+      "measurement": {
+        "station_from_axis_start_mm": 1009.1162657976662,
+        "fitted_area_mm2": 33052.43894588144,
+        "stock_area_mm2": 51612.80000000002,
+        "retained_section_fraction": 0.6403922853610234,
+        "distance_from_stock_extent_ends_mm": 1009.1161978,
+        "distance_from_fitted_extent_ends_mm": 1009.1161977535216
+      },
+      "station_from_axis_start_in": 39.72898684242781,
+      "source_axis_start_m": [
+        5.540467023849487,
+        1.9582870602607727,
+        0.0
+      ],
+      "source_axis_direction": [
+        -0.9557071123123188,
+        0.2943194106334969,
+        0.0
+      ],
+      "actual_fitted_extent_from_axis_start_mm": [
+        6.804414454109065e-05,
+        4707.579305315811
+      ],
+      "cut_face_ids": [
+        "FC-R0-004",
+        "FC-R0-005",
+        "FC-R0-006",
+        "FC-R0-007",
+        "FC-R0-012",
+        "FC-R0-013",
+        "FC-R0-014",
+        "FC-R0-015",
+        "FC-R0-022",
+        "FC-R0-024",
+        "FC-R0-025",
+        "FC-R0-026",
+        "FC-R0-028",
+        "FC-R0-030",
+        "FC-R0-033",
+        "FC-R0-036",
+        "FC-R0-037",
+        "FC-R0-038",
+        "FC-R0-040",
+        "FC-R0-041",
+        "FC-R0-042",
+        "FC-R0-044",
+        "FC-R0-046"
+      ],
+      "mate_provenance": [
+        "B0",
+        "B7",
+        "P0",
+        "T0"
+      ]
+    },
+    {
+      "part_id": "T0",
+      "measurement": {
+        "station_from_axis_start_mm": 296.2396907028806,
+        "fitted_area_mm2": 9599.980640183103,
+        "stock_area_mm2": 30967.679999999997,
+        "retained_section_fraction": 0.3099999948392357,
+        "distance_from_stock_extent_ends_mm": 296.2396639999998,
+        "distance_from_fitted_extent_ends_mm": 212.6789861374263
+      },
+      "station_from_axis_start_in": 11.662979948932307,
+      "source_axis_start_m": [
+        4.572000026702881,
+        2.2860000133514404,
+        0.0
+      ],
+      "source_axis_direction": [
+        -1.0,
+        0.0,
+        0.0
+      ],
+      "actual_fitted_extent_from_axis_start_mm": [
+        83.56070456545427,
+        3530.6000267028803
+      ],
+      "cut_face_ids": [
+        "FC-T0-001",
+        "FC-T0-004",
+        "FC-T0-005",
+        "FC-T0-017",
+        "FC-T0-018",
+        "FC-T0-019",
+        "FC-T0-021",
+        "FC-T0-022",
+        "FC-T0-023",
+        "FC-T0-025",
+        "FC-T0-026"
+      ],
+      "mate_provenance": [
+        "R0"
+      ]
+    },
+    {
+      "part_id": "C0",
+      "measurement": {
+        "station_from_axis_start_mm": 985.8968929316405,
+        "fitted_area_mm2": 14729.403509880547,
+        "stock_area_mm2": 23225.759999999984,
+        "retained_section_fraction": 0.6341839194876964,
+        "distance_from_stock_extent_ends_mm": 914.1861878,
+        "distance_from_fitted_extent_ends_mm": 914.1861878281161
+      },
+      "station_from_axis_start_in": 38.8148383043953,
+      "source_axis_start_m": [
+        1.041399985551834,
+        2.3875999450683594,
+        0.0
+      ],
+      "source_axis_direction": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "actual_fitted_extent_from_axis_start_mm": [
+        5.4931640569577667e-05,
+        1900.0830807597567
+      ],
+      "cut_face_ids": [
+        "FC-C0-001",
+        "FC-C0-005",
+        "FC-C0-007",
+        "FC-C0-016",
+        "FC-C0-017",
+        "FC-C0-018",
+        "FC-C0-044",
+        "FC-C0-046",
+        "FC-C0-047",
+        "FC-C0-050",
+        "FC-C0-051",
+        "FC-C0-052",
+        "FC-C0-055",
+        "FC-C0-056",
+        "FC-C0-057",
+        "FC-C0-058",
+        "FC-C0-059",
+        "FC-C0-060",
+        "FC-C0-062",
+        "FC-C0-063",
+        "FC-C0-065",
+        "FC-C0-066",
+        "FC-C0-069",
+        "FC-C0-070"
+      ],
+      "mate_provenance": [
+        "L0-S",
+        "L7-H",
+        "L7-S",
+        "R0"
+      ]
+    },
+    {
+      "part_id": "K0-A",
+      "measurement": {
+        "station_from_axis_start_mm": 46.76243541700008,
+        "fitted_area_mm2": 479.9315727659348,
+        "stock_area_mm2": 9290.303999999416,
+        "retained_section_fraction": 0.0516594045540345,
+        "distance_from_stock_extent_ends_mm": 46.762471199999986,
+        "distance_from_fitted_extent_ends_mm": 46.76247081406423
+      },
+      "station_from_axis_start_in": 1.841040764448822,
+      "source_axis_start_m": [
+        4.571999907493591,
+        1.5748000144958496,
+        0.0
+      ],
+      "source_axis_direction": [
+        -0.2705980561130337,
+        0.7071067779080659,
+        0.6532814834849682
+      ],
+      "actual_fitted_extent_from_axis_start_mm": [
+        -3.539706415478516e-05,
+        1005.7886504695708
+      ],
+      "cut_face_ids": [
+        "FC-K0-A-009",
+        "FC-K0-A-010",
+        "FC-K0-A-011",
+        "FC-K0-A-014",
+        "FC-K0-A-015",
+        "FC-K0-A-016",
+        "FC-K0-A-017",
+        "FC-K0-A-030",
+        "FC-K0-A-031"
+      ],
+      "mate_provenance": [
+        "P0"
+      ]
+    }
+  ],
+  "machining_findings": {
+    "nominal_mating_clearance_mm": 0,
+    "third_member_buffer_mm": 1,
+    "buffer_is_clearance_allowance": false,
+    "central_key_width_and_depth_fraction": 0.4,
+    "structural_sizing_basis_for_key_fraction": null,
+    "allowances_stock_moisture_radius_kerf_tool_access": "NOT SPECIFIED / NOT VERIFIED",
+    "all_pockets_machinable": "NOT ESTABLISHED"
+  },
+  "assembly_path": "Separate kinematic/erection review required. This audit does not establish assembly path."
+}

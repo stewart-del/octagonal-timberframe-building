@@ -1,7 +1,7 @@
 from pathlib import Path
 import hashlib, json, re, sys
 
-path = Path(sys.argv[1]) if len(sys.argv) > 1 else Path(__file__).resolve().parents[1] / "index.html"
+path = Path(sys.argv[1]) if len(sys.argv) > 1 else Path(__file__).resolve().parents[1] / "dist" / "index.html"
 html = path.read_text(encoding="utf-8")
 match = re.search(r'<script[^>]*id="model-data"[^>]*>(.*?)</script>', html, re.S)
 assert match, "Missing embedded model"
@@ -21,3 +21,4 @@ assert data["main_roof_overhang_normal_ft"] == 2.5
 ids = re.findall(r'\bid="([^"]+)"', html)
 assert len(ids) == len(set(ids)), "Duplicate HTML IDs"
 print(json.dumps({"model_unchanged": True, "timber_count": 104, "end_references": 208, "model_data_sha256": expected, "limits": "This checks source integrity; no structural, fabrication, browser rendering or assembly approval."}, indent=2))
+

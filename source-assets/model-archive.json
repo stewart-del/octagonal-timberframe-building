@@ -1,0 +1,17 @@
+{
+  "filename": "Octagon-model-and-review.zip",
+  "bytes": 14999290,
+  "sha256": "d71e76da248fe25ff4678640a35209a5b41418ac2b6b61f4a9801ef25e1a6210",
+  "parts": [
+    {
+      "file": "Octagon-model-and-review.zip.part01",
+      "bytes": 7864320,
+      "sha256": "6b262c12b0e333d0647eb899031c7029e23958abdfe102b9e5ef9507ee006f08"
+    },
+    {
+      "file": "Octagon-model-and-review.zip.part02",
+      "bytes": 7134970,
+      "sha256": "95e8f06e08c1a774ec39d41454608e14d347dc3bdb3b4b11411f80de599f79e0"
+    }
+  ]
+}

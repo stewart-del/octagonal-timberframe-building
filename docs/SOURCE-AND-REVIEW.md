@@ -1,6 +1,6 @@
 # Source and practical joinery review
 
-This repository contains the recovered saved viewer, its complete embedded mesh data, NAV-04 interaction fixes, tests, and the JR-01 connection-family review. The original broader CAD/model packages, drawings, individual measurement sheets, rendering materials, and original Sites hosting manifest have not been recovered into this repository. Their saved originals have not been overwritten. This repository is not a replacement for those broader packages.
+This repository contains the recovered saved viewer, its complete embedded mesh data, NAV-04 interaction fixes, tests, and the JR-01 connection-family review. The original Sites source package has also been recovered intact: editable source, assembled/exploded GLBs, the individual-model and review ZIP, audit evidence, original hosting manifest, and attribution are included. The original downloadable assets and model data remain byte-identical. GitHub stores the large model ZIP in verified parts under `source-assets/`; the build reconstructs its original bytes without network access. Additional saved drawings or rendering materials outside that source package are not claimed as recovered here.
 
 ## Preserved geometry and provenance
 

@@ -1,0 +1,11 @@
+input,required_information,why_needed,confirmed_value,status
+Project location,Street address or coordinates; elevation; local authority and adopted code,"Site snow, wind, seismic and other applicable hazards",,REQUIRED / NOT CONFIRMED
+Use and enclosure,"Intended occupancy, risk category, open/partially enclosed/enclosed configuration, openings",Gravity and wind cases; lateral system,,REQUIRED / NOT CONFIRMED
+Timber specification,"Species, grade/grading agency, actual surfaced sections, defects and grain orientation",Adjusted member and connection design values,,REQUIRED / NOT CONFIRMED
+Moisture,"Moisture at machining, raising and service; indoor/outdoor exposure; drying method","Shrinkage, fit, creep, distortion and wet/dry service",,REQUIRED / NOT CONFIRMED
+Roof build-up,"Decking, insulation, roofing, ceiling, cupola, glazing and any suspended equipment with weights","Dead loads, diaphragm and uplift load path",,REQUIRED / NOT CONFIRMED
+Walls and floor,"Wall construction, bookshelf support/anchorage and floor construction",Lateral resistance; floor and bookshelf loads outside current model,,REQUIRED / NOT CONFIRMED
+Connections,"Intended traditional joint families, fasteners/pegs/hardware and allowed exposed details","Bearing, tension, shear, splitting, uplift and continuity",,REQUIRED / NOT CONFIRMED
+Foundations,"Support locations/restraints, post bases/anchors, soil capacity and foundation design","Compression, uplift, overturning and sliding",,REQUIRED / NOT CONFIRMED
+Fabrication process,"Hand tools/CNC, cutter diameters/radii, reach, holder envelope, workholding and achievable tolerances","Accessibility, tool clearance, datums and stock allowance",,REQUIRED / NOT CONFIRMED
+Raising arrangements,"Crane/lift access, lifting points, temporary supports/bracing, staging and contractor method","Stage stability, lifting loads and release of temporary supports",,REQUIRED / NOT CONFIRMED
