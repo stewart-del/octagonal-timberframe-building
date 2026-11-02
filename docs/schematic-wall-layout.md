@@ -11,11 +11,11 @@ Shared `TimberSchematicWalls.orientation` in `src/schematic-walls.js` defines No
 - West: door opening.
 - NE/SE/SW/NW: smaller window openings.
 
-Window and door apertures are genuine gaps in the rendering geometry, not opaque rectangles. Glazing/door leaves and structural headers are not invented. Wall faces lie between the existing perimeter post centerlines with 150 mm provisional end clearances.
+Window and door apertures are genuine gaps in the rendering geometry, not opaque rectangles. Glazing/door leaves and structural headers are not invented. Wall infill ends meet the existing post footprint faces; modeled end clearance is zero.
 
 ## Explicit visualization assumptions, not measurements
 
-- Wall envelope: 100 mm thick; base0.10 m and top2.20 m above the model's unresolved ground datum.
+- Wall envelope: 100 mm thick; base at the post-foot datum and top at the existing ring-beam underside. See frame-continuity correction below.
 - Large window:65%of clear wall width, sill0.75m/top1.95m.
 - Small windows:30%of clear wall width, sill1.00m/top1.85m.
 - Door:0.95m wide, from wall base to2.10m.
@@ -34,3 +34,6 @@ The same runtime meshes generate the top/side SVG line plans. The shared design-
 Cupola windows are eight illustrative four-sided frames between the existing lower/upper ring bands. Bottom/top come from current ring mesh bounds with 12.7 mm illustrative clearance; plan width uses post-center span minus 200 mm, with 25.4 mm frame profiles and 38.1 mm depth. These are display assumptions, not approved openings, glazing, ventilation, flashing or fastening specifications. No glass solid, new timber cut, structural-bracing credit or added self-weight is asserted.
 
 Validation: independent per-layer visibility tests (including shelves with walls off and cupola frames with shelves off), unchanged canonical model hash, all existing test suites, and SVG raster renders visually inspected. Live browser QA remains for the publisher.
+
+## Frame-continuity correction
+Infill now meets the actual adjacent post base-footprint faces across its full 100 mm thickness, with beveled ends, and the existing ring-beam underside (current model Y=2.26151824283905 m). Its base is the current post-foot datum Y=0. The earlier arbitrary 150 mm end inset, 0.10 m base and 2.20 m top are retired. Independent solid-intersection checks found no positive overlap with adjacent posts/beam; intended door/window apertures remain. This establishes modeled surface continuity, not weatherproofing or attachment capacity. Ground and foundation design remain unresolved.

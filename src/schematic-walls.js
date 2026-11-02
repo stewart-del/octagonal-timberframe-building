@@ -9,12 +9,22 @@ const TimberSchematicWalls=(()=>{
   for(let k=0;k<8;k++){
    const a=parts.find(p=>p.id==='P'+k).center,b=parts.find(p=>p.id==='P'+((k+1)%8)).center;
    const dx=b[0]-a[0],dz=b[2]-a[2],span=Math.hypot(dx,dz),u=[dx/span,0,dz/span],center=[(a[0]+b[0])/2,0,(a[2]+b[2])/2],r=Math.hypot(center[0],center[2]),out=[center[0]/r,0,center[2]/r];
-   // 150mm end clearance and 100mm envelope thickness are schematic assumptions.
-   const width=span-.30,height=2.20,base=.10,dir=names[k],kind=usage[dir];
+   // Infill terminates at existing post footprints and ring-beam underside, without arbitrary reveal gaps.
+   const local=v=>[(v[0]-center[0])*u[0]+(v[2]-center[2])*u[2],(v[0]-center[0])*out[0]+(v[2]-center[2])*out[2]];
+   function postBoundary(post,z,towardRight){
+    const bottom=Math.min(...post.vertices.map(v=>v[1]));
+    const pts=[...new Map(post.vertices.filter(v=>Math.abs(v[1]-bottom)<1e-7).map(v=>{const q=local(v);return[q.map(n=>n.toFixed(9)).join(','),q];})).values()];
+    const c=pts.reduce((a,p)=>[a[0]+p[0]/pts.length,a[1]+p[1]/pts.length],[0,0]);pts.sort((a,b)=>Math.atan2(a[1]-c[1],a[0]-c[0])-Math.atan2(b[1]-c[1],b[0]-c[0]));
+    const xs=[];for(let i=0;i<pts.length;i++){const a=pts[i],b=pts[(i+1)%pts.length];if(Math.abs(a[1]-z)<1e-9)xs.push(a[0]);if((a[1]-z)*(b[1]-z)<0)xs.push(a[0]+(b[0]-a[0])*(z-a[1])/(b[1]-a[1]));}
+    if(!xs.length)throw new Error('Wall section misses post footprint');return towardRight?Math.max(...xs):Math.min(...xs);
+   }
+   const leftPost=parts.find(p=>p.id==='P'+k),rightPost=parts.find(p=>p.id==='P'+((k+1)%8));
+   const left=z=>postBoundary(leftPost,z,true),right=z=>postBoundary(rightPost,z,false);
+   const width=right(0)-left(0),height=Math.min(...parts.find(p=>p.id==='B'+k).vertices.map(v=>v[1])),base=Math.max(Math.min(...leftPost.vertices.map(v=>v[1])),Math.min(...rightPost.vertices.map(v=>v[1]))),dir=names[k],kind=usage[dir];
    const world=(x,y,z)=>[center[0]+u[0]*x+out[0]*z,y,center[2]+u[2]*x+out[2]*z];
    function box(label,x0,x1,y0,y1,z0=-.05,z1=.05,color=[.88,.86,.75]){
     if(x1<=x0||y1<=y0)return;
-    const vertices=[[x0,y0,z0],[x1,y0,z0],[x1,y1,z0],[x0,y1,z0],[x0,y0,z1],[x1,y0,z1],[x1,y1,z1],[x0,y1,z1]].map(v=>world(...v));
+    const vertices=[[x0,y0,z0],[x1,y0,z0],[x1,y1,z0],[x0,y1,z0],[x0,y0,z1],[x1,y0,z1],[x1,y1,z1],[x0,y1,z1]].map(v=>{if(Math.abs(v[0]+width/2)<1e-8)v[0]=left(v[2]);else if(Math.abs(v[0]-width/2)<1e-8)v[0]=right(v[2]);return world(...v);});
     components.push({id:'SCHEM-'+dir+'-'+label,name:dir+' '+label+' (schematic)',schematic:true,schematicKind:label.startsWith('shelf')?'shelf':'wall',face:dir,localBounds:[x0,x1,y0,y1,z0,z1],group:'schematic_walls',material:'schematic',is_timber:false,vertices,triangles,center:world((x0+x1)/2,(y0+y1)/2,(z0+z1)/2),color,exploded_offset:[0,0,0]});
    }
    let opening=null;
@@ -30,7 +40,7 @@ const TimberSchematicWalls=(()=>{
     box('shelf-sideL',-sw,-sw+.025,base,1.95,-.35,-.05,[.60,.43,.27]);box('shelf-sideR',sw-.025,sw,base,1.95,-.35,-.05,[.60,.43,.27]);
     for(let j=0;j<6;j++)box('shelf'+j,-sw,sw,base+j*.35,base+j*.35+.025,-.35,-.05,[.67,.49,.31]);
    }
-   walls.push({face:dir,postIds:['P'+k,'P'+((k+1)%8)],usage:kind,width,height,base,opening,center:world(0,1.15,.06),normal:out});
+   walls.push({face:dir,postIds:['P'+k,'P'+((k+1)%8)],usage:kind,width,height,base,opening,center:world(0,1.15,.06),normal:out,frameFit:{endClearance:0,topClearance:0,leftAtFaces:[left(-.05),left(.05)],rightAtFaces:[right(-.05),right(.05)],status:'Infill meets modeled post footprints and beam underside; attachment design unchanged.'}});
   }
   const cupolaWindows=[];
   for(let k=0;k<8;k++){

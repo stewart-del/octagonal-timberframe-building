@@ -185,7 +185,7 @@ function runViewerTests(source,model){
     explode=0;showAllAndUncenter();
     showAllAndUncenter();check(schematicWallsEnabled&&schematicShelvesEnabled&&schematicCupolaWindowsEnabled,'Reset and show-all restore all three schematic layers');
     document.activeElement=$('plansButton');explode=.6;const priorExplode=explode;
-    openPlans();
+    refreshPlans();openPlans();
     check($('plansModal').classList.contains('open')&&document.querySelector('main').inert,'Architectural plans opens a modal and isolates background input');
     check(navigationBlocked(canvas),'Free navigation pauses while plans are open');
     check(plansSVG.top.includes('TOP PLAN')&&plansSVG.side.includes('SIDE ELEVATION'),'Both canonical orthographic drawings render');

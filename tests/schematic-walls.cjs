@@ -24,3 +24,9 @@ console.log('PASS: all8 wall faces, cardinal arrangement, true window/door voids
 
 assert.equal(lib.build(model.parts).cupolaWindows.length,8);assert.equal(components.filter(p=>p.schematicKind==='cupolaWindow').length,32);
 for(const w of lib.build(model.parts).cupolaWindows){assert(w.top>w.bottom&&w.width>0);}
+
+const viewerSource=require('fs').readFileSync(require('path').join(__dirname,'../src/viewer.template.html'),'utf8');
+assert(viewerSource.includes('id="roomLayers" open'));
+assert(viewerSource.indexOf('id="roomLayers"')<viewerSource.indexOf('id="browsePieces"'));
+
+for(const w of walls){assert.strictEqual(w.frameFit.endClearance,0);assert.strictEqual(w.frameFit.topClearance,0);const beam=model.parts.find(p=>p.id==='B'+w.postIds[0].slice(1));assert(Math.abs(w.height-Math.min(...beam.vertices.map(v=>v[1])))<1e-9);assert.strictEqual(w.base,0);}
