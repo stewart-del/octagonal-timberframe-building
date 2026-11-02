@@ -34,3 +34,4 @@ jobs:
       - run: python3 tests/test_cupola_panel.py
       - run: node tests/architectural-plans.cjs
       - run: python3 tests/test_central_support.py
+      - run: node tests/schematic-walls.cjs

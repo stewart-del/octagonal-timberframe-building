@@ -42,7 +42,7 @@ const bind=b=>bound=b,gridBuffer='GRID',gridCount=2,basis={eye:[0,0,50]},matrix=
 const meshParts=[{part:{id:'A'},buffer:'A',edgeBuffer:'Aedge',count:3,edgeCount:2},{part:{id:'G'},buffer:'G',edgeBuffer:'Gedge',count:3,edgeCount:2}];
 const isShown=()=>true,isSelectedMember=p=>p.id==='A',selectionAlpha=p=>p.id==='A'?1:.14,offset=()=>[0,0,0],fittedCenter=()=>[0,0,0],groupColor=()=>[.5,.4,.3];
 let afterCuts=null,afterCavity=null;
-const drawCavityVolumes=()=>afterCavity={depth,blend,polygon,opacity},updateEdgeMeasurementLabels=()=>{},updateHollowStatus=()=>{},updateLoadReview=()=>{},drawCutFaces=()=>afterCuts={depth,blend,polygon,opacity},updateLabels=()=>{},updateEndLabels=()=>{},updateCutLabel=()=>{},updatePieceCenter=()=>{},fallback=null;
+const drawCavityVolumes=()=>afterCavity={depth,blend,polygon,opacity},updateEdgeMeasurementLabels=()=>{},updateHollowStatus=()=>{},updateLoadReview=()=>{},updateSchematicWalls=()=>{},drawCutFaces=()=>afterCuts={depth,blend,polygon,opacity},updateLabels=()=>{},updateEndLabels=()=>{},updateCutLabel=()=>{},updatePieceCenter=()=>{},fallback=null;
 ${functions}
 check(source.includes('edgesOn=true,highContrast=true')&&source.includes('id="wireframe" checked')&&source.includes('id="surfaceContrast" checked'),'Feature edges and high contrast start enabled');
 check(source.includes('uniform float surfaceContrast')&&source.includes('mix(lit,color,lineMode)'),'Surface shader exposes contrast and leaves line overlay colors unlit');

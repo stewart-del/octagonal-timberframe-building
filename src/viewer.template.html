@@ -37,7 +37,7 @@
 <section class="section priority-card" aria-labelledby="cornerTitle"><span class="priority-eyebrow">Corrected framing · R01</span><h2 id="cornerTitle">8 triangles · 16 short rafters</h2><p>Two short rafters in each bay meet the sides of the main hips. The eight inward-running midpoint rafters are removed.</p><button id="reviewP0" class="primary-button">P0 corner close-up</button><button id="reviewCupola" class="primary-button">Cupola connections</button><button id="reviewCorner" class="primary-button">Inspect rafter-to-hip joints</button><button id="roofPlan">Top framing plan</button><button id="restoreFrame" class="secondary-link">Restore full frame</button><p class="corner-members">R0 · J0-0 · J7-2</p><details id="cornerFindings"><summary>What changed?</summary><p>Lower ties are 6 × 10 in. The 30 ft diameter is measured across the outside post faces; roof tips span 33 ft 4 in. Cupola spacers and the temporary black fixture are separate metal parts.</p><p>The new short-rafter end surfaces follow the hip side planes. Housing, tenon and fastener details remain to be designed.</p><a href="r01.html">Dimensions, changes &amp; joint status</a></details><div id="cornerContext" class="description" role="status" hidden></div></section>
 <!-- TIMESTAMP END 2026-11-01T22:44:38-05:00 | REVISION R004653 -->
 <details class="section" id="browsePieces" open><summary>Find a piece</summary><input id="search" class="search" placeholder="ID, type or member name" aria-label="Search pieces"><div id="partCount" class="count-line"></div><div id="partList" class="parts"></div></details>
-<details class="section"><summary>Visible member groups</summary><div id="groupList" class="groups"></div><div class="mini-actions"><button id="constructionAids" aria-pressed="false">Show construction aids</button><button id="allPermanent">Default frame</button><button id="allGroups">Show all</button><button id="hidePieces">Hide all</button></div></details>
+<details class="section"><summary>Schematic walls &amp; openings</summary><label><input id="schematicWalls" type="checkbox"> Show provisional walls, windows &amp; door</label><label><input id="schematicShelves" type="checkbox"> Show bookshelves independently</label><label><input id="schematicCupolaWindows" type="checkbox"> Show eight cupola window frames</label><p class="description">Cupola frames are illustrative; glass, ventilation, attachment and added loads are unverified. No timber cuts.</p><p class="description">Design compass only: P0–P1 = N; site north unverified. N/S solid with bookshelves; E large window; W door; four diagonal faces small windows.</p><p class="description">Illustrative proportions, not measured from the photo. Wall bracing, headers, fastening and all added loads are unverified. Walls, shelves and books are excluded from timber self-weight. No floor modeled.</p><p id="schematicWallStatus" class="description"></p></details><details class="section"><summary>Visible member groups</summary><div id="groupList" class="groups"></div><div class="mini-actions"><button id="constructionAids" aria-pressed="false">Show construction aids</button><button id="allPermanent">Default frame</button><button id="allGroups">Show all</button><button id="hidePieces">Hide all</button></div></details>
 <!-- TIMESTAMP START 2026-11-01T23:19:38-05:00 | REVISION R004668 -->
 <details class="section"><summary>Project &amp; evidence</summary><nav class="project-links" aria-label="Project"><a href="r01.html">R01 geometry &amp; dimensions</a><a href="joinery.html">Current joint register</a><a href="structural-audit.html">Joint strength &amp; load-path audit</a><a href="downloads/index.html">Current model data &amp; archive</a><a href="review/index.html">Earlier prototype review</a><a href="about.html">Project history</a><a href="https://github.com/stewart-del/octagonal-timberframe-building" target="_blank" rel="noopener">GitHub repository</a></nav></details>
 <!-- TIMESTAMP END 2026-11-01T23:19:38-05:00 | REVISION R004668 -->
@@ -68,7 +68,7 @@
 </aside>
 </main>
 <div class="modal" id="scheduleModal" role="dialog" aria-modal="true" aria-labelledby="scheduleTitle"><div class="modal-card"><div class="modal-head"><h2 id="scheduleTitle">Component schedule</h2><button id="closeSchedule">Close</button></div><div class="table-note" id="scheduleNote">Lengths and inclinations are calculated from the current geometry. Actual fabrication cuts and joints remain VERIFY.</div><div class="table-wrap"><table><thead><tr id="scheduleHead"><th>Piece</th><th>Group / member</th><th>Nominal axis length</th><th>Nominal section</th><th>Axis inclination</th><th>R01 end references</th><th>Model vertical bevel</th><th>Conditional plan miter</th><th>Fabrication status</th></tr></thead><tbody id="scheduleRows"></tbody></table></div></div></div>
-<div class="modal" id="plansModal" role="dialog" aria-modal="true" aria-labelledby="plansTitle"><div class="modal-card"><div class="modal-head"><h2 id="plansTitle">Architectural plans · line drawings</h2><button id="closePlans">Close plans</button></div><div class="plans-toolbar"><label><input type="checkbox" id="plansAids"> Include illustrative construction aids</label><label><input type="checkbox" id="plansHidden"> Dashed hidden edges</label><label>Zoom <select id="plansZoom"><option value="1">Fit sheet</option><option value="1.5">150%</option><option value="2">200%</option><option value="3">300%</option></select></label><button id="plansTopSVG">Download top SVG</button><button id="plansSideSVG">Download side SVG</button><button id="printPlans">Print / save PDF</button></div><p class="plans-note">Same canonical assembled model, independent of 3D visibility/explosion. Dimensions are measured mesh extents, not stock sizes or saw settings. Source dimensions and provisional geometry are not independently revalidated here. Ground/bearing heights, material and joint design remain unresolved. TFEC-informed review — not structurally qualified.</p><div class="plans-scroll"><div class="plans-sheet" id="plansTop"></div><div class="plans-sheet" id="plansSide"></div><details id="plansMeasurements"><summary>Component measurements · modeled bounding extents</summary><p>All three dimensions are world-axis bounds, not cut lengths. Source-reported cupola outside diameter is 88 in; the temporary support's owner-reported span is separate. Temporary steel thickness, holes, positions and attachment details may be illustrative: these are NOT drilling or steel-fabrication dimensions. Source status is retained in the model notes.</p><table><thead><tr><th>ID</th><th>Member</th><th>X extent</th><th>Y extent</th><th>Z extent</th></tr></thead><tbody id="plansDimensionRows"></tbody></table></details></div></div></div>
+<div class="modal" id="plansModal" role="dialog" aria-modal="true" aria-labelledby="plansTitle"><div class="modal-card"><div class="modal-head"><h2 id="plansTitle">Architectural plans · line drawings</h2><button id="closePlans">Close plans</button></div><div class="plans-toolbar"><label><input type="checkbox" id="plansAids"> Include illustrative construction aids</label><label><input type="checkbox" id="plansWalls"> Walls, windows &amp; door</label><label><input type="checkbox" id="plansShelves"> Bookshelves</label><label><input type="checkbox" id="plansCupolaWindows"> Cupola window frames</label><label><input type="checkbox" id="plansHidden"> Dashed hidden edges</label><label>Zoom <select id="plansZoom"><option value="1">Fit sheet</option><option value="1.5">150%</option><option value="2">200%</option><option value="3">300%</option></select></label><button id="plansTopSVG">Download top SVG</button><button id="plansSideSVG">Download side SVG</button><button id="printPlans">Print / save PDF</button></div><p class="plans-note">Same canonical assembled model, independent of 3D visibility/explosion. Dimensions are measured mesh extents, not stock sizes or saw settings. Source dimensions and provisional geometry are not independently revalidated here. Ground/bearing heights, material and joint design remain unresolved. TFEC-informed review — not structurally qualified.</p><div class="plans-scroll"><div class="plans-sheet" id="plansTop"></div><div class="plans-sheet" id="plansSide"></div><details id="plansMeasurements"><summary>Component measurements · modeled bounding extents</summary><p>All three dimensions are world-axis bounds, not cut lengths. Source-reported cupola outside diameter is 88 in; the temporary support's owner-reported span is separate. Temporary steel thickness, holes, positions and attachment details may be illustrative: these are NOT drilling or steel-fabrication dimensions. Source status is retained in the model notes.</p><table><thead><tr><th>ID</th><th>Member</th><th>X extent</th><th>Y extent</th><th>Z extent</th></tr></thead><tbody id="plansDimensionRows"></tbody></table></details></div></div></div>
 <script type="application/json" id="model-data">__PARTS_JSON__</script>
 <script>
 'use strict';
@@ -76,6 +76,9 @@ const DATA=JSON.parse(document.getElementById('model-data').textContent);
 const $=id=>document.getElementById(id);
 const parts=DATA.parts||[];
 const canonicalPartId=id=>DATA.component_id_history?.[id]||id;
+/*__SCHEMATIC_WALLS__*/
+const schematicLayout=TimberSchematicWalls.build(parts),schematicParts=schematicLayout.components;
+let schematicWallsEnabled=false,schematicShelvesEnabled=false,schematicCupolaWindowsEnabled=false;
 const groupMap=new Map((DATA.groups||[]).map(g=>[g.id,g]));
 for(const p of parts){if(!groupMap.has(p.group))groupMap.set(p.group,{id:p.group,label:p.group.replaceAll('_',' ')});}
 const groups=[...groupMap.values()];
@@ -86,7 +89,7 @@ if(DATA.main_roof_overhang_normal_ft!=null){const note=$('geometrySummary');note
 const defaultGroups=()=>groups.filter(g=>!isTemporary(g.id)&&g.default_visible!==false);
 const visible=new Set(defaultGroups().map(g=>g.id));
 let isolatedId=null;const hiddenPieces=new Set();let inspectionCutId=null;
-function isShown(p){return visible.has(p.group)&&!hiddenPieces.has(p.id)&&(!isolatedId||p.id===isolatedId);}
+function isShown(p){if(p.schematic)return (p.schematicKind==='shelf'?schematicShelvesEnabled:p.schematicKind==='cupolaWindow'?schematicCupolaWindowsEnabled:schematicWallsEnabled)&&explode===0&&!isolatedId;return visible.has(p.group)&&!hiddenPieces.has(p.id)&&(!isolatedId||p.id===isolatedId);}
 let selectedCut=null,cutExplode=0,showCutFaces=false,showEndRefs=false;
 const selectedPartIds=new Set();
 let selected=null,explode=0,labelsOn=false,detailOn=false,edgesOn=true,highContrast=true,search='';
@@ -127,11 +130,12 @@ function buildBuffer(data){const b=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFF
 /*__ARCHITECTURAL_PLANS__*/
 function featureEdges(vertices,triangles){return TimberEdgeMeasurements.featureEdges(vertices,triangles);}
 
-for(const p of parts){
+for(const p of [...parts,...schematicParts]){
  const vertices=p.vertices||[],triangles=p.triangles||[];const raw=[],edgeRaw=[],unique=new Set();
  for(const tri of triangles){const a=vertices[tri[0]],b=vertices[tri[1]],c=vertices[tri[2]];if(!a||!b||!c)continue;const n=unit(cross(vsub(b,a),vsub(c,a)));for(const v of [a,b,c])raw.push(...v,...n);}
  edgeRaw.push(...featureEdges(vertices,triangles));
  meshParts.push({part:p,raw,count:raw.length/6,edgeCount:edgeRaw.length/6,buffer:gl?buildBuffer(raw):null,edgeBuffer:gl?buildBuffer(edgeRaw):null});
+ if(p.schematic)continue;
  const lab=document.createElement('button');lab.className='label';lab.title='Select '+p.id;lab.addEventListener('click',e=>{e.stopPropagation();selectPart(p.id,!!e.shiftKey);});lab.dataset.part=p.id;labelLayer.appendChild(lab);p._label=lab;
 }
 if(gl){const grid=[];for(let i=-12;i<=12;i++){grid.push(-12,-.015,i,0,1,0,12,-.015,i,0,1,0,i,-.015,-12,0,1,0,i,-.015,12,0,1,0);}gridBuffer=buildBuffer(grid);gridCount=grid.length/6;}
@@ -240,7 +244,7 @@ function render() {
       const p = m.part, highlighted = isSelectedMember(p);
       gl.uniform1f(loc.opacity, opacity);
       gl.uniform3fv(loc.translation, offset(p));
-      gl.uniform3fv(loc.color, highlighted ? [.12, .62, .75] : groupColor(p.group));
+      gl.uniform3fv(loc.color, highlighted ? [.12, .62, .75] : (p.schematic?p.color:groupColor(p.group)));
       gl.uniform1f(loc.lineMode, 0);
       bind(m.buffer);
       // Bias filled surfaces slightly behind their true feature edges.
@@ -282,6 +286,7 @@ function render() {
   updateEdgeMeasurementLabels();
   updateHollowStatus();
   updateLoadReview();
+  updateSchematicWalls();
 }
 const endLabels=['A','B'].map(end=>{const el=document.createElement('div');el.className='label detail';el.style.pointerEvents='none';$('labels').appendChild(el);return el;});
 function updateEndLabels(){for(const el of endLabels)el.style.display='none';if(!selected||!labelsOn)return;const p=parts.find(p=>p.id===selected);if(!p||!isShown(p))return;[p.axis_start,p.axis_end].forEach((point,i)=>{if(!point)return;const q=project(vadd(point,offset(p)));if(!q)return;const el=endLabels[i];el.textContent=p.id+(i?'-B':'-A')+' | R01 REF '+num(angle(p)[i?'display_end_B_off_square_deg':'display_end_A_off_square_deg'],2)+'° off square';el.style.left=q.x+'px';el.style.top=(q.y+25)+'px';el.style.display='block';});}
@@ -327,7 +332,7 @@ function drawFallback() {
   fallback.fillStyle = '#f1f3ed';
   fallback.fillRect(0, 0, width, height);
   const faces = [];
-  for (const p of parts) {
+  for (const p of [...parts,...schematicParts]) {
     if (!isShown(p)) continue;
     const off = offset(p);
     for (const tri of p.triangles || []) {
@@ -341,7 +346,7 @@ function drawFallback() {
   try {
     for (const f of faces) {
       const alpha = selectionAlpha(f.p), highlighted = isSelectedMember(f.p);
-      const color = surfaceDisplayColor(highlighted ? [.12, .62, .75] : groupColor(f.p.group), f.normal);
+      const color = surfaceDisplayColor(highlighted ? [.12, .62, .75] : (f.p.schematic?f.p.color:groupColor(f.p.group)), f.normal);
       fallback.beginPath();
       f.pp.forEach((p, i) => i ? fallback.lineTo(p.x, p.y) : fallback.moveTo(p.x, p.y));
       fallback.closePath();
@@ -404,6 +409,20 @@ function updateLabels() {
   }
 }
 function syncConstructionAids(){const on=parts.filter(p=>p.group==='metal_spacers'||p.group==='temporary_fixture').some(isShown);$('constructionAids').textContent=on?'Hide construction aids':'Show construction aids';$('constructionAids').setAttribute('aria-pressed',String(on));}
+
+const schematicLabels=[];
+function initSchematicWalls(){
+ $('schematicWalls').onchange=()=>{schematicWallsEnabled=$('schematicWalls').checked;requestRender();};
+ $('schematicShelves').onchange=()=>{schematicShelvesEnabled=$('schematicShelves').checked;requestRender();};
+ $('schematicCupolaWindows').onchange=()=>{schematicCupolaWindowsEnabled=$('schematicCupolaWindows').checked;requestRender();};
+ for(const w of schematicLayout.walls){const el=document.createElement('div');el.className='label detail';el.style.pointerEvents='none';el.textContent=w.face+' · '+w.usage;el.title=schematicLayout.compass;labelLayer.appendChild(el);schematicLabels.push({el,wall:w});}
+}
+function updateSchematicWalls(){
+ const any=schematicWallsEnabled||schematicShelvesEnabled||schematicCupolaWindowsEnabled,show=any&&explode===0&&!isolatedId;
+ $('schematicWallStatus').textContent=any?(show?('Walls/openings '+(schematicWallsEnabled?'on':'off')+'; bookshelves '+(schematicShelvesEnabled?'on':'off')+'; cupola windows '+(schematicCupolaWindowsEnabled?'on':'off')+'. Design compass only; dimensions provisional.'):'Layers paused during explode/isolation; return to assembled view to see them.'):'Schematic layers off.';
+ for(const {el,wall} of schematicLabels){const q=show&&(schematicWallsEnabled||(schematicShelvesEnabled&&(wall.face==='N'||wall.face==='S')))?project(wall.center):null;el.textContent=wall.face+' · '+(schematicWallsEnabled?wall.usage.replace(' + bookshelves',schematicShelvesEnabled?' + bookshelves':''):'Bookshelves');el.style.display=q?'block':'none';if(q){el.style.left=q.x+'px';el.style.top=q.y+'px';}}
+}
+
 function renderGroups(){syncConstructionAids();const host=$('groupList');host.replaceChildren();for(const g of groups){const lab=document.createElement('label');lab.className='group';const input=document.createElement('input');input.type='checkbox';input.checked=visible.has(g.id);input.addEventListener('change',()=>{input.checked?visible.add(g.id):visible.delete(g.id);renderList();requestRender();});const sw=document.createElement('span');sw.className='swatch';sw.style.background=cssColor(groupColor(g.id));const text=document.createElement('span');text.textContent=g.label||clean(g.id);const count=document.createElement('span');count.className='count';count.textContent=g.id==='temporary_fixture'?'1 assembly · 8 L straps':parts.filter(p=>p.group===g.id).length;lab.append(input,sw,text,count);host.appendChild(lab);}}
 function renderList(){const list=$('partList');const focusKey=list.contains(document.activeElement)?document.activeElement.dataset?.focusKey:null;list.replaceChildren();const shown=parts.filter(p=>visible.has(p.group)&&[p.id,p.name,p.group,groupMap.get(p.group)?.label,materialMemberLabel(p)].join(' ').toLowerCase().includes(search));$('partCount').textContent=parts.filter(isShown).length+' visible / '+parts.length+' pieces · '+shown.length+' in list';for(const p of shown){const row=document.createElement('div');row.className='piece-row';const tick=document.createElement('input');tick.type='checkbox';tick.dataset.focusKey='show:'+p.id;tick.checked=isShown(p);tick.setAttribute?.('aria-label','Show '+p.id);tick.addEventListener('change',()=>{if(isolatedId){for(const other of parts)if(other.id!==isolatedId)hiddenPieces.add(other.id);isolatedId=null;}tick.checked?hiddenPieces.delete(p.id):hiddenPieces.add(p.id);renderList();requestRender();});const b=document.createElement('button');b.dataset.focusKey='select:'+p.id;b.setAttribute('aria-pressed',String(isSelectedMember(p)));b.className='part-button'+(isSelectedMember(p)?' selected':'');const id=document.createElement('span');id.className='part-id';id.textContent=p.id;const detail=document.createElement('span');detail.textContent=materialMemberLabel(p)+' · '+(groupMap.get(p.group)?.label||clean(p.group))+' · '+feet(lengthFt(p));b.append(id,detail);b.addEventListener('click',e=>selectPart(p.id,!!e.shiftKey));row.append(tick,b);list.appendChild(row);}if(focusKey){const next=[...list.querySelectorAll('[data-focus-key]')].find(el=>el.dataset.focusKey===focusKey);next?.focus({preventScroll:true});}}
 function addMetric(host,label,value){const d=document.createElement('div');d.className='metric';const a=document.createElement('span');a.textContent=label;const b=document.createElement('strong');b.textContent=value;d.append(a,b);host.appendChild(d);}
@@ -449,7 +468,7 @@ function syncFocusButton(){
  button.textContent=multiple?'Frame selected pieces':focused?'Unfocus piece':'Focus piece';
  button.setAttribute('aria-pressed',String(focused));
 }
-function fittedCenter(p){const {min,max}=fittedBounds.get(p.id);return vadd(min.map((v,i)=>(v+max[i])/2),offset(p));}
+function fittedCenter(p){if(p.schematic)return vadd(p.center,offset(p));const {min,max}=fittedBounds.get(p.id);return vadd(min.map((v,i)=>(v+max[i])/2),offset(p));}
 function setPiecePivot(p){inspectionCutId=null;inspectionPartId=p.id;inspectionPivot=fittedCenter(p);}
 function focusPart(p){clearMovement();setPiecePivot(p);let radius=0;for(const v of p.vertices)radius=Math.max(radius,length(vsub(vadd(v,offset(p)),inspectionPivot)));const halfFov=Math.min(25*Math.PI/180,Math.atan(Math.tan(25*Math.PI/180)*aspect));focusPoint(inspectionPivot.slice(),Math.max(.15,radius/Math.sin(halfFov)*1.1));}
 function syncIsolationButton(){
@@ -459,6 +478,7 @@ function syncIsolationButton(){
  button.setAttribute('aria-pressed',String(active));
 }
 function showAllAndUncenter(){
+ schematicWallsEnabled=true;schematicShelvesEnabled=true;schematicCupolaWindowsEnabled=true;$('schematicWalls').checked=true;$('schematicShelves').checked=true;$('schematicCupolaWindows').checked=true;
  releaseMouseLook();isolatedId=null;hiddenPieces.clear();for(const group of groups)visible.add(group.id);
  clearPieceSelection();$('cornerContext').hidden=true;$('cornerFindings').open=false;
  renderGroups();renderList();fitModel();updateNavigationStatus();
@@ -685,13 +705,13 @@ window.addEventListener('hashchange',applyHash);
 window.addEventListener('resize',resize);if(typeof ResizeObserver!=='undefined')new ResizeObserver(resize).observe(canvas.parentElement);
 
 let plansReturnFocus=null,plansSVG={};
-function refreshPlans(){const options={aids:$('plansAids').checked,hidden:$('plansHidden').checked};for(const view of ['top','side']){const d=OctagonPlans.drawing(DATA,{...options,view});plansSVG[view]=d.svg;$(view==='top'?'plansTop':'plansSide').innerHTML=d.svg;}const host=$('plansDimensionRows');host.replaceChildren();for(const p of parts.filter(p=>OctagonPlans.included(p,options.aids))){const row=document.createElement('tr'),b=OctagonPlans.bounds([p]);for(const value of [p.id,p.name,...b.size.map(OctagonPlans.measure)]){const td=document.createElement('td');td.textContent=value;row.appendChild(td);}host.appendChild(row);}resizePlans();}
+function refreshPlans(){const options={aids:$('plansAids').checked,hidden:$('plansHidden').checked,walls:$('plansWalls').checked,shelves:$('plansShelves').checked,cupolaWindows:$('plansCupolaWindows').checked};for(const view of ['top','side']){const d=OctagonPlans.drawing(DATA,{...options,view});plansSVG[view]=d.svg;$(view==='top'?'plansTop':'plansSide').innerHTML=d.svg;}const host=$('plansDimensionRows');host.replaceChildren();for(const p of parts.filter(p=>OctagonPlans.included(p,options.aids))){const row=document.createElement('tr'),b=OctagonPlans.bounds([p]);for(const value of [p.id,p.name,...b.size.map(OctagonPlans.measure)]){const td=document.createElement('td');td.textContent=value;row.appendChild(td);}host.appendChild(row);}resizePlans();}
 function resizePlans(){const width=Number($('plansZoom').value)||1;for(const id of ['plansTop','plansSide'])$(id).style.width=(width*100)+'%';}
 function openPlans(){plansReturnFocus=document.activeElement;releaseMouseLook();clearMovement();refreshPlans();$('plansModal').classList.add('open');document.querySelector('header').inert=true;document.querySelector('main').inert=true;$('closePlans').focus();}
 function closePlans(){if(!$('plansModal').classList.contains('open'))return;$('plansModal').classList.remove('open');document.querySelector('header').inert=false;document.querySelector('main').inert=false;clearMovement();(plansReturnFocus?.isConnected?plansReturnFocus:$('plansButton')).focus();}
-$('plansButton').onclick=openPlans;$('closePlans').onclick=closePlans;$('plansAids').onchange=refreshPlans;$('plansHidden').onchange=refreshPlans;$('plansZoom').onchange=resizePlans;$('plansTopSVG').onclick=()=>download('octagon-top-plan.svg',plansSVG.top,'image/svg+xml');$('plansSideSVG').onclick=()=>download('octagon-side-elevation.svg',plansSVG.side,'image/svg+xml');$('printPlans').onclick=()=>{document.body.classList.add('plans-print');window.print();};window.addEventListener('afterprint',()=>document.body.classList.remove('plans-print'));$('plansModal').onclick=e=>{if(e.target===$('plansModal'))closePlans();};document.addEventListener('keydown',e=>{if(!$('plansModal').classList.contains('open'))return;if(e.key==='Escape'){e.preventDefault();closePlans();}else if(e.key==='Tab'){const items=[...$('plansModal').querySelectorAll('button:not([disabled]),input:not([disabled]),select:not([disabled]),summary')],first=items[0],last=items[items.length-1];if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus();}else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus();}}});
+$('plansButton').onclick=openPlans;$('closePlans').onclick=closePlans;$('plansAids').onchange=refreshPlans;$('plansHidden').onchange=refreshPlans;$('plansWalls').onchange=refreshPlans;$('plansShelves').onchange=refreshPlans;$('plansCupolaWindows').onchange=refreshPlans;$('plansZoom').onchange=resizePlans;$('plansTopSVG').onclick=()=>download('octagon-top-plan.svg',plansSVG.top,'image/svg+xml');$('plansSideSVG').onclick=()=>download('octagon-side-elevation.svg',plansSVG.side,'image/svg+xml');$('printPlans').onclick=()=>{document.body.classList.add('plans-print');window.print();};window.addEventListener('afterprint',()=>document.body.classList.remove('plans-print'));$('plansModal').onclick=e=>{if(e.target===$('plansModal'))closePlans();};document.addEventListener('keydown',e=>{if(!$('plansModal').classList.contains('open'))return;if(e.key==='Escape'){e.preventDefault();closePlans();}else if(e.key==='Tab'){const items=[...$('plansModal').querySelectorAll('button:not([disabled]),input:not([disabled]),select:not([disabled]),summary')],first=items[0],last=items[items.length-1];if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus();}else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus();}}});
 
-initLoadReview();initJoineryReview();renderGroups();renderList();resize();fitModel();applyHash();updateNavigationStatus();
+initSchematicWalls();initLoadReview();initJoineryReview();renderGroups();renderList();resize();fitModel();applyHash();updateNavigationStatus();
 </script>
 <script type="application/json" id="continuation-verification">{"build": "R01", "basis": "Corrected architectural geometry study", "supersedes": "NAV-05 geometry and fitting audits", "retired_member_ids": ["J0-1", "J1-1", "J2-1", "J3-1", "J4-1", "J5-1", "J6-1", "J7-1"], "current_checks": "tests/test_r01_geometry.py", "fabrication_status": "unresolved"}</script>
 </body>
