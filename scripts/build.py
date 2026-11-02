@@ -30,7 +30,10 @@ load_data=json.loads((ROOT/'src/load-review-data.json').read_text())
 assert load_data['source_model_sha256']==model_sha, 'Load review must match current geometry'
 load_review=(ROOT/'src/load-review.js').read_text().replace('__LOAD_REVIEW_JSON__',encode(load_data))
 overlays = (ROOT/'src/geometry-overlays.js').read_text().replace('__CAVITY_JSON__', encode(cavities))
-for marker, value in [('/*__SCHEMATIC_WALLS__*/', (ROOT/'src/schematic-walls.js').read_text()), ('/*__INSPECTION_TOOLS__*/', inspection),
+enclosure_fit=json.loads((ROOT/'src/enclosure-fit.json').read_text())
+assert enclosure_fit['source_model_sha256']==model_sha
+assert enclosure_fit['source_module_sha256']==hashlib.sha256((ROOT/'src/schematic-walls.js').read_bytes()).hexdigest()
+for marker, value in [('/*__SCHEMATIC_WALLS__*/', 'const OCTAGON_ENCLOSURE_FIT='+encode(enclosure_fit)+';\n'+(ROOT/'src/schematic-walls.js').read_text()), ('/*__INSPECTION_TOOLS__*/', inspection),
                       ('/*__ARCHITECTURAL_PLANS__*/', (ROOT/'src/architectural-plans.js').read_text()),
                       ('/*__EDGE_MEASUREMENT_TOOLS__*/', (ROOT/'src/edge-measurements.js').read_text()),
                       ('/*__LOAD_REVIEW__*/', load_review), ('/*__GEOMETRY_OVERLAYS__*/', overlays), ('__PLAN_MODEL_SHA__', model_sha), ('__PARTS_JSON__', encode(data))]:

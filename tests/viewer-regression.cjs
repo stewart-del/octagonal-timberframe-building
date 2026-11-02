@@ -45,7 +45,7 @@ function runViewerTests(source,model){
     check(schematicParts.every(p=>fittedCenter(p).every(Number.isFinite)),'Schematic centers support ghost sorting during multi-selection');
     const canonicalCount=parts.length;
     matrix();$('schematicWalls').checked=true;$('schematicWalls').onchange();updateSchematicWalls();
-    check(schematicParts.filter(p=>p.schematicKind==='wall').every(isShown)&&schematicParts.filter(p=>p.schematicKind!=='wall').every(p=>!isShown(p))&&parts.length===canonicalCount,'Wall toggle displays only separate provisional layer, not timber/load members');
+    check(schematicParts.filter(p=>['wall','rail','footer'].includes(p.schematicKind)).every(isShown)&&schematicParts.filter(p=>!['wall','rail','footer'].includes(p.schematicKind)).every(p=>!isShown(p))&&parts.length===canonicalCount,'Wall toggle displays only separate provisional layer, not timber/load members');
     explode=.5;updateSchematicWalls();check(schematicParts.every(p=>!isShown(p))&&$('schematicWallStatus').textContent.includes('paused'),'Walls pause during explode instead of drifting from posts');
     explode=0;isolatedId='P0';check(schematicParts.every(p=>!isShown(p)),'Wall layer stays out of isolated joint inspection');
     isolatedId=null;$('schematicWalls').checked=false;$('schematicWalls').onchange();updateSchematicWalls();
@@ -57,6 +57,8 @@ function runViewerTests(source,model){
     $('schematicShelves').checked=false;$('schematicShelves').onchange();
     check(schematicParts.filter(p=>p.schematicKind==='cupolaWindow').every(isShown)&&schematicParts.filter(p=>p.schematicKind==='shelf').every(p=>!isShown(p)),'Turning shelves off preserves cupola windows');
     $('schematicCupolaWindows').checked=false;$('schematicCupolaWindows').onchange();
+    $('schematicFloor').checked=true;$('schematicFloor').onchange();check(schematicParts.filter(p=>['floor','grate'].includes(p.schematicKind)).every(isShown)&&schematicParts.filter(p=>!['floor','grate'].includes(p.schematicKind)).every(p=>!isShown(p)),'Floor and metal grate have an independent toggle with all walls/shelves/windows off');
+    $('schematicFloor').checked=false;$('schematicFloor').onchange();
     const panel=parts.find(p=>p.id==='PLY');
     check(parts.filter(p=>p.group==='cupola_plywood').length===1&&!!panel,'Plywood is one selectable assembly, not eight display sectors');
     check(panel.exploded_offset.join(',')==='0,6.2,0','Whole panel explodes vertically as one assembly');

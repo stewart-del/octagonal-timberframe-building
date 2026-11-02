@@ -4,8 +4,8 @@ const TimberSchematicWalls=(()=>{
  const names=orientation.faceNames;
  const usage={N:'Solid wall + bookshelves',NW:'Small window',W:'Door',SW:'Small window',S:'Solid wall + bookshelves',SE:'Small window',E:'Large window',NE:'Small window'};
  const triangles=[[0,2,1],[0,3,2],[4,5,6],[4,6,7],[0,1,5],[0,5,4],[1,2,6],[1,6,5],[2,3,7],[2,7,6],[3,0,4],[3,4,7]];
- function build(parts){
-  const components=[],walls=[];
+ function build(parts,{applyFit=true}={}){
+  const components=[],walls=[],railConnections=[];
   for(let k=0;k<8;k++){
    const a=parts.find(p=>p.id==='P'+k).center,b=parts.find(p=>p.id==='P'+((k+1)%8)).center;
    const dx=b[0]-a[0],dz=b[2]-a[2],span=Math.hypot(dx,dz),u=[dx/span,0,dz/span],center=[(a[0]+b[0])/2,0,(a[2]+b[2])/2],r=Math.hypot(center[0],center[2]),out=[center[0]/r,0,center[2]/r];
@@ -22,10 +22,16 @@ const TimberSchematicWalls=(()=>{
    const left=z=>postBoundary(leftPost,z,true),right=z=>postBoundary(rightPost,z,false);
    const width=right(0)-left(0),height=Math.min(...parts.find(p=>p.id==='B'+k).vertices.map(v=>v[1])),base=Math.max(Math.min(...leftPost.vertices.map(v=>v[1])),Math.min(...rightPost.vertices.map(v=>v[1]))),dir=names[k],kind=usage[dir];
    const world=(x,y,z)=>[center[0]+u[0]*x+out[0]*z,y,center[2]+u[2]*x+out[2]*z];
-   function box(label,x0,x1,y0,y1,z0=-.05,z1=.05,color=[.88,.86,.75]){
+   const railDepth=.1524,railHeight=.1524,lowRail=(dir==='E'?.75:1.0)-railHeight;
+   const railLevels=[[base,base+railHeight],[lowRail,lowRail+railHeight],[1.30,1.30+railHeight],[2.10,Math.min(height,2.10+railHeight)]];
+   function box(label,x0,x1,y0,y1,z0=-.05,z1=.05,color=[.88,.86,.75],skipRails=false){
+    if(!skipRails&&!label.startsWith('shelf')&&!label.startsWith('rail')){
+     let spans=[[y0,y1]];for(const [lo,hi] of railLevels)spans=spans.flatMap(([a,b])=>b<=lo||a>=hi?[[a,b]]:[[a,Math.min(b,lo)],[Math.max(a,hi),b]].filter(([x,y])=>y>x));
+     spans.forEach(([a,b],i)=>box(label+'-'+i,x0,x1,a,b,z0,z1,color,true));return;
+    }
     if(x1<=x0||y1<=y0)return;
     const vertices=[[x0,y0,z0],[x1,y0,z0],[x1,y1,z0],[x0,y1,z0],[x0,y0,z1],[x1,y0,z1],[x1,y1,z1],[x0,y1,z1]].map(v=>{if(Math.abs(v[0]+width/2)<1e-8)v[0]=left(v[2]);else if(Math.abs(v[0]-width/2)<1e-8)v[0]=right(v[2]);return world(...v);});
-    components.push({id:'SCHEM-'+dir+'-'+label,name:dir+' '+label+' (schematic)',schematic:true,schematicKind:label.startsWith('shelf')?'shelf':'wall',face:dir,localBounds:[x0,x1,y0,y1,z0,z1],group:'schematic_walls',material:'schematic',is_timber:false,vertices,triangles,center:world((x0+x1)/2,(y0+y1)/2,(z0+z1)/2),color,exploded_offset:[0,0,0]});
+    components.push({id:'SCHEM-'+dir+'-'+label,name:dir+' '+label+' (schematic)',schematic:true,schematicKind:label.startsWith('shelf')?'shelf':label.startsWith('rail')?'rail':'wall',face:dir,localBounds:[x0,x1,y0,y1,z0,z1],group:'schematic_walls',material:'schematic',is_timber:false,vertices,triangles,center:world((x0+x1)/2,(y0+y1)/2,(z0+z1)/2),color,exploded_offset:[0,0,0]});
    }
    let opening=null;
    if(kind==='Door')opening={width:.95,bottom:base,top:2.10};
@@ -34,11 +40,19 @@ const TimberSchematicWalls=(()=>{
     const w=opening.width/2;
     box('left',-width/2,-w,base,height);box('right',w,width/2,base,height);box('below',-w,w,base,opening.bottom);box('above',-w,w,opening.top,height);
    }else box('solid',-width/2,width/2,base,height);
+   for(let level=0;level<railLevels.length;level++){
+    const [y0,y1]=railLevels[level];if(y1<=y0)continue;
+    let spans=[[-width/2,width/2]];
+    if(opening&&y0<opening.top&&y1>opening.bottom)spans=[[-width/2,-opening.width/2],[opening.width/2,width/2]];
+    for(let j=0;j<spans.length;j++){const [x0,x1]=spans[j];box('rail'+level+'-'+j,x0,x1,y0,y1,-railDepth/2,railDepth/2,[.50,.30,.17]);
+     for(const [end,x,postId] of [['A',x0,leftPost.id],['B',x1,rightPost.id]])if(Math.abs(Math.abs(x)-width/2)<1e-8)railConnections.push({face:dir,railId:'SCHEM-'+dir+'-rail'+level+'-'+j,end,postId,center:world(end==='A'?left(0):right(0),(y0+y1)/2,0),height:y1-y0,depth:railDepth,axis:u,normal:out,status:'Rail ends at post face; proposed mating joint and capacity unresolved. Not an installed connection.'});
+    }
+   }
    if(dir==='N'||dir==='S'){
-    // Unloaded schematic built-ins only; no book mass or capacity is implied.
-    const sw=width*.80/2;
-    box('shelf-sideL',-sw,-sw+.025,base,1.95,-.35,-.05,[.60,.43,.27]);box('shelf-sideR',sw-.025,sw,base,1.95,-.35,-.05,[.60,.43,.27]);
-    for(let j=0;j<6;j++)box('shelf'+j,-sw,sw,base+j*.35,base+j*.35+.025,-.35,-.05,[.67,.49,.31]);
+    // Built-ins span the framing bay and meet the inside of the horizontal rails.
+    // No freestanding side cabinet; shelf fastening and book loads are unresolved.
+    const sw=width/2-.0127;
+    for(let j=0;j<6;j++)box('shelf'+j,-sw,sw,base+.1524+j*.35,base+.1778+j*.35,-.40,-.0762,[.67,.49,.31]);
    }
    walls.push({face:dir,postIds:['P'+k,'P'+((k+1)%8)],usage:kind,width,height,base,opening,center:world(0,1.15,.06),normal:out,frameFit:{endClearance:0,topClearance:0,leftAtFaces:[left(-.05),left(.05)],rightAtFaces:[right(-.05),right(.05)],status:'Infill meets modeled post footprints and beam underside; attachment design unchanged.'}});
   }
@@ -52,7 +66,36 @@ const TimberSchematicWalls=(()=>{
    for(const [label,x0,x1,y0,y1] of boxes){const vertices=[[x0,y0,-depth/2],[x1,y0,-depth/2],[x1,y1,-depth/2],[x0,y1,-depth/2],[x0,y0,depth/2],[x1,y0,depth/2],[x1,y1,depth/2],[x0,y1,depth/2]].map(v=>world(...v));components.push({id:'SCHEM-CUP-WINDOW-'+k+'-'+label,name:'Cupola window '+(k+1)+' '+label+' (illustrative)',schematic:true,schematicKind:'cupolaWindow',face:names[k],group:'schematic_cupola_windows',material:'schematic',is_timber:false,vertices,triangles,center:world((x0+x1)/2,(y0+y1)/2,0),color:[.72,.81,.83],exploded_offset:[0,0,0]});}
    cupolaWindows.push({face:names[k],postIds:[post.id,next.id],bottom,top,width:w,status:'Illustrative frame only; glazing, ventilation and attachment unverified; no timber cuts.'});
   }
-  return {components,walls,cupolaWindows,compass:'Provisional design compass: P0–P1 is N; site/geographic north is unverified.'};
+  components.push(...floorAndFooters(parts));
+  if(applyFit){const fitted=typeof OCTAGON_ENCLOSURE_FIT!=='undefined'?OCTAGON_ENCLOSURE_FIT:require('./enclosure-fit.json');for(const p of components){const f=fitted.parts[p.id];if(f){p.vertices=f.vertices;p.triangles=f.triangles;p.center=f.center;p.fitStatus='Clearance-trimmed to existing model only; structural connection unresolved';}}}
+  return {components,walls,cupolaWindows,railConnections,compass:'Provisional design compass: P0–P1 is N; site/geographic north is unverified.'};
+ }
+
+ function floorAndFooters(parts){
+  const result=[],R=Math.min(...parts.filter(p=>/^P[0-7]$/.test(p.id)).map(p=>Math.hypot(p.center[0],p.center[2])-.05/Math.cos(Math.PI/8))),inner=.45,thickness=.01905;
+  function mesh(id,kind,polygons,y0,y1,color){
+   const vertices=[],tris=[];
+   for(let poly of polygons){if(poly.reduce((a,p,i)=>a+p[0]*poly[(i+1)%poly.length][1]-poly[(i+1)%poly.length][0]*p[1],0)>0)poly=poly.slice().reverse();const n=poly.length,off=vertices.length;vertices.push(...poly.map(p=>[p[0],y0,p[1]]),...poly.map(p=>[p[0],y1,p[1]]));
+    for(let i=1;i<n-1;i++){tris.push([off,off+i+1,off+i],[off+n,off+n+i,off+n+i+1]);}
+    for(let i=0;i<n;i++){const j=(i+1)%n;tris.push([off+i,off+j,off+n+j],[off+i,off+n+j,off+n+i]);}
+   }
+   const center=vertices.reduce((c,v)=>c.map((x,i)=>x+v[i]/vertices.length),[0,0,0]);
+   result.push({id,name:id,schematic:true,schematicKind:kind,group:'schematic_'+kind,material:kind==='floor'?'strand-woven bamboo':kind==='grate'?'metal':'foundation illustration',is_timber:false,vertices,triangles:tris,center,color,exploded_offset:[0,0,0]});
+  }
+  const radial=(r,k)=>[r*Math.cos(k*Math.PI/4),-r*Math.sin(k*Math.PI/4)];
+  // Eight radial sectors; successive concentric octagonal strips show board direction.
+  const bands=Math.ceil((R-inner)/.15),step=(R-inner)/bands;
+  for(let k=0;k<8;k++){
+   const polys=[];for(let b=0;b<bands;b++){const lo=inner+b*step+.0007,hi=b===bands-1?R:inner+(b+1)*step-.0007;polys.push([radial(lo,k),radial(hi,k),radial(hi,k+1),radial(lo,k+1)]);}
+   mesh('SCHEM-FLOOR-SECTOR-'+k,'floor',polys,-thickness,0,k%2?[.64,.44,.23]:[.70,.51,.29]);
+  }
+  // Octagonal metal rim and cross bars leave actual air openings; no load/airflow rating.
+  const rim=[];for(let k=0;k<8;k++)rim.push([radial(inner-.025,k),radial(inner,k),radial(inner,k+1),radial(inner-.025,k+1)]);
+  mesh('SCHEM-CENTER-GRATE-RIM','grate',rim,-.025,0,[.24,.27,.28]);
+  const bars=[];for(let k=0;k<8;k++){const a=k*Math.PI/4,u=[Math.cos(a),-Math.sin(a)],v=[-u[1],u[0]],w=.012;bars.push([[v[0]*w,v[1]*w],[u[0]*(inner-.025)+v[0]*w,u[1]*(inner-.025)+v[1]*w],[u[0]*(inner-.025)-v[0]*w,u[1]*(inner-.025)-v[1]*w],[-v[0]*w,-v[1]*w]]);}
+  mesh('SCHEM-CENTER-GRATE-BARS','grate',bars,-.025,0,[.29,.32,.33]);
+  for(let k=0;k<8;k++){const p=parts.find(p=>p.id==='P'+k),xs=p.vertices.map(v=>v[0]),zs=p.vertices.map(v=>v[2]),minX=Math.min(...xs)-.0254,maxX=Math.max(...xs)+.0254,minZ=Math.min(...zs)-.0254,maxZ=Math.max(...zs)+.0254,y=Math.min(...p.vertices.map(v=>v[1]));mesh('SCHEM-POST-FOOTER-'+k,'footer',[[[minX,minZ],[maxX,minZ],[maxX,maxZ],[minX,maxZ]]],y-.254,y,[.80,.79,.72]);}
+  return result;
  }
  return {build,orientation};
 })();

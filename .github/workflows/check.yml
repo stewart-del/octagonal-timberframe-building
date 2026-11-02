@@ -37,3 +37,5 @@ jobs:
       - run: node tests/schematic-walls.cjs
 
       - run: node tests/plans-performance.cjs
+      - run: node tests/enclosure-floor.cjs
+      - run: python3 tests/test_enclosure_fit.py

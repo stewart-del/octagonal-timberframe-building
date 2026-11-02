@@ -10,7 +10,9 @@ const topAxes=api.drawing(model,{view:'top'}).svg;
 assert(topAxes.includes('+Z ↑ (model axis)'));
 assert(!topAxes.includes('+Z ↓'));
 
-for(const kind of ['wall','shelf','cupolaWindow']){const opts={view:'top',walls:kind==='wall',shelves:kind==='shelf',cupolaWindows:kind==='cupolaWindow'},d=api.drawing(model,opts);assert(d.parts.some(p=>p.schematicKind===kind));assert(!d.parts.some(p=>p.schematicKind&&p.schematicKind!==kind));}
+for(const kind of ['wall','shelf','cupolaWindow']){const opts={view:'top',walls:kind==='wall',shelves:kind==='shelf',cupolaWindows:kind==='cupolaWindow'},d=api.drawing(model,opts);assert(d.parts.some(p=>p.schematicKind===kind));assert(!d.parts.some(p=>p.schematicKind&&!(kind==='wall'?['wall','rail','footer']:[kind]).includes(p.schematicKind)));}
 for(const view of ['top','side']){const d=api.drawing(model,{view,walls:true,shelves:true,cupolaWindows:true,hidden:true});fs.writeFileSync('/tmp/octagon-walls-'+view+'.svg',d.svg);assert(d.svg.includes('cupola windows ON'));}
 assert(api.drawing(model,{view:'top'}).svg.includes('Site bearing unverified'));
 console.log('PASS: three independent schematic plan layers, shared design compass, unchanged canonical geometry');
+
+const floor=api.drawing(model,{view:'top',floor:true});assert(floor.parts.filter(p=>p.schematicKind==='floor').length===8);assert(floor.parts.filter(p=>p.schematicKind==='grate').length===2);assert(!floor.parts.some(p=>p.schematicKind&&!['floor','grate'].includes(p.schematicKind)));assert(floor.svg.includes('floor/grate ON'));
