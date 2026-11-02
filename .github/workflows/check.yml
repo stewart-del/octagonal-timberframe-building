@@ -33,6 +33,7 @@ jobs:
       - run: python3 tests/validate_exports.py
       - run: node --check tests/viewer-script-check.js
       - run: node tests/check_viewer.cjs
+      - run: node tests/fallback-edge-index.cjs
       - run: node tests/viewer-regression.cjs dist/index.html
       - run: node tests/multi-selection.cjs src/viewer.template.html
       - run: node tests/mouse-look-regression.cjs src/viewer.template.html

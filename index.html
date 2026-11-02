@@ -873,19 +873,26 @@ function memberEdgeColor(highlighted) {
   return highContrast ? (highlighted ? [.025, .16, .20] : [.11, .085, .06]) : (highlighted ? [.04, .32, .42] : [.24, .20, .15]);
 }
 const fallbackFeatureCache = new Map();
+function fallbackSegmentIndex(segments) {
+  const cellSize=.25,padding=3e-6,cells=new Map(),overflow=[];
+  function range(points){const lo=[0,1,2].map(k=>Math.floor((Math.min(...points.map(p=>p[k]))-padding)/cellSize)),hi=[0,1,2].map(k=>Math.floor((Math.max(...points.map(p=>p[k]))+padding)/cellSize));return {lo,hi,count:hi.reduce((n,v,k)=>n*(v-lo[k]+1),1)};}
+  function visit(r,fn){for(let x=r.lo[0];x<=r.hi[0];x++)for(let y=r.lo[1];y<=r.hi[1];y++)for(let z=r.lo[2];z<=r.hi[2];z++)fn(x+','+y+','+z);}
+  segments.forEach((segment,i)=>{const r=range(segment);if(r.count>4096){overflow.push(i);return;}visit(r,key=>{if(!cells.has(key))cells.set(key,[]);cells.get(key).push(i);});});
+  return points=>{const r=range(points);if(r.count>4096)return segments;const found=new Set(overflow);visit(r,key=>{for(const i of cells.get(key)||[])found.add(i);});return [...found].sort((a,b)=>a-b).map(i=>segments[i]);};
+}
 function fallbackFaceEdges(p, tri) {
   let cached = fallbackFeatureCache.get(p.id);
   if (!cached) {
     const raw = featureEdges(p.vertices, p.triangles), segments = [];
     for (let i = 0; i < raw.length; i += 12) segments.push([raw.slice(i, i + 3), raw.slice(i + 6, i + 9)]);
-    cached = {segments, faces: new Map()};fallbackFeatureCache.set(p.id, cached);
+    cached = {segments, candidates:fallbackSegmentIndex(segments), faces: new Map()};fallbackFeatureCache.set(p.id, cached);
   }
   const key = tri.join(',');
   if (cached.faces.has(key)) return cached.faces.get(key);
   const result = [], tolerance = 3e-6;
   // Clip existing true feature segments to this triangle's boundary, so the
   // painter fallback neither exposes hidden edges nor invents mesh diagonals.
-  for (const [a, b] of cached.segments) {
+  for (const [a, b] of cached.candidates(tri.map(i=>p.vertices[i]))) {
     for (let k = 0; k < 3; k++) {
       const x = p.vertices[tri[k]], y = p.vertices[tri[(k + 1) % 3]], side = vsub(y, x), extent = length(side);
       if (extent < tolerance) continue;
