@@ -47,7 +47,9 @@ function runViewerTests(source,model,{search='?model=baseline',skipLegacy=false}
     const canonicalCount=parts.length;
     matrix();$('layerWallStructure').checked=true;$('layerWallStructure').onchange();$('schematicWalls').checked=true;$('schematicWalls').onchange();updateSchematicWalls();
     check(schematicParts.filter(p=>['wall','rail','footer'].includes(p.schematicKind)).every(isShown)&&schematicParts.filter(p=>!['wall','rail','footer'].includes(p.schematicKind)).every(p=>!isShown(p))&&parts.length===canonicalCount,'Wall toggle displays only separate provisional layer, not timber/load members');
-    explode=.5;updateSchematicWalls();check(schematicParts.every(p=>!isShown(p))&&$('schematicWallStatus').textContent.includes('paused'),'Walls pause during explode instead of drifting from posts');
+    // TIMESTAMP START 2026-11-02T13:49:06-05:00 | REVISION R004787
+    explode=.5;updateSchematicWalls();check(schematicParts.filter(p=>p.schematicKind==='rail').every(isShown)&&schematicParts.filter(p=>p.schematicKind!=='rail').every(p=>!isShown(p)),'Wall framing remains visible and separates while infill pauses during explode');
+    // TIMESTAMP END 2026-11-02T13:49:06-05:00 | REVISION R004787
     explode=0;isolatedId='P0';check(schematicParts.every(p=>!isShown(p)),'Wall layer stays out of isolated joint inspection');
     isolatedId=null;$('layerWallStructure').checked=false;$('layerWallStructure').onchange();$('schematicWalls').checked=false;$('schematicWalls').onchange();updateSchematicWalls();
     check(schematicParts.every(p=>!isShown(p))&&schematicLabels.every(x=>x.el.style.display==='none'),'Wall toggle off clears geometry and compass labels');
@@ -156,6 +158,13 @@ function runViewerTests(source,model,{search='?model=baseline',skipLegacy=false}
     setNavigation('orbit');$('allPermanent').onclick();explode=0;selectPart('P0');selectPart('B0',true);
     check(selectedPartIds.size===2&&selectionAlpha(partById.get('R0'))===.14,'Shift selection ghosts unrelated members');
     selectPart('B0',true);check(selectedPartIds.size===1&&selected==='P0','Shift click toggles membership');selectPart('P0',true);check(selected===null&&selectedPartIds.size===0,'Last-member toggle clears selection');
+    // TIMESTAMP START 2026-11-02T13:49:06-05:00 | REVISION R004787
+    const jamb=schematicParts.find(p=>p.framingRole==='jamb');selectPart(jamb.id);selectPart('P0',true);selectPart('P0',true);
+    check(selected===jamb.id&&selectedPartIds.size===1&&walk($('selection')).some(el=>el.textContent==='Active wall framing'),'Removing a main timber from a mixed selection restores the jamb inspector');
+    focusPart(jamb);const jambPivot=inspectionPivot.slice();$('explode').value='50';$('explode').oninput({target:{value:'50'}});
+    check(isShown(jamb)&&length(vsub(inspectionPivot,vadd(jambPivot,vmul(jamb.exploded_offset,.5))))<1e-12,'Exploding framing retains its focused pivot');
+    togglePieceIsolation(jamb);check(isolatedId===jamb.id&&isShown(jamb),'Framing can be isolated while exploded');showAllAndUncenter();
+    // TIMESTAMP END 2026-11-02T13:49:06-05:00 | REVISION R004787
     showMatingPair(joint);check(selectedPartIds.size===2&&selectedPartIds.has('J0-0')&&selectedPartIds.has('R0')&&parts.filter(isShown).length===2,'Contact pair view isolates rafter and receiving hip');
     faceCut(joint);check(selectedPartIds.size===1&&selectedPartIds.has('J0-0'),'Contact-face inspection selects only its owner');
     $('reviewCorner').onclick();check(parts.filter(isShown).map(p=>p.id).sort().join(',')===['R0','J0-0','J7-2'].sort().join(','),'Rafter-joint shortcut shows both rafters at R0');

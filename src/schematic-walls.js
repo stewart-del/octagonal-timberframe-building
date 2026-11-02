@@ -22,32 +22,50 @@ const TimberSchematicWalls=(()=>{
    const left=z=>postBoundary(leftPost,z,true),right=z=>postBoundary(rightPost,z,false);
    const width=right(0)-left(0),height=Math.min(...parts.find(p=>p.id==='B'+k).vertices.map(v=>v[1])),base=Math.max(Math.min(...leftPost.vertices.map(v=>v[1])),Math.min(...rightPost.vertices.map(v=>v[1]))),dir=names[k],kind=usage[dir];
    const world=(x,y,z)=>[center[0]+u[0]*x+out[0]*z,y,center[2]+u[2]*x+out[2]*z];
+   // TIMESTAMP START 2026-11-02T13:42:10-05:00 | REVISION R004782
    const railDepth=.1524,railHeight=.1524,lowRail=(dir==='E'?.75:1.0)-railHeight;
    const railLevels=[[base,base+railHeight],[lowRail,lowRail+railHeight],[1.30,1.30+railHeight],[2.10,Math.min(height,2.10+railHeight)]];
-   function box(label,x0,x1,y0,y1,z0=-.05,z1=.05,color=[.88,.86,.75],skipRails=false){
-    if(!skipRails&&!label.startsWith('shelf')&&!label.startsWith('rail')){
-     let spans=[[y0,y1]];for(const [lo,hi] of railLevels)spans=spans.flatMap(([a,b])=>b<=lo||a>=hi?[[a,b]]:[[a,Math.min(b,lo)],[Math.max(a,hi),b]].filter(([x,y])=>y>x));
-     spans.forEach(([a,b],i)=>box(label+'-'+i,x0,x1,a,b,z0,z1,color,true));return;
-    }
+   // Partition rectangles before meshing: neighboring wood shares faces, never volume.
+   function subtractRect(rect,cut){
+    const [x0,x1,y0,y1]=rect,[a,b,c,d]=cut,lo=Math.max(x0,a),hi=Math.min(x1,b),bottom=Math.max(y0,c),top=Math.min(y1,d);
+    if(hi<=lo+1e-10||top<=bottom+1e-10)return [rect];
+    return [[x0,lo,y0,y1],[hi,x1,y0,y1],[lo,hi,y0,bottom],[lo,hi,top,y1]].filter(([a,b,c,d])=>b>a+1e-10&&d>c+1e-10);
+   }
+   function subtractAll(rect,cuts){return cuts.reduce((spans,cut)=>spans.flatMap(r=>subtractRect(r,cut)),[rect]);}
+   function box(label,x0,x1,y0,y1,z0=-.05,z1=.05,color=[.88,.86,.75],framingRole=null){
     if(x1<=x0||y1<=y0)return;
     const vertices=[[x0,y0,z0],[x1,y0,z0],[x1,y1,z0],[x0,y1,z0],[x0,y0,z1],[x1,y0,z1],[x1,y1,z1],[x0,y1,z1]].map(v=>{if(Math.abs(v[0]+width/2)<1e-8)v[0]=left(v[2]);else if(Math.abs(v[0]-width/2)<1e-8)v[0]=right(v[2]);return world(...v);});
-    components.push({id:'SCHEM-'+dir+'-'+label,name:dir+' '+label+' (schematic)',schematic:true,schematicKind:label.startsWith('shelf')?'shelf':label.startsWith('rail')?'rail':'wall',face:dir,localBounds:[x0,x1,y0,y1,z0,z1],group:'schematic_walls',material:'schematic',is_timber:false,vertices,triangles,center:world((x0+x1)/2,(y0+y1)/2,(z0+z1)/2),color,exploded_offset:[0,0,0]});
+    const isFraming=framingRole!==null,offset=isFraming?out.map((v,i)=>v*(.45+.12*(y0+y1)/height)+u[i]*(x0+x1)*.16+(i===1?(y0+y1-height)*.12:0)):[0,0,0];
+    const piece={id:'SCHEM-'+dir+'-'+label,name:dir+' '+label+' (schematic)',schematic:true,schematicKind:isFraming?'rail':label.startsWith('shelf')?'shelf':'wall',face:dir,localBounds:[x0,x1,y0,y1,z0,z1],group:'schematic_walls',material:isFraming?'proposed wood framing':'schematic',is_timber:false,vertices,triangles,center:world((x0+x1)/2,(y0+y1)/2,(z0+z1)/2),color,exploded_offset:offset};
+    if(isFraming)Object.assign(piece,{displayRole:'wallStructure',framingRole,connectionStatus:'Proposed wall framing; member sizing, fastening and load capacity unresolved.'});
+    components.push(piece);return piece;
    }
    let opening=null;
    if(kind==='Door')opening={width:.95,bottom:base,top:2.10};
    else if(kind.includes('window'))opening={width:width*(dir==='E'?.65:.30),bottom:dir==='E'?.75:1.0,top:dir==='E'?1.95:1.85};
+   const framingRects=[],openingRects=opening?[[-opening.width/2,opening.width/2,opening.bottom,opening.top]]:[];
+   function frame(label,rect,role){framingRects.push(rect);return box(label,...rect,-railDepth/2,railDepth/2,[.50,.30,.17],role);}
    if(opening){
     const w=opening.width/2;
-    box('left',-width/2,-w,base,height);box('right',w,width/2,base,height);box('below',-w,w,base,opening.bottom);box('above',-w,w,opening.top,height);
-   }else box('solid',-width/2,width/2,base,height);
+    frame('rail-jamb-left',[-w-railDepth,-w,base+railHeight,height],'jamb');
+    frame('rail-jamb-right',[w,w+railDepth,base+railHeight,height],'jamb');
+    frame('rail-header',[-w,w,opening.top,Math.min(height,opening.top+railHeight)],'header');
+    if(opening.bottom>base)frame('rail-sill',[-w,w,opening.bottom-railHeight,opening.bottom],'sill');
+   }
+   // Jambs bear on continuous bottom rails; upper rails stop at jamb faces.
+   // Header/sill replace overlapping rail
+   // sections, including the 2.4 mm overlap above the large east window.
    for(let level=0;level<railLevels.length;level++){
     const [y0,y1]=railLevels[level];if(y1<=y0)continue;
-    let spans=[[-width/2,width/2]];
-    if(opening&&y0<opening.top&&y1>opening.bottom)spans=[[-width/2,-opening.width/2],[opening.width/2,width/2]];
-    for(let j=0;j<spans.length;j++){const [x0,x1]=spans[j];box('rail'+level+'-'+j,x0,x1,y0,y1,-railDepth/2,railDepth/2,[.50,.30,.17]);
-     for(const [end,x,postId] of [['A',x0,leftPost.id],['B',x1,rightPost.id]])if(Math.abs(Math.abs(x)-width/2)<1e-8)railConnections.push({face:dir,railId:'SCHEM-'+dir+'-rail'+level+'-'+j,end,postId,center:world(end==='A'?left(0):right(0),(y0+y1)/2,0),height:y1-y0,depth:railDepth,axis:u,normal:out,status:'Rail ends at post face; proposed mating joint and capacity unresolved. Not an installed connection.'});
+    const spans=subtractAll([-width/2,width/2,y0,y1],[...openingRects,...framingRects]);
+    for(let j=0;j<spans.length;j++){
+     const [x0,x1,lo,hi]=spans[j],piece=frame('rail'+level+'-'+j,spans[j],'rail');
+     for(const [end,x,postId] of [['A',x0,leftPost.id],['B',x1,rightPost.id]])if(Math.abs(Math.abs(x)-width/2)<1e-8)railConnections.push({face:dir,railId:piece.id,end,postId,center:world(end==='A'?left(0):right(0),(lo+hi)/2,0),height:hi-lo,depth:railDepth,axis:u,normal:out,status:'Rail ends at post face; proposed mating joint and capacity unresolved. Not an installed connection.'});
     }
    }
+   // Infill fills only the complement of the aperture and modeled wood framing.
+   subtractAll([-width/2,width/2,base,height],[...openingRects,...framingRects]).forEach((rect,i)=>box('infill-'+i,...rect));
+   // TIMESTAMP END 2026-11-02T13:42:10-05:00 | REVISION R004782
    if(dir==='N'||dir==='S'){
     // Built-ins span the framing bay and meet the inside of the horizontal rails.
     // No freestanding side cabinet; shelf fastening and book loads are unresolved.

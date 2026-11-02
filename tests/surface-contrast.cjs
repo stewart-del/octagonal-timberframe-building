@@ -26,7 +26,9 @@ function extractFunction(text,name){
   }
   throw Error('Unterminated '+name);
 }
-const names=['surfaceDisplayColor','memberEdgeColor','fallbackFaceEdges','fallbackSegmentIndex','featureEdges','render'];
+// TIMESTAMP START 2026-11-02T13:08:24-05:00 | REVISION R004780
+const names=['surfaceDisplayColor','memberEdgeColor','fallbackSegmentIndex','fallbackFaceEdges','featureEdges','render'];
+// TIMESTAMP END 2026-11-02T13:08:24-05:00 | REVISION R004780
 const functions=names.map(name=>extractFunction(source,name)).join('\n');
 const results=new Function('source','TimberEdgeMeasurements',`
 const passed=[],check=(yes,msg)=>{if(!yes)throw Error(msg);passed.push(msg)};

@@ -111,10 +111,11 @@ for label,fixture,components in [
 print('PASS: planar repair cancels hidden coincident faces and retains disjoint opposite-facing surfaces')
 # TIMESTAMP END 2026-11-02T10:36:58-05:00 | REVISION R004765
 
-# Regeneration must preserve exact structure/topology/claims and geometry within
-# tiny unit-aware roundoff bounds. BLAS CPU dispatch changes last bits, so byte
-# equality across machines is not a geometric-equivalence test. Existing
-# independent stock/contact/intersection checks above remain unchanged.
+# TIMESTAMP START 2026-11-02T13:01:18-05:00 | REVISION R004778
+# Preserve the upstream seated-support baseline proof and every independent
+# stock/contact/intersection check. CPU-dependent planar triangulation is
+# compared by its full oriented boundary; metadata remains strictly checked.
+# TIMESTAMP END 2026-11-02T13:01:18-05:00 | REVISION R004778
 test_guard()
 # Compare the JSON domain actually emitted by the generator, normalizing
 # NumPy float scalars without rounding any value.
@@ -125,9 +126,10 @@ for member in fg['parts']:
   assert surface['status']=='PASS',(member['id'],'regenerated raw surface overlap',surface)
 from mesh_regeneration_equivalence import normalize_planar_retriangulation, test_mesh_guard
 test_mesh_guard()
-# CPU-dependent triangulation may choose a different diagonal on the same
-# oriented planar surface. Retain strict vertices, feature edges, manifold,
-# plane areas/centroids and occupied-volume checks before comparing metadata.
+# TIMESTAMP START 2026-11-02T13:01:18-05:00 | REVISION R004778
+# Normalize only after raw mesh validity, matching oriented support planes,
+# bidirectional planar-region equality, tight bounds and signed-volume checks.
+# TIMESTAMP END 2026-11-02T13:01:18-05:00 | REVISION R004778
 print('Planar regeneration:',normalize_planar_retriangulation(ag,data),normalize_planar_retriangulation(fg,full))
 print("Regeneration roundoff:",assert_equivalent(ag,data,("proposal",)),assert_equivalent(fg,full,("model",)))
 assert (R/'src/model-data.json').read_bytes()==raw

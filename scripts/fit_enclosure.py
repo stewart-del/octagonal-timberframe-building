@@ -1,6 +1,8 @@
-"""Fit display rails/floor around unchanged actual timber and footing solids.
+# TIMESTAMP START 2026-11-02T13:44:32-05:00 | REVISION R004784
+"""Fit display wall framing/infill/floor around unchanged timber and footing solids.
 Not a proposed structural joint or connection-capacity analysis.
 """
+# TIMESTAMP END 2026-11-02T13:44:32-05:00 | REVISION R004784
 from pathlib import Path
 import argparse,json,subprocess,hashlib
 import numpy as np
@@ -16,19 +18,22 @@ def solid(p):
 def overlap(a,b):
  x,y=a.bounding_box(),b.bounding_box();return all(x[i+3]>y[i]+1e-10 and y[i+3]>x[i]+1e-10 for i in range(3))
 timbers={p['id']:solid(p) for p in model['parts'] if p['is_timber']};footers={p['id']:solid(p) for p in components if p['schematicKind']=='footer'}
-data={'source_model_sha256':hashlib.sha256(raw).hexdigest(),'source_module_sha256':hashlib.sha256((R/'src/schematic-walls.js').read_bytes()).hexdigest(),'status':'Visualization clearance fit only; rail joints, foundations and floor support undesigned.','parts':{}}
+# TIMESTAMP START 2026-11-02T13:44:32-05:00 | REVISION R004784
+data={'source_model_sha256':hashlib.sha256(raw).hexdigest(),'source_module_sha256':hashlib.sha256((R/'src/schematic-walls.js').read_bytes()).hexdigest(),'status':'Visualization clearance fit only; wall framing joints, foundations and floor support undesigned.','parts':{}}
 for p in components:
- if p['schematicKind'] not in ['rail','floor']:continue
+ if p['schematicKind'] not in ['rail','wall','floor']:continue
  s=solid(p);before=s.volume();hits=[]
- for name,t in (timbers if p['schematicKind']=='rail' else footers).items():
+ for name,t in (timbers if p['schematicKind']!='floor' else footers).items():
   if not overlap(s,t):continue
   amount=(s^t).volume()
   if amount>1e-12:s=s-t;hits.append({'part':name,'removed_m3':amount})
  assert str(s.status())=='Error.NoError' and s.volume()>0,p['id']
  mesh=s.to_mesh64();v=np.asarray(mesh.vert_properties)[:,:3];tris=mesh.tri_verts
- for name,t in (timbers if p['schematicKind']=='rail' else footers).items():
+ for name,t in (timbers if p['schematicKind']!='floor' else footers).items():
   if overlap(s,t):assert (s^t).volume()<1e-10,(p['id'],name)
  data['parts'][p['id']]={'vertices':v.tolist(),'triangles':tris.tolist(),'center':((v.min(0)+v.max(0))/2).tolist(),'source_volume_m3':before,'fitted_volume_m3':s.volume(),'clearance_cuts':hits,'connected_components':len(s.decompose())}
 (R/args.output).write_text(json.dumps(data,separators=(',',':'))+'\n')
-print('Fitted',len(data['parts']),'rail/floor components; source model untouched'
+print('Fitted',len(data['parts']),'wall framing/infill/floor components; source model untouched'
       ,'model SHA',data['source_model_sha256'])
+
+# TIMESTAMP END 2026-11-02T13:44:32-05:00 | REVISION R004784

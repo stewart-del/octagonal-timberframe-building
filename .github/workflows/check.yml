@@ -49,6 +49,9 @@ jobs:
       - run: node tests/plan-print.cjs
       - run: python3 tests/test_central_support.py
       - run: node tests/schematic-walls.cjs
+      # TIMESTAMP START 2026-11-02T13:42:47-05:00 | REVISION R004783
+      - run: node tests/wall-framing-viewer.cjs
+      # TIMESTAMP END 2026-11-02T13:42:47-05:00 | REVISION R004783
       - run: node tests/step-lap-review.cjs
       - run: node tests/model-variants.cjs
       - run: node tests/display-presets.cjs
