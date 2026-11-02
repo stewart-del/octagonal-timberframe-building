@@ -26,10 +26,13 @@ cavities = json.loads((ROOT/'src/cavity-data.json').read_text())
 assert cavities['source_model_sha256'] == model_sha
 # TIMESTAMP END 2026-11-01T22:44:38-05:00 | REVISION R004653
 
+load_data=json.loads((ROOT/'src/load-review-data.json').read_text())
+assert load_data['source_model_sha256']==model_sha, 'Load review must match current geometry'
+load_review=(ROOT/'src/load-review.js').read_text().replace('__LOAD_REVIEW_JSON__',encode(load_data))
 overlays = (ROOT/'src/geometry-overlays.js').read_text().replace('__CAVITY_JSON__', encode(cavities))
 for marker, value in [('/*__INSPECTION_TOOLS__*/', inspection),
                       ('/*__EDGE_MEASUREMENT_TOOLS__*/', (ROOT/'src/edge-measurements.js').read_text()),
-                      ('/*__GEOMETRY_OVERLAYS__*/', overlays), ('__PARTS_JSON__', encode(data))]:
+                      ('/*__LOAD_REVIEW__*/', load_review), ('/*__GEOMETRY_OVERLAYS__*/', overlays), ('__PARTS_JSON__', encode(data))]:
     assert template.count(marker) == 1, marker
     template = template.replace(marker, value)
 assert not re.search(r'__(?:PARTS|MATERIALS|CAVITY)_JSON__', template)

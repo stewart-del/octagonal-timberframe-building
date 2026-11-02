@@ -1,0 +1,2868 @@
+{
+  "source_model_sha256": "36e53d90ec9abead9a80ce87e61f298c527809818dac82b8e2bbf5bf84b25779",
+  "members": [
+    {
+      "id": "P0",
+      "volume_m3": 0.09894763777244375,
+      "centroid_m": [
+        4.471536346711019,
+        1.2108339046537266,
+        -1.474514954580286e-17
+      ]
+    },
+    {
+      "id": "B0",
+      "volume_m3": 0.09930056229201972,
+      "centroid_m": [
+        3.8161872004696513,
+        2.3636725834316454,
+        -1.5807164949891415
+      ]
+    },
+    {
+      "id": "T0",
+      "volume_m3": 0.126901423616,
+      "centroid_m": [
+        2.7432000000000003,
+        2.2859999999999996,
+        7.6801130922190665e-19
+      ]
+    },
+    {
+      "id": "R0",
+      "volume_m3": 0.21327596243077496,
+      "centroid_m": [
+        3.0836357059663864,
+        3.0101043771404115,
+        2.557091739302911e-16
+      ]
+    },
+    {
+      "id": "C0",
+      "volume_m3": 0.05300430020330599,
+      "centroid_m": [
+        1.0402087386710128,
+        3.3387037631520435,
+        -8.944667923005412e-19
+      ]
+    },
+    {
+      "id": "L0-S",
+      "volume_m3": 0.010166102184867278,
+      "centroid_m": [
+        0.8898939260353693,
+        3.766069754280461,
+        -0.3686061332372897
+      ]
+    },
+    {
+      "id": "L0-H",
+      "volume_m3": 0.01016610218486733,
+      "centroid_m": [
+        0.8898939260353692,
+        4.426469754280461,
+        -0.36860613323728997
+      ]
+    },
+    {
+      "id": "K0-A",
+      "volume_m3": 0.00862160899689362,
+      "centroid_m": [
+        4.323921630383131,
+        1.956416117747297,
+        0.3544276720794239
+      ]
+    },
+    {
+      "id": "K0-B",
+      "volume_m3": 0.008621608996893645,
+      "centroid_m": [
+        4.323921630383131,
+        1.9564161177472967,
+        -0.3544276720794238
+      ]
+    },
+    {
+      "id": "J0-0",
+      "volume_m3": 0.06631645454162165,
+      "centroid_m": [
+        3.160669310779368,
+        2.916625374410918,
+        -0.6724000345289916
+      ]
+    },
+    {
+      "id": "J0-2",
+      "volume_m3": 0.06631645454162188,
+      "centroid_m": [
+        2.7103893268258212,
+        2.916625374410918,
+        -1.7594720786547833
+      ]
+    },
+    {
+      "id": "P1",
+      "volume_m3": 0.0989476377724437,
+      "centroid_m": [
+        3.161853673081483,
+        1.2108339046537266,
+        -3.161853673081483
+      ]
+    },
+    {
+      "id": "B1",
+      "volume_m3": 0.09930056229201945,
+      "centroid_m": [
+        1.5807164949891443,
+        2.3636725834316454,
+        -3.8161872004696495
+      ]
+    },
+    {
+      "id": "T1",
+      "volume_m3": 0.12690142361600001,
+      "centroid_m": [
+        1.9397353221509368,
+        2.2859999999999996,
+        -1.939735322150937
+      ]
+    },
+    {
+      "id": "R1",
+      "volume_m3": 0.21327596243077507,
+      "centroid_m": [
+        2.1804597183978,
+        3.010104377140411,
+        -2.1804597183978
+      ]
+    },
+    {
+      "id": "C1",
+      "volume_m3": 0.053004300203305973,
+      "centroid_m": [
+        0.7355386529637783,
+        3.3387037631520435,
+        -0.7355386529637784
+      ]
+    },
+    {
+      "id": "L1-S",
+      "volume_m3": 0.010166102184867281,
+      "centroid_m": [
+        0.36860613323728997,
+        3.766069754280461,
+        -0.8898939260353692
+      ]
+    },
+    {
+      "id": "L1-H",
+      "volume_m3": 0.010166102184867335,
+      "centroid_m": [
+        0.36860613323728963,
+        4.426469754280461,
+        -0.8898939260353693
+      ]
+    },
+    {
+      "id": "K1-A",
+      "volume_m3": 0.008621608996893623,
+      "centroid_m": [
+        3.3080925165306265,
+        1.9564161177472967,
+        -2.8068560957955815
+      ]
+    },
+    {
+      "id": "K1-B",
+      "volume_m3": 0.008621608996893636,
+      "centroid_m": [
+        2.8068560957955815,
+        1.9564161177472972,
+        -3.308092516530627
+      ]
+    },
+    {
+      "id": "J1-0",
+      "volume_m3": 0.06631645454162166,
+      "centroid_m": [
+        1.7594720786547835,
+        2.916625374410918,
+        -2.710389326825821
+      ]
+    },
+    {
+      "id": "J1-2",
+      "volume_m3": 0.06631645454162186,
+      "centroid_m": [
+        0.6724000345289916,
+        2.916625374410918,
+        -3.1606693107793666
+      ]
+    },
+    {
+      "id": "P2",
+      "volume_m3": 0.09894763777244375,
+      "centroid_m": [
+        -1.474514954580286e-17,
+        1.2108339046537266,
+        -4.471536346711019
+      ]
+    },
+    {
+      "id": "B2",
+      "volume_m3": 0.09930056229201972,
+      "centroid_m": [
+        -1.5807164949891415,
+        2.3636725834316454,
+        -3.8161872004696513
+      ]
+    },
+    {
+      "id": "T2",
+      "volume_m3": 0.126901423616,
+      "centroid_m": [
+        7.6801130922190665e-19,
+        2.2859999999999996,
+        -2.7432000000000003
+      ]
+    },
+    {
+      "id": "R2",
+      "volume_m3": 0.21327596243077496,
+      "centroid_m": [
+        2.557091739302911e-16,
+        3.0101043771404115,
+        -3.0836357059663864
+      ]
+    },
+    {
+      "id": "C2",
+      "volume_m3": 0.05300430020330599,
+      "centroid_m": [
+        -8.944667923005412e-19,
+        3.3387037631520435,
+        -1.0402087386710128
+      ]
+    },
+    {
+      "id": "L2-S",
+      "volume_m3": 0.010166102184867278,
+      "centroid_m": [
+        -0.3686061332372897,
+        3.766069754280461,
+        -0.8898939260353693
+      ]
+    },
+    {
+      "id": "L2-H",
+      "volume_m3": 0.01016610218486733,
+      "centroid_m": [
+        -0.36860613323728997,
+        4.426469754280461,
+        -0.8898939260353692
+      ]
+    },
+    {
+      "id": "K2-A",
+      "volume_m3": 0.00862160899689362,
+      "centroid_m": [
+        0.3544276720794239,
+        1.956416117747297,
+        -4.323921630383131
+      ]
+    },
+    {
+      "id": "K2-B",
+      "volume_m3": 0.008621608996893645,
+      "centroid_m": [
+        -0.3544276720794238,
+        1.9564161177472967,
+        -4.323921630383131
+      ]
+    },
+    {
+      "id": "J2-0",
+      "volume_m3": 0.06631645454162165,
+      "centroid_m": [
+        -0.6724000345289916,
+        2.916625374410918,
+        -3.160669310779368
+      ]
+    },
+    {
+      "id": "J2-2",
+      "volume_m3": 0.06631645454162188,
+      "centroid_m": [
+        -1.7594720786547833,
+        2.916625374410918,
+        -2.7103893268258212
+      ]
+    },
+    {
+      "id": "P3",
+      "volume_m3": 0.0989476377724437,
+      "centroid_m": [
+        -3.161853673081483,
+        1.2108339046537266,
+        -3.161853673081483
+      ]
+    },
+    {
+      "id": "B3",
+      "volume_m3": 0.09930056229201945,
+      "centroid_m": [
+        -3.8161872004696495,
+        2.3636725834316454,
+        -1.5807164949891443
+      ]
+    },
+    {
+      "id": "T3",
+      "volume_m3": 0.12690142361600001,
+      "centroid_m": [
+        -1.939735322150937,
+        2.2859999999999996,
+        -1.9397353221509368
+      ]
+    },
+    {
+      "id": "R3",
+      "volume_m3": 0.21327596243077507,
+      "centroid_m": [
+        -2.1804597183978,
+        3.010104377140411,
+        -2.1804597183978
+      ]
+    },
+    {
+      "id": "C3",
+      "volume_m3": 0.053004300203305973,
+      "centroid_m": [
+        -0.7355386529637784,
+        3.3387037631520435,
+        -0.7355386529637783
+      ]
+    },
+    {
+      "id": "L3-S",
+      "volume_m3": 0.010166102184867281,
+      "centroid_m": [
+        -0.8898939260353692,
+        3.766069754280461,
+        -0.36860613323728997
+      ]
+    },
+    {
+      "id": "L3-H",
+      "volume_m3": 0.010166102184867335,
+      "centroid_m": [
+        -0.8898939260353693,
+        4.426469754280461,
+        -0.36860613323728963
+      ]
+    },
+    {
+      "id": "K3-A",
+      "volume_m3": 0.008621608996893623,
+      "centroid_m": [
+        -2.8068560957955815,
+        1.9564161177472967,
+        -3.3080925165306265
+      ]
+    },
+    {
+      "id": "K3-B",
+      "volume_m3": 0.008621608996893636,
+      "centroid_m": [
+        -3.308092516530627,
+        1.9564161177472972,
+        -2.8068560957955815
+      ]
+    },
+    {
+      "id": "J3-0",
+      "volume_m3": 0.06631645454162166,
+      "centroid_m": [
+        -2.710389326825821,
+        2.916625374410918,
+        -1.7594720786547835
+      ]
+    },
+    {
+      "id": "J3-2",
+      "volume_m3": 0.06631645454162186,
+      "centroid_m": [
+        -3.1606693107793666,
+        2.916625374410918,
+        -0.6724000345289916
+      ]
+    },
+    {
+      "id": "P4",
+      "volume_m3": 0.09894763777244375,
+      "centroid_m": [
+        -4.471536346711019,
+        1.2108339046537266,
+        1.474514954580286e-17
+      ]
+    },
+    {
+      "id": "B4",
+      "volume_m3": 0.09930056229201972,
+      "centroid_m": [
+        -3.8161872004696513,
+        2.3636725834316454,
+        1.5807164949891415
+      ]
+    },
+    {
+      "id": "T4",
+      "volume_m3": 0.126901423616,
+      "centroid_m": [
+        -2.7432000000000003,
+        2.2859999999999996,
+        -7.6801130922190665e-19
+      ]
+    },
+    {
+      "id": "R4",
+      "volume_m3": 0.21327596243077496,
+      "centroid_m": [
+        -3.0836357059663864,
+        3.0101043771404115,
+        -2.557091739302911e-16
+      ]
+    },
+    {
+      "id": "C4",
+      "volume_m3": 0.05300430020330599,
+      "centroid_m": [
+        -1.0402087386710128,
+        3.3387037631520435,
+        8.944667923005412e-19
+      ]
+    },
+    {
+      "id": "L4-S",
+      "volume_m3": 0.010166102184867278,
+      "centroid_m": [
+        -0.8898939260353693,
+        3.766069754280461,
+        0.3686061332372897
+      ]
+    },
+    {
+      "id": "L4-H",
+      "volume_m3": 0.01016610218486733,
+      "centroid_m": [
+        -0.8898939260353692,
+        4.426469754280461,
+        0.36860613323728997
+      ]
+    },
+    {
+      "id": "K4-A",
+      "volume_m3": 0.00862160899689362,
+      "centroid_m": [
+        -4.323921630383131,
+        1.956416117747297,
+        -0.3544276720794239
+      ]
+    },
+    {
+      "id": "K4-B",
+      "volume_m3": 0.008621608996893645,
+      "centroid_m": [
+        -4.323921630383131,
+        1.9564161177472967,
+        0.3544276720794238
+      ]
+    },
+    {
+      "id": "J4-0",
+      "volume_m3": 0.06631645454162165,
+      "centroid_m": [
+        -3.160669310779368,
+        2.916625374410918,
+        0.6724000345289916
+      ]
+    },
+    {
+      "id": "J4-2",
+      "volume_m3": 0.06631645454162188,
+      "centroid_m": [
+        -2.7103893268258212,
+        2.916625374410918,
+        1.7594720786547833
+      ]
+    },
+    {
+      "id": "P5",
+      "volume_m3": 0.0989476377724437,
+      "centroid_m": [
+        -3.161853673081483,
+        1.2108339046537266,
+        3.161853673081483
+      ]
+    },
+    {
+      "id": "B5",
+      "volume_m3": 0.09930056229201945,
+      "centroid_m": [
+        -1.5807164949891443,
+        2.3636725834316454,
+        3.8161872004696495
+      ]
+    },
+    {
+      "id": "T5",
+      "volume_m3": 0.12690142361600001,
+      "centroid_m": [
+        -1.9397353221509368,
+        2.2859999999999996,
+        1.939735322150937
+      ]
+    },
+    {
+      "id": "R5",
+      "volume_m3": 0.21327596243077507,
+      "centroid_m": [
+        -2.1804597183978,
+        3.010104377140411,
+        2.1804597183978
+      ]
+    },
+    {
+      "id": "C5",
+      "volume_m3": 0.053004300203305973,
+      "centroid_m": [
+        -0.7355386529637783,
+        3.3387037631520435,
+        0.7355386529637784
+      ]
+    },
+    {
+      "id": "L5-S",
+      "volume_m3": 0.010166102184867281,
+      "centroid_m": [
+        -0.36860613323728997,
+        3.766069754280461,
+        0.8898939260353692
+      ]
+    },
+    {
+      "id": "L5-H",
+      "volume_m3": 0.010166102184867335,
+      "centroid_m": [
+        -0.36860613323728963,
+        4.426469754280461,
+        0.8898939260353693
+      ]
+    },
+    {
+      "id": "K5-A",
+      "volume_m3": 0.008621608996893623,
+      "centroid_m": [
+        -3.3080925165306265,
+        1.9564161177472967,
+        2.8068560957955815
+      ]
+    },
+    {
+      "id": "K5-B",
+      "volume_m3": 0.008621608996893636,
+      "centroid_m": [
+        -2.8068560957955815,
+        1.9564161177472972,
+        3.308092516530627
+      ]
+    },
+    {
+      "id": "J5-0",
+      "volume_m3": 0.06631645454162166,
+      "centroid_m": [
+        -1.7594720786547835,
+        2.916625374410918,
+        2.710389326825821
+      ]
+    },
+    {
+      "id": "J5-2",
+      "volume_m3": 0.06631645454162186,
+      "centroid_m": [
+        -0.6724000345289916,
+        2.916625374410918,
+        3.1606693107793666
+      ]
+    },
+    {
+      "id": "P6",
+      "volume_m3": 0.09894763777244375,
+      "centroid_m": [
+        1.474514954580286e-17,
+        1.2108339046537266,
+        4.471536346711019
+      ]
+    },
+    {
+      "id": "B6",
+      "volume_m3": 0.09930056229201972,
+      "centroid_m": [
+        1.5807164949891415,
+        2.3636725834316454,
+        3.8161872004696513
+      ]
+    },
+    {
+      "id": "T6",
+      "volume_m3": 0.126901423616,
+      "centroid_m": [
+        -7.6801130922190665e-19,
+        2.2859999999999996,
+        2.7432000000000003
+      ]
+    },
+    {
+      "id": "R6",
+      "volume_m3": 0.21327596243077496,
+      "centroid_m": [
+        -2.557091739302911e-16,
+        3.0101043771404115,
+        3.0836357059663864
+      ]
+    },
+    {
+      "id": "C6",
+      "volume_m3": 0.05300430020330599,
+      "centroid_m": [
+        8.944667923005412e-19,
+        3.3387037631520435,
+        1.0402087386710128
+      ]
+    },
+    {
+      "id": "L6-S",
+      "volume_m3": 0.010166102184867278,
+      "centroid_m": [
+        0.3686061332372897,
+        3.766069754280461,
+        0.8898939260353693
+      ]
+    },
+    {
+      "id": "L6-H",
+      "volume_m3": 0.01016610218486733,
+      "centroid_m": [
+        0.36860613323728997,
+        4.426469754280461,
+        0.8898939260353692
+      ]
+    },
+    {
+      "id": "K6-A",
+      "volume_m3": 0.00862160899689362,
+      "centroid_m": [
+        -0.3544276720794239,
+        1.956416117747297,
+        4.323921630383131
+      ]
+    },
+    {
+      "id": "K6-B",
+      "volume_m3": 0.008621608996893645,
+      "centroid_m": [
+        0.3544276720794238,
+        1.9564161177472967,
+        4.323921630383131
+      ]
+    },
+    {
+      "id": "J6-0",
+      "volume_m3": 0.06631645454162165,
+      "centroid_m": [
+        0.6724000345289916,
+        2.916625374410918,
+        3.160669310779368
+      ]
+    },
+    {
+      "id": "J6-2",
+      "volume_m3": 0.06631645454162188,
+      "centroid_m": [
+        1.7594720786547833,
+        2.916625374410918,
+        2.7103893268258212
+      ]
+    },
+    {
+      "id": "P7",
+      "volume_m3": 0.0989476377724437,
+      "centroid_m": [
+        3.161853673081483,
+        1.2108339046537266,
+        3.161853673081483
+      ]
+    },
+    {
+      "id": "B7",
+      "volume_m3": 0.09930056229201945,
+      "centroid_m": [
+        3.8161872004696495,
+        2.3636725834316454,
+        1.5807164949891443
+      ]
+    },
+    {
+      "id": "T7",
+      "volume_m3": 0.12690142361600001,
+      "centroid_m": [
+        1.939735322150937,
+        2.2859999999999996,
+        1.9397353221509368
+      ]
+    },
+    {
+      "id": "R7",
+      "volume_m3": 0.21327596243077507,
+      "centroid_m": [
+        2.1804597183978,
+        3.010104377140411,
+        2.1804597183978
+      ]
+    },
+    {
+      "id": "C7",
+      "volume_m3": 0.053004300203305973,
+      "centroid_m": [
+        0.7355386529637784,
+        3.3387037631520435,
+        0.7355386529637783
+      ]
+    },
+    {
+      "id": "L7-S",
+      "volume_m3": 0.010166102184867281,
+      "centroid_m": [
+        0.8898939260353692,
+        3.766069754280461,
+        0.36860613323728997
+      ]
+    },
+    {
+      "id": "L7-H",
+      "volume_m3": 0.010166102184867335,
+      "centroid_m": [
+        0.8898939260353693,
+        4.426469754280461,
+        0.36860613323728963
+      ]
+    },
+    {
+      "id": "K7-A",
+      "volume_m3": 0.008621608996893623,
+      "centroid_m": [
+        2.8068560957955815,
+        1.9564161177472967,
+        3.3080925165306265
+      ]
+    },
+    {
+      "id": "K7-B",
+      "volume_m3": 0.008621608996893636,
+      "centroid_m": [
+        3.308092516530627,
+        1.9564161177472972,
+        2.8068560957955815
+      ]
+    },
+    {
+      "id": "J7-0",
+      "volume_m3": 0.06631645454162166,
+      "centroid_m": [
+        2.710389326825821,
+        2.916625374410918,
+        1.7594720786547835
+      ]
+    },
+    {
+      "id": "J7-2",
+      "volume_m3": 0.06631645454162186,
+      "centroid_m": [
+        3.1606693107793666,
+        2.916625374410918,
+        0.6724000345289916
+      ]
+    },
+    {
+      "id": "CR0",
+      "volume_m3": 0.011357568745232251,
+      "centroid_m": [
+        0.7264176791362693,
+        4.713385713803316,
+        -2.237361620927559e-19
+      ]
+    },
+    {
+      "id": "CR1",
+      "volume_m3": 0.011357568745232242,
+      "centroid_m": [
+        0.5136548668910494,
+        4.713385713803316,
+        -0.5136548668910494
+      ]
+    },
+    {
+      "id": "CR2",
+      "volume_m3": 0.011357568745232251,
+      "centroid_m": [
+        -2.237361620927559e-19,
+        4.713385713803316,
+        -0.7264176791362693
+      ]
+    },
+    {
+      "id": "CR3",
+      "volume_m3": 0.011357568745232242,
+      "centroid_m": [
+        -0.5136548668910494,
+        4.713385713803316,
+        -0.5136548668910494
+      ]
+    },
+    {
+      "id": "CR4",
+      "volume_m3": 0.011357568745232251,
+      "centroid_m": [
+        -0.7264176791362693,
+        4.713385713803316,
+        2.237361620927559e-19
+      ]
+    },
+    {
+      "id": "CR5",
+      "volume_m3": 0.011357568745232242,
+      "centroid_m": [
+        -0.5136548668910494,
+        4.713385713803316,
+        0.5136548668910494
+      ]
+    },
+    {
+      "id": "CR6",
+      "volume_m3": 0.011357568745232251,
+      "centroid_m": [
+        2.237361620927559e-19,
+        4.713385713803316,
+        0.7264176791362693
+      ]
+    },
+    {
+      "id": "CR7",
+      "volume_m3": 0.011357568745232242,
+      "centroid_m": [
+        0.5136548668910494,
+        4.713385713803316,
+        0.5136548668910494
+      ]
+    },
+    {
+      "id": "CC0",
+      "volume_m3": 0.013995517436249372,
+      "centroid_m": [
+        0.5125671546604158,
+        4.426469754280461,
+        1.2104346282480783e-19
+      ]
+    },
+    {
+      "id": "CC1",
+      "volume_m3": 0.013995517436249364,
+      "centroid_m": [
+        0.3624397108738739,
+        4.426469754280461,
+        -0.36243971087387383
+      ]
+    },
+    {
+      "id": "CC2",
+      "volume_m3": 0.013995517436249372,
+      "centroid_m": [
+        1.2104346282480783e-19,
+        4.426469754280461,
+        -0.5125671546604158
+      ]
+    },
+    {
+      "id": "CC3",
+      "volume_m3": 0.013995517436249364,
+      "centroid_m": [
+        -0.36243971087387383,
+        4.426469754280461,
+        -0.3624397108738739
+      ]
+    },
+    {
+      "id": "CC4",
+      "volume_m3": 0.013995517436249372,
+      "centroid_m": [
+        -0.5125671546604158,
+        4.426469754280461,
+        -1.2104346282480783e-19
+      ]
+    },
+    {
+      "id": "CC5",
+      "volume_m3": 0.013995517436249364,
+      "centroid_m": [
+        -0.3624397108738739,
+        4.426469754280461,
+        0.36243971087387383
+      ]
+    },
+    {
+      "id": "CC6",
+      "volume_m3": 0.013995517436249372,
+      "centroid_m": [
+        -1.2104346282480783e-19,
+        4.426469754280461,
+        0.5125671546604158
+      ]
+    },
+    {
+      "id": "CC7",
+      "volume_m3": 0.013995517436249364,
+      "centroid_m": [
+        0.36243971087387383,
+        4.426469754280461,
+        0.3624397108738739
+      ]
+    }
+  ],
+  "issues": [
+    {
+      "id": "P0:R0",
+      "owner": "P0",
+      "mate": "R0",
+      "point_m": [
+        4.492842556538728,
+        2.4522548605216494,
+        -3.210943504068707e-17
+      ],
+      "title": "Main hip / post seats \u00b7 8 locations",
+      "classification": "missing_restraint",
+      "reason": "Horizontal bearing exists. Transverse locating faces and positive uplift restraint are not modeled at this pair. Neighboring connections and capacity require engineering review.",
+      "family": "RP",
+      "anchor_method": "area-weighted actual mating-face intersection centroid; not a force application point"
+    },
+    {
+      "id": "P1:R1",
+      "owner": "P1",
+      "mate": "R1",
+      "point_m": [
+        3.1769194385320434,
+        2.45225486052165,
+        -3.176919438532043
+      ],
+      "title": "Main hip / post seats \u00b7 8 locations",
+      "classification": "missing_restraint",
+      "reason": "Horizontal bearing exists. Transverse locating faces and positive uplift restraint are not modeled at this pair. Neighboring connections and capacity require engineering review.",
+      "family": "RP",
+      "anchor_method": "area-weighted actual mating-face intersection centroid; not a force application point"
+    },
+    {
+      "id": "P2:R2",
+      "owner": "P2",
+      "mate": "R2",
+      "point_m": [
+        -3.210943504068707e-17,
+        2.4522548605216494,
+        -4.492842556538728
+      ],
+      "title": "Main hip / post seats \u00b7 8 locations",
+      "classification": "missing_restraint",
+      "reason": "Horizontal bearing exists. Transverse locating faces and positive uplift restraint are not modeled at this pair. Neighboring connections and capacity require engineering review.",
+      "family": "RP",
+      "anchor_method": "area-weighted actual mating-face intersection centroid; not a force application point"
+    },
+    {
+      "id": "P3:R3",
+      "owner": "P3",
+      "mate": "R3",
+      "point_m": [
+        -3.176919438532043,
+        2.4522548605216485,
+        -3.176919438532043
+      ],
+      "title": "Main hip / post seats \u00b7 8 locations",
+      "classification": "missing_restraint",
+      "reason": "Horizontal bearing exists. Transverse locating faces and positive uplift restraint are not modeled at this pair. Neighboring connections and capacity require engineering review.",
+      "family": "RP",
+      "anchor_method": "area-weighted actual mating-face intersection centroid; not a force application point"
+    },
+    {
+      "id": "P4:R4",
+      "owner": "P4",
+      "mate": "R4",
+      "point_m": [
+        -4.492842556538728,
+        2.4522548605216494,
+        3.210943504068707e-17
+      ],
+      "title": "Main hip / post seats \u00b7 8 locations",
+      "classification": "missing_restraint",
+      "reason": "Horizontal bearing exists. Transverse locating faces and positive uplift restraint are not modeled at this pair. Neighboring connections and capacity require engineering review.",
+      "family": "RP",
+      "anchor_method": "area-weighted actual mating-face intersection centroid; not a force application point"
+    },
+    {
+      "id": "P5:R5",
+      "owner": "P5",
+      "mate": "R5",
+      "point_m": [
+        -3.1769194385320434,
+        2.45225486052165,
+        3.176919438532043
+      ],
+      "title": "Main hip / post seats \u00b7 8 locations",
+      "classification": "missing_restraint",
+      "reason": "Horizontal bearing exists. Transverse locating faces and positive uplift restraint are not modeled at this pair. Neighboring connections and capacity require engineering review.",
+      "family": "RP",
+      "anchor_method": "area-weighted actual mating-face intersection centroid; not a force application point"
+    },
+    {
+      "id": "P6:R6",
+      "owner": "P6",
+      "mate": "R6",
+      "point_m": [
+        3.210943504068707e-17,
+        2.4522548605216494,
+        4.492842556538728
+      ],
+      "title": "Main hip / post seats \u00b7 8 locations",
+      "classification": "missing_restraint",
+      "reason": "Horizontal bearing exists. Transverse locating faces and positive uplift restraint are not modeled at this pair. Neighboring connections and capacity require engineering review.",
+      "family": "RP",
+      "anchor_method": "area-weighted actual mating-face intersection centroid; not a force application point"
+    },
+    {
+      "id": "P7:R7",
+      "owner": "P7",
+      "mate": "R7",
+      "point_m": [
+        3.176919438532043,
+        2.4522548605216485,
+        3.176919438532043
+      ],
+      "title": "Main hip / post seats \u00b7 8 locations",
+      "classification": "missing_restraint",
+      "reason": "Horizontal bearing exists. Transverse locating faces and positive uplift restraint are not modeled at this pair. Neighboring connections and capacity require engineering review.",
+      "family": "RP",
+      "anchor_method": "area-weighted actual mating-face intersection centroid; not a force application point"
+    },
+    {
+      "id": "B0:R0",
+      "owner": "B0",
+      "mate": "R0",
+      "point_m": [
+        4.358363152425028,
+        2.457531929349287,
+        -0.1016
+      ],
+      "title": "Ring / hip corner contact \u00b7 16 junctions",
+      "classification": "capacity_unknown",
+      "reason": "This adjacent pair has only a small vertical contact patch, not horizontal gravity bearing. The main hip bears on the post instead. Do not treat touching surfaces as structural restraint.",
+      "family": "CORNER",
+      "anchor_method": "area-weighted actual mating-face intersection centroid; not a force application point"
+    },
+    {
+      "id": "B7:R0",
+      "owner": "B7",
+      "mate": "R0",
+      "point_m": [
+        4.35836315242896,
+        2.4575319293515476,
+        0.10159999999999993
+      ],
+      "title": "Ring / hip corner contact \u00b7 16 junctions",
+      "classification": "capacity_unknown",
+      "reason": "This adjacent pair has only a small vertical contact patch, not horizontal gravity bearing. The main hip bears on the post instead. Do not treat touching surfaces as structural restraint.",
+      "family": "CORNER",
+      "anchor_method": "area-weighted actual mating-face intersection centroid; not a force application point"
+    },
+    {
+      "id": "B0:J0-0",
+      "owner": "B0",
+      "mate": "J0-0",
+      "point_m": [
+        4.085643841805907,
+        2.461073572071106,
+        -1.0548406740374032
+      ],
+      "title": "Short-rafter / ring seats \u00b7 16 locations",
+      "classification": "missing_restraint",
+      "reason": "Horizontal bearing and one vertical face exist; a two-sided locating pocket and positive uplift restraint are not modeled. Square shoulders would need dimensions, clearance and remaining-section checks.",
+      "family": "JB",
+      "anchor_method": "area-weighted actual mating-face intersection centroid; not a force application point"
+    },
+    {
+      "id": "B0:J0-2",
+      "owner": "B0",
+      "mate": "J0-2",
+      "point_m": [
+        3.6348714597372425,
+        2.4610735720710997,
+        -2.1431014723707555
+      ],
+      "title": "Short-rafter / ring seats \u00b7 16 locations",
+      "classification": "missing_restraint",
+      "reason": "Horizontal bearing and one vertical face exist; a two-sided locating pocket and positive uplift restraint are not modeled. Square shoulders would need dimensions, clearance and remaining-section checks.",
+      "family": "JB",
+      "anchor_method": "area-weighted actual mating-face intersection centroid; not a force application point"
+    },
+    {
+      "id": "B1:R1",
+      "owner": "B1",
+      "mate": "R1",
+      "point_m": [
+        3.009986090984722,
+        2.4575319293493316,
+        -3.153670188921828
+      ],
+      "title": "Ring / hip corner contact \u00b7 16 junctions",
+      "classification": "capacity_unknown",
+      "reason": "This adjacent pair has only a small vertical contact patch, not horizontal gravity bearing. The main hip bears on the post instead. Do not treat touching surfaces as structural restraint.",
+      "family": "CORNER",
+      "anchor_method": "area-weighted actual mating-face intersection centroid; not a force application point"
+    },
+    {
+      "id": "B0:R1",
+      "owner": "B0",
+      "mate": "R1",
+      "point_m": [
+        3.1536701889217564,
+        2.4575319293492943,
+        -3.0099860909846505
+      ],
+      "title": "Ring / hip corner contact \u00b7 16 junctions",
+      "classification": "capacity_unknown",
+      "reason": "This adjacent pair has only a small vertical contact patch, not horizontal gravity bearing. The main hip bears on the post instead. Do not treat touching surfaces as structural restraint.",
+      "family": "CORNER",
+      "anchor_method": "area-weighted actual mating-face intersection centroid; not a force application point"
+    },
+    {
+      "id": "B1:J1-0",
+      "owner": "B1",
+      "mate": "J1-0",
+      "point_m": [
+        2.1431014723708017,
+        2.4610735720711054,
+        -3.634871459737325
+      ],
+      "title": "Short-rafter / ring seats \u00b7 16 locations",
+      "classification": "missing_restraint",
+      "reason": "Horizontal bearing and one vertical face exist; a two-sided locating pocket and positive uplift restraint are not modeled. Square shoulders would need dimensions, clearance and remaining-section checks.",
+      "family": "JB",
+      "anchor_method": "area-weighted actual mating-face intersection centroid; not a force application point"
+    },
+    {
+      "id": "B1:J1-2",
+      "owner": "B1",
+      "mate": "J1-2",
+      "point_m": [
+        1.0548406740374094,
+        2.4610735720710943,
+        -4.085643841805889
+      ],
+      "title": "Short-rafter / ring seats \u00b7 16 locations",
+      "classification": "missing_restraint",
+      "reason": "Horizontal bearing and one vertical face exist; a two-sided locating pocket and positive uplift restraint are not modeled. Square shoulders would need dimensions, clearance and remaining-section checks.",
+      "family": "JB",
+      "anchor_method": "area-weighted actual mating-face intersection centroid; not a force application point"
+    },
+    {
+      "id": "B2:R2",
+      "owner": "B2",
+      "mate": "R2",
+      "point_m": [
+        -0.1016,
+        2.457531929349287,
+        -4.358363152425028
+      ],
+      "title": "Ring / hip corner contact \u00b7 16 junctions",
+      "classification": "capacity_unknown",
+      "reason": "This adjacent pair has only a small vertical contact patch, not horizontal gravity bearing. The main hip bears on the post instead. Do not treat touching surfaces as structural restraint.",
+      "family": "CORNER",
+      "anchor_method": "area-weighted actual mating-face intersection centroid; not a force application point"
+    },
+    {
+      "id": "B1:R2",
+      "owner": "B1",
+      "mate": "R2",
+      "point_m": [
+        0.10159999999999993,
+        2.4575319293515476,
+        -4.35836315242896
+      ],
+      "title": "Ring / hip corner contact \u00b7 16 junctions",
+      "classification": "capacity_unknown",
+      "reason": "This adjacent pair has only a small vertical contact patch, not horizontal gravity bearing. The main hip bears on the post instead. Do not treat touching surfaces as structural restraint.",
+      "family": "CORNER",
+      "anchor_method": "area-weighted actual mating-face intersection centroid; not a force application point"
+    },
+    {
+      "id": "B2:J2-0",
+      "owner": "B2",
+      "mate": "J2-0",
+      "point_m": [
+        -1.0548406740374094,
+        2.461073572071092,
+        -4.085643841805905
+      ],
+      "title": "Short-rafter / ring seats \u00b7 16 locations",
+      "classification": "missing_restraint",
+      "reason": "Horizontal bearing and one vertical face exist; a two-sided locating pocket and positive uplift restraint are not modeled. Square shoulders would need dimensions, clearance and remaining-section checks.",
+      "family": "JB",
+      "anchor_method": "area-weighted actual mating-face intersection centroid; not a force application point"
+    },
+    {
+      "id": "B2:J2-2",
+      "owner": "B2",
+      "mate": "J2-2",
+      "point_m": [
+        -2.143101472370757,
+        2.461073572071093,
+        -3.6348714597372416
+      ],
+      "title": "Short-rafter / ring seats \u00b7 16 locations",
+      "classification": "missing_restraint",
+      "reason": "Horizontal bearing and one vertical face exist; a two-sided locating pocket and positive uplift restraint are not modeled. Square shoulders would need dimensions, clearance and remaining-section checks.",
+      "family": "JB",
+      "anchor_method": "area-weighted actual mating-face intersection centroid; not a force application point"
+    },
+    {
+      "id": "B3:R3",
+      "owner": "B3",
+      "mate": "R3",
+      "point_m": [
+        -3.153670188921828,
+        2.4575319293493316,
+        -3.009986090984722
+      ],
+      "title": "Ring / hip corner contact \u00b7 16 junctions",
+      "classification": "capacity_unknown",
+      "reason": "This adjacent pair has only a small vertical contact patch, not horizontal gravity bearing. The main hip bears on the post instead. Do not treat touching surfaces as structural restraint.",
+      "family": "CORNER",
+      "anchor_method": "area-weighted actual mating-face intersection centroid; not a force application point"
+    },
+    {
+      "id": "B2:R3",
+      "owner": "B2",
+      "mate": "R3",
+      "point_m": [
+        -3.0099860909818394,
+        2.4575319293470987,
+        -3.153670188918945
+      ],
+      "title": "Ring / hip corner contact \u00b7 16 junctions",
+      "classification": "capacity_unknown",
+      "reason": "This adjacent pair has only a small vertical contact patch, not horizontal gravity bearing. The main hip bears on the post instead. Do not treat touching surfaces as structural restraint.",
+      "family": "CORNER",
+      "anchor_method": "area-weighted actual mating-face intersection centroid; not a force application point"
+    },
+    {
+      "id": "B3:J3-0",
+      "owner": "B3",
+      "mate": "J3-0",
+      "point_m": [
+        -3.6348714597373264,
+        2.4610735720710935,
+        -2.1431014723708
+      ],
+      "title": "Short-rafter / ring seats \u00b7 16 locations",
+      "classification": "missing_restraint",
+      "reason": "Horizontal bearing and one vertical face exist; a two-sided locating pocket and positive uplift restraint are not modeled. Square shoulders would need dimensions, clearance and remaining-section checks.",
+      "family": "JB",
+      "anchor_method": "area-weighted actual mating-face intersection centroid; not a force application point"
+    },
+    {
+      "id": "B3:J3-2",
+      "owner": "B3",
+      "mate": "J3-2",
+      "point_m": [
+        -4.085643841805888,
+        2.461073572071097,
+        -1.05484067403741
+      ],
+      "title": "Short-rafter / ring seats \u00b7 16 locations",
+      "classification": "missing_restraint",
+      "reason": "Horizontal bearing and one vertical face exist; a two-sided locating pocket and positive uplift restraint are not modeled. Square shoulders would need dimensions, clearance and remaining-section checks.",
+      "family": "JB",
+      "anchor_method": "area-weighted actual mating-face intersection centroid; not a force application point"
+    },
+    {
+      "id": "B4:R4",
+      "owner": "B4",
+      "mate": "R4",
+      "point_m": [
+        -4.358363152425028,
+        2.457531929349287,
+        0.1016
+      ],
+      "title": "Ring / hip corner contact \u00b7 16 junctions",
+      "classification": "capacity_unknown",
+      "reason": "This adjacent pair has only a small vertical contact patch, not horizontal gravity bearing. The main hip bears on the post instead. Do not treat touching surfaces as structural restraint.",
+      "family": "CORNER",
+      "anchor_method": "area-weighted actual mating-face intersection centroid; not a force application point"
+    },
+    {
+      "id": "B3:R4",
+      "owner": "B3",
+      "mate": "R4",
+      "point_m": [
+        -4.35836315242896,
+        2.4575319293515476,
+        -0.10159999999999993
+      ],
+      "title": "Ring / hip corner contact \u00b7 16 junctions",
+      "classification": "capacity_unknown",
+      "reason": "This adjacent pair has only a small vertical contact patch, not horizontal gravity bearing. The main hip bears on the post instead. Do not treat touching surfaces as structural restraint.",
+      "family": "CORNER",
+      "anchor_method": "area-weighted actual mating-face intersection centroid; not a force application point"
+    },
+    {
+      "id": "B4:J4-0",
+      "owner": "B4",
+      "mate": "J4-0",
+      "point_m": [
+        -4.085643841805907,
+        2.461073572071106,
+        1.0548406740374032
+      ],
+      "title": "Short-rafter / ring seats \u00b7 16 locations",
+      "classification": "missing_restraint",
+      "reason": "Horizontal bearing and one vertical face exist; a two-sided locating pocket and positive uplift restraint are not modeled. Square shoulders would need dimensions, clearance and remaining-section checks.",
+      "family": "JB",
+      "anchor_method": "area-weighted actual mating-face intersection centroid; not a force application point"
+    },
+    {
+      "id": "B4:J4-2",
+      "owner": "B4",
+      "mate": "J4-2",
+      "point_m": [
+        -3.6348714597372425,
+        2.4610735720710997,
+        2.1431014723707555
+      ],
+      "title": "Short-rafter / ring seats \u00b7 16 locations",
+      "classification": "missing_restraint",
+      "reason": "Horizontal bearing and one vertical face exist; a two-sided locating pocket and positive uplift restraint are not modeled. Square shoulders would need dimensions, clearance and remaining-section checks.",
+      "family": "JB",
+      "anchor_method": "area-weighted actual mating-face intersection centroid; not a force application point"
+    },
+    {
+      "id": "B5:R5",
+      "owner": "B5",
+      "mate": "R5",
+      "point_m": [
+        -3.009986090984722,
+        2.4575319293493316,
+        3.153670188921828
+      ],
+      "title": "Ring / hip corner contact \u00b7 16 junctions",
+      "classification": "capacity_unknown",
+      "reason": "This adjacent pair has only a small vertical contact patch, not horizontal gravity bearing. The main hip bears on the post instead. Do not treat touching surfaces as structural restraint.",
+      "family": "CORNER",
+      "anchor_method": "area-weighted actual mating-face intersection centroid; not a force application point"
+    },
+    {
+      "id": "B4:R5",
+      "owner": "B4",
+      "mate": "R5",
+      "point_m": [
+        -3.1536701889217564,
+        2.4575319293492943,
+        3.0099860909846505
+      ],
+      "title": "Ring / hip corner contact \u00b7 16 junctions",
+      "classification": "capacity_unknown",
+      "reason": "This adjacent pair has only a small vertical contact patch, not horizontal gravity bearing. The main hip bears on the post instead. Do not treat touching surfaces as structural restraint.",
+      "family": "CORNER",
+      "anchor_method": "area-weighted actual mating-face intersection centroid; not a force application point"
+    },
+    {
+      "id": "B5:J5-0",
+      "owner": "B5",
+      "mate": "J5-0",
+      "point_m": [
+        -2.1431014723708017,
+        2.4610735720711054,
+        3.634871459737325
+      ],
+      "title": "Short-rafter / ring seats \u00b7 16 locations",
+      "classification": "missing_restraint",
+      "reason": "Horizontal bearing and one vertical face exist; a two-sided locating pocket and positive uplift restraint are not modeled. Square shoulders would need dimensions, clearance and remaining-section checks.",
+      "family": "JB",
+      "anchor_method": "area-weighted actual mating-face intersection centroid; not a force application point"
+    },
+    {
+      "id": "B5:J5-2",
+      "owner": "B5",
+      "mate": "J5-2",
+      "point_m": [
+        -1.0548406740374094,
+        2.4610735720710943,
+        4.085643841805889
+      ],
+      "title": "Short-rafter / ring seats \u00b7 16 locations",
+      "classification": "missing_restraint",
+      "reason": "Horizontal bearing and one vertical face exist; a two-sided locating pocket and positive uplift restraint are not modeled. Square shoulders would need dimensions, clearance and remaining-section checks.",
+      "family": "JB",
+      "anchor_method": "area-weighted actual mating-face intersection centroid; not a force application point"
+    },
+    {
+      "id": "B6:R6",
+      "owner": "B6",
+      "mate": "R6",
+      "point_m": [
+        0.1016,
+        2.457531929349287,
+        4.358363152425028
+      ],
+      "title": "Ring / hip corner contact \u00b7 16 junctions",
+      "classification": "capacity_unknown",
+      "reason": "This adjacent pair has only a small vertical contact patch, not horizontal gravity bearing. The main hip bears on the post instead. Do not treat touching surfaces as structural restraint.",
+      "family": "CORNER",
+      "anchor_method": "area-weighted actual mating-face intersection centroid; not a force application point"
+    },
+    {
+      "id": "B5:R6",
+      "owner": "B5",
+      "mate": "R6",
+      "point_m": [
+        -0.10159999999999993,
+        2.4575319293515476,
+        4.35836315242896
+      ],
+      "title": "Ring / hip corner contact \u00b7 16 junctions",
+      "classification": "capacity_unknown",
+      "reason": "This adjacent pair has only a small vertical contact patch, not horizontal gravity bearing. The main hip bears on the post instead. Do not treat touching surfaces as structural restraint.",
+      "family": "CORNER",
+      "anchor_method": "area-weighted actual mating-face intersection centroid; not a force application point"
+    },
+    {
+      "id": "B6:J6-0",
+      "owner": "B6",
+      "mate": "J6-0",
+      "point_m": [
+        1.0548406740374094,
+        2.461073572071092,
+        4.085643841805905
+      ],
+      "title": "Short-rafter / ring seats \u00b7 16 locations",
+      "classification": "missing_restraint",
+      "reason": "Horizontal bearing and one vertical face exist; a two-sided locating pocket and positive uplift restraint are not modeled. Square shoulders would need dimensions, clearance and remaining-section checks.",
+      "family": "JB",
+      "anchor_method": "area-weighted actual mating-face intersection centroid; not a force application point"
+    },
+    {
+      "id": "B6:J6-2",
+      "owner": "B6",
+      "mate": "J6-2",
+      "point_m": [
+        2.143101472370757,
+        2.461073572071093,
+        3.6348714597372416
+      ],
+      "title": "Short-rafter / ring seats \u00b7 16 locations",
+      "classification": "missing_restraint",
+      "reason": "Horizontal bearing and one vertical face exist; a two-sided locating pocket and positive uplift restraint are not modeled. Square shoulders would need dimensions, clearance and remaining-section checks.",
+      "family": "JB",
+      "anchor_method": "area-weighted actual mating-face intersection centroid; not a force application point"
+    },
+    {
+      "id": "B7:R7",
+      "owner": "B7",
+      "mate": "R7",
+      "point_m": [
+        3.153670188921828,
+        2.4575319293493316,
+        3.009986090984722
+      ],
+      "title": "Ring / hip corner contact \u00b7 16 junctions",
+      "classification": "capacity_unknown",
+      "reason": "This adjacent pair has only a small vertical contact patch, not horizontal gravity bearing. The main hip bears on the post instead. Do not treat touching surfaces as structural restraint.",
+      "family": "CORNER",
+      "anchor_method": "area-weighted actual mating-face intersection centroid; not a force application point"
+    },
+    {
+      "id": "B6:R7",
+      "owner": "B6",
+      "mate": "R7",
+      "point_m": [
+        3.0099860909818394,
+        2.4575319293470987,
+        3.153670188918945
+      ],
+      "title": "Ring / hip corner contact \u00b7 16 junctions",
+      "classification": "capacity_unknown",
+      "reason": "This adjacent pair has only a small vertical contact patch, not horizontal gravity bearing. The main hip bears on the post instead. Do not treat touching surfaces as structural restraint.",
+      "family": "CORNER",
+      "anchor_method": "area-weighted actual mating-face intersection centroid; not a force application point"
+    },
+    {
+      "id": "B7:J7-0",
+      "owner": "B7",
+      "mate": "J7-0",
+      "point_m": [
+        3.6348714597373264,
+        2.4610735720710935,
+        2.1431014723708
+      ],
+      "title": "Short-rafter / ring seats \u00b7 16 locations",
+      "classification": "missing_restraint",
+      "reason": "Horizontal bearing and one vertical face exist; a two-sided locating pocket and positive uplift restraint are not modeled. Square shoulders would need dimensions, clearance and remaining-section checks.",
+      "family": "JB",
+      "anchor_method": "area-weighted actual mating-face intersection centroid; not a force application point"
+    },
+    {
+      "id": "B7:J7-2",
+      "owner": "B7",
+      "mate": "J7-2",
+      "point_m": [
+        4.085643841805888,
+        2.461073572071097,
+        1.05484067403741
+      ],
+      "title": "Short-rafter / ring seats \u00b7 16 locations",
+      "classification": "missing_restraint",
+      "reason": "Horizontal bearing and one vertical face exist; a two-sided locating pocket and positive uplift restraint are not modeled. Square shoulders would need dimensions, clearance and remaining-section checks.",
+      "family": "JB",
+      "anchor_method": "area-weighted actual mating-face intersection centroid; not a force application point"
+    },
+    {
+      "id": "T0:C0",
+      "owner": "T0",
+      "mate": "C0",
+      "point_m": [
+        1.0993120000000034,
+        2.286000000000007,
+        -8.402583641930039e-18
+      ],
+      "title": "Tie / center ring system \u00b7 8 bays",
+      "classification": "missing_restraint",
+      "reason": "Straight tongues and ring contacts do not by themselves establish a complete tension or uplift load path. Ring action and attachment capacity are unresolved.",
+      "family": "TC",
+      "anchor_method": "area-weighted actual mating-face intersection centroid; not a force application point"
+    },
+    {
+      "id": "R0:C0",
+      "owner": "R0",
+      "mate": "C0",
+      "point_m": [
+        1.0964875779360534,
+        3.6715101228368545,
+        -2.3292771682614385e-17
+      ],
+      "title": "Main hip / cupola post \u00b7 8 locations",
+      "classification": "missing_restraint",
+      "reason": "The proposed straight tongue has no modeled positive withdrawal restraint. Receiver cheeks, tension, shear and splitting capacity remain unverified.",
+      "family": "RC",
+      "anchor_method": "area-weighted actual mating-face intersection centroid; not a force application point"
+    },
+    {
+      "id": "L0-S:C0",
+      "owner": "L0-S",
+      "mate": "C0",
+      "point_m": [
+        1.0202729328655682,
+        3.766069754280453,
+        -0.05732786410694622
+      ],
+      "title": "Tie / center ring system \u00b7 8 bays",
+      "classification": "missing_restraint",
+      "reason": "Straight tongues and ring contacts do not by themselves establish a complete tension or uplift load path. Ring action and attachment capacity are unresolved.",
+      "family": "TC",
+      "anchor_method": "area-weighted actual mating-face intersection centroid; not a force application point"
+    },
+    {
+      "id": "L0-S:C1",
+      "owner": "L0-S",
+      "mate": "C1",
+      "point_m": [
+        0.7619788309512917,
+        3.766069754280461,
+        -0.6809049880293668
+      ],
+      "title": "Tie / center ring system \u00b7 8 bays",
+      "classification": "missing_restraint",
+      "reason": "Straight tongues and ring contacts do not by themselves establish a complete tension or uplift load path. Ring action and attachment capacity are unresolved.",
+      "family": "TC",
+      "anchor_method": "area-weighted actual mating-face intersection centroid; not a force application point"
+    },
+    {
+      "id": "L0-H:C0",
+      "owner": "L0-H",
+      "mate": "C0",
+      "point_m": [
+        1.0202729328655795,
+        4.426469754280513,
+        -0.057327864106945126
+      ],
+      "title": "Tie / center ring system \u00b7 8 bays",
+      "classification": "missing_restraint",
+      "reason": "Straight tongues and ring contacts do not by themselves establish a complete tension or uplift load path. Ring action and attachment capacity are unresolved.",
+      "family": "TC",
+      "anchor_method": "area-weighted actual mating-face intersection centroid; not a force application point"
+    },
+    {
+      "id": "L0-H:C1",
+      "owner": "L0-H",
+      "mate": "C1",
+      "point_m": [
+        0.7619788309513053,
+        4.426469754280533,
+        -0.6809049880293795
+      ],
+      "title": "Tie / center ring system \u00b7 8 bays",
+      "classification": "missing_restraint",
+      "reason": "Straight tongues and ring contacts do not by themselves establish a complete tension or uplift load path. Ring action and attachment capacity are unresolved.",
+      "family": "TC",
+      "anchor_method": "area-weighted actual mating-face intersection centroid; not a force application point"
+    },
+    {
+      "id": "C0:CR0",
+      "owner": "C0",
+      "mate": "CR0",
+      "point_m": [
+        1.0413999999999999,
+        4.5280697542804615,
+        3.4252069678627097e-18
+      ],
+      "title": "Cupola roof and ceiling attachments",
+      "classification": "capacity_unknown",
+      "reason": "Roof/ceiling attachment and plywood fastening details are unspecified; contact geometry is not a verified connection capacity. Temporary spacers are not credited as permanent support.",
+      "family": "CUP",
+      "anchor_method": "area-weighted actual mating-face intersection centroid; not a force application point"
+    },
+    {
+      "id": "CR0:CR1",
+      "owner": "CR0",
+      "mate": "CR1",
+      "point_m": [
+        0.030660512242138307,
+        4.9453047694346965,
+        -0.012700000000000003
+      ],
+      "title": "Cupola roof and ceiling attachments",
+      "classification": "capacity_unknown",
+      "reason": "Roof/ceiling attachment and plywood fastening details are unspecified; contact geometry is not a verified connection capacity. Temporary spacers are not credited as permanent support.",
+      "family": "CUP",
+      "anchor_method": "area-weighted actual mating-face intersection centroid; not a force application point"
+    },
+    {
+      "id": "T1:C1",
+      "owner": "T1",
+      "mate": "C1",
+      "point_m": [
+        0.7773309698397477,
+        2.2860000000000076,
+        -0.7773309698397478
+      ],
+      "title": "Tie / center ring system \u00b7 8 bays",
+      "classification": "missing_restraint",
+      "reason": "Straight tongues and ring contacts do not by themselves establish a complete tension or uplift load path. Ring action and attachment capacity are unresolved.",
+      "family": "TC",
+      "anchor_method": "area-weighted actual mating-face intersection centroid; not a force application point"
+    },
+    {
+      "id": "R1:C1",
+      "owner": "R1",
+      "mate": "C1",
+      "point_m": [
+        0.7753338018453941,
+        3.6715101228368403,
+        -0.7753338018453941
+      ],
+      "title": "Main hip / cupola post \u00b7 8 locations",
+      "classification": "missing_restraint",
+      "reason": "The proposed straight tongue has no modeled positive withdrawal restraint. Receiver cheeks, tension, shear and splitting capacity remain unverified.",
+      "family": "RC",
+      "anchor_method": "area-weighted actual mating-face intersection centroid; not a force application point"
+    },
+    {
+      "id": "L1-S:C1",
+      "owner": "L1-S",
+      "mate": "C1",
+      "point_m": [
+        0.680904988029368,
+        3.7660697542804553,
+        -0.7619788309512932
+      ],
+      "title": "Tie / center ring system \u00b7 8 bays",
+      "classification": "missing_restraint",
+      "reason": "Straight tongues and ring contacts do not by themselves establish a complete tension or uplift load path. Ring action and attachment capacity are unresolved.",
+      "family": "TC",
+      "anchor_method": "area-weighted actual mating-face intersection centroid; not a force application point"
+    },
+    {
+      "id": "L1-S:C2",
+      "owner": "L1-S",
+      "mate": "C2",
+      "point_m": [
+        0.057327864106946756,
+        3.7660697542804824,
+        -1.0202729328655757
+      ],
+      "title": "Tie / center ring system \u00b7 8 bays",
+      "classification": "missing_restraint",
+      "reason": "Straight tongues and ring contacts do not by themselves establish a complete tension or uplift load path. Ring action and attachment capacity are unresolved.",
+      "family": "TC",
+      "anchor_method": "area-weighted actual mating-face intersection centroid; not a force application point"
+    },
+    {
+      "id": "L1-H:C1",
+      "owner": "L1-H",
+      "mate": "C1",
+      "point_m": [
+        0.680904988029366,
+        4.426469754280446,
+        -0.7619788309512886
+      ],
+      "title": "Tie / center ring system \u00b7 8 bays",
+      "classification": "missing_restraint",
+      "reason": "Straight tongues and ring contacts do not by themselves establish a complete tension or uplift load path. Ring action and attachment capacity are unresolved.",
+      "family": "TC",
+      "anchor_method": "area-weighted actual mating-face intersection centroid; not a force application point"
+    },
+    {
+      "id": "L1-H:C2",
+      "owner": "L1-H",
+      "mate": "C2",
+      "point_m": [
+        0.05732786410694639,
+        4.426469754280523,
+        -1.0202729328655828
+      ],
+      "title": "Tie / center ring system \u00b7 8 bays",
+      "classification": "missing_restraint",
+      "reason": "Straight tongues and ring contacts do not by themselves establish a complete tension or uplift load path. Ring action and attachment capacity are unresolved.",
+      "family": "TC",
+      "anchor_method": "area-weighted actual mating-face intersection centroid; not a force application point"
+    },
+    {
+      "id": "C1:CR1",
+      "owner": "C1",
+      "mate": "CR1",
+      "point_m": [
+        0.7363810019276703,
+        4.528069754280461,
+        -0.7363810019276705
+      ],
+      "title": "Cupola roof and ceiling attachments",
+      "classification": "capacity_unknown",
+      "reason": "Roof/ceiling attachment and plywood fastening details are unspecified; contact geometry is not a verified connection capacity. Temporary spacers are not credited as permanent support.",
+      "family": "CUP",
+      "anchor_method": "area-weighted actual mating-face intersection centroid; not a force application point"
+    },
+    {
+      "id": "CR1:CR2",
+      "owner": "CR1",
+      "mate": "CR2",
+      "point_m": [
+        0.012700000000000038,
+        4.945304769434687,
+        -0.030660512242138397
+      ],
+      "title": "Cupola roof and ceiling attachments",
+      "classification": "capacity_unknown",
+      "reason": "Roof/ceiling attachment and plywood fastening details are unspecified; contact geometry is not a verified connection capacity. Temporary spacers are not credited as permanent support.",
+      "family": "CUP",
+      "anchor_method": "area-weighted actual mating-face intersection centroid; not a force application point"
+    },
+    {
+      "id": "T2:C2",
+      "owner": "T2",
+      "mate": "C2",
+      "point_m": [
+        -8.402583641930039e-18,
+        2.286000000000007,
+        -1.0993120000000034
+      ],
+      "title": "Tie / center ring system \u00b7 8 bays",
+      "classification": "missing_restraint",
+      "reason": "Straight tongues and ring contacts do not by themselves establish a complete tension or uplift load path. Ring action and attachment capacity are unresolved.",
+      "family": "TC",
+      "anchor_method": "area-weighted actual mating-face intersection centroid; not a force application point"
+    },
+    {
+      "id": "R2:C2",
+      "owner": "R2",
+      "mate": "C2",
+      "point_m": [
+        -2.3292771682614385e-17,
+        3.6715101228368545,
+        -1.0964875779360534
+      ],
+      "title": "Main hip / cupola post \u00b7 8 locations",
+      "classification": "missing_restraint",
+      "reason": "The proposed straight tongue has no modeled positive withdrawal restraint. Receiver cheeks, tension, shear and splitting capacity remain unverified.",
+      "family": "RC",
+      "anchor_method": "area-weighted actual mating-face intersection centroid; not a force application point"
+    },
+    {
+      "id": "L2-S:C2",
+      "owner": "L2-S",
+      "mate": "C2",
+      "point_m": [
+        -0.05732786410694622,
+        3.766069754280453,
+        -1.0202729328655682
+      ],
+      "title": "Tie / center ring system \u00b7 8 bays",
+      "classification": "missing_restraint",
+      "reason": "Straight tongues and ring contacts do not by themselves establish a complete tension or uplift load path. Ring action and attachment capacity are unresolved.",
+      "family": "TC",
+      "anchor_method": "area-weighted actual mating-face intersection centroid; not a force application point"
+    },
+    {
+      "id": "L2-S:C3",
+      "owner": "L2-S",
+      "mate": "C3",
+      "point_m": [
+        -0.6809049880293682,
+        3.76606975428047,
+        -0.7619788309512937
+      ],
+      "title": "Tie / center ring system \u00b7 8 bays",
+      "classification": "missing_restraint",
+      "reason": "Straight tongues and ring contacts do not by themselves establish a complete tension or uplift load path. Ring action and attachment capacity are unresolved.",
+      "family": "TC",
+      "anchor_method": "area-weighted actual mating-face intersection centroid; not a force application point"
+    },
+    {
+      "id": "L2-H:C2",
+      "owner": "L2-H",
+      "mate": "C2",
+      "point_m": [
+        -0.057327864106945105,
+        4.426469754280513,
+        -1.0202729328655795
+      ],
+      "title": "Tie / center ring system \u00b7 8 bays",
+      "classification": "missing_restraint",
+      "reason": "Straight tongues and ring contacts do not by themselves establish a complete tension or uplift load path. Ring action and attachment capacity are unresolved.",
+      "family": "TC",
+      "anchor_method": "area-weighted actual mating-face intersection centroid; not a force application point"
+    },
+    {
+      "id": "L2-H:C3",
+      "owner": "L2-H",
+      "mate": "C3",
+      "point_m": [
+        -0.6809049880293795,
+        4.4264697542805305,
+        -0.7619788309513051
+      ],
+      "title": "Tie / center ring system \u00b7 8 bays",
+      "classification": "missing_restraint",
+      "reason": "Straight tongues and ring contacts do not by themselves establish a complete tension or uplift load path. Ring action and attachment capacity are unresolved.",
+      "family": "TC",
+      "anchor_method": "area-weighted actual mating-face intersection centroid; not a force application point"
+    },
+    {
+      "id": "C2:CR2",
+      "owner": "C2",
+      "mate": "CR2",
+      "point_m": [
+        4.151766021651772e-19,
+        4.528069754280462,
+        -1.0413999999999999
+      ],
+      "title": "Cupola roof and ceiling attachments",
+      "classification": "capacity_unknown",
+      "reason": "Roof/ceiling attachment and plywood fastening details are unspecified; contact geometry is not a verified connection capacity. Temporary spacers are not credited as permanent support.",
+      "family": "CUP",
+      "anchor_method": "area-weighted actual mating-face intersection centroid; not a force application point"
+    },
+    {
+      "id": "CR2:CR3",
+      "owner": "CR2",
+      "mate": "CR3",
+      "point_m": [
+        -0.012700000000000003,
+        4.9453047694346965,
+        -0.030660512242138307
+      ],
+      "title": "Cupola roof and ceiling attachments",
+      "classification": "capacity_unknown",
+      "reason": "Roof/ceiling attachment and plywood fastening details are unspecified; contact geometry is not a verified connection capacity. Temporary spacers are not credited as permanent support.",
+      "family": "CUP",
+      "anchor_method": "area-weighted actual mating-face intersection centroid; not a force application point"
+    },
+    {
+      "id": "T3:C3",
+      "owner": "T3",
+      "mate": "C3",
+      "point_m": [
+        -0.7773309698397478,
+        2.2860000000000076,
+        -0.7773309698397476
+      ],
+      "title": "Tie / center ring system \u00b7 8 bays",
+      "classification": "missing_restraint",
+      "reason": "Straight tongues and ring contacts do not by themselves establish a complete tension or uplift load path. Ring action and attachment capacity are unresolved.",
+      "family": "TC",
+      "anchor_method": "area-weighted actual mating-face intersection centroid; not a force application point"
+    },
+    {
+      "id": "R3:C3",
+      "owner": "R3",
+      "mate": "C3",
+      "point_m": [
+        -0.7753338018453939,
+        3.6715101228368447,
+        -0.7753338018453944
+      ],
+      "title": "Main hip / cupola post \u00b7 8 locations",
+      "classification": "missing_restraint",
+      "reason": "The proposed straight tongue has no modeled positive withdrawal restraint. Receiver cheeks, tension, shear and splitting capacity remain unverified.",
+      "family": "RC",
+      "anchor_method": "area-weighted actual mating-face intersection centroid; not a force application point"
+    },
+    {
+      "id": "L3-S:C3",
+      "owner": "L3-S",
+      "mate": "C3",
+      "point_m": [
+        -0.7619788309512909,
+        3.7660697542804464,
+        -0.6809049880293657
+      ],
+      "title": "Tie / center ring system \u00b7 8 bays",
+      "classification": "missing_restraint",
+      "reason": "Straight tongues and ring contacts do not by themselves establish a complete tension or uplift load path. Ring action and attachment capacity are unresolved.",
+      "family": "TC",
+      "anchor_method": "area-weighted actual mating-face intersection centroid; not a force application point"
+    },
+    {
+      "id": "L3-S:C4",
+      "owner": "L3-S",
+      "mate": "C4",
+      "point_m": [
+        -1.0202729328655757,
+        3.7660697542804824,
+        -0.057327864106946756
+      ],
+      "title": "Tie / center ring system \u00b7 8 bays",
+      "classification": "missing_restraint",
+      "reason": "Straight tongues and ring contacts do not by themselves establish a complete tension or uplift load path. Ring action and attachment capacity are unresolved.",
+      "family": "TC",
+      "anchor_method": "area-weighted actual mating-face intersection centroid; not a force application point"
+    },
+    {
+      "id": "L3-H:C3",
+      "owner": "L3-H",
+      "mate": "C3",
+      "point_m": [
+        -0.7619788309512846,
+        4.4264697542804265,
+        -0.6809049880293615
+      ],
+      "title": "Tie / center ring system \u00b7 8 bays",
+      "classification": "missing_restraint",
+      "reason": "Straight tongues and ring contacts do not by themselves establish a complete tension or uplift load path. Ring action and attachment capacity are unresolved.",
+      "family": "TC",
+      "anchor_method": "area-weighted actual mating-face intersection centroid; not a force application point"
+    },
+    {
+      "id": "L3-H:C4",
+      "owner": "L3-H",
+      "mate": "C4",
+      "point_m": [
+        -1.0202729328655826,
+        4.426469754280509,
+        -0.057327864106947256
+      ],
+      "title": "Tie / center ring system \u00b7 8 bays",
+      "classification": "missing_restraint",
+      "reason": "Straight tongues and ring contacts do not by themselves establish a complete tension or uplift load path. Ring action and attachment capacity are unresolved.",
+      "family": "TC",
+      "anchor_method": "area-weighted actual mating-face intersection centroid; not a force application point"
+    },
+    {
+      "id": "C3:CR3",
+      "owner": "C3",
+      "mate": "CR3",
+      "point_m": [
+        -0.7363810019276706,
+        4.5280697542804615,
+        -0.7363810019276706
+      ],
+      "title": "Cupola roof and ceiling attachments",
+      "classification": "capacity_unknown",
+      "reason": "Roof/ceiling attachment and plywood fastening details are unspecified; contact geometry is not a verified connection capacity. Temporary spacers are not credited as permanent support.",
+      "family": "CUP",
+      "anchor_method": "area-weighted actual mating-face intersection centroid; not a force application point"
+    },
+    {
+      "id": "CR3:CR4",
+      "owner": "CR3",
+      "mate": "CR4",
+      "point_m": [
+        -0.030660512242138397,
+        4.945304769434687,
+        -0.012700000000000038
+      ],
+      "title": "Cupola roof and ceiling attachments",
+      "classification": "capacity_unknown",
+      "reason": "Roof/ceiling attachment and plywood fastening details are unspecified; contact geometry is not a verified connection capacity. Temporary spacers are not credited as permanent support.",
+      "family": "CUP",
+      "anchor_method": "area-weighted actual mating-face intersection centroid; not a force application point"
+    },
+    {
+      "id": "T4:C4",
+      "owner": "T4",
+      "mate": "C4",
+      "point_m": [
+        -1.0993120000000034,
+        2.286000000000007,
+        8.402583641930039e-18
+      ],
+      "title": "Tie / center ring system \u00b7 8 bays",
+      "classification": "missing_restraint",
+      "reason": "Straight tongues and ring contacts do not by themselves establish a complete tension or uplift load path. Ring action and attachment capacity are unresolved.",
+      "family": "TC",
+      "anchor_method": "area-weighted actual mating-face intersection centroid; not a force application point"
+    },
+    {
+      "id": "R4:C4",
+      "owner": "R4",
+      "mate": "C4",
+      "point_m": [
+        -1.0964875779360534,
+        3.6715101228368545,
+        2.3292771682614385e-17
+      ],
+      "title": "Main hip / cupola post \u00b7 8 locations",
+      "classification": "missing_restraint",
+      "reason": "The proposed straight tongue has no modeled positive withdrawal restraint. Receiver cheeks, tension, shear and splitting capacity remain unverified.",
+      "family": "RC",
+      "anchor_method": "area-weighted actual mating-face intersection centroid; not a force application point"
+    },
+    {
+      "id": "L4-S:C4",
+      "owner": "L4-S",
+      "mate": "C4",
+      "point_m": [
+        -1.0202729328655682,
+        3.766069754280453,
+        0.05732786410694622
+      ],
+      "title": "Tie / center ring system \u00b7 8 bays",
+      "classification": "missing_restraint",
+      "reason": "Straight tongues and ring contacts do not by themselves establish a complete tension or uplift load path. Ring action and attachment capacity are unresolved.",
+      "family": "TC",
+      "anchor_method": "area-weighted actual mating-face intersection centroid; not a force application point"
+    },
+    {
+      "id": "L4-S:C5",
+      "owner": "L4-S",
+      "mate": "C5",
+      "point_m": [
+        -0.7619788309512917,
+        3.766069754280461,
+        0.6809049880293668
+      ],
+      "title": "Tie / center ring system \u00b7 8 bays",
+      "classification": "missing_restraint",
+      "reason": "Straight tongues and ring contacts do not by themselves establish a complete tension or uplift load path. Ring action and attachment capacity are unresolved.",
+      "family": "TC",
+      "anchor_method": "area-weighted actual mating-face intersection centroid; not a force application point"
+    },
+    {
+      "id": "L4-H:C4",
+      "owner": "L4-H",
+      "mate": "C4",
+      "point_m": [
+        -1.0202729328655795,
+        4.426469754280513,
+        0.057327864106945126
+      ],
+      "title": "Tie / center ring system \u00b7 8 bays",
+      "classification": "missing_restraint",
+      "reason": "Straight tongues and ring contacts do not by themselves establish a complete tension or uplift load path. Ring action and attachment capacity are unresolved.",
+      "family": "TC",
+      "anchor_method": "area-weighted actual mating-face intersection centroid; not a force application point"
+    },
+    {
+      "id": "L4-H:C5",
+      "owner": "L4-H",
+      "mate": "C5",
+      "point_m": [
+        -0.7619788309513053,
+        4.426469754280533,
+        0.6809049880293795
+      ],
+      "title": "Tie / center ring system \u00b7 8 bays",
+      "classification": "missing_restraint",
+      "reason": "Straight tongues and ring contacts do not by themselves establish a complete tension or uplift load path. Ring action and attachment capacity are unresolved.",
+      "family": "TC",
+      "anchor_method": "area-weighted actual mating-face intersection centroid; not a force application point"
+    },
+    {
+      "id": "C4:CR4",
+      "owner": "C4",
+      "mate": "CR4",
+      "point_m": [
+        -1.0413999999999999,
+        4.5280697542804615,
+        -3.4252069678627097e-18
+      ],
+      "title": "Cupola roof and ceiling attachments",
+      "classification": "capacity_unknown",
+      "reason": "Roof/ceiling attachment and plywood fastening details are unspecified; contact geometry is not a verified connection capacity. Temporary spacers are not credited as permanent support.",
+      "family": "CUP",
+      "anchor_method": "area-weighted actual mating-face intersection centroid; not a force application point"
+    },
+    {
+      "id": "CR4:CR5",
+      "owner": "CR4",
+      "mate": "CR5",
+      "point_m": [
+        -0.030660512242138307,
+        4.9453047694346965,
+        0.012700000000000003
+      ],
+      "title": "Cupola roof and ceiling attachments",
+      "classification": "capacity_unknown",
+      "reason": "Roof/ceiling attachment and plywood fastening details are unspecified; contact geometry is not a verified connection capacity. Temporary spacers are not credited as permanent support.",
+      "family": "CUP",
+      "anchor_method": "area-weighted actual mating-face intersection centroid; not a force application point"
+    },
+    {
+      "id": "T5:C5",
+      "owner": "T5",
+      "mate": "C5",
+      "point_m": [
+        -0.7773309698397477,
+        2.2860000000000076,
+        0.7773309698397478
+      ],
+      "title": "Tie / center ring system \u00b7 8 bays",
+      "classification": "missing_restraint",
+      "reason": "Straight tongues and ring contacts do not by themselves establish a complete tension or uplift load path. Ring action and attachment capacity are unresolved.",
+      "family": "TC",
+      "anchor_method": "area-weighted actual mating-face intersection centroid; not a force application point"
+    },
+    {
+      "id": "R5:C5",
+      "owner": "R5",
+      "mate": "C5",
+      "point_m": [
+        -0.7753338018453941,
+        3.6715101228368403,
+        0.7753338018453941
+      ],
+      "title": "Main hip / cupola post \u00b7 8 locations",
+      "classification": "missing_restraint",
+      "reason": "The proposed straight tongue has no modeled positive withdrawal restraint. Receiver cheeks, tension, shear and splitting capacity remain unverified.",
+      "family": "RC",
+      "anchor_method": "area-weighted actual mating-face intersection centroid; not a force application point"
+    },
+    {
+      "id": "L5-S:C5",
+      "owner": "L5-S",
+      "mate": "C5",
+      "point_m": [
+        -0.680904988029368,
+        3.7660697542804553,
+        0.7619788309512932
+      ],
+      "title": "Tie / center ring system \u00b7 8 bays",
+      "classification": "missing_restraint",
+      "reason": "Straight tongues and ring contacts do not by themselves establish a complete tension or uplift load path. Ring action and attachment capacity are unresolved.",
+      "family": "TC",
+      "anchor_method": "area-weighted actual mating-face intersection centroid; not a force application point"
+    },
+    {
+      "id": "L5-S:C6",
+      "owner": "L5-S",
+      "mate": "C6",
+      "point_m": [
+        -0.057327864106946756,
+        3.7660697542804824,
+        1.0202729328655757
+      ],
+      "title": "Tie / center ring system \u00b7 8 bays",
+      "classification": "missing_restraint",
+      "reason": "Straight tongues and ring contacts do not by themselves establish a complete tension or uplift load path. Ring action and attachment capacity are unresolved.",
+      "family": "TC",
+      "anchor_method": "area-weighted actual mating-face intersection centroid; not a force application point"
+    },
+    {
+      "id": "L5-H:C5",
+      "owner": "L5-H",
+      "mate": "C5",
+      "point_m": [
+        -0.680904988029366,
+        4.426469754280446,
+        0.7619788309512886
+      ],
+      "title": "Tie / center ring system \u00b7 8 bays",
+      "classification": "missing_restraint",
+      "reason": "Straight tongues and ring contacts do not by themselves establish a complete tension or uplift load path. Ring action and attachment capacity are unresolved.",
+      "family": "TC",
+      "anchor_method": "area-weighted actual mating-face intersection centroid; not a force application point"
+    },
+    {
+      "id": "L5-H:C6",
+      "owner": "L5-H",
+      "mate": "C6",
+      "point_m": [
+        -0.05732786410694639,
+        4.426469754280523,
+        1.0202729328655828
+      ],
+      "title": "Tie / center ring system \u00b7 8 bays",
+      "classification": "missing_restraint",
+      "reason": "Straight tongues and ring contacts do not by themselves establish a complete tension or uplift load path. Ring action and attachment capacity are unresolved.",
+      "family": "TC",
+      "anchor_method": "area-weighted actual mating-face intersection centroid; not a force application point"
+    },
+    {
+      "id": "C5:CR5",
+      "owner": "C5",
+      "mate": "CR5",
+      "point_m": [
+        -0.7363810019276703,
+        4.528069754280461,
+        0.7363810019276705
+      ],
+      "title": "Cupola roof and ceiling attachments",
+      "classification": "capacity_unknown",
+      "reason": "Roof/ceiling attachment and plywood fastening details are unspecified; contact geometry is not a verified connection capacity. Temporary spacers are not credited as permanent support.",
+      "family": "CUP",
+      "anchor_method": "area-weighted actual mating-face intersection centroid; not a force application point"
+    },
+    {
+      "id": "CR5:CR6",
+      "owner": "CR5",
+      "mate": "CR6",
+      "point_m": [
+        -0.012700000000000038,
+        4.945304769434687,
+        0.030660512242138397
+      ],
+      "title": "Cupola roof and ceiling attachments",
+      "classification": "capacity_unknown",
+      "reason": "Roof/ceiling attachment and plywood fastening details are unspecified; contact geometry is not a verified connection capacity. Temporary spacers are not credited as permanent support.",
+      "family": "CUP",
+      "anchor_method": "area-weighted actual mating-face intersection centroid; not a force application point"
+    },
+    {
+      "id": "T6:C6",
+      "owner": "T6",
+      "mate": "C6",
+      "point_m": [
+        8.402583641930039e-18,
+        2.286000000000007,
+        1.0993120000000034
+      ],
+      "title": "Tie / center ring system \u00b7 8 bays",
+      "classification": "missing_restraint",
+      "reason": "Straight tongues and ring contacts do not by themselves establish a complete tension or uplift load path. Ring action and attachment capacity are unresolved.",
+      "family": "TC",
+      "anchor_method": "area-weighted actual mating-face intersection centroid; not a force application point"
+    },
+    {
+      "id": "R6:C6",
+      "owner": "R6",
+      "mate": "C6",
+      "point_m": [
+        2.3292771682614385e-17,
+        3.6715101228368545,
+        1.0964875779360534
+      ],
+      "title": "Main hip / cupola post \u00b7 8 locations",
+      "classification": "missing_restraint",
+      "reason": "The proposed straight tongue has no modeled positive withdrawal restraint. Receiver cheeks, tension, shear and splitting capacity remain unverified.",
+      "family": "RC",
+      "anchor_method": "area-weighted actual mating-face intersection centroid; not a force application point"
+    },
+    {
+      "id": "L6-S:C6",
+      "owner": "L6-S",
+      "mate": "C6",
+      "point_m": [
+        0.05732786410694622,
+        3.766069754280453,
+        1.0202729328655682
+      ],
+      "title": "Tie / center ring system \u00b7 8 bays",
+      "classification": "missing_restraint",
+      "reason": "Straight tongues and ring contacts do not by themselves establish a complete tension or uplift load path. Ring action and attachment capacity are unresolved.",
+      "family": "TC",
+      "anchor_method": "area-weighted actual mating-face intersection centroid; not a force application point"
+    },
+    {
+      "id": "L6-S:C7",
+      "owner": "L6-S",
+      "mate": "C7",
+      "point_m": [
+        0.6809049880293682,
+        3.76606975428047,
+        0.7619788309512937
+      ],
+      "title": "Tie / center ring system \u00b7 8 bays",
+      "classification": "missing_restraint",
+      "reason": "Straight tongues and ring contacts do not by themselves establish a complete tension or uplift load path. Ring action and attachment capacity are unresolved.",
+      "family": "TC",
+      "anchor_method": "area-weighted actual mating-face intersection centroid; not a force application point"
+    },
+    {
+      "id": "L6-H:C6",
+      "owner": "L6-H",
+      "mate": "C6",
+      "point_m": [
+        0.057327864106945105,
+        4.426469754280513,
+        1.0202729328655795
+      ],
+      "title": "Tie / center ring system \u00b7 8 bays",
+      "classification": "missing_restraint",
+      "reason": "Straight tongues and ring contacts do not by themselves establish a complete tension or uplift load path. Ring action and attachment capacity are unresolved.",
+      "family": "TC",
+      "anchor_method": "area-weighted actual mating-face intersection centroid; not a force application point"
+    },
+    {
+      "id": "L6-H:C7",
+      "owner": "L6-H",
+      "mate": "C7",
+      "point_m": [
+        0.6809049880293795,
+        4.4264697542805305,
+        0.7619788309513051
+      ],
+      "title": "Tie / center ring system \u00b7 8 bays",
+      "classification": "missing_restraint",
+      "reason": "Straight tongues and ring contacts do not by themselves establish a complete tension or uplift load path. Ring action and attachment capacity are unresolved.",
+      "family": "TC",
+      "anchor_method": "area-weighted actual mating-face intersection centroid; not a force application point"
+    },
+    {
+      "id": "C6:CR6",
+      "owner": "C6",
+      "mate": "CR6",
+      "point_m": [
+        -4.151766021651772e-19,
+        4.528069754280462,
+        1.0413999999999999
+      ],
+      "title": "Cupola roof and ceiling attachments",
+      "classification": "capacity_unknown",
+      "reason": "Roof/ceiling attachment and plywood fastening details are unspecified; contact geometry is not a verified connection capacity. Temporary spacers are not credited as permanent support.",
+      "family": "CUP",
+      "anchor_method": "area-weighted actual mating-face intersection centroid; not a force application point"
+    },
+    {
+      "id": "CR6:CR7",
+      "owner": "CR6",
+      "mate": "CR7",
+      "point_m": [
+        0.012700000000000003,
+        4.9453047694346965,
+        0.030660512242138307
+      ],
+      "title": "Cupola roof and ceiling attachments",
+      "classification": "capacity_unknown",
+      "reason": "Roof/ceiling attachment and plywood fastening details are unspecified; contact geometry is not a verified connection capacity. Temporary spacers are not credited as permanent support.",
+      "family": "CUP",
+      "anchor_method": "area-weighted actual mating-face intersection centroid; not a force application point"
+    },
+    {
+      "id": "T7:C7",
+      "owner": "T7",
+      "mate": "C7",
+      "point_m": [
+        0.7773309698397478,
+        2.2860000000000076,
+        0.7773309698397476
+      ],
+      "title": "Tie / center ring system \u00b7 8 bays",
+      "classification": "missing_restraint",
+      "reason": "Straight tongues and ring contacts do not by themselves establish a complete tension or uplift load path. Ring action and attachment capacity are unresolved.",
+      "family": "TC",
+      "anchor_method": "area-weighted actual mating-face intersection centroid; not a force application point"
+    },
+    {
+      "id": "R7:C7",
+      "owner": "R7",
+      "mate": "C7",
+      "point_m": [
+        0.7753338018453939,
+        3.6715101228368447,
+        0.7753338018453944
+      ],
+      "title": "Main hip / cupola post \u00b7 8 locations",
+      "classification": "missing_restraint",
+      "reason": "The proposed straight tongue has no modeled positive withdrawal restraint. Receiver cheeks, tension, shear and splitting capacity remain unverified.",
+      "family": "RC",
+      "anchor_method": "area-weighted actual mating-face intersection centroid; not a force application point"
+    },
+    {
+      "id": "L7-S:C7",
+      "owner": "L7-S",
+      "mate": "C7",
+      "point_m": [
+        0.7619788309512909,
+        3.7660697542804464,
+        0.6809049880293657
+      ],
+      "title": "Tie / center ring system \u00b7 8 bays",
+      "classification": "missing_restraint",
+      "reason": "Straight tongues and ring contacts do not by themselves establish a complete tension or uplift load path. Ring action and attachment capacity are unresolved.",
+      "family": "TC",
+      "anchor_method": "area-weighted actual mating-face intersection centroid; not a force application point"
+    },
+    {
+      "id": "L7-S:C0",
+      "owner": "L7-S",
+      "mate": "C0",
+      "point_m": [
+        1.0202729328655757,
+        3.7660697542804824,
+        0.057327864106946756
+      ],
+      "title": "Tie / center ring system \u00b7 8 bays",
+      "classification": "missing_restraint",
+      "reason": "Straight tongues and ring contacts do not by themselves establish a complete tension or uplift load path. Ring action and attachment capacity are unresolved.",
+      "family": "TC",
+      "anchor_method": "area-weighted actual mating-face intersection centroid; not a force application point"
+    },
+    {
+      "id": "L7-H:C7",
+      "owner": "L7-H",
+      "mate": "C7",
+      "point_m": [
+        0.7619788309512846,
+        4.4264697542804265,
+        0.6809049880293615
+      ],
+      "title": "Tie / center ring system \u00b7 8 bays",
+      "classification": "missing_restraint",
+      "reason": "Straight tongues and ring contacts do not by themselves establish a complete tension or uplift load path. Ring action and attachment capacity are unresolved.",
+      "family": "TC",
+      "anchor_method": "area-weighted actual mating-face intersection centroid; not a force application point"
+    },
+    {
+      "id": "L7-H:C0",
+      "owner": "L7-H",
+      "mate": "C0",
+      "point_m": [
+        1.0202729328655826,
+        4.426469754280509,
+        0.057327864106947256
+      ],
+      "title": "Tie / center ring system \u00b7 8 bays",
+      "classification": "missing_restraint",
+      "reason": "Straight tongues and ring contacts do not by themselves establish a complete tension or uplift load path. Ring action and attachment capacity are unresolved.",
+      "family": "TC",
+      "anchor_method": "area-weighted actual mating-face intersection centroid; not a force application point"
+    },
+    {
+      "id": "C7:CR7",
+      "owner": "C7",
+      "mate": "CR7",
+      "point_m": [
+        0.7363810019276706,
+        4.5280697542804615,
+        0.7363810019276706
+      ],
+      "title": "Cupola roof and ceiling attachments",
+      "classification": "capacity_unknown",
+      "reason": "Roof/ceiling attachment and plywood fastening details are unspecified; contact geometry is not a verified connection capacity. Temporary spacers are not credited as permanent support.",
+      "family": "CUP",
+      "anchor_method": "area-weighted actual mating-face intersection centroid; not a force application point"
+    },
+    {
+      "id": "CR7:CR0",
+      "owner": "CR7",
+      "mate": "CR0",
+      "point_m": [
+        0.030660512242138397,
+        4.945304769434687,
+        0.012700000000000038
+      ],
+      "title": "Cupola roof and ceiling attachments",
+      "classification": "capacity_unknown",
+      "reason": "Roof/ceiling attachment and plywood fastening details are unspecified; contact geometry is not a verified connection capacity. Temporary spacers are not credited as permanent support.",
+      "family": "CUP",
+      "anchor_method": "area-weighted actual mating-face intersection centroid; not a force application point"
+    },
+    {
+      "id": "C0:CC0",
+      "owner": "C0",
+      "mate": "CC0",
+      "point_m": [
+        0.9652,
+        4.426469754280456,
+        2.2756997363560264e-17
+      ],
+      "title": "Cupola roof and ceiling attachments",
+      "classification": "capacity_unknown",
+      "reason": "Roof/ceiling attachment and plywood fastening details are unspecified; contact geometry is not a verified connection capacity. Temporary spacers are not credited as permanent support.",
+      "family": "CUP",
+      "anchor_method": "area-weighted actual mating-face intersection centroid; not a force application point"
+    },
+    {
+      "id": "CC0:CC1",
+      "owner": "CC0",
+      "mate": "CC1",
+      "point_m": [
+        0.06132102448427667,
+        4.426469754280473,
+        -0.02540000000000003
+      ],
+      "title": "Cupola roof and ceiling attachments",
+      "classification": "capacity_unknown",
+      "reason": "Roof/ceiling attachment and plywood fastening details are unspecified; contact geometry is not a verified connection capacity. Temporary spacers are not credited as permanent support.",
+      "family": "CUP",
+      "anchor_method": "area-weighted actual mating-face intersection centroid; not a force application point"
+    },
+    {
+      "id": "C1:CC1",
+      "owner": "C1",
+      "mate": "CC1",
+      "point_m": [
+        0.6824994652012556,
+        4.426469754280469,
+        -0.6824994652012555
+      ],
+      "title": "Cupola roof and ceiling attachments",
+      "classification": "capacity_unknown",
+      "reason": "Roof/ceiling attachment and plywood fastening details are unspecified; contact geometry is not a verified connection capacity. Temporary spacers are not credited as permanent support.",
+      "family": "CUP",
+      "anchor_method": "area-weighted actual mating-face intersection centroid; not a force application point"
+    },
+    {
+      "id": "CC1:CC2",
+      "owner": "CC1",
+      "mate": "CC2",
+      "point_m": [
+        0.025399999999999943,
+        4.426469754280449,
+        -0.06132102448427648
+      ],
+      "title": "Cupola roof and ceiling attachments",
+      "classification": "capacity_unknown",
+      "reason": "Roof/ceiling attachment and plywood fastening details are unspecified; contact geometry is not a verified connection capacity. Temporary spacers are not credited as permanent support.",
+      "family": "CUP",
+      "anchor_method": "area-weighted actual mating-face intersection centroid; not a force application point"
+    },
+    {
+      "id": "C2:CC2",
+      "owner": "C2",
+      "mate": "CC2",
+      "point_m": [
+        2.2756997363560264e-17,
+        4.426469754280456,
+        -0.9652
+      ],
+      "title": "Cupola roof and ceiling attachments",
+      "classification": "capacity_unknown",
+      "reason": "Roof/ceiling attachment and plywood fastening details are unspecified; contact geometry is not a verified connection capacity. Temporary spacers are not credited as permanent support.",
+      "family": "CUP",
+      "anchor_method": "area-weighted actual mating-face intersection centroid; not a force application point"
+    },
+    {
+      "id": "CC2:CC3",
+      "owner": "CC2",
+      "mate": "CC3",
+      "point_m": [
+        -0.02540000000000003,
+        4.426469754280473,
+        -0.06132102448427667
+      ],
+      "title": "Cupola roof and ceiling attachments",
+      "classification": "capacity_unknown",
+      "reason": "Roof/ceiling attachment and plywood fastening details are unspecified; contact geometry is not a verified connection capacity. Temporary spacers are not credited as permanent support.",
+      "family": "CUP",
+      "anchor_method": "area-weighted actual mating-face intersection centroid; not a force application point"
+    },
+    {
+      "id": "C3:CC3",
+      "owner": "C3",
+      "mate": "CC3",
+      "point_m": [
+        -0.6824994652012556,
+        4.426469754280474,
+        -0.6824994652012556
+      ],
+      "title": "Cupola roof and ceiling attachments",
+      "classification": "capacity_unknown",
+      "reason": "Roof/ceiling attachment and plywood fastening details are unspecified; contact geometry is not a verified connection capacity. Temporary spacers are not credited as permanent support.",
+      "family": "CUP",
+      "anchor_method": "area-weighted actual mating-face intersection centroid; not a force application point"
+    },
+    {
+      "id": "CC3:CC4",
+      "owner": "CC3",
+      "mate": "CC4",
+      "point_m": [
+        -0.06132102448427648,
+        4.426469754280449,
+        -0.025399999999999943
+      ],
+      "title": "Cupola roof and ceiling attachments",
+      "classification": "capacity_unknown",
+      "reason": "Roof/ceiling attachment and plywood fastening details are unspecified; contact geometry is not a verified connection capacity. Temporary spacers are not credited as permanent support.",
+      "family": "CUP",
+      "anchor_method": "area-weighted actual mating-face intersection centroid; not a force application point"
+    },
+    {
+      "id": "C4:CC4",
+      "owner": "C4",
+      "mate": "CC4",
+      "point_m": [
+        -0.9652,
+        4.426469754280456,
+        -2.2756997363560264e-17
+      ],
+      "title": "Cupola roof and ceiling attachments",
+      "classification": "capacity_unknown",
+      "reason": "Roof/ceiling attachment and plywood fastening details are unspecified; contact geometry is not a verified connection capacity. Temporary spacers are not credited as permanent support.",
+      "family": "CUP",
+      "anchor_method": "area-weighted actual mating-face intersection centroid; not a force application point"
+    },
+    {
+      "id": "CC4:CC5",
+      "owner": "CC4",
+      "mate": "CC5",
+      "point_m": [
+        -0.06132102448427667,
+        4.426469754280473,
+        0.02540000000000003
+      ],
+      "title": "Cupola roof and ceiling attachments",
+      "classification": "capacity_unknown",
+      "reason": "Roof/ceiling attachment and plywood fastening details are unspecified; contact geometry is not a verified connection capacity. Temporary spacers are not credited as permanent support.",
+      "family": "CUP",
+      "anchor_method": "area-weighted actual mating-face intersection centroid; not a force application point"
+    },
+    {
+      "id": "C5:CC5",
+      "owner": "C5",
+      "mate": "CC5",
+      "point_m": [
+        -0.6824994652012556,
+        4.426469754280469,
+        0.6824994652012555
+      ],
+      "title": "Cupola roof and ceiling attachments",
+      "classification": "capacity_unknown",
+      "reason": "Roof/ceiling attachment and plywood fastening details are unspecified; contact geometry is not a verified connection capacity. Temporary spacers are not credited as permanent support.",
+      "family": "CUP",
+      "anchor_method": "area-weighted actual mating-face intersection centroid; not a force application point"
+    },
+    {
+      "id": "CC5:CC6",
+      "owner": "CC5",
+      "mate": "CC6",
+      "point_m": [
+        -0.025399999999999943,
+        4.426469754280449,
+        0.06132102448427648
+      ],
+      "title": "Cupola roof and ceiling attachments",
+      "classification": "capacity_unknown",
+      "reason": "Roof/ceiling attachment and plywood fastening details are unspecified; contact geometry is not a verified connection capacity. Temporary spacers are not credited as permanent support.",
+      "family": "CUP",
+      "anchor_method": "area-weighted actual mating-face intersection centroid; not a force application point"
+    },
+    {
+      "id": "C6:CC6",
+      "owner": "C6",
+      "mate": "CC6",
+      "point_m": [
+        -2.2756997363560264e-17,
+        4.426469754280456,
+        0.9652
+      ],
+      "title": "Cupola roof and ceiling attachments",
+      "classification": "capacity_unknown",
+      "reason": "Roof/ceiling attachment and plywood fastening details are unspecified; contact geometry is not a verified connection capacity. Temporary spacers are not credited as permanent support.",
+      "family": "CUP",
+      "anchor_method": "area-weighted actual mating-face intersection centroid; not a force application point"
+    },
+    {
+      "id": "CC6:CC7",
+      "owner": "CC6",
+      "mate": "CC7",
+      "point_m": [
+        0.02540000000000003,
+        4.426469754280473,
+        0.06132102448427667
+      ],
+      "title": "Cupola roof and ceiling attachments",
+      "classification": "capacity_unknown",
+      "reason": "Roof/ceiling attachment and plywood fastening details are unspecified; contact geometry is not a verified connection capacity. Temporary spacers are not credited as permanent support.",
+      "family": "CUP",
+      "anchor_method": "area-weighted actual mating-face intersection centroid; not a force application point"
+    },
+    {
+      "id": "C7:CC7",
+      "owner": "C7",
+      "mate": "CC7",
+      "point_m": [
+        0.6824994652012556,
+        4.426469754280474,
+        0.6824994652012556
+      ],
+      "title": "Cupola roof and ceiling attachments",
+      "classification": "capacity_unknown",
+      "reason": "Roof/ceiling attachment and plywood fastening details are unspecified; contact geometry is not a verified connection capacity. Temporary spacers are not credited as permanent support.",
+      "family": "CUP",
+      "anchor_method": "area-weighted actual mating-face intersection centroid; not a force application point"
+    },
+    {
+      "id": "CC7:CC0",
+      "owner": "CC7",
+      "mate": "CC0",
+      "point_m": [
+        0.06132102448427648,
+        4.426469754280449,
+        0.025399999999999943
+      ],
+      "title": "Cupola roof and ceiling attachments",
+      "classification": "capacity_unknown",
+      "reason": "Roof/ceiling attachment and plywood fastening details are unspecified; contact geometry is not a verified connection capacity. Temporary spacers are not credited as permanent support.",
+      "family": "CUP",
+      "anchor_method": "area-weighted actual mating-face intersection centroid; not a force application point"
+    },
+    {
+      "id": "BASE0",
+      "owner": "P0",
+      "mate": null,
+      "point_m": [
+        4.4704,
+        0.0,
+        -0.0
+      ],
+      "title": "Post bases \u00b7 8 locations",
+      "classification": "missing_restraint",
+      "reason": "Foundation anchorage and soil/foundation design are not modeled. Sliding, uplift and overturning resistance are unknown.",
+      "family": "BASE",
+      "anchor_method": "post bottom axis point; no foundation model"
+    },
+    {
+      "id": "BASE1",
+      "owner": "P1",
+      "mate": null,
+      "point_m": [
+        3.1610501546163423,
+        0.0,
+        -3.1610501546163414
+      ],
+      "title": "Post bases \u00b7 8 locations",
+      "classification": "missing_restraint",
+      "reason": "Foundation anchorage and soil/foundation design are not modeled. Sliding, uplift and overturning resistance are unknown.",
+      "family": "BASE",
+      "anchor_method": "post bottom axis point; no foundation model"
+    },
+    {
+      "id": "BASE2",
+      "owner": "P2",
+      "mate": null,
+      "point_m": [
+        2.737330525454164e-16,
+        0.0,
+        -4.4704
+      ],
+      "title": "Post bases \u00b7 8 locations",
+      "classification": "missing_restraint",
+      "reason": "Foundation anchorage and soil/foundation design are not modeled. Sliding, uplift and overturning resistance are unknown.",
+      "family": "BASE",
+      "anchor_method": "post bottom axis point; no foundation model"
+    },
+    {
+      "id": "BASE3",
+      "owner": "P3",
+      "mate": null,
+      "point_m": [
+        -3.1610501546163414,
+        0.0,
+        -3.1610501546163423
+      ],
+      "title": "Post bases \u00b7 8 locations",
+      "classification": "missing_restraint",
+      "reason": "Foundation anchorage and soil/foundation design are not modeled. Sliding, uplift and overturning resistance are unknown.",
+      "family": "BASE",
+      "anchor_method": "post bottom axis point; no foundation model"
+    },
+    {
+      "id": "BASE4",
+      "owner": "P4",
+      "mate": null,
+      "point_m": [
+        -4.4704,
+        0.0,
+        -5.474661050908328e-16
+      ],
+      "title": "Post bases \u00b7 8 locations",
+      "classification": "missing_restraint",
+      "reason": "Foundation anchorage and soil/foundation design are not modeled. Sliding, uplift and overturning resistance are unknown.",
+      "family": "BASE",
+      "anchor_method": "post bottom axis point; no foundation model"
+    },
+    {
+      "id": "BASE5",
+      "owner": "P5",
+      "mate": null,
+      "point_m": [
+        -3.1610501546163428,
+        0.0,
+        3.1610501546163414
+      ],
+      "title": "Post bases \u00b7 8 locations",
+      "classification": "missing_restraint",
+      "reason": "Foundation anchorage and soil/foundation design are not modeled. Sliding, uplift and overturning resistance are unknown.",
+      "family": "BASE",
+      "anchor_method": "post bottom axis point; no foundation model"
+    },
+    {
+      "id": "BASE6",
+      "owner": "P6",
+      "mate": null,
+      "point_m": [
+        -8.211991576362491e-16,
+        0.0,
+        4.4704
+      ],
+      "title": "Post bases \u00b7 8 locations",
+      "classification": "missing_restraint",
+      "reason": "Foundation anchorage and soil/foundation design are not modeled. Sliding, uplift and overturning resistance are unknown.",
+      "family": "BASE",
+      "anchor_method": "post bottom axis point; no foundation model"
+    },
+    {
+      "id": "BASE7",
+      "owner": "P7",
+      "mate": null,
+      "point_m": [
+        3.161050154616341,
+        0.0,
+        3.1610501546163428
+      ],
+      "title": "Post bases \u00b7 8 locations",
+      "classification": "missing_restraint",
+      "reason": "Foundation anchorage and soil/foundation design are not modeled. Sliding, uplift and overturning resistance are unknown.",
+      "family": "BASE",
+      "anchor_method": "post bottom axis point; no foundation model"
+    }
+  ],
+  "sources": [
+    "https://research.fs.usda.gov/download/treesearch/62243.pdf",
+    "https://www.fpl.fs.usda.gov/documnts/fplgtr/fplgtr282/fpl_gtr282.pdf"
+  ],
+  "density_basis": "Illustrative 1000*basic_specific_gravity*(1+MC/100), green-volume assumption; not measured actual species or MC. Yellow-poplar Gb=.40, white oak Gb=.60."
+}
