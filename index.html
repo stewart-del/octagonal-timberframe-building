@@ -19,6 +19,7 @@
 .hollow-controls{border-top:1px solid var(--line);padding-top:14px;margin-top:14px}.hollow-controls select{width:100%;margin-top:6px}.edge-measurement-label{position:absolute;transform:translate(-50%,-50%);pointer-events:none;background:#fffffff2;color:#132f36;border:1px solid #526c73;border-radius:3px;padding:2px 4px;font:10px/1.3 system-ui,sans-serif;white-space:nowrap;box-shadow:0 1px 3px #0002}/* TIMESTAMP START 2026-11-01T23:06:10-05:00 | REVISION R004659 */
 .viewport-explode{flex-basis:100%;padding:8px 12px 6px;background:#fffffff0;border:1px solid var(--line);border-radius:8px;pointer-events:auto}.viewport-explode .slider-label{font-size:12px;margin:0 0 3px}.viewport-explode input{display:block;margin:0;min-height:18px}
 /* TIMESTAMP END 2026-11-01T23:06:10-05:00 | REVISION R004659 */
+.selection-actions .primary-action{background:var(--blue);border-color:var(--blue);color:#fff;font-weight:650}
 </style>
 </head>
 <body>
@@ -642,7 +643,7 @@ function selectPart(id,additive=false,preserveSelection=false){
  if(!$('cornerContext').hidden)$('cornerContext').textContent='Rafter-to-hip joints · active '+p.id+'. Inspect the connection or restore the full frame.';
  const material=document.createElement('div');material.className='selection-group';material.textContent='Materials type '+materialMemberLabel(p);host.appendChild(material);
  if(selectedPartIds.size>1){const count=document.createElement('div');count.className='selection-count';count.textContent=selectedPartIds.size+' selected · other visible pieces are transparent. Angles below: '+p.id+'. Shift-click toggles a piece.';host.appendChild(count);}
- const actions=document.createElement('div');actions.className='selection-actions';const focus=document.createElement('button');focus.textContent=selectedPartIds.size>1?'Frame selected pieces':'Focus piece';focus.onclick=()=>selectedPartIds.size>1?focusSelectedParts():focusPart(p);const isolate=document.createElement('button');isolate.textContent='Isolate & center';isolate.onclick=()=>{selectPart(p.id);isolateAndCenter(p);};const endA=document.createElement('button');endA.textContent='Inspect End A';endA.onclick=()=>{selectPart(p.id);inspectEnd(p,'A');};const endB=document.createElement('button');endB.textContent='Inspect End B';endB.onclick=()=>{selectPart(p.id);inspectEnd(p,'B');};const clear=document.createElement('button');clear.textContent='Clear selection';clear.onclick=clearPieceSelection;actions.append(focus,isolate,endA,endB,clear);host.appendChild(actions);
+ const actions=document.createElement('div');actions.className='selection-actions';const focus=document.createElement('button');focus.id='focusPiece';focus.className='primary-action';focus.onclick=()=>{togglePieceFocus(p);syncFocusButton();};const isolate=document.createElement('button');isolate.textContent='Isolate & center';isolate.onclick=()=>{selectPart(p.id);isolateAndCenter(p);};const endA=document.createElement('button');endA.textContent='Inspect End A';endA.onclick=()=>{selectPart(p.id);inspectEnd(p,'A');};const endB=document.createElement('button');endB.textContent='Inspect End B';endB.onclick=()=>{selectPart(p.id);inspectEnd(p,'B');};const clear=document.createElement('button');clear.textContent='Clear selection';clear.onclick=clearPieceSelection;actions.append(focus,isolate,endA,endB,clear);host.appendChild(actions);syncFocusButton();
 // TIMESTAMP START 2026-11-01T23:19:38-05:00 | REVISION R004668
  addMetric(host,'Nominal section',num(widthIn(p),2)+' × '+num(depthIn(p),2)+' in');addMetric(host,'Nominal axis length',feet(lengthFt(p))+' / '+num(dims(p).length_m,3)+' m');const status=document.createElement('p');status.className='description';status.textContent=p.is_timber===false?'Schematic '+(p.material==='plywood'?'horizontal ½-inch plywood; grade, seams and attachment unresolved.':p.material==='steel'?'metal component; stock and fastening dimensions unresolved.':'roof envelope; not a timber schedule.'):p.group==='cupola_bands'||p.group==='braces'||p.group==='eave_ring'?'Contextual member; section and connection assumptions remain to be confirmed.':'R01 reference geometry; construction joint details remain unresolved.';host.appendChild(status);
 // TIMESTAMP END 2026-11-01T23:19:38-05:00 | REVISION R004668
@@ -652,12 +653,24 @@ function selectPart(id,additive=false,preserveSelection=false){
  const cutBox=document.createElement('details'),cutSummary=document.createElement('summary');cutSummary.textContent='Contact surfaces by related member';cutBox.dataset.inspectorKey='cuts';cutBox.appendChild(cutSummary);appendCutList(cutBox,p);host.appendChild(cutBox);
  restoreInspectorSections();if(additive&&typeof focusSelectedParts==='function')focusSelectedParts();requestRender();
 }
+// Focus is reversible without changing selection, visibility, or the model.
+function togglePieceFocus(p){
+ if(selectedPartIds.size>1){focusSelectedParts();return;}
+ if(inspectionPartId===p.id&&!inspectionCutId){fitModel();return;}
+ focusPart(p);
+}
+function syncFocusButton(){
+ const button=document.getElementById('focusPiece');if(!button)return;
+ const multiple=selectedPartIds.size>1,focused=!multiple&&inspectionPartId===selected&&!inspectionCutId;
+ button.textContent=multiple?'Frame selected pieces':focused?'Unfocus piece':'Focus piece';
+ button.setAttribute('aria-pressed',String(focused));
+}
 function fittedCenter(p){const {min,max}=fittedBounds.get(p.id);return vadd(min.map((v,i)=>(v+max[i])/2),offset(p));}
 function setPiecePivot(p){inspectionCutId=null;inspectionPartId=p.id;inspectionPivot=fittedCenter(p);}
 function focusPart(p){clearMovement();setPiecePivot(p);let radius=0;for(const v of p.vertices)radius=Math.max(radius,length(vsub(vadd(v,offset(p)),inspectionPivot)));const halfFov=Math.min(25*Math.PI/180,Math.atan(Math.tan(25*Math.PI/180)*aspect));focusPoint(inspectionPivot.slice(),Math.max(.15,radius/Math.sin(halfFov)*1.1));}
 function isolateAndCenter(p){selectPart(p.id);isolatedId=p.id;hiddenPieces.delete(p.id);visible.add(p.group);renderGroups();renderList();focusPart(p);updateNavigationStatus();}
 function inspectEnd(p,end){isolateAndCenter(p);setNavigation('free');const center=fittedCenter(p),axis=unit(p.axis_direction||vsub(p.axis_end,p.axis_start));let low=Infinity,high=-Infinity,crossRadius=0;for(const v of p.vertices){const d=vsub(vadd(v,offset(p)),center),t=dot(d,axis);low=Math.min(low,t);high=Math.max(high,t);crossRadius=Math.max(crossRadius,length(vsub(d,vmul(axis,t))));}const sign=end==='A'?-1:1,tip=vadd(center,vmul(axis,end==='A'?low:high));const halfFov=Math.min(25*Math.PI/180,Math.atan(Math.tan(25*Math.PI/180)*aspect));const standOff=Math.max(.04,crossRadius/Math.tan(halfFov)*1.2);fly.eye=vadd(tip,vmul(axis,sign*standOff));const forward=vmul(axis,-sign);fly.yaw=Math.atan2(forward[0],forward[2]);fly.pitch=Math.max(-Math.PI/2+1e-6,Math.min(Math.PI/2-1e-6,Math.asin(forward[1])));freeFocusDistance=length(vsub(fly.eye,center));setFlySpeed(.02);clearMovement();updateNavigationStatus();requestRender();}
-function updatePieceCenter(){const marker=$('pieceCenter');marker.hidden=true;if(!inspectionPartId||selected!==inspectionPartId)return;const p=parts.find(p=>p.id===inspectionPartId);if(!p||!isShown(p))return;const face=inspectionCutId?cuts.find(f=>f.id===inspectionCutId&&f.part_id===p.id):null;const center=face?vadd(face.center,cutOffset(face)):fittedCenter(p);inspectionPivot=center;const q=project(center);if(!q||q.x<0||q.x>width||q.y<0||q.y>height)return;marker.hidden=false;marker.style.left=q.x+'px';marker.style.top=q.y+'px';$('pieceCenterLabel').textContent=face?face.id+' inspection pivot':p.id+' bounding-box center';}
+function updatePieceCenter(){syncFocusButton();const marker=$('pieceCenter');marker.hidden=true;if(!inspectionPartId||selected!==inspectionPartId)return;const p=parts.find(p=>p.id===inspectionPartId);if(!p||!isShown(p))return;const face=inspectionCutId?cuts.find(f=>f.id===inspectionCutId&&f.part_id===p.id):null;const center=face?vadd(face.center,cutOffset(face)):fittedCenter(p);inspectionPivot=center;const q=project(center);if(!q||q.x<0||q.x>width||q.y<0||q.y>height)return;marker.hidden=false;marker.style.left=q.x+'px';marker.style.top=q.y+'px';$('pieceCenterLabel').textContent=face?face.id+' inspection pivot':p.id+' bounding-box center';}
 function setFlySpeed(value){flySpeed=Math.max(.01,Math.min(5,Number(value)||1.5));$('flySpeed').value=String(flySpeed);$('flySpeedValue').textContent=flySpeed.toFixed(2)+' m/s';updateNavigationStatus();}
 function fitModel(){inspectionPivot=null;inspectionPartId=null;inspectionCutId=null;const verts=parts.filter(p=>isShown(p)).flatMap(p=>p.vertices.map(v=>vadd(v,offset(p))));if(!verts.length)return;const min=[Infinity,Infinity,Infinity],max=[-Infinity,-Infinity,-Infinity];for(const v of verts)for(let i=0;i<3;i++){min[i]=Math.min(min[i],v[i]);max[i]=Math.max(max[i],v[i]);}camera.target=min.map((v,i)=>(v+max[i])/2);let radius=0;for(const v of verts)radius=Math.max(radius,length(vsub(v,camera.target)));const halfVertical=25*Math.PI/180;const halfFov=Math.min(halfVertical,Math.atan(Math.tan(halfVertical)*aspect));camera.distance=Math.max(6,radius/Math.sin(halfFov)*1.08);camera.theta=.72;camera.phi=.52;clearMovement();if(navigation==='free')freeFromOrbit();requestRender();}
 function triangleHit(origin,dir,a,b,c){const e1=vsub(b,a),e2=vsub(c,a),h=cross(dir,e2),det=dot(e1,h);if(Math.abs(det)<1e-8)return null;const inv=1/det,s=vsub(origin,a),u=dot(s,h)*inv;if(u<0||u>1)return null;const q=cross(s,e1),v=dot(dir,q)*inv;if(v<0||u+v>1)return null;const t=dot(e2,q)*inv;return t>.0005?t:null;}
@@ -816,13 +829,36 @@ function cavityRecords(){
  if(!showHollows)return [];
  return parts.filter(p=>selectedPartIds.has(p.id)&&isShown(p)).map(p=>({p,data:CAVITIES.parts[p.id],kind:hollowMode})).filter(r=>r.data&&r.data[r.kind]?.triangles.length);
 }
+// Display-only sanitation. Preserve source vertices, solids and positive-volume sockets.
+// Remove only a closed, planar, disconnected shell whose signed volume is exactly zero.
+function cavityDisplayMesh(mesh){
+ const byVertex=new Map();
+ mesh.triangles.forEach((t,i)=>t.forEach(v=>{if(!byVertex.has(v))byVertex.set(v,[]);byVertex.get(v).push(i);}));
+ const seen=new Set(),omit=new Set(),removedComponents=[];
+ for(let start=0;start<mesh.triangles.length;start++){
+  if(seen.has(start))continue;
+  const component=[],queue=[start];seen.add(start);
+  while(queue.length){const i=queue.pop();component.push(i);for(const v of mesh.triangles[i])for(const next of byVertex.get(v)){if(!seen.has(next)){seen.add(next);queue.push(next);}}}
+  const ids=[...new Set(component.flatMap(i=>mesh.triangles[i]))],origin=mesh.vertices[ids[0]],edgeCounts=new Map();
+  let volume6=0,normal=null;
+  for(const i of component){const t=mesh.triangles[i],v=t.map(j=>vsub(mesh.vertices[j],origin));volume6+=dot(v[0],cross(v[1],v[2]));
+   const n=cross(vsub(v[1],v[0]),vsub(v[2],v[0]));if(!normal&&length(n)>0)normal=unit(n);
+   for(let j=0;j<3;j++){const key=[t[j],t[(j+1)%3]].sort((a,b)=>a-b).join(':');edgeCounts.set(key,(edgeCounts.get(key)||0)+1);}
+  }
+  const closed=[...edgeCounts.values()].every(n=>n===2);
+  const planar=normal&&ids.every(i=>Math.abs(dot(vsub(mesh.vertices[i],origin),normal))<=1e-14);
+  if(closed&&planar&&volume6===0){component.forEach(i=>omit.add(i));removedComponents.push(component);}
+ }
+ return {mesh:{...mesh,triangles:mesh.triangles.filter((_,i)=>!omit.has(i))},removedComponents};
+}
 function cavityRenderMesh(p,kind){
  const key=p.id+':'+kind;if(cavityMeshCache.has(key))return cavityMeshCache.get(key);
- const mesh=CAVITIES.parts[p.id]?.[kind];if(!mesh)return null;
- const raw=[],edgeRaw=[];
+ const source=CAVITIES.parts[p.id]?.[kind];if(!source)return null;
+ // Residual diagnostics remain untouched; cleanup is limited to removed-stock overlays.
+ const {mesh,removedComponents}=kind==='removed'?cavityDisplayMesh(source):{mesh:source,removedComponents:[]};
+ const raw=[],edgeRaw=TimberEdgeMeasurements.featureEdges(mesh.vertices,mesh.triangles);
  for(const tri of mesh.triangles){const vv=tri.map(i=>mesh.vertices[i]),n=unit(cross(vsub(vv[1],vv[0]),vsub(vv[2],vv[0])));for(const v of vv)raw.push(...v,...n);}
- for(const edge of mesh.edges)for(const i of edge)edgeRaw.push(...mesh.vertices[i],0,1,0);
- const result={mesh,count:raw.length/6,edgeCount:edgeRaw.length/6,buffer:gl&&raw.length?buildBuffer(raw):null,edgeBuffer:gl&&edgeRaw.length?buildBuffer(edgeRaw):null};cavityMeshCache.set(key,result);return result;
+ const result={mesh,edgeRaw,removedComponents,count:raw.length/6,edgeCount:edgeRaw.length/6,buffer:gl&&raw.length?buildBuffer(raw):null,edgeBuffer:gl&&edgeRaw.length?buildBuffer(edgeRaw):null};cavityMeshCache.set(key,result);return result;
 }
 function drawCavityVolumes(){
  const records=cavityRecords();if(!records.length)return;
@@ -837,7 +873,7 @@ function drawCavityVolumes(){
   // The fallback draws these overlays as X-rays; its status explains that limit.
   const faces=[];for(const {p,kind} of records){const m=cavityRenderMesh(p,kind),off=offset(p);for(const tri of m.mesh.triangles){const vv=tri.map(i=>vadd(m.mesh.vertices[i],off)),pp=vv.map(project);if(pp.every(Boolean))faces.push({pp,normal:unit(cross(vsub(vv[1],vv[0]),vsub(vv[2],vv[0]))),distance:pp.reduce((s,q)=>s+q.distance,0)/3});}}
   faces.sort((a,b)=>b.distance-a.distance);for(const f of faces){const c=surfaceDisplayColor(fill,f.normal);fallback.beginPath();f.pp.forEach((q,i)=>i?fallback.lineTo(q.x,q.y):fallback.moveTo(q.x,q.y));fallback.closePath();fallback.fillStyle='rgba('+c.map(v=>Math.round(v*255)).join(',')+',.24)';fallback.fill();}
-  fallback.strokeStyle=cssColor(edge);fallback.lineWidth=1;for(const {p,kind} of records){const m=cavityRenderMesh(p,kind),off=offset(p);for(const e of m.mesh.edges){const pp=e.map(i=>project(vadd(m.mesh.vertices[i],off)));if(pp.some(q=>!q))continue;fallback.beginPath();fallback.moveTo(pp[0].x,pp[0].y);fallback.lineTo(pp[1].x,pp[1].y);fallback.stroke();}}
+  fallback.strokeStyle=cssColor(edge);fallback.lineWidth=1;for(const {p,kind} of records){const m=cavityRenderMesh(p,kind),off=offset(p);for(let i=0;i<m.edgeRaw.length;i+=12){const pp=[m.edgeRaw.slice(i,i+3),m.edgeRaw.slice(i+6,i+9)].map(v=>project(vadd(v,off)));if(pp.some(q=>!q))continue;fallback.beginPath();fallback.moveTo(pp[0].x,pp[0].y);fallback.lineTo(pp[1].x,pp[1].y);fallback.stroke();}}
  }
 }
 function updateHollowStatus(){

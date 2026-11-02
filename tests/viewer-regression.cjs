@@ -41,6 +41,17 @@ function runViewerTests(source,model){
     check(!parts.some(p=>/^J[0-7]-1$/.test(p.id)),'All eight midpoint rafters are retired');
     check(!parts.some(p=>p.temporary&&isShown(p)),'Temporary fixture is hidden initially');
     check(parts.filter(isShown).length===expectedDefault.length,'Initial view respects current default group visibility');
+    selectPart('C0');
+    const focusButton=walk($('selection')).find(el=>el.id==='focusPiece');
+    const shownBeforeFocus=parts.filter(isShown).map(p=>p.id).join(',');
+    focusButton.onclick();
+    check(inspectionPartId==='C0'&&focusButton.textContent==='Unfocus piece'&&focusButton.getAttribute('aria-pressed')==='true','Focus button enters focused state and exposes its toggle state');
+    focusButton.onclick();
+    check(inspectionPartId===null&&inspectionPivot===null&&focusButton.textContent==='Focus piece'&&focusButton.getAttribute('aria-pressed')==='false','Second Focus click clears the pivot and returns to assembly framing');
+    check(selected==='C0'&&selectedPartIds.has('C0')&&parts.filter(isShown).map(p=>p.id).join(',')===shownBeforeFocus,'Unfocus preserves selection and visible members');
+    focusButton.onclick();fitModel();syncFocusButton();
+    check(focusButton.textContent==='Focus piece','Reset clears stale focus button state');
+    clearPieceSelection();
     setNavigation('free');$('freeNav').focus();const before=fly.eye.slice();const w=key('w');navKeyDown(w);check(navKeys.has('w')&&w.prevented,'WASD works after a viewer button');advanceFly(.05);check(length(vsub(fly.eye,before))>0,'Travel changes the camera');navKeyUp(key('w'));check(navKeys.size===0,'Key release stops travel');
     $('search').focus();const typed=key('w',$('search'));navKeyDown(typed);check(navKeys.size===0&&!typed.prevented,'Typing does not move camera');
     const nested=document.createElement('span'),editable=document.createElement('div');editable.setAttribute('contenteditable','true');editable.append(nested);check(isTypingTarget(nested),'Nested editable content blocks navigation');

@@ -29,3 +29,4 @@ jobs:
       - run: node tests/mouse-look-regression.cjs src/viewer.template.html
       - run: node tests/surface-contrast.cjs src/viewer.template.html
       - run: node tests/edge-measurements.cjs
+      - run: node tests/cavity-overlay.cjs

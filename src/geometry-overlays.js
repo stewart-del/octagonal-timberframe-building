@@ -17,13 +17,36 @@ function cavityRecords(){
  if(!showHollows)return [];
  return parts.filter(p=>selectedPartIds.has(p.id)&&isShown(p)).map(p=>({p,data:CAVITIES.parts[p.id],kind:hollowMode})).filter(r=>r.data&&r.data[r.kind]?.triangles.length);
 }
+// Display-only sanitation. Preserve source vertices, solids and positive-volume sockets.
+// Remove only a closed, planar, disconnected shell whose signed volume is exactly zero.
+function cavityDisplayMesh(mesh){
+ const byVertex=new Map();
+ mesh.triangles.forEach((t,i)=>t.forEach(v=>{if(!byVertex.has(v))byVertex.set(v,[]);byVertex.get(v).push(i);}));
+ const seen=new Set(),omit=new Set(),removedComponents=[];
+ for(let start=0;start<mesh.triangles.length;start++){
+  if(seen.has(start))continue;
+  const component=[],queue=[start];seen.add(start);
+  while(queue.length){const i=queue.pop();component.push(i);for(const v of mesh.triangles[i])for(const next of byVertex.get(v)){if(!seen.has(next)){seen.add(next);queue.push(next);}}}
+  const ids=[...new Set(component.flatMap(i=>mesh.triangles[i]))],origin=mesh.vertices[ids[0]],edgeCounts=new Map();
+  let volume6=0,normal=null;
+  for(const i of component){const t=mesh.triangles[i],v=t.map(j=>vsub(mesh.vertices[j],origin));volume6+=dot(v[0],cross(v[1],v[2]));
+   const n=cross(vsub(v[1],v[0]),vsub(v[2],v[0]));if(!normal&&length(n)>0)normal=unit(n);
+   for(let j=0;j<3;j++){const key=[t[j],t[(j+1)%3]].sort((a,b)=>a-b).join(':');edgeCounts.set(key,(edgeCounts.get(key)||0)+1);}
+  }
+  const closed=[...edgeCounts.values()].every(n=>n===2);
+  const planar=normal&&ids.every(i=>Math.abs(dot(vsub(mesh.vertices[i],origin),normal))<=1e-14);
+  if(closed&&planar&&volume6===0){component.forEach(i=>omit.add(i));removedComponents.push(component);}
+ }
+ return {mesh:{...mesh,triangles:mesh.triangles.filter((_,i)=>!omit.has(i))},removedComponents};
+}
 function cavityRenderMesh(p,kind){
  const key=p.id+':'+kind;if(cavityMeshCache.has(key))return cavityMeshCache.get(key);
- const mesh=CAVITIES.parts[p.id]?.[kind];if(!mesh)return null;
- const raw=[],edgeRaw=[];
+ const source=CAVITIES.parts[p.id]?.[kind];if(!source)return null;
+ // Residual diagnostics remain untouched; cleanup is limited to removed-stock overlays.
+ const {mesh,removedComponents}=kind==='removed'?cavityDisplayMesh(source):{mesh:source,removedComponents:[]};
+ const raw=[],edgeRaw=TimberEdgeMeasurements.featureEdges(mesh.vertices,mesh.triangles);
  for(const tri of mesh.triangles){const vv=tri.map(i=>mesh.vertices[i]),n=unit(cross(vsub(vv[1],vv[0]),vsub(vv[2],vv[0])));for(const v of vv)raw.push(...v,...n);}
- for(const edge of mesh.edges)for(const i of edge)edgeRaw.push(...mesh.vertices[i],0,1,0);
- const result={mesh,count:raw.length/6,edgeCount:edgeRaw.length/6,buffer:gl&&raw.length?buildBuffer(raw):null,edgeBuffer:gl&&edgeRaw.length?buildBuffer(edgeRaw):null};cavityMeshCache.set(key,result);return result;
+ const result={mesh,edgeRaw,removedComponents,count:raw.length/6,edgeCount:edgeRaw.length/6,buffer:gl&&raw.length?buildBuffer(raw):null,edgeBuffer:gl&&edgeRaw.length?buildBuffer(edgeRaw):null};cavityMeshCache.set(key,result);return result;
 }
 function drawCavityVolumes(){
  const records=cavityRecords();if(!records.length)return;
@@ -38,7 +61,7 @@ function drawCavityVolumes(){
   // The fallback draws these overlays as X-rays; its status explains that limit.
   const faces=[];for(const {p,kind} of records){const m=cavityRenderMesh(p,kind),off=offset(p);for(const tri of m.mesh.triangles){const vv=tri.map(i=>vadd(m.mesh.vertices[i],off)),pp=vv.map(project);if(pp.every(Boolean))faces.push({pp,normal:unit(cross(vsub(vv[1],vv[0]),vsub(vv[2],vv[0]))),distance:pp.reduce((s,q)=>s+q.distance,0)/3});}}
   faces.sort((a,b)=>b.distance-a.distance);for(const f of faces){const c=surfaceDisplayColor(fill,f.normal);fallback.beginPath();f.pp.forEach((q,i)=>i?fallback.lineTo(q.x,q.y):fallback.moveTo(q.x,q.y));fallback.closePath();fallback.fillStyle='rgba('+c.map(v=>Math.round(v*255)).join(',')+',.24)';fallback.fill();}
-  fallback.strokeStyle=cssColor(edge);fallback.lineWidth=1;for(const {p,kind} of records){const m=cavityRenderMesh(p,kind),off=offset(p);for(const e of m.mesh.edges){const pp=e.map(i=>project(vadd(m.mesh.vertices[i],off)));if(pp.some(q=>!q))continue;fallback.beginPath();fallback.moveTo(pp[0].x,pp[0].y);fallback.lineTo(pp[1].x,pp[1].y);fallback.stroke();}}
+  fallback.strokeStyle=cssColor(edge);fallback.lineWidth=1;for(const {p,kind} of records){const m=cavityRenderMesh(p,kind),off=offset(p);for(let i=0;i<m.edgeRaw.length;i+=12){const pp=[m.edgeRaw.slice(i,i+3),m.edgeRaw.slice(i+6,i+9)].map(v=>project(vadd(v,off)));if(pp.some(q=>!q))continue;fallback.beginPath();fallback.moveTo(pp[0].x,pp[0].y);fallback.lineTo(pp[1].x,pp[1].y);fallback.stroke();}}
  }
 }
 function updateHollowStatus(){

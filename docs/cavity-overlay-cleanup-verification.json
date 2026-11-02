@@ -1,0 +1,173 @@
+{
+  "all_cavity_records_checked": 208,
+  "positive_component_triangle_counts_preserved": true,
+  "recomputed_volumes_agree_within_m3": 1e-15,
+  "changed_display_records": [
+    {
+      "part": "C0",
+      "kind": "removed",
+      "triangles_before": 106,
+      "triangles_after": 102,
+      "positive_components_before_after": 6,
+      "volume_m3_unchanged": 0.0021067457649789323
+    },
+    {
+      "part": "C1",
+      "kind": "removed",
+      "triangles_before": 106,
+      "triangles_after": 102,
+      "positive_components_before_after": 6,
+      "volume_m3_unchanged": 0.002106745764978934
+    },
+    {
+      "part": "C2",
+      "kind": "removed",
+      "triangles_before": 106,
+      "triangles_after": 102,
+      "positive_components_before_after": 6,
+      "volume_m3_unchanged": 0.0021067457649789315
+    },
+    {
+      "part": "C3",
+      "kind": "removed",
+      "triangles_before": 106,
+      "triangles_after": 102,
+      "positive_components_before_after": 6,
+      "volume_m3_unchanged": 0.0021067457649789336
+    },
+    {
+      "part": "C4",
+      "kind": "removed",
+      "triangles_before": 106,
+      "triangles_after": 102,
+      "positive_components_before_after": 6,
+      "volume_m3_unchanged": 0.002106745764978932
+    },
+    {
+      "part": "C5",
+      "kind": "removed",
+      "triangles_before": 106,
+      "triangles_after": 102,
+      "positive_components_before_after": 6,
+      "volume_m3_unchanged": 0.002106745764978934
+    },
+    {
+      "part": "C6",
+      "kind": "removed",
+      "triangles_before": 106,
+      "triangles_after": 102,
+      "positive_components_before_after": 6,
+      "volume_m3_unchanged": 0.002106745764978932
+    },
+    {
+      "part": "C7",
+      "kind": "removed",
+      "triangles_before": 106,
+      "triangles_after": 102,
+      "positive_components_before_after": 6,
+      "volume_m3_unchanged": 0.002106745764978934
+    }
+  ],
+  "model_sha256": "36e53d90ec9abead9a80ce87e61f298c527809818dac82b8e2bbf5bf84b25779",
+  "cavity_source_sha256": "cb5a5c3386d798a910e77e72553da6263c3eaf34b0090d7fb3e66917d93e7582",
+  "removed_overlay_components": [
+    {
+      "id": "C0",
+      "kind": "removed",
+      "omittedTriangles": [
+        0,
+        6,
+        5,
+        1
+      ],
+      "componentCount": 1
+    },
+    {
+      "id": "C1",
+      "kind": "removed",
+      "omittedTriangles": [
+        0,
+        6,
+        5,
+        1
+      ],
+      "componentCount": 1
+    },
+    {
+      "id": "C2",
+      "kind": "removed",
+      "omittedTriangles": [
+        0,
+        6,
+        5,
+        1
+      ],
+      "componentCount": 1
+    },
+    {
+      "id": "C3",
+      "kind": "removed",
+      "omittedTriangles": [
+        0,
+        6,
+        5,
+        1
+      ],
+      "componentCount": 1
+    },
+    {
+      "id": "C4",
+      "kind": "removed",
+      "omittedTriangles": [
+        0,
+        6,
+        5,
+        1
+      ],
+      "componentCount": 1
+    },
+    {
+      "id": "C5",
+      "kind": "removed",
+      "omittedTriangles": [
+        0,
+        6,
+        5,
+        1
+      ],
+      "componentCount": 1
+    },
+    {
+      "id": "C6",
+      "kind": "removed",
+      "omittedTriangles": [
+        0,
+        6,
+        5,
+        1
+      ],
+      "componentCount": 1
+    },
+    {
+      "id": "C7",
+      "kind": "removed",
+      "omittedTriangles": [
+        0,
+        6,
+        5,
+        1
+      ],
+      "componentCount": 1
+    }
+  ],
+  "scope": "Local-only display cleanup; source timber/cavity data unchanged. No construction certification.",
+  "renderer_checks": [
+    "Feature edges used by WebGL and fallback",
+    "Cube has twelve feature edges; no planar face diagonals",
+    "Tiny positive-volume shell retained",
+    "Open planar diagnostic surface retained",
+    "Original source triangles retained verbatim except proven zero-volume planar closed components",
+    "Residual unfilled diagnostics are not filtered"
+  ],
+  "regression_assertions": 160
+}
