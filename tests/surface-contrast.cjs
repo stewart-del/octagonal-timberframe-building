@@ -26,7 +26,7 @@ function extractFunction(text,name){
   }
   throw Error('Unterminated '+name);
 }
-const names=['surfaceDisplayColor','memberEdgeColor','fallbackFaceEdges','featureEdges','render'];
+const names=['surfaceDisplayColor','memberEdgeColor','fallbackFaceEdges','fallbackSegmentIndex','featureEdges','render'];
 const functions=names.map(name=>extractFunction(source,name)).join('\n');
 const results=new Function('source','TimberEdgeMeasurements',`
 const passed=[],check=(yes,msg)=>{if(!yes)throw Error(msg);passed.push(msg)};
