@@ -1,11 +1,29 @@
 {
-  "revision": "R02-S1",
-  "model_sha256": "36e53d90ec9abead9a80ce87e61f298c527809818dac82b8e2bbf5bf84b25779",
-  "status": "NOT STRUCTURALLY QUALIFIED",
+  "revision": "R02-S2",
+  "audit_revision": "R004748",
+  "audit_timestamp": "2026-11-02T08:05:33-05:00",
+  "model_sha256": "b3a0363a2c2e83a541038d0ff39ad86e38d8b79ceb7415cde9174d74273086a2",
+  "status": "NOT STRUCTURALLY QUALIFIED \u2014 CENTER CONNECTION DESIGN HOLD",
   "confirmed": {
     "enclosure": "Enclosed, following the Bluetime photos; site-specific wind enclosure classification still to be checked.",
     "plywood": "1/2 inch, horizontal upper ceiling/deck, explicitly confirmed by user.",
-    "joinery_preference": "Simple integral flared dovetails where relevant; no driven wedges requested."
+    "joinery_preference": "Use documented traditional working joinery wherever possible; keep it simple, with dovetails where appropriate and matching cavities plus a verified assembly path."
+  },
+  "traditional_joinery_review": {
+    "status": "DESIGN HOLD \u2014 no replacement dovetail released",
+    "existing_joint": "Horizontal radial tie end into the side of a cupola upright; the lower well stays open.",
+    "cupola_post_bottom_in": 85.0,
+    "tie_underside_in": 85.0,
+    "full_depth_head_bottom_relish_in": 0.0,
+    "traditional_candidate": "Through wedged half-dovetail tie-to-post joint, with a separate hardwood wedge and bearing housing where required.",
+    "geometric_limit": "A head retaining the full 10-inch tie depth reaches the current post bottom, leaving no timber below that head. A smaller head or reversed flare is an unverified adaptation, not a resolved repair.",
+    "kingpost_distinction": "A traditional suspended kingpost can hang a continuous tie from a vertical through tenon. That arrangement is different from these radial tie ends entering cupola posts; the cupola and ring forces must be resolved before selecting the joint.",
+    "release_requirements": [
+      "Resolve cupola/ring/tie forces and bearing support",
+      "Size cheeks, tenon, housing, remaining timber and any peg or wedge from the actual loads and material",
+      "Verify insertion, access and retention through the complete assembly sequence"
+    ],
+    "provenance_limit": "The references document joint families in other structures. They do not establish the concealed joinery of the Bluetime building or approve dimensions for this model."
   },
   "missing_inputs": [
     "Actual building site and adopted design criteria",
@@ -13,6 +31,71 @@
     "Roof/wall assembly weights and openings",
     "Joint fasteners and foundation/soil design"
   ],
+  "cavity_fit_audit": {
+    "status": "PASS",
+    "summary": {
+      "all_timber_stock_envelopes_verified": 104,
+      "cavity_cross_sections": 8304,
+      "components_contained_in_one_mate": 136,
+      "components_covered": 144,
+      "components_partitioned": 8,
+      "connected_cavity_components": 144,
+      "convex_cavity_components": 144,
+      "declared_exterior_brace_trims": 16,
+      "max_cavity_outside_reference_stock_m": 4.884981308350689e-15,
+      "max_missing_section_area_m2": 1.8001794815063477e-15,
+      "max_raw_timber_triangle_overlap_area_m2": 0.0,
+      "max_receiver_overlap_section_area_m2": 2.0050883104247573e-14,
+      "max_wood_overlap_section_area_m2": 1.959129105807733e-14,
+      "no_cavity_stock_envelopes_verified": 56,
+      "nonconvex_cavity_components": 0,
+      "nonempty_cavity_sets": 48,
+      "raw_timber_coplanar_triangle_pairs_tested": 13912,
+      "receiver_stock_convex_cells_verified": 14640,
+      "receiver_stock_envelopes_verified": 48,
+      "timbers": 104,
+      "timbers_with_raw_surface_overlaps": 0,
+      "verified_convex_cells": 552,
+      "winding_interior_points": 25794,
+      "winding_points_in_receiver": 0,
+      "winding_unoccupied_points": 0,
+      "wood_pair_cross_sections": 59620
+    },
+    "report": "downloads/cavity-fit-audit.json"
+  },
+  "proposed_cavity_fit_audit": {
+    "status": "PASS",
+    "model_sha256": "08330f3b2938d22d3efa96375a40a5745ba4a57b0830df14d28771b48126fc7c",
+    "summary": {
+      "all_timber_stock_envelopes_verified": 104,
+      "cavity_cross_sections": 10683,
+      "components_contained_in_one_mate": 144,
+      "components_covered": 168,
+      "components_partitioned": 24,
+      "connected_cavity_components": 168,
+      "convex_cavity_components": 144,
+      "declared_exterior_brace_trims": 16,
+      "max_cavity_outside_reference_stock_m": 4.884981308350689e-15,
+      "max_missing_section_area_m2": 2.3313209695098314e-15,
+      "max_raw_timber_triangle_overlap_area_m2": 0.0,
+      "max_receiver_overlap_section_area_m2": 2.0100667825588588e-14,
+      "max_wood_overlap_section_area_m2": 2.004601751597912e-14,
+      "no_cavity_stock_envelopes_verified": 56,
+      "nonconvex_cavity_components": 24,
+      "nonempty_cavity_sets": 48,
+      "raw_timber_coplanar_triangle_pairs_tested": 12042,
+      "receiver_stock_convex_cells_verified": 16304,
+      "receiver_stock_envelopes_verified": 48,
+      "timbers": 104,
+      "timbers_with_raw_surface_overlaps": 0,
+      "verified_convex_cells": 408,
+      "winding_interior_points": 15999,
+      "winding_points_in_receiver": 0,
+      "winding_unoccupied_points": 0,
+      "wood_pair_cross_sections": 61610
+    },
+    "report": "downloads/step-lap-proposed-cavity-fit-audit.json"
+  },
   "section_screen": [
     {
       "part": "P0",
@@ -67,10 +150,10 @@
     {
       "id": "S1",
       "priority": "critical",
-      "title": "Center has no designed tension and uplift restraint",
+      "title": "Center connection design is on hold",
       "parts": "T0\u2013T7 / R0\u2013R7 / C0\u2013C7 / cupola rings",
       "finding": "The straight two-inch tongues have no pegs, bolts, retained dovetail or other positive withdrawal restraint. Nominal contact does not close the central force path.",
-      "action": "Design the open-center drum/ring and its joints as one system. Evaluate a plain housed dovetail where radial withdrawal governs, with separate restraint against its insertion/removal direction. Do not assume an open-bottom polygon or plywood alone supplies the required ring action."
+      "action": "Use documented traditional joint families, then resolve their suitability and dimensions for this open-center system. A through wedged half-dovetail is a documented horizontal tie-to-post family, but its housing, bottom relish and assembly are unresolved here. No new dovetail is released. Do not assume the polygon or plywood alone supplies ring action."
     },
     {
       "id": "S2",
@@ -123,10 +206,10 @@
     {
       "id": "S8",
       "priority": "review",
-      "title": "Geometric audit has a defined limit",
-      "parts": "All sockets",
-      "finding": "Positive-volume pair overlaps, registered contact and connected meshes pass. The separate unfilled-socket volume diagnostics are nonzero and numerically inconsistent under rotation; complete cavity closure is not certified.",
-      "action": "Resolve socket-volume closure independently before any fabrication claim. The contact-area proxy in the fit report is a geometry diagnostic, not a structural bearing-capacity calculation."
+      "title": "Nominal cavity fit passes independent checks",
+      "parts": "All modeled recesses and mating timber solids",
+      "finding": "The actual removed-stock cavities pass independent occupancy and section checks at the recorded numerical tolerances. All timber pair overlaps, registered contacts and connected-solid checks also pass. The former residual meshes were numerical artifacts and are no longer exported or displayed.",
+      "action": "Read the hash-bound cavity-fit audit for methods and tolerances. Geometry agreement does not establish connection strength, shrinkage allowance, tool access or a complete raising sequence."
     }
   ],
   "load_coefficients": {
@@ -149,9 +232,29 @@
       "use": "Continuous roof-to-foundation load path and force reversal."
     },
     {
-      "title": "Vermont Timber Works F-6 joint sheet",
+      "title": "Vermont Timber Works F-6 joint sheet, detail 7",
       "url": "https://www.vermonttimberworks.com/wp-content/uploads/2013/08/sample-shop-drawings-hostetter-habib-residence-joints.pdf",
-      "use": "Professional housing, tenon and mechanical restraint examples from a different structure; dimensions not transplanted."
+      "use": "The kingpost/bottom-chord detail labels a double tenon, with pegs; it does not show a double dovetail. The post continues below the chord. This is a different structure, not an approved replacement schedule."
+    },
+    {
+      "title": "TFEC Bulletin 2018-13: Wedged Dovetail Tenon Joints",
+      "url": "https://www.tfguild.org/timber-frame-engineering-council/technical-bulletins/view/123/download",
+      "use": "Pages 2\u20135 and 9: through wedged half-dovetail family, full matching bearing, cheek proportions and full-depth head recommendation. Required shear housings are outside its scope. Its 8\u00d710 beam/10\u00d710 post example does not qualify this 6\u00d76 cupola post."
+    },
+    {
+      "title": "Timber Frame HQ: horizontal tie-to-post wedged half-dovetail",
+      "url": "https://timberframehq.com/wedged-half-dovetail-tie-beam-tenon-to-post-detail/",
+      "use": "Exploded horizontal tie-to-post example with diminished housing and separate hardwood wedge; a documented family, not evidence for this building\u2019s hidden joints."
+    },
+    {
+      "title": "Timber Frame HQ: kingpost-to-tie wedged tenon",
+      "url": "https://timberframehq.com/king-post-to-tie-wedged-tenon/",
+      "use": "Documented Windham Congregational Church example: vertical through half-dovetail, two pegs and top-inserted hardwood wedge. Different orientation and member arrangement from a radial tie ending at a cupola post."
+    },
+    {
+      "title": "Timber Frame HQ: upper kingpost joinery",
+      "url": "https://timberframehq.com/upper-king-post-joinery-detail/",
+      "use": "Rafter-to-kingpost precedent uses a diminished housing and tenon. It supports evaluating housed bearing and retention instead of requiring a flare at every connection; its oak dimensions are not adopted."
     },
     {
       "title": "Bluetime architectural reference",

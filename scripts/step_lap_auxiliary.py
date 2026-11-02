@@ -1,9 +1,14 @@
-"""Source-bind self-weight, inventory and explicit cavity-display hold to proposed meshes.
+# TIMESTAMP START 2026-11-02T10:08:03-05:00 | REVISION R004759
+"""Source-bind self-weight, inventory and corrected cavities to proposed meshes.
 No baseline contact demand/pressure assertions are carried into this model.
 """
+# TIMESTAMP END 2026-11-02T10:08:03-05:00 | REVISION R004759
 from pathlib import Path
 import hashlib,json
 from step_lap import solid,volume_centroid
+# TIMESTAMP START 2026-11-02T10:08:03-05:00 | REVISION R004759
+from export_step_lap_cavities import generate as generate_cavities
+# TIMESTAMP END 2026-11-02T10:08:03-05:00 | REVISION R004759
 R=Path(__file__).resolve().parents[1]
 def write(name,data):
  (R/'src'/name).write_text(json.dumps(data,separators=(',',':'))+'\n')
@@ -16,10 +21,10 @@ def generate():
  for group in materials['groups']:
   if any(name in model['proposed_review']['changed_member_ids'] for name in group['member_ids']):group['status']='Proposed step-lap geometry family; no fabrication interchangeability claim'
  write('step-lap-proposed-material-groups.json',materials)
- # Independent non-CSG winding tests found inherited masks inside owner wood.
- # Direct baseline triangle volumes match metadata; raw volume disagreement
- # was a re-import artifact, separate from the confirmed overlap.
- cavity={'schema_version':'proposed-step-lap-cavities-1','source_model_sha256':sha,'parts':{},'available':False,'summary':{'complete':False,'part_count':0},'status':'Recess overlay unavailable for proposed model while independent mask validation is unresolved. No baseline overlay substituted. Actual timber geometry and applied self-weight are checked separately.','baseline_model_sha256':proposal['baseline_model_sha256'],'validation_hold':{'scope':'Cavity visualization only, not a failure of actual proposed timber meshes.','reason':'Independent winding-number sampling confirms inherited P0/C0 removed-mask points inside owner wood (13 of 7,533 and 111 of 2,896 sampled inside-mask points). Raw triangle-volume integration agrees saved metadata; re-import Boolean instability is a separate issue.','required':'Independently verify changed owner-disjoint recess masks and occupied/unfilled classification before enabling.'}}
- write('step-lap-proposed-cavities.json',cavity)
- print('Bound proposed loads/materials and explicit cavity hold to',sha)
+ # TIMESTAMP START 2026-11-02T10:08:03-05:00 | REVISION R004759
+ # Preserve the corrected baseline recesses, then apply the actual 24 stock
+ # transfers to both mating cavity records. Full fit verification is separate.
+ generate_cavities()
+ print('Bound proposed loads/materials and matching cavity exports to',sha)
+ # TIMESTAMP END 2026-11-02T10:08:03-05:00 | REVISION R004759
 if __name__=='__main__':generate()

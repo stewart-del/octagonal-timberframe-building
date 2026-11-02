@@ -4,7 +4,10 @@ import collections,hashlib,itertools,json,math,sys
 import numpy as np
 import manifold3d as m
 R=Path(__file__).resolve().parents[1];sys.path.insert(0,str(R/'scripts'))
-from step_lap import build_proposal,solid,volume_centroid
+# TIMESTAMP START 2026-11-02T10:36:58-05:00 | REVISION R004765
+from step_lap import build_proposal,solid,volume_centroid,regular_boundary
+from audit_cavity_fit import coplanar_surface_overlaps
+# TIMESTAMP END 2026-11-02T10:36:58-05:00 | REVISION R004765
 from regeneration_equivalence import assert_equivalent,test_guard
 I=.0254;raw=(R/'src/model-data.json').read_bytes();base=json.loads(raw);sha=hashlib.sha256(raw).hexdigest();data=json.loads((R/'src/step-lap-proposal.json').read_text());full=json.loads((R/'src/step-lap-proposed-model.json').read_text())
 B={p['id']:p for p in base['parts']};P={p['id']:p for p in full['parts']};changed={f'{family}{k}' for k in range(8) for family in ['B','P','R']}|{f'J{k}-{side}' for k in range(8) for side in ['0','2']}
@@ -84,6 +87,22 @@ assert not data['combined_geometry_audit']['held_interfaces']
 assert data['combined_geometry_audit']['implemented_interface_count']==24
 assert abs(data['baseline_timber_volume_m3']-data['proposed_timber_volume_m3'])<1e-10
 assert len(full['proposed_member_volume_centroids'])==104
+# TIMESTAMP START 2026-11-02T10:36:58-05:00 | REVISION R004765
+# Coplanar normalization must cancel a coincident internal face but preserve
+# legitimate opposite-facing, disjoint regions on that same support plane.
+unit=m.Manifold.cube((.1,.1,.1))
+for label,fixture,components in [
+ ('touching cubes',m.Manifold.compose([unit,unit.translate((.1,0,0))]),1),
+ ('disjoint opposing plane regions',m.Manifold.compose([unit,unit.translate((.1,.2,0))]),2)]:
+ cleaned=regular_boundary(fixture);mesh=cleaned.to_mesh64()
+ check=coplanar_surface_overlaps(np.asarray(mesh.vert_properties)[:,:3],np.asarray(mesh.tri_verts))
+ assert check['status']=='PASS',(label,check)
+ assert len(cleaned.decompose())==components,(label,'lost connected region')
+ assert abs(cleaned.volume()-.002)<1e-12,(label,'changed occupied volume')
+ assert abs((cleaned-fixture).volume())+abs((fixture-cleaned).volume())<1e-12,(label,'changed occupied set')
+print('PASS: planar repair cancels hidden coincident faces and retains disjoint opposite-facing surfaces')
+# TIMESTAMP END 2026-11-02T10:36:58-05:00 | REVISION R004765
+
 # Regeneration must preserve exact structure/topology/claims and geometry within
 # tiny unit-aware roundoff bounds. BLAS CPU dispatch changes last bits, so byte
 # equality across machines is not a geometric-equivalence test. Existing

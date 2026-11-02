@@ -71,7 +71,13 @@ select:focus-visible,a:focus-visible,canvas:focus-visible{outline:3px solid #176
 
 <!-- TIMESTAMP START 2026-11-01T22:44:38-05:00 | REVISION R004653 -->
 <!-- TIMESTAMP START 2026-11-01T23:35:16-05:00 | REVISION R004670 -->
-<details class="section hollow-controls"><summary>Diagnostic hollows &amp; recesses</summary><label class="checkline"><input type="checkbox" id="showHollows" checked> Show diagnostic recess masks</label><label for="hollowMode">Show</label><select id="hollowMode"><option value="removed">Diagnostic recess mask · amber</option><option value="unfilled">Diagnostic residual · unverified</option></select><p class="description" id="hollowStatus">Diagnostic recess display; masks unverified and may overlap owner wood. Not certified empty space.</p><details><summary>Hollow display &amp; interpretation</summary><label class="checkline"><input type="checkbox" id="hollowXray" checked> X-ray through timber</label><p>Colored shapes are diagnostic baseline masks, not extra timber or certified empty space. Masks are unverified and may overlap owner wood. Amber may be occupied by mating wood; magenta residual is not a certified internal gap.</p></details></details>
+<!-- TIMESTAMP START 2026-11-02T09:09:36-05:00 | REVISION R004753 -->
+<!-- TIMESTAMP START 2026-11-02T10:05:34-05:00 | REVISION R004758 -->
+<details class="section hollow-controls"><summary>Hollows and recesses</summary><label class="checkline"><input type="checkbox" id="showHollows" checked> Automatically reveal selected recesses</label><p class="description" id="hollowStatus">Select a timber to reveal its recess volumes.</p><details><summary>Hollow display &amp; interpretation</summary><label class="checkline"><input type="checkbox" id="hollowXray" checked> X-ray through timber</label><p>Amber shows actual removed wood. In the assembled model, the mating timber occupies that space. The independent fit audit checks that correspondence; the former invalid residual display has been retired.</p><!-- TIMESTAMP START 2026-11-02T10:05:34-05:00 | REVISION R004758 -->
+<a id="cavityFitAuditLink" href="downloads/cavity-fit-audit.json">Cavity-fit audit for selected model</a>
+<!-- TIMESTAMP END 2026-11-02T10:05:34-05:00 | REVISION R004758 --></details></details>
+<!-- TIMESTAMP END 2026-11-02T10:05:34-05:00 | REVISION R004758 -->
+<!-- TIMESTAMP END 2026-11-02T09:09:36-05:00 | REVISION R004753 -->
 <!-- TIMESTAMP END 2026-11-01T23:35:16-05:00 | REVISION R004670 -->
 <!-- TIMESTAMP END 2026-11-01T22:44:38-05:00 | REVISION R004653 -->
 <!-- TIMESTAMP START 2026-11-01T22:44:38-05:00 | REVISION R004653 -->
@@ -578,7 +584,23 @@ $('showCutFaces').onchange=e=>{showCutFaces=e.target.checked;requestRender();};$
 // TIMESTAMP START 2026-11-01T22:44:38-05:00 | REVISION R004653
 // TIMESTAMP START 2026-11-01T23:06:10-05:00 | REVISION R004659
 // TIMESTAMP START 2026-11-01T23:19:38-05:00 | REVISION R004668
-function showAudit(){const host=$('fitAudit');host.replaceChildren();const title=document.createElement('strong');title.textContent='Joint strength audit: redesign required';host.appendChild(title);for(const value of ['Saved-baseline nominal-fit checks cover '+MODEL_VARIANTS.baseline.model.joinery_verification.pairs_tested.toLocaleString()+' timber pairs and '+MODEL_VARIANTS.baseline.model.joinery_verification.wood_count+' connected timber solids. Complete socket closure is not certified.','The central straight tenons lack designed withdrawal restraint. A simple housed dovetail is a candidate, subject to cheek strength, load direction and assembly checks.','The cupola has separate horizontal ceiling spokes and ½-inch plywood below its pitched roof. Ceiling sections and attachments remain provisional.']){const p=document.createElement('p');p.textContent=value;host.appendChild(p);}const link=document.createElement('a');link.href='structural-audit.html';link.textContent='Read saved-baseline findings and dovetail concept';host.appendChild(link);if(MODEL_CONTEXT.isProposed){const a=DATA.proposed_review.geometry_audit,p=document.createElement('p');p.textContent='Selected proposal: '+a.implemented_interface_count+' step-lap interfaces; '+a.affected_pairs_considered+' affected timber-pair geometry checks. This is not a capacity, restraint or fabrication approval.';host.appendChild(p);}}
+// TIMESTAMP START 2026-11-02T08:12:25-05:00 | REVISION R004749
+// TIMESTAMP START 2026-11-02T09:09:36-05:00 | REVISION R004753
+// TIMESTAMP START 2026-11-02T10:05:34-05:00 | REVISION R004758
+function showAudit(){
+ const host=$('fitAudit');host.replaceChildren();const title=document.createElement('strong');title.textContent='Nominal fit checked · lower joint design unresolved';host.appendChild(title);
+ const fit=MODEL_CONTEXT.cavities.fit_audit,summary=fit?.summary;
+ const findings=[summary?'Selected model: '+summary.timbers+' timber solids and '+summary.components_covered+' cavity components pass independent matching-geometry checks. Original stock is also checked to detect missing or undersized cavity records.':'The selected model has no passing independent cavity audit.',
+ 'The lower purple cupola post and radial tie retain their square geometry placeholder. The original concealed joint is unreadable in the supplied drawing. A documented traditional replacement still needs adequate bearing, remaining timber and withdrawal restraint.',
+ 'Geometric fit does not establish strength or a complete raising sequence. The cupola bottom remains open; its horizontal ceiling framing and half-inch plywood remain above the windows.'];
+ if(MODEL_CONTEXT.isProposed)findings.push('The selected proposal includes all 24 perimeter step-lap interfaces. The saved baseline remains available in the model selector.');
+ for(const value of findings){const p=document.createElement('p');p.textContent=value;host.appendChild(p);}
+ const inspect=document.createElement('button');inspect.id='inspectLowerCenter';inspect.textContent='Inspect lower center joint';inspect.onclick=()=>{releaseMouseLook();showReviewMembers(['T0','C0']);selectPart('C0');setNavigation('orbit');inspectionPartId=null;inspectionCutId=null;inspectionPivot=[43*.0254,90*.0254,0];camera.theta=.85;camera.phi=.2;focusPoint(inspectionPivot.slice(),1.15);$('cornerContext').hidden=false;$('cornerContext').textContent='T0 / C0 · original joint unresolved; displayed tenon is a placeholder. Selected post shows its actual recess.';};host.appendChild(inspect);
+ const link=document.createElement('a');link.href='structural-audit.html';link.textContent='Read traditional references and remaining design questions';host.appendChild(link);const fitLink=document.createElement('a');fitLink.href=MODEL_CONTEXT.isProposed?'downloads/step-lap-proposed-cavity-fit-audit.json':'downloads/cavity-fit-audit.json';fitLink.textContent='Download the selected model cavity-fit audit';host.appendChild(document.createElement('br'));host.appendChild(fitLink);
+}
+// TIMESTAMP END 2026-11-02T10:05:34-05:00 | REVISION R004758
+// TIMESTAMP END 2026-11-02T09:09:36-05:00 | REVISION R004753
+// TIMESTAMP END 2026-11-02T08:12:25-05:00 | REVISION R004749
 // TIMESTAMP END 2026-11-01T23:19:38-05:00 | REVISION R004668
 // TIMESTAMP END 2026-11-01T23:06:10-05:00 | REVISION R004659
 // TIMESTAMP END 2026-11-01T22:44:38-05:00 | REVISION R004653

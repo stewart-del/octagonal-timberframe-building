@@ -16,7 +16,16 @@ jobs:
           node-version: '22'
       - run: python3 scripts/build.py
       # TIMESTAMP START 2026-11-01T22:44:38-05:00 | REVISION R004653
-      - run: "python3 -m pip install --only-binary=:all: numpy manifold3d==3.5.4"
+      # TIMESTAMP START 2026-11-02T09:09:36-05:00 | REVISION R004753
+      - run: "python3 -m pip install --only-binary=:all: numpy scipy manifold3d==3.5.4"
+      - run: python3 scripts/audit_cavity_fit.py --check
+      # TIMESTAMP START 2026-11-02T10:05:34-05:00 | REVISION R004758
+      - run: python3 scripts/audit_cavity_fit.py --model src/step-lap-proposed-model.json --cavities src/step-lap-proposed-cavities.json --output docs/step-lap-proposed-cavity-fit-audit.json --check
+      # TIMESTAMP END 2026-11-02T10:05:34-05:00 | REVISION R004758
+      # TIMESTAMP START 2026-11-02T10:05:34-05:00 | REVISION R004758
+      - run: python3 -m unittest discover -s tests -p "test_*cavit*.py"
+      # TIMESTAMP END 2026-11-02T10:05:34-05:00 | REVISION R004758
+      # TIMESTAMP END 2026-11-02T09:09:36-05:00 | REVISION R004753
       - run: python3 tests/test_joinery.py
       - run: python3 tests/test_r01_geometry.py
       # TIMESTAMP END 2026-11-01T22:44:38-05:00 | REVISION R004653
@@ -30,6 +39,9 @@ jobs:
       - run: node tests/surface-contrast.cjs src/viewer.template.html
       - run: node tests/edge-measurements.cjs
       - run: node tests/cavity-overlay.cjs
+      # TIMESTAMP START 2026-11-02T09:43:39-05:00 | REVISION R004757
+      - run: node tests/geometry-overlays.cjs
+      # TIMESTAMP END 2026-11-02T09:43:39-05:00 | REVISION R004757
       - run: python3 tests/test_load_review.py
       - run: python3 tests/test_cupola_panel.py
       - run: node tests/architectural-plans.cjs

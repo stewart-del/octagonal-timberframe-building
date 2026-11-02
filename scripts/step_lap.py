@@ -39,6 +39,61 @@ def mesh(s):
  q=s.to_mesh64();v=np.asarray(q.vert_properties)[:,:3];t=np.asarray(q.tri_verts)
  return {'vertices':v.tolist(),'triangles':t.tolist(),'volume_m3':s.volume()}
 def resolved(s):return m.Manifold(s.to_mesh64()).set_tolerance(1e-9)
+# TIMESTAMP START 2026-11-02T10:36:58-05:00 | REVISION R004765
+def regular_boundary(shape):
+ """Rebuild net planar surfaces, cancelling coincident opposite patches.
+
+ This operates on the same support planes and contour edges. It does not
+ offset a joint, fill a recess, or approximate the timber with a voxel grid.
+ """
+ q=shape.to_mesh64();vertices=np.asarray(q.vert_properties)[:,:3];faces=np.asarray(q.tri_verts)
+ groups=[];tol=1e-9;scale=1e6
+ for tri in faces:
+  points=vertices[tri];normal=np.cross(points[1]-points[0],points[2]-points[0]);length=np.linalg.norm(normal)
+  if length<1e-14:continue
+  normal/=length
+  if normal[np.argmax(np.abs(normal))]<0:normal=-normal
+  group=next((g for g in groups if np.linalg.norm(normal-g['n'])<1e-9 and np.max(np.abs((points-g['origin'])@g['n']))<tol),None)
+  if group is None:
+   axis=np.eye(3)[np.argmin(np.abs(normal))];u=np.cross(normal,axis);u/=np.linalg.norm(u)
+   group={'n':normal,'origin':points[0],'basis':np.column_stack([u,np.cross(normal,u)]),'contours':[]};groups.append(group)
+  group['contours'].append((points-group['origin'])@group['basis']*scale)
+ pool=[v.copy() for v in vertices];regions=[]
+ def weld(point):
+  distances=np.linalg.norm(np.asarray(pool)-point,axis=1);nearest=int(np.argmin(distances))
+  if distances[nearest]<=tol:return nearest
+  pool.append(point);return len(pool)-1
+ for group in groups:
+  for sign,fill in [(1,m.FillRule.Positive),(-1,m.FillRule.Negative)]:
+   section=m.CrossSection(group['contours'],fill)
+   if section.is_empty():continue
+   polygons=section.to_polygons();loops=[]
+   for polygon in polygons:
+    points=group['origin']+np.asarray(polygon)/scale@group['basis'].T
+    loops.append([weld(point) for point in points])
+   regions.append((group,sign,loops))
+ points=np.asarray(pool);out=[]
+ for group,sign,loops in regions:
+  contours=[];ids=[]
+  for loop in loops:
+   split=[]
+   for start,end in zip(loop,loop[1:]+loop[:1]):
+    a,b=points[start],points[end];edge=b-a;length2=float(edge@edge)
+    if length2<=tol*tol:continue
+    t=(points-a)@edge/length2;distance=np.linalg.norm(points-(a+t[:,None]*edge),axis=1)
+    middle=np.flatnonzero((t>1e-10)&(t<1-1e-10)&(distance<=tol))
+    split.extend([start]+sorted(middle.tolist(),key=lambda k:t[k]))
+   contours.append((points[split]-group['origin'])@group['basis']);ids.extend(split)
+  for tri in m.triangulate(contours,epsilon=1e-12,allow_convex=False):
+   mapped=[ids[int(i)] for i in tri]
+   out.append(mapped if sign>0 else mapped[::-1])
+ used=sorted(set(i for tri in out for i in tri));mapping={old:new for new,old in enumerate(used)}
+ result=m.Manifold(m.Mesh64(points[used],np.asarray([[mapping[i] for i in tri] for tri in out],dtype=np.uint64)))
+ assert str(result.status())=='Error.NoError',('net planar boundary',str(result.status()))
+ assert abs(result.volume()-shape.volume())/I**3<TOL_IN3,'Planar normalization changed occupied volume'
+ return result
+# TIMESTAMP END 2026-11-02T10:36:58-05:00 | REVISION R004765
+
 def original_stock(p):
  planes=p['geometry_planes_inches'];n=np.asarray([x['normal'] for x in planes]);k=np.asarray([x['constant'] for x in planes]);vs=[]
  for ids in itertools.combinations(range(len(n)),3):
@@ -110,7 +165,9 @@ def build_proposal(data,source_hash):
   assert tongue.volume()>1e-10,'No available original stock to form a tongue'
   candidate_tongues[spec['id']]=tongue
   if spec['id']==spec['seed_id']:
-   new_a=resolved(sa+tongue);new_b=resolved(sb-tongue)
+   # TIMESTAMP START 2026-11-02T10:36:58-05:00 | REVISION R004765
+   new_a=regular_boundary(resolved(sa+tongue));new_b=regular_boundary(resolved(sb-tongue))
+   # TIMESTAMP END 2026-11-02T10:36:58-05:00 | REVISION R004765
    seed_shapes[spec['id']]={'rafter':new_a,'receiver':new_b,'tongue':tongue}
   else:
    # Accepted seed booleans are transformed, rather than rerunning fragile
@@ -175,7 +232,9 @@ def build_proposal(data,source_hash):
   variants.append({'id':spec['id'],'family_id':spec['family_id'],'bay':spec['bay'],'handed_reflection':spec['handed_reflection'],'reference_seed_id':spec['seed_id'],'title':spec['title'],'member_ids':[a,b],'baseline_model_hash':source_hash,'source_attachment_id':None,'source_section':None,'source_printed_page':None,'source_pdf_page':None,'reference_image':'Screenshot 2026-11-02 at 7.46.44 AM.png','reference_image_sha256':'4c8698c865a7714b10893ff0867563f0de36490e19f926634c5dbd5c82cbd0c9','geometry_only':True,'fabrication_dimensions_valid':False,'status':'proposed step-lap joinery','geometry_status':'PASS','parameters':params,'findings':findings,'local_frame':{'origin_m':origin.tolist(),'horizontal':horizontal.tolist(),'transverse':width.tolist(),'up':[0,1,0]},'review_bounds_inches':[[-16,-12,-16],[16,12,16]],'baseline_parts':[copy.deepcopy(pa),copy.deepcopy(pb)],'proposed_parts':clones,'removed_parts':[exhibit(b+'-proposed-pocket',b,removed)],'added_parts':[exhibit(a+'-retained-stock-tongue',a,added)],'baseline_contact_faces':baseline_faces,'contact_faces':face,'measurements':{'baseline_horizontal_bearing_area_in2':area,'proposed_horizontal_bearing_area_in2':sum(f['area_in2'] for f in face if np.linalg.norm(np.asarray(f['normal_on_rafter'])-[0,-1,0])<1e-7),'proposed_total_geometric_contact_area_in2':sum(f['area_in2'] for f in face),'proposed_inclined_contact_area_in2':sum(f['area_in2'] for f in face if 1e-7<abs(f['normal_on_rafter'][1])<1-1e-7),'transverse_cheek_contacts':transverse,'receiver_removed_volume_in3':removed.volume()/I**3,'rafter_retained_stock_volume_in3':added.volume()/I**3,'new_overlap_volume_in3':(new_a^new_b).volume()/I**3,'remaining_local_sections':section_records,'baseline_member_mass_geometry':[dict(member_id=name,**volume_centroid(solids[name])) for name in [a,b]],'proposed_member_mass_geometry':[dict(member_id=name,**volume_centroid(proposed[name])) for name in [a,b]]},'cut_profiles':{'coordinate_system':'local horizontal and vertical inches at the transverse center plane','origin_m':origin.tolist(),'horizontal':horizontal.tolist(),'vertical':[0,1,0],'rafter_retained_tongue_closed_polygons':profiles,'receiver_removed_pocket_closed_polygons':copy.deepcopy(profiles),'status':'Measured CSG profiles; chosen proposal, not a cut template'},'restraint_intent':['geometric transverse location while engaged','broader stepped mating surfaces'],'uplift_retention':'unresolved','fastener_detail':'unresolved'})
  # Form both distinct B0 pockets once, verify the serialized result, then
  # rotate the complete ring-beam member to every bay. P0 has one hip pocket.
- paired_b0=resolved(solids['B0']-(tongues['J0-0_B0']+tongues['J0-2_B0']))
+ # TIMESTAMP START 2026-11-02T10:36:58-05:00 | REVISION R004765
+ paired_b0=regular_boundary(resolved(solids['B0']-(tongues['J0-0_B0']+tongues['J0-2_B0'])))
+ # TIMESTAMP END 2026-11-02T10:36:58-05:00 | REVISION R004765
  expected_removal=tongues['J0-0_B0'].volume()+tongues['J0-2_B0'].volume()
  assert abs((solids['B0'].volume()-paired_b0.volume())-expected_removal)/I**3<TOL_IN3,'HOLD: accumulated B0 pockets failed volume conservation'
  for k in range(8):

@@ -10,8 +10,12 @@ const cavity=JSON.parse(fs.readFileSync(path.join(root,'src/cavity-data.json'),'
 const original=JSON.stringify(cavity),results=[],cleaned={};
 for(const [id,record] of Object.entries(cavity.parts)){
  cleaned[id]={};
- for(const kind of ['removed','unfilled']){
-  const before=record[kind],result=kind==='removed'?clean(before):{mesh:before,removedComponents:[]};cleaned[id][kind]=result.mesh;
+ // TIMESTAMP START 2026-11-02T09:17:47-05:00 | REVISION R004755
+ assert(!Object.hasOwn(record,'unfilled'),'Unreliable residual diagnostic meshes must not be exported');
+ assert(!Object.hasOwn(record,'occupied_volume_m3'),'Unreliable occupancy volumes must not be exported');
+ for(const kind of ['removed']){
+  const before=record[kind],result=clean(before);cleaned[id][kind]=result.mesh;
+ // TIMESTAMP END 2026-11-02T09:17:47-05:00 | REVISION R004755
   assert.deepEqual(result.mesh.vertices,before.vertices);
   const omitted=new Set(result.removedComponents.flat());
   assert.deepEqual(result.mesh.triangles,before.triangles.filter((_,i)=>!omitted.has(i)));
@@ -19,8 +23,13 @@ for(const [id,record] of Object.entries(cavity.parts)){
  }
 }
 assert.equal(JSON.stringify(cavity),original,'Source cavity records must not mutate');
-const cupola=results.filter(x=>/^C[0-7]$/.test(x.id)&&x.kind==='removed');
-assert.equal(cupola.length,8);assert(cupola.every(x=>x.omittedTriangles.length===4&&x.componentCount===1));
+// TIMESTAMP START 2026-11-02T08:55:04-05:00 | REVISION R004751
+assert.equal(results.length,0,'Corrected cavity exports need no zero-volume display cleanup');
+const planarClosed={vertices:[[0,0,0],[1,0,0],[0,1,0],[.2,.2,0]],triangles:[[0,2,1],[0,1,3],[1,2,3],[2,0,3]]};
+const syntheticClean=clean(planarClosed);
+assert.equal(syntheticClean.removedComponents.length,1,'Synthetic closed planar zero-volume shell removed');
+assert.equal(syntheticClean.mesh.triangles.length,0);
+// TIMESTAMP END 2026-11-02T08:55:04-05:00 | REVISION R004751
 const tiny={vertices:[[0,0,0],[1,0,0],[0,1,0],[0,0,1e-16]],triangles:[[0,2,1],[0,1,3],[1,2,3],[2,0,3]]};
 assert.deepEqual(clean(tiny).mesh.triangles,tiny.triangles,'Even tiny positive-volume closed shells remain');
 const planarOpen={vertices:[[0,0,0],[1,0,0],[0,1,0]],triangles:[[0,1,2]]};
@@ -30,4 +39,17 @@ assert.equal(edges.featureEdges(cube.vertices,cube.triangles).length/12,12,'No c
 assert(src.includes('edgeRaw=TimberEdgeMeasurements.featureEdges(mesh.vertices,mesh.triangles)'));
 assert(!src.includes('for(const e of m.mesh.edges)'),'Fallback must use feature edges too');
 if(process.env.CAVITY_DISPLAY_OUTPUT)fs.writeFileSync(process.env.CAVITY_DISPLAY_OUTPUT,JSON.stringify(cleaned));
-console.log(JSON.stringify({passed:true,scope:'Display-only removal of closed planar exact-zero-volume shells; source geometry unchanged',removed:results},null,2));
+// TIMESTAMP START 2026-11-02T08:55:04-05:00 | REVISION R004751
+const hash=file=>require('node:crypto').createHash('sha256').update(fs.readFileSync(path.join(root,file))).digest('hex');
+const modelHash=hash('src/model-data.json'),baselineHash='36e53d90ec9abead9a80ce87e61f298c527809818dac82b8e2bbf5bf84b25779';
+// TIMESTAMP START 2026-11-02T09:17:47-05:00 | REVISION R004755
+const verification={revision:'R004755',timestamp:'2026-11-02T09:17:47-05:00',passed:true,all_cavity_records_checked:Object.keys(cavity.parts).length,
+ model_sha256:modelHash,pre_cavity_correction_model_sha256:baselineHash,model_bytes_unchanged:modelHash===baselineHash,cavity_source_sha256:hash('src/cavity-data.json'),
+ changed_display_records:results,removed_overlay_components:results,
+ scope:'Removed-only source cavities require no display filtering. No residual diagnostic geometry or occupancy volume is exported. Model hash comparison establishes byte identity for this cavity correction only. This test is not a complete cavity-closure or structural certification.',
+ renderer_checks:['Source records not mutated','Corrected removed cavities retain every triangle','Synthetic closed planar exact-zero-volume shell removed','Tiny positive-volume shell retained','Open planar diagnostic surface retained','Feature edges used by WebGL and fallback','Cube has twelve feature edges','No residual diagnostic geometry or occupancy volume exported'],
+ lower_cupola_regression:'tests/test_joinery.py independently checks all eight raw lower cavity components against the 2 × 2 × 8 inch box and mating timber exports.'};
+// TIMESTAMP END 2026-11-02T09:17:47-05:00 | REVISION R004755
+if(process.env.CAVITY_VERIFICATION_OUTPUT)fs.writeFileSync(process.env.CAVITY_VERIFICATION_OUTPUT,JSON.stringify(verification,null,2)+'\n');
+console.log(JSON.stringify(verification,null,2));
+// TIMESTAMP END 2026-11-02T08:55:04-05:00 | REVISION R004751

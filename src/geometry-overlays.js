@@ -1,6 +1,9 @@
 // TIMESTAMP START 2026-11-01T22:47:54-05:00 | REVISION R004654
 const CAVITIES=__CAVITY_JSON__;
-let showHollows=true,hollowMode='removed',hollowXray=true,edgeMeasurementsOn=false;
+// TIMESTAMP START 2026-11-02T09:09:36-05:00 | REVISION R004753
+let showHollows=true,hollowXray=true,edgeMeasurementsOn=false;
+const hollowMode='removed';
+// TIMESTAMP END 2026-11-02T09:09:36-05:00 | REVISION R004753
 const cavityMeshCache=new Map(),edgeMeasurementCache=new Map();
 const edgeMeasurementLabels=[];
 function appendEdgeMeasurements(host,p){
@@ -50,7 +53,9 @@ function cavityRenderMesh(p,kind){
 }
 function drawCavityVolumes(){
  const records=cavityRecords();if(!records.length)return;
- const fill=hollowMode==='unfilled'?[1,.12,.65]:[1,.82,.12],edge=hollowMode==='unfilled'?[.8,.0,.28]:[1,.35,.02];
+// TIMESTAMP START 2026-11-02T09:09:36-05:00 | REVISION R004753
+ const fill=[1,.82,.12],edge=[1,.35,.02];
+// TIMESTAMP END 2026-11-02T09:09:36-05:00 | REVISION R004753
  if(gl){
   gl.enable(gl.BLEND);gl.blendFunc(gl.SRC_ALPHA,gl.ONE_MINUS_SRC_ALPHA);gl.depthMask(false);if(hollowXray)gl.disable(gl.DEPTH_TEST);
   try{for(const {p,kind} of records){const m=cavityRenderMesh(p,kind);if(!m||!m.count)continue;
@@ -65,13 +70,14 @@ function drawCavityVolumes(){
  }
 }
 function updateHollowStatus(){
- const host=$('hollowStatus');if(CAVITIES.available===false||!Object.keys(CAVITIES.parts||{}).length){host.textContent=CAVITIES.status||'Recess overlay unavailable while independent mask validation is unresolved; no overlay substituted.';return;}if(!selected){host.textContent='Diagnostic recess display; masks unverified and may overlap owner wood. Not certified empty space. Select a timber to inspect.';return;}
+// TIMESTAMP START 2026-11-02T10:05:34-05:00 | REVISION R004758
+ const host=$('hollowStatus');if(CAVITIES.available===false||!Object.keys(CAVITIES.parts||{}).length){host.textContent=CAVITIES.status||'Recess overlay unavailable until its independent fit audit passes.';return;}if(!selected){host.textContent='Select a timber to reveal its recess volumes.';return;}
+// TIMESTAMP END 2026-11-02T10:05:34-05:00 | REVISION R004758
  const d=CAVITIES.parts[selected];if(!d){host.textContent='No verified cavity data for this timber.';return;}
- const removed=d.removed.volume_m3*1e6,empty=d.unfilled.volume_m3*1e6;
-// TIMESTAMP START 2026-11-01T23:35:16-05:00 | REVISION R004670
- if(hollowMode==='removed')host.textContent=selected+': diagnostic recess mask '+num(removed,2)+' cm³. Masks are unverified and may overlap owner wood; not certified empty space.';
- else host.textContent=selected+': diagnostic residual '+num(empty,3)+' cm³. Masks are unverified and may overlap owner wood; not certified empty space or harmless trimming.';
-// TIMESTAMP END 2026-11-01T23:35:16-05:00 | REVISION R004670
+// TIMESTAMP START 2026-11-02T09:09:36-05:00 | REVISION R004753
+ const removed=d.removed.volume_m3*1e6;
+ host.textContent=selected+': '+num(removed,2)+' cm³ of actual recesses/notches. Amber shows the matching space occupied by mating wood in the assembled model. '+(CAVITIES.fit_audit?.status==='PASS'?'Independent cavity-fit audit passed.':'Independent cavity-fit audit is not attached.');
+// TIMESTAMP END 2026-11-02T09:09:36-05:00 | REVISION R004753
  if(explode>0)host.textContent+=' Classification refers to the assembled model; this view is exploded.';
  if(!gl)host.textContent+=' In 2D fallback, hollow volumes are always shown as X-rays.';
 }
@@ -101,7 +107,9 @@ function edgeMeasurementVisible(owner,midpoint){
  return true;
 }
 $('showHollows').onchange=e=>{showHollows=e.target.checked;updateHollowStatus();requestRender();};
-$('hollowMode').onchange=e=>{hollowMode=e.target.value==='unfilled'?'unfilled':'removed';updateHollowStatus();requestRender();};
+// TIMESTAMP START 2026-11-02T09:09:36-05:00 | REVISION R004753
+// Retired the invalid 3D residual selector; only actual removed-stock cavities are displayed.
+// TIMESTAMP END 2026-11-02T09:09:36-05:00 | REVISION R004753
 $('hollowXray').onchange=e=>{hollowXray=e.target.checked;requestRender();};
 $('showEdgeMeasurements').onchange=e=>{edgeMeasurementsOn=e.target.checked;requestRender();};
 

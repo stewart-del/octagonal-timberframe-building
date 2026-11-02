@@ -6,24 +6,32 @@ const templatePath=process.argv[2]||candidates.find(p=>fs.existsSync(p));
 if(!templatePath)throw Error('Pass viewer.template.html as the first argument.');
 const template=fs.readFileSync(templatePath,'utf8');
 const helperPath=path.resolve(path.dirname(templatePath),'geometry-overlays.js');
+// TIMESTAMP START 2026-11-02T09:43:39-05:00 | REVISION R004757
 const source=fs.readFileSync(helperPath,'utf8');
+const TimberEdgeMeasurements=require(path.resolve(path.dirname(templatePath),'edge-measurements.js'));
+// TIMESTAMP END 2026-11-02T09:43:39-05:00 | REVISION R004757
 const raySource=template.match(/^function triangleHit\([^\n]+$/m)?.[0];
 if(!raySource)throw Error('Missing production triangleHit function');
 new Function('return ('+raySource+')');
 if(source.split('__CAVITY_JSON__').length!==2)throw Error('Expected one cavity-data insertion point');
-const result=new Function('template',`
+// TIMESTAMP START 2026-11-02T09:43:39-05:00 | REVISION R004757
+const result=new Function('template','TimberEdgeMeasurements',`
+// TIMESTAMP END 2026-11-02T09:43:39-05:00 | REVISION R004757
 const passed=[],failed=[],check=(yes,msg)=>{(yes?passed:failed).push(msg)};
 const vadd=(a,b)=>a.map((x,i)=>x+b[i]),vsub=(a,b)=>a.map((x,i)=>x-b[i]),vmul=(a,s)=>a.map(x=>x*s),length=a=>Math.hypot(...a),dot=(a,b)=>a.reduce((s,x,i)=>s+x*b[i],0),unit=a=>vmul(a,1/(length(a)||1)),cross=(a,b)=>[a[1]*b[2]-a[2]*b[1],a[2]*b[0]-a[0]*b[2],a[0]*b[1]-a[1]*b[0]];
 const triangle={vertices:[[0,0,0],[1,0,0],[0,1,0]],triangles:[[0,1,2]],edges:[[0,1],[1,2],[2,0]],volume_m3:.001};
-const empty={vertices:[],triangles:[],edges:[],volume_m3:0};
-const data={parts:{A:{removed:triangle,unfilled:empty,occupied_volume_m3:.001},B:{removed:triangle,unfilled:{...triangle,volume_m3:.0001},occupied_volume_m3:.0009}}};
+// TIMESTAMP START 2026-11-02T09:43:39-05:00 | REVISION R004757
+const data={parts:{A:{removed:triangle},B:{removed:triangle}},fit_audit:{status:'PASS'}};
+// TIMESTAMP END 2026-11-02T09:43:39-05:00 | REVISION R004757
 const parts=['A','B','C'].map((id,i)=>({id,displacement:[i*2,0,0],vertices:[],triangles:[]})),partById=new Map(parts.map(p=>[p.id,p]));
 const selectedPartIds=new Set(['A','B']);let selected='B',explode=0,width=900,height=650,renderRequests=0;
 const hidden=new Set(),ghosts=new Set(),isShown=p=>!hidden.has(p.id),selectionAlpha=p=>ghosts.has(p.id)?.14:1,offset=p=>vmul(p.displacement,explode);
 const basis={eye:[0,0,5]},fittedBounds=new Map(parts.map(p=>[p.id,{min:[0,0,0],max:[0,0,0]}]));
 const num=(n,d=2)=>Number(n).toFixed(d),angleText=n=>num(n,2)+'°';
 function element(tag){return {tagName:tag.toUpperCase(),children:[],style:{},dataset:{},textContent:'',checked:false,value:'',appendChild(e){this.children.push(e);return e},setAttribute(n,v){this[n]=v}}}
-const elements=new Map(['showHollows','hollowMode','hollowXray','showEdgeMeasurements','hollowStatus'].map(id=>[id,element('input')]));
+// TIMESTAMP START 2026-11-02T09:43:39-05:00 | REVISION R004757
+const elements=new Map(['showHollows','hollowXray','showEdgeMeasurements','hollowStatus'].map(id=>[id,element('input')]));
+// TIMESTAMP END 2026-11-02T09:43:39-05:00 | REVISION R004757
 const $=id=>elements.get(id),document={createElement:element},labelLayer=element('div'),requestRender=()=>renderRequests++;
 const downloads=[],download=(...args)=>downloads.push(args),csvCell=x=>'"'+String(x).replaceAll('"','""')+'"';
 let edgeCalls=0,edgeFixtures=[];
@@ -44,17 +52,25 @@ check(template.indexOf('drawCavityVolumes();')<template.indexOf('  drawCutFaces(
 check(cavityRecords().map(r=>r.p.id).join(',')==='A,B','Recess records include every selected visible timber');
 hidden.add('A');check(cavityRecords().map(r=>r.p.id).join(',')==='B','Hidden selected timber does not receive cavity overlays');hidden.clear();
 selectedPartIds.add('C');check(cavityRecords().length===2,'Missing cavity records do not cause phantom shapes');selectedPartIds.delete('C');
-$('hollowMode').onchange({target:{value:'unfilled'}});check(hollowMode==='unfilled'&&cavityRecords().map(r=>r.p.id).join(',')==='B','Mode control excludes empty unfilled meshes');
-$('hollowMode').onchange({target:{value:'unexpected'}});check(hollowMode==='removed','Unknown mode values safely use removed stock');
+// TIMESTAMP START 2026-11-02T09:43:39-05:00 | REVISION R004757
+check(!template.includes('id="hollowMode"')&&hollowMode==='removed','Invalid residual mode is absent from the UI and only removed-stock cavities are selected');
+updateHollowStatus();check($('hollowStatus').textContent.includes('Independent cavity-fit audit passed.'),'Verified audit status appears with the removed-only fixture');
+delete data.fit_audit;updateHollowStatus();check($('hollowStatus').textContent.includes('Independent cavity-fit audit is not attached.')&&!$('hollowStatus').textContent.includes('audit passed'),'Missing audit metadata does not claim verification');
+data.fit_audit={status:'PASS'};
+// TIMESTAMP END 2026-11-02T09:43:39-05:00 | REVISION R004757
 $('showHollows').onchange({target:{checked:false}});check(!showHollows&&cavityRecords().length===0,'Master toggle hides all cavity records');
 log=[];drawCavityVolumes();check(log.length===0,'Hidden cavities perform no GL draw');
 $('showHollows').onchange({target:{checked:true}});log=[];explode=.5;drawCavityVolumes();
 check(log.length===4&&log.every(x=>x.blend&&!x.depthMask&&!x.depthTest),'X-ray draws selected cavity fill/edges with blending and without depth writes/tests');
-check(log.filter(x=>x.type==='TRIANGLES').every(x=>x.opacity===.23)&&log.filter(x=>x.type==='LINES').every(x=>x.opacity===.95&&x.lineMode===1),'Cavity fills and unlit boundaries use intended opacities');
+// TIMESTAMP START 2026-11-02T09:43:39-05:00 | REVISION R004757
+check(log.filter(x=>x.type==='TRIANGLES').every(x=>x.opacity===.48)&&log.filter(x=>x.type==='LINES').every(x=>x.opacity===.95&&x.lineMode===1),'Cavity fills and unlit boundaries use intended opacities');
+// TIMESTAMP END 2026-11-02T09:43:39-05:00 | REVISION R004757
 check(log[2].translation[0]===1,'Cavity meshes follow the selected timber exploded offset');
 check(depthTest&&depthMask&&!blend&&opacity===1&&lineMode===1,'Successful overlay leaves clean state for cut surfaces');
 const cached=cavityRenderMesh(parts[0],'removed'),buffers=nextBuffer;check(cached===cavityRenderMesh(parts[0],'removed')&&nextBuffer===buffers,'Cavity render buffers are cached without rebuilding geometry');
-$('hollowXray').onchange({target:{checked:false}});log=[];drawCavityVolumes();check(log.every(x=>x.depthTest)&&log.filter(x=>x.type==='TRIANGLES').every(x=>x.opacity===.4),'Disabling X-ray respects timber depth and selects normal overlay opacity');
+// TIMESTAMP START 2026-11-02T09:43:39-05:00 | REVISION R004757
+$('hollowXray').onchange({target:{checked:false}});log=[];drawCavityVolumes();check(log.every(x=>x.depthTest)&&log.filter(x=>x.type==='TRIANGLES').every(x=>x.opacity===.55),'Disabling X-ray respects timber depth and selects normal overlay opacity');
+// TIMESTAMP END 2026-11-02T09:43:39-05:00 | REVISION R004757
 throwDraw=true;let threw=false;try{drawCavityVolumes()}catch(e){threw=true}throwDraw=false;check(threw&&depthTest&&depthMask&&!blend&&opacity===1&&lineMode===1,'A failed draw restores all shared GL state');
 selectedPartIds.clear();log=[];drawCavityVolumes();check(!log.length,'No selection draws no cavities');selectedPartIds.add('A');selectedPartIds.add('B');
 gl=null;log=[];drawCavityVolumes();updateHollowStatus();check(log.some(x=>x.fallbackFill)&&log.some(x=>x.fallbackStroke)&&$('hollowStatus').textContent.includes('always shown as X-rays'),'2D fallback draws cavity fill/edges and discloses its X-ray limitation');gl=originalGL;
@@ -89,8 +105,12 @@ ghosts.add('B');check(edgeMeasurementVisible(parts[0],[1,0,1]),'Translucent cont
 parts[0].displacement=[5,0,0];explode=1;basis.eye=[5,0,5];
 check(edgeMeasurementVisible(parts[0],[1,0,1])&&!edgeMeasurementVisible(parts[0],[1,0,-1]),'Visibility rays respect owner and occluder exploded offsets');
 
-check(renderRequests>=7,'Every user toggle/action schedules a renderer update');
+// TIMESTAMP START 2026-11-02T09:43:39-05:00 | REVISION R004757
+check(renderRequests===6,'Each of the six exercised user toggles/actions schedules a renderer update');
+// TIMESTAMP END 2026-11-02T09:43:39-05:00 | REVISION R004757
 return {passed,failed};
-`)(template);
+// TIMESTAMP START 2026-11-02T09:43:39-05:00 | REVISION R004757
+`)(template,TimberEdgeMeasurements);
+// TIMESTAMP END 2026-11-02T09:43:39-05:00 | REVISION R004757
 console.log(JSON.stringify({method:'Production overlay helper in a deterministic DOM/GL state harness; no browser',source:helperPath,passed:result.passed.length,failed:result.failed.length,assertions:result.passed,failures:result.failed},null,2));
 if(result.failed.length)process.exitCode=1;

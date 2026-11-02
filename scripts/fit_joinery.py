@@ -1,3 +1,5 @@
+# TIMESTAMP START 2026-11-02T08:04:03-05:00 | REVISION R004746
+# Restore the pre-R004741 joint study; custom sliding dovetails were withdrawn.
 # TIMESTAMP START 2026-11-01T23:06:10-05:00 | REVISION R004659
 # TIMESTAMP START 2026-11-01T22:44:38-05:00 | REVISION R004653
 """Complementary draft timber joints and an all-pairs solid/contact audit.
@@ -29,7 +31,12 @@ def resolved(s):return m.Manifold(s.to_mesh64()).set_tolerance(1e-9)
 def cut_socket(owner,receiver,tongue,kind):
     assert tongue.volume()>1e-12,(owner,receiver,'empty joint')
     S[owner]=resolved(S[owner]+tongue)
-    removed=S[receiver]^S[owner]
+    # TIMESTAMP START 2026-11-02T08:43:02-05:00 | REVISION R004750
+    # Only the joint cutter defines removed stock. The complete owner also
+    # touches the broad shoulder plane, producing spurious coplanar fragments
+    # in some boolean intersections. Keep the timber subtraction unchanged.
+    removed=resolved(S[receiver]^tongue)
+    # TIMESTAMP END 2026-11-02T08:43:02-05:00 | REVISION R004750
     S[receiver]=resolved(S[receiver]-S[owner])
     SOCKETS[receiver]=resolved(SOCKETS[receiver]+removed)
     JOINTS.append({'owner':owner,'receiver':receiver,'kind':kind,'insert_volume_in3':tongue.volume()/I**3})
@@ -169,16 +176,12 @@ for name,p in P.items():
     p['notes'].append('R02 complementary joint geometry is an explicit design proposal, not a verified source cut or structural rating.')
     # Actual removed recesses only; exterior shoulder trimming is not an internal gap.
     removed=SOCKETS[name]
-    occupied=m.Manifold()
-    rb=removed.bounding_box() if not removed.is_empty() else None
-    if rb:
-        for mate,other in S.items():
-            if mate==name:continue
-            ob=other.bounding_box()
-            if any(rb[i+3]<ob[i]-1e-9 or ob[i+3]<rb[i]-1e-9 for i in range(3)):continue
-            occupied=resolved(occupied+(removed^other))
-    unfilled=resolved(removed-occupied)
-    cavities[name]={'removed':mesh(removed),'unfilled':mesh(unfilled),'occupied_volume_m3':occupied.volume()}
+    # TIMESTAMP START 2026-11-02T08:43:02-05:00 | REVISION R004750
+    # Do not export repeated coplanar 3D differences as alleged empty space.
+    # Their inverted residual shells are numerically invalid. Occupancy is
+    # independently checked by audit_cavity_fit.py against every mating solid.
+    cavities[name]={'removed':mesh(removed)}
+    # TIMESTAMP END 2026-11-02T08:43:02-05:00 | REVISION R004750
     p['geometry_planes_inches_status']='Pre-joinery reference envelope; current solid is the vertex/triangle mesh.'
 # Each family separates in radius and height; paired braces also separate sideways.
 # The same scalar drives every part, including brown posts and purple cupola timber.
@@ -217,7 +220,9 @@ for name,sheet in plywood:
         volume=(sheet^timber).volume()/I**3
         if volume>1e-6:report['sheet_goods_timber_overlaps'].append({'a':name,'b':other,'volume_in3':volume})
 assert not report['sheet_goods_timber_overlaps'],report['sheet_goods_timber_overlaps']
-report['cavity_closure_status']='NOT CERTIFIED: unfilled-volume diagnostics require independent review.'
+# TIMESTAMP START 2026-11-02T08:43:02-05:00 | REVISION R004750
+report['cavity_closure_status']='Run audit_cavity_fit.py for independent cavity occupancy checks; legacy 3D residual meshes are not exported.'
+# TIMESTAMP END 2026-11-02T08:43:02-05:00 | REVISION R004750
 # TIMESTAMP END 2026-11-01T23:19:38-05:00 | REVISION R004668
 D['revision']='R02'
 D['title']='Octagonal timberframe · cupola and complementary joint study'
@@ -242,3 +247,4 @@ print(json.dumps({'status':report['status'],'wood_pairs':report['pairs_tested'],
 # Preserve one panel identity and refresh model-bound metadata after fitting.
 from cupola_panel import migrate
 migrate(ROOT)
+# TIMESTAMP END 2026-11-02T08:04:03-05:00 | REVISION R004746

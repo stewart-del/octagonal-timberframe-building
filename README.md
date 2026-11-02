@@ -1,3 +1,4 @@
+<!-- TIMESTAMP START 2026-11-02T10:05:34-05:00 | REVISION R004758 -->
 <!-- TIMESTAMP START 2026-11-01T23:06:10-05:00 | REVISION R004659 -->
 <!-- TIMESTAMP START 2026-11-01T22:44:38-05:00 | REVISION R004653 -->
 # Octagonal Timberframe Building
@@ -24,7 +25,13 @@ Original building and drawing: Robert Swinburne / Bluetime Collaborative. See AT
 
 <!-- TIMESTAMP START 2026-11-01T23:19:38-05:00 | REVISION R004668 -->
 
-The [joint strength and load-path audit](https://octagonal-timberframe-building.brujodinamico.chatgpt.site/structural-audit.html) identifies unresolved central restraint, tenon proportions and foundation load paths. Simple integral dovetails are a candidate, not an engineered replacement. The model now includes eight horizontal ceiling spokes and eight half-inch horizontal plywood sectors. The ceiling spoke size is provisional; finish-board thickness remains unconfirmed. Run `scripts/audit_structure.py` after fitting to refresh the measured audit.
+<!-- TIMESTAMP START 2026-11-02T08:05:33-05:00 | REVISION R004748 -->
+The [joint strength and load-path audit](https://octagonal-timberframe-building.brujodinamico.chatgpt.site/structural-audit.html) records a design hold on the lower cupola connections. **No new dovetails are published.** The existing straight tongues remain an unresolved proposal. Documented traditional working joinery takes priority over invented interlocks.
+
+The documented horizontal through wedged half-dovetail family is a candidate for review, with a separate wedge, matching bearing and a suitable housing. It is not interchangeable with a vertical suspended kingpost tenon through a continuous tie. Here the 10-inch tie underside and cupola post bottom are flush: a full-depth head would leave no timber below it. A smaller head or mirrored flare has not been validated. Vermont Timber Works F-6 detail 7 labels a double tenon, not a double dovetail. Source examples establish joint families, not the original building’s hidden joints or approved dimensions for this model.
+
+The model includes eight horizontal ceiling spokes and one continuous half-inch horizontal plywood panel assembly. The ceiling spoke size is provisional; finish-board thickness remains unconfirmed. Run `scripts/audit_structure.py` after fitting to refresh the measured audit and its model hash. Connection sizing, force paths and the complete raising sequence remain unresolved.
+<!-- TIMESTAMP END 2026-11-02T08:05:33-05:00 | REVISION R004748 -->
 
 <!-- TIMESTAMP END 2026-11-01T23:19:38-05:00 | REVISION R004668 -->
 
@@ -38,4 +45,11 @@ The hidden construction-aid layer contains one reusable symbolic green aid and o
 
 ## Proposed step lap comparison
 
-The [proposed step-lap model](docs/step-lap-proposal-review.md) implements actual complementary CSG at all 24 matching perimeter interfaces (16 J/B and 8 R/P), with both pockets on each ring beam. The main model selector switches between proposed and unchanged baseline geometry, including source-matched applied self-weight, enclosure fit, plans and qualified exports. Chosen dimensions and geometric tradeoffs remain a design proposal, not fabrication or structural approval; proposed contact pressures and baseline warning markers are withheld. Proposed recess overlays are unavailable pending independent validation; no baseline overlay is substituted.
+The [proposed step-lap model](docs/step-lap-proposal-review.md) implements actual complementary CSG at all 24 matching perimeter interfaces (16 J/B and 8 R/P), with both pockets on each ring beam. The main model selector switches between proposed and unchanged baseline geometry, including source-matched applied self-weight, enclosure fit, plans and qualified exports. Chosen dimensions and geometric tradeoffs remain a design proposal, not fabrication or structural approval; proposed contact pressures and baseline warning markers are withheld. Both model variants use their own independently audited recess geometry; no baseline overlay is substituted for proposed cuts.
+<!-- TIMESTAMP START 2026-11-02T09:09:36-05:00 | REVISION R004753 -->
+
+The nominal cavity-fit audit uses independent occupancy and section checks against the actual timber meshes. It is bound to both source hashes, and the build rejects stale or failed results. The pointed lower-cupola overlays are corrected without changing any timber solid. Invalid 3D residual meshes are no longer exported or displayed. Run `scripts/audit_cavity_fit.py` after fitting, then `scripts/audit_structure.py` and `scripts/build.py`. This checks geometric fit, not structural capacity or the complete raising sequence.
+
+<!-- TIMESTAMP END 2026-11-02T09:09:36-05:00 | REVISION R004753 -->
+
+<!-- TIMESTAMP END 2026-11-02T10:05:34-05:00 | REVISION R004758 -->

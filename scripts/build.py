@@ -49,6 +49,16 @@ inspection = (ROOT/'src/inspection-tools.js').read_text().replace('__MATERIALS_J
 # TIMESTAMP START 2026-11-01T22:44:38-05:00 | REVISION R004653
 cavities = json.loads((ROOT/'src/cavity-data.json').read_text())
 assert cavities['source_model_sha256'] == model_sha
+# TIMESTAMP START 2026-11-02T09:09:36-05:00 | REVISION R004753
+cavity_audit=json.loads((ROOT/'docs/cavity-fit-audit.json').read_text())
+assert cavity_audit['status']=='PASS', 'Cavity fit audit must pass before publishing'
+assert cavity_audit['model_sha256']==model_sha, 'Cavity audit model is stale'
+assert cavity_audit['cavity_sha256']==hashlib.sha256((ROOT/'src/cavity-data.json').read_bytes()).hexdigest(), 'Cavity audit geometry is stale'
+cavities['fit_audit']={k:cavity_audit[k] for k in ['status','summary']}
+# TIMESTAMP START 2026-11-02T10:05:34-05:00 | REVISION R004758
+cavities['available']=True
+# TIMESTAMP END 2026-11-02T10:05:34-05:00 | REVISION R004758
+# TIMESTAMP END 2026-11-02T09:09:36-05:00 | REVISION R004753
 # TIMESTAMP END 2026-11-01T22:44:38-05:00 | REVISION R004653
 
 load_data=json.loads((ROOT/'src/load-review-data.json').read_text())
@@ -75,6 +85,14 @@ proposed_cavities=json.loads((ROOT/'src/step-lap-proposed-cavities.json').read_t
 proposed_materials=json.loads((ROOT/'src/step-lap-proposed-material-groups.json').read_text())
 assert proposed_load['source_model_sha256']==proposed_sha, 'Proposed self-weight data is stale'
 assert proposed_cavities['source_model_sha256']==proposed_sha, 'Proposed cavity data is stale'
+# TIMESTAMP START 2026-11-02T10:05:34-05:00 | REVISION R004758
+proposed_cavity_audit=json.loads((ROOT/'docs/step-lap-proposed-cavity-fit-audit.json').read_text())
+assert proposed_cavity_audit['status']=='PASS', 'Proposed cavity fit audit must pass before publishing'
+assert proposed_cavity_audit['model_sha256']==proposed_sha, 'Proposed cavity audit model is stale'
+assert proposed_cavity_audit['cavity_sha256']==hashlib.sha256((ROOT/'src/step-lap-proposed-cavities.json').read_bytes()).hexdigest(), 'Proposed cavity audit geometry is stale'
+proposed_cavities['fit_audit']={k:proposed_cavity_audit[k] for k in ['status','summary']}
+proposed_cavities['available']=True
+# TIMESTAMP END 2026-11-02T10:05:34-05:00 | REVISION R004758
 assert proposed_materials['source_sha256']==proposed_sha, 'Proposed inventory is stale'
 assert proposed_load['issues']==[] and proposed_load['baseline_pressure_disabled'] is True, 'Baseline markers/area shortcuts must not be reused for proposed joints'
 assert sorted(m['id'] for m in proposed_load['members'])==sorted(m['id'] for m in load_data['members'])
@@ -120,7 +138,10 @@ downloads = dist/'downloads'
 downloads.mkdir(exist_ok=True)
 shutil.copyfile(model_path, downloads/'Octagon-R01-model.json')
 shutil.copyfile(ROOT/'src/step-lap-proposed-model.json',downloads/'Octagon-PROPOSED-step-lap-model.json')
-for source_name in ['r01-change-register.json', 'r01-verification.json', 'joinery-verification.json', 'structural-audit.json']:
+# TIMESTAMP START 2026-11-02T10:05:34-05:00 | REVISION R004758
+audit_downloads=['r01-change-register.json','r01-verification.json','joinery-verification.json','structural-audit.json','cavity-fit-audit.json','step-lap-proposed-cavity-fit-audit.json']
+# TIMESTAMP END 2026-11-02T10:05:34-05:00 | REVISION R004758
+for source_name in audit_downloads:
     source = ROOT/'docs'/source_name
     if source.exists():
         shutil.copyfile(source, downloads/source_name)
