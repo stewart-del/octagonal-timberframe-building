@@ -1,3 +1,6 @@
+// TIMESTAMP START 2026-11-01T23:19:38-05:00 | REVISION R004668
+// TIMESTAMP START 2026-11-01T23:06:10-05:00 | REVISION R004659
+// TIMESTAMP START 2026-11-01T23:01:05-05:00 | REVISION R004657
 // Offline scripted DOM/WebGL integration tests. No browser or network access.
 // Focus and events are simulated, including the real registered document/window handlers.
 const fs=require('fs'),vm=require('vm');
@@ -54,7 +57,7 @@ function findAction(text){return descendants($('selection')).find(el=>el.tagName
 canvas.focus();
 const cubeV=[[0,0,0],[1,0,0],[1,1,0],[0,1,0],[0,0,1],[1,0,1],[1,1,1],[0,1,1]];const cubeT=[[0,2,1],[0,3,2],[4,5,6],[4,6,7],[0,1,5],[0,5,4],[1,2,6],[1,6,5],[2,3,7],[2,7,6],[3,0,4],[3,4,7]];if(featureEdges(cubeV,cubeT).length/12!==12)throw Error('Feature edges must suppress cube face diagonals');
 if(detailOn!==false)throw Error('Expanded labels must default off to avoid clutter');
-if(parts.filter(isTimber).length!==96)throw Error('Expected 96 retained timber pieces');
+if(parts.filter(isTimber).length!==104)throw Error('Expected 104 timbers including horizontal ceiling spokes');
 if(parts.some(p=>/^J[0-7]-1$/.test(p.id)))throw Error('Retired center rafters remain');
 if(parts.some(p=>p.temporary&&isShown(p)))throw Error('Temporary components must start hidden');
 render();
@@ -149,3 +152,9 @@ console.log(JSON.stringify({test_method:'offline mocked DOM/WebGL; no browser UI
 `;
 vm.runInContext(script+'\n'+test,context);
 
+
+// TIMESTAMP END 2026-11-01T23:01:05-05:00 | REVISION R004657
+
+// TIMESTAMP END 2026-11-01T23:06:10-05:00 | REVISION R004659
+
+// TIMESTAMP END 2026-11-01T23:19:38-05:00 | REVISION R004668

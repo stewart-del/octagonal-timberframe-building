@@ -1,3 +1,4 @@
+# TIMESTAMP START 2026-11-01T23:06:10-05:00 | REVISION R004659
 """Validate the built R01 viewer against canonical model and local assets.
 
 These are geometry/data and packaging checks, not construction approval.
@@ -24,12 +25,12 @@ by_id = {p["id"]: p for p in parts}
 assert len(by_id) == len(parts), "Duplicate component IDs"
 retained = {name for k in range(8) for name in (
     f"P{k}", f"B{k}", f"T{k}", f"R{k}", f"C{k}",
-    f"L{k}-L", f"L{k}-S", f"L{k}-H", f"K{k}-A", f"K{k}-B",
+    f"L{k}-S", f"L{k}-H", f"K{k}-A", f"K{k}-B",
     f"J{k}-0", f"J{k}-2")}
 retired = {f"J{k}-1" for k in range(8)}
 assert retained <= by_id.keys(), "A surviving legacy timber ID was lost"
 assert not (retired & by_id.keys()), "Retired midpoint rafters still in model"
-assert len(retained) == 96
+assert len(retained) == 88
 groups = {g["id"]: g for g in data["groups"]}
 assert len(groups) == len(data["groups"])
 for group in groups.values():
@@ -83,3 +84,5 @@ print(json.dumps({
     "embedded_model_matches_source": True, "local_links_exist": True,
     "scope": "Geometry/data and packaging validation; no structural or fabrication approval."
 }, indent=2))
+
+# TIMESTAMP END 2026-11-01T23:06:10-05:00 | REVISION R004659

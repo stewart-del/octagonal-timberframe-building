@@ -2,6 +2,8 @@
 <html lang="en">
 <head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Corrected framing · R01 · Octagonal Timberframe</title><style>
 :root{--ink:#243d42;--muted:#5c7175;--line:#d8dfdc;--paper:#fafaf6;--blue:#176a7d}*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.65 system-ui,sans-serif}main{max-width:980px;padding:32px 24px 70px;margin:auto}a{color:var(--blue)}nav{display:flex;gap:24px;flex-wrap:wrap;font-size:14px;margin-bottom:40px}.eyebrow{color:var(--muted);font-size:12px;text-transform:uppercase;letter-spacing:.12em}h1{font-size:clamp(30px,5vw,48px);line-height:1.1;max-width:730px;margin:10px 0 24px}h2{font-size:24px;line-height:1.25;margin-top:42px}p{max-width:780px}.lead{font-size:21px}.pattern{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:28px 0}.pattern>div{background:#edf2ed;padding:22px;border-radius:10px}.pattern strong{display:block;font-size:34px;line-height:1.2}.pattern span{font-size:14px}.table-wrap{overflow:auto}table{width:100%;border-collapse:collapse;font-size:14px}th,td{text-align:left;vertical-align:top;padding:13px 12px;border-bottom:1px solid var(--line)}th{background:#edf2ed}td:first-child{font-weight:600}.note{background:#f5eee3;padding:16px 20px;border-left:3px solid #b78950;font-size:14px}.links{display:flex;gap:20px;flex-wrap:wrap}.tag{font-size:12px;color:var(--muted)}@media(max-width:540px){main{padding:22px 16px}.pattern{gap:8px}.pattern>div{padding:14px 10px}.pattern strong{font-size:30px}.pattern span{font-size:12px}th,td{padding:10px 8px;font-size:12px}}</style></head>
+<!-- TIMESTAMP START 2026-11-01T22:44:38-05:00 | REVISION R004653 -->
+<!-- TIMESTAMP START 2026-11-01T23:06:10-05:00 | REVISION R004659 -->
 <body><main>
 <nav><a href="index.html">← Explore the 3D frame</a><a href="downloads/index.html">Model data &amp; archive</a><a href="https://github.com/stewart-del/octagonal-timberframe-building">GitHub source</a></nav>
 <div class="eyebrow">R01 · corrected architectural geometry</div>
@@ -9,7 +11,13 @@
 <p class="lead">The revised roof follows Stewart’s corrected pattern. Short rafters meet the sides of the neighboring main hips, outside the cupola.</p>
 <div class="pattern"><div><strong>8</strong><span>main triangular frames</span></div><div><strong>16</strong><span>short rafters, two per bay</span></div><div><strong>0</strong><span>midpoint rafters running inward</span></div></div>
 <p>The eight former midpoint pieces <strong>J0-1 through J7-1</strong> are retired. The surviving timbers retain their IDs and A/B direction. The lower radial ties are now <strong>6 × 10 in</strong>. Green cupola spacers and the black temporary assembly fixture are separate metal components.</p>
-<p>The inventory retains 96 timber IDs, including contextual ring bands and braces whose sections and connections are not established by R01. Cupola bands, the temporary fixture and the roof envelope start hidden; turn them on in <em>Visible member groups</em>.</p>
+<p>R02 removes eight unsupported lower cupola bands and adds eight cupola roof rafters, for 96 timbers total. Proposed complementary joints are modeled and checked numerically. The two upper octagonal timber bands and eight cupola roof rafters are visible. The well below is open. The temporary fixture and optional roof surface remain separate.</p>
+<h2>R02: fitted cupola and restored inspection</h2>
+<p>Cupola posts extend down to the bottom of the 6 × 10 ties. Fitted octagonal 4 × 6 bands connect the posts. The main hips have flat rectangular tops, with no backing bevel. The P0 corner close-up, exploded assembly, end views, edge tables, multi-selection and free navigation are retained. Selecting wood automatically shows bright transparent recesses.</p>
+<p>The outside and inside diameters imply a 6 in radial post depth and 41 in center radius. Rotated 6 × 6 posts give a 28.132865 in outward-corner gap, which rounds to 2 ft 4⅛ in. This gap is neither the post-center chord (31.380041 in) nor the clear span on the inside edge.</p>
+<p>Readable source values and prior user directions govern the dimensions above. The source lower-member callout is 6 × 8; the model retains Stewart’s earlier explicit change to 6 × 10. The readable 4 × 6 bands are preserved. Glazing height 2 ft 8 in has uncertain endpoints. Roof timber depth, pegs, steel thickness and window dimensions cannot be established from this image.</p>
+<p class="note">The proposed fit uses centered shoulder tenons and matching sockets, diagonal brace sockets, and shallow bearing seats. Joint sizes are design assumptions, not source dimensions. The main roof height is offset by the actual member depth to bear above the ties; the ring is aligned with the short-rafter underside. These inferred bearing datums preserve plan dimensions and slopes. Structural capacity, timber movement and assembly sequence remain unverified.</p>
+<p><a href="downloads/joinery-verification.json">Download the current all-pairs solid and contact audit</a></p>
 <h2>Dimensions and their datums</h2>
 <div class="table-wrap"><table><thead><tr><th>Dimension</th><th>R01 value</th><th>Basis</th></tr></thead><tbody>
 <tr><td>Main post outside diameter</td><td>30 ft 0 in</td><td>Confirmed outside radial post faces</td></tr>
@@ -37,9 +45,17 @@
 <h2>Metal components and the cupola</h2>
 <p>The green pieces span the outward corners of neighboring cupola posts. Their 28⅛ in setting-out gap is not a flat-metal blank length. Metal thickness, end returns, holes and fastening remain unspecified.</p>
 <p>The black fitting is temporary assembly equipment. Its documented overall span is 88 in, with a 14 in terminal height and 4 in strip depth. The displayed metal thickness is schematic. No erection capacity, fastening or removal criterion is assigned.</p>
-<p>The optional cupola roof is an envelope that shows the confirmed pitch and overhang. It is not an invented roof-timber schedule. “Boston Layout” remains the wall-window source note; window dimensions and openings are unresolved.</p>
+<p>Eight flat-topped cupola roof rafters now meet above the open well. Their 2 in width follows the readable 2x framing note; their 6 in depth is provisional. The optional roof surface shows the 4:12 slope and 12 in overhang. “Boston Layout” remains the wall-window source note; window dimensions and openings are unresolved.</p>
 <h2>Read and export the revised model</h2>
 <p>Orbit, zoom, isolate pieces or use Free / WASD to move around the frame. The selected-piece tables include edge lengths, face angles and contact-plane angles. Parts, materials and model data can be exported from the viewer. Metal components are excluded from timber board-foot totals.</p>
 <p class="links"><a href="index.html">Open the revised frame</a><a href="joinery.html">Current joint register</a><a href="downloads/index.html">Current downloads</a><a href="review/index.html">Earlier prototype review</a></p>
 <p class="tag">Basis: <em>Octagon architectural geometry study R01</em>, 12 sheets, and Stewart Lundy’s corrections. Original drawing credited to Robert Swinburne / Bluetime Collaborative. Earlier fitted-model reports and GLBs document the superseded prototype and do not apply to this geometry. R01 is a geometry study, not a construction or fabrication set.</p>
+
+<!-- TIMESTAMP START 2026-11-01T23:19:38-05:00 | REVISION R004668 -->
+<p><a href="structural-audit.html"><strong>Joint strength and load-path audit</strong></a>: central withdrawal restraint and receiver proportions require redesign. Simple integral dovetails are a candidate, not a verified strength upgrade. The horizontal half-inch plywood and eight exposed ceiling spokes are now shown separately from the pitched roof; finish-board thickness remains unresolved.</p>
+<!-- TIMESTAMP END 2026-11-01T23:19:38-05:00 | REVISION R004668 -->
 </main></body></html>
+
+<!-- TIMESTAMP END 2026-11-01T22:44:38-05:00 | REVISION R004653 -->
+
+<!-- TIMESTAMP END 2026-11-01T23:06:10-05:00 | REVISION R004659 -->

@@ -14,7 +14,11 @@ jobs:
         with:
           node-version: '22'
       - run: python3 scripts/build.py
+      # TIMESTAMP START 2026-11-01T22:44:38-05:00 | REVISION R004653
+      - run: pip install numpy manifold3d
+      - run: python3 tests/test_joinery.py
       - run: python3 tests/test_r01_geometry.py
+      # TIMESTAMP END 2026-11-01T22:44:38-05:00 | REVISION R004653
       - run: python3 tests/validate_model.py dist/index.html
       - run: python3 tests/validate_exports.py
       - run: node --check tests/viewer-script-check.js

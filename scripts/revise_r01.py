@@ -1,3 +1,4 @@
+# TIMESTAMP START 2026-11-01T23:06:10-05:00 | REVISION R004659
 #!/usr/bin/env python3
 """Reproduce R01 geometric envelopes. No fabrication joints are inferred.
 
@@ -18,7 +19,13 @@ GAP,B=42.375,4.
 RHO=(GAP+B)/(2*math.sin(ALPHA))
 STATION=(1-RHO/RE)/2
 HIP_HALF_VERTICAL=5/math.cos(math.atan(PH))
-ROOF_K=H+PH*RP+HIP_HALF_VERTICAL
+# TIMESTAMP START 2026-11-01T22:44:38-05:00 | REVISION R004653
+ROOF_SHIFT=5+HIP_HALF_VERTICAL
+ROOF_K=H+PH*RP+HIP_HALF_VERTICAL+ROOF_SHIFT
+CUP_TOP=H+45+ROOF_SHIFT+32
+RING_TOP=H+10/math.cos(math.atan(PH))+5-8/math.cos(math.atan(PN))
+# TIMESTAMP END 2026-11-01T22:44:38-05:00 | REVISION R004653
+
 
 def add(a,b):return [a[i]+b[i] for i in range(3)]
 def sub(a,b):return [a[i]-b[i] for i in range(3)]
@@ -90,14 +97,15 @@ def member(pid,group,name,a,b,width,depth,planes,notes=(),material='wood',tempor
  p['geometry_planes_inches']=[{'normal':pl['n'],'constant':pl['k'],'end':pl['tag'],'mate':pl['mate']} for pl in planes]
  PARTS.append(p);return p
 
+# TIMESTAMP START 2026-11-01T22:44:38-05:00 | REVISION R004653
 CONTEXT='Retained contextual member from the earlier reconstruction; section and detailed placement are unverified.'
 for k in range(8):
  r,t=radial(k),tangent(k);rn,tn=radial(k+1),tangent(k+1)
  # Posts retain original A=foot, B=head semantics; H is explicitly provisional.
- a,b=at(RP,k,0),at(RP,k,H-4)
+ a,b=at(RP,k,0),at(RP,k,RING_TOP)
  ps,_,_=prism_planes(a,b,8,8,r)
  member(f'P{k}','perimeter_posts','Perimeter post',a,b,8,8,ps,[CONTEXT,'30 ft across radial outside faces; 8 in actual section assumed.'])
- a,b=at(RP,k,H),at(RP,k+1,H)
+ a,b=at(RP,k,RING_TOP-4),at(RP,k+1,RING_TOP-4)
  ps,_,_=prism_planes(a,b,6,8)
  ps=ps[2:]+[plane(mul(t,-1),-4,'A',f'P{k}'),plane(tn,-4,'B',f'P{(k+1)%8}')]
  member(f'B{k}','eave_ring','Perimeter ring beam',a,b,6,8,ps,[CONTEXT,'Ends terminate at adjacent post side faces. Post-head bearing and heel connections remain unresolved.'])
@@ -106,18 +114,20 @@ for k in range(8):
  ps=ps[2:]+[plane(r,RP-4,'A',f'P{k}'),plane(mul(r,-1),-44,'B',f'C{k}')]
  member(f'T{k}','radial_ties','Lower radial tie · 6 × 10',a,b,6,10,ps,['6 × 10 in requested by Stewart. Reference length is 135 in between post centres. Physical body is shown to post faces; joinery allowance unresolved.'])
  # Backed hip: two adjacent top roof planes meet on its radial ridge.
- a,b=at(RE,k,H+PH*(RP-RE)),at(RC,k,H+PH*(RP-RC))
+ a,b=at(RE,k,H+PH*(RP-RE)+ROOF_SHIFT),at(RC,k,H+PH*(RP-RC)+ROOF_SHIFT)
  roof_normal_l=add(mul(r,PH),add(mul(t,PH*math.tan(ALPHA)),[0,0,1]))
  roof_normal_r=add(mul(r,PH),add(mul(t,-PH*math.tan(ALPHA)),[0,0,1]))
- ps=[plane(r,RE,'A'),plane(mul(r,-1),-44,'B',f'C{k}'),plane(t,4),plane(mul(t,-1),4),plane(roof_normal_l,ROOF_K),plane(roof_normal_r,ROOF_K),plane(add(mul(r,-PH),[0,0,-1]),-H-PH*RP+HIP_HALF_VERTICAL)]
- member(f'R{k}','radial_rafters','Main radial hip · 8 × 10',a,b,8,10,ps,['Radial inclination 4:12. Two backed roof faces are an explicit geometric envelope, not a verified carpentry cut.','Hip, tie and post heel geometry still overlaps until seat/joint offsets are designed; no collision-free assembly is claimed.'],reference={'radial_pitch':PH,'eave_radius_in':RE,'cupola_reference_radius_in':RC,'roof_top_offset_from_reference_in':HIP_HALF_VERTICAL})
- a,b=at(RC,k,H+5),at(RC,k,H+45+32)
+ ps=[plane(r,RE,'A'),plane(mul(r,-1),-44,'B',f'C{k}'),plane(t,4),plane(mul(t,-1),4),plane(add(mul(r,PH),[0,0,1]),ROOF_K),plane(add(mul(r,-PH),[0,0,-1]),-H-PH*RP+HIP_HALF_VERTICAL-ROOF_SHIFT)]
+ member(f'R{k}','radial_rafters','Main radial hip · 8 × 10',a,b,8,10,ps,['Radial inclination 4:12. Flat rectangular top face; no backing bevel, per user construction-photo correction.','Hip, tie and post heel geometry still overlaps until seat/joint offsets are designed; no collision-free assembly is claimed.'],reference={'radial_pitch':PH,'eave_radius_in':RE,'cupola_reference_radius_in':RC,'roof_top_offset_from_reference_in':HIP_HALF_VERTICAL})
+ a,b=at(RC,k,H-5),at(RC,k,CUP_TOP)
  ps,_,_=prism_planes(a,b,6,6,r)
+ # Match the sloping underside of the cupola hip for full post-head contact.
+ ps[1]=plane(add(mul(r,PH),[0,0,1]),CUP_TOP+44*PH,'B',f'CR{k}')
  member(f'C{k}','cupola_posts','Cupola post · radial 6 × 6',a,b,6,6,ps,['88 in outside / 76 in inside radial faces. Base, glazing and top bearing heights remain unresolved; 32 in upper interval is a display assumption.'])
- for suffix,z in [('L',H+1),('S',H+45+3),('H',H+45+32-3)]:
+ for suffix,z in [('S',H+45+ROOF_SHIFT+3),('H',CUP_TOP-3)]:
   a,b=at(RC,k,z),at(RC,k+1,z);ps,_,_=prism_planes(a,b,4,6)
   ps=ps[2:]+[plane(mul(t,-1),-3,'A',f'C{k}'),plane(tn,-3,'B',f'C{(k+1)%8}')]
-  member(f'L{k}-{suffix}','cupola_bands','Contextual cupola band · unconfirmed',a,b,4,6,ps,[CONTEXT,'Hidden by default. R01 does not establish this timber band or its connection; it is not a substitute for the green metal spacer.'])
+  member(f'L{k}-{suffix}','cupola_bands','Cupola ring timber · 4 × 6',a,b,4,6,ps,['4 × 6 upper and sill bands follow legible section callouts. Lower ring placement follows the tie-bottom connection; its section remains provisional.','Ends meet the rotated post side faces; the central opening remains open.'])
  for suffix,adj in [('A',k-1),('B',k+1)]:
   a=at(RP,k,H-28);line=unit(sub(at(RP,adj,0),at(RP,k,0)));b=add(at(RP,k,H),mul(line,28))
   ps,_,_=prism_planes(a,b,3,4.8)
@@ -137,7 +147,7 @@ for k in range(8):
 # Independent metal is symbolic: dimensions of its section are display choices.
 for k in range(8):
  r,t=radial(k),tangent(k);rn,tn=radial(k+1),tangent(k+1)
- a=add(mul(r,44),mul(t,3));b=add(mul(rn,44),mul(tn,-3));a[2]=b[2]=H+45+3
+ a=add(mul(r,44),mul(t,3));b=add(mul(rn,44),mul(tn,-3));a[2]=b[2]=H+45+ROOF_SHIFT+3
  ps,_,_=prism_planes(a,b,.125,2)
  member(f'M-SP{k}','metal_spacers','Cupola metal spacer · 28⅛ in setting-out gap',a,b,.125,2,ps,['28.132865 in outer-corner gap (rounds to 28⅛ in).','Position along post, thickness, strip depth, returns, holes, fasteners and developed blank length unresolved; section shown only for visibility.'],material='steel')
  a=[0,0,H-7];b=at(44,k,H-7);ps,_,_=prism_planes(a,b,.125,4,t)
@@ -145,7 +155,7 @@ for k in range(8):
 
 # Optional cupola roof envelope: surface shell only, not a rafter or roof assembly.
 for k in range(8):
- base=H+45+32
+ base=H+45+ROOF_SHIFT+32
  apex=[0,0,base+44/3]
  a,b=at(56,k,base-4),at(56,k+1,base-4)
  n=[math.cos((k+.5)*math.pi/4),math.sin((k+.5)*math.pi/4),0]
@@ -153,17 +163,69 @@ for k in range(8):
  ps=[plane(mul(tangent(k),-1),0,'A'),plane(tangent(k+1),0,'B'),plane(n,56*math.cos(ALPHA)),plane([PN*n[0],PN*n[1],1],apex[2]),plane([-PN*n[0],-PN*n[1],-1],-apex[2]+.05)]
  p=member(f'ENV-CUP{k}','roof_envelope','Cupola roof reference surface',a,apex,0,.05,ps,['4:12 radial pitch, 12 in radial overhang beyond the 44 in outside face.','Surface envelope only; 0.05 in shell is a rendering choice, not a roof material or structural section.'],material='surface')
 
-GROUPS=[('perimeter_posts','Perimeter posts','#876247',True),('eave_ring','Perimeter ring beams · provisional','#ae7c4a',True),('radial_ties','Lower radial ties · 6 × 10','#c39a56',True),('radial_rafters','Eight main hips · 8 × 10','#6f8b7b',True),('cupola_posts','Cupola posts · 6 × 6','#8d6e99',True),('cupola_bands','Previous cupola bands · unconfirmed','#a88bb4',False),('braces','Knee braces · provisional','#a68764',True),('secondary_approx','Sixteen short rafters · 4 × 8','#879da2',True),('metal_spacers','Green metal cupola spacers','#28784c',True),('temporary_fixture','Temporary assembly fixture','#273036',False),('roof_envelope','Cupola roof reference envelope','#698a9b',False)]
+# Cupola roof timber sections are explicit visualization assumptions, not source sizes.
+for k in range(8):
+ r,t=radial(k),tangent(k)
+ crown=CUP_TOP+44*PH
+ a,b=at(56,k,crown-56*PH+3/math.cos(math.atan(PH))),[0,0,crown+3/math.cos(math.atan(PH))]
+ ps=[plane(r,56,'A'),plane(mul(r,-1),0,'B'),plane(t,1),plane(mul(t,-1),1),
+     plane(add(mul(r,-PH),[0,0,-1]),-crown),
+     plane(add(mul(r,PH),[0,0,1]),crown+6/math.cos(math.atan(PH))),
+     plane(sub(t,mul(r,math.tan(ALPHA))),0),plane(sub(mul(t,-1),mul(r,math.tan(ALPHA))),0)]
+ member(f'CR{k}','cupola_rafters','Cupola roof hip · 2 × 6 assumed depth',a,b,2,6,ps,
+        ['4:12 radial slope and 12 in overhang retained. Eight roof hips close at radial miter planes above the open well.','2 in width follows the legible 2x roof-framing note; 6 in depth remains a design assumption.','Cupola post heads meet the roof-hip underside; no central support crosses the opening.'])
+
+# TIMESTAMP END 2026-11-01T22:44:38-05:00 | REVISION R004653
+
+# TIMESTAMP START 2026-11-01T22:44:38-05:00 | REVISION R004653
+# TIMESTAMP START 2026-11-01T23:19:38-05:00 | REVISION R004668
+# Horizontal ceiling is distinct from the pitched 2x roof framing above it.
+# The photograph confirms eight exposed spokes; their 4x6 section is provisional.
+for k in range(8):
+ r,t=radial(k),tangent(k)
+ a,b=at(38,k,CUP_TOP-3),[0,0,CUP_TOP-3]
+ ps,_,_=prism_planes(a,b,4,6,t)
+ ps=ps[2:]+[plane(r,38,'A',f'C{k}'),plane(mul(r,-1),0,'B'),
+     plane(sub(t,mul(r,math.tan(ALPHA))),0),plane(sub(mul(t,-1),mul(r,math.tan(ALPHA))),0)]
+ member(f'CC{k}','cupola_ceiling','Horizontal cupola ceiling spoke',a,b,4,6,ps,
+        ['Eight horizontal exposed spokes follow the interior photograph. 4 x 6 size is a visual assumption, not a legible source callout.',
+         'Plain center miters and post-face contacts are not tension or uplift connections; ceiling attachment remains to be designed.'])
+ # Eight modeled sectors show the horizontal plywood without implying a sheet-cut schedule.
+ n=[math.cos((k+.5)*math.pi/4),math.sin((k+.5)*math.pi/4),0]
+ ps=[plane(mul(t,-1),0,'A'),plane(tangent(k+1),0,'B'),plane(n,RC*math.cos(ALPHA)-2),
+     plane(r,38),plane(radial(k+1),38),plane([0,0,1],CUP_TOP+.5),plane([0,0,-1],-CUP_TOP)]
+ member(f'PLY{k}','cupola_plywood','Horizontal cupola plywood sector · 1/2 in',
+        at(22,k,CUP_TOP+.25),at(22,k+1,CUP_TOP+.25),1,.5,ps,
+        ['Half-inch thickness and horizontal upper ceiling/deck placement explicitly confirmed by Stewart.',
+         'Sector divisions are display divisions, not a panel seam or fastening specification. Underside finish-board thickness is unconfirmed.',
+         'Panel cutouts fit the final adjacent timbers. Grade, seams, blocking and fasteners are not specified; no diaphragm capacity is assigned.'],material='plywood')
+# TIMESTAMP END 2026-11-01T23:19:38-05:00 | REVISION R004668
+
+# TIMESTAMP START 2026-11-01T23:19:38-05:00 | REVISION R004668
+GROUPS=[('perimeter_posts','Perimeter posts','#876247',True),('eave_ring','Perimeter ring beams · provisional','#ae7c4a',True),('radial_ties','Lower radial ties · 6 × 10','#c39a56',True),('radial_rafters','Eight main hips · 8 × 10','#6f8b7b',True),('cupola_posts','Cupola posts · 6 × 6','#8d6e99',True),('cupola_bands','Fitted octagonal cupola rings · 4 × 6','#a88bb4',True),('cupola_rafters','Cupola roof framing · provisional','#b58b54',True),('cupola_ceiling','Horizontal ceiling spokes · provisional','#c3a06c',True),('cupola_plywood','Horizontal ½ in plywood','#e5cd9b',True),('braces','Knee braces · provisional','#a68764',True),('secondary_approx','Sixteen short rafters · 4 × 8','#879da2',True),('metal_spacers','Green metal cupola spacers','#28784c',True),('temporary_fixture','Temporary assembly fixture','#273036',False),('roof_envelope','Cupola roof reference envelope','#698a9b',False)]
+# TIMESTAMP END 2026-11-01T23:19:38-05:00 | REVISION R004668
 RETIRED=[f'J{k}-1' for k in range(8)]
-r01={'revision':'R01','basis':'Octagon-architectural-geometry-study-R01.pdf','previous_github_commit':'a431e6257848aafcb7b237eedbaece2ca44f3436','retired_ids':RETIRED,'timber_count':96,'metal_count':16,'surface_count':8,'main_frames':8,'short_rafters':16,'midpoint_rafters':0,'display_height_H_in':H,'height_status':'Unresolved; 90 in display reference only. Timber centre/roof backing offsets are explicit model choices.','outside_post_diameter_in':360,'post_center_diameter_in':352,'eave_tip_diameter_in':400,'cupola_outside_diameter_in':88,'cupola_inside_diameter_in':76,'cupola_center_radius_in':41,'cupola_roof_tip_diameter_in':112,'cupola_spacer_gap_in':28.132864853,'main_radial_pitch':PH,'short_normal_pitch':PN,'lower_tie_section_in':[6,10],'short_rafter_section_in':[4,8],'joint_status':'Exact short-rafter side-contact planes; construction connections unresolved.','heel_status':'Hip/tie/post heel intersections are not resolved into a fabrication joint.','global_overlap_status':'Not validated as collision-free; no old fitted-overlap evidence applies.','retained_contextual_ids':[p['id'] for p in PARTS if p['group'] in ['eave_ring','braces','cupola_bands']],'steel_section_status':'Visibility dimensions only; not specified source stock.','roof_backing_status':'Two top bay planes on hips are explicit display geometry; fabrication backing cuts require confirmation.'}
-data={'schema_version':'r01-geometry-1.0','title':'Octagonal timberframe · corrected R01 pattern','units':'meters','up_axis':'Y','date':'2026-11-01','source_model':'reproducible R01 halfspace model','source_dimensions':r01,'main_roof_overhang_normal_ft':16.946857/12,'main_roof_overhang_datum':'20 in corner projection beyond outside radial post faces; normal overhang is conditional on assumed 8 in posts.','status':'R01 GEOMETRY REVIEW · JOINTS NOT CONSTRUCTION APPROVED','axis_convention':'Y up; original A/B direction maintained for surviving timbers.','angle_convention':'Angles describe geometry, not saw settings.','notes':['96 wood timbers after retiring eight Jk-1 midpoint rafters.','Existing 40% keyed cuts and old fit/clearance/assembly claims are superseded.','Ground and member-bearing heights remain unresolved.','Short rafter end faces are exact plane intersections; they are not finished housed or tenoned joints.'],'r01':r01,'groups':[{'id':i,'label':l,'color':c,'count':sum(p['group']==i for p in PARTS),'default_visible':v} for i,l,c,v in GROUPS],'parts':PARTS,'fit_audit':{'status':'superseded; old R03 audit does not apply to R01','verified_contact_count':None,'max_overlap_m3':None}}
+# TIMESTAMP START 2026-11-01T23:19:38-05:00 | REVISION R004668
+r01={'revision':'R01','basis':'Octagon-architectural-geometry-study-R01.pdf','previous_github_commit':'a431e6257848aafcb7b237eedbaece2ca44f3436','retired_ids':RETIRED,'retired_lower_band_ids':[f'L{k}-L' for k in range(8)],'timber_count':104,'metal_count':16,'surface_count':8,'main_frames':8,'short_rafters':16,'midpoint_rafters':0,'display_height_H_in':H,'height_status':'Unresolved; 90 in display reference only. Timber centre/roof backing offsets are explicit model choices.','outside_post_diameter_in':360,'post_center_diameter_in':352,'eave_tip_diameter_in':400,'cupola_outside_diameter_in':88,'cupola_inside_diameter_in':76,'cupola_center_radius_in':41,'cupola_roof_tip_diameter_in':112,'cupola_spacer_gap_in':28.132864853,'main_radial_pitch':PH,'short_normal_pitch':PN,'lower_tie_section_in':[6,10],'short_rafter_section_in':[4,8],'joint_status':'Exact short-rafter side-contact planes; construction connections unresolved.','heel_status':'Hip/tie/post heel intersections are not resolved into a fabrication joint.','global_overlap_status':'Not validated as collision-free; no old fitted-overlap evidence applies.','retained_contextual_ids':[p['id'] for p in PARTS if p['group'] in ['eave_ring','braces','cupola_bands']],'steel_section_status':'Visibility dimensions only; not specified source stock.','roof_backing_status':'No backing bevel: rectangular hip top faces per construction photo.'}
+# TIMESTAMP END 2026-11-01T23:19:38-05:00 | REVISION R004668
+# TIMESTAMP START 2026-11-01T23:19:38-05:00 | REVISION R004668
+data={'schema_version':'r01-geometry-1.0','title':'Octagonal timberframe · corrected R01 pattern','units':'meters','up_axis':'Y','date':'2026-11-01','source_model':'reproducible R01 halfspace model','source_dimensions':r01,'main_roof_overhang_normal_ft':16.946857/12,'main_roof_overhang_datum':'20 in corner projection beyond outside radial post faces; normal overhang is conditional on assumed 8 in posts.','status':'R01 GEOMETRY REVIEW · JOINTS NOT CONSTRUCTION APPROVED','axis_convention':'Y up; original A/B direction maintained for surviving timbers.','angle_convention':'Angles describe geometry, not saw settings.','notes':['104 wood timbers: eight unsupported lower bands removed; eight roof rafters and eight horizontal ceiling spokes added. Eight half-inch horizontal plywood sectors are separate sheet goods.','Existing 40% keyed cuts and old fit/clearance/assembly claims are superseded.','Ground and member-bearing heights remain unresolved.','Short rafter end faces are exact plane intersections; they are not finished housed or tenoned joints.'],'r01':r01,'groups':[{'id':i,'label':l,'color':c,'count':sum(p['group']==i for p in PARTS),'default_visible':v} for i,l,c,v in GROUPS],'parts':PARTS,'fit_audit':{'status':'superseded; old R03 audit does not apply to R01','verified_contact_count':None,'max_overlap_m3':None}}
+# TIMESTAMP END 2026-11-01T23:19:38-05:00 | REVISION R004668
 raw=json.dumps(data,separators=(',',':'),ensure_ascii=True)+'\n'
 (ROOT/'src/model-data.json').write_text(raw)
 groups=[]
-for idx,(name,pids) in enumerate([(g[0],[p['id'] for p in PARTS if p['group']==g[0]]) for g in GROUPS if g[0] not in ['secondary_approx','cupola_bands']]+[('short_left',[f'J{k}-0' for k in range(8)]),('short_right',[f'J{k}-2' for k in range(8)])]+[('cupola_'+s,[f'L{k}-{s}' for k in range(8)]) for s in ['L','S','H']],1):
+for idx,(name,pids) in enumerate([(g[0],[p['id'] for p in PARTS if p['group']==g[0]]) for g in GROUPS if g[0] not in ['secondary_approx','cupola_bands']]+[('short_left',[f'J{k}-0' for k in range(8)]),('short_right',[f'J{k}-2' for k in range(8)])]+[('cupola_'+s,[f'L{k}-{s}' for k in range(8)]) for s in ['S','H']],1):
  groups.append({'id':f'M{idx:02}','number':idx,'quantity':len(pids),'member_ids':pids,'representative_id':pids[0],'family':name,'label':name.replace('_',' '),'status':'R01 generation family; no fabrication interchangeability claim','method':'explicit parameterized pattern'})
-materials={'schema_version':'r01-material-groups-1.0','source_sha256':hashlib.sha256(raw.encode()).hexdigest(),'timber_count':96,'item_count':120,'group_count':len(groups),'comparison_tolerance_m':None,'scope':'Parameterized generation families; not a fabrication schedule.','groups':groups,'handed_pair_checks':[],'reference_end_semantics':'A/B maintained for surviving wood members; new references describe R01 geometric end planes.'}
+# TIMESTAMP START 2026-11-01T23:19:38-05:00 | REVISION R004668
+materials={'schema_version':'r01-material-groups-1.0','source_sha256':hashlib.sha256(raw.encode()).hexdigest(),'timber_count':104,'item_count':136,'group_count':len(groups),'comparison_tolerance_m':None,'scope':'Parameterized generation families; not a fabrication schedule.','groups':groups,'handed_pair_checks':[],'reference_end_semantics':'A/B maintained for surviving wood members; new references describe R01 geometric end planes.'}
+# TIMESTAMP END 2026-11-01T23:19:38-05:00 | REVISION R004668
 (ROOT/'src/material-groups.json').write_text(json.dumps(materials,indent=2)+'\n')
 (ROOT/'docs').mkdir(exist_ok=True)
 (ROOT/'docs/r01-change-register.json').write_text(json.dumps({'r01':r01,'source_model_sha256':hashlib.sha256(raw.encode()).hexdigest(),'changes':['Retired J0-1 through J7-1; retained other wood IDs.','Replaced 24 approximate radial secondary rafters with 16 eave-normal 4×8 short rafters meeting adjacent hip side faces.','Corrected 30 ft outside-post datum, 33 ft 4 in eave tips, 6×10 ties, radial cupola posts and cupola roof envelope.','Removed inherited arbitrary 40% keys and stale fit reports from active model data.','Added separate green spacer and temporary black fixture groups.'],'unresolved':['Ground-to-tie H; physical bearing datums; main heel joints; mortises/tenons/housings/fasteners; actual sections; steel geometry; glazing and window dimensions.']},indent=2)+'\n')
-print(json.dumps({'revision':'R01','timbers':96,'metals':16,'surfaces':8,'items':len(PARTS),'retired':RETIRED,'model_bytes':len(raw)}))
+# TIMESTAMP START 2026-11-01T23:19:38-05:00 | REVISION R004668
+print(json.dumps({'revision':'R01','timbers':104,'metals':16,'surfaces':8,'items':len(PARTS),'retired':RETIRED,'model_bytes':len(raw)}))
+# TIMESTAMP END 2026-11-01T23:19:38-05:00 | REVISION R004668
+
+# TIMESTAMP END 2026-11-01T22:44:38-05:00 | REVISION R004653
+
+# TIMESTAMP END 2026-11-01T23:06:10-05:00 | REVISION R004659

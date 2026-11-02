@@ -1,5 +1,6 @@
+// TIMESTAMP START 2026-11-01T22:47:54-05:00 | REVISION R004654
 const CAVITIES=__CAVITY_JSON__;
-let showHollows=false,hollowMode='removed',hollowXray=true,edgeMeasurementsOn=false;
+let showHollows=true,hollowMode='removed',hollowXray=true,edgeMeasurementsOn=false;
 const cavityMeshCache=new Map(),edgeMeasurementCache=new Map();
 const edgeMeasurementLabels=[];
 function appendEdgeMeasurements(host,p){
@@ -26,11 +27,11 @@ function cavityRenderMesh(p,kind){
 }
 function drawCavityVolumes(){
  const records=cavityRecords();if(!records.length)return;
- const fill=hollowMode==='unfilled'?[.93,.08,.47]:[1,.66,.12],edge=hollowMode==='unfilled'?[.47,.0,.19]:[.35,.12,.01];
+ const fill=hollowMode==='unfilled'?[1,.12,.65]:[1,.82,.12],edge=hollowMode==='unfilled'?[.8,.0,.28]:[1,.35,.02];
  if(gl){
   gl.enable(gl.BLEND);gl.blendFunc(gl.SRC_ALPHA,gl.ONE_MINUS_SRC_ALPHA);gl.depthMask(false);if(hollowXray)gl.disable(gl.DEPTH_TEST);
   try{for(const {p,kind} of records){const m=cavityRenderMesh(p,kind);if(!m||!m.count)continue;
-   gl.uniform3fv(loc.translation,offset(p));gl.uniform3fv(loc.color,fill);gl.uniform1f(loc.opacity,hollowXray?.23:.4);gl.uniform1f(loc.lineMode,0);bind(m.buffer);gl.drawArrays(gl.TRIANGLES,0,m.count);
+   gl.uniform3fv(loc.translation,offset(p));gl.uniform3fv(loc.color,fill);gl.uniform1f(loc.opacity,hollowXray?.48:.55);gl.uniform1f(loc.lineMode,1);bind(m.buffer);gl.drawArrays(gl.TRIANGLES,0,m.count);
    gl.uniform3fv(loc.color,edge);gl.uniform1f(loc.opacity,.95);gl.uniform1f(loc.lineMode,1);bind(m.edgeBuffer);gl.drawArrays(gl.LINES,0,m.edgeCount);
   }}finally{gl.enable(gl.DEPTH_TEST);gl.depthMask(true);gl.disable(gl.BLEND);gl.uniform1f(loc.opacity,1);gl.uniform1f(loc.lineMode,1);}
  }else if(fallback){
@@ -41,11 +42,13 @@ function drawCavityVolumes(){
  }
 }
 function updateHollowStatus(){
- const host=$('hollowStatus');if(DATA.revision==='R01'||!Object.keys(CAVITIES.parts||{}).length){host.textContent='R01 contact geometry replaces the former fitted prototype. No current cavity-volume audit is assigned.';return;}if(!selected){host.textContent='Select a timber to reveal its recess volumes.';return;}
+ const host=$('hollowStatus');if(!Object.keys(CAVITIES.parts||{}).length){host.textContent='R01 contact geometry replaces the former fitted prototype. No current cavity-volume audit is assigned.';return;}if(!selected){host.textContent='Select a timber to reveal its recess volumes.';return;}
  const d=CAVITIES.parts[selected];if(!d){host.textContent='No verified cavity data for this timber.';return;}
  const removed=d.removed.volume_m3*1e6,empty=d.unfilled.volume_m3*1e6;
- if(hollowMode==='removed')host.textContent=selected+': '+num(removed,2)+' cm³ removed from its original stock. Amber volumes are recesses/notches, not extra wood. Mating timber occupies '+num(d.occupied_volume_m3*1e6,2)+' cm³ in the saved assembly.';
- else host.textContent=empty>1e-3?selected+': '+num(empty,3)+' cm³ of original stock remains unfilled in the saved assembly. This is recorded exterior trimming; it is not an unexplained internal gap.':selected+': no unfilled original-stock volume detected above the numerical threshold. Its recesses are occupied by mating timber in the saved assembly.';
+// TIMESTAMP START 2026-11-01T23:35:16-05:00 | REVISION R004670
+ if(hollowMode==='removed')host.textContent=selected+': '+num(removed,2)+' cm³ of modeled recesses/notches. Amber shows removed stock, not extra wood. Complete cavity occupancy has not been independently verified.';
+ else host.textContent=selected+': diagnostic residual '+num(empty,3)+' cm³. This calculation is not certified as an internal gap or harmless trimming; review against the mating geometry.';
+// TIMESTAMP END 2026-11-01T23:35:16-05:00 | REVISION R004670
  if(explode>0)host.textContent+=' Classification refers to the assembled model; this view is exploded.';
  if(!gl)host.textContent+=' In 2D fallback, hollow volumes are always shown as X-rays.';
 }
@@ -79,3 +82,5 @@ $('hollowMode').onchange=e=>{hollowMode=e.target.value==='unfilled'?'unfilled':'
 $('hollowXray').onchange=e=>{hollowXray=e.target.checked;requestRender();};
 $('showEdgeMeasurements').onchange=e=>{edgeMeasurementsOn=e.target.checked;requestRender();};
 
+
+// TIMESTAMP END 2026-11-01T22:47:54-05:00 | REVISION R004654

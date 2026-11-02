@@ -1,3 +1,5 @@
+# TIMESTAMP START 2026-11-01T23:19:38-05:00 | REVISION R004668
+# TIMESTAMP START 2026-11-01T22:44:38-05:00 | REVISION R004653
 #!/usr/bin/env python3
 """Build the R01 viewer and exports from the same current geometry source."""
 from pathlib import Path
@@ -19,9 +21,11 @@ template = (ROOT/'src/viewer.template.html').read_text()
 def encode(value):
     return json.dumps(value, separators=(',', ':'), ensure_ascii=True).replace('</', '<\\/')
 inspection = (ROOT/'src/inspection-tools.js').read_text().replace('__MATERIALS_JSON__', encode(materials))
-cavities = {'schema_version':'r01-cavities-unavailable', 'source_model_sha256':model_sha,
-            'parts':{}, 'available':False, 'summary':{'complete':False},
-            'status':'No cavity audit applies to R01 contact geometry; NAV-05 cavities are historical.'}
+# TIMESTAMP START 2026-11-01T22:44:38-05:00 | REVISION R004653
+cavities = json.loads((ROOT/'src/cavity-data.json').read_text())
+assert cavities['source_model_sha256'] == model_sha
+# TIMESTAMP END 2026-11-01T22:44:38-05:00 | REVISION R004653
+
 overlays = (ROOT/'src/geometry-overlays.js').read_text().replace('__CAVITY_JSON__', encode(cavities))
 for marker, value in [('/*__INSPECTION_TOOLS__*/', inspection),
                       ('/*__EDGE_MEASUREMENT_TOOLS__*/', (ROOT/'src/edge-measurements.js').read_text()),
@@ -33,7 +37,7 @@ assert not re.search(r'__(?:PARTS|MATERIALS|CAVITY)_JSON__', template)
 dist = ROOT/'dist'
 dist.mkdir(exist_ok=True)
 # Current pages only; historical NAV-05 reports remain available through Git history.
-for name in ['about.html', 'r01.html', 'joinery.html', 'JOINT-DESIGN-BRIEF.md',
+for name in ['about.html', 'r01.html', 'joinery.html', 'structural-audit.html', 'JOINT-DESIGN-BRIEF.md',
              'downloads/index.html', 'review/index.html', 'robots.txt']:
     source = ROOT/'public'/name
     if source.exists():
@@ -45,7 +49,7 @@ for name in ['about.html', 'r01.html', 'joinery.html', 'JOINT-DESIGN-BRIEF.md',
 downloads = dist/'downloads'
 downloads.mkdir(exist_ok=True)
 shutil.copyfile(model_path, downloads/'Octagon-R01-model.json')
-for source_name in ['r01-change-register.json', 'r01-verification.json']:
+for source_name in ['r01-change-register.json', 'r01-verification.json', 'joinery-verification.json', 'structural-audit.json']:
     source = ROOT/'docs'/source_name
     if source.exists():
         shutil.copyfile(source, downloads/source_name)
@@ -57,3 +61,7 @@ tests.mkdir(exist_ok=True)
 print(json.dumps({'revision':'R01', 'components':len(ids), 'html_bytes':len(template.encode()),
                   'model_sha256':model_sha, 'output':'dist/index.html', 'network_dependencies':False}))
 
+
+# TIMESTAMP END 2026-11-01T22:44:38-05:00 | REVISION R004653
+
+# TIMESTAMP END 2026-11-01T23:19:38-05:00 | REVISION R004668

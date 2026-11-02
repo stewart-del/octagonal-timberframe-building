@@ -1,0 +1,162 @@
+{
+  "revision": "R02-S1",
+  "model_sha256": "36e53d90ec9abead9a80ce87e61f298c527809818dac82b8e2bbf5bf84b25779",
+  "status": "NOT STRUCTURALLY QUALIFIED",
+  "confirmed": {
+    "enclosure": "Enclosed, following the Bluetime photos; site-specific wind enclosure classification still to be checked.",
+    "plywood": "1/2 inch, horizontal upper ceiling/deck, explicitly confirmed by user.",
+    "joinery_preference": "Simple integral flared dovetails where relevant; no driven wedges requested."
+  },
+  "missing_inputs": [
+    "Actual building site and adopted design criteria",
+    "Timber species, grade, moisture and actual dimensions",
+    "Roof/wall assembly weights and openings",
+    "Joint fasteners and foundation/soil design"
+  ],
+  "section_screen": [
+    {
+      "part": "P0",
+      "gross_area_in2": 64,
+      "minimum_sampled_body_area_in2": 51.01129277786873,
+      "remaining_area_percent": 79.70514496541989,
+      "station_world_axis_in": 63.55681596511253,
+      "method": "Cross sections at vertex planes +/- 1 micrometre and interval midpoints; only full original rectangular sections. End miters and added tongues excluded. Area ratio is not a strength ratio."
+    },
+    {
+      "part": "C0",
+      "gross_area_in2": 36,
+      "minimum_sampled_body_area_in2": 24.88739141285527,
+      "remaining_area_percent": 69.13164281348685,
+      "station_world_axis_in": 146.27050213702606,
+      "method": "Cross sections at vertex planes +/- 1 micrometre and interval midpoints; only full original rectangular sections. End miters and added tongues excluded. Area ratio is not a strength ratio."
+    },
+    {
+      "part": "R0",
+      "gross_area_in2": 80,
+      "minimum_sampled_body_area_in2": 54.42751373760875,
+      "remaining_area_percent": 68.03439217201094,
+      "station_world_axis_in": -140.07742893279567,
+      "method": "Cross sections at vertex planes +/- 1 micrometre and interval midpoints; only full original rectangular sections. End miters and added tongues excluded. Area ratio is not a strength ratio."
+    },
+    {
+      "part": "J0-0",
+      "gross_area_in2": 32,
+      "minimum_sampled_body_area_in2": 27.927455602137126,
+      "remaining_area_percent": 87.27329875667851,
+      "station_world_axis_in": -122.84146392599142,
+      "method": "Cross sections at vertex planes +/- 1 micrometre and interval midpoints; only full original rectangular sections. End miters and added tongues excluded. Area ratio is not a strength ratio."
+    },
+    {
+      "part": "T0",
+      "gross_area_in2": 60,
+      "minimum_sampled_body_area_in2": 60.00000089641632,
+      "remaining_area_percent": 100.00000149402719,
+      "station_world_axis_in": -171.99996062992128,
+      "method": "Cross sections at vertex planes +/- 1 micrometre and interval midpoints; only full original rectangular sections. End miters and added tongues excluded. Area ratio is not a strength ratio."
+    },
+    {
+      "part": "B0",
+      "gross_area_in2": 48,
+      "minimum_sampled_body_area_in2": 40.017404450108515,
+      "remaining_area_percent": 83.36959260439274,
+      "station_world_axis_in": -41.04937974118226,
+      "method": "Cross sections at vertex planes +/- 1 micrometre and interval midpoints; only full original rectangular sections. End miters and added tongues excluded. Area ratio is not a strength ratio."
+    }
+  ],
+  "findings": [
+    {
+      "id": "S1",
+      "priority": "critical",
+      "title": "Center has no designed tension and uplift restraint",
+      "parts": "T0\u2013T7 / R0\u2013R7 / C0\u2013C7 / cupola rings",
+      "finding": "The straight two-inch tongues have no pegs, bolts, retained dovetail or other positive withdrawal restraint. Nominal contact does not close the central force path.",
+      "action": "Design the open-center drum/ring and its joints as one system. Evaluate a plain housed dovetail where radial withdrawal governs, with separate restraint against its insertion/removal direction. Do not assume an open-bottom polygon or plywood alone supplies the required ring action."
+    },
+    {
+      "id": "S2",
+      "priority": "high",
+      "title": "Main-rafter tongue exceeds the receiver-based proportion",
+      "parts": "R0\u2013R7 to C0\u2013C7",
+      "finding": "The generic width rule uses the 8-inch rafter: 8/3 = 2.667 inches. In a 6-inch receiving post, nominal cheeks are only (6 - 2.667)/2 = 1.667 inches before neighboring cuts. TFEC 1-2019 \u00a7\u00a73.4.10\u201311 use the receiving member and require each cheek at least the mortise width for the prescribed tension-joint provisions.",
+      "action": "Redesign this joint from the receiving post and load demand. A broader head is not a remedy for thin cheeks. A dovetail is a different connection requiring its own neck, bearing and splitting/block-shear checks."
+    },
+    {
+      "id": "S3",
+      "priority": "high",
+      "title": "Two-inch insertion is not a ready-made pegged tension joint",
+      "parts": "All generic two-inch shoulder tenons",
+      "finding": "No peg location or end distance is modeled. For illustration, the TFEC full geometry factor calls for 4D loaded-end distance in a softwood tension member: a 3/4-inch peg alone needs 3 inches from peg center to the loaded end. The current two-inch tongue cannot provide that distance.",
+      "action": "Resolve species, peg diameter, receiving-face edge distances and joint arrangement together; do not simply drill the existing tongues. This comparison does not assign a capacity or prohibit every alternative tested detail."
+    },
+    {
+      "id": "S4",
+      "priority": "high",
+      "title": "Outer seats carry gravity but do not lock against uplift",
+      "parts": "R/P heels and J/B seats",
+      "finding": "R0 bears across the 8 \u00d7 8 post head (64 in\u00b2 nominal horizontal footprint). Each short rafter has approximately 12 in\u00b2 of horizontal bearing on its ring beam. These are real support surfaces, not merely the colored cavity edge seen in the screenshot. No rated uplift or sliding restraint is modeled.",
+      "action": "Keep broad gravity bearing; check heel/block shear, remaining rafter section and the signed force direction. Retain or adjust the seat only after those checks. Add a designed restraint for force reversal; a deeper notch alone is not a solution."
+    },
+    {
+      "id": "S5",
+      "priority": "high",
+      "title": "Braces, eave-ring joints and post bases need a complete lateral system",
+      "parts": "K/B/P families and foundations",
+      "finding": "Braces use full-section diagonal sockets without a complete peg/housing design. Eave-ring joints share post heads with other cuts. No foundation anchorage is modeled. Enclosed walls are confirmed, but their sheathing and attachments are not.",
+      "action": "Trace wall/roof shear through collectors, braces or shear panels, post joints and foundations. Check both wind directions, load reversal, combined notches and erection stability."
+    },
+    {
+      "id": "S6",
+      "priority": "high",
+      "title": "Cupola ceiling and roof require attachments",
+      "parts": "CC/CR/PLY families and upper rings",
+      "finding": "The horizontal half-inch plywood and eight exposed horizontal ceiling spokes now follow the user-confirmed arrangement. Ceiling spoke 4 \u00d7 6 sizes and roof-rafter 2 \u00d7 6 depths are assumptions. Center miters touch but do not themselves resist separation. Finish boards are not assigned an invented thickness.",
+      "action": "Design center and perimeter connections plus plywood grade, panel joints, edge blocking and fastening. Do not credit the plywood as a diaphragm until its complete boundary load path is specified."
+    },
+    {
+      "id": "S7",
+      "priority": "review",
+      "title": "Earlier prototype is not verified stronger",
+      "parts": "Historical keyed version",
+      "finding": "The earlier model used algorithmic keys and larger-looking interlocks. Its own engineering review recorded severely reduced webs and unresolved raising/tool access. Those shapes were not a verified traditional joinery schedule.",
+      "action": "Retain useful viewing features and compare real housings/shoulders, but do not restore arbitrary keys as a structural fix."
+    },
+    {
+      "id": "S8",
+      "priority": "review",
+      "title": "Geometric audit has a defined limit",
+      "parts": "All sockets",
+      "finding": "Positive-volume pair overlaps, registered contact and connected meshes pass. The separate unfilled-socket volume diagnostics are nonzero and numerically inconsistent under rotation; complete cavity closure is not certified.",
+      "action": "Resolve socket-volume closure independently before any fabrication claim. The contact-area proxy in the fit report is a geometry diagnostic, not a structural bearing-capacity calculation."
+    }
+  ],
+  "load_coefficients": {
+    "main_roof_plan_area_ft2": 747.6475699745763,
+    "cupola_roof_plan_area_ft2": 61.59685738336148,
+    "symmetric_main_bay_plan_area_ft2": 93.45594624682204,
+    "symmetric_cupola_bay_plan_area_ft2": 7.699607172920185,
+    "wood_volume_ft3": 222.33868489159528,
+    "usage": "For a uniform pressure q in lb/ft\u00b2 of horizontal projection, total vertical force equals q times plan area. Per-bay values apply only to a symmetric load accounting case, not individual joint reactions. Actual wind/snow are not assumed uniform or divided equally. Timber weight equals volume times confirmed density. No load magnitudes or capacities have been assigned."
+  },
+  "sources": [
+    {
+      "title": "TFEC 1-2019 Standard and Commentary",
+      "url": "https://www.tfguild.org/timber-frame-engineering-council/standards/view/104/download",
+      "use": "Sections 2.3, 3.1, 3.3, 3.4, 3.6 and 4; proportion screen only."
+    },
+    {
+      "title": "FEMA wind retrofit guide",
+      "url": "https://www.fema.gov/sites/default/files/documents/fema_rsl_fema-p-804-wind-retrofit-guide_042025.pdf",
+      "use": "Continuous roof-to-foundation load path and force reversal."
+    },
+    {
+      "title": "Vermont Timber Works F-6 joint sheet",
+      "url": "https://www.vermonttimberworks.com/wp-content/uploads/2013/08/sample-shop-drawings-hostetter-habib-residence-joints.pdf",
+      "use": "Professional housing, tenon and mechanical restraint examples from a different structure; dimensions not transplanted."
+    },
+    {
+      "title": "Bluetime architectural reference",
+      "url": "https://www.bluetimecollaborative.com/robert-swinburne-vermont-architect/octagon-timber-frame-outbuilding",
+      "use": "Building form and user-confirmed enclosed arrangement."
+    }
+  ]
+}

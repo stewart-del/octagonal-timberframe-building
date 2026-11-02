@@ -1,9 +1,9 @@
 {
   "schema_version": "r01-material-groups-1.0",
-  "source_sha256": "7cc1ecb2d4002b6a054be44d20a18d4521eefe1bee517790e7dee56916fb308e",
-  "timber_count": 96,
-  "item_count": 120,
-  "group_count": 14,
+  "source_sha256": "36e53d90ec9abead9a80ce87e61f298c527809818dac82b8e2bbf5bf84b25779",
+  "timber_count": 104,
+  "item_count": 136,
+  "group_count": 16,
   "comparison_tolerance_m": null,
   "scope": "Parameterized generation families; not a fabrication schedule.",
   "groups": [
@@ -110,6 +110,66 @@
     {
       "id": "M06",
       "number": 6,
+      "quantity": 8,
+      "member_ids": [
+        "CR0",
+        "CR1",
+        "CR2",
+        "CR3",
+        "CR4",
+        "CR5",
+        "CR6",
+        "CR7"
+      ],
+      "representative_id": "CR0",
+      "family": "cupola_rafters",
+      "label": "cupola rafters",
+      "status": "R01 generation family; no fabrication interchangeability claim",
+      "method": "explicit parameterized pattern"
+    },
+    {
+      "id": "M07",
+      "number": 7,
+      "quantity": 8,
+      "member_ids": [
+        "CC0",
+        "CC1",
+        "CC2",
+        "CC3",
+        "CC4",
+        "CC5",
+        "CC6",
+        "CC7"
+      ],
+      "representative_id": "CC0",
+      "family": "cupola_ceiling",
+      "label": "cupola ceiling",
+      "status": "R01 generation family; no fabrication interchangeability claim",
+      "method": "explicit parameterized pattern"
+    },
+    {
+      "id": "M08",
+      "number": 8,
+      "quantity": 8,
+      "member_ids": [
+        "PLY0",
+        "PLY1",
+        "PLY2",
+        "PLY3",
+        "PLY4",
+        "PLY5",
+        "PLY6",
+        "PLY7"
+      ],
+      "representative_id": "PLY0",
+      "family": "cupola_plywood",
+      "label": "cupola plywood",
+      "status": "R01 generation family; no fabrication interchangeability claim",
+      "method": "explicit parameterized pattern"
+    },
+    {
+      "id": "M09",
+      "number": 9,
       "quantity": 16,
       "member_ids": [
         "K0-A",
@@ -136,8 +196,8 @@
       "method": "explicit parameterized pattern"
     },
     {
-      "id": "M07",
-      "number": 7,
+      "id": "M10",
+      "number": 10,
       "quantity": 8,
       "member_ids": [
         "M-SP0",
@@ -156,8 +216,8 @@
       "method": "explicit parameterized pattern"
     },
     {
-      "id": "M08",
-      "number": 8,
+      "id": "M11",
+      "number": 11,
       "quantity": 8,
       "member_ids": [
         "M-TMP0",
@@ -176,8 +236,8 @@
       "method": "explicit parameterized pattern"
     },
     {
-      "id": "M09",
-      "number": 9,
+      "id": "M12",
+      "number": 12,
       "quantity": 8,
       "member_ids": [
         "ENV-CUP0",
@@ -196,8 +256,8 @@
       "method": "explicit parameterized pattern"
     },
     {
-      "id": "M10",
-      "number": 10,
+      "id": "M13",
+      "number": 13,
       "quantity": 8,
       "member_ids": [
         "J0-0",
@@ -216,8 +276,8 @@
       "method": "explicit parameterized pattern"
     },
     {
-      "id": "M11",
-      "number": 11,
+      "id": "M14",
+      "number": 14,
       "quantity": 8,
       "member_ids": [
         "J0-2",
@@ -236,28 +296,8 @@
       "method": "explicit parameterized pattern"
     },
     {
-      "id": "M12",
-      "number": 12,
-      "quantity": 8,
-      "member_ids": [
-        "L0-L",
-        "L1-L",
-        "L2-L",
-        "L3-L",
-        "L4-L",
-        "L5-L",
-        "L6-L",
-        "L7-L"
-      ],
-      "representative_id": "L0-L",
-      "family": "cupola_L",
-      "label": "cupola L",
-      "status": "R01 generation family; no fabrication interchangeability claim",
-      "method": "explicit parameterized pattern"
-    },
-    {
-      "id": "M13",
-      "number": 13,
+      "id": "M15",
+      "number": 15,
       "quantity": 8,
       "member_ids": [
         "L0-S",
@@ -276,8 +316,8 @@
       "method": "explicit parameterized pattern"
     },
     {
-      "id": "M14",
-      "number": 14,
+      "id": "M16",
+      "number": 16,
       "quantity": 8,
       "member_ids": [
         "L0-H",

@@ -1,3 +1,6 @@
+// TIMESTAMP START 2026-11-01T23:19:38-05:00 | REVISION R004668
+// TIMESTAMP START 2026-11-01T23:06:10-05:00 | REVISION R004659
+// TIMESTAMP START 2026-11-01T23:01:05-05:00 | REVISION R004657
 // Browserless regression harness. Uses the actual viewer script with a small DOM stub.
 // Node: node viewer-regression.js [index.html]; exports runViewerTests for other JS runtimes.
 function runViewerTests(source,model){
@@ -33,7 +36,7 @@ function runViewerTests(source,model){
     const key=(value,target=$('freeNav'),extra={})=>({key:value,target,shiftKey:false,preventDefault(){this.prevented=true;},...extra});
     const walk=el=>[el,...el.children.flatMap(walk)];
     const expectedDefault=parts.filter(p=>defaultGroups().some(g=>g.id===p.group));
-    check(parts.filter(isTimber).length===96,'R01 retains 96 timber IDs');
+    check(parts.filter(isTimber).length===104,'R02 has 88 retained plus 8 roof rafters and 8 horizontal ceiling timbers');
     check(parts.filter(p=>p.group==='radial_rafters').length===8&&parts.filter(p=>p.group==='secondary_approx').length===16,'Roof contains eight hips and sixteen short rafters');
     check(!parts.some(p=>/^J[0-7]-1$/.test(p.id)),'All eight midpoint rafters are retired');
     check(!parts.some(p=>p.temporary&&isShown(p)),'Temporary fixture is hidden initially');
@@ -81,6 +84,10 @@ function runViewerTests(source,model){
     $('restoreFrame').onclick();check(selected===null&&selectedCut===null&&selectedPartIds.size===0&&inspectionPivot===null,'Restore frame clears selection and inspection pivots');
     check(parts.filter(isShown).length===expectedDefault.length&&isolatedId===null,'Restore frame follows current default groups');
     check(!$('cornerFindings').open&&$('cornerContext').hidden,'Restore frame exits joint context');
+    $('reviewP0').onclick();check(selected==='P0'&&parts.filter(isShown).length===7,'P0 close-up restores corner and braces');
+    check(showHollows&&selectionAlpha(partById.get('P0'))===.38&&cavityRecords().length===1,'Selection reveals actual recesses through transparent timber');
+    $('reviewCupola').onclick();check(selected==='C0'&&parts.filter(isShown).filter(p=>p.group==='cupola_rafters').length===8,'Cupola shortcut includes its eight roof rafters');
+    $('explode').value='60';$('explode').oninput({target:$('explode')});check(explode===.6,'Restored explode control moves assembly');
     return assertions;
   `;
   const run=new Function('document','window','requestAnimationFrame','setTimeout','ResizeObserver','assertions','windowListeners','listeners',source+'\n'+tests);
@@ -91,3 +98,9 @@ if(typeof module!=='undefined'){
   if(require.main===module){const fs=require('node:fs');const html=fs.readFileSync(process.argv[2]||'index.html','utf8');const model=JSON.parse(html.match(/<script[^>]*id="model-data"[^>]*>([\s\S]*?)<\/script>/)[1]);const source=html.split("<script>\n'use strict';\n")[1].split('</script>')[0];console.log(JSON.stringify({passed:runViewerTests(source,model)},null,2));}
 }
 
+
+// TIMESTAMP END 2026-11-01T23:01:05-05:00 | REVISION R004657
+
+// TIMESTAMP END 2026-11-01T23:06:10-05:00 | REVISION R004659
+
+// TIMESTAMP END 2026-11-01T23:19:38-05:00 | REVISION R004668
