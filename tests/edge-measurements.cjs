@@ -82,7 +82,7 @@ for(const part of model.parts){
     maxInteriorAngleDeg:Math.max(...result.edges.map(e=>e.interiorAngleDeg).filter(a=>a!==null)),...result.topology});
 }
 console.log('PASS: cube12×90°, T-junction seam suppression, welds, concave270°, reversed winding, unknown open/inconsistent interiors, no planar diagonals, original geometry unchanged.');
-const summary={timbers:statistics.length,featureEdges:statistics.reduce((s,x)=>s+x.edges,0),
+const summary={components:statistics.length,featureEdges:statistics.reduce((s,x)=>s+x.edges,0),
   interiorAngles:statistics.reduce((s,x)=>s+x.interiorAngles,0),closedConsistentTimbers:statistics.filter(x=>x.closedConsistent).length,
   minimumEdges:Math.min(...statistics.map(x=>x.edges)),maximumEdges:Math.max(...statistics.map(x=>x.edges)),
   reflexEdges:statistics.reduce((s,x)=>s+x.reflexEdges,0),
@@ -91,4 +91,6 @@ const summary={timbers:statistics.length,featureEdges:statistics.reduce((s,x)=>s
   minInteriorAngleDeg:Math.min(...statistics.map(x=>x.minInteriorAngleDeg)),maxInteriorAngleDeg:Math.max(...statistics.map(x=>x.maxInteriorAngleDeg)),
   allModelAnalysisMs:performance.now()-started};
 console.log(JSON.stringify(summary,null,2));
-fs.writeFileSync(path.join(__dirname,'../public/review/edge-model-audit.json'),JSON.stringify({source_sha256:crypto.createHash('sha256').update(modelBytes).digest('hex'),summary,parts:statistics},null,2)+'\n');
+fs.mkdirSync(path.join(__dirname,'../public/review'),{recursive:true});
+fs.writeFileSync(path.join(__dirname,'../public/review/r01-edge-model-audit.json'),JSON.stringify({source_sha256:crypto.createHash('sha256').update(modelBytes).digest('hex'),summary,parts:statistics},null,2)+'\n');
+

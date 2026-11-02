@@ -1,13 +1,11 @@
-# Octagonal timberframe prototype
+# Octagonal timberframe — R01
 
-NAV-05 preserves all 104 permanent timber IDs, their fitted geometry and 208 A/B end references. It provides selected-piece angle and edge tables with CSV exports, 13 fitted-shape material groups of eight timbers, Shift-click multi-selection, pointer-lock mouse-look, a representative P0 corner view, and the practical connection-family review. Dark member edges and high contrast surfaces start on; piece labels and small edge text start off.
+The viewer now follows the corrected eight-frame, sixteen-short-rafter pattern. The eight midpoint pieces `J0-1` through `J7-1` are retired; 96 timber IDs remain. Surviving IDs and A/B directions are retained. The lower ties are 6 × 10 in, and short-rafter end surfaces are clipped to the receiving hip side planes.
 
-This is a geometric prototype for review. The assumed 40% key sizing and current hip/ring bearing-datum conflict remain unresolved. No structural capacity, machining allowance, practical raising sequence, or construction approval is established. A fresh assembled fitted-solid check reports zero overlaps above 1e-10 m³ (`public/review/fitted-overlap-check.json`); that result does not approve bearing, cuts or retained wood.
+The main 30 ft dimension is across outside radial post faces, not centers. Conditional 8 in posts yield a 29 ft 4 in center diameter and 33 ft 4 in eave-tip diameter. The radial 4:12 main roof produces a 4.329569:12 normal short-rafter slope. Cupola post geometry reproduces the 28⅛ in outward-corner spacer gap; green spacers and the black temporary fixture are independent metal items.
 
-Amber recess overlays show removed original stock, including space occupied by mating timber. Magenta shows the unfilled subset within the original stock in the saved assembly; exterior trimming is not an internal defect. Edge tables distinguish inside material angles from acute plane angles. Neither overlay nor measurement is a fabrication instruction.
+The revised primary inspection shows `R0`, `J0-0` and `J7-2`. Top framing view, piece isolation, multi-selection, end inspection, free navigation, measured edge/plane angles and exports remain available. Default visibility excludes contextual cupola bands, the temporary fixture and the optional cupola roof envelope. Group controls expose each independently.
 
-The recovered original 864 × 631 reference image has been inspected. It is a building overview rather than a dimensioned corner detail; the generated wing-like projections and concealed joinery remain unauthenticated. Source inspection has not resolved the model's roof-bearing datum.
+R01 does not reuse the earlier generated keys, cavity findings or fitted-overlap pass. The current contact geometry is distinct from unfinished connection design. Mortises, tenons, housings, bearing seats, fastening and steel stock remain unresolved. Ground-to-tie height H uses 90 in only for display; cupola height endpoints and roof bearing offsets also require confirmation. The model is not a construction or fabrication set.
 
-Proposed connection families: supported ring-beam laps, housed tie tenons, housed brace tenons, hip bearing seats, secondary-rafter seats, and accessible cupola closure. Fabrication geometry and dimensions remain unresolved pending confirmed design inputs.
-
-Source-building reference: https://www.bluetimecollaborative.com/robert-swinburne-vermont-architect/octagon-timber-frame-outbuilding
+Current source tests must validate R01 rather than assert the older model checksum or 104-timber count. Historical reports and saved GLBs are preserved as an archive and identified as superseded. GitHub source state and Sites deployment status must be reported separately.

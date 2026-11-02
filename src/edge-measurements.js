@@ -225,3 +225,4 @@
   root.edgeMeasurementText=edgeMeasurementText;
   root.edgeMeasurementDescription=edgeMeasurementDescription;
 })(typeof globalThis!=='undefined'?globalThis:this);
+

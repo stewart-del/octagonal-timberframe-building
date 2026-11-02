@@ -1,0 +1,136 @@
+{
+  "revision": "R01",
+  "source_model_sha256": "7cc1ecb2d4002b6a054be44d20a18d4521eefe1bee517790e7dee56916fb308e",
+  "review": "independent geometric checks against R01 formulas and generated solids",
+  "result": "PASS within stated scope",
+  "source_document": "Octagon-architectural-geometry-study-R01.pdf",
+  "checks": {
+    "short_rafter_end_containment": [
+      {
+        "part_id": "J0-0",
+        "receiving_hip_id": "R0",
+        "end_vertices": 4,
+        "max_outside_receiver_bound_in": 2.842170943040401e-14
+      },
+      {
+        "part_id": "J0-2",
+        "receiving_hip_id": "R1",
+        "end_vertices": 4,
+        "max_outside_receiver_bound_in": 3.552713678800501e-15
+      },
+      {
+        "part_id": "J1-0",
+        "receiving_hip_id": "R1",
+        "end_vertices": 4,
+        "max_outside_receiver_bound_in": 0.0
+      },
+      {
+        "part_id": "J1-2",
+        "receiving_hip_id": "R2",
+        "end_vertices": 4,
+        "max_outside_receiver_bound_in": 2.842170943040401e-14
+      },
+      {
+        "part_id": "J2-0",
+        "receiving_hip_id": "R2",
+        "end_vertices": 4,
+        "max_outside_receiver_bound_in": 2.842170943040401e-14
+      },
+      {
+        "part_id": "J2-2",
+        "receiving_hip_id": "R3",
+        "end_vertices": 4,
+        "max_outside_receiver_bound_in": 7.105427357601002e-15
+      },
+      {
+        "part_id": "J3-0",
+        "receiving_hip_id": "R3",
+        "end_vertices": 4,
+        "max_outside_receiver_bound_in": 7.105427357601002e-15
+      },
+      {
+        "part_id": "J3-2",
+        "receiving_hip_id": "R4",
+        "end_vertices": 4,
+        "max_outside_receiver_bound_in": 2.842170943040401e-14
+      },
+      {
+        "part_id": "J4-0",
+        "receiving_hip_id": "R4",
+        "end_vertices": 4,
+        "max_outside_receiver_bound_in": 0.0
+      },
+      {
+        "part_id": "J4-2",
+        "receiving_hip_id": "R5",
+        "end_vertices": 4,
+        "max_outside_receiver_bound_in": 0.0
+      },
+      {
+        "part_id": "J5-0",
+        "receiving_hip_id": "R5",
+        "end_vertices": 4,
+        "max_outside_receiver_bound_in": 2.842170943040401e-14
+      },
+      {
+        "part_id": "J5-2",
+        "receiving_hip_id": "R6",
+        "end_vertices": 4,
+        "max_outside_receiver_bound_in": 2.842170943040401e-14
+      },
+      {
+        "part_id": "J6-0",
+        "receiving_hip_id": "R6",
+        "end_vertices": 4,
+        "max_outside_receiver_bound_in": 2.842170943040401e-14
+      },
+      {
+        "part_id": "J6-2",
+        "receiving_hip_id": "R7",
+        "end_vertices": 4,
+        "max_outside_receiver_bound_in": 7.105427357601002e-15
+      },
+      {
+        "part_id": "J7-0",
+        "receiving_hip_id": "R7",
+        "end_vertices": 4,
+        "max_outside_receiver_bound_in": 3.552713678800501e-15
+      },
+      {
+        "part_id": "J7-2",
+        "receiving_hip_id": "R0",
+        "end_vertices": 4,
+        "max_outside_receiver_bound_in": 2.842170943040401e-14
+      }
+    ],
+    "closed_positive_volume_solids": 120,
+    "timber_id_count": 96,
+    "retired_midpoint_ids": [
+      "J0-1",
+      "J1-1",
+      "J2-1",
+      "J3-1",
+      "J4-1",
+      "J5-1",
+      "J6-1",
+      "J7-1"
+    ],
+    "lower_tie_section_in": [
+      6,
+      10
+    ],
+    "spacer_clear_gap_in": 28.13286485306018,
+    "short_reference_axis_length_in": 136.92296320995993,
+    "short_reference_to_hip_face_in": 125.81094016201041
+  },
+  "scope_exclusions": [
+    "No global interference or contact coverage audit",
+    "No post-head, heel, bearing or joinery design approval",
+    "No structural capacity, fastening, machining clearance or assembly path verification"
+  ],
+  "remaining_observations": [
+    "Perimeter ring ends stop at post side faces while the post heads stop at ring underside; a working post-head bearing connection remains to be developed.",
+    "Hip roof backing and all vertical display offsets remain declared model assumptions.",
+    "Twenty-four former cupola bands remain hidden contextual members, not source-confirmed requirements."
+  ]
+}

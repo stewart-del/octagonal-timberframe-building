@@ -1,11 +1,11 @@
 const CAVITIES=__CAVITY_JSON__;
-let showHollows=true,hollowMode='removed',hollowXray=true,edgeMeasurementsOn=false;
+let showHollows=false,hollowMode='removed',hollowXray=true,edgeMeasurementsOn=false;
 const cavityMeshCache=new Map(),edgeMeasurementCache=new Map();
 const edgeMeasurementLabels=[];
 function appendEdgeMeasurements(host,p){
  if(!edgeMeasurementCache.has(p.id))edgeMeasurementCache.set(p.id,edgeMeasurementData(p));
  const measurements=edgeMeasurementCache.get(p.id),box=document.createElement('details'),summary=document.createElement('summary');box.dataset.inspectorKey='edgeLengths';summary.textContent='All edge lengths and face angles · '+measurements.length;box.appendChild(summary);
- const note=document.createElement('p');note.textContent='Inside = angle through the timber material at the edge; over 180° marks a concave corner. Planes = the smaller angle between the two face planes. These are different from the cut-to-axis angles above. Values describe the current prototype, not a saw setup.';box.appendChild(note);
+ const note=document.createElement('p');note.textContent='Inside = angle through the timber material at the edge; over 180° marks a concave corner. Planes = the smaller angle between the two face planes. These are different from the cut-to-axis angles above. Values describe the current geometric surfaces, not a saw setup.';box.appendChild(note);
  const toggle=document.createElement('button');toggle.textContent='Show small edge measurements';toggle.onclick=()=>{edgeMeasurementsOn=true;$('showEdgeMeasurements').checked=true;requestRender();};box.appendChild(toggle);
  const wrap=document.createElement('div');wrap.className='angle-table';wrap.setAttribute('tabindex','0');wrap.setAttribute('aria-label','All edge measurements for '+p.id);const table=document.createElement('table'),head=document.createElement('thead'),row=document.createElement('tr');
  for(const title of ['Edge','Length (in)','Inside','Planes']){const th=document.createElement('th');th.textContent=title;th.setAttribute('scope','col');row.appendChild(th);}head.appendChild(row);table.appendChild(head);const body=document.createElement('tbody');
@@ -41,7 +41,7 @@ function drawCavityVolumes(){
  }
 }
 function updateHollowStatus(){
- const host=$('hollowStatus');if(!selected){host.textContent='Select a timber to reveal its recess volumes.';return;}
+ const host=$('hollowStatus');if(DATA.revision==='R01'||!Object.keys(CAVITIES.parts||{}).length){host.textContent='R01 contact geometry replaces the former fitted prototype. No current cavity-volume audit is assigned.';return;}if(!selected){host.textContent='Select a timber to reveal its recess volumes.';return;}
  const d=CAVITIES.parts[selected];if(!d){host.textContent='No verified cavity data for this timber.';return;}
  const removed=d.removed.volume_m3*1e6,empty=d.unfilled.volume_m3*1e6;
  if(hollowMode==='removed')host.textContent=selected+': '+num(removed,2)+' cm³ removed from its original stock. Amber volumes are recesses/notches, not extra wood. Mating timber occupies '+num(d.occupied_volume_m3*1e6,2)+' cm³ in the saved assembly.';
@@ -78,3 +78,4 @@ $('showHollows').onchange=e=>{showHollows=e.target.checked;updateHollowStatus();
 $('hollowMode').onchange=e=>{hollowMode=e.target.value==='unfilled'?'unfilled':'removed';updateHollowStatus();requestRender();};
 $('hollowXray').onchange=e=>{hollowXray=e.target.checked;requestRender();};
 $('showEdgeMeasurements').onchange=e=>{edgeMeasurementsOn=e.target.checked;requestRender();};
+

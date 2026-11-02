@@ -58,3 +58,4 @@ if(typeof module!=='undefined'){
   module.exports={runMouseLookTests};
   if(require.main===module){const fs=require('node:fs');runMouseLookTests(fs.readFileSync(process.argv[2],'utf8')).then(passed=>console.log(JSON.stringify({method:'Actual mouse-look code and pointer handlers in a browserless JS harness; native capture/rendering untested.',passed},null,2))).catch(e=>{console.error(e);process.exitCode=1;});}
 }
+

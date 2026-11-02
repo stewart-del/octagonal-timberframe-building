@@ -1,4 +1,4 @@
-name: Check static viewer
+name: Check R01 geometry and viewer
 on: [push, pull_request]
 permissions:
   contents: read
@@ -14,13 +14,13 @@ jobs:
         with:
           node-version: '22'
       - run: python3 scripts/build.py
+      - run: python3 tests/test_r01_geometry.py
+      - run: python3 tests/validate_model.py dist/index.html
+      - run: python3 tests/validate_exports.py
+      - run: node --check tests/viewer-script-check.js
       - run: node tests/check_viewer.cjs
       - run: node tests/viewer-regression.cjs dist/index.html
-      - run: python3 tests/validate_model.py dist/index.html
       - run: node tests/multi-selection.cjs src/viewer.template.html
       - run: node tests/mouse-look-regression.cjs src/viewer.template.html
-      - run: python3 scripts/group_pieces.py --self-test-only
       - run: node tests/surface-contrast.cjs src/viewer.template.html
       - run: node tests/edge-measurements.cjs
-      - run: node tests/geometry-overlays.cjs
-      - run: python3 tests/test_voids.py

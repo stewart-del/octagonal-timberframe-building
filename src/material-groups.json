@@ -1,12 +1,11 @@
 {
-  "schema_version": "fitted-piece-groups-1.0",
-  "source_sha256": "f9e3052986b2df9ef5024c1d4dc665839d22944a2c9e7acebcfd8817220bf8a4",
-  "timber_count": 104,
-  "group_count": 13,
-  "comparison_tolerance_m": 1e-05,
-  "max_member_residual_bound_m": 4.998391514615918e-06,
-  "max_group_pairwise_residual_bound_m": 9.996783029231836e-06,
-  "scope": "Geometric repeat groups of the existing fitted prototype only. No geometry edits and no fabrication or construction approval.",
+  "schema_version": "r01-material-groups-1.0",
+  "source_sha256": "7cc1ecb2d4002b6a054be44d20a18d4521eefe1bee517790e7dee56916fb308e",
+  "timber_count": 96,
+  "item_count": 120,
+  "group_count": 14,
+  "comparison_tolerance_m": null,
+  "scope": "Parameterized generation families; not a fabrication schedule.",
   "groups": [
     {
       "id": "M01",
@@ -24,11 +23,9 @@
       ],
       "representative_id": "P0",
       "family": "perimeter_posts",
-      "label": "Perimeter posts",
-      "max_residual_m": 4.996367963470921e-06,
-      "pairwise_residual_bound_m": 9.992735926941841e-06,
-      "status": "prototype_geometry_repeat",
-      "method": "proper_rigid_full_surface_coverage_AB_preserved"
+      "label": "perimeter posts",
+      "status": "R01 generation family; no fabrication interchangeability claim",
+      "method": "explicit parameterized pattern"
     },
     {
       "id": "M02",
@@ -46,11 +43,9 @@
       ],
       "representative_id": "B0",
       "family": "eave_ring",
-      "label": "Perimeter ring beams",
-      "max_residual_m": 4.9926583852592e-06,
-      "pairwise_residual_bound_m": 9.9853167705184e-06,
-      "status": "prototype_geometry_repeat",
-      "method": "proper_rigid_full_surface_coverage_AB_preserved"
+      "label": "eave ring",
+      "status": "R01 generation family; no fabrication interchangeability claim",
+      "method": "explicit parameterized pattern"
     },
     {
       "id": "M03",
@@ -68,11 +63,9 @@
       ],
       "representative_id": "T0",
       "family": "radial_ties",
-      "label": "Horizontal radial ties",
-      "max_residual_m": 4.550278065568021e-06,
-      "pairwise_residual_bound_m": 9.100556131136042e-06,
-      "status": "prototype_geometry_repeat",
-      "method": "proper_rigid_full_surface_coverage_AB_preserved"
+      "label": "radial ties",
+      "status": "R01 generation family; no fabrication interchangeability claim",
+      "method": "explicit parameterized pattern"
     },
     {
       "id": "M04",
@@ -90,11 +83,9 @@
       ],
       "representative_id": "R0",
       "family": "radial_rafters",
-      "label": "Major hip rafters",
-      "max_residual_m": 4.960687314871391e-06,
-      "pairwise_residual_bound_m": 9.921374629742782e-06,
-      "status": "prototype_geometry_repeat",
-      "method": "proper_rigid_full_surface_coverage_AB_preserved"
+      "label": "radial rafters",
+      "status": "R01 generation family; no fabrication interchangeability claim",
+      "method": "explicit parameterized pattern"
     },
     {
       "id": "M05",
@@ -112,125 +103,101 @@
       ],
       "representative_id": "C0",
       "family": "cupola_posts",
-      "label": "Cupola posts",
-      "max_residual_m": 4.986883959770591e-06,
-      "pairwise_residual_bound_m": 9.973767919541182e-06,
-      "status": "prototype_geometry_repeat",
-      "method": "proper_rigid_full_surface_coverage_AB_preserved"
+      "label": "cupola posts",
+      "status": "R01 generation family; no fabrication interchangeability claim",
+      "method": "explicit parameterized pattern"
     },
     {
       "id": "M06",
       "number": 6,
-      "quantity": 8,
+      "quantity": 16,
       "member_ids": [
-        "L0-L",
-        "L1-L",
-        "L2-L",
-        "L3-L",
-        "L4-L",
-        "L5-L",
-        "L6-L",
-        "L7-L"
+        "K0-A",
+        "K0-B",
+        "K1-A",
+        "K1-B",
+        "K2-A",
+        "K2-B",
+        "K3-A",
+        "K3-B",
+        "K4-A",
+        "K4-B",
+        "K5-A",
+        "K5-B",
+        "K6-A",
+        "K6-B",
+        "K7-A",
+        "K7-B"
       ],
-      "representative_id": "L0-L",
-      "family": "cupola_bands",
-      "label": "Cupola lower band",
-      "max_residual_m": 4.890078357720997e-06,
-      "pairwise_residual_bound_m": 9.780156715441994e-06,
-      "status": "prototype_geometry_repeat",
-      "method": "proper_rigid_full_surface_coverage_AB_preserved"
+      "representative_id": "K0-A",
+      "family": "braces",
+      "label": "braces",
+      "status": "R01 generation family; no fabrication interchangeability claim",
+      "method": "explicit parameterized pattern"
     },
     {
       "id": "M07",
       "number": 7,
       "quantity": 8,
       "member_ids": [
-        "L0-S",
-        "L1-S",
-        "L2-S",
-        "L3-S",
-        "L4-S",
-        "L5-S",
-        "L6-S",
-        "L7-S"
+        "M-SP0",
+        "M-SP1",
+        "M-SP2",
+        "M-SP3",
+        "M-SP4",
+        "M-SP5",
+        "M-SP6",
+        "M-SP7"
       ],
-      "representative_id": "L0-S",
-      "family": "cupola_bands",
-      "label": "Cupola window sill band",
-      "max_residual_m": 4.993952397743909e-06,
-      "pairwise_residual_bound_m": 9.987904795487818e-06,
-      "status": "prototype_geometry_repeat",
-      "method": "proper_rigid_full_surface_coverage_AB_preserved"
+      "representative_id": "M-SP0",
+      "family": "metal_spacers",
+      "label": "metal spacers",
+      "status": "R01 generation family; no fabrication interchangeability claim",
+      "method": "explicit parameterized pattern"
     },
     {
       "id": "M08",
       "number": 8,
       "quantity": 8,
       "member_ids": [
-        "L0-H",
-        "L1-H",
-        "L2-H",
-        "L3-H",
-        "L4-H",
-        "L5-H",
-        "L6-H",
-        "L7-H"
+        "M-TMP0",
+        "M-TMP1",
+        "M-TMP2",
+        "M-TMP3",
+        "M-TMP4",
+        "M-TMP5",
+        "M-TMP6",
+        "M-TMP7"
       ],
-      "representative_id": "L0-H",
-      "family": "cupola_bands",
-      "label": "Cupola window head band",
-      "max_residual_m": 4.993952397743909e-06,
-      "pairwise_residual_bound_m": 9.987904795487818e-06,
-      "status": "prototype_geometry_repeat",
-      "method": "proper_rigid_full_surface_coverage_AB_preserved"
+      "representative_id": "M-TMP0",
+      "family": "temporary_fixture",
+      "label": "temporary fixture",
+      "status": "R01 generation family; no fabrication interchangeability claim",
+      "method": "explicit parameterized pattern"
     },
     {
       "id": "M09",
       "number": 9,
       "quantity": 8,
       "member_ids": [
-        "K0-A",
-        "K1-A",
-        "K2-A",
-        "K3-A",
-        "K4-A",
-        "K5-A",
-        "K6-A",
-        "K7-A"
+        "ENV-CUP0",
+        "ENV-CUP1",
+        "ENV-CUP2",
+        "ENV-CUP3",
+        "ENV-CUP4",
+        "ENV-CUP5",
+        "ENV-CUP6",
+        "ENV-CUP7"
       ],
-      "representative_id": "K0-A",
-      "family": "braces",
-      "label": "Knee braces \u2014 A hand/layout",
-      "max_residual_m": 4.984879819650783e-06,
-      "pairwise_residual_bound_m": 9.969759639301566e-06,
-      "status": "prototype_geometry_repeat",
-      "method": "proper_rigid_full_surface_coverage_AB_preserved"
+      "representative_id": "ENV-CUP0",
+      "family": "roof_envelope",
+      "label": "roof envelope",
+      "status": "R01 generation family; no fabrication interchangeability claim",
+      "method": "explicit parameterized pattern"
     },
     {
       "id": "M10",
       "number": 10,
-      "quantity": 8,
-      "member_ids": [
-        "K0-B",
-        "K1-B",
-        "K2-B",
-        "K3-B",
-        "K4-B",
-        "K5-B",
-        "K6-B",
-        "K7-B"
-      ],
-      "representative_id": "K0-B",
-      "family": "braces",
-      "label": "Knee braces \u2014 B hand/layout",
-      "max_residual_m": 4.9961049945573625e-06,
-      "pairwise_residual_bound_m": 9.992209989114725e-06,
-      "status": "prototype_geometry_repeat",
-      "method": "proper_rigid_full_surface_coverage_AB_preserved"
-    },
-    {
-      "id": "M11",
-      "number": 11,
       "quantity": 8,
       "member_ids": [
         "J0-0",
@@ -243,38 +210,14 @@
         "J7-0"
       ],
       "representative_id": "J0-0",
-      "family": "secondary_approx",
-      "label": "Secondary rafters - approximate \u2014 0 hand/layout",
-      "max_residual_m": 4.998391514615918e-06,
-      "pairwise_residual_bound_m": 9.996783029231836e-06,
-      "status": "prototype_geometry_repeat",
-      "method": "proper_rigid_full_surface_coverage_AB_preserved"
+      "family": "short_left",
+      "label": "short left",
+      "status": "R01 generation family; no fabrication interchangeability claim",
+      "method": "explicit parameterized pattern"
     },
     {
-      "id": "M12",
-      "number": 12,
-      "quantity": 8,
-      "member_ids": [
-        "J0-1",
-        "J1-1",
-        "J2-1",
-        "J3-1",
-        "J4-1",
-        "J5-1",
-        "J6-1",
-        "J7-1"
-      ],
-      "representative_id": "J0-1",
-      "family": "secondary_approx",
-      "label": "Secondary rafters - approximate \u2014 1 hand/layout",
-      "max_residual_m": 4.937892660911106e-06,
-      "pairwise_residual_bound_m": 9.875785321822211e-06,
-      "status": "prototype_geometry_repeat",
-      "method": "proper_rigid_full_surface_coverage_AB_preserved"
-    },
-    {
-      "id": "M13",
-      "number": 13,
+      "id": "M11",
+      "number": 11,
       "quantity": 8,
       "member_ids": [
         "J0-2",
@@ -287,27 +230,72 @@
         "J7-2"
       ],
       "representative_id": "J0-2",
-      "family": "secondary_approx",
-      "label": "Secondary rafters - approximate \u2014 2 hand/layout",
-      "max_residual_m": 4.9179638577458835e-06,
-      "pairwise_residual_bound_m": 9.835927715491767e-06,
-      "status": "prototype_geometry_repeat",
-      "method": "proper_rigid_full_surface_coverage_AB_preserved"
-    }
-  ],
-  "handed_pair_checks": [
-    {
-      "member_a": "K0-A",
-      "member_b": "K0-B",
-      "proper_rotation_match": false,
-      "rejection": "different fitted boundary extents"
+      "family": "short_right",
+      "label": "short right",
+      "status": "R01 generation family; no fabrication interchangeability claim",
+      "method": "explicit parameterized pattern"
     },
     {
-      "member_a": "J0-0",
-      "member_b": "J0-2",
-      "proper_rotation_match": false,
-      "rejection": "different fitted boundary extents"
+      "id": "M12",
+      "number": 12,
+      "quantity": 8,
+      "member_ids": [
+        "L0-L",
+        "L1-L",
+        "L2-L",
+        "L3-L",
+        "L4-L",
+        "L5-L",
+        "L6-L",
+        "L7-L"
+      ],
+      "representative_id": "L0-L",
+      "family": "cupola_L",
+      "label": "cupola L",
+      "status": "R01 generation family; no fabrication interchangeability claim",
+      "method": "explicit parameterized pattern"
+    },
+    {
+      "id": "M13",
+      "number": 13,
+      "quantity": 8,
+      "member_ids": [
+        "L0-S",
+        "L1-S",
+        "L2-S",
+        "L3-S",
+        "L4-S",
+        "L5-S",
+        "L6-S",
+        "L7-S"
+      ],
+      "representative_id": "L0-S",
+      "family": "cupola_S",
+      "label": "cupola S",
+      "status": "R01 generation family; no fabrication interchangeability claim",
+      "method": "explicit parameterized pattern"
+    },
+    {
+      "id": "M14",
+      "number": 14,
+      "quantity": 8,
+      "member_ids": [
+        "L0-H",
+        "L1-H",
+        "L2-H",
+        "L3-H",
+        "L4-H",
+        "L5-H",
+        "L6-H",
+        "L7-H"
+      ],
+      "representative_id": "L0-H",
+      "family": "cupola_H",
+      "label": "cupola H",
+      "status": "R01 generation family; no fabrication interchangeability claim",
+      "method": "explicit parameterized pattern"
     }
   ],
-  "reference_end_semantics": "Keep every original timber ID; end A is ID+A suffix and end B is ID+B suffix, with a hyphen before the end letter. No end swapping."
+  "handed_pair_checks": [],
+  "reference_end_semantics": "A/B maintained for surviving wood members; new references describe R01 geometric end planes."
 }

@@ -1,19 +1,51 @@
 <!doctype html>
-<html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Joinery design · Octagonal Timberframe Building</title>
-<style>body{margin:0;background:#f4f6f2;color:#233e42;font:16px/1.7 system-ui,sans-serif}main{max-width:1050px;margin:auto;padding:38px 24px}a{color:#176a7d;text-underline-offset:3px}h1{font-size:38px;line-height:1.15}h2{font-size:24px;margin-top:34px}.lead{font-size:20px}.note{padding:18px;border-left:4px solid #ae6534;background:#f7ebdf}.table{overflow-x:auto}table{border-collapse:collapse;background:white;width:100%;font-size:14px}th,td{text-align:left;vertical-align:top;border:1px solid #d1ded8;padding:14px}th{background:#dfeae5}small{color:#64777a}li{padding-bottom:10px}footer{margin-top:35px;padding-top:20px;border-top:1px solid #d1ded8;font-size:13px}</style>
-<main><a href="index.html">← 3D explorer</a><h1>Build the joints around bearing and assembly</h1><p class="lead">Keep the source building’s documented layout and timber sizes. Replace the generated overlap keys with conventional timber-frame connections, starting with one complete corner.</p>
-<p class="note"><strong>Design proposals.</strong> These families have not yet replaced the model’s current cut solids. They are not recovered details from the original building, and no final tenon depths, peg sizes or machining allowances are assigned here.</p>
-<p>The recovered original 864 × 631 image has now been inspected. It is a building overview, not a dimensioned corner-joint detail; it does not authenticate the generated wing-like projections or concealed joints. The saved 40% key envelopes remain modeling assumptions.</p>
-<h2>First resolve the roof bearing level</h2><p>The current reconstruction places the hip’s upper surface near the ring-beam top at the post, forcing the deep hip through the ring. The previous subtraction algorithm cut away timber to accommodate that alignment. Establish the plate, tie and hip-seat levels from the source before making new cuts. The hip/ring bearing-datum conflict remains unresolved; the reference overview does not establish a replacement level. Any correction must keep documented timber sections and provide a deliberate bearing detail.</p><p>The fresh <a href="review/fitted-overlap-check.json">assembled fitted-solid check</a> found no member-pair overlaps above 1e-10 m³. That confirms only the carved geometry at the stated numerical threshold, not the adequacy of bearing, retained wood, cuts, clearance or insertion paths.</p>
-<h2>Connection families</h2><div class="table"><table><thead><tr><th>Connection</th><th>Proposed joint</th><th>Assembly provision</th></tr></thead><tbody>
-<tr><td>Posts P + ring beams B</td><td>Supported oblique laps over the posts, with a deliberate post-head locating and locking detail.</td><td>Alternate lower-lap and upper-lap members are a candidate to test; avoid a closed cycle of trapped overlaps.</td></tr>
-<tr><td>Radial ties T</td><td>Housed, shouldered tenons. Select a positively tied variant where the connection must transfer tension.</td><td>Reserve the tie mortise zone before ring and brace cuts; include tenon extensions in the blank.</td></tr>
-<tr><td>Major hips R</td><td>Defined bearing heel or seat, with explicit thrust and uplift restraint.</td><td>Preserve continuous wood through the support and extended tail; test lowering or radial-subassembly insertion.</td></tr>
-<tr><td>Knee braces K</td><td>Shouldered tenons and shallow housings.</td><td>Preassemble fixed-tenon braces with their subframes; detail any later-installed brace for an accessible insertion route.</td></tr>
-<tr><td>Cupola posts C + bands L</td><td>Housed band tenons or supported laps, coordinated with post-foot and hip-head bearing.</td><td>Stagger adjacent mortises and reserve a named closure bay before detailing every end.</td></tr>
-<tr><td>Secondary rafters J</td><td>Shallow bearing seats with defined uplift and side restraint.</td><td>Lower from above; preserve the rafter section across the eave instead of using the current narrow central key.</td></tr>
-</tbody></table></div>
-<h2>Develop one complete corner first</h2><p>Use <a href="index.html#part=P0&isolate=1">P0</a>, <a href="index.html#part=B7&isolate=1">B7</a>, <a href="index.html#part=B0&isolate=1">B0</a>, <a href="index.html#part=T0&isolate=1">T0</a> and <a href="index.html#part=R0&isolate=1">R0</a>, then add the brace joints. The links inspect the <em>current</em> solids so the existing cut conflicts can be reviewed.</p><ol><li>Set the bearing shoulders and correct roof-support datum.</li><li>Lay out the supported ring joint and reserve a separate tie connection zone.</li><li>Seat the hip without excavating the ring corner or tie tenon.</li><li>Place brace mortises outside the crowded post-head joints.</li><li>Check the actual insertion movement, tool access and remaining timber before repeating the detail around the octagon.</li></ol>
-<h2>Design the cupola’s last connection</h2><p>Reserve the bay between C7 and C0—initially L7-L, L7-S and L7-H—as a closure study. Use designed bearing shoulders with an accessible spline, key or concealed connector where fixed tenons would trap the last piece. Model every added closure component and give it its own part ID.</p>
-<p><a href="JOINT-DESIGN-BRIEF.md" download>Download the complete joint design brief</a> · <a href="review/index.html">Read the measured geometry findings</a></p>
-<footer>Proposals informed by <a href="https://www.tfguild.org/timber-frame-engineering-council/technical-bulletins/view/112/download">TFEC’s Rules of Timber Joinery Design</a>. Joint shape, remaining wood, bearing, machining and insertion need to be resolved together.</footer></main></html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>R01 contact and joint review · Octagonal Timberframe</title>
+<meta name="description" content="The corrected octagonal framing pattern, revised contact families, and remaining joint-design questions.">
+<style>
+:root{color-scheme:light;--bg:#fafaf6;--panel:#edf2ed;--text:#243d42;--muted:#5c7175;--line:#d8dfdc;--accent:#176a7d}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:17px/1.6 system-ui,sans-serif}main{max-width:1100px;margin:auto;padding:32px 22px 70px}a{color:var(--accent);text-underline-offset:3px}a:focus-visible{outline:3px solid #176a7d;outline-offset:5px}nav{display:flex;gap:24px;flex-wrap:wrap;margin-bottom:36px}h1{font:600 clamp(2rem,4vw,3.4rem)/1.12 system-ui,sans-serif;max-width:820px;margin:12px 0 20px}h2{font:600 1.55rem/1.3 system-ui,sans-serif;margin:38px 0 12px}p{max-width:88ch}.eyebrow{color:var(--accent);font-size:.8rem;letter-spacing:.11em;text-transform:uppercase}.lead{font-size:1.13rem;color:var(--muted)}.note{padding:18px 22px;border-left:4px solid #b78950;background:#f5eee3}.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px;margin:26px 0}.card{background:var(--panel);padding:20px;border:1px solid var(--line);border-radius:12px}.card strong{display:block;color:var(--accent);font-size:1.8rem;line-height:1.2}.card p{margin:8px 0 0;color:var(--muted)}.table-wrap{overflow-x:auto}table{border-collapse:collapse;width:100%;min-width:650px}th,td{padding:13px 14px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}th{color:var(--accent);background:var(--panel)}code{font-size:.9em}li{margin:9px 0}footer{border-top:1px solid var(--line);margin-top:40px;padding-top:20px;color:var(--muted);font-size:.9rem}@media(max-width:600px){main{padding:24px 16px 48px}.cards{grid-template-columns:1fr 1fr}.card{padding:15px}.card strong{font-size:1.55rem}body{font-size:16px}}@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<main>
+<nav aria-label="Page navigation"><a href="index.html">← Return to the frame</a><a href="JOINT-DESIGN-BRIEF.md">Read the complete R01 joint brief</a></nav>
+<p class="eyebrow">R01 · Corrected framing pattern</p>
+<h1>New contact geometry.<br>Joint details still to resolve.</h1>
+<p class="lead">Eight radial triangular frames carry two short rafters in each bay. Each short rafter lands on a neighboring hip. The eight rafters that previously ran inward from wall midpoints have been removed.</p>
+<div class="cards" aria-label="Framing counts">
+<div class="card"><strong>8</strong><p>Main triangular frames, with existing IDs preserved.</p></div>
+<div class="card"><strong>16</strong><p>Short rafters, perpendicular to the eave and trimmed to hip side faces.</p></div>
+<div class="card"><strong>0</strong><p>Center-running midpoint rafters. <code>J0-1</code> through <code>J7-1</code> are retired.</p></div>
+<div class="card"><strong>6 × 10 in</strong><p>Lower radial ties, following Stewart’s revised section.</p></div>
+</div>
+<p class="note">The model shows reference geometry and contact surfaces. These are not finished mortises, tenons, housings, bearing seats or fastening details. Dimensions and angles remain geometric review values, not a cutting schedule.</p>
+<h2>Where the joints change</h2>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Revised contact families">
+<table><thead><tr><th scope="col">Location</th><th scope="col">Revised relationship</th><th scope="col">Still to resolve</th></tr></thead><tbody>
+<tr><td>Short-rafter upper ends</td><td><code>Ji-0</code> meets <code>Ri</code>; <code>Ji-2</code> meets <code>R(i+1)</code>. Each physical end follows the hip’s side plane.</td><td>Bearing, housing or other end connection, retention, and remaining wood. The two ends are handed.</td></tr>
+<tr><td>Main-post corner</td><td>The ring, 6 × 10 in tie and main hip meet at the corrected post datum; the hip tail continues to the eave.</td><td>Compatible post-head, ring, tie and heel details, with confirmed bearing elevations and an assembly route.</td></tr>
+<tr><td>Cupola hip head and post base</td><td>The hip reaches the outer cupola face; the radial frame reaches the cupola support location.</td><td>Actual bearing and connection, member offsets, and the role of any retained cupola bands.</td></tr>
+<tr><td>Green metal spacers</td><td>Separate objects span adjacent outward cupola-post corners, with a 28⅛ in clear setting-out gap.</td><td>Stock, returns, holes, fastening and developed blank length.</td></tr>
+<tr><td>Black central fixture</td><td>A separate temporary eight-arm assembly fitting, hidden by default.</td><td>Steel and attachment details, erection loading, stability and removal criteria.</td></tr>
+</tbody></table>
+</div>
+<h2>Keep the measuring points distinct</h2>
+<p>The main frame is <strong>30 ft across outside radial post faces</strong>. With the working 8 in posts, centers are 29 ft 4 in across. Eave tips are 33 ft 4 in across. The 20 in radial overhang starts at the outside post face.</p>
+<p>The cupola is 7 ft 4 in across outside faces and 6 ft 4 in inside. Its radial 6 × 6 in posts have a 41 in center radius. The cupola roof uses a radial 4:12 slope and a 12 in horizontal radial overhang.</p>
+<p>A short rafter’s reference axis reaches the hip at a sloping length of 136.923 in. Its center reference reaches the hip side face at 125.811 in under the working section assumptions. Neither value includes a designed joint, stock allowance or machining clearance. All physical edges must be intersected separately to form the end.</p>
+<h2>What remains provisional</h2>
+<ul>
+<li>The 24 existing cupola-band IDs remain as contextual pieces, hidden by default. Their hidden status does not establish that they are required or that their connections are known.</li>
+<li>The inventory retains 96 timber IDs: 72 visible timbers and 24 contextual bands. Metal objects and cupola roof reference surfaces are counted separately.</li>
+<li>Ground-to-tie height, glazing-height endpoints, physical roof bearing, actual timber sections and roof backing still need confirmation.</li>
+<li>“Boston Layout” is retained as a window note; no window openings are inferred from the blurred dimension string.</li>
+<li>Old generated keys, cut-face labels, overlap reports and withdrawal tests belong to the superseded model. They do not validate this revision.</li>
+</ul>
+<p>The next joint work is to fix bearing datums and compatible details at these named interfaces, then check fit, remaining section and assembly access together. The complete brief keeps each reference value and unresolved input explicit.</p>
+<footer>Based on <em>Octagon-architectural-geometry-study-R01.pdf</em> and Stewart Lundy’s November 1, 2026 corrections. Original building reference: <a href="https://www.bluetimecollaborative.com/robert-swinburne-vermont-architect/octagon-timber-frame-outbuilding">Robert Swinburne / Bluetime Collaborative</a>. Geometry review only; no structural or fabrication approval is issued.</footer>
+</main>
+</body>
+</html>

@@ -6,6 +6,7 @@ const deg=value=>value*180/Math.PI;
 const cleanAngle=value=>Math.abs(value)<.00001?0:value;
 const angleText=value=>value==null||!Number.isFinite(value)?'Unresolved':num(cleanAngle(value),2)+'°';
 function stockFrame(p){
+ if(p.stock_frame&&['axis','width','depth'].every(k=>Array.isArray(p.stock_frame[k])&&p.stock_frame[k].length===3&&p.stock_frame[k].every(Number.isFinite)))return Object.fromEntries(['axis','width','depth'].map(k=>[k,unit(p.stock_frame[k])]));
  const axis=unit(vsub(p.axis_end,p.axis_start));
  const cap=(p.reference_end_faces||[]).find(f=>f.id===p.id+'-A');
  if(length(axis)<.99||!cap?.vertices||cap.vertices.length<2)return null;
@@ -48,8 +49,8 @@ function appendAnglePanel(host,p){
  const panel=document.createElement('section');panel.className='angle-panel';panel.id='selectedAngles';
  const refs=document.createElement('details'),refSummary=document.createElement('summary');refs.dataset.inspectorKey='referenceAngles';refSummary.textContent='Reference angles · member axis & A/B ends';refs.appendChild(refSummary);
  for(const [label,value] of recordedAngles(p))addMetric(refs,label,value);
- const note=document.createElement('p');note.className='description';note.textContent='End A/B values describe the earlier model reference planes. Fitted surfaces are measured separately. Joint projections were generated during fitting; they are not documented original joinery.';refs.appendChild(note);panel.appendChild(refs);
- const surfaces=document.createElement('details'),heading=document.createElement('summary');surfaces.dataset.inspectorKey='surfaceAngles';heading.textContent='Cut-plane angles · every fitted surface';surfaces.appendChild(heading);
+ const note=document.createElement('p');note.className='description';note.textContent='End A/B values describe this revision’s reference planes. Contact surfaces are measured separately. Housing, tenon and fastening details are not assigned by these geometric measurements.';refs.appendChild(note);panel.appendChild(refs);
+ const surfaces=document.createElement('details'),heading=document.createElement('summary');surfaces.dataset.inspectorKey='surfaceAngles';heading.textContent='Contact-plane angles · recorded surfaces';surfaces.appendChild(heading);
  const legend=document.createElement('p');legend.className='description';legend.textContent='Off sq = plane angle from a square end. Yaw = normal rotation toward stock width. Tilt = normal rotation toward stock depth. A → B follows the timber axis. These geometric angles are not saw settings.';surfaces.appendChild(legend);
  const wrap=document.createElement('div');wrap.className='angle-table';wrap.setAttribute('tabindex','0');wrap.setAttribute('aria-label','Scrollable angle table for '+p.id);
  const table=document.createElement('table'),head=document.createElement('thead'),hr=document.createElement('tr');
@@ -62,13 +63,13 @@ function appendAnglePanel(host,p){
  }table.appendChild(body);wrap.appendChild(table);surfaces.appendChild(wrap);
  const exportButton=document.createElement('button');exportButton.textContent='Download '+p.id+' angles';exportButton.onclick=()=>download(p.id+'-model-angles.csv',anglesCSV(p),'text/csv');surfaces.appendChild(exportButton);
  const axes=document.createElement('details'),summary=document.createElement('summary');summary.textContent='Angle reference axes and sign convention';axes.appendChild(summary);
- const frame=stockFrame(p);const explanation=document.createElement('p');explanation.textContent='The local stock frame is recovered from the saved End A cap: axis runs A → B, width follows its first cap edge, and depth is axis × width. The first nonzero normal component (axis, width, depth) is made positive; opposite normals describe the same plane. Yaw is undefined for a normal entirely along depth. Plane-to-axis angle = 90° minus off-square angle.';axes.appendChild(explanation);
+ const frame=stockFrame(p);const explanation=document.createElement('p');explanation.textContent='The local stock frame uses the generator’s explicit axis, width and depth directions. Axis runs A → B. For legacy records without an explicit frame, width is recovered from the first End A cap edge and depth is axis × width. The first nonzero normal component (axis, width, depth) is made positive; opposite normals describe the same plane. Yaw is undefined for a normal entirely along depth. Plane-to-axis angle = 90° minus off-square angle.';axes.appendChild(explanation);
  if(frame)for(const [name,vector] of Object.entries(frame))addMetric(axes,name+' (model X/Y/Z)',vector.map(v=>num(v,4)).join(', '));surfaces.appendChild(axes);panel.appendChild(surfaces);host.appendChild(panel);
 }
 function anglesCSV(p){
  const rows=[['Piece_ID','Record','Category','Off_square_deg','Plane_to_axis_deg','Normal_yaw_deg','Normal_tilt_deg','Value','Status']];
- for(const [label,value] of recordedAngles(p))rows.push([p.id,label,'Recorded model reference','','','','',value,'Prototype / fabrication unresolved']);
- for(const f of cuts.filter(f=>f.part_id===p.id)){const a=surfaceAngles(p,f);rows.push([p.id,f.id,f.reference?'Earlier end reference':'Fitted surface',a.offSquare,a.planeToAxis,a.yaw??'Undefined',a.tilt??'Undefined','','Measured model geometry; not saw settings']);}
+ for(const [label,value] of recordedAngles(p))rows.push([p.id,label,'Recorded model reference','','','','',value,'R01 geometry / fabrication unresolved']);
+ for(const f of cuts.filter(f=>f.part_id===p.id)){const a=surfaceAngles(p,f);rows.push([p.id,f.id,f.reference?'R01 end reference':'Contact surface',a.offSquare,a.planeToAxis,a.yaw??'Undefined',a.tilt??'Undefined','','Measured model geometry; not saw settings']);}
  return rows.map(row=>row.map(csvCell).join(',')).join('\r\n');
 }
 function setScheduleHead(labels){const row=$('scheduleHead');row.replaceChildren();for(const label of labels){const th=document.createElement('th');th.textContent=label;th.setAttribute('scope','col');row.appendChild(th);}}
@@ -78,19 +79,20 @@ function showScheduleDialog(){
 }
 function materialsCSV(){
  const rows=[['Type','Quantity','Family','Nominal_width_in','Nominal_depth_in','Nominal_axis_length_ft','Total_nominal_axis_ft','Nominal_board_feet','Existing_piece_IDs_in_number_order','Grouping_basis','Status']];
- for(const g of MATERIALS.groups){const p=partById.get(g.representative_id);rows.push([g.id,g.quantity,g.label||groupMap.get(p.group)?.label||p.group,widthIn(p),depthIn(p),lengthFt(p),g.quantity*lengthFt(p),g.quantity*widthIn(p)*depthIn(p)*lengthFt(p)/12,g.member_ids.join(' | '),MATERIALS.method||g.method||'Compared fitted geometry','Model inventory; blanks and joinery unresolved']);}
+ for(const g of MATERIALS.groups){const p=partById.get(g.representative_id);rows.push([g.id,g.quantity,g.label||groupMap.get(p.group)?.label||p.group,widthIn(p),depthIn(p),lengthFt(p),g.quantity*lengthFt(p),isTimber(p)?g.quantity*widthIn(p)*depthIn(p)*lengthFt(p)/12:'',g.member_ids.join(' | '),g.method||MATERIALS.method||'R01 repeated geometry',isTimber(p)?'Timber reference inventory; blanks and joints unresolved':'Non-timber visualization; stock dimensions unresolved']);}
  return rows.map(row=>row.map(csvCell).join(',')).join('\r\n');
 }
 function openMaterials(){
- scheduleReturnFocus=document.activeElement;$('scheduleTitle').textContent='Materials · grouped fitted pieces';
+ scheduleReturnFocus=document.activeElement;$('scheduleTitle').textContent='Materials · R01 component groups';
  setScheduleHead(['Type','Quantity','Member family','Nominal section','Nominal axis length each','Numbered pieces · original IDs','Matching basis']);
- const note=$('scheduleNote');note.replaceChildren();const text=document.createElement('span');text.textContent=MATERIALS.groups.length+' fitted-shape types · '+parts.length+' timbers. Numbering supplements the original IDs. A/B direction and handedness are preserved. Shape comparison tolerance: 0.01 mm (numerical comparison only). Nominal lengths exclude fabrication allowances.';note.appendChild(text);
+ const note=$('scheduleNote');note.replaceChildren();const text=document.createElement('span');text.textContent=MATERIALS.groups.length+' component groups · '+parts.filter(isTimber).length+' timber members. Metal and roof-envelope components are separate groups. Original timber IDs and A/B directions are retained. Reference lengths exclude fabrication allowances.';note.appendChild(text);
  const exportButton=document.createElement('button');exportButton.textContent='Download materials CSV';exportButton.onclick=()=>download('octagon-grouped-materials.csv',materialsCSV(),'text/csv');note.appendChild(exportButton);
  const body=$('scheduleRows');body.replaceChildren();
  for(const g of MATERIALS.groups){const p=partById.get(g.representative_id),row=document.createElement('tr');row.dataset.materialId=g.id;
   for(const value of [g.id,String(g.quantity),g.label||groupMap.get(p.group)?.label||clean(p.group),num(widthIn(p),2)+' × '+num(depthIn(p),2)+' in',feet(lengthFt(p))]){const td=document.createElement('td');td.textContent=value;row.appendChild(td);}
   const members=document.createElement('td');members.className='material-members';g.member_ids.forEach((id,i)=>{const button=document.createElement('button');button.textContent=String(i+1).padStart(2,'0')+' · '+id;button.setAttribute('aria-label',g.id+' piece '+(i+1)+': inspect '+id);button.onclick=()=>{closeSchedule(false);selectPart(id);focusPart(partById.get(id));canvas.focus();};members.appendChild(button);});row.appendChild(members);
-  const basis=document.createElement('td');basis.textContent=g.quantity===1?'Distinct fitted geometry':'Matching under rotation / translation';row.appendChild(basis);body.appendChild(row);
+  const basis=document.createElement('td');basis.textContent=g.status||g.method||'Repeated R01 geometry; fabrication unresolved';row.appendChild(basis);body.appendChild(row);
  }showScheduleDialog();
 }
 $('materialsButton').onclick=openMaterials;
+

@@ -70,3 +70,4 @@ throwOn=null;highContrast=false;log=[];render();check(log.some(x=>x[0]==='contra
 return passed;
 `)(source,TimberEdgeMeasurements);
 console.log(JSON.stringify({method:'Actual template functions; normal math and renderer state without browser',source:templatePath,passed:results.length,assertions:results},null,2));
+
