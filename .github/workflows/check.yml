@@ -9,13 +9,14 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
-          python-version: '3.x'
+          # Use a supported wheel ABI instead of tracking unreleased/new Python ABIs.
+          python-version: '3.12'
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
       - run: python3 scripts/build.py
       # TIMESTAMP START 2026-11-01T22:44:38-05:00 | REVISION R004653
-      - run: pip install numpy manifold3d
+      - run: python3 -m pip install --only-binary=:all: numpy manifold3d==3.5.4
       - run: python3 tests/test_joinery.py
       - run: python3 tests/test_r01_geometry.py
       # TIMESTAMP END 2026-11-01T22:44:38-05:00 | REVISION R004653
