@@ -83,3 +83,8 @@ delete global.OctagonStepLap;
 const runtimeAssertions=require('./viewer-regression.cjs').runViewerTests(initializeDOM+runtimeSource+'\n'+runtimeChecks,embeddedModel,{search:'?model=baseline'});
 assert(runtimeAssertions.some(s=>s==='Actual HTML binds Compare proposed joints button'));
 console.log(`PASS: ${data.variants.length} actual proposal/baseline mesh pairs, section views, repeated controls and labeled exports; script-type-aware executable-HTML binding; ${runtimeAssertions.length} runtime/viewer assertions; canonical geometry and loads preserved`);
+
+// Comparison styles must apply on screen, not remain inside print media.
+const cssTemplate=require('fs').readFileSync('src/viewer.template.html','utf8');
+const beforeStepStyles=cssTemplate.split('<style>')[1].split('.step-lap-modal')[0];
+assert.equal([...beforeStepStyles].reduce((n,c)=>n+(c==='{'?1:c==='}'?-1:0),0),0,'step-lap screen styles must be outside print media');

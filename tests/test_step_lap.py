@@ -5,6 +5,7 @@ import numpy as np
 import manifold3d as m
 R=Path(__file__).resolve().parents[1];sys.path.insert(0,str(R/'scripts'))
 from step_lap import build_proposal,solid,volume_centroid
+from regeneration_equivalence import assert_equivalent,test_guard
 I=.0254;raw=(R/'src/model-data.json').read_bytes();base=json.loads(raw);sha=hashlib.sha256(raw).hexdigest();data=json.loads((R/'src/step-lap-proposal.json').read_text());full=json.loads((R/'src/step-lap-proposed-model.json').read_text())
 B={p['id']:p for p in base['parts']};P={p['id']:p for p in full['parts']};changed={f'{family}{k}' for k in range(8) for family in ['B','P','R']}|{f'J{k}-{side}' for k in range(8) for side in ['0','2']}
 assert sha=='b3a0363a2c2e83a541038d0ff39ad86e38d8b79ceb7415cde9174d74273086a2','Baseline changed: re-review assumptions and regenerate, never silently rebase'
@@ -83,7 +84,14 @@ assert not data['combined_geometry_audit']['held_interfaces']
 assert data['combined_geometry_audit']['implemented_interface_count']==24
 assert abs(data['baseline_timber_volume_m3']-data['proposed_timber_volume_m3'])<1e-10
 assert len(full['proposed_member_volume_centroids'])==104
-# Rebuilding only derived files must be deterministic and cannot mutate baseline.
-ag,fg=build_proposal(base,sha);assert ag==data and fg==full
+# Regeneration must preserve exact structure/topology/claims and geometry within
+# tiny unit-aware roundoff bounds. BLAS CPU dispatch changes last bits, so byte
+# equality across machines is not a geometric-equivalence test. Existing
+# independent stock/contact/intersection checks above remain unchanged.
+test_guard()
+# Compare the JSON domain actually emitted by the generator, normalizing
+# NumPy float scalars without rounding any value.
+ag,fg=(json.loads(json.dumps(x)) for x in build_proposal(base,sha))
+print("Regeneration roundoff:",assert_equivalent(ag,data,("proposal",)),assert_equivalent(fg,full,("model",)))
 assert (R/'src/model-data.json').read_bytes()==raw
 print('PASS: actual complementary tongue/pocket CSG; matched closed profiles; original-stock bounds; all 24 interfaces / 3340 affected pairs clear;104 member volumes/centroids refreshed; baseline exact; no fabricated strength/retention/manual claims')
