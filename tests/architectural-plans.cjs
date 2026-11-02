@@ -16,3 +16,6 @@ assert(api.drawing(model,{view:'top'}).svg.includes('Site bearing unverified'));
 console.log('PASS: three independent schematic plan layers, shared design compass, unchanged canonical geometry');
 
 const floor=api.drawing(model,{view:'top',floor:true});assert(floor.parts.filter(p=>p.schematicKind==='floor').length===8);assert(floor.parts.filter(p=>p.schematicKind==='grate').length===2);assert(!floor.parts.some(p=>p.schematicKind&&!['floor','grate'].includes(p.schematicKind)));assert(floor.svg.includes('floor/grate ON'));
+
+// Provenance must be visible in the exported sheet, not only an internal cache key.
+for(const view of ['top','side']){const sheet=api.drawing(model,{view,modelHash:hash});assert(sheet.svg.includes('Model SHA-256: '+hash));assert(sheet.svg.includes(view==='top'?'Sheet GEOM-TOP':'Sheet GEOM-SIDE'));}

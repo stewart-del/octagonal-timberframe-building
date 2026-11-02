@@ -22,7 +22,7 @@ function runViewerTests(source,model,{search='?model=baseline',skipLegacy=false}
     querySelectorAll(selector){const out=[];const match=n=>selector==='[data-focus-key]'?!!n.dataset.focusKey:selector.includes('button')?n.tagName==='BUTTON'&&!n.disabled:false;const walk=n=>{for(const c of n.children){if(match(c))out.push(c);walk(c);}};walk(this);return out;}
   }
   const findId=(node,id)=>node.id===id?node:node.children.map(c=>findId(c,id)).find(Boolean);
-  const nodes=new Map();document={root:new Element(),hidden:false,activeElement:null,getElementById:id=>nodes.get(id)||findId(document.root,id),createElement:tag=>new Element(tag),addEventListener:(k,f)=>(listeners[k]??=[]).push(f),querySelector:tag=>nodes.get(tag)};
+  const nodes=new Map();document={root:new Element(),hidden:false,activeElement:null,getElementById:id=>nodes.get(id)||findId(document.root,id),createElement:tag=>new Element(tag),createElementNS:(ns,tag)=>new Element(tag),addEventListener:(k,f)=>(listeners[k]??=[]).push(f),querySelector:tag=>nodes.get(tag)};
   const ids=[...source.matchAll(/\$\('([^']+)'\)/g)].map(m=>m[1]);ids.push('plansTop','plansSide','model-data','header','main','scene','labels','orbitNav','freeNav');
   for(const id of new Set(ids)){if(id==='cutDetail'||id==='isolatePiece')continue;const el=new Element(id==='scene'?'canvas':id==='search'?'input':/Button|closeSchedule|Nav$/.test(id)?'button':'div');el.id=id;nodes.set(id,el);document.root.appendChild(el);}
   nodes.get('scheduleModal').append(nodes.get('closeSchedule'),nodes.get('scheduleNote'),nodes.get('scheduleHead'),nodes.get('scheduleRows'));
@@ -135,9 +135,12 @@ function runViewerTests(source,model,{search='?model=baseline',skipLegacy=false}
     check(verticalAngles.find(r=>r[0]==='Plan direction in model X/Z')[1].includes('Not applicable'),'Vertical plan direction is not invented as zero');
     check(verticalAngles.filter(r=>r[0].startsWith('Fabrication')).every(r=>r[1]==='Unresolved'),'Unavailable fabrication angles remain unresolved');
     check(cuts.every(f=>{const a=surfaceAngles(partById.get(f.part_id),f);return Number.isFinite(a.offSquare)&&a.offSquare>=0&&a.offSquare<=90&&Math.abs(a.offSquare+a.planeToAxis-90)<1e-8;}),'All contact and reference faces expose finite complementary plane angles');
-    selectPart('J0-0');const angleRows=walk($('selection')).filter(el=>el.tagName==='TR'&&el.dataset.cutId);
-    check(angleRows.length===cuts.filter(f=>f.part_id==='J0-0').length,'Selected rafter exposes all contact and reference angle rows');
-    angleRows.at(-1).children[0].children[0].focus();angleRows.at(-1).children[0].children[0].onclick();check(selectedCut===angleRows.at(-1).dataset.cutId,'Angle row selects exact face ID');check(document.activeElement.dataset.cutId===selectedCut&&document.activeElement.isConnected,'Angle inspection preserves keyboard focus');
+    selectPart('J0-0');check(!walk($('selection')).some(el=>el.tagName==='TR'),'Main inspector does not dump cut-angle tables');
+    const cutButton=walk($('selection')).find(el=>el.id==='pieceCutAngles');check(!!cutButton,'Selected member has a Cut angles entry point');cutButton.focus();cutButton.onclick();
+    check($('cutAnglesModal').classList.contains('open')&&navigationBlocked(canvas)&&document.querySelector('main').inert,'Cut-angle screen pauses navigation and isolates input');
+    cutAngleView.renderPiece('J0-0');const report=cutAngleView.getReport();check(report.partId==='J0-0'&&report.faces.length>0&&$('cutAnglesContent').children.length>0,'Detail screen lists selected current-mesh planar faces');
+    const faceButton=walk($('cutAnglesContent')).find(el=>el.tagName==='BUTTON');faceButton.onclick();check($('cutFaceSketch').children.length>0,'Face selection renders actual mesh projection');
+    cutAngleView.close();check(!$('cutAnglesModal').classList.contains('open')&&!document.querySelector('main').inert&&document.activeElement===cutButton,'Closing restores original Cut angles focus');
     const inventory=MATERIALS.groups.flatMap(g=>g.member_ids);
     check(inventory.length===parts.length&&new Set(inventory).size===parts.length&&parts.every(p=>inventory.includes(p.id)),'Materials inventory covers current components exactly once');
     check(MATERIALS.groups.every(g=>g.quantity===g.member_ids.length),'Material quantities agree with membership');
