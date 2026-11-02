@@ -673,8 +673,178 @@ def audit(model, cavities):
     # TIMESTAMP END 2026-11-02T10:08:45-05:00 | REVISION R004761
 
 
+# TIMESTAMP START 2026-11-02T11:39:39-05:00 | REVISION R004772
+def report_invariants(report, label):
+    """Validate proof evidence and retain portable physical/provenance invariants.
+
+    Qhull may subdivide the same convex region differently across platforms.
+    Centroids, partition order and diagnostic cell counts need not match, but
+    every saved and recomputed proof must independently satisfy its unchanged
+    physical bounds. Source hashes, audit policy and physical inventory are exact.
+    """
+    assert report.get('status') == 'PASS', f'{label}.status={report.get("status")!r}; failures={report.get("failures")!r}'
+
+    def require_fields(value, fields, path):
+        assert isinstance(value, dict), f'{path}: missing proof record'
+        missing = set(fields.split()) - value.keys()
+        assert not missing, f'{path}: missing required proof fields {sorted(missing)!r}'
+
+    def require_mesh(mesh, path):
+        require_fields(mesh, 'status failures vertices triangles connected_surfaces minimum_triangle_area_m2 signed_volume_m3 raw_surface_check', path)
+        require_fields(mesh['raw_surface_check'], 'status coplanar_pairs_tested overlap_pairs opposed_overlap_pair_count max_overlap_area_m2 sum_pair_overlap_area_m2 plane_tolerance_m positive_area_tolerance_m2', path + '.raw_surface_check')
+
+    def require_stock(stock, path):
+        require_fields(stock, 'status reference_envelope_volume_in3 max_cavity_vertex_outside_reference_stock_m partition_planes convex_cells verified_cells cells_in_final_receiver_wood cells_in_exported_cavity partition_volume_balance_error_m3 max_interior_boundary_area_m2 failures declared_external_trim scope', path)
+
+    def require_coverage(proof, path, source_component=False):
+        require_fields(proof, 'status coverage_mode', path)
+        mode = proof['coverage_mode']
+        if mode == 'one convex cell':
+            require_fields(proof, 'mate volume_in3 interior_boundary_area_m2 centroid_margin_m', path)
+        elif mode in {'explicit convex partition', 'nonconvex surface partition'}:
+            require_fields(proof, 'partition_planes partition_cells partition_volume_balance_error_m3 cells note', path)
+            require_fields(proof, 'volume_in3' if mode == 'explicit convex partition' else 'excluded_hull_cells', path)
+            for index, cell in enumerate(proof['cells']):
+                require_coverage(cell, f'{path}.cells[{index}]')
+        else:
+            raise AssertionError(f'{path}: unknown coverage mode {mode!r}')
+        if source_component and mode != 'nonconvex surface partition':
+            require_fields(proof, 'convex_volume_error_m3', path)
+
+    require_fields(report, 'schema_version model_sha256 cavity_sha256 model_variant scope methods tolerances status summary failures timber_meshes cavities wood_pair_sections no_cavity_stock_completeness', label)
+    for name, mesh in report['timber_meshes'].items():
+        require_mesh(mesh, f'{label}.timber_meshes.{name}')
+    for index, row in enumerate(report['cavities']):
+        path = f'{label}.cavities[{index}]'
+        require_fields(row, 'id status mesh_check components winding_samples cross_sections receiver_stock_completeness', path)
+        require_mesh(row['mesh_check'], path + '.mesh_check')
+        require_stock(row['receiver_stock_completeness'], path + '.receiver_stock_completeness')
+        require_fields(row['cross_sections'], 'status sections max_missing_area_m2 max_receiver_overlap_area_m2', path + '.cross_sections')
+        require_fields(row['winding_samples'], 'interior_points occupied_by_mates unoccupied inside_receiver', path + '.winding_samples')
+        assert row['cross_sections']['sections'] > 0, path + ': no cavity section checks'
+        samples = row['winding_samples']
+        assert samples['interior_points'] == samples['occupied_by_mates'] > 0, path + ': incomplete winding evidence'
+        for component_index, proof in enumerate(row['components']):
+            require_coverage(proof, f'{path}.components[{component_index}]', source_component=True)
+    for name, stock in report['no_cavity_stock_completeness'].items():
+        require_stock(stock, f'{label}.no_cavity_stock_completeness.{name}')
+    require_fields(report['wood_pair_sections'], 'status pairs_considered positive_extent_bounds_candidates sections max_overlap_area_m2 failures scope', label + '.wood_pair_sections')
+    upper_bounds = {
+        'convex_volume_error_m3': VOLUME_TOLERANCE_M3,
+        'partition_volume_balance_error_m3': VOLUME_TOLERANCE_M3,
+        'interior_boundary_area_m2': AREA_TOLERANCE_M2,
+        'max_interior_boundary_area_m2': AREA_TOLERANCE_M2,
+        'max_missing_area_m2': AREA_TOLERANCE_M2,
+        'max_missing_section_area_m2': AREA_TOLERANCE_M2,
+        'max_receiver_overlap_area_m2': AREA_TOLERANCE_M2,
+        'max_receiver_overlap_section_area_m2': AREA_TOLERANCE_M2,
+        'max_overlap_area_m2': AREA_TOLERANCE_M2,
+        'max_wood_overlap_section_area_m2': AREA_TOLERANCE_M2,
+        'max_raw_timber_triangle_overlap_area_m2': AREA_TOLERANCE_M2,
+        'max_cavity_vertex_outside_reference_stock_m': DISTANCE_TOLERANCE_M,
+        'max_cavity_outside_reference_stock_m': DISTANCE_TOLERANCE_M,
+    }
+    zero_counts = {'unoccupied', 'inside_receiver', 'winding_unoccupied_points',
+                   'winding_points_in_receiver', 'timbers_with_raw_surface_overlaps',
+                   'opposed_overlap_pair_count'}
+
+    def validate(value, path):
+        if isinstance(value, dict):
+            if 'status' in value:
+                assert value['status'] == 'PASS', f'{path}.status={value["status"]!r}'
+            for key, item in value.items():
+                location = path + '.' + key
+                if key in upper_bounds:
+                    assert isinstance(item, (int, float)) and 0 <= item <= upper_bounds[key], (
+                        f'{location}={item!r}; required 0 <= value <= {upper_bounds[key]!r}')
+                if key in zero_counts:
+                    assert item == 0, f'{location}={item!r}; required zero'
+                if key in {'failures', 'overlap_pairs'}:
+                    assert item == [], f'{location}={item!r}; required no failures'
+                if key == 'centroid_margin_m':
+                    assert item > DISTANCE_TOLERANCE_M, f'{location}={item!r}; required > {DISTANCE_TOLERANCE_M!r}'
+                if key == 'minimum_triangle_area_m2':
+                    assert item > FACE_AREA_MIN_M2, f'{location}={item!r}; degenerate triangle'
+                if key in {'signed_volume_m3', 'volume_in3'}:
+                    assert item > 0, f'{location}={item!r}; required positive volume'
+                validate(item, location)
+            if 'verified_cells' in value:
+                assert value['verified_cells'] == value['convex_cells'], f'{path}: unverified stock cells'
+                assert value['cells_in_final_receiver_wood'] + value['cells_in_exported_cavity'] == value['convex_cells'], (
+                    f'{path}: stock cells lack complete occupancy evidence')
+            if 'partition_cells' in value:
+                assert value['partition_cells'] == len(value.get('cells', [])) > 0, f'{path}: missing partition proof cells'
+                if 'volume_in3' in value and all('volume_in3' in cell for cell in value['cells']):
+                    residual = abs(sum(cell['volume_in3'] for cell in value['cells']) - value['volume_in3']) * INCH ** 3
+                    assert residual <= VOLUME_TOLERANCE_M3, f'{path}: partition volume residual={residual!r}'
+        elif isinstance(value, list):
+            for index, item in enumerate(value):
+                validate(item, f'{path}[{index}]')
+        elif isinstance(value, float):
+            assert math.isfinite(value), f'{path}={value!r}; required finite value'
+
+    # Legacy residual artifacts are explicitly diagnostics, never fit evidence.
+    for key in ('failures', 'summary', 'timber_meshes', 'cavities', 'wood_pair_sections', 'no_cavity_stock_completeness'):
+        validate(report[key], label + '.' + key)
+    assert report['failures'] == [], f'{label}.failures={report["failures"]!r}'
+    summary = report['summary']
+    assert summary['components_covered'] == summary['connected_cavity_components'], f'{label}: uncovered cavity components'
+    assert summary['all_timber_stock_envelopes_verified'] == summary['timbers'], f'{label}: unverified stock envelopes'
+    assert summary['receiver_stock_envelopes_verified'] == summary['nonempty_cavity_sets'], f'{label}: unverified receiver stocks'
+    assert summary['no_cavity_stock_envelopes_verified'] + summary['receiver_stock_envelopes_verified'] == summary['timbers'], (
+        f'{label}: stock inventory does not cover all timbers')
+    for key in ('cavity_cross_sections', 'wood_pair_cross_sections', 'raw_timber_coplanar_triangle_pairs_tested'):
+        assert summary[key] > 0, f'{label}.summary.{key}={summary[key]!r}; required actual checks'
+
+    def mesh_inventory(mesh):
+        result = {key: mesh[key] for key in ('vertices', 'triangles', 'connected_surfaces')}
+        result['raw_surface_policy'] = {key: mesh['raw_surface_check'][key]
+                                        for key in ('plane_tolerance_m', 'positive_area_tolerance_m2')}
+        return result
+
+    cavity_inventory = {row['id']: {'mesh': mesh_inventory(row['mesh_check']), 'components': len(row['components'])}
+                        for row in report['cavities']}
+    assert len(cavity_inventory) == len(report['cavities']) == summary['nonempty_cavity_sets'], f'{label}: duplicate/missing cavity IDs'
+    assert sum(row['components'] for row in cavity_inventory.values()) == summary['connected_cavity_components'], (
+        f'{label}: missing cavity component proofs')
+    assert len(report['timber_meshes']) == summary['timbers'], f'{label}: missing timber mesh proofs'
+    assert len(report['no_cavity_stock_completeness']) == summary['no_cavity_stock_envelopes_verified'], (
+        f'{label}: missing no-cavity stock proofs')
+    assert sum(coverage_leaf_count(component) for row in report['cavities'] for component in row['components']) == summary['verified_convex_cells'], (
+        f'{label}: convex proof count disagrees with its summary')
+    assert sum(row['receiver_stock_completeness']['verified_cells'] for row in report['cavities']) == summary['receiver_stock_convex_cells_verified'], (
+        f'{label}: stock proof count disagrees with its summary')
+    invariants = {key: report[key] for key in ('schema_version', 'model_sha256', 'cavity_sha256',
+                                              'model_variant', 'scope', 'methods', 'tolerances')}
+    invariants['inventory'] = {key: summary[key] for key in (
+        'timbers', 'nonempty_cavity_sets', 'connected_cavity_components', 'components_covered',
+        'receiver_stock_envelopes_verified', 'no_cavity_stock_envelopes_verified',
+        'all_timber_stock_envelopes_verified', 'declared_exterior_brace_trims')}
+    invariants['timbers'] = {name: mesh_inventory(row) for name, row in report['timber_meshes'].items()}
+    invariants['cavities'] = cavity_inventory
+    invariants['no_cavity_stock_ids'] = sorted(report['no_cavity_stock_completeness'])
+    invariants['wood_pairs_considered'] = report['wood_pair_sections']['pairs_considered']
+    return invariants
+
+
+def assert_equivalent_audit_report(saved, actual, path='report'):
+    """Compare exact provenance and complete passing proof, not artificial cells."""
+    expected = report_invariants(saved, path + '.saved')
+    observed = report_invariants(actual, path + '.actual')
+
+    def compare(old, new, location):
+        if isinstance(new, dict):
+            assert isinstance(old, dict) and old.keys() == new.keys(), f'{location}: saved/actual fields differ'
+            for key in new:
+                compare(old[key], new[key], location + '.' + key)
+        else:
+            assert old == new, f'{location}: saved={old!r}; actual={new!r}'
+
+    compare(expected, observed, path)
+
+
 def assert_equivalent_report(saved, actual, path='report'):
-    """Exact structure/count/hash checks; tolerate insignificant platform float noise."""
+    """Generic numeric JSON comparison retained for auxiliary regeneration tests."""
     if isinstance(actual, dict):
         assert isinstance(saved, dict) and saved.keys() == actual.keys(), path + ': report fields differ'
         for key in actual:
@@ -685,9 +855,10 @@ def assert_equivalent_report(saved, actual, path='report'):
             assert_equivalent_report(old, new, path + '[' + str(index) + ']')
     elif isinstance(actual, float):
         assert isinstance(saved, (int, float)) and math.isfinite(saved), path + ': invalid number'
-        assert math.isclose(saved, actual, rel_tol=1e-10, abs_tol=1e-12), path + ': numeric report value differs'
+        assert math.isclose(saved, actual, rel_tol=1e-10, abs_tol=1e-12), f'{path}: saved={saved!r}; actual={actual!r}'
     else:
-        assert saved == actual, path + ': report value differs'
+        assert saved == actual, f'{path}: saved={saved!r}; actual={actual!r}'
+# TIMESTAMP END 2026-11-02T11:39:39-05:00 | REVISION R004772
 
 
 def main():
@@ -706,12 +877,22 @@ def main():
         report['status'] = 'FAIL'
         report['failures'].append('cavity source-model hash mismatch')
     output = json.dumps(report, indent=2, sort_keys=True) + '\n'
+    # TIMESTAMP START 2026-11-02T11:39:39-05:00 | REVISION R004772
+    # Emit the actual audit outcome before any saved-report mismatch diagnostic.
+    print(json.dumps({'status': report['status'], 'summary': report['summary'], 'failures': report['failures']}, sort_keys=True), flush=True)
+    # TIMESTAMP END 2026-11-02T11:39:39-05:00 | REVISION R004772
     if args.check:
-        assert_equivalent_report(json.loads(args.output.read_text()), report)
+        # TIMESTAMP START 2026-11-02T11:39:39-05:00 | REVISION R004772
+        assert report['status'] == 'PASS', f'actual audit failed: {report["failures"]!r}'
+        # TIMESTAMP END 2026-11-02T11:39:39-05:00 | REVISION R004772
+        # TIMESTAMP START 2026-11-02T11:39:39-05:00 | REVISION R004772
+        assert_equivalent_audit_report(json.loads(args.output.read_text()), report)
+        # TIMESTAMP END 2026-11-02T11:39:39-05:00 | REVISION R004772
     else:
         args.output.write_text(output)
-    print(json.dumps({'status': report['status'], 'summary': report['summary'], 'failures': report['failures']}, sort_keys=True))
-    assert report['status'] == 'PASS', report['failures']
+    # TIMESTAMP START 2026-11-02T11:39:39-05:00 | REVISION R004772
+    assert report['status'] == 'PASS', f'actual audit failed: {report["failures"]!r}'
+    # TIMESTAMP END 2026-11-02T11:39:39-05:00 | REVISION R004772
 
 
 if __name__ == '__main__':

@@ -1,6 +1,9 @@
 # TIMESTAMP START 2026-11-02T09:09:22-05:00 | REVISION R004752
 """Adversarial geometric fixtures for the independent cavity-fit audit."""
 from pathlib import Path
+# TIMESTAMP START 2026-11-02T11:39:39-05:00 | REVISION R004772
+import copy
+# TIMESTAMP END 2026-11-02T11:39:39-05:00 | REVISION R004772
 import hashlib
 import json
 import sys
@@ -266,15 +269,97 @@ class CavityFitFixtures(unittest.TestCase):
         self.assertTrue(all(row['raw_surface_check']['status'] == 'PASS' for row in report['timber_meshes'].values()))
         # TIMESTAMP END 2026-11-02T10:34:57-05:00 | REVISION R004764
 
-    def test_report_comparison_allows_float_noise_but_rejects_stale_inputs(self):
-        current = {'model_sha256': 'current', 'count': 144, 'area': 2e-14}
+    # TIMESTAMP START 2026-11-02T11:39:39-05:00 | REVISION R004772
+    def test_report_comparison_accepts_different_valid_partition_diagnostics(self):
+        saved = json.loads((ROOT / 'docs/cavity-fit-audit.json').read_text())
+        actual = copy.deepcopy(saved)
+        partition = next(component for row in actual['cavities'] for component in row['components']
+                         if component.get('cells'))
+        partition['cells'].reverse()
+        leaf = next(cell for cell in partition['cells'] if 'centroid_margin_m' in cell)
+        leaf['centroid_margin_m'] *= .75
+        # Another platform may subdivide one proven region into two cells.
+        leaf['volume_in3'] /= 2
+        partition['cells'].append(copy.deepcopy(leaf))
+        partition['partition_cells'] += 1
+        actual['summary']['verified_convex_cells'] += 1
+        actual['cavities'].reverse()
+        actual['summary']['max_missing_section_area_m2'] = audit.AREA_TOLERANCE_M2 / 2
+        audit.assert_equivalent_audit_report(saved, actual)
+
+    def test_report_comparison_rejects_stale_provenance_policy_and_inventory(self):
+        actual = json.loads((ROOT / 'docs/cavity-fit-audit.json').read_text())
+        for field, changed in [('model_sha256', 'stale-model'), ('cavity_sha256', 'stale-cavity'),
+                               ('schema_version', 'stale-schema'), ('methods', {}),
+                               ('tolerances', dict(actual['tolerances'], containment_inset_m=1e-7))]:
+            with self.subTest(field=field):
+                saved = copy.deepcopy(actual)
+                saved[field] = changed
+                with self.assertRaisesRegex(AssertionError, field):
+                    audit.assert_equivalent_audit_report(saved, actual)
+        saved = copy.deepcopy(actual)
+        saved['cavities'][0]['id'] = 'wrong-receiver'
+        with self.assertRaisesRegex(AssertionError, 'cavities'):
+            audit.assert_equivalent_audit_report(saved, actual)
+
+    def test_report_comparison_rejects_real_failure_even_with_pass_heading(self):
+        saved = json.loads((ROOT / 'docs/cavity-fit-audit.json').read_text())
+        for failure in ('top-status', 'nested-status', 'physical-gap', 'unverified-cell', 'missing-proof', 'nan'):
+            with self.subTest(failure=failure):
+                actual = copy.deepcopy(saved)
+                if failure == 'top-status':
+                    actual['status'] = 'FAIL'
+                    actual['failures'] = ['actual gap']
+                elif failure == 'nested-status':
+                    actual['cavities'][0]['components'][0]['status'] = 'FAIL'
+                elif failure == 'physical-gap':
+                    actual['cavities'][0]['cross_sections']['max_missing_area_m2'] = 2 * audit.AREA_TOLERANCE_M2
+                elif failure == 'unverified-cell':
+                    actual['cavities'][0]['receiver_stock_completeness']['verified_cells'] -= 1
+                elif failure == 'missing-proof':
+                    partition = next(component for row in actual['cavities'] for component in row['components']
+                                     if component.get('cells'))
+                    partition['cells'].pop()
+                else:
+                    actual['cavities'][0]['components'][0]['centroid_margin_m'] = float('nan')
+                with self.assertRaises(AssertionError):
+                    audit.assert_equivalent_audit_report(saved, actual)
+                with self.assertRaises(AssertionError):
+                    audit.assert_equivalent_audit_report(actual, saved)
+
+    def test_report_mismatch_diagnostic_contains_saved_and_actual_values(self):
+        actual = json.loads((ROOT / 'docs/cavity-fit-audit.json').read_text())
+        saved = dict(actual, model_sha256='stale-model')
+        with self.assertRaisesRegex(AssertionError, "saved='stale-model'; actual="):
+            audit.assert_equivalent_audit_report(saved, actual)
+
+    def test_report_comparison_requires_complete_saved_proof_fields(self):
+        actual = json.loads((ROOT / 'docs/cavity-fit-audit.json').read_text())
+        for missing in ('cross_sections', 'winding_samples', 'centroid_margin_m', 'mesh_status',
+                        'raw_surface_status', 'convex_volume_error_m3'):
+            with self.subTest(missing=missing):
+                saved = copy.deepcopy(actual)
+                if missing in {'cross_sections', 'winding_samples'}:
+                    del saved['cavities'][0][missing]
+                elif missing == 'mesh_status':
+                    del next(iter(saved['timber_meshes'].values()))['status']
+                elif missing == 'raw_surface_status':
+                    del next(iter(saved['timber_meshes'].values()))['raw_surface_check']['status']
+                else:
+                    leaf = next(proof for row in saved['cavities'] for proof in row['components']
+                                if proof['coverage_mode'] == 'one convex cell')
+                    del leaf[missing]
+                with self.assertRaisesRegex(AssertionError, 'missing required proof fields'):
+                    audit.assert_equivalent_audit_report(saved, actual)
+
+    def test_generic_auxiliary_comparator_retains_its_strict_numeric_contract(self):
+        current = {'status': 'review only', 'count': 144, 'area': 2e-14}
         audit.assert_equivalent_report(dict(current, area=2.01e-14), current)
-        with self.assertRaises(AssertionError):
-            audit.assert_equivalent_report(dict(current, model_sha256='stale'), current)
         with self.assertRaises(AssertionError):
             audit.assert_equivalent_report(dict(current, count=143), current)
         with self.assertRaises(AssertionError):
             audit.assert_equivalent_report(dict(current, area=1e-6), current)
+    # TIMESTAMP END 2026-11-02T11:39:39-05:00 | REVISION R004772
 
 
 if __name__ == '__main__':
