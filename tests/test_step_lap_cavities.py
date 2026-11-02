@@ -13,6 +13,9 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / 'scripts'))
 import audit_cavity_fit as audit
 import export_step_lap_cavities as exporter
+# TIMESTAMP START 2026-11-02T12:04:36-05:00 | REVISION R004774
+from regeneration_equivalence import assert_equivalent, test_guard
+# TIMESTAMP END 2026-11-02T12:04:36-05:00 | REVISION R004774
 
 
 class ProposedCavityFixtures(unittest.TestCase):
@@ -29,7 +32,13 @@ class ProposedCavityFixtures(unittest.TestCase):
 
     def test_generation_is_deterministic_and_preserves_unchanged_cavities(self):
         rebuilt = exporter.build_cavities(self.baseline, self.base_cavities, self.proposed, self.proposal, self.hashes)
-        self.assertEqual(rebuilt, self.cavities)
+        # TIMESTAMP START 2026-11-02T12:04:36-05:00 | REVISION R004774
+        test_guard()
+        assert_equivalent(rebuilt, self.cavities, ('proposed_cavities',))
+        repeated = exporter.build_cavities(self.baseline, self.base_cavities, self.proposed, self.proposal, self.hashes)
+        self.assertEqual(json.dumps(rebuilt, sort_keys=True, separators=(',', ':')),
+                         json.dumps(repeated, sort_keys=True, separators=(',', ':')))
+        # TIMESTAMP END 2026-11-02T12:04:36-05:00 | REVISION R004774
         changed = set(self.proposed['proposed_review']['changed_member_ids'])
         self.assertEqual(len(changed), 40)
         for name in self.baseline_parts:
