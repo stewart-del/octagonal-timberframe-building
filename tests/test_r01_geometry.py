@@ -19,13 +19,14 @@ def radial(k):return [math.cos(k*math.pi/4),math.sin(k*math.pi/4),0]
 
 class R01Geometry(unittest.TestCase):
  def test_inventory_and_retirement(self):
-  self.assertEqual(len(PART),136)
+  self.assertEqual(len(PART),115)
   wood=[p['id'] for p in PART.values() if p['is_timber']]
   expected={name for k in range(8) for name in [f'P{k}',f'B{k}',f'T{k}',f'R{k}',f'C{k}',f'L{k}-S',f'L{k}-H',f'K{k}-A',f'K{k}-B',f'J{k}-0',f'J{k}-2',f'CR{k}',f'CC{k}']}
   self.assertEqual(set(wood),expected)
   self.assertEqual(set(DATA['r01']['retired_ids']),{f'J{k}-1' for k in range(8)})
   self.assertTrue(all(pid not in PART for pid in DATA['r01']['retired_ids']))
-  self.assertTrue(all(PART[f'M-TMP{k}']['temporary'] for k in range(8)))
+  self.assertTrue(PART['M-TMP']['temporary'])
+  self.assertTrue(all(DATA['component_id_history'][f'M-TMP{k}']=='M-TMP' for k in range(8)))
 
  def test_finite_closed_meshes(self):
   for p in PART.values():
@@ -85,7 +86,7 @@ class R01Geometry(unittest.TestCase):
 
  def test_spacer_corner_gap_and_roof(self):
   for k in range(8):
-   spacer=PART[f'M-SP{k}'];a,b=map(source,[spacer['axis_start'],spacer['axis_end']])
+   spacer=PART['M-SP0'];a,b=map(source,[spacer['axis_start'],spacer['axis_end']])
    self.assertAlmostEqual(length(sub(b,a)),28.132864853,places=8)
    self.assertFalse(spacer['is_timber'])
    roof=PART[f'ENV-CUP{k}'];a,b=map(source,[roof['axis_start'],roof['axis_end']])
@@ -99,7 +100,7 @@ class R01Geometry(unittest.TestCase):
   for p in PART.values():
    self.assertIsNone(p['fit_geometry']['machining_clearance_m'])
    self.assertNotIn('conceptual_key_width_fraction',p['fit_geometry'])
-   if p['group'] not in ['cupola_rafters','cupola_ceiling']:self.assertEqual({f['id'] for f in p['reference_end_faces']},{p['id']+'-A',p['id']+'-B'})
+   if p['group'] not in ['cupola_rafters','cupola_ceiling','cupola_plywood','temporary_fixture']:self.assertEqual({f['id'] for f in p['reference_end_faces']},{p['id']+'-A',p['id']+'-B'})
   materials=json.loads((ROOT/'src/material-groups.json').read_text())
   self.assertEqual(materials['source_sha256'],hashlib.sha256((ROOT/'src/model-data.json').read_bytes()).hexdigest())
   ids=[pid for g in materials['groups'] for pid in g['member_ids']]

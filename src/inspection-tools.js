@@ -68,6 +68,7 @@ function appendAnglePanel(host,p){
 }
 function anglesCSV(p){
  const rows=[['Piece_ID','Record','Category','Off_square_deg','Plane_to_axis_deg','Normal_yaw_deg','Normal_tilt_deg','Value','Status']];
+ if(p.fabrication_dimensions_valid===false){rows.push([p.id,'Display assembly','NOT FABRICATION','','','','','','No cut drilling weld screw or erection dimensions validated']);return rows.map(row=>row.map(csvCell).join(',')).join('\r\n');}
  for(const [label,value] of recordedAngles(p))rows.push([p.id,label,'Recorded model reference','','','','',value,'R01 geometry / fabrication unresolved']);
  for(const f of cuts.filter(f=>f.part_id===p.id)){const a=surfaceAngles(p,f);rows.push([p.id,f.id,f.reference?'R01 end reference':'Contact surface',a.offSquare,a.planeToAxis,a.yaw??'Undefined',a.tilt??'Undefined','','Measured model geometry; not saw settings']);}
  return rows.map(row=>row.map(csvCell).join(',')).join('\r\n');
@@ -79,7 +80,7 @@ function showScheduleDialog(){
 }
 function materialsCSV(){
  const rows=[['Type','Quantity','Family','Nominal_width_in','Nominal_depth_in','Nominal_axis_length_ft','Total_nominal_axis_ft','Nominal_board_feet','Existing_piece_IDs_in_number_order','Grouping_basis','Status']];
- for(const g of MATERIALS.groups){const p=partById.get(g.representative_id);rows.push([g.id,g.quantity,g.label||groupMap.get(p.group)?.label||p.group,widthIn(p),depthIn(p),lengthFt(p),g.quantity*lengthFt(p),isTimber(p)?g.quantity*widthIn(p)*depthIn(p)*lengthFt(p)/12:'',g.member_ids.join(' | '),g.method||MATERIALS.method||'R01 repeated geometry',isTimber(p)?'Timber reference inventory; blanks and joints unresolved':'Non-timber visualization; stock dimensions unresolved']);}
+ for(const g of MATERIALS.groups){const p=partById.get(g.representative_id);rows.push([g.id,g.quantity,g.label||groupMap.get(p.group)?.label||p.group,p.fabrication_dimensions_valid===false?'':widthIn(p),p.fabrication_dimensions_valid===false?'':depthIn(p),p.fabrication_dimensions_valid===false?'':lengthFt(p),p.fabrication_dimensions_valid===false?'':g.quantity*lengthFt(p),isTimber(p)?g.quantity*widthIn(p)*depthIn(p)*lengthFt(p)/12:'',g.member_ids.join(' | '),g.method||MATERIALS.method||'R01 repeated geometry',p.fabrication_dimensions_valid===false?'DISPLAY ONLY: reference span 90 in; 4 in strap depth; 14 in total outer-leg height. Thickness holes positions welds screws and elevation NOT fabrication specifications':isTimber(p)?'Timber reference inventory; blanks and joints unresolved':'Non-timber visualization; stock dimensions unresolved']);}
  return rows.map(row=>row.map(csvCell).join(',')).join('\r\n');
 }
 function openMaterials(){
@@ -89,7 +90,7 @@ function openMaterials(){
  const exportButton=document.createElement('button');exportButton.textContent='Download materials CSV';exportButton.onclick=()=>download('octagon-grouped-materials.csv',materialsCSV(),'text/csv');note.appendChild(exportButton);
  const body=$('scheduleRows');body.replaceChildren();
  for(const g of MATERIALS.groups){const p=partById.get(g.representative_id),row=document.createElement('tr');row.dataset.materialId=g.id;
-  for(const value of [g.id,String(g.quantity),g.label||groupMap.get(p.group)?.label||clean(p.group),num(widthIn(p),2)+' × '+num(depthIn(p),2)+' in',feet(lengthFt(p))]){const td=document.createElement('td');td.textContent=value;row.appendChild(td);}
+  for(const value of [g.id,String(g.quantity),g.label||groupMap.get(p.group)?.label||clean(p.group),p.fabrication_dimensions_valid===false?'Not a stock section':num(widthIn(p),2)+' × '+num(depthIn(p),2)+' in',p.fabrication_dimensions_valid===false?'90 in owner reference overall span':feet(lengthFt(p))]){const td=document.createElement('td');td.textContent=value;row.appendChild(td);}
   const members=document.createElement('td');members.className='material-members';g.member_ids.forEach((id,i)=>{const button=document.createElement('button');button.textContent=String(i+1).padStart(2,'0')+' · '+id;button.setAttribute('aria-label',g.id+' piece '+(i+1)+': inspect '+id);button.onclick=()=>{closeSchedule(false);selectPart(id);focusPart(partById.get(id));canvas.focus();};members.appendChild(button);});row.appendChild(members);
   const basis=document.createElement('td');basis.textContent=g.status||g.method||'Repeated R01 geometry; fabrication unresolved';row.appendChild(basis);body.appendChild(row);
  }showScheduleDialog();

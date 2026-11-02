@@ -27,3 +27,11 @@ Original building and drawing: Robert Swinburne / Bluetime Collaborative. See AT
 The [joint strength and load-path audit](https://octagonal-timberframe-building.brujodinamico.chatgpt.site/structural-audit.html) identifies unresolved central restraint, tenon proportions and foundation load paths. Simple integral dovetails are a candidate, not an engineered replacement. The model now includes eight horizontal ceiling spokes and eight half-inch horizontal plywood sectors. The ceiling spoke size is provisional; finish-board thickness remains unconfirmed. Run `scripts/audit_structure.py` after fitting to refresh the measured audit.
 
 <!-- TIMESTAMP END 2026-11-01T23:19:38-05:00 | REVISION R004668 -->
+
+## Standing structural-design reference
+
+Use [TFEC 1-2019 and the project design-basis/release checklist](docs/TFEC-project-design-basis.md) for every joint-family revision. **TFEC-informed design review — not structurally qualified.** Applicable jurisdiction/code/NDS edition and professional review remain unresolved; NDS prevails in conflicts under TFEC §1.1. Geometric fit and the self-weight illustration do not establish structural compliance.
+
+## Temporary construction support display
+
+The hidden construction-aid layer contains one reusable symbolic green aid and one black welded-display assembly (`M-TMP`): eight radial L straps, 24 illustrative holes, and the owner's 90 in (7 ft 6 in) opposite-end span. This does not change the 88 in cupola. See [reference dimensions and display-only assumptions](docs/central-support-display.md). It is not a fabrication or erection design. Use the scoped `scripts/central_support.py` migration rather than regenerating existing timbers.

@@ -31,3 +31,6 @@ jobs:
       - run: node tests/edge-measurements.cjs
       - run: node tests/cavity-overlay.cjs
       - run: python3 tests/test_load_review.py
+      - run: python3 tests/test_cupola_panel.py
+      - run: node tests/architectural-plans.cjs
+      - run: python3 tests/test_central_support.py

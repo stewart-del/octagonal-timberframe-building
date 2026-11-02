@@ -23,7 +23,7 @@ function runViewerTests(source,model){
   }
   const findId=(node,id)=>node.id===id?node:node.children.map(c=>findId(c,id)).find(Boolean);
   const nodes=new Map();document={root:new Element(),hidden:false,activeElement:null,getElementById:id=>nodes.get(id)||findId(document.root,id),createElement:tag=>new Element(tag),addEventListener:(k,f)=>(listeners[k]??=[]).push(f),querySelector:tag=>nodes.get(tag)};
-  const ids=[...source.matchAll(/\$\('([^']+)'\)/g)].map(m=>m[1]);ids.push('model-data','header','main','scene','labels','orbitNav','freeNav');
+  const ids=[...source.matchAll(/\$\('([^']+)'\)/g)].map(m=>m[1]);ids.push('plansTop','plansSide','model-data','header','main','scene','labels','orbitNav','freeNav');
   for(const id of new Set(ids)){if(id==='cutDetail'||id==='isolatePiece')continue;const el=new Element(id==='scene'?'canvas':id==='search'?'input':/Button|closeSchedule|Nav$/.test(id)?'button':'div');el.id=id;nodes.set(id,el);document.root.appendChild(el);}
   nodes.get('scheduleModal').append(nodes.get('closeSchedule'),nodes.get('scheduleNote'),nodes.get('scheduleHead'),nodes.get('scheduleRows'));
   nodes.get('main').append(nodes.get('scene'));nodes.get('model-data').textContent=JSON.stringify(model);
@@ -41,6 +41,27 @@ function runViewerTests(source,model){
     check(!parts.some(p=>/^J[0-7]-1$/.test(p.id)),'All eight midpoint rafters are retired');
     check(!parts.some(p=>p.temporary&&isShown(p)),'Temporary fixture is hidden initially');
     check(parts.filter(isShown).length===expectedDefault.length,'Initial view respects current default group visibility');
+    const panel=parts.find(p=>p.id==='PLY');
+    check(parts.filter(p=>p.group==='cupola_plywood').length===1&&!!panel,'Plywood is one selectable assembly, not eight display sectors');
+    check(panel.exploded_offset.join(',')==='0,6.2,0','Whole panel explodes vertically as one assembly');
+    selectPart('PLY');check(selected==='PLY'&&selectedPartIds.has('PLY'),'Panel selection has one stable assembly ID');
+    clearPieceSelection();
+    const aids=parts.filter(p=>p.group==='metal_spacers'||p.group==='temporary_fixture');
+    check(aids.length===2&&aids.every(p=>p.temporary&&!isShown(p)),'One green aid and one complete black assembly are construction-only and hidden by default');
+    $('constructionAids').onclick();check(aids.every(isShown)&&$('constructionAids').getAttribute('aria-pressed')==='true','Construction-aid control reveals both aids without permanent load credit');
+    $('constructionAids').onclick();check(aids.every(p=>!isShown(p))&&$('constructionAids').getAttribute('aria-pressed')==='false','Second construction-aid click hides both aids again');
+    const fixture=parts.find(p=>p.id==='M-TMP');
+    check(parts.filter(p=>p.group==='temporary_fixture').length===1&&fixture.assembly_quantity===1&&fixture.display_holes.length===24,'Central support is one stable assembly with 24 display holes');
+    check(!isTimber(fixture)&&fixture.exploded_offset.join(',')==='0,-1.5,0','Whole support explodes together and is not counted as timber');
+    selectPart('M-TMP3');check(selected==='M-TMP'&&selectedPartIds.size===1,'Legacy arm selection resolves to the one support assembly');
+    check(walk($('selection')).some(e=>String(e.textContent).includes('NOT drilling')),'Fixture inspector explicitly marks hole thickness and elevation assumptions as not fabrication');
+    check(!walk($('selection')).some(e=>e.id==='selectedAngles'||String(e.textContent).includes('edge measurements')),'Fixture suppresses timber angle and edge fabrication-style tools');
+    $('isolatePiece').onclick();check(parts.filter(isShown).length===1&&isShown(fixture),'Isolation keeps the welded support together');
+    $('isolatePiece').onclick();check(parts.every(isShown),'Second fixture isolation click restores all pieces');
+    window.location.hash='#part=M-TMP7&isolate=1';applyHash();check(selected==='M-TMP'&&isolatedId==='M-TMP','Legacy arm deep link resolves to complete isolated support');
+    window.location.hash='';$('restoreFrame').onclick();
+    const fixtureRow=materialsCSV().split('\\r\\n').find(r=>r.includes('M-TMP'));
+    check(fixtureRow.includes('DISPLAY ONLY')&&fixtureRow.includes('NOT fabrication specifications'),'Materials CSV qualifies support reference dimensions and suppresses assumed fabrication numbers');
     selectPart('C0');
     const focusButton=walk($('selection')).find(el=>el.id==='focusPiece');
     const shownBeforeFocus=parts.filter(isShown).map(p=>p.id).join(',');
@@ -146,6 +167,15 @@ function runViewerTests(source,model){
     $('loadDensity').value='780';$('loadDensity').onchange();$('hypotheticalReaction').value='';updateHypotheticalPressure();
     check(LOAD_REVIEW.issues.every(i=>['missing_restraint','capacity_unknown'].includes(i.classification)),'Issue classifications distinguish missing modeledrestraint from unknowncapacity');
     explode=0;showAllAndUncenter();
+    document.activeElement=$('plansButton');explode=.6;const priorExplode=explode;
+    openPlans();
+    check($('plansModal').classList.contains('open')&&document.querySelector('main').inert,'Architectural plans opens a modal and isolates background input');
+    check(navigationBlocked(canvas),'Free navigation pauses while plans are open');
+    check(plansSVG.top.includes('TOP PLAN')&&plansSVG.side.includes('SIDE ELEVATION'),'Both canonical orthographic drawings render');
+    check(explode===priorExplode,'Plans never alter the 3D exploded state');
+    $('plansZoom').value='2';resizePlans();check($('plansTop').style.width==='200%','Plans zoom scales crisp SVG sheets');
+    closePlans();check(!$('plansModal').classList.contains('open')&&!document.querySelector('main').inert&&document.activeElement===$('plansButton'),'Closing plans restores background and invoking focus');
+    openPlans();closePlans();check(!$('plansModal').classList.contains('open'),'Repeated plans opening and dismissal is reversible');
     return assertions;
   `;
   const run=new Function('document','window','requestAnimationFrame','setTimeout','ResizeObserver','assertions','windowListeners','listeners',source+'\n'+tests);

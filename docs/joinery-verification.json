@@ -2288,8 +2288,8 @@
     "Brace sockets terminate two inches inside the post side; source does not supply the joint.",
     "Cupola roof depth and backing remain provisional; source calls for 2x roof framing."
   ],
-  "sheet_goods_count": 8,
+  "sheet_goods_count": 1,
   "sheet_goods_timber_overlaps": [],
   "cavity_closure_status": "NOT CERTIFIED: unfilled-volume diagnostics require independent review.",
-  "source_model_sha256": "36e53d90ec9abead9a80ce87e61f298c527809818dac82b8e2bbf5bf84b25779"
+  "source_model_sha256": "b3a0363a2c2e83a541038d0ff39ad86e38d8b79ceb7415cde9174d74273086a2"
 }

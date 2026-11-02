@@ -45,7 +45,7 @@ print(f'PASS: {len(solids)} reloaded solids, {len(solids)*(len(solids)-1)//2} wo
 # TIMESTAMP START 2026-11-01T23:19:38-05:00 | REVISION R004668
 # Horizontal plywood thickness and material-to-timber non-overlap are independent checks.
 plywood=[p for p in data['parts'] if p['group']=='cupola_plywood']
-assert len(plywood)==8
+assert len(plywood)==1 and plywood[0]['id']=='PLY'
 for p in plywood:
     y=[v[1] for v in p['vertices']]
     assert abs((max(y)-min(y))/.0254-.5)<1e-8

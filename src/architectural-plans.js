@@ -1,0 +1,29 @@
+/* Orthographic line drawings from canonical assembled meshes. Not fabrication plans. */
+(function(root){
+'use strict';
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const temporary=p=>p.temporary||p.material==='steel'||/tempor|metal_spacer|erection/.test(p.group);
+const included=(p,aids)=>p.material!=='surface'&&p.group!=='roof_envelope'&&(aids||!temporary(p));
+const project=(v,view)=>view==='top'?[v[0],-v[2],v[1]]:[v[0],-v[1],v[2]];
+const measure=m=>(m/.0254).toFixed(2)+' in / '+m.toFixed(3)+' m';
+function bounds(parts){const lo=[Infinity,Infinity,Infinity],hi=[-Infinity,-Infinity,-Infinity];for(const p of parts)for(const v of p.vertices)for(let k=0;k<3;k++){lo[k]=Math.min(lo[k],v[k]);hi[k]=Math.max(hi[k],v[k]);}return {lo,hi,size:lo.map((v,i)=>hi[i]-v)};}
+function drawing(model,{view='top',aids=false,hidden=false}={}){
+ const parts=model.parts.filter(p=>included(p,aids)),b=bounds(parts),axis=view==='top'?2:1;
+ const all=parts.flatMap(p=>p.vertices.map(v=>project(v,view))),lo=[Math.min(...all.map(v=>v[0])),Math.min(...all.map(v=>v[1]))],hi=[Math.max(...all.map(v=>v[0])),Math.max(...all.map(v=>v[1]))];
+ const s=Math.min(760/(hi[0]-lo[0]),490/(hi[1]-lo[1])),ox=500-(lo[0]+hi[0])*s/2,oy=345-(lo[1]+hi[1])*s/2;
+ const pt=v=>[ox+v[0]*s,oy+v[1]*s],line=(a,z,cls)=>`<path class="${cls}" d="M${a[0].toFixed(3)},${a[1].toFixed(3)}L${z[0].toFixed(3)},${z[1].toFixed(3)}"/>`;
+ // Spatially indexed frontmost triangle depth. Split edges for approximate hidden-line display.
+ const grid=new Map(),N=48,cell=v=>[Math.max(0,Math.min(N-1,Math.floor((v[0]-lo[0])/(hi[0]-lo[0])*N))),Math.max(0,Math.min(N-1,Math.floor((v[1]-lo[1])/(hi[1]-lo[1])*N)))];
+ for(const p of parts)for(const t of p.triangles){const q=t.map(i=>project(p.vertices[i],view));const den=(q[1][1]-q[2][1])*(q[0][0]-q[2][0])+(q[2][0]-q[1][0])*(q[0][1]-q[2][1]);if(Math.abs(den)<1e-12)continue;const a=cell([Math.min(...q.map(v=>v[0])),Math.min(...q.map(v=>v[1]))]),z=cell([Math.max(...q.map(v=>v[0])),Math.max(...q.map(v=>v[1]))]);for(let x=a[0];x<=z[0];x++)for(let y=a[1];y<=z[1];y++){const k=x+':'+y;if(!grid.has(k))grid.set(k,[]);grid.get(k).push({q,den});}}
+ const obscured=v=>{for(const {q,den} of grid.get(cell(v).join(':'))||[]){const u=((q[1][1]-q[2][1])*(v[0]-q[2][0])+(q[2][0]-q[1][0])*(v[1]-q[2][1]))/den,w=((q[2][1]-q[0][1])*(v[0]-q[2][0])+(q[0][0]-q[2][0])*(v[1]-q[2][1]))/den;if(u>=-1e-8&&w>=-1e-8&&u+w<=1+1e-8&&u*q[0][2]+w*q[1][2]+(1-u-w)*q[2][2]>v[2]+2e-5)return true;}return false;};
+ let solid=[],behind=[];
+ for(const p of parts){let segs=[],back=[];for(const e of root.TimberEdgeMeasurements.edgeMeasurementReport(p).edges){const a=project(e.a,view),z=project(e.b,view),len=Math.hypot(z[0]-a[0],z[1]-a[1]);if(len<1e-8)continue;const count=Math.max(1,Math.ceil(len*s/6));let start=0,prev=null;for(let k=0;k<count;k++){const at=f=>a.map((v,i)=>v+(z[i]-v)*f),hide=obscured(at((k+.5)/count));if(prev!==null&&hide!==prev){(prev?back:segs).push(line(pt(at(start/count)),pt(at(k/count)),temporary(p)?'aid':prev?'hidden':'edge'));start=k;}prev=hide;if(k===count-1)(hide?back:segs).push(line(pt(at(start/count)),pt(z),temporary(p)?'aid':hide?'hidden':'edge'));}}solid.push(`<g><title>${esc(p.id+' — '+p.name)}</title>${segs.join('')}</g>`);if(hidden)behind.push(`<g><title>${esc(p.id+' hidden edges')}</title>${back.join('')}</g>`);}
+ const x0=ox+lo[0]*s,x1=ox+hi[0]*s,y0=oy+lo[1]*s,y1=oy+hi[1]*s;
+ const hdim=(y,label)=>line([x0,y1],[x0,y+8],'dim')+line([x1,y1],[x1,y+8],'dim')+line([x0,y],[x1,y],'dim')+`<text x="500" y="${y-7}" text-anchor="middle">${esc(label)}</text>`;
+ const vdim=(x,label)=>line([x0,y0],[x-8,y0],'dim')+line([x0,y1],[x-8,y1],'dim')+line([x,y0],[x,y1],'dim')+`<text transform="translate(${x-8},${(y0+y1)/2}) rotate(-90)" text-anchor="middle">${esc(label)}</text>`;
+ const scaleM=2,scaleX=130,scaleY=680;
+ const title=view==='top'?'TOP PLAN — looking down −Y':'SIDE ELEVATION — looking toward −Z';
+ return {parts,bounds:b,svg:`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 750" role="img" aria-label="${title}" style="background:white"><style>text{font:13px system-ui,sans-serif;fill:#172b31}.edge{stroke:#172b31;stroke-width:.85;fill:none}.hidden{stroke:#8b9397;stroke-width:.6;stroke-dasharray:3 3;fill:none}.aid{stroke:#8d5c21;stroke-width:1;stroke-dasharray:5 3;fill:none}.dim{stroke:#52636b;stroke-width:.65;fill:none}.title{font-size:20px;font-weight:700}.small{font-size:11px}</style><text x="35" y="32" class="title">${title}</text><text x="35" y="55">${esc(model.revision||'Current model')} · ${parts.length} components · assembled geometry · ${aids?'illustrative construction aids included (dashed brown)':'timber + plywood; no construction aids'}</text><text x="35" y="75" class="small">Mesh-derived dimensions; source assumptions remain provisional. NOT CONSTRUCTION APPROVED.</text>${behind.join('')}${solid.join('')}${hdim(y1+42,'X overall: '+measure(b.size[0]))}${vdim(x0-45,(view==='top'?'Z depth':'Y height')+': '+measure(b.size[axis]))}<text x="850" y="665">+X →</text><text x="850" y="684">${view==='top'?'+Z ↑ (north unassigned)':'+Y ↑ (vertical)'}</text>${line([scaleX,scaleY],[scaleX+scaleM*s,scaleY],'edge')}${line([scaleX,scaleY-5],[scaleX,scaleY+5],'edge')}${line([scaleX+scaleM*s,scaleY-5],[scaleX+scaleM*s,scaleY+5],'edge')}<text x="${scaleX+scaleM*s/2}" y="${scaleY-9}" text-anchor="middle">2 m graphical scale</text><text x="35" y="714" class="small">Screen/print size varies: use written dimensions and scale bar, never a presumed paper scale.</text><text x="35" y="733" class="small">${hidden?'Dashed gray: sampled hidden feature edges.':'Hidden feature edges suppressed.'} Hidden-line clipping is sampled; no mesh diagonals. Steel holes/sections are illustrative, not fabrication data.</text></svg>`};
+}
+root.OctagonPlans={drawing,bounds,included,project,measure};
+})(typeof globalThis!=='undefined'?globalThis:this);

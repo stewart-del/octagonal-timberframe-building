@@ -195,7 +195,7 @@ for p in D['parts']:
     if p['group']=='cupola_bands' and p['id'].endswith('-H'):height+=.8;radius+=.4
     delta=plan*radius+np.array([0,height,0])
     if p['group']=='braces':delta+=np.array([-plan[2],0,plan[0]])*(.6 if p['id'].endswith('-A') else -.6)
-    p['exploded_offset']=delta.tolist()
+    p['exploded_offset']=[0,6.2,0] if p['id']=='PLY' else [0,-1.5,0] if p['id']=='M-TMP' else delta.tolist()
 # TIMESTAMP START 2026-11-01T23:19:38-05:00 | REVISION R004668
 # Plywood is a separate half-inch horizontal material, cut around final timbers.
 plywood=[]
@@ -238,3 +238,7 @@ print(json.dumps({'status':report['status'],'wood_pairs':report['pairs_tested'],
 # TIMESTAMP END 2026-11-01T22:44:38-05:00 | REVISION R004653
 
 # TIMESTAMP END 2026-11-01T23:06:10-05:00 | REVISION R004659
+
+# Preserve one panel identity and refresh model-bound metadata after fitting.
+from cupola_panel import migrate
+migrate(ROOT)

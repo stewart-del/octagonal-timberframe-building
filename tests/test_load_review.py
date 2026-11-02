@@ -22,3 +22,11 @@ for i in data['issues']:
   if name is None:continue
   v=np.array(parts[name]['vertices']);assert np.all(point>=v.min(axis=0)-1e-7) and np.all(point<=v.max(axis=0)+1e-7),(i['id'],name)
 print('PASS: all104 net volumes and gravity centroids independently match model;128 unique known-interface/base markers; no load capacity asserted')
+
+# Standing engineering-reference instructions must remain visible, not a safety claim.
+html=(R/'src/viewer.template.html').read_text()
+assert html.index('id="tfecDesignStatus"') < html.index('id="loadReviewControls"')
+for phrase in ['TFEC-informed design review — not structurally qualified.', 'NDS prevails in conflicts', 'Reactions, pressure demands, strain and capacities remain unsolved', 'standards/view/104/download']:
+ assert phrase in html, phrase
+assert (R/'docs/TFEC-project-design-basis.md').exists()
+print('PASS: visible TFEC reference, authority limits and geometry-change release gates retained')
