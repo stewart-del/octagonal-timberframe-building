@@ -1,6 +1,6 @@
 # Source and practical joinery review
 
-This repository contains the recovered saved viewer, its complete embedded mesh data, NAV-04 interaction fixes, tests, and the JR-01 connection-family review. The original Sites source package has also been recovered intact: editable source, assembled/exploded GLBs, the individual-model and review ZIP, audit evidence, original hosting manifest, and attribution are included. The original downloadable assets and model data remain byte-identical. GitHub stores the large model ZIP in verified parts under `source-assets/`; the build reconstructs its original bytes without network access. Additional saved drawings or rendering materials outside that source package are not claimed as recovered here.
+This repository contains the recovered saved viewer, its complete embedded mesh data, NAV-05 inspection and navigation controls, tests, and the JR-01 connection-family review. The original Sites source package has also been recovered intact: editable source, assembled/exploded GLBs, the individual-model and review ZIP, audit evidence, original hosting manifest, and attribution are included. The original downloadable assets and model data remain byte-identical. The original 864 × 631 reference image has also been recovered and inspected as working evidence; it is not redistributed by this Site. Other saved drawings or rendering materials outside the recovered package are not claimed as recovered here.
 
 ## Preserved geometry and provenance
 
@@ -15,7 +15,7 @@ This repository contains the recovered saved viewer, its complete embedded mesh 
 
 At the P0 post-center plane, nominal R0 geometry passes through the full depth of B0/B7. The measured hip underside lies approximately 2.39173 in below the nominal ring underside at that plane. This is a diagnostic of the current reconstruction, not a notch depth or a specified roof-raising amount. Use the viewer's **Inspect P0 corner** button to see the exact existing members.
 
-Resolve the source roof bearing datum and intended load path before cutting away more wood or propagating a replacement detail. The source-building article establishes project context; its image dimensions were not independently reverified during this continuation.
+Resolve the source roof bearing datum and intended load path before cutting away more wood or propagating a replacement detail. The source-building article establishes project context. The inspected 864 × 631 image is a building overview, not a dimensioned corner-joint detail, and does not authenticate the generated wings, concealed joints or modeled bearing datum. Its inspection does not independently verify every inherited model dimension.
 
 ## Proposed connection families
 
@@ -59,13 +59,15 @@ The complete machine-readable review and member associations are in [joinery-rev
 
 ## Verification limits
 
-The prior model records a numerical fit pass. Later review identified thin webs, trapped keys and excessive hip/ring cutting. That earlier pass was not rerun here. Zero nominal clearance and 0.003 mm display tolerance are not manufacturing allowances. The explosion slider is a display aid, not an erection simulation. Structural capacity, retained-section adequacy, real machining tolerances, tool access and assembly paths remain unresolved.
+The fresh assembled fitted-solid check in `public/review/fitted-overlap-check.json` reports zero member-pair overlaps above 1e-10 m³ for all 104 timbers. It uses convex-cell intersections with 1e-9 m distance and 1e-12 m³ cell-volume numerical thresholds; bounding boxes only prune candidates. This does not approve the assumed 40% key envelopes, bearing, cuts or retained sections. The earlier findings of thin webs, trapped keys and excessive hip/ring cutting remain unresolved. Zero nominal clearance and 0.003 mm display tolerance are not manufacturing allowances. The explosion slider is a display aid, not an erection simulation. Structural capacity, real machining tolerances, tool access and assembly paths remain unresolved.
 
-NAV-04 fixes list-focus retention, keyboard schedule controls, modal focus restoration, and cut inspection pivots. It explicitly returns focus to the canvas when Free / WASD is chosen. Twenty-four assertions passed in a JavaScript runtime using a minimal DOM stub; they are not real-browser or WebGL tests.
+NAV-05 retains keyboard schedule controls, focus restoration and cut inspection pivots, and adds complete angle/edge tables, 13 fitted-shape material groups of eight timbers, Shift-click multi-selection, and explicit-click mouse capture for Free / WASD. Escape and the parts/materials dialogs release capture. Labels start off; dark edges and high contrast surfaces start on. Browserless regression checks cover the controls; native pointer-lock behavior and browser/WebGL rendering have not been visually verified in this continuation.
+
+Optional edge text and the full edge table distinguish the angle through the timber material from the acute angle between adjacent face planes. These are geometric measurements, not saw settings. Amber recess overlays show removed original stock, which may be occupied by mating timber; magenta shows the unfilled subset within that stock in the saved assembly. Exterior trimming is not an internal defect, and these overlays are not a complete void or contact assessment.
 
 ## References
 
-- Robert Swinburne, Octagon Timber Frame Outbuilding (May 3, 2010). https://www.bluetimecollaborative.com/robert-swinburne-vermont-architect/octagon-timber-frame-outbuilding — Project identification; dimensions in source images were not reverified in this continuation.
+- Robert Swinburne, Octagon Timber Frame Outbuilding (May 3, 2010). https://www.bluetimecollaborative.com/robert-swinburne-vermont-architect/octagon-timber-frame-outbuilding — Project identification. The recovered 864 × 631 overview was inspected; it supplies no authenticated dimensioned corner or wing detail, and not every inherited model dimension has been independently reverified.
 - Jim DeStefano, Rules of Timber Joinery Design, TFEC Technical Bulletin 2011-03 (December 7, 2011). https://dcstructural.com/pdfs/technical/Bulletin_Joinery.pdf — General joinery principles, not a detail for this octagon.
 - TFEC, Standard for Design of Timber Frame Structures and Commentary, TFEC 1-2019 (January 2019). https://www.tfguild.org/timber-frame-engineering-council/standards/view/104/download — Sections 1.3, 1.5, 2.3, 3.1, 3.3, 3.4 and 3.5: design inputs, notches, connections and seasoning.
 - TFEC, Code of Standard Practice for Timber Frame Structures, TFEC 2-2018 (February 2018). https://dcstructural.com/wp-content/uploads/2013/06/TFEC-COSP-2018.pdf — Sections 3.01, 4.02, 5.02 and 6.01: shop drawings, shrinkage, temporary stability and explicit tolerances.

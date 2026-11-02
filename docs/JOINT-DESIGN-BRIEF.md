@@ -2,7 +2,9 @@
 
 **Aim:** keep the documented building layout and timber sections, and replace the generated overlap keys with recognizable, buildable timber-frame joints. This is a connection-design proposal, not a change to all model pieces or a new load-capacity assessment.
 
-The existing building is the reference. Its concealed joint geometry is not supplied by the photographs or dimensioned overview. Accordingly, everything called **proposed** below is a new detail to develop, not a claim to have recovered Swinburne's original joinery.
+The existing building is the reference. The original 864 × 631 image has now been inspected: it is a building overview, not a dimensioned corner-joint detail. It does not authenticate the generated wing-like projections or concealed joinery. Accordingly, everything called **proposed** below is a new detail to develop, not a claim to have recovered Swinburne's original joinery.
+
+The fresh assembled fitted-solid check reports zero member-pair overlaps above 1e-10 m³. This does not approve the saved 40% key envelopes, bearing, cuts, retained wood or assembly paths. The hip/ring bearing-datum conflict described below remains unresolved; the overview does not establish a replacement datum.
 
 ## Baseline and one necessary geometric correction
 

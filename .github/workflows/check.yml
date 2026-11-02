@@ -17,3 +17,10 @@ jobs:
       - run: node tests/check_viewer.cjs
       - run: node tests/viewer-regression.cjs dist/index.html
       - run: python3 tests/validate_model.py dist/index.html
+      - run: node tests/multi-selection.cjs src/viewer.template.html
+      - run: node tests/mouse-look-regression.cjs src/viewer.template.html
+      - run: python3 scripts/group_pieces.py --self-test-only
+      - run: node tests/surface-contrast.cjs src/viewer.template.html
+      - run: node tests/edge-measurements.cjs
+      - run: node tests/geometry-overlays.cjs
+      - run: python3 tests/test_voids.py

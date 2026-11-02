@@ -6,6 +6,8 @@ This project is a reconstructed and modified geometric study. It is not the arch
 
 The fitted cuts are conceptual geometry. Repeated keys were generated from a 40% width/depth envelope and clipped against other stock. Structural sizing, machining allowances and an erection sequence were not established by that operation.
 
+The original 864 × 631 reference image has been inspected during this continuation. It shows an overview of the building, not a dimensioned corner-joint detail. It does not authenticate the generated wing-like projections, concealed joinery or assumed hip/ring bearing datum. Inspecting that image does not independently verify every dimension inherited by the reconstruction.
+
 No source photography or original architectural sheet is redistributed in this Site. The review links primary references from the Timber Frame Engineering Council, USDA Forest Products Laboratory, American Wood Council and ASCE. Those references do not approve this model.
 
 No blanket license for the referenced architectural work is asserted.

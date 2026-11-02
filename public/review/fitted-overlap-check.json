@@ -1,0 +1,3691 @@
+{
+  "source_cells_sha256": "3fc343bb990fc2c592024f33013131b9ba1e4e60936cdba59039b7a58c7a6645",
+  "scope": "Saved assembled fitted timbers only; no source-prism or exploded-pose collision claims.",
+  "method": "Fresh convex-cell pair intersections, using prototype numerical half-space kernel. AABB tests only prune candidates.",
+  "distance_epsilon_m": 1e-09,
+  "cell_volume_epsilon_m3": 1e-12,
+  "report_overlap_threshold_m3": 1e-10,
+  "piece_count": 104,
+  "total_member_pairs": 5356,
+  "candidate_member_pairs": 524,
+  "candidate_cell_pairs": 7179,
+  "max_member_intersection_volume_m3": 0,
+  "above_threshold_pair_count": 0,
+  "above_threshold_pairs": [],
+  "results": [
+    {
+      "a": "R0",
+      "b": "C0",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 45,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "R0",
+      "b": "P0",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 49,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "R1",
+      "b": "C1",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 80,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "R1",
+      "b": "P1",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 67,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "R2",
+      "b": "C2",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 45,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "R2",
+      "b": "P2",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 54,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "R3",
+      "b": "C3",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 80,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "R3",
+      "b": "P3",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 67,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "R4",
+      "b": "C4",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 45,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "R4",
+      "b": "P4",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 54,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "R5",
+      "b": "C5",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 80,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "R5",
+      "b": "P5",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 67,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "R6",
+      "b": "C6",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 45,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "R6",
+      "b": "P6",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 54,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "R7",
+      "b": "C7",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 80,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "R7",
+      "b": "P7",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 67,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "T0",
+      "b": "C0",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 6,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "T0",
+      "b": "P0",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 0,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "T0",
+      "b": "R0",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 27,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "T1",
+      "b": "C1",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 5,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "T1",
+      "b": "P1",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 1,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "T1",
+      "b": "R1",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 37,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "T2",
+      "b": "C2",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 6,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "T2",
+      "b": "P2",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 0,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "T2",
+      "b": "R2",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 28,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "T3",
+      "b": "C3",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 5,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "T3",
+      "b": "P3",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 1,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "T3",
+      "b": "R3",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 37,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "T4",
+      "b": "C4",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 6,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "T4",
+      "b": "P4",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 0,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "T4",
+      "b": "R4",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 28,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "T5",
+      "b": "C5",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 5,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "T5",
+      "b": "P5",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 1,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "T5",
+      "b": "R5",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 37,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "T6",
+      "b": "C6",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 6,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "T6",
+      "b": "P6",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 0,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "T6",
+      "b": "R6",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 28,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "T7",
+      "b": "C7",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 5,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "T7",
+      "b": "P7",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 1,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "T7",
+      "b": "R7",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 37,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "B0",
+      "b": "P0",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 10,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "B0",
+      "b": "P1",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 7,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "B0",
+      "b": "R0",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 36,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "B0",
+      "b": "R1",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 47,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "B0",
+      "b": "T0",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 0,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "B0",
+      "b": "T1",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 0,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "B1",
+      "b": "P1",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 7,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "B1",
+      "b": "P2",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 8,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "B1",
+      "b": "R1",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 52,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "B1",
+      "b": "R2",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 37,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "B1",
+      "b": "T1",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 0,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "B1",
+      "b": "T2",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 0,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "B1",
+      "b": "B0",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 2,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "B2",
+      "b": "P2",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 8,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "B2",
+      "b": "P3",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 7,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "B2",
+      "b": "R2",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 43,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "B2",
+      "b": "R3",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 47,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "B2",
+      "b": "T2",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 0,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "B2",
+      "b": "T3",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 0,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "B2",
+      "b": "B1",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 1,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "B3",
+      "b": "P3",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 7,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "B3",
+      "b": "P4",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 8,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "B3",
+      "b": "R3",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 52,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "B3",
+      "b": "R4",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 37,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "B3",
+      "b": "T3",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 0,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "B3",
+      "b": "T4",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 0,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "B3",
+      "b": "B2",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 2,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "B4",
+      "b": "P4",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 8,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "B4",
+      "b": "P5",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 7,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "B4",
+      "b": "R4",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 43,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "B4",
+      "b": "R5",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 47,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "B4",
+      "b": "T4",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 0,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "B4",
+      "b": "T5",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 0,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "B4",
+      "b": "B3",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 1,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "B5",
+      "b": "P5",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 7,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "B5",
+      "b": "P6",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 8,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "B5",
+      "b": "R5",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 52,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "B5",
+      "b": "R6",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 37,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "B5",
+      "b": "T5",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 0,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "B5",
+      "b": "T6",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 0,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "B5",
+      "b": "B4",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 2,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "B6",
+      "b": "P6",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 8,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "B6",
+      "b": "P7",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 7,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "B6",
+      "b": "R6",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 43,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "B6",
+      "b": "R7",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 47,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "B6",
+      "b": "T6",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 0,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "B6",
+      "b": "T7",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 0,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "B6",
+      "b": "B5",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 1,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "B7",
+      "b": "P0",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 8,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "B7",
+      "b": "P7",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 9,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "B7",
+      "b": "R0",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 45,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "B7",
+      "b": "R7",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 62,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "B7",
+      "b": "T0",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 0,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "B7",
+      "b": "T7",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 0,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "B7",
+      "b": "B0",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 1,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "B7",
+      "b": "B6",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 2,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "L0-H",
+      "b": "C0",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 10,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "L0-H",
+      "b": "C1",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 12,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "L0-L",
+      "b": "C0",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 2,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "L0-L",
+      "b": "C1",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 2,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "L0-L",
+      "b": "R0",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 0,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "L0-L",
+      "b": "R1",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 3,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "L0-L",
+      "b": "T0",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 9,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "L0-L",
+      "b": "T1",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 9,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "L0-S",
+      "b": "C0",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 45,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "L0-S",
+      "b": "C1",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 59,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "L0-S",
+      "b": "R0",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 5,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "L0-S",
+      "b": "R1",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 9,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "L1-H",
+      "b": "C1",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 41,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "L1-H",
+      "b": "C2",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 10,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "L1-H",
+      "b": "L0-H",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 1,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "L1-L",
+      "b": "C1",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 6,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "L1-L",
+      "b": "C2",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 2,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "L1-L",
+      "b": "R1",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 1,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "L1-L",
+      "b": "R2",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 2,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "L1-L",
+      "b": "T1",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 13,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "L1-L",
+      "b": "T2",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 10,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "L1-L",
+      "b": "L0-L",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 2,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "L1-S",
+      "b": "C1",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 73,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "L1-S",
+      "b": "C2",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 51,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "L1-S",
+      "b": "R1",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 9,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "L1-S",
+      "b": "R2",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 6,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "L1-S",
+      "b": "L0-S",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 4,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "L2-H",
+      "b": "C2",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 39,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "L2-H",
+      "b": "C3",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 12,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "L2-H",
+      "b": "L1-H",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 0,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "L2-L",
+      "b": "C2",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 6,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "L2-L",
+      "b": "C3",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 2,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "L2-L",
+      "b": "R2",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 0,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "L2-L",
+      "b": "R3",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 3,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "L2-L",
+      "b": "T2",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 14,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "L2-L",
+      "b": "T3",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 9,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "L2-L",
+      "b": "L1-L",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 1,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "L2-S",
+      "b": "C2",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 66,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "L2-S",
+      "b": "C3",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 59,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "L2-S",
+      "b": "R2",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 4,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "L2-S",
+      "b": "R3",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 9,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "L2-S",
+      "b": "L1-S",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 0,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "L3-H",
+      "b": "C3",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 41,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "L3-H",
+      "b": "C4",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 10,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "L3-H",
+      "b": "L2-H",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 1,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "L3-L",
+      "b": "C3",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 6,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "L3-L",
+      "b": "C4",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 2,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "L3-L",
+      "b": "R3",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 1,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "L3-L",
+      "b": "R4",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 2,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "L3-L",
+      "b": "T3",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 13,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "L3-L",
+      "b": "T4",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 10,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "L3-L",
+      "b": "L2-L",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 2,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "L3-S",
+      "b": "C3",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 73,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "L3-S",
+      "b": "C4",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 51,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "L3-S",
+      "b": "R3",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 9,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "L3-S",
+      "b": "R4",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 6,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "L3-S",
+      "b": "L2-S",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 4,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "L4-H",
+      "b": "C4",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 39,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "L4-H",
+      "b": "C5",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 12,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "L4-H",
+      "b": "L3-H",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 0,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "L4-L",
+      "b": "C4",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 6,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "L4-L",
+      "b": "C5",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 2,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "L4-L",
+      "b": "R4",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 0,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "L4-L",
+      "b": "R5",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 3,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "L4-L",
+      "b": "T4",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 14,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "L4-L",
+      "b": "T5",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 9,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "L4-L",
+      "b": "L3-L",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 1,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "L4-S",
+      "b": "C4",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 66,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "L4-S",
+      "b": "C5",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 59,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "L4-S",
+      "b": "R4",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 4,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "L4-S",
+      "b": "R5",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 9,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "L4-S",
+      "b": "L3-S",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 0,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "L5-H",
+      "b": "C5",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 41,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "L5-H",
+      "b": "C6",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 10,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "L5-H",
+      "b": "L4-H",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 1,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "L5-L",
+      "b": "C5",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 6,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "L5-L",
+      "b": "C6",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 2,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "L5-L",
+      "b": "R5",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 1,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "L5-L",
+      "b": "R6",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 2,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "L5-L",
+      "b": "T5",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 13,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "L5-L",
+      "b": "T6",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 10,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "L5-L",
+      "b": "L4-L",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 2,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "L5-S",
+      "b": "C5",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 73,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "L5-S",
+      "b": "C6",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 51,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "L5-S",
+      "b": "R5",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 9,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "L5-S",
+      "b": "R6",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 6,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "L5-S",
+      "b": "L4-S",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 4,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "L6-H",
+      "b": "C6",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 39,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "L6-H",
+      "b": "C7",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 12,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "L6-H",
+      "b": "L5-H",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 0,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "L6-L",
+      "b": "C6",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 6,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "L6-L",
+      "b": "C7",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 2,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "L6-L",
+      "b": "R6",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 0,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "L6-L",
+      "b": "R7",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 3,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "L6-L",
+      "b": "T6",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 14,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "L6-L",
+      "b": "T7",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 9,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "L6-L",
+      "b": "L5-L",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 1,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "L6-S",
+      "b": "C6",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 66,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "L6-S",
+      "b": "C7",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 59,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "L6-S",
+      "b": "R6",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 4,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "L6-S",
+      "b": "R7",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 9,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "L6-S",
+      "b": "L5-S",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 0,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "L7-H",
+      "b": "C0",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 39,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "L7-H",
+      "b": "C7",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 41,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "L7-H",
+      "b": "L0-H",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 0,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "L7-H",
+      "b": "L6-H",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 1,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "L7-L",
+      "b": "C0",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 6,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "L7-L",
+      "b": "C7",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 6,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "L7-L",
+      "b": "R0",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 2,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "L7-L",
+      "b": "R7",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 1,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "L7-L",
+      "b": "T0",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 14,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "L7-L",
+      "b": "T7",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 13,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "L7-L",
+      "b": "L0-L",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 1,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "L7-L",
+      "b": "L6-L",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 2,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "L7-S",
+      "b": "C0",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 70,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "L7-S",
+      "b": "C7",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 73,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "L7-S",
+      "b": "R0",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 5,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "L7-S",
+      "b": "R7",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 9,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "L7-S",
+      "b": "L0-S",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 0,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "L7-S",
+      "b": "L6-S",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 4,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "K0-A",
+      "b": "P0",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 59,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "K0-A",
+      "b": "R0",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 3,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "K0-A",
+      "b": "T0",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 0,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "K0-A",
+      "b": "B0",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 0,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "K0-A",
+      "b": "B7",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 25,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "K0-B",
+      "b": "P0",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 73,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "K0-B",
+      "b": "R0",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 2,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "K0-B",
+      "b": "T0",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 0,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "K0-B",
+      "b": "B0",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 14,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "K0-B",
+      "b": "B7",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 0,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "K0-B",
+      "b": "K0-A",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 0,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "K1-A",
+      "b": "P1",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 25,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "K1-A",
+      "b": "R1",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 1,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "K1-A",
+      "b": "T1",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 0,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "K1-A",
+      "b": "B0",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 25,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "K1-A",
+      "b": "B1",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 0,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "K1-B",
+      "b": "P1",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 93,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "K1-B",
+      "b": "R1",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 3,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "K1-B",
+      "b": "T1",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 0,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "K1-B",
+      "b": "B0",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 0,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "K1-B",
+      "b": "B1",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 14,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "K1-B",
+      "b": "K1-A",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 1,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "K2-A",
+      "b": "P2",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 22,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "K2-A",
+      "b": "R2",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 2,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "K2-A",
+      "b": "T2",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 0,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "K2-A",
+      "b": "B1",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 25,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "K2-A",
+      "b": "B2",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 0,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "K2-B",
+      "b": "P2",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 101,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "K2-B",
+      "b": "R2",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 3,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "K2-B",
+      "b": "T2",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 0,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "K2-B",
+      "b": "B1",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 0,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "K2-B",
+      "b": "B2",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 14,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "K2-B",
+      "b": "K2-A",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 0,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "K3-A",
+      "b": "P3",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 25,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "K3-A",
+      "b": "R3",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 1,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "K3-A",
+      "b": "T3",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 0,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "K3-A",
+      "b": "B2",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 25,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "K3-A",
+      "b": "B3",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 0,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "K3-B",
+      "b": "P3",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 93,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "K3-B",
+      "b": "R3",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 3,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "K3-B",
+      "b": "T3",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 0,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "K3-B",
+      "b": "B2",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 0,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "K3-B",
+      "b": "B3",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 14,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "K3-B",
+      "b": "K3-A",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 1,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "K4-A",
+      "b": "P4",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 22,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "K4-A",
+      "b": "R4",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 2,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "K4-A",
+      "b": "T4",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 0,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "K4-A",
+      "b": "B3",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 25,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "K4-A",
+      "b": "B4",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 0,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "K4-B",
+      "b": "P4",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 101,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "K4-B",
+      "b": "R4",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 3,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "K4-B",
+      "b": "T4",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 0,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "K4-B",
+      "b": "B3",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 0,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "K4-B",
+      "b": "B4",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 14,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "K4-B",
+      "b": "K4-A",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 0,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "K5-A",
+      "b": "P5",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 25,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "K5-A",
+      "b": "R5",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 1,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "K5-A",
+      "b": "T5",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 0,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "K5-A",
+      "b": "B4",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 25,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "K5-A",
+      "b": "B5",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 0,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "K5-B",
+      "b": "P5",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 93,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "K5-B",
+      "b": "R5",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 3,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "K5-B",
+      "b": "T5",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 0,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "K5-B",
+      "b": "B4",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 0,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "K5-B",
+      "b": "B5",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 14,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "K5-B",
+      "b": "K5-A",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 1,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "K6-A",
+      "b": "P6",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 22,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "K6-A",
+      "b": "R6",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 2,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "K6-A",
+      "b": "T6",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 0,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "K6-A",
+      "b": "B5",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 25,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "K6-A",
+      "b": "B6",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 0,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "K6-B",
+      "b": "P6",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 101,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "K6-B",
+      "b": "R6",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 3,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "K6-B",
+      "b": "T6",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 0,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "K6-B",
+      "b": "B5",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 0,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "K6-B",
+      "b": "B6",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 14,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "K6-B",
+      "b": "K6-A",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 0,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "K7-A",
+      "b": "P7",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 25,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "K7-A",
+      "b": "R7",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 1,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "K7-A",
+      "b": "T7",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 0,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "K7-A",
+      "b": "B6",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 25,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "K7-A",
+      "b": "B7",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 0,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "K7-B",
+      "b": "P7",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 93,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "K7-B",
+      "b": "R7",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 3,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "K7-B",
+      "b": "T7",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 0,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "K7-B",
+      "b": "B6",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 0,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "K7-B",
+      "b": "B7",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 27,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "K7-B",
+      "b": "K7-A",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 1,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J0-0",
+      "b": "R1",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 2,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J0-0",
+      "b": "T1",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 1,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J0-0",
+      "b": "B0",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 49,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J0-0",
+      "b": "L0-L",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 1,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J0-0",
+      "b": "L0-S",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 16,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J0-0",
+      "b": "K0-B",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 0,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J0-1",
+      "b": "R1",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 2,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J0-1",
+      "b": "T1",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 1,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J0-1",
+      "b": "B0",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 57,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J0-1",
+      "b": "L0-L",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 1,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J0-1",
+      "b": "L0-S",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 37,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J0-1",
+      "b": "K0-B",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 0,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J0-1",
+      "b": "J0-0",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 2,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J0-2",
+      "b": "C1",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 0,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J0-2",
+      "b": "R1",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 5,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J0-2",
+      "b": "T1",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 1,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J0-2",
+      "b": "B0",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 24,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J0-2",
+      "b": "L0-L",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 1,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J0-2",
+      "b": "L0-S",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 30,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J0-2",
+      "b": "K0-B",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 0,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J0-2",
+      "b": "K1-A",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 0,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J0-2",
+      "b": "J0-0",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 1,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J0-2",
+      "b": "J0-1",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 2,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J1-0",
+      "b": "C1",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 0,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J1-0",
+      "b": "R1",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 6,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J1-0",
+      "b": "T1",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 1,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J1-0",
+      "b": "B1",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 46,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J1-0",
+      "b": "L1-L",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 1,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J1-0",
+      "b": "L1-S",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 17,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J1-0",
+      "b": "K1-B",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 0,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J1-0",
+      "b": "K2-A",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 0,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J1-0",
+      "b": "J0-0",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 0,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J1-0",
+      "b": "J0-1",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 1,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J1-0",
+      "b": "J0-2",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 1,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J1-1",
+      "b": "R1",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 2,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J1-1",
+      "b": "T1",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 1,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J1-1",
+      "b": "B1",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 57,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J1-1",
+      "b": "L1-L",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 1,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J1-1",
+      "b": "L1-S",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 37,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J1-1",
+      "b": "K2-A",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 0,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J1-1",
+      "b": "J0-0",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 0,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J1-1",
+      "b": "J0-1",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 1,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J1-1",
+      "b": "J0-2",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 1,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J1-1",
+      "b": "J1-0",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 2,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J1-2",
+      "b": "R1",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 2,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J1-2",
+      "b": "T1",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 1,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J1-2",
+      "b": "B1",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 25,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J1-2",
+      "b": "L1-L",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 1,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J1-2",
+      "b": "L1-S",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 29,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J1-2",
+      "b": "K2-A",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 0,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J1-2",
+      "b": "J0-0",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 0,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J1-2",
+      "b": "J0-1",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 0,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J1-2",
+      "b": "J0-2",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 0,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J1-2",
+      "b": "J1-0",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 1,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J1-2",
+      "b": "J1-1",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 2,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J2-0",
+      "b": "R3",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 2,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J2-0",
+      "b": "T3",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 1,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J2-0",
+      "b": "B2",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 49,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J2-0",
+      "b": "L2-L",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 1,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J2-0",
+      "b": "L2-S",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 16,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J2-0",
+      "b": "K2-B",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 0,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J2-1",
+      "b": "R3",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 2,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J2-1",
+      "b": "T3",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 1,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J2-1",
+      "b": "B2",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 57,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J2-1",
+      "b": "L2-L",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 1,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J2-1",
+      "b": "L2-S",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 37,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J2-1",
+      "b": "K2-B",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 0,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J2-1",
+      "b": "J2-0",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 2,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J2-2",
+      "b": "C3",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 0,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J2-2",
+      "b": "R3",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 5,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J2-2",
+      "b": "T3",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 1,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J2-2",
+      "b": "B2",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 24,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J2-2",
+      "b": "L2-L",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 1,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J2-2",
+      "b": "L2-S",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 30,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J2-2",
+      "b": "K2-B",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 0,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J2-2",
+      "b": "K3-A",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 0,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J2-2",
+      "b": "J2-0",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 1,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J2-2",
+      "b": "J2-1",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 2,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J3-0",
+      "b": "C3",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 0,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J3-0",
+      "b": "R3",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 6,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J3-0",
+      "b": "T3",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 1,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J3-0",
+      "b": "B3",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 46,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J3-0",
+      "b": "L3-L",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 1,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J3-0",
+      "b": "L3-S",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 17,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J3-0",
+      "b": "K3-B",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 0,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J3-0",
+      "b": "K4-A",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 0,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J3-0",
+      "b": "J2-0",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 0,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J3-0",
+      "b": "J2-1",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 1,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J3-0",
+      "b": "J2-2",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 1,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J3-1",
+      "b": "R3",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 2,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J3-1",
+      "b": "T3",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 1,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J3-1",
+      "b": "B3",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 57,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J3-1",
+      "b": "L3-L",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 1,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J3-1",
+      "b": "L3-S",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 37,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J3-1",
+      "b": "K4-A",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 0,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J3-1",
+      "b": "J2-0",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 0,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J3-1",
+      "b": "J2-1",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 1,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J3-1",
+      "b": "J2-2",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 1,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J3-1",
+      "b": "J3-0",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 2,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J3-2",
+      "b": "R3",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 2,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J3-2",
+      "b": "T3",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 1,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J3-2",
+      "b": "B3",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 25,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J3-2",
+      "b": "L3-L",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 1,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J3-2",
+      "b": "L3-S",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 29,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J3-2",
+      "b": "K4-A",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 0,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J3-2",
+      "b": "J2-0",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 0,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J3-2",
+      "b": "J2-1",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 0,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J3-2",
+      "b": "J2-2",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 0,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J3-2",
+      "b": "J3-0",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 1,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J3-2",
+      "b": "J3-1",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 2,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J4-0",
+      "b": "R5",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 2,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J4-0",
+      "b": "T5",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 1,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J4-0",
+      "b": "B4",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 49,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J4-0",
+      "b": "L4-L",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 1,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J4-0",
+      "b": "L4-S",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 16,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J4-0",
+      "b": "K4-B",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 0,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J4-1",
+      "b": "R5",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 2,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J4-1",
+      "b": "T5",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 1,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J4-1",
+      "b": "B4",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 57,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J4-1",
+      "b": "L4-L",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 1,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J4-1",
+      "b": "L4-S",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 37,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J4-1",
+      "b": "K4-B",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 0,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J4-1",
+      "b": "J4-0",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 2,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J4-2",
+      "b": "C5",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 0,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J4-2",
+      "b": "R5",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 5,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J4-2",
+      "b": "T5",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 1,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J4-2",
+      "b": "B4",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 24,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J4-2",
+      "b": "L4-L",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 1,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J4-2",
+      "b": "L4-S",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 30,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J4-2",
+      "b": "K4-B",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 0,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J4-2",
+      "b": "K5-A",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 0,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J4-2",
+      "b": "J4-0",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 1,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J4-2",
+      "b": "J4-1",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 2,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J5-0",
+      "b": "C5",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 0,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J5-0",
+      "b": "R5",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 6,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J5-0",
+      "b": "T5",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 1,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J5-0",
+      "b": "B5",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 46,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J5-0",
+      "b": "L5-L",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 1,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J5-0",
+      "b": "L5-S",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 17,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J5-0",
+      "b": "K5-B",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 0,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J5-0",
+      "b": "K6-A",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 0,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J5-0",
+      "b": "J4-0",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 0,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J5-0",
+      "b": "J4-1",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 1,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J5-0",
+      "b": "J4-2",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 1,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J5-1",
+      "b": "R5",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 2,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J5-1",
+      "b": "T5",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 1,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J5-1",
+      "b": "B5",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 57,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J5-1",
+      "b": "L5-L",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 1,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J5-1",
+      "b": "L5-S",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 37,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J5-1",
+      "b": "K6-A",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 0,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J5-1",
+      "b": "J4-0",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 0,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J5-1",
+      "b": "J4-1",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 1,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J5-1",
+      "b": "J4-2",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 1,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J5-1",
+      "b": "J5-0",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 2,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J5-2",
+      "b": "R5",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 2,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J5-2",
+      "b": "T5",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 1,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J5-2",
+      "b": "B5",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 25,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J5-2",
+      "b": "L5-L",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 1,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J5-2",
+      "b": "L5-S",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 29,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J5-2",
+      "b": "K6-A",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 0,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J5-2",
+      "b": "J4-0",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 0,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J5-2",
+      "b": "J4-1",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 0,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J5-2",
+      "b": "J4-2",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 0,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J5-2",
+      "b": "J5-0",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 1,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J5-2",
+      "b": "J5-1",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 2,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J6-0",
+      "b": "R7",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 2,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J6-0",
+      "b": "T7",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 1,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J6-0",
+      "b": "B6",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 49,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J6-0",
+      "b": "L6-L",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 1,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J6-0",
+      "b": "L6-S",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 16,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J6-0",
+      "b": "K6-B",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 0,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J6-1",
+      "b": "R7",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 2,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J6-1",
+      "b": "T7",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 1,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J6-1",
+      "b": "B6",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 57,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J6-1",
+      "b": "L6-L",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 1,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J6-1",
+      "b": "L6-S",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 37,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J6-1",
+      "b": "K6-B",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 0,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J6-1",
+      "b": "J6-0",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 2,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J6-2",
+      "b": "C7",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 0,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J6-2",
+      "b": "R7",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 5,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J6-2",
+      "b": "T7",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 1,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J6-2",
+      "b": "B6",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 24,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J6-2",
+      "b": "L6-L",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 1,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J6-2",
+      "b": "L6-S",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 30,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J6-2",
+      "b": "K6-B",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 0,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J6-2",
+      "b": "K7-A",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 0,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J6-2",
+      "b": "J6-0",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 1,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J6-2",
+      "b": "J6-1",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 2,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J7-0",
+      "b": "C7",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 0,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J7-0",
+      "b": "R7",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 6,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J7-0",
+      "b": "T7",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 1,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J7-0",
+      "b": "B7",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 45,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J7-0",
+      "b": "L7-L",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 1,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J7-0",
+      "b": "L7-S",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 17,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J7-0",
+      "b": "K0-A",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 0,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J7-0",
+      "b": "K7-B",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 0,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J7-0",
+      "b": "J6-0",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 0,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J7-0",
+      "b": "J6-1",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 1,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J7-0",
+      "b": "J6-2",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 1,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J7-1",
+      "b": "R7",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 2,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J7-1",
+      "b": "T7",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 1,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J7-1",
+      "b": "B7",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 57,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J7-1",
+      "b": "L7-L",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 1,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J7-1",
+      "b": "L7-S",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 37,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J7-1",
+      "b": "K0-A",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 0,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J7-1",
+      "b": "J6-0",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 0,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J7-1",
+      "b": "J6-1",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 1,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J7-1",
+      "b": "J6-2",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 1,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J7-1",
+      "b": "J7-0",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 2,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J7-2",
+      "b": "R7",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 2,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J7-2",
+      "b": "T7",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 1,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J7-2",
+      "b": "B7",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 25,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J7-2",
+      "b": "L7-L",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 1,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J7-2",
+      "b": "L7-S",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 29,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J7-2",
+      "b": "K0-A",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 0,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J7-2",
+      "b": "J6-0",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 0,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J7-2",
+      "b": "J6-1",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 0,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J7-2",
+      "b": "J6-2",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 0,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J7-2",
+      "b": "J7-0",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 1,
+      "positive_cell_intersections": 0
+    },
+    {
+      "a": "J7-2",
+      "b": "J7-1",
+      "intersection_volume_m3": 0,
+      "candidate_cell_pairs": 2,
+      "positive_cell_intersections": 0
+    }
+  ],
+  "status": "PASS at stated numerical thresholds",
+  "limitations": [
+    "A lack of material intersections does not authenticate the fitted joint design.",
+    "The generated partition deliberately assigns overlapping source-stock regions to different timber owners.",
+    "This does not approve bearing, retained wood, tenon size, shrinkage allowance, tool access, or insertion paths."
+  ]
+}

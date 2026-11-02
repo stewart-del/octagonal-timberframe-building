@@ -1,0 +1,4494 @@
+{
+  "schema_version": "fitted-piece-groups-1.0",
+  "source_sha256": "f9e3052986b2df9ef5024c1d4dc665839d22944a2c9e7acebcfd8817220bf8a4",
+  "source_units": "meters",
+  "timber_count": 104,
+  "group_count": 13,
+  "comparison_tolerance_m": 1e-05,
+  "member_to_representative_tolerance_m": 5e-06,
+  "numerical_slack_m": 1e-10,
+  "max_member_residual_bound_m": 4.998391514615918e-06,
+  "max_group_pairwise_residual_bound_m": 9.996783029231836e-06,
+  "algorithm": "Proper rigid frames from labelled A->B axis and projected A-reference edges; separately match A/B reference vertices; bidirectional complete triangle coverage by convex polygon subtraction; per-fragment point-to-triangle convexity bounds; no reflection or end reversal.",
+  "scope": "Geometric repeat groups of the existing fitted prototype only. No geometry edits and no fabrication or construction approval.",
+  "limitations": [
+    "Conservative candidate search can split congruent shapes with different reference conventions; singleton status does not prove uniqueness.",
+    "A and B are preserved, never swapped; braces such as K0-A have end IDs K0-A-A and K0-A-B.",
+    "Tolerance is a numerical geometry comparison threshold, not machining clearance or stock tolerance.",
+    "Boundary comparison assumes the provided consistently oriented, closed fitted-solid meshes; it does not independently validate material properties or topology.",
+    "Floating-point polygon operations use a 0.1 nanometre numerical slack, not formal exact-arithmetic proof.",
+    "Groups use the first source-order member as representative; every member is directly certified to it, with twice the largest residual bounding all member pairs.",
+    "Mate IDs and installation locations remain individual; geometry-equivalent pieces are not assigned interchangeable construction roles."
+  ],
+  "self_tests": [
+    {
+      "test": "rigid rotation and translation",
+      "passed": true
+    },
+    {
+      "test": "different tessellation",
+      "passed": true
+    },
+    {
+      "test": "asymmetric mirror excluded",
+      "passed": true
+    },
+    {
+      "test": "changed fitted geometry excluded",
+      "passed": true
+    },
+    {
+      "test": "labelled A/B end reversal excluded",
+      "passed": true
+    }
+  ],
+  "handed_pair_checks": [
+    {
+      "member_a": "K0-A",
+      "member_b": "K0-B",
+      "proper_rotation_match": false,
+      "rejection": "different fitted boundary extents"
+    },
+    {
+      "member_a": "J0-0",
+      "member_b": "J0-2",
+      "proper_rotation_match": false,
+      "rejection": "different fitted boundary extents"
+    }
+  ],
+  "groups": [
+    {
+      "group_number": 1,
+      "representative_id": "P0",
+      "members": [
+        {
+          "timber_id": "P0",
+          "end_A_reference_id": "P0-A",
+          "end_B_reference_id": "P0-B",
+          "rotation_to_representative": [
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              0,
+              1,
+              0
+            ],
+            [
+              0,
+              0,
+              1
+            ]
+          ],
+          "translation_to_representative_m": [
+            0,
+            0,
+            0
+          ],
+          "rotation_determinant": 1,
+          "reference_end_max_residual_m": 0.0,
+          "surface_max_residual_bound_m": 0.0,
+          "member_to_representative": {
+            "identity": true
+          },
+          "representative_to_member": {
+            "identity": true
+          }
+        },
+        {
+          "timber_id": "P1",
+          "end_A_reference_id": "P1-A",
+          "end_B_reference_id": "P1-B",
+          "rotation_to_representative": [
+            [
+              0.7071061945261355,
+              0.0,
+              -0.7071073678464729
+            ],
+            [
+              0.0,
+              1.0,
+              0.0
+            ],
+            [
+              0.7071073678464729,
+              0.0,
+              0.7071061945261355
+            ]
+          ],
+          "translation_to_representative_m": [
+            1.0204786349277128e-08,
+            0.0,
+            -3.793218184444669e-06
+          ],
+          "rotation_determinant": 1.0000000000000002,
+          "reference_end_max_residual_m": 3.2622715977056874e-07,
+          "surface_max_residual_bound_m": 4.996367963470921e-06,
+          "member_to_representative": {
+            "source_triangle_count": 414,
+            "covered_convex_fragments": 6044
+          },
+          "representative_to_member": {
+            "source_triangle_count": 446,
+            "covered_convex_fragments": 5748
+          }
+        },
+        {
+          "timber_id": "P2",
+          "end_A_reference_id": "P2-A",
+          "end_B_reference_id": "P2-B",
+          "rotation_to_representative": [
+            [
+              0.0,
+              0.0,
+              -1.0
+            ],
+            [
+              0.0,
+              1.0,
+              0.0
+            ],
+            [
+              1.0,
+              0.0,
+              0.0
+            ]
+          ],
+          "translation_to_representative_m": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "rotation_determinant": 1.0,
+          "reference_end_max_residual_m": 0.0,
+          "surface_max_residual_bound_m": 4.885197318253194e-06,
+          "member_to_representative": {
+            "source_triangle_count": 414,
+            "covered_convex_fragments": 6695
+          },
+          "representative_to_member": {
+            "source_triangle_count": 446,
+            "covered_convex_fragments": 6550
+          }
+        },
+        {
+          "timber_id": "P3",
+          "end_A_reference_id": "P3-A",
+          "end_B_reference_id": "P3-B",
+          "rotation_to_representative": [
+            [
+              -0.7071073678464729,
+              0.0,
+              -0.7071061945261355
+            ],
+            [
+              0.0,
+              1.0,
+              0.0
+            ],
+            [
+              0.7071061945261355,
+              0.0,
+              -0.7071073678464729
+            ]
+          ],
+          "translation_to_representative_m": [
+            1.0204786349277128e-08,
+            0.0,
+            -3.793218184444669e-06
+          ],
+          "rotation_determinant": 1.0000000000000002,
+          "reference_end_max_residual_m": 3.2622715977056874e-07,
+          "surface_max_residual_bound_m": 4.996367963470921e-06,
+          "member_to_representative": {
+            "source_triangle_count": 414,
+            "covered_convex_fragments": 6044
+          },
+          "representative_to_member": {
+            "source_triangle_count": 446,
+            "covered_convex_fragments": 5681
+          }
+        },
+        {
+          "timber_id": "P4",
+          "end_A_reference_id": "P4-A",
+          "end_B_reference_id": "P4-B",
+          "rotation_to_representative": [
+            [
+              -1.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              1.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              -1.0
+            ]
+          ],
+          "translation_to_representative_m": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "rotation_determinant": 1.0,
+          "reference_end_max_residual_m": 0.0,
+          "surface_max_residual_bound_m": 4.885197318253194e-06,
+          "member_to_representative": {
+            "source_triangle_count": 414,
+            "covered_convex_fragments": 6695
+          },
+          "representative_to_member": {
+            "source_triangle_count": 446,
+            "covered_convex_fragments": 6552
+          }
+        },
+        {
+          "timber_id": "P5",
+          "end_A_reference_id": "P5-A",
+          "end_B_reference_id": "P5-B",
+          "rotation_to_representative": [
+            [
+              -0.7071061945261355,
+              0.0,
+              0.7071073678464729
+            ],
+            [
+              0.0,
+              1.0,
+              0.0
+            ],
+            [
+              -0.7071073678464729,
+              0.0,
+              -0.7071061945261355
+            ]
+          ],
+          "translation_to_representative_m": [
+            1.0204786349277128e-08,
+            0.0,
+            -3.793218184444669e-06
+          ],
+          "rotation_determinant": 1.0000000000000002,
+          "reference_end_max_residual_m": 3.2622715977056874e-07,
+          "surface_max_residual_bound_m": 4.996367963470921e-06,
+          "member_to_representative": {
+            "source_triangle_count": 414,
+            "covered_convex_fragments": 6044
+          },
+          "representative_to_member": {
+            "source_triangle_count": 446,
+            "covered_convex_fragments": 5728
+          }
+        },
+        {
+          "timber_id": "P6",
+          "end_A_reference_id": "P6-A",
+          "end_B_reference_id": "P6-B",
+          "rotation_to_representative": [
+            [
+              0.0,
+              0.0,
+              1.0
+            ],
+            [
+              0.0,
+              1.0,
+              0.0
+            ],
+            [
+              -1.0,
+              0.0,
+              0.0
+            ]
+          ],
+          "translation_to_representative_m": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "rotation_determinant": 1.0,
+          "reference_end_max_residual_m": 0.0,
+          "surface_max_residual_bound_m": 4.885197318253194e-06,
+          "member_to_representative": {
+            "source_triangle_count": 414,
+            "covered_convex_fragments": 6695
+          },
+          "representative_to_member": {
+            "source_triangle_count": 446,
+            "covered_convex_fragments": 6624
+          }
+        },
+        {
+          "timber_id": "P7",
+          "end_A_reference_id": "P7-A",
+          "end_B_reference_id": "P7-B",
+          "rotation_to_representative": [
+            [
+              0.7071073678464729,
+              0.0,
+              0.7071061945261355
+            ],
+            [
+              0.0,
+              1.0,
+              0.0
+            ],
+            [
+              -0.7071061945261355,
+              0.0,
+              0.7071073678464729
+            ]
+          ],
+          "translation_to_representative_m": [
+            1.0204786349277128e-08,
+            0.0,
+            -3.793218184444669e-06
+          ],
+          "rotation_determinant": 1.0000000000000002,
+          "reference_end_max_residual_m": 3.2622715977056874e-07,
+          "surface_max_residual_bound_m": 4.996367963470921e-06,
+          "member_to_representative": {
+            "source_triangle_count": 414,
+            "covered_convex_fragments": 6044
+          },
+          "representative_to_member": {
+            "source_triangle_count": 446,
+            "covered_convex_fragments": 5697
+          }
+        }
+      ],
+      "source_categories": [
+        "perimeter_posts"
+      ],
+      "quantity": 8,
+      "max_residual_bound_m": 4.996367963470921e-06,
+      "timber_ids": [
+        "P0",
+        "P1",
+        "P2",
+        "P3",
+        "P4",
+        "P5",
+        "P6",
+        "P7"
+      ],
+      "pairwise_residual_bound_m": 9.992735926941841e-06,
+      "id": "M01",
+      "number": 1,
+      "member_ids": [
+        "P0",
+        "P1",
+        "P2",
+        "P3",
+        "P4",
+        "P5",
+        "P6",
+        "P7"
+      ],
+      "family": "perimeter_posts",
+      "label": "Perimeter posts",
+      "max_residual_m": 4.996367963470921e-06,
+      "status": "prototype_geometry_repeat",
+      "method": "proper_rigid_full_surface_coverage_AB_preserved"
+    },
+    {
+      "group_number": 2,
+      "representative_id": "B0",
+      "members": [
+        {
+          "timber_id": "B0",
+          "end_A_reference_id": "B0-A",
+          "end_B_reference_id": "B0-B",
+          "rotation_to_representative": [
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              0,
+              1,
+              0
+            ],
+            [
+              0,
+              0,
+              1
+            ]
+          ],
+          "translation_to_representative_m": [
+            0,
+            0,
+            0
+          ],
+          "rotation_determinant": 1,
+          "reference_end_max_residual_m": 0.0,
+          "surface_max_residual_bound_m": 0.0,
+          "member_to_representative": {
+            "identity": true
+          },
+          "representative_to_member": {
+            "identity": true
+          }
+        },
+        {
+          "timber_id": "B1",
+          "end_A_reference_id": "B1-A",
+          "end_B_reference_id": "B1-B",
+          "rotation_to_representative": [
+            [
+              0.7071066645009851,
+              0.0,
+              -0.7071068978720908
+            ],
+            [
+              0.0,
+              1.0,
+              0.0
+            ],
+            [
+              0.7071068978720908,
+              0.0,
+              0.7071066645009851
+            ]
+          ],
+          "translation_to_representative_m": [
+            -3.1250900178747543e-07,
+            0.0,
+            -7.54463644447867e-07
+          ],
+          "rotation_determinant": 1.0000000000000002,
+          "reference_end_max_residual_m": 6.457747908778119e-08,
+          "surface_max_residual_bound_m": 4.961699084444185e-06,
+          "member_to_representative": {
+            "source_triangle_count": 750,
+            "covered_convex_fragments": 9702
+          },
+          "representative_to_member": {
+            "source_triangle_count": 750,
+            "covered_convex_fragments": 9275
+          }
+        },
+        {
+          "timber_id": "B2",
+          "end_A_reference_id": "B2-A",
+          "end_B_reference_id": "B2-B",
+          "rotation_to_representative": [
+            [
+              1.1102230246251565e-16,
+              0.0,
+              -0.9999999999999999
+            ],
+            [
+              0.0,
+              1.0,
+              0.0
+            ],
+            [
+              0.9999999999999999,
+              0.0,
+              1.1102230246251565e-16
+            ]
+          ],
+          "translation_to_representative_m": [
+            8.881784197001252e-16,
+            0.0,
+            2.284172573036991e-16
+          ],
+          "rotation_determinant": 0.9999999999999998,
+          "reference_end_max_residual_m": 4.440892098500626e-16,
+          "surface_max_residual_bound_m": 4.969208019739731e-06,
+          "member_to_representative": {
+            "source_triangle_count": 750,
+            "covered_convex_fragments": 5552
+          },
+          "representative_to_member": {
+            "source_triangle_count": 750,
+            "covered_convex_fragments": 5629
+          }
+        },
+        {
+          "timber_id": "B3",
+          "end_A_reference_id": "B3-A",
+          "end_B_reference_id": "B3-B",
+          "rotation_to_representative": [
+            [
+              -0.7071068978720908,
+              0.0,
+              -0.7071066645009851
+            ],
+            [
+              0.0,
+              1.0,
+              0.0
+            ],
+            [
+              0.7071066645009851,
+              0.0,
+              -0.7071068978720908
+            ]
+          ],
+          "translation_to_representative_m": [
+            -3.1250900178747543e-07,
+            0.0,
+            -7.54463644447867e-07
+          ],
+          "rotation_determinant": 1.0000000000000002,
+          "reference_end_max_residual_m": 6.457747922014701e-08,
+          "surface_max_residual_bound_m": 4.99036085554171e-06,
+          "member_to_representative": {
+            "source_triangle_count": 750,
+            "covered_convex_fragments": 9705
+          },
+          "representative_to_member": {
+            "source_triangle_count": 750,
+            "covered_convex_fragments": 9341
+          }
+        },
+        {
+          "timber_id": "B4",
+          "end_A_reference_id": "B4-A",
+          "end_B_reference_id": "B4-B",
+          "rotation_to_representative": [
+            [
+              -0.9999999999999999,
+              0.0,
+              -1.1102230246251565e-16
+            ],
+            [
+              0.0,
+              1.0,
+              0.0
+            ],
+            [
+              1.1102230246251565e-16,
+              0.0,
+              -0.9999999999999999
+            ]
+          ],
+          "translation_to_representative_m": [
+            8.881784197001252e-16,
+            0.0,
+            -5.075942874605911e-17
+          ],
+          "rotation_determinant": 0.9999999999999998,
+          "reference_end_max_residual_m": 6.970287062514841e-19,
+          "surface_max_residual_bound_m": 4.9354692718090135e-06,
+          "member_to_representative": {
+            "source_triangle_count": 750,
+            "covered_convex_fragments": 8410
+          },
+          "representative_to_member": {
+            "source_triangle_count": 750,
+            "covered_convex_fragments": 8389
+          }
+        },
+        {
+          "timber_id": "B5",
+          "end_A_reference_id": "B5-A",
+          "end_B_reference_id": "B5-B",
+          "rotation_to_representative": [
+            [
+              -0.7071066645009851,
+              0.0,
+              0.7071068978720907
+            ],
+            [
+              0.0,
+              1.0,
+              0.0
+            ],
+            [
+              -0.7071068978720907,
+              0.0,
+              -0.7071066645009851
+            ]
+          ],
+          "translation_to_representative_m": [
+            -3.1250900178747543e-07,
+            0.0,
+            -7.544636440037777e-07
+          ],
+          "rotation_determinant": 1.0,
+          "reference_end_max_residual_m": 6.457748007485874e-08,
+          "surface_max_residual_bound_m": 4.961699084444185e-06,
+          "member_to_representative": {
+            "source_triangle_count": 750,
+            "covered_convex_fragments": 9674
+          },
+          "representative_to_member": {
+            "source_triangle_count": 750,
+            "covered_convex_fragments": 9397
+          }
+        },
+        {
+          "timber_id": "B6",
+          "end_A_reference_id": "B6-A",
+          "end_B_reference_id": "B6-B",
+          "rotation_to_representative": [
+            [
+              -1.1102230246251565e-16,
+              0.0,
+              1.0
+            ],
+            [
+              0.0,
+              1.0,
+              0.0
+            ],
+            [
+              -1.0,
+              0.0,
+              -1.1102230246251565e-16
+            ]
+          ],
+          "translation_to_representative_m": [
+            0.0,
+            0.0,
+            -3.3416606498550743e-16
+          ],
+          "rotation_determinant": 1.0,
+          "reference_end_max_residual_m": 9.930136612989092e-16,
+          "surface_max_residual_bound_m": 4.9926583852592e-06,
+          "member_to_representative": {
+            "source_triangle_count": 750,
+            "covered_convex_fragments": 5148
+          },
+          "representative_to_member": {
+            "source_triangle_count": 750,
+            "covered_convex_fragments": 5278
+          }
+        },
+        {
+          "timber_id": "B7",
+          "end_A_reference_id": "B7-A",
+          "end_B_reference_id": "B7-B",
+          "rotation_to_representative": [
+            [
+              0.7071068978720907,
+              0.0,
+              0.707106664500985
+            ],
+            [
+              0.0,
+              1.0,
+              0.0
+            ],
+            [
+              -0.707106664500985,
+              0.0,
+              0.7071068978720907
+            ]
+          ],
+          "translation_to_representative_m": [
+            -3.12509000899297e-07,
+            0.0,
+            -7.54463644447867e-07
+          ],
+          "rotation_determinant": 0.9999999999999998,
+          "reference_end_max_residual_m": 6.457747946092898e-08,
+          "surface_max_residual_bound_m": 4.936563933074511e-06,
+          "member_to_representative": {
+            "source_triangle_count": 740,
+            "covered_convex_fragments": 9664
+          },
+          "representative_to_member": {
+            "source_triangle_count": 750,
+            "covered_convex_fragments": 9308
+          }
+        }
+      ],
+      "source_categories": [
+        "eave_ring"
+      ],
+      "quantity": 8,
+      "max_residual_bound_m": 4.9926583852592e-06,
+      "timber_ids": [
+        "B0",
+        "B1",
+        "B2",
+        "B3",
+        "B4",
+        "B5",
+        "B6",
+        "B7"
+      ],
+      "pairwise_residual_bound_m": 9.9853167705184e-06,
+      "id": "M02",
+      "number": 2,
+      "member_ids": [
+        "B0",
+        "B1",
+        "B2",
+        "B3",
+        "B4",
+        "B5",
+        "B6",
+        "B7"
+      ],
+      "family": "eave_ring",
+      "label": "Perimeter ring beams",
+      "max_residual_m": 4.9926583852592e-06,
+      "status": "prototype_geometry_repeat",
+      "method": "proper_rigid_full_surface_coverage_AB_preserved"
+    },
+    {
+      "group_number": 3,
+      "representative_id": "T0",
+      "members": [
+        {
+          "timber_id": "T0",
+          "end_A_reference_id": "T0-A",
+          "end_B_reference_id": "T0-B",
+          "rotation_to_representative": [
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              0,
+              1,
+              0
+            ],
+            [
+              0,
+              0,
+              1
+            ]
+          ],
+          "translation_to_representative_m": [
+            0,
+            0,
+            0
+          ],
+          "rotation_determinant": 1,
+          "reference_end_max_residual_m": 0.0,
+          "surface_max_residual_bound_m": 0.0,
+          "member_to_representative": {
+            "identity": true
+          },
+          "representative_to_member": {
+            "identity": true
+          }
+        },
+        {
+          "timber_id": "T1",
+          "end_A_reference_id": "T1-A",
+          "end_B_reference_id": "T1-B",
+          "rotation_to_representative": [
+            [
+              0.7071067811865476,
+              0.0,
+              -0.7071067811865476
+            ],
+            [
+              0.0,
+              1.0,
+              0.0
+            ],
+            [
+              0.7071067811865476,
+              0.0,
+              0.7071067811865476
+            ]
+          ],
+          "translation_to_representative_m": [
+            9.449690896445873e-08,
+            0.0,
+            0.0
+          ],
+          "rotation_determinant": 1.0000000000000002,
+          "reference_end_max_residual_m": 1.2899963655580283e-07,
+          "surface_max_residual_bound_m": 4.267277276795792e-06,
+          "member_to_representative": {
+            "source_triangle_count": 188,
+            "covered_convex_fragments": 2463
+          },
+          "representative_to_member": {
+            "source_triangle_count": 188,
+            "covered_convex_fragments": 2244
+          }
+        },
+        {
+          "timber_id": "T2",
+          "end_A_reference_id": "T2-A",
+          "end_B_reference_id": "T2-B",
+          "rotation_to_representative": [
+            [
+              0.0,
+              0.0,
+              -1.0
+            ],
+            [
+              0.0,
+              1.0,
+              0.0
+            ],
+            [
+              1.0,
+              0.0,
+              0.0
+            ]
+          ],
+          "translation_to_representative_m": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "rotation_determinant": 1.0,
+          "reference_end_max_residual_m": 0.0,
+          "surface_max_residual_bound_m": 4.550278065568021e-06,
+          "member_to_representative": {
+            "source_triangle_count": 188,
+            "covered_convex_fragments": 2614
+          },
+          "representative_to_member": {
+            "source_triangle_count": 188,
+            "covered_convex_fragments": 2634
+          }
+        },
+        {
+          "timber_id": "T3",
+          "end_A_reference_id": "T3-A",
+          "end_B_reference_id": "T3-B",
+          "rotation_to_representative": [
+            [
+              -0.7071067811865476,
+              0.0,
+              -0.7071067811865476
+            ],
+            [
+              0.0,
+              1.0,
+              0.0
+            ],
+            [
+              0.7071067811865476,
+              0.0,
+              -0.7071067811865476
+            ]
+          ],
+          "translation_to_representative_m": [
+            9.449690896445873e-08,
+            0.0,
+            0.0
+          ],
+          "rotation_determinant": 1.0000000000000002,
+          "reference_end_max_residual_m": 1.2899963655580283e-07,
+          "surface_max_residual_bound_m": 4.267277276795792e-06,
+          "member_to_representative": {
+            "source_triangle_count": 188,
+            "covered_convex_fragments": 2463
+          },
+          "representative_to_member": {
+            "source_triangle_count": 188,
+            "covered_convex_fragments": 2234
+          }
+        },
+        {
+          "timber_id": "T4",
+          "end_A_reference_id": "T4-A",
+          "end_B_reference_id": "T4-B",
+          "rotation_to_representative": [
+            [
+              -1.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              1.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              -1.0
+            ]
+          ],
+          "translation_to_representative_m": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "rotation_determinant": 1.0,
+          "reference_end_max_residual_m": 0.0,
+          "surface_max_residual_bound_m": 4.550278065568021e-06,
+          "member_to_representative": {
+            "source_triangle_count": 188,
+            "covered_convex_fragments": 2614
+          },
+          "representative_to_member": {
+            "source_triangle_count": 188,
+            "covered_convex_fragments": 2625
+          }
+        },
+        {
+          "timber_id": "T5",
+          "end_A_reference_id": "T5-A",
+          "end_B_reference_id": "T5-B",
+          "rotation_to_representative": [
+            [
+              -0.7071067811865476,
+              0.0,
+              0.7071067811865476
+            ],
+            [
+              0.0,
+              1.0,
+              0.0
+            ],
+            [
+              -0.7071067811865476,
+              0.0,
+              -0.7071067811865476
+            ]
+          ],
+          "translation_to_representative_m": [
+            9.449690896445873e-08,
+            0.0,
+            0.0
+          ],
+          "rotation_determinant": 1.0000000000000002,
+          "reference_end_max_residual_m": 1.2899963655580283e-07,
+          "surface_max_residual_bound_m": 4.267277276795792e-06,
+          "member_to_representative": {
+            "source_triangle_count": 188,
+            "covered_convex_fragments": 2463
+          },
+          "representative_to_member": {
+            "source_triangle_count": 188,
+            "covered_convex_fragments": 2237
+          }
+        },
+        {
+          "timber_id": "T6",
+          "end_A_reference_id": "T6-A",
+          "end_B_reference_id": "T6-B",
+          "rotation_to_representative": [
+            [
+              0.0,
+              0.0,
+              1.0
+            ],
+            [
+              0.0,
+              1.0,
+              0.0
+            ],
+            [
+              -1.0,
+              0.0,
+              0.0
+            ]
+          ],
+          "translation_to_representative_m": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "rotation_determinant": 1.0,
+          "reference_end_max_residual_m": 0.0,
+          "surface_max_residual_bound_m": 4.550278065568021e-06,
+          "member_to_representative": {
+            "source_triangle_count": 188,
+            "covered_convex_fragments": 2614
+          },
+          "representative_to_member": {
+            "source_triangle_count": 188,
+            "covered_convex_fragments": 2647
+          }
+        },
+        {
+          "timber_id": "T7",
+          "end_A_reference_id": "T7-A",
+          "end_B_reference_id": "T7-B",
+          "rotation_to_representative": [
+            [
+              0.7071067811865476,
+              0.0,
+              0.7071067811865476
+            ],
+            [
+              0.0,
+              1.0,
+              0.0
+            ],
+            [
+              -0.7071067811865476,
+              0.0,
+              0.7071067811865476
+            ]
+          ],
+          "translation_to_representative_m": [
+            9.449690896445873e-08,
+            0.0,
+            0.0
+          ],
+          "rotation_determinant": 1.0000000000000002,
+          "reference_end_max_residual_m": 1.2899963655580283e-07,
+          "surface_max_residual_bound_m": 4.267277276795792e-06,
+          "member_to_representative": {
+            "source_triangle_count": 188,
+            "covered_convex_fragments": 2463
+          },
+          "representative_to_member": {
+            "source_triangle_count": 188,
+            "covered_convex_fragments": 2258
+          }
+        }
+      ],
+      "source_categories": [
+        "radial_ties"
+      ],
+      "quantity": 8,
+      "max_residual_bound_m": 4.550278065568021e-06,
+      "timber_ids": [
+        "T0",
+        "T1",
+        "T2",
+        "T3",
+        "T4",
+        "T5",
+        "T6",
+        "T7"
+      ],
+      "pairwise_residual_bound_m": 9.100556131136042e-06,
+      "id": "M03",
+      "number": 3,
+      "member_ids": [
+        "T0",
+        "T1",
+        "T2",
+        "T3",
+        "T4",
+        "T5",
+        "T6",
+        "T7"
+      ],
+      "family": "radial_ties",
+      "label": "Horizontal radial ties",
+      "max_residual_m": 4.550278065568021e-06,
+      "status": "prototype_geometry_repeat",
+      "method": "proper_rigid_full_surface_coverage_AB_preserved"
+    },
+    {
+      "group_number": 4,
+      "representative_id": "R0",
+      "members": [
+        {
+          "timber_id": "R0",
+          "end_A_reference_id": "R0-A",
+          "end_B_reference_id": "R0-B",
+          "rotation_to_representative": [
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              0,
+              1,
+              0
+            ],
+            [
+              0,
+              0,
+              1
+            ]
+          ],
+          "translation_to_representative_m": [
+            0,
+            0,
+            0
+          ],
+          "rotation_determinant": 1,
+          "reference_end_max_residual_m": 0.0,
+          "surface_max_residual_bound_m": 0.0,
+          "member_to_representative": {
+            "identity": true
+          },
+          "representative_to_member": {
+            "identity": true
+          }
+        },
+        {
+          "timber_id": "R1",
+          "end_A_reference_id": "R1-A",
+          "end_B_reference_id": "R1-B",
+          "rotation_to_representative": [
+            [
+              0.7071067811865475,
+              -3.7520569984295093e-10,
+              -0.7071067811865475
+            ],
+            [
+              2.6531055130618597e-10,
+              1.0,
+              -2.6531055130618597e-10
+            ],
+            [
+              0.7071067811865475,
+              0.0,
+              0.7071067811865475
+            ]
+          ],
+          "translation_to_representative_m": [
+            3.284924687818602e-08,
+            -2.0788153420880917e-09,
+            0.0
+          ],
+          "rotation_determinant": 0.9999999999999998,
+          "reference_end_max_residual_m": 1.4336415991043922e-07,
+          "surface_max_residual_bound_m": 4.960687314871391e-06,
+          "member_to_representative": {
+            "source_triangle_count": 712,
+            "covered_convex_fragments": 9669
+          },
+          "representative_to_member": {
+            "source_triangle_count": 686,
+            "covered_convex_fragments": 9043
+          }
+        },
+        {
+          "timber_id": "R2",
+          "end_A_reference_id": "R2-A",
+          "end_B_reference_id": "R2-B",
+          "rotation_to_representative": [
+            [
+              0.0,
+              0.0,
+              -1.0
+            ],
+            [
+              0.0,
+              1.0,
+              0.0
+            ],
+            [
+              1.0,
+              0.0,
+              0.0
+            ]
+          ],
+          "translation_to_representative_m": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "rotation_determinant": 1.0,
+          "reference_end_max_residual_m": 0.0,
+          "surface_max_residual_bound_m": 4.919339546992474e-06,
+          "member_to_representative": {
+            "source_triangle_count": 692,
+            "covered_convex_fragments": 11120
+          },
+          "representative_to_member": {
+            "source_triangle_count": 686,
+            "covered_convex_fragments": 11107
+          }
+        },
+        {
+          "timber_id": "R3",
+          "end_A_reference_id": "R3-A",
+          "end_B_reference_id": "R3-B",
+          "rotation_to_representative": [
+            [
+              -0.7071067811865475,
+              -3.7520569984295093e-10,
+              -0.7071067811865475
+            ],
+            [
+              -2.6531055130618597e-10,
+              1.0,
+              -2.6531055130618597e-10
+            ],
+            [
+              0.7071067811865475,
+              0.0,
+              -0.7071067811865475
+            ]
+          ],
+          "translation_to_representative_m": [
+            3.284924687818602e-08,
+            -2.0788153420880917e-09,
+            0.0
+          ],
+          "rotation_determinant": 0.9999999999999998,
+          "reference_end_max_residual_m": 1.4336415991043922e-07,
+          "surface_max_residual_bound_m": 4.953257209000384e-06,
+          "member_to_representative": {
+            "source_triangle_count": 712,
+            "covered_convex_fragments": 9669
+          },
+          "representative_to_member": {
+            "source_triangle_count": 686,
+            "covered_convex_fragments": 9083
+          }
+        },
+        {
+          "timber_id": "R4",
+          "end_A_reference_id": "R4-A",
+          "end_B_reference_id": "R4-B",
+          "rotation_to_representative": [
+            [
+              -1.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              1.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              -1.0
+            ]
+          ],
+          "translation_to_representative_m": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "rotation_determinant": 1.0,
+          "reference_end_max_residual_m": 0.0,
+          "surface_max_residual_bound_m": 4.919339546992474e-06,
+          "member_to_representative": {
+            "source_triangle_count": 692,
+            "covered_convex_fragments": 11120
+          },
+          "representative_to_member": {
+            "source_triangle_count": 686,
+            "covered_convex_fragments": 11117
+          }
+        },
+        {
+          "timber_id": "R5",
+          "end_A_reference_id": "R5-A",
+          "end_B_reference_id": "R5-B",
+          "rotation_to_representative": [
+            [
+              -0.7071067811865475,
+              -3.7520569984295093e-10,
+              0.7071067811865475
+            ],
+            [
+              -2.6531055130618597e-10,
+              1.0,
+              2.6531055130618597e-10
+            ],
+            [
+              -0.7071067811865475,
+              0.0,
+              -0.7071067811865475
+            ]
+          ],
+          "translation_to_representative_m": [
+            3.284924687818602e-08,
+            -2.0788153420880917e-09,
+            0.0
+          ],
+          "rotation_determinant": 0.9999999999999998,
+          "reference_end_max_residual_m": 1.4336415991043922e-07,
+          "surface_max_residual_bound_m": 4.953257209000384e-06,
+          "member_to_representative": {
+            "source_triangle_count": 712,
+            "covered_convex_fragments": 9669
+          },
+          "representative_to_member": {
+            "source_triangle_count": 686,
+            "covered_convex_fragments": 9135
+          }
+        },
+        {
+          "timber_id": "R6",
+          "end_A_reference_id": "R6-A",
+          "end_B_reference_id": "R6-B",
+          "rotation_to_representative": [
+            [
+              0.0,
+              0.0,
+              1.0
+            ],
+            [
+              0.0,
+              1.0,
+              0.0
+            ],
+            [
+              -1.0,
+              0.0,
+              0.0
+            ]
+          ],
+          "translation_to_representative_m": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "rotation_determinant": 1.0,
+          "reference_end_max_residual_m": 0.0,
+          "surface_max_residual_bound_m": 4.919339546992474e-06,
+          "member_to_representative": {
+            "source_triangle_count": 692,
+            "covered_convex_fragments": 11120
+          },
+          "representative_to_member": {
+            "source_triangle_count": 686,
+            "covered_convex_fragments": 11088
+          }
+        },
+        {
+          "timber_id": "R7",
+          "end_A_reference_id": "R7-A",
+          "end_B_reference_id": "R7-B",
+          "rotation_to_representative": [
+            [
+              0.7071067811865475,
+              -3.7520569984295093e-10,
+              0.7071067811865475
+            ],
+            [
+              2.6531055130618597e-10,
+              1.0,
+              2.6531055130618597e-10
+            ],
+            [
+              -0.7071067811865475,
+              0.0,
+              0.7071067811865475
+            ]
+          ],
+          "translation_to_representative_m": [
+            3.284924687818602e-08,
+            -2.0788153420880917e-09,
+            0.0
+          ],
+          "rotation_determinant": 0.9999999999999998,
+          "reference_end_max_residual_m": 1.4336415991043922e-07,
+          "surface_max_residual_bound_m": 4.960687314871391e-06,
+          "member_to_representative": {
+            "source_triangle_count": 712,
+            "covered_convex_fragments": 9669
+          },
+          "representative_to_member": {
+            "source_triangle_count": 686,
+            "covered_convex_fragments": 8993
+          }
+        }
+      ],
+      "source_categories": [
+        "radial_rafters"
+      ],
+      "quantity": 8,
+      "max_residual_bound_m": 4.960687314871391e-06,
+      "timber_ids": [
+        "R0",
+        "R1",
+        "R2",
+        "R3",
+        "R4",
+        "R5",
+        "R6",
+        "R7"
+      ],
+      "pairwise_residual_bound_m": 9.921374629742782e-06,
+      "id": "M04",
+      "number": 4,
+      "member_ids": [
+        "R0",
+        "R1",
+        "R2",
+        "R3",
+        "R4",
+        "R5",
+        "R6",
+        "R7"
+      ],
+      "family": "radial_rafters",
+      "label": "Major hip rafters",
+      "max_residual_m": 4.960687314871391e-06,
+      "status": "prototype_geometry_repeat",
+      "method": "proper_rigid_full_surface_coverage_AB_preserved"
+    },
+    {
+      "group_number": 5,
+      "representative_id": "C0",
+      "members": [
+        {
+          "timber_id": "C0",
+          "end_A_reference_id": "C0-A",
+          "end_B_reference_id": "C0-B",
+          "rotation_to_representative": [
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              0,
+              1,
+              0
+            ],
+            [
+              0,
+              0,
+              1
+            ]
+          ],
+          "translation_to_representative_m": [
+            0,
+            0,
+            0
+          ],
+          "rotation_determinant": 1,
+          "reference_end_max_residual_m": 0.0,
+          "surface_max_residual_bound_m": 0.0,
+          "member_to_representative": {
+            "identity": true
+          },
+          "representative_to_member": {
+            "identity": true
+          }
+        },
+        {
+          "timber_id": "C1",
+          "end_A_reference_id": "C1-A",
+          "end_B_reference_id": "C1-B",
+          "rotation_to_representative": [
+            [
+              0.7071067811865476,
+              0.0,
+              -0.7071067811865476
+            ],
+            [
+              0.0,
+              1.0,
+              0.0
+            ],
+            [
+              0.7071067811865476,
+              0.0,
+              0.7071067811865476
+            ]
+          ],
+          "translation_to_representative_m": [
+            -3.6891758536938823e-09,
+            0.0,
+            0.0
+          ],
+          "rotation_determinant": 1.0000000000000002,
+          "reference_end_max_residual_m": 1.7282966752781526e-08,
+          "surface_max_residual_bound_m": 4.986883959770591e-06,
+          "member_to_representative": {
+            "source_triangle_count": 484,
+            "covered_convex_fragments": 6391
+          },
+          "representative_to_member": {
+            "source_triangle_count": 484,
+            "covered_convex_fragments": 6459
+          }
+        },
+        {
+          "timber_id": "C2",
+          "end_A_reference_id": "C2-A",
+          "end_B_reference_id": "C2-B",
+          "rotation_to_representative": [
+            [
+              0.0,
+              0.0,
+              -1.0
+            ],
+            [
+              0.0,
+              1.0,
+              0.0
+            ],
+            [
+              1.0,
+              0.0,
+              0.0
+            ]
+          ],
+          "translation_to_representative_m": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "rotation_determinant": 1.0,
+          "reference_end_max_residual_m": 0.0,
+          "surface_max_residual_bound_m": 4.980766386787282e-06,
+          "member_to_representative": {
+            "source_triangle_count": 484,
+            "covered_convex_fragments": 7143
+          },
+          "representative_to_member": {
+            "source_triangle_count": 484,
+            "covered_convex_fragments": 6998
+          }
+        },
+        {
+          "timber_id": "C3",
+          "end_A_reference_id": "C3-A",
+          "end_B_reference_id": "C3-B",
+          "rotation_to_representative": [
+            [
+              -0.7071067811865476,
+              0.0,
+              -0.7071067811865476
+            ],
+            [
+              0.0,
+              1.0,
+              0.0
+            ],
+            [
+              0.7071067811865476,
+              0.0,
+              -0.7071067811865476
+            ]
+          ],
+          "translation_to_representative_m": [
+            -3.6891758536938823e-09,
+            0.0,
+            0.0
+          ],
+          "rotation_determinant": 1.0000000000000002,
+          "reference_end_max_residual_m": 1.7282966752781526e-08,
+          "surface_max_residual_bound_m": 4.986883959770591e-06,
+          "member_to_representative": {
+            "source_triangle_count": 484,
+            "covered_convex_fragments": 6391
+          },
+          "representative_to_member": {
+            "source_triangle_count": 484,
+            "covered_convex_fragments": 6428
+          }
+        },
+        {
+          "timber_id": "C4",
+          "end_A_reference_id": "C4-A",
+          "end_B_reference_id": "C4-B",
+          "rotation_to_representative": [
+            [
+              -1.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              1.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              -1.0
+            ]
+          ],
+          "translation_to_representative_m": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "rotation_determinant": 1.0,
+          "reference_end_max_residual_m": 0.0,
+          "surface_max_residual_bound_m": 4.770097460911344e-06,
+          "member_to_representative": {
+            "source_triangle_count": 484,
+            "covered_convex_fragments": 7143
+          },
+          "representative_to_member": {
+            "source_triangle_count": 484,
+            "covered_convex_fragments": 6942
+          }
+        },
+        {
+          "timber_id": "C5",
+          "end_A_reference_id": "C5-A",
+          "end_B_reference_id": "C5-B",
+          "rotation_to_representative": [
+            [
+              -0.7071067811865476,
+              0.0,
+              0.7071067811865476
+            ],
+            [
+              0.0,
+              1.0,
+              0.0
+            ],
+            [
+              -0.7071067811865476,
+              0.0,
+              -0.7071067811865476
+            ]
+          ],
+          "translation_to_representative_m": [
+            -3.6891758536938823e-09,
+            0.0,
+            0.0
+          ],
+          "rotation_determinant": 1.0000000000000002,
+          "reference_end_max_residual_m": 1.7282966752781526e-08,
+          "surface_max_residual_bound_m": 4.986883959770591e-06,
+          "member_to_representative": {
+            "source_triangle_count": 484,
+            "covered_convex_fragments": 6391
+          },
+          "representative_to_member": {
+            "source_triangle_count": 484,
+            "covered_convex_fragments": 6393
+          }
+        },
+        {
+          "timber_id": "C6",
+          "end_A_reference_id": "C6-A",
+          "end_B_reference_id": "C6-B",
+          "rotation_to_representative": [
+            [
+              0.0,
+              0.0,
+              1.0
+            ],
+            [
+              0.0,
+              1.0,
+              0.0
+            ],
+            [
+              -1.0,
+              0.0,
+              0.0
+            ]
+          ],
+          "translation_to_representative_m": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "rotation_determinant": 1.0,
+          "reference_end_max_residual_m": 0.0,
+          "surface_max_residual_bound_m": 4.93356680762053e-06,
+          "member_to_representative": {
+            "source_triangle_count": 484,
+            "covered_convex_fragments": 7143
+          },
+          "representative_to_member": {
+            "source_triangle_count": 484,
+            "covered_convex_fragments": 7041
+          }
+        },
+        {
+          "timber_id": "C7",
+          "end_A_reference_id": "C7-A",
+          "end_B_reference_id": "C7-B",
+          "rotation_to_representative": [
+            [
+              0.7071067811865476,
+              0.0,
+              0.7071067811865476
+            ],
+            [
+              0.0,
+              1.0,
+              0.0
+            ],
+            [
+              -0.7071067811865476,
+              0.0,
+              0.7071067811865476
+            ]
+          ],
+          "translation_to_representative_m": [
+            -3.6891758536938823e-09,
+            0.0,
+            0.0
+          ],
+          "rotation_determinant": 1.0000000000000002,
+          "reference_end_max_residual_m": 1.7282966752781526e-08,
+          "surface_max_residual_bound_m": 4.986883959770591e-06,
+          "member_to_representative": {
+            "source_triangle_count": 484,
+            "covered_convex_fragments": 6391
+          },
+          "representative_to_member": {
+            "source_triangle_count": 484,
+            "covered_convex_fragments": 6504
+          }
+        }
+      ],
+      "source_categories": [
+        "cupola_posts"
+      ],
+      "quantity": 8,
+      "max_residual_bound_m": 4.986883959770591e-06,
+      "timber_ids": [
+        "C0",
+        "C1",
+        "C2",
+        "C3",
+        "C4",
+        "C5",
+        "C6",
+        "C7"
+      ],
+      "pairwise_residual_bound_m": 9.973767919541182e-06,
+      "id": "M05",
+      "number": 5,
+      "member_ids": [
+        "C0",
+        "C1",
+        "C2",
+        "C3",
+        "C4",
+        "C5",
+        "C6",
+        "C7"
+      ],
+      "family": "cupola_posts",
+      "label": "Cupola posts",
+      "max_residual_m": 4.986883959770591e-06,
+      "status": "prototype_geometry_repeat",
+      "method": "proper_rigid_full_surface_coverage_AB_preserved"
+    },
+    {
+      "group_number": 6,
+      "representative_id": "L0-L",
+      "members": [
+        {
+          "timber_id": "L0-L",
+          "end_A_reference_id": "L0-L-A",
+          "end_B_reference_id": "L0-L-B",
+          "rotation_to_representative": [
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              0,
+              1,
+              0
+            ],
+            [
+              0,
+              0,
+              1
+            ]
+          ],
+          "translation_to_representative_m": [
+            0,
+            0,
+            0
+          ],
+          "rotation_determinant": 1,
+          "reference_end_max_residual_m": 0.0,
+          "surface_max_residual_bound_m": 0.0,
+          "member_to_representative": {
+            "identity": true
+          },
+          "representative_to_member": {
+            "identity": true
+          }
+        },
+        {
+          "timber_id": "L1-L",
+          "end_A_reference_id": "L1-L-A",
+          "end_B_reference_id": "L1-L-B",
+          "rotation_to_representative": [
+            [
+              0.7071067751390949,
+              0.0,
+              -0.7071067872340002
+            ],
+            [
+              0.0,
+              1.0,
+              0.0
+            ],
+            [
+              0.7071067872340002,
+              0.0,
+              0.7071067751390949
+            ]
+          ],
+          "translation_to_representative_m": [
+            -3.6891760757384873e-09,
+            0.0,
+            -8.906458348612034e-09
+          ],
+          "rotation_determinant": 1.0000000000000002,
+          "reference_end_max_residual_m": 4.3791556082560675e-08,
+          "surface_max_residual_bound_m": 4.807418274515126e-06,
+          "member_to_representative": {
+            "source_triangle_count": 136,
+            "covered_convex_fragments": 1493
+          },
+          "representative_to_member": {
+            "source_triangle_count": 136,
+            "covered_convex_fragments": 1463
+          }
+        },
+        {
+          "timber_id": "L2-L",
+          "end_A_reference_id": "L2-L-A",
+          "end_B_reference_id": "L2-L-B",
+          "rotation_to_representative": [
+            [
+              5.551115123125783e-17,
+              0.0,
+              -1.0000000000000002
+            ],
+            [
+              0.0,
+              1.0,
+              0.0
+            ],
+            [
+              1.0000000000000002,
+              0.0,
+              5.551115123125783e-17
+            ]
+          ],
+          "translation_to_representative_m": [
+            -2.220446049250313e-16,
+            0.0,
+            -5.639934137707044e-18
+          ],
+          "rotation_determinant": 1.0000000000000004,
+          "reference_end_max_residual_m": 2.220446049250313e-16,
+          "surface_max_residual_bound_m": 4.890078357720997e-06,
+          "member_to_representative": {
+            "source_triangle_count": 136,
+            "covered_convex_fragments": 920
+          },
+          "representative_to_member": {
+            "source_triangle_count": 136,
+            "covered_convex_fragments": 932
+          }
+        },
+        {
+          "timber_id": "L3-L",
+          "end_A_reference_id": "L3-L-A",
+          "end_B_reference_id": "L3-L-B",
+          "rotation_to_representative": [
+            [
+              -0.7071067872340002,
+              0.0,
+              -0.7071067751390949
+            ],
+            [
+              0.0,
+              1.0,
+              0.0
+            ],
+            [
+              0.7071067751390949,
+              0.0,
+              -0.7071067872340002
+            ]
+          ],
+          "translation_to_representative_m": [
+            -3.6891760757384873e-09,
+            0.0,
+            -8.906458348612034e-09
+          ],
+          "rotation_determinant": 1.0000000000000002,
+          "reference_end_max_residual_m": 4.3791556082560675e-08,
+          "surface_max_residual_bound_m": 4.807418274515126e-06,
+          "member_to_representative": {
+            "source_triangle_count": 136,
+            "covered_convex_fragments": 1493
+          },
+          "representative_to_member": {
+            "source_triangle_count": 136,
+            "covered_convex_fragments": 1452
+          }
+        },
+        {
+          "timber_id": "L4-L",
+          "end_A_reference_id": "L4-L-A",
+          "end_B_reference_id": "L4-L-B",
+          "rotation_to_representative": [
+            [
+              -1.0000000000000002,
+              0.0,
+              -5.551115123125783e-17
+            ],
+            [
+              0.0,
+              1.0,
+              0.0
+            ],
+            [
+              5.551115123125783e-17,
+              0.0,
+              -1.0000000000000002
+            ]
+          ],
+          "translation_to_representative_m": [
+            -2.220446049250313e-16,
+            0.0,
+            -6.908918036561167e-17
+          ],
+          "rotation_determinant": 1.0000000000000004,
+          "reference_end_max_residual_m": 3.3306690738754696e-16,
+          "surface_max_residual_bound_m": 4.217248150716891e-06,
+          "member_to_representative": {
+            "source_triangle_count": 136,
+            "covered_convex_fragments": 855
+          },
+          "representative_to_member": {
+            "source_triangle_count": 136,
+            "covered_convex_fragments": 888
+          }
+        },
+        {
+          "timber_id": "L5-L",
+          "end_A_reference_id": "L5-L-A",
+          "end_B_reference_id": "L5-L-B",
+          "rotation_to_representative": [
+            [
+              -0.7071067751390949,
+              0.0,
+              0.7071067872340001
+            ],
+            [
+              0.0,
+              1.0,
+              0.0
+            ],
+            [
+              -0.7071067872340001,
+              0.0,
+              -0.7071067751390949
+            ]
+          ],
+          "translation_to_representative_m": [
+            -3.6891758536938823e-09,
+            0.0,
+            -8.906458237589732e-09
+          ],
+          "rotation_determinant": 1.0,
+          "reference_end_max_residual_m": 4.3791556082560675e-08,
+          "surface_max_residual_bound_m": 4.353703615805567e-06,
+          "member_to_representative": {
+            "source_triangle_count": 136,
+            "covered_convex_fragments": 1457
+          },
+          "representative_to_member": {
+            "source_triangle_count": 136,
+            "covered_convex_fragments": 1449
+          }
+        },
+        {
+          "timber_id": "L6-L",
+          "end_A_reference_id": "L6-L-A",
+          "end_B_reference_id": "L6-L-B",
+          "rotation_to_representative": [
+            [
+              -5.551115123125783e-17,
+              0.0,
+              1.0
+            ],
+            [
+              0.0,
+              1.0,
+              0.0
+            ],
+            [
+              -1.0,
+              0.0,
+              -5.551115123125783e-17
+            ]
+          ],
+          "translation_to_representative_m": [
+            0.0,
+            0.0,
+            -1.3253841997607135e-16
+          ],
+          "rotation_determinant": 1.0,
+          "reference_end_max_residual_m": 1.1102230246251565e-16,
+          "surface_max_residual_bound_m": 4.201031507751791e-06,
+          "member_to_representative": {
+            "source_triangle_count": 136,
+            "covered_convex_fragments": 854
+          },
+          "representative_to_member": {
+            "source_triangle_count": 136,
+            "covered_convex_fragments": 871
+          }
+        },
+        {
+          "timber_id": "L7-L",
+          "end_A_reference_id": "L7-L-A",
+          "end_B_reference_id": "L7-L-B",
+          "rotation_to_representative": [
+            [
+              0.7071067872340002,
+              0.0,
+              0.7071067751390949
+            ],
+            [
+              0.0,
+              1.0,
+              0.0
+            ],
+            [
+              -0.7071067751390949,
+              0.0,
+              0.7071067872340002
+            ]
+          ],
+          "translation_to_representative_m": [
+            -3.6891760757384873e-09,
+            0.0,
+            -8.906458348612034e-09
+          ],
+          "rotation_determinant": 1.0000000000000002,
+          "reference_end_max_residual_m": 4.3791556082560675e-08,
+          "surface_max_residual_bound_m": 4.807418274515126e-06,
+          "member_to_representative": {
+            "source_triangle_count": 136,
+            "covered_convex_fragments": 1493
+          },
+          "representative_to_member": {
+            "source_triangle_count": 136,
+            "covered_convex_fragments": 1463
+          }
+        }
+      ],
+      "source_categories": [
+        "cupola_bands"
+      ],
+      "quantity": 8,
+      "max_residual_bound_m": 4.890078357720997e-06,
+      "timber_ids": [
+        "L0-L",
+        "L1-L",
+        "L2-L",
+        "L3-L",
+        "L4-L",
+        "L5-L",
+        "L6-L",
+        "L7-L"
+      ],
+      "pairwise_residual_bound_m": 9.780156715441994e-06,
+      "id": "M06",
+      "number": 6,
+      "member_ids": [
+        "L0-L",
+        "L1-L",
+        "L2-L",
+        "L3-L",
+        "L4-L",
+        "L5-L",
+        "L6-L",
+        "L7-L"
+      ],
+      "family": "cupola_bands",
+      "label": "Cupola lower band",
+      "max_residual_m": 4.890078357720997e-06,
+      "status": "prototype_geometry_repeat",
+      "method": "proper_rigid_full_surface_coverage_AB_preserved"
+    },
+    {
+      "group_number": 7,
+      "representative_id": "L0-S",
+      "members": [
+        {
+          "timber_id": "L0-S",
+          "end_A_reference_id": "L0-S-A",
+          "end_B_reference_id": "L0-S-B",
+          "rotation_to_representative": [
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              0,
+              1,
+              0
+            ],
+            [
+              0,
+              0,
+              1
+            ]
+          ],
+          "translation_to_representative_m": [
+            0,
+            0,
+            0
+          ],
+          "rotation_determinant": 1,
+          "reference_end_max_residual_m": 0.0,
+          "surface_max_residual_bound_m": 0.0,
+          "member_to_representative": {
+            "identity": true
+          },
+          "representative_to_member": {
+            "identity": true
+          }
+        },
+        {
+          "timber_id": "L1-S",
+          "end_A_reference_id": "L1-S-A",
+          "end_B_reference_id": "L1-S-B",
+          "rotation_to_representative": [
+            [
+              0.7071067751390949,
+              0.0,
+              -0.7071067872340002
+            ],
+            [
+              0.0,
+              1.0,
+              0.0
+            ],
+            [
+              0.7071067872340002,
+              0.0,
+              0.7071067751390949
+            ]
+          ],
+          "translation_to_representative_m": [
+            -3.6891760757384873e-09,
+            0.0,
+            -8.906458348612034e-09
+          ],
+          "rotation_determinant": 1.0000000000000002,
+          "reference_end_max_residual_m": 4.3791556082560675e-08,
+          "surface_max_residual_bound_m": 4.939497442125775e-06,
+          "member_to_representative": {
+            "source_triangle_count": 582,
+            "covered_convex_fragments": 7842
+          },
+          "representative_to_member": {
+            "source_triangle_count": 570,
+            "covered_convex_fragments": 7723
+          }
+        },
+        {
+          "timber_id": "L2-S",
+          "end_A_reference_id": "L2-S-A",
+          "end_B_reference_id": "L2-S-B",
+          "rotation_to_representative": [
+            [
+              5.551115123125783e-17,
+              0.0,
+              -1.0000000000000002
+            ],
+            [
+              0.0,
+              1.0,
+              0.0
+            ],
+            [
+              1.0000000000000002,
+              0.0,
+              5.551115123125783e-17
+            ]
+          ],
+          "translation_to_representative_m": [
+            -2.220446049250313e-16,
+            0.0,
+            -5.639934137707044e-18
+          ],
+          "rotation_determinant": 1.0000000000000004,
+          "reference_end_max_residual_m": 2.220446049250313e-16,
+          "surface_max_residual_bound_m": 4.993952397743909e-06,
+          "member_to_representative": {
+            "source_triangle_count": 582,
+            "covered_convex_fragments": 4282
+          },
+          "representative_to_member": {
+            "source_triangle_count": 570,
+            "covered_convex_fragments": 4261
+          }
+        },
+        {
+          "timber_id": "L3-S",
+          "end_A_reference_id": "L3-S-A",
+          "end_B_reference_id": "L3-S-B",
+          "rotation_to_representative": [
+            [
+              -0.7071067872340002,
+              0.0,
+              -0.7071067751390949
+            ],
+            [
+              0.0,
+              1.0,
+              0.0
+            ],
+            [
+              0.7071067751390949,
+              0.0,
+              -0.7071067872340002
+            ]
+          ],
+          "translation_to_representative_m": [
+            -3.6891760757384873e-09,
+            0.0,
+            -8.906458348612034e-09
+          ],
+          "rotation_determinant": 1.0000000000000002,
+          "reference_end_max_residual_m": 4.3791556082560675e-08,
+          "surface_max_residual_bound_m": 4.939497442125775e-06,
+          "member_to_representative": {
+            "source_triangle_count": 582,
+            "covered_convex_fragments": 7842
+          },
+          "representative_to_member": {
+            "source_triangle_count": 570,
+            "covered_convex_fragments": 7753
+          }
+        },
+        {
+          "timber_id": "L4-S",
+          "end_A_reference_id": "L4-S-A",
+          "end_B_reference_id": "L4-S-B",
+          "rotation_to_representative": [
+            [
+              -1.0000000000000002,
+              0.0,
+              -5.551115123125783e-17
+            ],
+            [
+              0.0,
+              1.0,
+              0.0
+            ],
+            [
+              5.551115123125783e-17,
+              0.0,
+              -1.0000000000000002
+            ]
+          ],
+          "translation_to_representative_m": [
+            -2.220446049250313e-16,
+            0.0,
+            -6.908918036561167e-17
+          ],
+          "rotation_determinant": 1.0000000000000004,
+          "reference_end_max_residual_m": 3.3306690738754696e-16,
+          "surface_max_residual_bound_m": 4.936737523235701e-06,
+          "member_to_representative": {
+            "source_triangle_count": 582,
+            "covered_convex_fragments": 4094
+          },
+          "representative_to_member": {
+            "source_triangle_count": 570,
+            "covered_convex_fragments": 4205
+          }
+        },
+        {
+          "timber_id": "L5-S",
+          "end_A_reference_id": "L5-S-A",
+          "end_B_reference_id": "L5-S-B",
+          "rotation_to_representative": [
+            [
+              -0.7071067751390949,
+              0.0,
+              0.7071067872340001
+            ],
+            [
+              0.0,
+              1.0,
+              0.0
+            ],
+            [
+              -0.7071067872340001,
+              0.0,
+              -0.7071067751390949
+            ]
+          ],
+          "translation_to_representative_m": [
+            -3.6891758536938823e-09,
+            0.0,
+            -8.906458237589732e-09
+          ],
+          "rotation_determinant": 1.0,
+          "reference_end_max_residual_m": 4.3791556082560675e-08,
+          "surface_max_residual_bound_m": 4.93949744250285e-06,
+          "member_to_representative": {
+            "source_triangle_count": 582,
+            "covered_convex_fragments": 7693
+          },
+          "representative_to_member": {
+            "source_triangle_count": 570,
+            "covered_convex_fragments": 7750
+          }
+        },
+        {
+          "timber_id": "L6-S",
+          "end_A_reference_id": "L6-S-A",
+          "end_B_reference_id": "L6-S-B",
+          "rotation_to_representative": [
+            [
+              -5.551115123125783e-17,
+              0.0,
+              1.0
+            ],
+            [
+              0.0,
+              1.0,
+              0.0
+            ],
+            [
+              -1.0,
+              0.0,
+              -5.551115123125783e-17
+            ]
+          ],
+          "translation_to_representative_m": [
+            0.0,
+            0.0,
+            -1.3253841997607135e-16
+          ],
+          "rotation_determinant": 1.0,
+          "reference_end_max_residual_m": 1.1102230246251565e-16,
+          "surface_max_residual_bound_m": 4.9001056952609005e-06,
+          "member_to_representative": {
+            "source_triangle_count": 582,
+            "covered_convex_fragments": 4058
+          },
+          "representative_to_member": {
+            "source_triangle_count": 570,
+            "covered_convex_fragments": 4175
+          }
+        },
+        {
+          "timber_id": "L7-S",
+          "end_A_reference_id": "L7-S-A",
+          "end_B_reference_id": "L7-S-B",
+          "rotation_to_representative": [
+            [
+              0.7071067872340002,
+              0.0,
+              0.7071067751390949
+            ],
+            [
+              0.0,
+              1.0,
+              0.0
+            ],
+            [
+              -0.7071067751390949,
+              0.0,
+              0.7071067872340002
+            ]
+          ],
+          "translation_to_representative_m": [
+            -3.6891760757384873e-09,
+            0.0,
+            -8.906458348612034e-09
+          ],
+          "rotation_determinant": 1.0000000000000002,
+          "reference_end_max_residual_m": 4.3791556082560675e-08,
+          "surface_max_residual_bound_m": 4.939497442125775e-06,
+          "member_to_representative": {
+            "source_triangle_count": 594,
+            "covered_convex_fragments": 7876
+          },
+          "representative_to_member": {
+            "source_triangle_count": 570,
+            "covered_convex_fragments": 7784
+          }
+        }
+      ],
+      "source_categories": [
+        "cupola_bands"
+      ],
+      "quantity": 8,
+      "max_residual_bound_m": 4.993952397743909e-06,
+      "timber_ids": [
+        "L0-S",
+        "L1-S",
+        "L2-S",
+        "L3-S",
+        "L4-S",
+        "L5-S",
+        "L6-S",
+        "L7-S"
+      ],
+      "pairwise_residual_bound_m": 9.987904795487818e-06,
+      "id": "M07",
+      "number": 7,
+      "member_ids": [
+        "L0-S",
+        "L1-S",
+        "L2-S",
+        "L3-S",
+        "L4-S",
+        "L5-S",
+        "L6-S",
+        "L7-S"
+      ],
+      "family": "cupola_bands",
+      "label": "Cupola window sill band",
+      "max_residual_m": 4.993952397743909e-06,
+      "status": "prototype_geometry_repeat",
+      "method": "proper_rigid_full_surface_coverage_AB_preserved"
+    },
+    {
+      "group_number": 8,
+      "representative_id": "L0-H",
+      "members": [
+        {
+          "timber_id": "L0-H",
+          "end_A_reference_id": "L0-H-A",
+          "end_B_reference_id": "L0-H-B",
+          "rotation_to_representative": [
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              0,
+              1,
+              0
+            ],
+            [
+              0,
+              0,
+              1
+            ]
+          ],
+          "translation_to_representative_m": [
+            0,
+            0,
+            0
+          ],
+          "rotation_determinant": 1,
+          "reference_end_max_residual_m": 0.0,
+          "surface_max_residual_bound_m": 0.0,
+          "member_to_representative": {
+            "identity": true
+          },
+          "representative_to_member": {
+            "identity": true
+          }
+        },
+        {
+          "timber_id": "L1-H",
+          "end_A_reference_id": "L1-H-A",
+          "end_B_reference_id": "L1-H-B",
+          "rotation_to_representative": [
+            [
+              0.7071067751390949,
+              0.0,
+              -0.7071067872340002
+            ],
+            [
+              0.0,
+              1.0,
+              0.0
+            ],
+            [
+              0.7071067872340002,
+              0.0,
+              0.7071067751390949
+            ]
+          ],
+          "translation_to_representative_m": [
+            -3.6891760757384873e-09,
+            0.0,
+            -8.906458348612034e-09
+          ],
+          "rotation_determinant": 1.0000000000000002,
+          "reference_end_max_residual_m": 4.3791556082560675e-08,
+          "surface_max_residual_bound_m": 4.891886642755511e-06,
+          "member_to_representative": {
+            "source_triangle_count": 166,
+            "covered_convex_fragments": 1728
+          },
+          "representative_to_member": {
+            "source_triangle_count": 136,
+            "covered_convex_fragments": 1685
+          }
+        },
+        {
+          "timber_id": "L2-H",
+          "end_A_reference_id": "L2-H-A",
+          "end_B_reference_id": "L2-H-B",
+          "rotation_to_representative": [
+            [
+              5.551115123125783e-17,
+              0.0,
+              -1.0000000000000002
+            ],
+            [
+              0.0,
+              1.0,
+              0.0
+            ],
+            [
+              1.0000000000000002,
+              0.0,
+              5.551115123125783e-17
+            ]
+          ],
+          "translation_to_representative_m": [
+            -2.220446049250313e-16,
+            0.0,
+            -5.639934137707044e-18
+          ],
+          "rotation_determinant": 1.0000000000000004,
+          "reference_end_max_residual_m": 2.220446049250313e-16,
+          "surface_max_residual_bound_m": 4.993952397743909e-06,
+          "member_to_representative": {
+            "source_triangle_count": 166,
+            "covered_convex_fragments": 1364
+          },
+          "representative_to_member": {
+            "source_triangle_count": 136,
+            "covered_convex_fragments": 1411
+          }
+        },
+        {
+          "timber_id": "L3-H",
+          "end_A_reference_id": "L3-H-A",
+          "end_B_reference_id": "L3-H-B",
+          "rotation_to_representative": [
+            [
+              -0.7071067872340002,
+              0.0,
+              -0.7071067751390949
+            ],
+            [
+              0.0,
+              1.0,
+              0.0
+            ],
+            [
+              0.7071067751390949,
+              0.0,
+              -0.7071067872340002
+            ]
+          ],
+          "translation_to_representative_m": [
+            -3.6891760757384873e-09,
+            0.0,
+            -8.906458348612034e-09
+          ],
+          "rotation_determinant": 1.0000000000000002,
+          "reference_end_max_residual_m": 4.3791556082560675e-08,
+          "surface_max_residual_bound_m": 4.891886642755511e-06,
+          "member_to_representative": {
+            "source_triangle_count": 166,
+            "covered_convex_fragments": 1728
+          },
+          "representative_to_member": {
+            "source_triangle_count": 136,
+            "covered_convex_fragments": 1705
+          }
+        },
+        {
+          "timber_id": "L4-H",
+          "end_A_reference_id": "L4-H-A",
+          "end_B_reference_id": "L4-H-B",
+          "rotation_to_representative": [
+            [
+              -1.0000000000000002,
+              0.0,
+              -5.551115123125783e-17
+            ],
+            [
+              0.0,
+              1.0,
+              0.0
+            ],
+            [
+              5.551115123125783e-17,
+              0.0,
+              -1.0000000000000002
+            ]
+          ],
+          "translation_to_representative_m": [
+            -2.220446049250313e-16,
+            0.0,
+            -6.908918036561167e-17
+          ],
+          "rotation_determinant": 1.0000000000000004,
+          "reference_end_max_residual_m": 3.3306690738754696e-16,
+          "surface_max_residual_bound_m": 4.495009337551543e-06,
+          "member_to_representative": {
+            "source_triangle_count": 166,
+            "covered_convex_fragments": 1279
+          },
+          "representative_to_member": {
+            "source_triangle_count": 136,
+            "covered_convex_fragments": 1367
+          }
+        },
+        {
+          "timber_id": "L5-H",
+          "end_A_reference_id": "L5-H-A",
+          "end_B_reference_id": "L5-H-B",
+          "rotation_to_representative": [
+            [
+              -0.7071067751390949,
+              0.0,
+              0.7071067872340001
+            ],
+            [
+              0.0,
+              1.0,
+              0.0
+            ],
+            [
+              -0.7071067872340001,
+              0.0,
+              -0.7071067751390949
+            ]
+          ],
+          "translation_to_representative_m": [
+            -3.6891758536938823e-09,
+            0.0,
+            -8.906458237589732e-09
+          ],
+          "rotation_determinant": 1.0,
+          "reference_end_max_residual_m": 4.3791556082560675e-08,
+          "surface_max_residual_bound_m": 4.891886642755511e-06,
+          "member_to_representative": {
+            "source_triangle_count": 166,
+            "covered_convex_fragments": 1729
+          },
+          "representative_to_member": {
+            "source_triangle_count": 136,
+            "covered_convex_fragments": 1730
+          }
+        },
+        {
+          "timber_id": "L6-H",
+          "end_A_reference_id": "L6-H-A",
+          "end_B_reference_id": "L6-H-B",
+          "rotation_to_representative": [
+            [
+              -5.551115123125783e-17,
+              0.0,
+              1.0
+            ],
+            [
+              0.0,
+              1.0,
+              0.0
+            ],
+            [
+              -1.0,
+              0.0,
+              -5.551115123125783e-17
+            ]
+          ],
+          "translation_to_representative_m": [
+            0.0,
+            0.0,
+            -1.3253841997607135e-16
+          ],
+          "rotation_determinant": 1.0,
+          "reference_end_max_residual_m": 1.1102230246251565e-16,
+          "surface_max_residual_bound_m": 4.546655841505247e-06,
+          "member_to_representative": {
+            "source_triangle_count": 166,
+            "covered_convex_fragments": 1295
+          },
+          "representative_to_member": {
+            "source_triangle_count": 136,
+            "covered_convex_fragments": 1351
+          }
+        },
+        {
+          "timber_id": "L7-H",
+          "end_A_reference_id": "L7-H-A",
+          "end_B_reference_id": "L7-H-B",
+          "rotation_to_representative": [
+            [
+              0.7071067872340002,
+              0.0,
+              0.7071067751390949
+            ],
+            [
+              0.0,
+              1.0,
+              0.0
+            ],
+            [
+              -0.7071067751390949,
+              0.0,
+              0.7071067872340002
+            ]
+          ],
+          "translation_to_representative_m": [
+            -3.6891760757384873e-09,
+            0.0,
+            -8.906458348612034e-09
+          ],
+          "rotation_determinant": 1.0000000000000002,
+          "reference_end_max_residual_m": 4.3791556082560675e-08,
+          "surface_max_residual_bound_m": 4.980794429407976e-06,
+          "member_to_representative": {
+            "source_triangle_count": 196,
+            "covered_convex_fragments": 1865
+          },
+          "representative_to_member": {
+            "source_triangle_count": 136,
+            "covered_convex_fragments": 1905
+          }
+        }
+      ],
+      "source_categories": [
+        "cupola_bands"
+      ],
+      "quantity": 8,
+      "max_residual_bound_m": 4.993952397743909e-06,
+      "timber_ids": [
+        "L0-H",
+        "L1-H",
+        "L2-H",
+        "L3-H",
+        "L4-H",
+        "L5-H",
+        "L6-H",
+        "L7-H"
+      ],
+      "pairwise_residual_bound_m": 9.987904795487818e-06,
+      "id": "M08",
+      "number": 8,
+      "member_ids": [
+        "L0-H",
+        "L1-H",
+        "L2-H",
+        "L3-H",
+        "L4-H",
+        "L5-H",
+        "L6-H",
+        "L7-H"
+      ],
+      "family": "cupola_bands",
+      "label": "Cupola window head band",
+      "max_residual_m": 4.993952397743909e-06,
+      "status": "prototype_geometry_repeat",
+      "method": "proper_rigid_full_surface_coverage_AB_preserved"
+    },
+    {
+      "group_number": 9,
+      "representative_id": "K0-A",
+      "members": [
+        {
+          "timber_id": "K0-A",
+          "end_A_reference_id": "K0-A-A",
+          "end_B_reference_id": "K0-A-B",
+          "rotation_to_representative": [
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              0,
+              1,
+              0
+            ],
+            [
+              0,
+              0,
+              1
+            ]
+          ],
+          "translation_to_representative_m": [
+            0,
+            0,
+            0
+          ],
+          "rotation_determinant": 1,
+          "reference_end_max_residual_m": 0.0,
+          "surface_max_residual_bound_m": 0.0,
+          "member_to_representative": {
+            "identity": true
+          },
+          "representative_to_member": {
+            "identity": true
+          }
+        },
+        {
+          "timber_id": "K1-A",
+          "end_A_reference_id": "K1-A-A",
+          "end_B_reference_id": "K1-A-B",
+          "rotation_to_representative": [
+            [
+              0.707107205741888,
+              -4.793512667374687e-07,
+              -0.7071063566307898
+            ],
+            [
+              5.386128308286804e-07,
+              0.9999999999998452,
+              -1.392919919773384e-07
+            ],
+            [
+              0.7071063566307472,
+              -2.8236218522436937e-07,
+              0.7071072057420367
+            ]
+          ],
+          "translation_to_representative_m": [
+            6.037308306616751e-07,
+            -2.1915929888649543e-06,
+            3.2318961246866937e-06
+          ],
+          "rotation_determinant": 1.0000000000000002,
+          "reference_end_max_residual_m": 2.2677835456570253e-07,
+          "surface_max_residual_bound_m": 4.984879819650783e-06,
+          "member_to_representative": {
+            "source_triangle_count": 158,
+            "covered_convex_fragments": 2676
+          },
+          "representative_to_member": {
+            "source_triangle_count": 198,
+            "covered_convex_fragments": 1931
+          }
+        },
+        {
+          "timber_id": "K2-A",
+          "end_A_reference_id": "K2-A-A",
+          "end_B_reference_id": "K2-A-B",
+          "rotation_to_representative": [
+            [
+              0.0,
+              2.8610920073678147e-17,
+              -1.0
+            ],
+            [
+              1.4633394136324496e-17,
+              1.0,
+              -2.8610920073678147e-17
+            ],
+            [
+              1.0,
+              1.4633394136324496e-17,
+              0.0
+            ]
+          ],
+          "translation_to_representative_m": [
+            0.0,
+            -2.220446049250313e-16,
+            -2.3044669298007297e-17
+          ],
+          "rotation_determinant": 1.0,
+          "reference_end_max_residual_m": 3.469446951953614e-18,
+          "surface_max_residual_bound_m": 4.574580138149508e-06,
+          "member_to_representative": {
+            "source_triangle_count": 158,
+            "covered_convex_fragments": 2475
+          },
+          "representative_to_member": {
+            "source_triangle_count": 198,
+            "covered_convex_fragments": 2159
+          }
+        },
+        {
+          "timber_id": "K3-A",
+          "end_A_reference_id": "K3-A-A",
+          "end_B_reference_id": "K3-A-B",
+          "rotation_to_representative": [
+            [
+              -0.7071063566307898,
+              -4.793512667374687e-07,
+              -0.707107205741888
+            ],
+            [
+              -1.392919919773384e-07,
+              0.9999999999998452,
+              -5.386128308286804e-07
+            ],
+            [
+              0.7071072057420367,
+              -2.8236218522436937e-07,
+              -0.7071063566307472
+            ]
+          ],
+          "translation_to_representative_m": [
+            6.037308306616751e-07,
+            -2.1915929888649543e-06,
+            3.2318961246866937e-06
+          ],
+          "rotation_determinant": 1.0000000000000002,
+          "reference_end_max_residual_m": 2.2677835456570253e-07,
+          "surface_max_residual_bound_m": 4.984879819650783e-06,
+          "member_to_representative": {
+            "source_triangle_count": 158,
+            "covered_convex_fragments": 2676
+          },
+          "representative_to_member": {
+            "source_triangle_count": 198,
+            "covered_convex_fragments": 1915
+          }
+        },
+        {
+          "timber_id": "K4-A",
+          "end_A_reference_id": "K4-A-A",
+          "end_B_reference_id": "K4-A-B",
+          "rotation_to_representative": [
+            [
+              -1.0,
+              2.8610920073678147e-17,
+              0.0
+            ],
+            [
+              -2.8610920073678147e-17,
+              1.0,
+              -1.4633394136324496e-17
+            ],
+            [
+              0.0,
+              1.4633394136324496e-17,
+              -1.0
+            ]
+          ],
+          "translation_to_representative_m": [
+            0.0,
+            -2.220446049250313e-16,
+            -2.3044669298007297e-17
+          ],
+          "rotation_determinant": 1.0,
+          "reference_end_max_residual_m": 3.469446951953614e-18,
+          "surface_max_residual_bound_m": 4.574580138149508e-06,
+          "member_to_representative": {
+            "source_triangle_count": 158,
+            "covered_convex_fragments": 2475
+          },
+          "representative_to_member": {
+            "source_triangle_count": 198,
+            "covered_convex_fragments": 2158
+          }
+        },
+        {
+          "timber_id": "K5-A",
+          "end_A_reference_id": "K5-A-A",
+          "end_B_reference_id": "K5-A-B",
+          "rotation_to_representative": [
+            [
+              -0.707107205741888,
+              -4.793512667374687e-07,
+              0.7071063566307898
+            ],
+            [
+              -5.386128308286804e-07,
+              0.9999999999998452,
+              1.392919919773384e-07
+            ],
+            [
+              -0.7071063566307472,
+              -2.8236218522436937e-07,
+              -0.7071072057420367
+            ]
+          ],
+          "translation_to_representative_m": [
+            6.037308306616751e-07,
+            -2.1915929888649543e-06,
+            3.2318961246866937e-06
+          ],
+          "rotation_determinant": 1.0000000000000002,
+          "reference_end_max_residual_m": 2.2677835456570253e-07,
+          "surface_max_residual_bound_m": 4.984879819650783e-06,
+          "member_to_representative": {
+            "source_triangle_count": 158,
+            "covered_convex_fragments": 2676
+          },
+          "representative_to_member": {
+            "source_triangle_count": 198,
+            "covered_convex_fragments": 1911
+          }
+        },
+        {
+          "timber_id": "K6-A",
+          "end_A_reference_id": "K6-A-A",
+          "end_B_reference_id": "K6-A-B",
+          "rotation_to_representative": [
+            [
+              0.0,
+              2.8610920073678147e-17,
+              1.0
+            ],
+            [
+              -1.4633394136324496e-17,
+              1.0,
+              2.8610920073678147e-17
+            ],
+            [
+              -1.0,
+              1.4633394136324496e-17,
+              0.0
+            ]
+          ],
+          "translation_to_representative_m": [
+            0.0,
+            -2.220446049250313e-16,
+            -2.3044669298007297e-17
+          ],
+          "rotation_determinant": 1.0,
+          "reference_end_max_residual_m": 3.469446951953614e-18,
+          "surface_max_residual_bound_m": 4.574580138149508e-06,
+          "member_to_representative": {
+            "source_triangle_count": 158,
+            "covered_convex_fragments": 2475
+          },
+          "representative_to_member": {
+            "source_triangle_count": 198,
+            "covered_convex_fragments": 2146
+          }
+        },
+        {
+          "timber_id": "K7-A",
+          "end_A_reference_id": "K7-A-A",
+          "end_B_reference_id": "K7-A-B",
+          "rotation_to_representative": [
+            [
+              0.7071063566307898,
+              -4.793512667374687e-07,
+              0.707107205741888
+            ],
+            [
+              1.392919919773384e-07,
+              0.9999999999998452,
+              5.386128308286804e-07
+            ],
+            [
+              -0.7071072057420367,
+              -2.8236218522436937e-07,
+              0.7071063566307472
+            ]
+          ],
+          "translation_to_representative_m": [
+            6.037308306616751e-07,
+            -2.1915929888649543e-06,
+            3.2318961246866937e-06
+          ],
+          "rotation_determinant": 1.0000000000000002,
+          "reference_end_max_residual_m": 2.2677835456570253e-07,
+          "surface_max_residual_bound_m": 4.984879819650783e-06,
+          "member_to_representative": {
+            "source_triangle_count": 158,
+            "covered_convex_fragments": 2676
+          },
+          "representative_to_member": {
+            "source_triangle_count": 198,
+            "covered_convex_fragments": 1919
+          }
+        }
+      ],
+      "source_categories": [
+        "braces"
+      ],
+      "quantity": 8,
+      "max_residual_bound_m": 4.984879819650783e-06,
+      "timber_ids": [
+        "K0-A",
+        "K1-A",
+        "K2-A",
+        "K3-A",
+        "K4-A",
+        "K5-A",
+        "K6-A",
+        "K7-A"
+      ],
+      "pairwise_residual_bound_m": 9.969759639301566e-06,
+      "id": "M09",
+      "number": 9,
+      "member_ids": [
+        "K0-A",
+        "K1-A",
+        "K2-A",
+        "K3-A",
+        "K4-A",
+        "K5-A",
+        "K6-A",
+        "K7-A"
+      ],
+      "family": "braces",
+      "label": "Knee braces \u2014 A hand/layout",
+      "max_residual_m": 4.984879819650783e-06,
+      "status": "prototype_geometry_repeat",
+      "method": "proper_rigid_full_surface_coverage_AB_preserved"
+    },
+    {
+      "group_number": 10,
+      "representative_id": "K0-B",
+      "members": [
+        {
+          "timber_id": "K0-B",
+          "end_A_reference_id": "K0-B-A",
+          "end_B_reference_id": "K0-B-B",
+          "rotation_to_representative": [
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              0,
+              1,
+              0
+            ],
+            [
+              0,
+              0,
+              1
+            ]
+          ],
+          "translation_to_representative_m": [
+            0,
+            0,
+            0
+          ],
+          "rotation_determinant": 1,
+          "reference_end_max_residual_m": 0.0,
+          "surface_max_residual_bound_m": 0.0,
+          "member_to_representative": {
+            "identity": true
+          },
+          "representative_to_member": {
+            "identity": true
+          }
+        },
+        {
+          "timber_id": "K1-B",
+          "end_A_reference_id": "K1-B-A",
+          "end_B_reference_id": "K1-B-B",
+          "rotation_to_representative": [
+            [
+              0.7071063566307898,
+              -4.793512667374687e-07,
+              -0.707107205741888
+            ],
+            [
+              1.392919919773384e-07,
+              0.9999999999998452,
+              -5.386128308286804e-07
+            ],
+            [
+              0.7071072057420367,
+              2.8236218522436937e-07,
+              0.7071063566307472
+            ]
+          ],
+          "translation_to_representative_m": [
+            6.037308306616751e-07,
+            -2.1915929888649543e-06,
+            -3.2318961246866937e-06
+          ],
+          "rotation_determinant": 1.0000000000000002,
+          "reference_end_max_residual_m": 2.2677835456570253e-07,
+          "surface_max_residual_bound_m": 4.9961049945573625e-06,
+          "member_to_representative": {
+            "source_triangle_count": 204,
+            "covered_convex_fragments": 2391
+          },
+          "representative_to_member": {
+            "source_triangle_count": 180,
+            "covered_convex_fragments": 2661
+          }
+        },
+        {
+          "timber_id": "K2-B",
+          "end_A_reference_id": "K2-B-A",
+          "end_B_reference_id": "K2-B-B",
+          "rotation_to_representative": [
+            [
+              0.0,
+              2.8610920073678147e-17,
+              -1.0
+            ],
+            [
+              -1.4633394136324496e-17,
+              1.0,
+              -2.8610920073678147e-17
+            ],
+            [
+              1.0,
+              -1.4633394136324496e-17,
+              0.0
+            ]
+          ],
+          "translation_to_representative_m": [
+            0.0,
+            -2.220446049250313e-16,
+            2.3044669298007297e-17
+          ],
+          "rotation_determinant": 1.0,
+          "reference_end_max_residual_m": 3.469446951953614e-18,
+          "surface_max_residual_bound_m": 4.996090252032847e-06,
+          "member_to_representative": {
+            "source_triangle_count": 204,
+            "covered_convex_fragments": 2546
+          },
+          "representative_to_member": {
+            "source_triangle_count": 180,
+            "covered_convex_fragments": 2833
+          }
+        },
+        {
+          "timber_id": "K3-B",
+          "end_A_reference_id": "K3-B-A",
+          "end_B_reference_id": "K3-B-B",
+          "rotation_to_representative": [
+            [
+              -0.707107205741888,
+              -4.793512667374687e-07,
+              -0.7071063566307898
+            ],
+            [
+              -5.386128308286804e-07,
+              0.9999999999998452,
+              -1.392919919773384e-07
+            ],
+            [
+              0.7071063566307472,
+              2.8236218522436937e-07,
+              -0.7071072057420367
+            ]
+          ],
+          "translation_to_representative_m": [
+            6.037308306616751e-07,
+            -2.1915929888649543e-06,
+            -3.2318961246866937e-06
+          ],
+          "rotation_determinant": 1.0000000000000002,
+          "reference_end_max_residual_m": 2.2677835456570253e-07,
+          "surface_max_residual_bound_m": 4.9961049945573625e-06,
+          "member_to_representative": {
+            "source_triangle_count": 204,
+            "covered_convex_fragments": 2395
+          },
+          "representative_to_member": {
+            "source_triangle_count": 180,
+            "covered_convex_fragments": 2648
+          }
+        },
+        {
+          "timber_id": "K4-B",
+          "end_A_reference_id": "K4-B-A",
+          "end_B_reference_id": "K4-B-B",
+          "rotation_to_representative": [
+            [
+              -1.0,
+              2.8610920073678147e-17,
+              0.0
+            ],
+            [
+              -2.8610920073678147e-17,
+              1.0,
+              1.4633394136324496e-17
+            ],
+            [
+              0.0,
+              -1.4633394136324496e-17,
+              -1.0
+            ]
+          ],
+          "translation_to_representative_m": [
+            0.0,
+            -2.220446049250313e-16,
+            2.3044669298007297e-17
+          ],
+          "rotation_determinant": 1.0,
+          "reference_end_max_residual_m": 3.469446951953614e-18,
+          "surface_max_residual_bound_m": 4.996090252032847e-06,
+          "member_to_representative": {
+            "source_triangle_count": 204,
+            "covered_convex_fragments": 2544
+          },
+          "representative_to_member": {
+            "source_triangle_count": 180,
+            "covered_convex_fragments": 2868
+          }
+        },
+        {
+          "timber_id": "K5-B",
+          "end_A_reference_id": "K5-B-A",
+          "end_B_reference_id": "K5-B-B",
+          "rotation_to_representative": [
+            [
+              -0.7071063566307898,
+              -4.793512667374687e-07,
+              0.707107205741888
+            ],
+            [
+              -1.392919919773384e-07,
+              0.9999999999998452,
+              5.386128308286804e-07
+            ],
+            [
+              -0.7071072057420367,
+              2.8236218522436937e-07,
+              -0.7071063566307472
+            ]
+          ],
+          "translation_to_representative_m": [
+            6.037308306616751e-07,
+            -2.1915929888649543e-06,
+            -3.2318961246866937e-06
+          ],
+          "rotation_determinant": 1.0000000000000002,
+          "reference_end_max_residual_m": 2.2677835456570253e-07,
+          "surface_max_residual_bound_m": 4.9961049945573625e-06,
+          "member_to_representative": {
+            "source_triangle_count": 204,
+            "covered_convex_fragments": 2395
+          },
+          "representative_to_member": {
+            "source_triangle_count": 180,
+            "covered_convex_fragments": 2729
+          }
+        },
+        {
+          "timber_id": "K6-B",
+          "end_A_reference_id": "K6-B-A",
+          "end_B_reference_id": "K6-B-B",
+          "rotation_to_representative": [
+            [
+              0.0,
+              2.8610920073678147e-17,
+              1.0
+            ],
+            [
+              1.4633394136324496e-17,
+              1.0,
+              2.8610920073678147e-17
+            ],
+            [
+              -1.0,
+              -1.4633394136324496e-17,
+              0.0
+            ]
+          ],
+          "translation_to_representative_m": [
+            0.0,
+            -2.220446049250313e-16,
+            2.3044669298007297e-17
+          ],
+          "rotation_determinant": 1.0,
+          "reference_end_max_residual_m": 3.469446951953614e-18,
+          "surface_max_residual_bound_m": 4.996090252032847e-06,
+          "member_to_representative": {
+            "source_triangle_count": 204,
+            "covered_convex_fragments": 2544
+          },
+          "representative_to_member": {
+            "source_triangle_count": 180,
+            "covered_convex_fragments": 2843
+          }
+        },
+        {
+          "timber_id": "K7-B",
+          "end_A_reference_id": "K7-B-A",
+          "end_B_reference_id": "K7-B-B",
+          "rotation_to_representative": [
+            [
+              0.707107205741888,
+              -4.793512667374687e-07,
+              0.7071063566307898
+            ],
+            [
+              5.386128308286804e-07,
+              0.9999999999998452,
+              1.392919919773384e-07
+            ],
+            [
+              -0.7071063566307472,
+              2.8236218522436937e-07,
+              0.7071072057420367
+            ]
+          ],
+          "translation_to_representative_m": [
+            6.037308306616751e-07,
+            -2.1915929888649543e-06,
+            -3.2318961246866937e-06
+          ],
+          "rotation_determinant": 1.0000000000000002,
+          "reference_end_max_residual_m": 2.2677835456570253e-07,
+          "surface_max_residual_bound_m": 4.9961049945573625e-06,
+          "member_to_representative": {
+            "source_triangle_count": 220,
+            "covered_convex_fragments": 2441
+          },
+          "representative_to_member": {
+            "source_triangle_count": 180,
+            "covered_convex_fragments": 2911
+          }
+        }
+      ],
+      "source_categories": [
+        "braces"
+      ],
+      "quantity": 8,
+      "max_residual_bound_m": 4.9961049945573625e-06,
+      "timber_ids": [
+        "K0-B",
+        "K1-B",
+        "K2-B",
+        "K3-B",
+        "K4-B",
+        "K5-B",
+        "K6-B",
+        "K7-B"
+      ],
+      "pairwise_residual_bound_m": 9.992209989114725e-06,
+      "id": "M10",
+      "number": 10,
+      "member_ids": [
+        "K0-B",
+        "K1-B",
+        "K2-B",
+        "K3-B",
+        "K4-B",
+        "K5-B",
+        "K6-B",
+        "K7-B"
+      ],
+      "family": "braces",
+      "label": "Knee braces \u2014 B hand/layout",
+      "max_residual_m": 4.9961049945573625e-06,
+      "status": "prototype_geometry_repeat",
+      "method": "proper_rigid_full_surface_coverage_AB_preserved"
+    },
+    {
+      "group_number": 11,
+      "representative_id": "J0-0",
+      "members": [
+        {
+          "timber_id": "J0-0",
+          "end_A_reference_id": "J0-0-A",
+          "end_B_reference_id": "J0-0-B",
+          "rotation_to_representative": [
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              0,
+              1,
+              0
+            ],
+            [
+              0,
+              0,
+              1
+            ]
+          ],
+          "translation_to_representative_m": [
+            0,
+            0,
+            0
+          ],
+          "rotation_determinant": 1,
+          "reference_end_max_residual_m": 0.0,
+          "surface_max_residual_bound_m": 0.0,
+          "member_to_representative": {
+            "identity": true
+          },
+          "representative_to_member": {
+            "identity": true
+          }
+        },
+        {
+          "timber_id": "J1-0",
+          "end_A_reference_id": "J1-0-A",
+          "end_B_reference_id": "J1-0-B",
+          "rotation_to_representative": [
+            [
+              0.7071066201782054,
+              1.296901966820313e-07,
+              -0.707106942194841
+            ],
+            [
+              -5.572956966902078e-07,
+              0.9999999999997751,
+              -3.738858498592169e-07
+            ],
+            [
+              0.7071069421946335,
+              6.584448155822452e-07,
+              0.7071066201781186
+            ]
+          ],
+          "translation_to_representative_m": [
+            -5.203106141493663e-07,
+            2.103368146322282e-08,
+            -2.452934767971371e-06
+          ],
+          "rotation_determinant": 1.0000000000000002,
+          "reference_end_max_residual_m": 2.887008826310298e-07,
+          "surface_max_residual_bound_m": 4.998391514615918e-06,
+          "member_to_representative": {
+            "source_triangle_count": 208,
+            "covered_convex_fragments": 2604
+          },
+          "representative_to_member": {
+            "source_triangle_count": 208,
+            "covered_convex_fragments": 2241
+          }
+        },
+        {
+          "timber_id": "J2-0",
+          "end_A_reference_id": "J2-0-A",
+          "end_B_reference_id": "J2-0-B",
+          "rotation_to_representative": [
+            [
+              1.734723475976807e-17,
+              2.7525675653620825e-18,
+              -1.0000000000000002
+            ],
+            [
+              -1.0595588076763246e-18,
+              1.0000000000000002,
+              -2.7525675653620825e-18
+            ],
+            [
+              1.0000000000000002,
+              -1.0595588076763246e-18,
+              -1.734723475976807e-17
+            ]
+          ],
+          "translation_to_representative_m": [
+            -8.881784197001252e-16,
+            -4.440892098500626e-16,
+            1.1102230246251565e-16
+          ],
+          "rotation_determinant": 1.0000000000000007,
+          "reference_end_max_residual_m": 8.049116928532385e-16,
+          "surface_max_residual_bound_m": 4.916121300727395e-06,
+          "member_to_representative": {
+            "source_triangle_count": 208,
+            "covered_convex_fragments": 2382
+          },
+          "representative_to_member": {
+            "source_triangle_count": 208,
+            "covered_convex_fragments": 2357
+          }
+        },
+        {
+          "timber_id": "J3-0",
+          "end_A_reference_id": "J3-0-A",
+          "end_B_reference_id": "J3-0-B",
+          "rotation_to_representative": [
+            [
+              -0.707106942194841,
+              1.296901966820313e-07,
+              -0.7071066201782054
+            ],
+            [
+              -3.738858498592169e-07,
+              0.9999999999997751,
+              5.572956966902078e-07
+            ],
+            [
+              0.7071066201781186,
+              6.584448155822452e-07,
+              -0.7071069421946335
+            ]
+          ],
+          "translation_to_representative_m": [
+            -5.203106141493663e-07,
+            2.103368146322282e-08,
+            -2.452934767971371e-06
+          ],
+          "rotation_determinant": 1.0000000000000002,
+          "reference_end_max_residual_m": 2.887008826310298e-07,
+          "surface_max_residual_bound_m": 4.998391514615918e-06,
+          "member_to_representative": {
+            "source_triangle_count": 208,
+            "covered_convex_fragments": 2604
+          },
+          "representative_to_member": {
+            "source_triangle_count": 208,
+            "covered_convex_fragments": 2314
+          }
+        },
+        {
+          "timber_id": "J4-0",
+          "end_A_reference_id": "J4-0-A",
+          "end_B_reference_id": "J4-0-B",
+          "rotation_to_representative": [
+            [
+              -1.0000000000000002,
+              2.7525675653620825e-18,
+              -1.734723475976807e-17
+            ],
+            [
+              -2.7525675653620825e-18,
+              1.0000000000000002,
+              1.0595588076763246e-18
+            ],
+            [
+              -1.734723475976807e-17,
+              -1.0595588076763246e-18,
+              -1.0000000000000002
+            ]
+          ],
+          "translation_to_representative_m": [
+            -8.881784197001252e-16,
+            -4.440892098500626e-16,
+            1.1102230246251565e-16
+          ],
+          "rotation_determinant": 1.0000000000000007,
+          "reference_end_max_residual_m": 8.049116928532385e-16,
+          "surface_max_residual_bound_m": 4.916121300727395e-06,
+          "member_to_representative": {
+            "source_triangle_count": 208,
+            "covered_convex_fragments": 2382
+          },
+          "representative_to_member": {
+            "source_triangle_count": 208,
+            "covered_convex_fragments": 2338
+          }
+        },
+        {
+          "timber_id": "J5-0",
+          "end_A_reference_id": "J5-0-A",
+          "end_B_reference_id": "J5-0-B",
+          "rotation_to_representative": [
+            [
+              -0.7071066201782054,
+              1.296901966820313e-07,
+              0.707106942194841
+            ],
+            [
+              5.572956966902078e-07,
+              0.9999999999997751,
+              3.738858498592169e-07
+            ],
+            [
+              -0.7071069421946335,
+              6.584448155822452e-07,
+              -0.7071066201781186
+            ]
+          ],
+          "translation_to_representative_m": [
+            -5.203106141493663e-07,
+            2.103368146322282e-08,
+            -2.452934767971371e-06
+          ],
+          "rotation_determinant": 1.0000000000000002,
+          "reference_end_max_residual_m": 2.887008826310298e-07,
+          "surface_max_residual_bound_m": 4.998391514615918e-06,
+          "member_to_representative": {
+            "source_triangle_count": 208,
+            "covered_convex_fragments": 2604
+          },
+          "representative_to_member": {
+            "source_triangle_count": 208,
+            "covered_convex_fragments": 2294
+          }
+        },
+        {
+          "timber_id": "J6-0",
+          "end_A_reference_id": "J6-0-A",
+          "end_B_reference_id": "J6-0-B",
+          "rotation_to_representative": [
+            [
+              -1.734723475976807e-17,
+              2.7525675653620825e-18,
+              1.0000000000000002
+            ],
+            [
+              1.0595588076763246e-18,
+              1.0000000000000002,
+              2.7525675653620825e-18
+            ],
+            [
+              -1.0000000000000002,
+              -1.0595588076763246e-18,
+              1.734723475976807e-17
+            ]
+          ],
+          "translation_to_representative_m": [
+            -8.881784197001252e-16,
+            -4.440892098500626e-16,
+            1.1102230246251565e-16
+          ],
+          "rotation_determinant": 1.0000000000000007,
+          "reference_end_max_residual_m": 8.049116928532385e-16,
+          "surface_max_residual_bound_m": 4.916121300727395e-06,
+          "member_to_representative": {
+            "source_triangle_count": 208,
+            "covered_convex_fragments": 2382
+          },
+          "representative_to_member": {
+            "source_triangle_count": 208,
+            "covered_convex_fragments": 2392
+          }
+        },
+        {
+          "timber_id": "J7-0",
+          "end_A_reference_id": "J7-0-A",
+          "end_B_reference_id": "J7-0-B",
+          "rotation_to_representative": [
+            [
+              0.707106942194841,
+              1.296901966820313e-07,
+              0.7071066201782054
+            ],
+            [
+              3.738858498592169e-07,
+              0.9999999999997751,
+              -5.572956966902078e-07
+            ],
+            [
+              -0.7071066201781186,
+              6.584448155822452e-07,
+              0.7071069421946335
+            ]
+          ],
+          "translation_to_representative_m": [
+            -5.203106141493663e-07,
+            2.103368146322282e-08,
+            -2.452934767971371e-06
+          ],
+          "rotation_determinant": 1.0000000000000002,
+          "reference_end_max_residual_m": 2.887008826310298e-07,
+          "surface_max_residual_bound_m": 4.998391514615918e-06,
+          "member_to_representative": {
+            "source_triangle_count": 208,
+            "covered_convex_fragments": 2604
+          },
+          "representative_to_member": {
+            "source_triangle_count": 208,
+            "covered_convex_fragments": 2245
+          }
+        }
+      ],
+      "source_categories": [
+        "secondary_approx"
+      ],
+      "quantity": 8,
+      "max_residual_bound_m": 4.998391514615918e-06,
+      "timber_ids": [
+        "J0-0",
+        "J1-0",
+        "J2-0",
+        "J3-0",
+        "J4-0",
+        "J5-0",
+        "J6-0",
+        "J7-0"
+      ],
+      "pairwise_residual_bound_m": 9.996783029231836e-06,
+      "id": "M11",
+      "number": 11,
+      "member_ids": [
+        "J0-0",
+        "J1-0",
+        "J2-0",
+        "J3-0",
+        "J4-0",
+        "J5-0",
+        "J6-0",
+        "J7-0"
+      ],
+      "family": "secondary_approx",
+      "label": "Secondary rafters - approximate \u2014 0 hand/layout",
+      "max_residual_m": 4.998391514615918e-06,
+      "status": "prototype_geometry_repeat",
+      "method": "proper_rigid_full_surface_coverage_AB_preserved"
+    },
+    {
+      "group_number": 12,
+      "representative_id": "J0-1",
+      "members": [
+        {
+          "timber_id": "J0-1",
+          "end_A_reference_id": "J0-1-A",
+          "end_B_reference_id": "J0-1-B",
+          "rotation_to_representative": [
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              0,
+              1,
+              0
+            ],
+            [
+              0,
+              0,
+              1
+            ]
+          ],
+          "translation_to_representative_m": [
+            0,
+            0,
+            0
+          ],
+          "rotation_determinant": 1,
+          "reference_end_max_residual_m": 0.0,
+          "surface_max_residual_bound_m": 0.0,
+          "member_to_representative": {
+            "identity": true
+          },
+          "representative_to_member": {
+            "identity": true
+          }
+        },
+        {
+          "timber_id": "J1-1",
+          "end_A_reference_id": "J1-1-A",
+          "end_B_reference_id": "J1-1-B",
+          "rotation_to_representative": [
+            [
+              0.7071064161259437,
+              5.548129716009734e-07,
+              -0.707107146246745
+            ],
+            [
+              -1.3394379783493725e-06,
+              0.9999999999989491,
+              -5.548129716009734e-07
+            ],
+            [
+              0.7071071462456942,
+              1.3394379783493725e-06,
+              0.7071064161259437
+            ]
+          ],
+          "translation_to_representative_m": [
+            -2.0813335943614675e-06,
+            3.942179915839006e-12,
+            -5.024787462559743e-06
+          ],
+          "rotation_determinant": 0.9999999999999999,
+          "reference_end_max_residual_m": 1.8446924032289574e-07,
+          "surface_max_residual_bound_m": 4.722028643695201e-06,
+          "member_to_representative": {
+            "source_triangle_count": 232,
+            "covered_convex_fragments": 2943
+          },
+          "representative_to_member": {
+            "source_triangle_count": 232,
+            "covered_convex_fragments": 2889
+          }
+        },
+        {
+          "timber_id": "J2-1",
+          "end_A_reference_id": "J2-1-A",
+          "end_B_reference_id": "J2-1-B",
+          "rotation_to_representative": [
+            [
+              0.0,
+              7.49487044861719e-17,
+              -0.9999999999999998
+            ],
+            [
+              -3.999573109904559e-17,
+              1.0,
+              -7.49487044861719e-17
+            ],
+            [
+              1.0,
+              -3.999573109904559e-17,
+              0.0
+            ]
+          ],
+          "translation_to_representative_m": [
+            8.881784197001252e-16,
+            -4.440892098500626e-16,
+            0.0
+          ],
+          "rotation_determinant": 0.9999999999999998,
+          "reference_end_max_residual_m": 1.0068810866857322e-15,
+          "surface_max_residual_bound_m": 4.937892660911106e-06,
+          "member_to_representative": {
+            "source_triangle_count": 232,
+            "covered_convex_fragments": 2855
+          },
+          "representative_to_member": {
+            "source_triangle_count": 232,
+            "covered_convex_fragments": 2780
+          }
+        },
+        {
+          "timber_id": "J3-1",
+          "end_A_reference_id": "J3-1-A",
+          "end_B_reference_id": "J3-1-B",
+          "rotation_to_representative": [
+            [
+              -0.707107146246745,
+              5.548129716009734e-07,
+              -0.7071064161259437
+            ],
+            [
+              -5.548129716009734e-07,
+              0.9999999999989491,
+              1.3394379783493725e-06
+            ],
+            [
+              0.7071064161259437,
+              1.3394379783493725e-06,
+              -0.7071071462456942
+            ]
+          ],
+          "translation_to_representative_m": [
+            -2.0813335943614675e-06,
+            3.942179915839006e-12,
+            -5.024787462559743e-06
+          ],
+          "rotation_determinant": 0.9999999999999999,
+          "reference_end_max_residual_m": 1.8446924032289574e-07,
+          "surface_max_residual_bound_m": 4.722028643695201e-06,
+          "member_to_representative": {
+            "source_triangle_count": 232,
+            "covered_convex_fragments": 2943
+          },
+          "representative_to_member": {
+            "source_triangle_count": 232,
+            "covered_convex_fragments": 2928
+          }
+        },
+        {
+          "timber_id": "J4-1",
+          "end_A_reference_id": "J4-1-A",
+          "end_B_reference_id": "J4-1-B",
+          "rotation_to_representative": [
+            [
+              -0.9999999999999998,
+              7.49487044861719e-17,
+              0.0
+            ],
+            [
+              -7.49487044861719e-17,
+              1.0,
+              3.999573109904559e-17
+            ],
+            [
+              0.0,
+              -3.999573109904559e-17,
+              -1.0
+            ]
+          ],
+          "translation_to_representative_m": [
+            8.881784197001252e-16,
+            -4.440892098500626e-16,
+            0.0
+          ],
+          "rotation_determinant": 0.9999999999999998,
+          "reference_end_max_residual_m": 1.0068810866857322e-15,
+          "surface_max_residual_bound_m": 4.937892660911106e-06,
+          "member_to_representative": {
+            "source_triangle_count": 232,
+            "covered_convex_fragments": 2855
+          },
+          "representative_to_member": {
+            "source_triangle_count": 232,
+            "covered_convex_fragments": 2793
+          }
+        },
+        {
+          "timber_id": "J5-1",
+          "end_A_reference_id": "J5-1-A",
+          "end_B_reference_id": "J5-1-B",
+          "rotation_to_representative": [
+            [
+              -0.7071064161259437,
+              5.548129716009734e-07,
+              0.707107146246745
+            ],
+            [
+              1.3394379783493725e-06,
+              0.9999999999989491,
+              5.548129716009734e-07
+            ],
+            [
+              -0.7071071462456942,
+              1.3394379783493725e-06,
+              -0.7071064161259437
+            ]
+          ],
+          "translation_to_representative_m": [
+            -2.0813335943614675e-06,
+            3.942179915839006e-12,
+            -5.024787462559743e-06
+          ],
+          "rotation_determinant": 0.9999999999999999,
+          "reference_end_max_residual_m": 1.8446924032289574e-07,
+          "surface_max_residual_bound_m": 4.722028643695201e-06,
+          "member_to_representative": {
+            "source_triangle_count": 232,
+            "covered_convex_fragments": 2943
+          },
+          "representative_to_member": {
+            "source_triangle_count": 232,
+            "covered_convex_fragments": 2909
+          }
+        },
+        {
+          "timber_id": "J6-1",
+          "end_A_reference_id": "J6-1-A",
+          "end_B_reference_id": "J6-1-B",
+          "rotation_to_representative": [
+            [
+              0.0,
+              7.49487044861719e-17,
+              0.9999999999999998
+            ],
+            [
+              3.999573109904559e-17,
+              1.0,
+              7.49487044861719e-17
+            ],
+            [
+              -1.0,
+              -3.999573109904559e-17,
+              0.0
+            ]
+          ],
+          "translation_to_representative_m": [
+            8.881784197001252e-16,
+            -4.440892098500626e-16,
+            0.0
+          ],
+          "rotation_determinant": 0.9999999999999998,
+          "reference_end_max_residual_m": 1.0068810866857322e-15,
+          "surface_max_residual_bound_m": 4.937892660911106e-06,
+          "member_to_representative": {
+            "source_triangle_count": 232,
+            "covered_convex_fragments": 2855
+          },
+          "representative_to_member": {
+            "source_triangle_count": 232,
+            "covered_convex_fragments": 2814
+          }
+        },
+        {
+          "timber_id": "J7-1",
+          "end_A_reference_id": "J7-1-A",
+          "end_B_reference_id": "J7-1-B",
+          "rotation_to_representative": [
+            [
+              0.707107146246745,
+              5.548129716009734e-07,
+              0.7071064161259437
+            ],
+            [
+              5.548129716009734e-07,
+              0.9999999999989491,
+              -1.3394379783493725e-06
+            ],
+            [
+              -0.7071064161259437,
+              1.3394379783493725e-06,
+              0.7071071462456942
+            ]
+          ],
+          "translation_to_representative_m": [
+            -2.0813335943614675e-06,
+            3.942179915839006e-12,
+            -5.024787462559743e-06
+          ],
+          "rotation_determinant": 0.9999999999999999,
+          "reference_end_max_residual_m": 1.8446924032289574e-07,
+          "surface_max_residual_bound_m": 4.722028643695201e-06,
+          "member_to_representative": {
+            "source_triangle_count": 232,
+            "covered_convex_fragments": 2943
+          },
+          "representative_to_member": {
+            "source_triangle_count": 232,
+            "covered_convex_fragments": 2840
+          }
+        }
+      ],
+      "source_categories": [
+        "secondary_approx"
+      ],
+      "quantity": 8,
+      "max_residual_bound_m": 4.937892660911106e-06,
+      "timber_ids": [
+        "J0-1",
+        "J1-1",
+        "J2-1",
+        "J3-1",
+        "J4-1",
+        "J5-1",
+        "J6-1",
+        "J7-1"
+      ],
+      "pairwise_residual_bound_m": 9.875785321822211e-06,
+      "id": "M12",
+      "number": 12,
+      "member_ids": [
+        "J0-1",
+        "J1-1",
+        "J2-1",
+        "J3-1",
+        "J4-1",
+        "J5-1",
+        "J6-1",
+        "J7-1"
+      ],
+      "family": "secondary_approx",
+      "label": "Secondary rafters - approximate \u2014 1 hand/layout",
+      "max_residual_m": 4.937892660911106e-06,
+      "status": "prototype_geometry_repeat",
+      "method": "proper_rigid_full_surface_coverage_AB_preserved"
+    },
+    {
+      "group_number": 13,
+      "representative_id": "J0-2",
+      "members": [
+        {
+          "timber_id": "J0-2",
+          "end_A_reference_id": "J0-2-A",
+          "end_B_reference_id": "J0-2-B",
+          "rotation_to_representative": [
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              0,
+              1,
+              0
+            ],
+            [
+              0,
+              0,
+              1
+            ]
+          ],
+          "translation_to_representative_m": [
+            0,
+            0,
+            0
+          ],
+          "rotation_determinant": 1,
+          "reference_end_max_residual_m": 0.0,
+          "surface_max_residual_bound_m": 0.0,
+          "member_to_representative": {
+            "identity": true
+          },
+          "representative_to_member": {
+            "identity": true
+          }
+        },
+        {
+          "timber_id": "J1-2",
+          "end_A_reference_id": "J1-2-A",
+          "end_B_reference_id": "J1-2-B",
+          "rotation_to_representative": [
+            [
+              0.7071066201781186,
+              3.738858498592169e-07,
+              -0.707106942194841
+            ],
+            [
+              -6.584448155822452e-07,
+              0.9999999999997751,
+              -1.296901966820313e-07
+            ],
+            [
+              0.7071069421946335,
+              5.572956966902078e-07,
+              0.7071066201782054
+            ]
+          ],
+          "translation_to_representative_m": [
+            -1.3665711744437203e-06,
+            -2.1032001029652747e-08,
+            -2.1024022949234222e-06
+          ],
+          "rotation_determinant": 1.0000000000000004,
+          "reference_end_max_residual_m": 2.8870088309924935e-07,
+          "surface_max_residual_bound_m": 4.885686709916151e-06,
+          "member_to_representative": {
+            "source_triangle_count": 192,
+            "covered_convex_fragments": 2191
+          },
+          "representative_to_member": {
+            "source_triangle_count": 192,
+            "covered_convex_fragments": 2333
+          }
+        },
+        {
+          "timber_id": "J2-2",
+          "end_A_reference_id": "J2-2-A",
+          "end_B_reference_id": "J2-2-B",
+          "rotation_to_representative": [
+            [
+              1.734723475976807e-16,
+              1.213275699966075e-16,
+              -1.0
+            ],
+            [
+              -7.040347275164612e-17,
+              1.0000000000000004,
+              -1.213275699966075e-16
+            ],
+            [
+              0.9999999999999998,
+              -7.040347275164612e-17,
+              -1.734723475976807e-16
+            ]
+          ],
+          "translation_to_representative_m": [
+            0.0,
+            -1.7763568394002505e-15,
+            -8.881784197001252e-16
+          ],
+          "rotation_determinant": 1.0000000000000002,
+          "reference_end_max_residual_m": 1.047382306668854e-15,
+          "surface_max_residual_bound_m": 4.9179638577458835e-06,
+          "member_to_representative": {
+            "source_triangle_count": 192,
+            "covered_convex_fragments": 1228
+          },
+          "representative_to_member": {
+            "source_triangle_count": 192,
+            "covered_convex_fragments": 1269
+          }
+        },
+        {
+          "timber_id": "J3-2",
+          "end_A_reference_id": "J3-2-A",
+          "end_B_reference_id": "J3-2-B",
+          "rotation_to_representative": [
+            [
+              -0.707106942194841,
+              3.738858498592169e-07,
+              -0.7071066201781186
+            ],
+            [
+              -1.296901966820313e-07,
+              0.9999999999997751,
+              6.584448155822452e-07
+            ],
+            [
+              0.7071066201782054,
+              5.572956966902078e-07,
+              -0.7071069421946335
+            ]
+          ],
+          "translation_to_representative_m": [
+            -1.3665711744437203e-06,
+            -2.1032001029652747e-08,
+            -2.1024022949234222e-06
+          ],
+          "rotation_determinant": 1.0000000000000004,
+          "reference_end_max_residual_m": 2.8870088309924935e-07,
+          "surface_max_residual_bound_m": 4.885686709916151e-06,
+          "member_to_representative": {
+            "source_triangle_count": 192,
+            "covered_convex_fragments": 2191
+          },
+          "representative_to_member": {
+            "source_triangle_count": 192,
+            "covered_convex_fragments": 2336
+          }
+        },
+        {
+          "timber_id": "J4-2",
+          "end_A_reference_id": "J4-2-A",
+          "end_B_reference_id": "J4-2-B",
+          "rotation_to_representative": [
+            [
+              -1.0,
+              1.213275699966075e-16,
+              -1.734723475976807e-16
+            ],
+            [
+              -1.213275699966075e-16,
+              1.0000000000000004,
+              7.040347275164612e-17
+            ],
+            [
+              -1.734723475976807e-16,
+              -7.040347275164612e-17,
+              -0.9999999999999998
+            ]
+          ],
+          "translation_to_representative_m": [
+            0.0,
+            -1.7763568394002505e-15,
+            -8.881784197001252e-16
+          ],
+          "rotation_determinant": 1.0000000000000002,
+          "reference_end_max_residual_m": 1.047382306668854e-15,
+          "surface_max_residual_bound_m": 4.9179638577458835e-06,
+          "member_to_representative": {
+            "source_triangle_count": 192,
+            "covered_convex_fragments": 1228
+          },
+          "representative_to_member": {
+            "source_triangle_count": 192,
+            "covered_convex_fragments": 1280
+          }
+        },
+        {
+          "timber_id": "J5-2",
+          "end_A_reference_id": "J5-2-A",
+          "end_B_reference_id": "J5-2-B",
+          "rotation_to_representative": [
+            [
+              -0.7071066201781186,
+              3.738858498592169e-07,
+              0.707106942194841
+            ],
+            [
+              6.584448155822452e-07,
+              0.9999999999997751,
+              1.296901966820313e-07
+            ],
+            [
+              -0.7071069421946335,
+              5.572956966902078e-07,
+              -0.7071066201782054
+            ]
+          ],
+          "translation_to_representative_m": [
+            -1.3665711744437203e-06,
+            -2.1032001029652747e-08,
+            -2.1024022949234222e-06
+          ],
+          "rotation_determinant": 1.0000000000000004,
+          "reference_end_max_residual_m": 2.8870088309924935e-07,
+          "surface_max_residual_bound_m": 4.885686709916151e-06,
+          "member_to_representative": {
+            "source_triangle_count": 192,
+            "covered_convex_fragments": 2191
+          },
+          "representative_to_member": {
+            "source_triangle_count": 192,
+            "covered_convex_fragments": 2324
+          }
+        },
+        {
+          "timber_id": "J6-2",
+          "end_A_reference_id": "J6-2-A",
+          "end_B_reference_id": "J6-2-B",
+          "rotation_to_representative": [
+            [
+              -1.734723475976807e-16,
+              1.213275699966075e-16,
+              1.0
+            ],
+            [
+              7.040347275164612e-17,
+              1.0000000000000004,
+              1.213275699966075e-16
+            ],
+            [
+              -0.9999999999999998,
+              -7.040347275164612e-17,
+              1.734723475976807e-16
+            ]
+          ],
+          "translation_to_representative_m": [
+            0.0,
+            -1.7763568394002505e-15,
+            -8.881784197001252e-16
+          ],
+          "rotation_determinant": 1.0000000000000002,
+          "reference_end_max_residual_m": 1.047382306668854e-15,
+          "surface_max_residual_bound_m": 4.9179638577458835e-06,
+          "member_to_representative": {
+            "source_triangle_count": 192,
+            "covered_convex_fragments": 1228
+          },
+          "representative_to_member": {
+            "source_triangle_count": 192,
+            "covered_convex_fragments": 1266
+          }
+        },
+        {
+          "timber_id": "J7-2",
+          "end_A_reference_id": "J7-2-A",
+          "end_B_reference_id": "J7-2-B",
+          "rotation_to_representative": [
+            [
+              0.707106942194841,
+              3.738858498592169e-07,
+              0.7071066201781186
+            ],
+            [
+              1.296901966820313e-07,
+              0.9999999999997751,
+              -6.584448155822452e-07
+            ],
+            [
+              -0.7071066201782054,
+              5.572956966902078e-07,
+              0.7071069421946335
+            ]
+          ],
+          "translation_to_representative_m": [
+            -1.3665711744437203e-06,
+            -2.1032001029652747e-08,
+            -2.1024022949234222e-06
+          ],
+          "rotation_determinant": 1.0000000000000004,
+          "reference_end_max_residual_m": 2.8870088309924935e-07,
+          "surface_max_residual_bound_m": 4.885686709916151e-06,
+          "member_to_representative": {
+            "source_triangle_count": 192,
+            "covered_convex_fragments": 2191
+          },
+          "representative_to_member": {
+            "source_triangle_count": 192,
+            "covered_convex_fragments": 2372
+          }
+        }
+      ],
+      "source_categories": [
+        "secondary_approx"
+      ],
+      "quantity": 8,
+      "max_residual_bound_m": 4.9179638577458835e-06,
+      "timber_ids": [
+        "J0-2",
+        "J1-2",
+        "J2-2",
+        "J3-2",
+        "J4-2",
+        "J5-2",
+        "J6-2",
+        "J7-2"
+      ],
+      "pairwise_residual_bound_m": 9.835927715491767e-06,
+      "id": "M13",
+      "number": 13,
+      "member_ids": [
+        "J0-2",
+        "J1-2",
+        "J2-2",
+        "J3-2",
+        "J4-2",
+        "J5-2",
+        "J6-2",
+        "J7-2"
+      ],
+      "family": "secondary_approx",
+      "label": "Secondary rafters - approximate \u2014 2 hand/layout",
+      "max_residual_m": 4.9179638577458835e-06,
+      "status": "prototype_geometry_repeat",
+      "method": "proper_rigid_full_surface_coverage_AB_preserved"
+    }
+  ]
+}
