@@ -65,12 +65,12 @@ function drawCavityVolumes(){
  }
 }
 function updateHollowStatus(){
- const host=$('hollowStatus');if(!Object.keys(CAVITIES.parts||{}).length){host.textContent='R01 contact geometry replaces the former fitted prototype. No current cavity-volume audit is assigned.';return;}if(!selected){host.textContent='Select a timber to reveal its recess volumes.';return;}
+ const host=$('hollowStatus');if(CAVITIES.available===false||!Object.keys(CAVITIES.parts||{}).length){host.textContent=CAVITIES.status||'Recess overlay unavailable while independent mask validation is unresolved; no overlay substituted.';return;}if(!selected){host.textContent='Diagnostic recess display; masks unverified and may overlap owner wood. Not certified empty space. Select a timber to inspect.';return;}
  const d=CAVITIES.parts[selected];if(!d){host.textContent='No verified cavity data for this timber.';return;}
  const removed=d.removed.volume_m3*1e6,empty=d.unfilled.volume_m3*1e6;
 // TIMESTAMP START 2026-11-01T23:35:16-05:00 | REVISION R004670
- if(hollowMode==='removed')host.textContent=selected+': '+num(removed,2)+' cm³ of modeled recesses/notches. Amber shows removed stock, not extra wood. Complete cavity occupancy has not been independently verified.';
- else host.textContent=selected+': diagnostic residual '+num(empty,3)+' cm³. This calculation is not certified as an internal gap or harmless trimming; review against the mating geometry.';
+ if(hollowMode==='removed')host.textContent=selected+': diagnostic recess mask '+num(removed,2)+' cm³. Masks are unverified and may overlap owner wood; not certified empty space.';
+ else host.textContent=selected+': diagnostic residual '+num(empty,3)+' cm³. Masks are unverified and may overlap owner wood; not certified empty space or harmless trimming.';
 // TIMESTAMP END 2026-11-01T23:35:16-05:00 | REVISION R004670
  if(explode>0)host.textContent+=' Classification refers to the assembled model; this view is exploded.';
  if(!gl)host.textContent+=' In 2D fallback, hollow volumes are always shown as X-rays.';

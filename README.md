@@ -35,3 +35,7 @@ Use [TFEC 1-2019 and the project design-basis/release checklist](docs/TFEC-proje
 ## Temporary construction support display
 
 The hidden construction-aid layer contains one reusable symbolic green aid and one black welded-display assembly (`M-TMP`): eight radial L straps, 24 illustrative holes, and the owner's 90 in (7 ft 6 in) opposite-end span. This does not change the 88 in cupola. See [reference dimensions and display-only assumptions](docs/central-support-display.md). It is not a fabrication or erection design. Use the scoped `scripts/central_support.py` migration rather than regenerating existing timbers.
+
+## Proposed step lap comparison
+
+The [proposed step-lap model](docs/step-lap-proposal-review.md) implements actual complementary CSG at all 24 matching perimeter interfaces (16 J/B and 8 R/P), with both pockets on each ring beam. The main model selector switches between proposed and unchanged baseline geometry, including source-matched applied self-weight, enclosure fit, plans and qualified exports. Chosen dimensions and geometric tradeoffs remain a design proposal, not fabrication or structural approval; proposed contact pressures and baseline warning markers are withheld. Proposed recess overlays are unavailable pending independent validation; no baseline overlay is substituted.

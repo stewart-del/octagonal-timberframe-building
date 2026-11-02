@@ -1,6 +1,7 @@
 // TIMESTAMP START 2026-11-01T23:19:38-05:00 | REVISION R004668
 // TIMESTAMP START 2026-11-01T23:06:10-05:00 | REVISION R004659
 // TIMESTAMP START 2026-11-01T23:01:05-05:00 | REVISION R004657
+// Legacy baseline scripted DOM/WebGL integration tests; model-variants.cjs separately exercises default proposed selection.
 // Offline scripted DOM/WebGL integration tests. No browser or network access.
 // Focus and events are simulated, including the real registered document/window handlers.
 const fs=require('fs'),vm=require('vm');
@@ -38,7 +39,7 @@ const gl=new Proxy({COMPILE_STATUS:1,LINK_STATUS:2,ARRAY_BUFFER:3,FLOAT:4,LINES:
 const els=new Map();
 function get(id){if(!els.has(id)){const escaped=id.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');const match=html.match(new RegExp('<([a-zA-Z0-9-]+)\\b[^>]*\\bid="'+escaped+'"[^>]*>'));const el=new El(match?.[1]||'div');el.id=id;const attrs=match?.[0]||'';for(const a of attrs.matchAll(/\b([\w-]+)="([^"]*)"/g))el.setAttribute(a[1],a[2]);el.checked=/\bchecked\b/.test(attrs);el.value=el.getAttribute('value')||'';els.set(id,el);documentMock?.body?.appendChild(el)}return els.get(id)}
 documentMock=new EventTargetMock();Object.assign(documentMock,{getElementById:get,querySelector:t=>get("document-"+t),createElement:t=>new El(t),body:new El('body'),hidden:false,hasFocus:()=>windowMock.focused});documentMock.activeElement=documentMock.body;
-windowMock=new EventTargetMock();Object.assign(windowMock,{devicePixelRatio:1,location:{hash:''},focused:true});
+windowMock=new EventTargetMock();Object.assign(windowMock,{devicePixelRatio:1,location:{hash:'',search:'?model=baseline'},focused:true});
 get('model-data').textContent=JSON.stringify(data);get('scene').parentElement=new El();
 function testKey(key,target=documentMock.activeElement,options={}){return documentMock.emit('keydown',{key,target,...options})}
 function testKeyUp(key,options={}){return windowMock.emit('keyup',{key,target:documentMock.activeElement,...options})}

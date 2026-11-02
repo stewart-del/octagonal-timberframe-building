@@ -4,7 +4,7 @@ from pathlib import Path
 import json, struct
 ROOT = Path(__file__).resolve().parents[1]
 
-def export(model, exploded=False):
+def export(model, exploded=False, metadata=None):
     binary = bytearray()
     views, accessors, meshes, nodes, materials = [], [], [], [], []
     def buffer(values, code, kind, count, low=None, high=None):
@@ -43,6 +43,9 @@ def export(model, exploded=False):
          'bufferViews':views,'accessors':accessors,
          'extras':{'revision':'R01','status':'Geometry study; physical joint sizing unresolved',
                    'coordinate_system':'meters, Y up', 'display_tie_height_in':90}}
+    if metadata:
+        doc['extras'].update(metadata)
+        doc['asset']['generator']='Octagon selected-model geometry export'
     encoded=json.dumps(doc,separators=(',',':')).encode()
     encoded += b' '*((-len(encoded))%4)
     binary += b'\0'*((-len(binary))%4)

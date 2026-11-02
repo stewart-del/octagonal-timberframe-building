@@ -35,6 +35,10 @@ jobs:
       - run: node tests/architectural-plans.cjs
       - run: python3 tests/test_central_support.py
       - run: node tests/schematic-walls.cjs
+      - run: node tests/step-lap-review.cjs
+      - run: node tests/model-variants.cjs
+      - run: python3 tests/test_step_lap.py
+      - run: python3 tests/test_step_lap_auxiliary.py
 
       - run: node tests/plans-performance.cjs
       - run: node tests/enclosure-floor.cjs

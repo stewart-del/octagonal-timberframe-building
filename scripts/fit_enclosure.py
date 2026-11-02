@@ -2,12 +2,13 @@
 Not a proposed structural joint or connection-capacity analysis.
 """
 from pathlib import Path
-import json,subprocess,hashlib
+import argparse,json,subprocess,hashlib
 import numpy as np
 import manifold3d as m
 R=Path(__file__).resolve().parents[1]
-raw=(R/'src/model-data.json').read_bytes();model=json.loads(raw)
-components=json.loads(subprocess.check_output(['node','-e',"const m=require('./src/model-data.json'),s=require('./src/schematic-walls.js');process.stdout.write(JSON.stringify(s.build(m.parts,{applyFit:false}).components))"],cwd=R))
+ap=argparse.ArgumentParser();ap.add_argument('--model',default='src/model-data.json');ap.add_argument('--output',default='src/enclosure-fit.json');args=ap.parse_args()
+model_path=(R/args.model).resolve();raw=model_path.read_bytes();model=json.loads(raw)
+components=json.loads(subprocess.check_output(['node','-e',"const m=require(process.argv[1]),s=require('./src/schematic-walls.js');process.stdout.write(JSON.stringify(s.build(m.parts,{applyFit:false}).components))",str(model_path)],cwd=R))
 def solid(p):
  s=m.Manifold(m.Mesh64(np.asarray(p['vertices'],dtype=float),np.asarray(p['triangles'],dtype=np.uint64))).set_tolerance(1e-9)
  assert str(s.status())=='Error.NoError',p['id']
@@ -28,5 +29,6 @@ for p in components:
  for name,t in (timbers if p['schematicKind']=='rail' else footers).items():
   if overlap(s,t):assert (s^t).volume()<1e-10,(p['id'],name)
  data['parts'][p['id']]={'vertices':v.tolist(),'triangles':tris.tolist(),'center':((v.min(0)+v.max(0))/2).tolist(),'source_volume_m3':before,'fitted_volume_m3':s.volume(),'clearance_cuts':hits,'connected_components':len(s.decompose())}
-(R/'src/enclosure-fit.json').write_text(json.dumps(data,separators=(',',':'))+'\n')
-print('Fitted',len(data['parts']),'rail/floor components; canonical timber untouched')
+(R/args.output).write_text(json.dumps(data,separators=(',',':'))+'\n')
+print('Fitted',len(data['parts']),'rail/floor components; source model untouched'
+      ,'model SHA',data['source_model_sha256'])

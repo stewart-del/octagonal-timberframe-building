@@ -3,7 +3,7 @@
 // TIMESTAMP START 2026-11-01T23:01:05-05:00 | REVISION R004657
 // Browserless regression harness. Uses the actual viewer script with a small DOM stub.
 // Node: node viewer-regression.js [index.html]; exports runViewerTests for other JS runtimes.
-function runViewerTests(source,model){
+function runViewerTests(source,model,{search='?model=baseline',skipLegacy=false}={}){
   let document;
   const listeners={},windowListeners={};
   class Element{
@@ -28,7 +28,7 @@ function runViewerTests(source,model){
   nodes.get('scheduleModal').append(nodes.get('closeSchedule'),nodes.get('scheduleNote'),nodes.get('scheduleHead'),nodes.get('scheduleRows'));
   nodes.get('main').append(nodes.get('scene'));nodes.get('model-data').textContent=JSON.stringify(model);
   document.activeElement=nodes.get('scene');
-  const window={devicePixelRatio:1,location:{hash:''},addEventListener:(k,f)=>(windowListeners[k]??=[]).push(f)};
+  const window={devicePixelRatio:1,location:{hash:'',search,href:'https://viewer.test/'+search,assign(url){this.assigned=url;}},addEventListener:(k,f)=>(windowListeners[k]??=[]).push(f)};
   let queued=[];const requestAnimationFrame=f=>{queued.push(f);};
   const assertions=[];
   const tests=`
@@ -158,7 +158,7 @@ function runViewerTests(source,model){
     check(parts.filter(isShown).length===expectedDefault.length&&isolatedId===null,'Restore frame follows current default groups');
     check(!$('cornerFindings').open&&$('cornerContext').hidden,'Restore frame exits joint context');
     $('reviewP0').onclick();check(selected==='P0'&&parts.filter(isShown).length===7,'P0 close-up restores corner and braces');
-    check(showHollows&&selectionAlpha(partById.get('P0'))===.38&&cavityRecords().length===1,'Selection reveals actual recesses through transparent timber');
+    check(showHollows&&selectionAlpha(partById.get('P0'))===.38&&cavityRecords().length===1,'Saved-baseline diagnostic recess display remains available through transparent timber');
     $('reviewCupola').onclick();check(selected==='C0'&&parts.filter(isShown).filter(p=>p.group==='cupola_rafters').length===8,'Cupola shortcut includes its eight roof rafters');
     $('explode').value='60';$('explode').oninput({target:$('explode')});check(explode===.6,'Restored explode control moves assembly');
     check(!loadReviewOn,'Load review starts off');
@@ -197,7 +197,7 @@ function runViewerTests(source,model){
     openPlans();closePlans();check(!$('plansModal').classList.contains('open'),'Repeated plans opening and dismissal is reversible');
     return assertions;
   `;
-  const run=new Function('document','window','requestAnimationFrame','setTimeout','ResizeObserver','assertions','windowListeners','listeners',source+'\n'+tests);
+  const run=new Function('document','window','requestAnimationFrame','setTimeout','ResizeObserver','assertions','windowListeners','listeners',source+'\n'+(skipLegacy?'return assertions;':tests));
   return run(document,window,requestAnimationFrame,()=>{},undefined,assertions,windowListeners,listeners);
 }
 if(typeof module!=='undefined'){
