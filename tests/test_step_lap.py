@@ -119,6 +119,16 @@ test_guard()
 # Compare the JSON domain actually emitted by the generator, normalizing
 # NumPy float scalars without rounding any value.
 ag,fg=(json.loads(json.dumps(x)) for x in build_proposal(base,sha))
+for member in fg['parts']:
+ if member['id'] in changed:
+  surface=coplanar_surface_overlaps(np.asarray(member['vertices']),np.asarray(member['triangles']))
+  assert surface['status']=='PASS',(member['id'],'regenerated raw surface overlap',surface)
+from mesh_regeneration_equivalence import normalize_planar_retriangulation, test_mesh_guard
+test_mesh_guard()
+# CPU-dependent triangulation may choose a different diagonal on the same
+# oriented planar surface. Retain strict vertices, feature edges, manifold,
+# plane areas/centroids and occupied-volume checks before comparing metadata.
+print('Planar regeneration:',normalize_planar_retriangulation(ag,data),normalize_planar_retriangulation(fg,full))
 print("Regeneration roundoff:",assert_equivalent(ag,data,("proposal",)),assert_equivalent(fg,full,("model",)))
 assert (R/'src/model-data.json').read_bytes()==raw
 print('PASS: actual complementary tongue/pocket CSG; matched closed profiles; original-stock bounds; all 24 interfaces / 3340 affected pairs clear;104 member volumes/centroids refreshed; baseline exact; no fabricated strength/retention/manual claims')
