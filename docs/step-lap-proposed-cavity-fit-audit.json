@@ -58,7 +58,7 @@
         }
       ],
       "cross_sections": {
-        "max_missing_area_m2": 1.762792468070984e-15,
+        "max_missing_area_m2": 1.7438232898712159e-15,
         "max_receiver_overlap_area_m2": 5.068841381759837e-16,
         "sections": 275,
         "status": "PASS"
@@ -78,7 +78,7 @@
           "status": "PASS",
           "sum_pair_overlap_area_m2": 0
         },
-        "signed_volume_m3": 0.003083363030758774,
+        "signed_volume_m3": 0.003083363030758773,
         "status": "PASS",
         "triangles": 88,
         "vertices": 56
@@ -92,7 +92,7 @@
         "max_cavity_vertex_outside_reference_stock_m": 0.0,
         "max_interior_boundary_area_m2": 0.0,
         "partition_planes": 25,
-        "partition_volume_balance_error_m3": 1.2434497875801753e-14,
+        "partition_volume_balance_error_m3": 1.2309597785531423e-14,
         "reference_envelope_volume_in3": 6210.313682744058,
         "scope": "Saved prejoinery envelope, after any explicitly listed exterior trim, is covered by final timber wood plus exported removed cavity within the stated tolerances. Added tenons outside this envelope are not counted as removed stock.",
         "status": "PASS",
@@ -127,26 +127,26 @@
           "volume_in3": 21.241245969245632
         },
         {
-          "centroid_margin_m": 0.006957391915745514,
-          "convex_volume_error_m3": 1.3552527156068805e-20,
+          "centroid_margin_m": 0.006957391915746403,
+          "convex_volume_error_m3": 3.3881317890172014e-20,
           "coverage_mode": "one convex cell",
           "interior_boundary_area_m2": 0.0,
           "mate": "J0-0",
           "status": "PASS",
-          "volume_in3": 3.2283614024662435
+          "volume_in3": 3.2283614024662493
         },
         {
           "centroid_margin_m": 0.006957391915746847,
-          "convex_volume_error_m3": 1.2197274440461925e-19,
+          "convex_volume_error_m3": 2.371692252312041e-19,
           "coverage_mode": "one convex cell",
           "interior_boundary_area_m2": 0.0,
           "mate": "J0-2",
           "status": "PASS",
-          "volume_in3": 3.228361402466232
+          "volume_in3": 3.228361402466273
         }
       ],
       "cross_sections": {
-        "max_missing_area_m2": 8.65936279296875e-16,
+        "max_missing_area_m2": 9.26971435546875e-16,
         "max_receiver_overlap_area_m2": 3.35693359375e-16,
         "sections": 408,
         "status": "PASS"
@@ -166,7 +166,7 @@
           "status": "PASS",
           "sum_pair_overlap_area_m2": 0
         },
-        "signed_volume_m3": 0.0008019700441102371,
+        "signed_volume_m3": 0.0008019700441102383,
         "status": "PASS",
         "triangles": 40,
         "vertices": 28
@@ -180,7 +180,7 @@
         "max_cavity_vertex_outside_reference_stock_m": 1.7763568394002505e-15,
         "max_interior_boundary_area_m2": 0.0,
         "partition_planes": 12,
-        "partition_volume_balance_error_m3": 8.909539772616881e-15,
+        "partition_volume_balance_error_m3": 6.827871601444713e-15,
         "reference_envelope_volume_in3": 6050.180668328283,
         "scope": "Saved prejoinery envelope, after any explicitly listed exterior trim, is covered by final timber wood plus exported removed cavity within the stated tolerances. Added tenons outside this envelope are not counted as removed stock.",
         "status": "PASS",
@@ -198,12 +198,12 @@
       "components": [
         {
           "centroid_margin_m": 0.009649864166409228,
-          "convex_volume_error_m3": 2.710505431213761e-19,
+          "convex_volume_error_m3": 1.6263032587282567e-19,
           "coverage_mode": "one convex cell",
           "interior_boundary_area_m2": 0.0,
           "mate": "J0-0",
           "status": "PASS",
-          "volume_in3": 27.422619235294963
+          "volume_in3": 27.422619235294967
         },
         {
           "centroid_margin_m": 0.009649864166409006,
@@ -232,7 +232,7 @@
                   "interior_boundary_area_m2": 0.0,
                   "mate": "B0",
                   "status": "PASS",
-                  "volume_in3": 2.695924696491831
+                  "volume_in3": 2.6959246964918315
                 },
                 {
                   "centroid_margin_m": 1.035533906001973e-05,
@@ -256,7 +256,7 @@
                   "interior_boundary_area_m2": 0.0,
                   "mate": "P0",
                   "status": "PASS",
-                  "volume_in3": 13.074748175180966
+                  "volume_in3": 13.074748175180963
                 },
                 {
                   "centroid_margin_m": 0.0057952557560101425,
@@ -280,7 +280,7 @@
                   "interior_boundary_area_m2": 0.0,
                   "mate": "P0",
                   "status": "PASS",
-                  "volume_in3": 1.6050807644302358e-06
+                  "volume_in3": 1.6050807644302356e-06
                 },
                 {
                   "centroid_margin_m": 0.005616436870234942,
@@ -303,7 +303,7 @@
               "note": "Each cell is independently contained in one mate; only the stated distance shell around cell boundaries is excluded.",
               "partition_cells": 10,
               "partition_planes": 4,
-              "partition_volume_balance_error_m3": 2.8893987896738693e-17,
+              "partition_volume_balance_error_m3": 2.883977778811442e-17,
               "status": "PASS",
               "volume_in3": 24.57842068601601
             },
@@ -326,7 +326,7 @@
             {
               "cells": [
                 {
-                  "centroid_margin_m": 0.0022263722561586263,
+                  "centroid_margin_m": 0.0022263722561590704,
                   "coverage_mode": "one convex cell",
                   "interior_boundary_area_m2": 0.0,
                   "mate": "P0",
@@ -395,7 +395,7 @@
                   "interior_boundary_area_m2": 0.0,
                   "mate": "P0",
                   "status": "PASS",
-                  "volume_in3": 0.41258440539752106
+                  "volume_in3": 0.4125844053975211
                 },
                 {
                   "centroid_margin_m": 0.00596963000772055,
@@ -433,7 +433,7 @@
         }
       ],
       "cross_sections": {
-        "max_missing_area_m2": 1.6508053896277519e-15,
+        "max_missing_area_m2": 1.5807103273718925e-15,
         "max_receiver_overlap_area_m2": 1.9710734428372234e-14,
         "sections": 255,
         "status": "PASS"
@@ -453,7 +453,7 @@
           "status": "PASS",
           "sum_pair_overlap_area_m2": 0
         },
-        "signed_volume_m3": 0.0027720180681154592,
+        "signed_volume_m3": 0.002772018068115459,
         "status": "PASS",
         "triangles": 72,
         "vertices": 42
@@ -464,10 +464,10 @@
         "convex_cells": 386,
         "declared_external_trim": null,
         "failures": [],
-        "max_cavity_vertex_outside_reference_stock_m": 0.0,
+        "max_cavity_vertex_outside_reference_stock_m": 4.440892098500626e-16,
         "max_interior_boundary_area_m2": 0.0,
         "partition_planes": 18,
-        "partition_volume_balance_error_m3": 1.1851630787873546e-14,
+        "partition_volume_balance_error_m3": 1.379452108096757e-14,
         "reference_envelope_volume_in3": 13155.075066300322,
         "scope": "Saved prejoinery envelope, after any explicitly listed exterior trim, is covered by final timber wood plus exported removed cavity within the stated tolerances. Added tenons outside this envelope are not counted as removed stock.",
         "status": "PASS",
@@ -573,7 +573,7 @@
         "max_cavity_vertex_outside_reference_stock_m": 0.0,
         "max_interior_boundary_area_m2": 0.0,
         "partition_planes": 19,
-        "partition_volume_balance_error_m3": 2.3175905639050143e-15,
+        "partition_volume_balance_error_m3": 2.3245294578089215e-15,
         "reference_envelope_volume_in3": 3357.736659610101,
         "scope": "Saved prejoinery envelope, after any explicitly listed exterior trim, is covered by final timber wood plus exported removed cavity within the stated tolerances. Added tenons outside this envelope are not counted as removed stock.",
         "status": "PASS",
@@ -592,7 +592,7 @@
         {
           "cells": [
             {
-              "centroid_margin_m": 0.000524175075772515,
+              "centroid_margin_m": 0.0005241750757734032,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "B0",
@@ -600,12 +600,12 @@
               "volume_in3": 0.00940759920554381
             },
             {
-              "centroid_margin_m": 0.0005586865667521757,
+              "centroid_margin_m": 0.0005586865667517316,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "B0",
               "status": "PASS",
-              "volume_in3": 0.018815198411118363
+              "volume_in3": 0.0188151984111013
             },
             {
               "centroid_margin_m": 0.0006105858405685005,
@@ -613,23 +613,23 @@
               "interior_boundary_area_m2": 0.0,
               "mate": "B0",
               "status": "PASS",
-              "volume_in3": 0.009407599205550858
+              "volume_in3": 0.009407599205549075
             },
             {
-              "centroid_margin_m": 0.006430279019791207,
+              "centroid_margin_m": 0.006421013816475085,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "B0",
               "status": "PASS",
-              "volume_in3": 1.6141807012331413
+              "volume_in3": 1.614180701233058
             },
             {
-              "centroid_margin_m": 0.007951077366881054,
+              "centroid_margin_m": 0.007454135031450648,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "B0",
               "status": "PASS",
-              "volume_in3": 1.6141807012335019
+              "volume_in3": 1.6141807012330158
             }
           ],
           "coverage_mode": "nonconvex surface partition",
@@ -637,13 +637,13 @@
           "note": "Disjoint convex cells are each proved inside the actual concave cavity; their summed volume must recover its signed surface volume. Every retained cell is then proved covered by mating timber.",
           "partition_cells": 5,
           "partition_planes": 3,
-          "partition_volume_balance_error_m3": 9.595189226496714e-18,
+          "partition_volume_balance_error_m3": 1.0977546996415732e-18,
           "status": "PASS"
         }
       ],
       "cross_sections": {
         "max_missing_area_m2": 4.711151123046875e-16,
-        "max_receiver_overlap_area_m2": 2.1732562853452042e-16,
+        "max_receiver_overlap_area_m2": 3.7670135498046873e-16,
         "sections": 129,
         "status": "PASS"
       },
@@ -651,7 +651,7 @@
       "mesh_check": {
         "connected_surfaces": 1,
         "failures": [],
-        "minimum_triangle_area_m2": 1.3864150274310192e-05,
+        "minimum_triangle_area_m2": 1.386415027430829e-05,
         "raw_surface_check": {
           "coplanar_pairs_tested": 41,
           "max_overlap_area_m2": 0.0,
@@ -662,7 +662,7 @@
           "status": "PASS",
           "sum_pair_overlap_area_m2": 0
         },
-        "signed_volume_m3": 5.352001663841204e-05,
+        "signed_volume_m3": 5.35200166384131e-05,
         "status": "PASS",
         "triangles": 30,
         "vertices": 17
@@ -673,10 +673,10 @@
         "convex_cells": 18,
         "declared_external_trim": null,
         "failures": [],
-        "max_cavity_vertex_outside_reference_stock_m": 9.992007221626409e-16,
+        "max_cavity_vertex_outside_reference_stock_m": 1.7763568394002505e-15,
         "max_interior_boundary_area_m2": 0.0,
         "partition_planes": 5,
-        "partition_volume_balance_error_m3": 2.0261570199409107e-15,
+        "partition_volume_balance_error_m3": 2.4424906541753444e-15,
         "reference_envelope_volume_in3": 4025.9500851844223,
         "scope": "Saved prejoinery envelope, after any explicitly listed exterior trim, is covered by final timber wood plus exported removed cavity within the stated tolerances. Added tenons outside this envelope are not counted as removed stock.",
         "status": "PASS",
@@ -695,44 +695,44 @@
         {
           "cells": [
             {
-              "centroid_margin_m": 0.0005065959180381441,
+              "centroid_margin_m": 0.0004786822287705661,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "B0",
               "status": "PASS",
-              "volume_in3": 0.009407599205566601
+              "volume_in3": 0.009407599205551512
             },
             {
-              "centroid_margin_m": 0.0006338257418359028,
+              "centroid_margin_m": 0.0006398795168700566,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "B0",
               "status": "PASS",
-              "volume_in3": 0.018815198411118984
+              "volume_in3": 0.018815198411066446
             },
             {
-              "centroid_margin_m": 0.000549461622679992,
+              "centroid_margin_m": 0.0005494616226791038,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "B0",
               "status": "PASS",
-              "volume_in3": 0.009407599205538408
+              "volume_in3": 0.00940759920553339
             },
             {
-              "centroid_margin_m": 0.006455369505366626,
+              "centroid_margin_m": 0.006411655896271018,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "B0",
               "status": "PASS",
-              "volume_in3": 1.6141807012336604
+              "volume_in3": 1.6141807012331173
             },
             {
-              "centroid_margin_m": 0.007990543671392736,
+              "centroid_margin_m": 0.007990543671392292,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "B0",
               "status": "PASS",
-              "volume_in3": 1.6141807012329144
+              "volume_in3": 1.614180701232797
             }
           ],
           "coverage_mode": "nonconvex surface partition",
@@ -740,13 +740,13 @@
           "note": "Disjoint convex cells are each proved inside the actual concave cavity; their summed volume must recover its signed surface volume. Every retained cell is then proved covered by mating timber.",
           "partition_cells": 5,
           "partition_planes": 3,
-          "partition_volume_balance_error_m3": 7.71138795180315e-18,
+          "partition_volume_balance_error_m3": 4.912791094074942e-18,
           "status": "PASS"
         }
       ],
       "cross_sections": {
-        "max_missing_area_m2": 5.768024664641047e-16,
-        "max_receiver_overlap_area_m2": 2.78472900390625e-16,
+        "max_missing_area_m2": 6.065587781052817e-16,
+        "max_receiver_overlap_area_m2": 2.9587745666503905e-16,
         "sections": 129,
         "status": "PASS"
       },
@@ -754,7 +754,7 @@
       "mesh_check": {
         "connected_surfaces": 1,
         "failures": [],
-        "minimum_triangle_area_m2": 1.3864150274310366e-05,
+        "minimum_triangle_area_m2": 1.3864150274307534e-05,
         "raw_surface_check": {
           "coplanar_pairs_tested": 41,
           "max_overlap_area_m2": 0.0,
@@ -765,7 +765,7 @@
           "status": "PASS",
           "sum_pair_overlap_area_m2": 0
         },
-        "signed_volume_m3": 5.352001663841299e-05,
+        "signed_volume_m3": 5.35200166384136e-05,
         "status": "PASS",
         "triangles": 30,
         "vertices": 17
@@ -779,8 +779,8 @@
         "max_cavity_vertex_outside_reference_stock_m": 3.774758283725532e-15,
         "max_interior_boundary_area_m2": 0.0,
         "partition_planes": 5,
-        "partition_volume_balance_error_m3": 1.0130785099704553e-15,
-        "reference_envelope_volume_in3": 4025.950085184185,
+        "partition_volume_balance_error_m3": 8.326672684688674e-17,
+        "reference_envelope_volume_in3": 4025.950085184184,
         "scope": "Saved prejoinery envelope, after any explicitly listed exterior trim, is covered by final timber wood plus exported removed cavity within the stated tolerances. Added tenons outside this envelope are not counted as removed stock.",
         "status": "PASS",
         "verified_cells": 18
@@ -797,21 +797,21 @@
       "components": [
         {
           "centroid_margin_m": 0.020680427794254642,
-          "convex_volume_error_m3": 1.0842021724855044e-19,
+          "convex_volume_error_m3": 0.0,
           "coverage_mode": "one convex cell",
           "interior_boundary_area_m2": 0.0,
           "mate": "K1-B",
           "status": "PASS",
-          "volume_in3": 44.08221557936384
+          "volume_in3": 44.08221557936383
         },
         {
-          "centroid_margin_m": 0.020680427794254636,
-          "convex_volume_error_m3": 3.2526065174565133e-19,
+          "centroid_margin_m": 0.020680427794254733,
+          "convex_volume_error_m3": 4.336808689942018e-19,
           "coverage_mode": "one convex cell",
           "interior_boundary_area_m2": 0.0,
           "mate": "K1-A",
           "status": "PASS",
-          "volume_in3": 44.08221557936386
+          "volume_in3": 44.08221557936387
         },
         {
           "centroid_margin_m": 0.025399999999998535,
@@ -824,12 +824,12 @@
         },
         {
           "centroid_margin_m": 0.02034000000000028,
-          "convex_volume_error_m3": 1.0842021724855044e-19,
+          "convex_volume_error_m3": 5.421010862427522e-20,
           "coverage_mode": "one convex cell",
           "interior_boundary_area_m2": 0.0,
           "mate": "B1",
           "status": "PASS",
-          "volume_in3": 25.99696269072764
+          "volume_in3": 25.996962690727642
         },
         {
           "centroid_margin_m": 0.020339999999999026,
@@ -838,7 +838,7 @@
           "interior_boundary_area_m2": 0.0,
           "mate": "B0",
           "status": "PASS",
-          "volume_in3": 25.99696269072708
+          "volume_in3": 25.996962690727077
         },
         {
           "centroid_margin_m": 0.006349999999999412,
@@ -852,7 +852,7 @@
       ],
       "cross_sections": {
         "max_missing_area_m2": 1.7606019973754883e-15,
-        "max_receiver_overlap_area_m2": 9.827911853790283e-16,
+        "max_receiver_overlap_area_m2": 9.966492652893067e-16,
         "sections": 270,
         "status": "PASS"
       },
@@ -882,10 +882,10 @@
         "convex_cells": 1067,
         "declared_external_trim": null,
         "failures": [],
-        "max_cavity_vertex_outside_reference_stock_m": 4.121702978920894e-15,
+        "max_cavity_vertex_outside_reference_stock_m": 4.107825191113079e-15,
         "max_interior_boundary_area_m2": 0.0,
         "partition_planes": 25,
-        "partition_volume_balance_error_m3": 3.094746681142624e-14,
+        "partition_volume_balance_error_m3": 2.89906987305244e-14,
         "reference_envelope_volume_in3": 6210.313682743939,
         "scope": "Saved prejoinery envelope, after any explicitly listed exterior trim, is covered by final timber wood plus exported removed cavity within the stated tolerances. Added tenons outside this envelope are not counted as removed stock.",
         "status": "PASS",
@@ -908,38 +908,38 @@
           "interior_boundary_area_m2": 0.0,
           "mate": "K2-A",
           "status": "PASS",
-          "volume_in3": 21.24124596924611
+          "volume_in3": 21.241245969246126
         },
         {
           "centroid_margin_m": 0.022528995514027095,
-          "convex_volume_error_m3": 1.6263032587282567e-19,
+          "convex_volume_error_m3": 3.2526065174565133e-19,
           "coverage_mode": "one convex cell",
           "interior_boundary_area_m2": 0.0,
           "mate": "K1-B",
           "status": "PASS",
-          "volume_in3": 21.241245969245583
+          "volume_in3": 21.241245969245593
         },
         {
-          "centroid_margin_m": 0.006957391915745514,
-          "convex_volume_error_m3": 3.3881317890172014e-20,
+          "centroid_margin_m": 0.0069573919157459585,
+          "convex_volume_error_m3": 1.3552527156068805e-19,
           "coverage_mode": "one convex cell",
           "interior_boundary_area_m2": 0.0,
           "mate": "J1-0",
           "status": "PASS",
-          "volume_in3": 3.2283614024662457
+          "volume_in3": 3.228361402466236
         },
         {
           "centroid_margin_m": 0.006957391915746403,
-          "convex_volume_error_m3": 1.3552527156068805e-19,
+          "convex_volume_error_m3": 5.421010862427522e-19,
           "coverage_mode": "one convex cell",
           "interior_boundary_area_m2": 0.0,
           "mate": "J1-2",
           "status": "PASS",
-          "volume_in3": 3.228361402466285
+          "volume_in3": 3.2283614024663345
         }
       ],
       "cross_sections": {
-        "max_missing_area_m2": 9.276866912841797e-16,
+        "max_missing_area_m2": 8.537769317626953e-16,
         "max_receiver_overlap_area_m2": 3.35693359375e-16,
         "sections": 393,
         "status": "PASS"
@@ -948,7 +948,7 @@
       "mesh_check": {
         "connected_surfaces": 4,
         "failures": [],
-        "minimum_triangle_area_m2": 7.36648212075287e-05,
+        "minimum_triangle_area_m2": 7.366482120752566e-05,
         "raw_surface_check": {
           "coplanar_pairs_tested": 18,
           "max_overlap_area_m2": 0.0,
@@ -959,7 +959,7 @@
           "status": "PASS",
           "sum_pair_overlap_area_m2": 0
         },
-        "signed_volume_m3": 0.0008019700441102357,
+        "signed_volume_m3": 0.0008019700441102366,
         "status": "PASS",
         "triangles": 40,
         "vertices": 28
@@ -973,8 +973,8 @@
         "max_cavity_vertex_outside_reference_stock_m": 1.7763568394002505e-15,
         "max_interior_boundary_area_m2": 0.0,
         "partition_planes": 12,
-        "partition_volume_balance_error_m3": 8.548717289613705e-15,
-        "reference_envelope_volume_in3": 6050.180668328283,
+        "partition_volume_balance_error_m3": 6.980527267330672e-15,
+        "reference_envelope_volume_in3": 6050.180668328282,
         "scope": "Saved prejoinery envelope, after any explicitly listed exterior trim, is covered by final timber wood plus exported removed cavity within the stated tolerances. Added tenons outside this envelope are not counted as removed stock.",
         "status": "PASS",
         "verified_cells": 87
@@ -996,16 +996,16 @@
           "interior_boundary_area_m2": 0.0,
           "mate": "J1-0",
           "status": "PASS",
-          "volume_in3": 27.422619235294757
+          "volume_in3": 27.422619235294768
         },
         {
           "centroid_margin_m": 0.009649864166408673,
-          "convex_volume_error_m3": 1.0842021724855044e-19,
+          "convex_volume_error_m3": 2.168404344971009e-19,
           "coverage_mode": "one convex cell",
           "interior_boundary_area_m2": 0.0,
           "mate": "J0-2",
           "status": "PASS",
-          "volume_in3": 27.422619235294377
+          "volume_in3": 27.422619235294384
         },
         {
           "cells": [
@@ -1033,7 +1033,7 @@
                   "interior_boundary_area_m2": 0.0,
                   "mate": "P1",
                   "status": "PASS",
-                  "volume_in3": 3.598550990877671e-06
+                  "volume_in3": 3.59855099087767e-06
                 },
                 {
                   "centroid_margin_m": 0.005336488781183313,
@@ -1041,15 +1041,15 @@
                   "interior_boundary_area_m2": 0.0,
                   "mate": "P1",
                   "status": "PASS",
-                  "volume_in3": 0.8490492420068081
+                  "volume_in3": 0.8490492420067621
                 },
                 {
-                  "centroid_margin_m": 0.01621762952677718,
+                  "centroid_margin_m": 0.0162176295267771,
                   "coverage_mode": "one convex cell",
                   "interior_boundary_area_m2": 0.0,
                   "mate": "P1",
                   "status": "PASS",
-                  "volume_in3": 13.07474817518196
+                  "volume_in3": 13.074748175181746
                 },
                 {
                   "centroid_margin_m": 0.005840528909617504,
@@ -1060,12 +1060,12 @@
                   "volume_in3": 1.4100156170766858
                 },
                 {
-                  "centroid_margin_m": 0.006282687540984266,
+                  "centroid_margin_m": 0.005910077249753343,
                   "coverage_mode": "one convex cell",
                   "interior_boundary_area_m2": 0.0,
                   "mate": "P1",
                   "status": "PASS",
-                  "volume_in3": 2.1664135575607406
+                  "volume_in3": 2.16641355756074
                 },
                 {
                   "centroid_margin_m": 1.3365893291705788e-05,
@@ -1073,10 +1073,10 @@
                   "interior_boundary_area_m2": 0.0,
                   "mate": "P1",
                   "status": "PASS",
-                  "volume_in3": 1.6050807642396226e-06
+                  "volume_in3": 1.6050807642396222e-06
                 },
                 {
-                  "centroid_margin_m": 0.005237276121023093,
+                  "centroid_margin_m": 0.0052372761210239815,
                   "coverage_mode": "one convex cell",
                   "interior_boundary_area_m2": 0.0,
                   "mate": "P1",
@@ -1096,7 +1096,7 @@
               "note": "Each cell is independently contained in one mate; only the stated distance shell around cell boundaries is excluded.",
               "partition_cells": 10,
               "partition_planes": 4,
-              "partition_volume_balance_error_m3": 4.92227786308419e-17,
+              "partition_volume_balance_error_m3": 4.4994390158148434e-17,
               "status": "PASS",
               "volume_in3": 24.5784206860163
             },
@@ -1106,7 +1106,7 @@
               "interior_boundary_area_m2": 0.0,
               "mate": "P1",
               "status": "PASS",
-              "volume_in3": 49.156841372031494
+              "volume_in3": 49.1568413720315
             },
             {
               "cells": [
@@ -1116,7 +1116,7 @@
                   "interior_boundary_area_m2": 0.0,
                   "mate": "P1",
                   "status": "PASS",
-                  "volume_in3": 0.22364646929872226
+                  "volume_in3": 0.22364646929872223
                 },
                 {
                   "centroid_margin_m": 0.006295433727345312,
@@ -1132,18 +1132,18 @@
                   "interior_boundary_area_m2": 0.0,
                   "mate": "P1",
                   "status": "PASS",
-                  "volume_in3": 0.8490492420064285
+                  "volume_in3": 0.8490492420064286
                 },
                 {
-                  "centroid_margin_m": 9.567085808903641e-06,
+                  "centroid_margin_m": 8.504076275173134e-06,
                   "coverage_mode": "one convex cell",
                   "interior_boundary_area_m2": 0.0,
                   "mate": "P1",
                   "status": "PASS",
-                  "volume_in3": 3.5985509910236004e-06
+                  "volume_in3": 3.598550991127148e-06
                 },
                 {
-                  "centroid_margin_m": 0.0172612592678294,
+                  "centroid_margin_m": 0.015092020210047519,
                   "coverage_mode": "one convex cell",
                   "interior_boundary_area_m2": 0.0,
                   "mate": "P1",
@@ -1156,7 +1156,7 @@
                   "interior_boundary_area_m2": 0.0,
                   "mate": "P1",
                   "status": "PASS",
-                  "volume_in3": 1.4100156170769698
+                  "volume_in3": 1.41001561707697
                 },
                 {
                   "centroid_margin_m": 0.006282379488621981,
@@ -1205,15 +1205,15 @@
               "interior_boundary_area_m2": 0.0,
               "mate": "P1",
               "status": "PASS",
-              "volume_in3": 7.999999999999873
+              "volume_in3": 7.999999999999979
             },
             {
-              "centroid_margin_m": 0.005896428571428025,
+              "centroid_margin_m": 0.005896428571428469,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "P1",
               "status": "PASS",
-              "volume_in3": 8.000000000000384
+              "volume_in3": 8.0000000000003
             }
           ],
           "coverage_mode": "nonconvex surface partition",
@@ -1221,12 +1221,12 @@
           "note": "Disjoint convex cells are each proved inside the actual concave cavity; their summed volume must recover its signed surface volume. Every retained cell is then proved covered by mating timber.",
           "partition_cells": 5,
           "partition_planes": 3,
-          "partition_volume_balance_error_m3": 4.7921736023859296e-17,
+          "partition_volume_balance_error_m3": 4.85722573273506e-17,
           "status": "PASS"
         }
       ],
       "cross_sections": {
-        "max_missing_area_m2": 1.712220525488195e-15,
+        "max_missing_area_m2": 1.6707356927245232e-15,
         "max_receiver_overlap_area_m2": 1.9497111381497234e-14,
         "sections": 240,
         "status": "PASS"
@@ -1246,7 +1246,7 @@
           "status": "PASS",
           "sum_pair_overlap_area_m2": 0
         },
-        "signed_volume_m3": 0.0027720180681153465,
+        "signed_volume_m3": 0.0027720180681153448,
         "status": "PASS",
         "triangles": 72,
         "vertices": 42
@@ -1257,11 +1257,11 @@
         "convex_cells": 386,
         "declared_external_trim": null,
         "failures": [],
-        "max_cavity_vertex_outside_reference_stock_m": 1.7763568394002505e-15,
+        "max_cavity_vertex_outside_reference_stock_m": 4.066191827689636e-15,
         "max_interior_boundary_area_m2": 0.0,
         "partition_planes": 18,
-        "partition_volume_balance_error_m3": 3.197442310920451e-14,
-        "reference_envelope_volume_in3": 13155.07506630065,
+        "partition_volume_balance_error_m3": 2.350897254643769e-14,
+        "reference_envelope_volume_in3": 13155.075066300424,
         "scope": "Saved prejoinery envelope, after any explicitly listed exterior trim, is covered by final timber wood plus exported removed cavity within the stated tolerances. Added tenons outside this envelope are not counted as removed stock.",
         "status": "PASS",
         "verified_cells": 386
@@ -1277,7 +1277,7 @@
     {
       "components": [
         {
-          "centroid_margin_m": 0.025399999999999825,
+          "centroid_margin_m": 0.025399999999999798,
           "convex_volume_error_m3": 1.0842021724855044e-19,
           "coverage_mode": "one convex cell",
           "interior_boundary_area_m2": 0.0,
@@ -1287,21 +1287,21 @@
         },
         {
           "centroid_margin_m": 0.020340000000000025,
-          "convex_volume_error_m3": 1.0842021724855044e-19,
+          "convex_volume_error_m3": 2.168404344971009e-19,
           "coverage_mode": "one convex cell",
           "interior_boundary_area_m2": 0.0,
           "mate": "R1",
           "status": "PASS",
-          "volume_in3": 44.98160784748995
+          "volume_in3": 44.98160784748994
         },
         {
           "centroid_margin_m": 0.013569627672608497,
-          "convex_volume_error_m3": 5.421010862427522e-20,
+          "convex_volume_error_m3": 2.710505431213761e-20,
           "coverage_mode": "one convex cell",
           "interior_boundary_area_m2": 0.0,
           "mate": "L1-S",
           "status": "PASS",
-          "volume_in3": 11.558550058925526
+          "volume_in3": 11.558550058925528
         },
         {
           "centroid_margin_m": 0.013569627672608275,
@@ -1319,10 +1319,10 @@
           "interior_boundary_area_m2": 0.0,
           "mate": "L0-S",
           "status": "PASS",
-          "volume_in3": 11.558550058925402
+          "volume_in3": 11.558550058925404
         },
         {
-          "centroid_margin_m": 0.013569627672608497,
+          "centroid_margin_m": 0.013569627672608386,
           "convex_volume_error_m3": 0.0,
           "coverage_mode": "one convex cell",
           "interior_boundary_area_m2": 0.0,
@@ -1366,7 +1366,7 @@
         "max_cavity_vertex_outside_reference_stock_m": 4.440892098500626e-16,
         "max_interior_boundary_area_m2": 0.0,
         "partition_planes": 19,
-        "partition_volume_balance_error_m3": 7.93809462606987e-15,
+        "partition_volume_balance_error_m3": 7.494005416219807e-15,
         "reference_envelope_volume_in3": 3357.736659610111,
         "scope": "Saved prejoinery envelope, after any explicitly listed exterior trim, is covered by final timber wood plus exported removed cavity within the stated tolerances. Added tenons outside this envelope are not counted as removed stock.",
         "status": "PASS",
@@ -1385,44 +1385,44 @@
         {
           "cells": [
             {
-              "centroid_margin_m": 0.0005905657678271226,
+              "centroid_margin_m": 0.0005707532420258232,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "B1",
               "status": "PASS",
-              "volume_in3": 0.009407599205537834
+              "volume_in3": 0.009407599205533442
             },
             {
-              "centroid_margin_m": 0.0006699766352276093,
+              "centroid_margin_m": 0.0006339790082510177,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "B1",
               "status": "PASS",
-              "volume_in3": 0.018815198411096194
+              "volume_in3": 0.01881519841106684
             },
             {
-              "centroid_margin_m": 0.0005088215338076019,
+              "centroid_margin_m": 0.0006148965219834324,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "B1",
               "status": "PASS",
-              "volume_in3": 0.009407599205552838
+              "volume_in3": 0.009407599205547507
             },
             {
-              "centroid_margin_m": 0.005347740330080786,
+              "centroid_margin_m": 0.0062713480123508525,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "B1",
               "status": "PASS",
-              "volume_in3": 1.6141807012331553
+              "volume_in3": 1.6141807012329117
             },
             {
-              "centroid_margin_m": 0.008386645094326184,
+              "centroid_margin_m": 0.007951077366882164,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "B1",
               "status": "PASS",
-              "volume_in3": 1.6141807012337557
+              "volume_in3": 1.614180701233058
             }
           ],
           "coverage_mode": "nonconvex surface partition",
@@ -1430,13 +1430,13 @@
           "note": "Disjoint convex cells are each proved inside the actual concave cavity; their summed volume must recover its signed surface volume. Every retained cell is then proved covered by mating timber.",
           "partition_cells": 5,
           "partition_planes": 3,
-          "partition_volume_balance_error_m3": 1.2902005852577503e-17,
+          "partition_volume_balance_error_m3": 3.9641141931501256e-18,
           "status": "PASS"
         }
       ],
       "cross_sections": {
-        "max_missing_area_m2": 3.9005279541015623e-16,
-        "max_receiver_overlap_area_m2": 2.0313262939453124e-16,
+        "max_missing_area_m2": 4.8828125e-16,
+        "max_receiver_overlap_area_m2": 2.40325927734375e-16,
         "sections": 129,
         "status": "PASS"
       },
@@ -1444,7 +1444,7 @@
       "mesh_check": {
         "connected_surfaces": 1,
         "failures": [],
-        "minimum_triangle_area_m2": 1.3864150274310368e-05,
+        "minimum_triangle_area_m2": 1.3864150274307536e-05,
         "raw_surface_check": {
           "coplanar_pairs_tested": 41,
           "max_overlap_area_m2": 0.0,
@@ -1455,7 +1455,7 @@
           "status": "PASS",
           "sum_pair_overlap_area_m2": 0
         },
-        "signed_volume_m3": 5.3520016638412696e-05,
+        "signed_volume_m3": 5.35200166384135e-05,
         "status": "PASS",
         "triangles": 30,
         "vertices": 17
@@ -1466,11 +1466,11 @@
         "convex_cells": 18,
         "declared_external_trim": null,
         "failures": [],
-        "max_cavity_vertex_outside_reference_stock_m": 3.9968028886505635e-15,
+        "max_cavity_vertex_outside_reference_stock_m": 3.885780586188048e-15,
         "max_interior_boundary_area_m2": 0.0,
         "partition_planes": 5,
-        "partition_volume_balance_error_m3": 2.3037127760972e-15,
-        "reference_envelope_volume_in3": 4025.950085184184,
+        "partition_volume_balance_error_m3": 1.0269562977782698e-15,
+        "reference_envelope_volume_in3": 4025.9500851841885,
         "scope": "Saved prejoinery envelope, after any explicitly listed exterior trim, is covered by final timber wood plus exported removed cavity within the stated tolerances. Added tenons outside this envelope are not counted as removed stock.",
         "status": "PASS",
         "verified_cells": 18
@@ -1493,7 +1493,7 @@
               "interior_boundary_area_m2": 0.0,
               "mate": "B1",
               "status": "PASS",
-              "volume_in3": 0.009407599205554165
+              "volume_in3": 0.009407599205551313
             },
             {
               "centroid_margin_m": 0.0005025639605071852,
@@ -1501,7 +1501,7 @@
               "interior_boundary_area_m2": 0.0,
               "mate": "B1",
               "status": "PASS",
-              "volume_in3": 0.018815198411118877
+              "volume_in3": 0.01881519841110484
             },
             {
               "centroid_margin_m": 0.00045788468556740014,
@@ -1512,12 +1512,12 @@
               "volume_in3": 0.00940759920554416
             },
             {
-              "centroid_margin_m": 0.007015656500191092,
+              "centroid_margin_m": 0.0070156565001886495,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "B1",
               "status": "PASS",
-              "volume_in3": 1.6141807012336247
+              "volume_in3": 1.6141807012330116
             },
             {
               "centroid_margin_m": 0.0056407787512049445,
@@ -1533,13 +1533,13 @@
           "note": "Disjoint convex cells are each proved inside the actual concave cavity; their summed volume must recover its signed surface volume. Every retained cell is then proved covered by mating timber.",
           "partition_cells": 5,
           "partition_planes": 3,
-          "partition_volume_balance_error_m3": 1.1045309632196076e-17,
+          "partition_volume_balance_error_m3": 3.3203691532368573e-19,
           "status": "PASS"
         }
       ],
       "cross_sections": {
-        "max_missing_area_m2": 5.454447653684691e-16,
-        "max_receiver_overlap_area_m2": 3.4332275390625e-16,
+        "max_missing_area_m2": 6.677640723863343e-16,
+        "max_receiver_overlap_area_m2": 5.645751953125e-16,
         "sections": 129,
         "status": "PASS"
       },
@@ -1547,7 +1547,7 @@
       "mesh_check": {
         "connected_surfaces": 1,
         "failures": [],
-        "minimum_triangle_area_m2": 1.3864150274310192e-05,
+        "minimum_triangle_area_m2": 1.386415027430829e-05,
         "raw_surface_check": {
           "coplanar_pairs_tested": 41,
           "max_overlap_area_m2": 0.0,
@@ -1558,7 +1558,7 @@
           "status": "PASS",
           "sum_pair_overlap_area_m2": 0
         },
-        "signed_volume_m3": 5.3520016638412046e-05,
+        "signed_volume_m3": 5.35200166384131e-05,
         "status": "PASS",
         "triangles": 30,
         "vertices": 17
@@ -1569,10 +1569,10 @@
         "convex_cells": 18,
         "declared_external_trim": null,
         "failures": [],
-        "max_cavity_vertex_outside_reference_stock_m": 1.7763568394002505e-15,
+        "max_cavity_vertex_outside_reference_stock_m": 1.6653345369377348e-15,
         "max_interior_boundary_area_m2": 0.0,
         "partition_planes": 5,
-        "partition_volume_balance_error_m3": 2.1788126858268697e-15,
+        "partition_volume_balance_error_m3": 1.1657341758564144e-15,
         "reference_envelope_volume_in3": 4025.9500851844264,
         "scope": "Saved prejoinery envelope, after any explicitly listed exterior trim, is covered by final timber wood plus exported removed cavity within the stated tolerances. Added tenons outside this envelope are not counted as removed stock.",
         "status": "PASS",
@@ -1599,7 +1599,7 @@
         },
         {
           "centroid_margin_m": 0.020680427794254302,
-          "convex_volume_error_m3": 6.505213034913027e-19,
+          "convex_volume_error_m3": 8.673617379884035e-19,
           "coverage_mode": "one convex cell",
           "interior_boundary_area_m2": 0.0,
           "mate": "K2-A",
@@ -1644,7 +1644,7 @@
         }
       ],
       "cross_sections": {
-        "max_missing_area_m2": 1.4000535011291504e-15,
+        "max_missing_area_m2": 1.497805118560791e-15,
         "max_receiver_overlap_area_m2": 7.517337799072266e-16,
         "sections": 270,
         "status": "PASS"
@@ -1664,7 +1664,7 @@
           "status": "PASS",
           "sum_pair_overlap_area_m2": 0
         },
-        "signed_volume_m3": 0.0030833630307587727,
+        "signed_volume_m3": 0.003083363030758773,
         "status": "PASS",
         "triangles": 88,
         "vertices": 56
@@ -1678,7 +1678,7 @@
         "max_cavity_vertex_outside_reference_stock_m": 0.0,
         "max_interior_boundary_area_m2": 0.0,
         "partition_planes": 25,
-        "partition_volume_balance_error_m3": 1.099120794378905e-14,
+        "partition_volume_balance_error_m3": 1.189326415129699e-14,
         "reference_envelope_volume_in3": 6210.313682744058,
         "scope": "Saved prejoinery envelope, after any explicitly listed exterior trim, is covered by final timber wood plus exported removed cavity within the stated tolerances. Added tenons outside this envelope are not counted as removed stock.",
         "status": "PASS",
@@ -1713,26 +1713,26 @@
           "volume_in3": 21.241245969245632
         },
         {
-          "centroid_margin_m": 0.006957391915745514,
-          "convex_volume_error_m3": 6.776263578034403e-21,
+          "centroid_margin_m": 0.0069573919157459585,
+          "convex_volume_error_m3": 6.776263578034403e-20,
           "coverage_mode": "one convex cell",
           "interior_boundary_area_m2": 0.0,
           "mate": "J2-0",
           "status": "PASS",
-          "volume_in3": 3.228361402466243
+          "volume_in3": 3.2283614024662515
         },
         {
           "centroid_margin_m": 0.006957391915746403,
-          "convex_volume_error_m3": 1.2197274440461925e-19,
+          "convex_volume_error_m3": 2.168404344971009e-19,
           "coverage_mode": "one convex cell",
           "interior_boundary_area_m2": 0.0,
           "mate": "J2-2",
           "status": "PASS",
-          "volume_in3": 3.228361402466232
+          "volume_in3": 3.228361402466272
         }
       ],
       "cross_sections": {
-        "max_missing_area_m2": 8.65936279296875e-16,
+        "max_missing_area_m2": 9.26971435546875e-16,
         "max_receiver_overlap_area_m2": 3.35693359375e-16,
         "sections": 393,
         "status": "PASS"
@@ -1752,7 +1752,7 @@
           "status": "PASS",
           "sum_pair_overlap_area_m2": 0
         },
-        "signed_volume_m3": 0.0008019700441102367,
+        "signed_volume_m3": 0.0008019700441102383,
         "status": "PASS",
         "triangles": 40,
         "vertices": 28
@@ -1763,11 +1763,11 @@
         "convex_cells": 87,
         "declared_external_trim": null,
         "failures": [],
-        "max_cavity_vertex_outside_reference_stock_m": 1.7763568394002505e-15,
+        "max_cavity_vertex_outside_reference_stock_m": 2.6645352591003757e-15,
         "max_interior_boundary_area_m2": 0.0,
         "partition_planes": 12,
-        "partition_volume_balance_error_m3": 9.006684287271582e-15,
-        "reference_envelope_volume_in3": 6050.180668328285,
+        "partition_volume_balance_error_m3": 8.673617379884035e-15,
+        "reference_envelope_volume_in3": 6050.180668328284,
         "scope": "Saved prejoinery envelope, after any explicitly listed exterior trim, is covered by final timber wood plus exported removed cavity within the stated tolerances. Added tenons outside this envelope are not counted as removed stock.",
         "status": "PASS",
         "verified_cells": 87
@@ -1784,21 +1784,21 @@
       "components": [
         {
           "centroid_margin_m": 0.009649864166409228,
-          "convex_volume_error_m3": 5.421010862427522e-20,
+          "convex_volume_error_m3": 1.6263032587282567e-19,
           "coverage_mode": "one convex cell",
           "interior_boundary_area_m2": 0.0,
           "mate": "J2-0",
           "status": "PASS",
-          "volume_in3": 27.422619235294974
+          "volume_in3": 27.422619235294967
         },
         {
           "centroid_margin_m": 0.009649864166409006,
-          "convex_volume_error_m3": 1.6263032587282567e-19,
+          "convex_volume_error_m3": 2.168404344971009e-19,
           "coverage_mode": "one convex cell",
           "interior_boundary_area_m2": 0.0,
           "mate": "J1-2",
           "status": "PASS",
-          "volume_in3": 27.42261923529449
+          "volume_in3": 27.422619235294494
         },
         {
           "cells": [
@@ -1861,7 +1861,7 @@
                   "volume_in3": 0.2236464692990706
                 },
                 {
-                  "centroid_margin_m": 0.004726922710990955,
+                  "centroid_margin_m": 0.004726922710990067,
                   "coverage_mode": "one convex cell",
                   "interior_boundary_area_m2": 0.0,
                   "mate": "P2",
@@ -1936,7 +1936,7 @@
                   "volume_in3": 3.7460333193728226
                 },
                 {
-                  "centroid_margin_m": 0.0020378833196237345,
+                  "centroid_margin_m": 0.0020378833196232904,
                   "coverage_mode": "one convex cell",
                   "interior_boundary_area_m2": 0.0,
                   "mate": "P2",
@@ -1973,22 +1973,22 @@
                   "interior_boundary_area_m2": 0.0,
                   "mate": "P2",
                   "status": "PASS",
-                  "volume_in3": 2.166413557560751
+                  "volume_in3": 2.1664135575608157
                 },
                 {
-                  "centroid_margin_m": 0.005758507721455253,
+                  "centroid_margin_m": 0.0057585077214543645,
                   "coverage_mode": "one convex cell",
                   "interior_boundary_area_m2": 0.0,
                   "mate": "P2",
                   "status": "PASS",
-                  "volume_in3": 0.4125844053975125
+                  "volume_in3": 0.4125844053974557
                 }
               ],
               "coverage_mode": "explicit convex partition",
               "note": "Each cell is independently contained in one mate; only the stated distance shell around cell boundaries is excluded.",
               "partition_cells": 10,
               "partition_planes": 4,
-              "partition_volume_balance_error_m3": 6.071532165918825e-18,
+              "partition_volume_balance_error_m3": 6.2341624917916505e-18,
               "status": "PASS",
               "volume_in3": 24.578420686016777
             },
@@ -2019,7 +2019,7 @@
         }
       ],
       "cross_sections": {
-        "max_missing_area_m2": 1.7577156705138597e-15,
+        "max_missing_area_m2": 1.6967997235534105e-15,
         "max_receiver_overlap_area_m2": 1.9497111381497234e-14,
         "sections": 240,
         "status": "PASS"
@@ -2039,7 +2039,7 @@
           "status": "PASS",
           "sum_pair_overlap_area_m2": 0
         },
-        "signed_volume_m3": 0.0027720180681154627,
+        "signed_volume_m3": 0.002772018068115459,
         "status": "PASS",
         "triangles": 72,
         "vertices": 42
@@ -2053,8 +2053,8 @@
         "max_cavity_vertex_outside_reference_stock_m": 0.0,
         "max_interior_boundary_area_m2": 0.0,
         "partition_planes": 18,
-        "partition_volume_balance_error_m3": 1.7236212457305555e-14,
-        "reference_envelope_volume_in3": 13155.075066300322,
+        "partition_volume_balance_error_m3": 1.915134717478395e-14,
+        "reference_envelope_volume_in3": 13155.07506630032,
         "scope": "Saved prejoinery envelope, after any explicitly listed exterior trim, is covered by final timber wood plus exported removed cavity within the stated tolerances. Added tenons outside this envelope are not counted as removed stock.",
         "status": "PASS",
         "verified_cells": 386
@@ -2080,7 +2080,7 @@
         },
         {
           "centroid_margin_m": 0.020339999999999803,
-          "convex_volume_error_m3": 0.0,
+          "convex_volume_error_m3": 1.0842021724855044e-19,
           "coverage_mode": "one convex cell",
           "interior_boundary_area_m2": 0.0,
           "mate": "R2",
@@ -2094,7 +2094,7 @@
           "interior_boundary_area_m2": 0.0,
           "mate": "L2-S",
           "status": "PASS",
-          "volume_in3": 11.558550058925537
+          "volume_in3": 11.558550058925533
         },
         {
           "centroid_margin_m": 0.013569627672608053,
@@ -2159,7 +2159,7 @@
         "max_cavity_vertex_outside_reference_stock_m": 0.0,
         "max_interior_boundary_area_m2": 0.0,
         "partition_planes": 19,
-        "partition_volume_balance_error_m3": 2.851885394505871e-15,
+        "partition_volume_balance_error_m3": 2.8727020762175925e-15,
         "reference_envelope_volume_in3": 3357.736659610101,
         "scope": "Saved prejoinery envelope, after any explicitly listed exterior trim, is covered by final timber wood plus exported removed cavity within the stated tolerances. Added tenons outside this envelope are not counted as removed stock.",
         "status": "PASS",
@@ -2183,7 +2183,7 @@
               "interior_boundary_area_m2": 0.0,
               "mate": "B2",
               "status": "PASS",
-              "volume_in3": 0.0094075992055437
+              "volume_in3": 0.009407599205543698
             },
             {
               "centroid_margin_m": 0.0006159244744496917,
@@ -2191,7 +2191,7 @@
               "interior_boundary_area_m2": 0.0,
               "mate": "B2",
               "status": "PASS",
-              "volume_in3": 0.01881519841108622
+              "volume_in3": 0.018815198411082337
             },
             {
               "centroid_margin_m": 0.0006927976497927979,
@@ -2199,23 +2199,23 @@
               "interior_boundary_area_m2": 0.0,
               "mate": "B2",
               "status": "PASS",
-              "volume_in3": 0.009407599205533992
+              "volume_in3": 0.009407599205537411
             },
             {
-              "centroid_margin_m": 0.006129225452329301,
+              "centroid_margin_m": 0.006594325066407336,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "B2",
               "status": "PASS",
-              "volume_in3": 1.6141807012331397
+              "volume_in3": 1.6141807012330607
             },
             {
-              "centroid_margin_m": 0.007815384615387999,
+              "centroid_margin_m": 0.007120255984454982,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "B2",
               "status": "PASS",
-              "volume_in3": 1.614180701233447
+              "volume_in3": 1.6141807012329314
             }
           ],
           "coverage_mode": "nonconvex surface partition",
@@ -2223,12 +2223,12 @@
           "note": "Disjoint convex cells are each proved inside the actual concave cavity; their summed volume must recover its signed surface volume. Every retained cell is then proved covered by mating timber.",
           "partition_cells": 5,
           "partition_planes": 3,
-          "partition_volume_balance_error_m3": 7.867242014097942e-18,
+          "partition_volume_balance_error_m3": 2.947674656444965e-18,
           "status": "PASS"
         }
       ],
       "cross_sections": {
-        "max_missing_area_m2": 4.8828125e-16,
+        "max_missing_area_m2": 4.711151123046875e-16,
         "max_receiver_overlap_area_m2": 2.951622009277344e-16,
         "sections": 129,
         "status": "PASS"
@@ -2237,7 +2237,7 @@
       "mesh_check": {
         "connected_surfaces": 1,
         "failures": [],
-        "minimum_triangle_area_m2": 1.3864150274310192e-05,
+        "minimum_triangle_area_m2": 1.386415027430829e-05,
         "raw_surface_check": {
           "coplanar_pairs_tested": 41,
           "max_overlap_area_m2": 0.0,
@@ -2248,7 +2248,7 @@
           "status": "PASS",
           "sum_pair_overlap_area_m2": 0
         },
-        "signed_volume_m3": 5.3520016638412046e-05,
+        "signed_volume_m3": 5.35200166384131e-05,
         "status": "PASS",
         "triangles": 30,
         "vertices": 17
@@ -2262,7 +2262,7 @@
         "max_cavity_vertex_outside_reference_stock_m": 4.551914400963142e-15,
         "max_interior_boundary_area_m2": 0.0,
         "partition_planes": 5,
-        "partition_volume_balance_error_m3": 1.4432899320127035e-15,
+        "partition_volume_balance_error_m3": 2.1371793224034263e-15,
         "reference_envelope_volume_in3": 4025.950085184229,
         "scope": "Saved prejoinery envelope, after any explicitly listed exterior trim, is covered by final timber wood plus exported removed cavity within the stated tolerances. Added tenons outside this envelope are not counted as removed stock.",
         "status": "PASS",
@@ -2281,44 +2281,44 @@
         {
           "cells": [
             {
-              "centroid_margin_m": 0.0005488122445411747,
+              "centroid_margin_m": 0.0005245904634358922,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "B2",
               "status": "PASS",
-              "volume_in3": 0.009407599205563605
+              "volume_in3": 0.009407599205547732
             },
             {
-              "centroid_margin_m": 0.0006338257418359028,
+              "centroid_margin_m": 0.0005563160423007751,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "B2",
               "status": "PASS",
-              "volume_in3": 0.018815198411119862
+              "volume_in3": 0.01881519841107485
             },
             {
-              "centroid_margin_m": 0.0006461057243543067,
+              "centroid_margin_m": 0.000566834440739683,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "B2",
               "status": "PASS",
-              "volume_in3": 0.009407599205537836
+              "volume_in3": 0.009407599205536115
             },
             {
-              "centroid_margin_m": 0.00738371063155574,
+              "centroid_margin_m": 0.007286143272196899,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "B2",
               "status": "PASS",
-              "volume_in3": 1.6141807012337952
+              "volume_in3": 1.6141807012331846
             },
             {
-              "centroid_margin_m": 0.006050004260387265,
+              "centroid_margin_m": 0.006537507953420008,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "B2",
               "status": "PASS",
-              "volume_in3": 1.6141807012329195
+              "volume_in3": 1.6141807012329148
             }
           ],
           "coverage_mode": "nonconvex surface partition",
@@ -2326,13 +2326,13 @@
           "note": "Disjoint convex cells are each proved inside the actual concave cavity; their summed volume must recover its signed surface volume. Every retained cell is then proved covered by mating timber.",
           "partition_cells": 5,
           "partition_planes": 3,
-          "partition_volume_balance_error_m3": 9.954331196132538e-18,
+          "partition_volume_balance_error_m3": 1.7618285302889447e-18,
           "status": "PASS"
         }
       ],
       "cross_sections": {
-        "max_missing_area_m2": 5.707016604439841e-16,
-        "max_receiver_overlap_area_m2": 3.2806396484375e-16,
+        "max_missing_area_m2": 6.294503487050962e-16,
+        "max_receiver_overlap_area_m2": 3.5953521728515624e-16,
         "sections": 129,
         "status": "PASS"
       },
@@ -2340,7 +2340,7 @@
       "mesh_check": {
         "connected_surfaces": 1,
         "failures": [],
-        "minimum_triangle_area_m2": 1.3864150274310366e-05,
+        "minimum_triangle_area_m2": 1.3864150274307534e-05,
         "raw_surface_check": {
           "coplanar_pairs_tested": 41,
           "max_overlap_area_m2": 0.0,
@@ -2351,7 +2351,7 @@
           "status": "PASS",
           "sum_pair_overlap_area_m2": 0
         },
-        "signed_volume_m3": 5.352001663841299e-05,
+        "signed_volume_m3": 5.35200166384136e-05,
         "status": "PASS",
         "triangles": 30,
         "vertices": 17
@@ -2365,8 +2365,8 @@
         "max_cavity_vertex_outside_reference_stock_m": 3.6637359812630166e-15,
         "max_interior_boundary_area_m2": 0.0,
         "partition_planes": 5,
-        "partition_volume_balance_error_m3": 3.885780586188048e-16,
-        "reference_envelope_volume_in3": 4025.9500851841876,
+        "partition_volume_balance_error_m3": 1.5265566588595902e-16,
+        "reference_envelope_volume_in3": 4025.950085184184,
         "scope": "Saved prejoinery envelope, after any explicitly listed exterior trim, is covered by final timber wood plus exported removed cavity within the stated tolerances. Added tenons outside this envelope are not counted as removed stock.",
         "status": "PASS",
         "verified_cells": 18
@@ -2382,35 +2382,35 @@
     {
       "components": [
         {
-          "centroid_margin_m": 0.020680427794254636,
-          "convex_volume_error_m3": 4.336808689942018e-19,
+          "centroid_margin_m": 0.020680427794254733,
+          "convex_volume_error_m3": 5.421010862427522e-19,
           "coverage_mode": "one convex cell",
           "interior_boundary_area_m2": 0.0,
           "mate": "K3-B",
           "status": "PASS",
-          "volume_in3": 44.08221557936386
+          "volume_in3": 44.08221557936387
         },
         {
           "centroid_margin_m": 0.020680427794254642,
-          "convex_volume_error_m3": 0.0,
+          "convex_volume_error_m3": 1.0842021724855044e-19,
           "coverage_mode": "one convex cell",
           "interior_boundary_area_m2": 0.0,
           "mate": "K3-A",
           "status": "PASS",
-          "volume_in3": 44.08221557936384
+          "volume_in3": 44.08221557936383
         },
         {
           "centroid_margin_m": 0.025399999999998535,
-          "convex_volume_error_m3": 0.0,
+          "convex_volume_error_m3": 1.0842021724855044e-19,
           "coverage_mode": "one convex cell",
           "interior_boundary_area_m2": 0.0,
           "mate": "T3",
           "status": "PASS",
-          "volume_in3": 31.999999999999655
+          "volume_in3": 31.99999999999965
         },
         {
           "centroid_margin_m": 0.02034000000000028,
-          "convex_volume_error_m3": 1.0842021724855044e-19,
+          "convex_volume_error_m3": 0.0,
           "coverage_mode": "one convex cell",
           "interior_boundary_area_m2": 0.0,
           "mate": "B3",
@@ -2419,7 +2419,7 @@
         },
         {
           "centroid_margin_m": 0.020339999999999026,
-          "convex_volume_error_m3": 5.421010862427522e-20,
+          "convex_volume_error_m3": 0.0,
           "coverage_mode": "one convex cell",
           "interior_boundary_area_m2": 0.0,
           "mate": "B2",
@@ -2468,10 +2468,10 @@
         "convex_cells": 1067,
         "declared_external_trim": null,
         "failures": [],
-        "max_cavity_vertex_outside_reference_stock_m": 4.246603069191224e-15,
+        "max_cavity_vertex_outside_reference_stock_m": 4.427014310692812e-15,
         "max_interior_boundary_area_m2": 0.0,
         "partition_planes": 25,
-        "partition_volume_balance_error_m3": 3.22519788653608e-14,
+        "partition_volume_balance_error_m3": 2.979561042337764e-14,
         "reference_envelope_volume_in3": 6210.313682743939,
         "scope": "Saved prejoinery envelope, after any explicitly listed exterior trim, is covered by final timber wood plus exported removed cavity within the stated tolerances. Added tenons outside this envelope are not counted as removed stock.",
         "status": "PASS",
@@ -2498,34 +2498,34 @@
         },
         {
           "centroid_margin_m": 0.022528995514027095,
-          "convex_volume_error_m3": 4.87890977618477e-19,
+          "convex_volume_error_m3": 5.421010862427522e-19,
           "coverage_mode": "one convex cell",
           "interior_boundary_area_m2": 0.0,
           "mate": "K3-B",
           "status": "PASS",
-          "volume_in3": 21.2412459692456
+          "volume_in3": 21.241245969245604
         },
         {
           "centroid_margin_m": 0.0069573919157459585,
-          "convex_volume_error_m3": 4.743384504624082e-20,
+          "convex_volume_error_m3": 9.486769009248164e-20,
           "coverage_mode": "one convex cell",
           "interior_boundary_area_m2": 0.0,
           "mate": "J3-0",
           "status": "PASS",
-          "volume_in3": 3.2283614024662466
+          "volume_in3": 3.2283614024662333
         },
         {
-          "centroid_margin_m": 0.006957391915746403,
-          "convex_volume_error_m3": 1.2874900798265365e-19,
+          "centroid_margin_m": 0.006957391915746847,
+          "convex_volume_error_m3": 4.743384504624082e-19,
           "coverage_mode": "one convex cell",
           "interior_boundary_area_m2": 0.0,
           "mate": "J3-2",
           "status": "PASS",
-          "volume_in3": 3.2283614024662843
+          "volume_in3": 3.2283614024663305
         }
       ],
       "cross_sections": {
-        "max_missing_area_m2": 9.276866912841797e-16,
+        "max_missing_area_m2": 8.537769317626953e-16,
         "max_receiver_overlap_area_m2": 3.35693359375e-16,
         "sections": 393,
         "status": "PASS"
@@ -2534,7 +2534,7 @@
       "mesh_check": {
         "connected_surfaces": 4,
         "failures": [],
-        "minimum_triangle_area_m2": 7.36648212075287e-05,
+        "minimum_triangle_area_m2": 7.366482120752566e-05,
         "raw_surface_check": {
           "coplanar_pairs_tested": 18,
           "max_overlap_area_m2": 0.0,
@@ -2545,7 +2545,7 @@
           "status": "PASS",
           "sum_pair_overlap_area_m2": 0
         },
-        "signed_volume_m3": 0.0008019700441102374,
+        "signed_volume_m3": 0.0008019700441102366,
         "status": "PASS",
         "triangles": 40,
         "vertices": 28
@@ -2559,7 +2559,7 @@
         "max_cavity_vertex_outside_reference_stock_m": 1.7763568394002505e-15,
         "max_interior_boundary_area_m2": 0.0,
         "partition_planes": 12,
-        "partition_volume_balance_error_m3": 1.2032042029375134e-14,
+        "partition_volume_balance_error_m3": 1.0602629885170245e-14,
         "reference_envelope_volume_in3": 6050.180668328283,
         "scope": "Saved prejoinery envelope, after any explicitly listed exterior trim, is covered by final timber wood plus exported removed cavity within the stated tolerances. Added tenons outside this envelope are not counted as removed stock.",
         "status": "PASS",
@@ -2577,28 +2577,28 @@
       "components": [
         {
           "centroid_margin_m": 0.009649864166409117,
-          "convex_volume_error_m3": 5.421010862427522e-20,
+          "convex_volume_error_m3": 0.0,
           "coverage_mode": "one convex cell",
           "interior_boundary_area_m2": 0.0,
           "mate": "J3-0",
           "status": "PASS",
-          "volume_in3": 27.422619235294764
+          "volume_in3": 27.422619235294768
         },
         {
           "centroid_margin_m": 0.009649864166408673,
-          "convex_volume_error_m3": 1.0842021724855044e-19,
+          "convex_volume_error_m3": 1.6263032587282567e-19,
           "coverage_mode": "one convex cell",
           "interior_boundary_area_m2": 0.0,
           "mate": "J2-2",
           "status": "PASS",
-          "volume_in3": 27.422619235294377
+          "volume_in3": 27.42261923529438
         },
         {
           "cells": [
             {
               "cells": [
                 {
-                  "centroid_margin_m": 0.01428939820438857,
+                  "centroid_margin_m": 0.014289398204388674,
                   "coverage_mode": "one convex cell",
                   "interior_boundary_area_m2": 0.0,
                   "mate": "P3",
@@ -2619,7 +2619,7 @@
                   "interior_boundary_area_m2": 0.0,
                   "mate": "P3",
                   "status": "PASS",
-                  "volume_in3": 0.8490492420066176
+                  "volume_in3": 0.8490492420066175
                 },
                 {
                   "centroid_margin_m": 0.007981265792620817,
@@ -2627,10 +2627,10 @@
                   "interior_boundary_area_m2": 0.0,
                   "mate": "B3",
                   "status": "PASS",
-                  "volume_in3": 2.6959246964924195
+                  "volume_in3": 2.69592469649242
                 },
                 {
-                  "centroid_margin_m": 0.0018741197243894447,
+                  "centroid_margin_m": 0.001874119724390333,
                   "coverage_mode": "one convex cell",
                   "interior_boundary_area_m2": 0.0,
                   "mate": "P3",
@@ -2638,20 +2638,20 @@
                   "volume_in3": 0.22364646929872498
                 },
                 {
-                  "centroid_margin_m": 0.005378315087464447,
+                  "centroid_margin_m": 0.006081077193213602,
                   "coverage_mode": "one convex cell",
                   "interior_boundary_area_m2": 0.0,
                   "mate": "P3",
                   "status": "PASS",
-                  "volume_in3": 3.7460333193735162
+                  "volume_in3": 3.746033319373517
                 },
                 {
-                  "centroid_margin_m": 1.3915761178040498e-05,
+                  "centroid_margin_m": 1.27561144127597e-05,
                   "coverage_mode": "one convex cell",
                   "interior_boundary_area_m2": 0.0,
                   "mate": "P3",
                   "status": "PASS",
-                  "volume_in3": 1.6050807644044243e-06
+                  "volume_in3": 1.6050807644275157e-06
                 },
                 {
                   "centroid_margin_m": 0.005327857665806235,
@@ -2659,7 +2659,7 @@
                   "interior_boundary_area_m2": 0.0,
                   "mate": "P3",
                   "status": "PASS",
-                  "volume_in3": 0.4125844053973568
+                  "volume_in3": 0.4125844053973567
                 },
                 {
                   "centroid_margin_m": 0.006011435358006967,
@@ -2667,7 +2667,7 @@
                   "interior_boundary_area_m2": 0.0,
                   "mate": "P3",
                   "status": "PASS",
-                  "volume_in3": 2.1664135575606323
+                  "volume_in3": 2.1664135575606327
                 },
                 {
                   "centroid_margin_m": 0.005916525189392896,
@@ -2675,16 +2675,16 @@
                   "interior_boundary_area_m2": 0.0,
                   "mate": "P3",
                   "status": "PASS",
-                  "volume_in3": 1.4100156170766869
+                  "volume_in3": 1.4100156170766867
                 }
               ],
               "coverage_mode": "explicit convex partition",
               "note": "Each cell is independently contained in one mate; only the stated distance shell around cell boundaries is excluded.",
               "partition_cells": 10,
               "partition_planes": 4,
-              "partition_volume_balance_error_m3": 6.055269133331542e-17,
+              "partition_volume_balance_error_m3": 6.044427111606687e-17,
               "status": "PASS",
-              "volume_in3": 24.578420686016624
+              "volume_in3": 24.57842068601663
             },
             {
               "centroid_margin_m": 0.017754670140652795,
@@ -2697,7 +2697,7 @@
             {
               "cells": [
                 {
-                  "centroid_margin_m": 0.018337294312959405,
+                  "centroid_margin_m": 0.017420429597311153,
                   "coverage_mode": "one convex cell",
                   "interior_boundary_area_m2": 0.0,
                   "mate": "P3",
@@ -2710,23 +2710,23 @@
                   "interior_boundary_area_m2": 0.0,
                   "mate": "P3",
                   "status": "PASS",
-                  "volume_in3": 0.8490492420069204
+                  "volume_in3": 0.8490492420069206
                 },
                 {
-                  "centroid_margin_m": 1.2426406870602591e-05,
+                  "centroid_margin_m": 1.1873971870635103e-05,
                   "coverage_mode": "one convex cell",
                   "interior_boundary_area_m2": 0.0,
                   "mate": "P3",
                   "status": "PASS",
-                  "volume_in3": 3.598550990515918e-06
+                  "volume_in3": 3.5985509914769985e-06
                 },
                 {
-                  "centroid_margin_m": 0.008814433350746498,
+                  "centroid_margin_m": 0.008612400684880228,
                   "coverage_mode": "one convex cell",
                   "interior_boundary_area_m2": 0.0,
                   "mate": "B2",
                   "status": "PASS",
-                  "volume_in3": 2.695924696491961
+                  "volume_in3": 2.695924696492052
                 },
                 {
                   "centroid_margin_m": 0.0020840694695030137,
@@ -2734,10 +2734,10 @@
                   "interior_boundary_area_m2": 0.0,
                   "mate": "P3",
                   "status": "PASS",
-                  "volume_in3": 0.22364646929862966
+                  "volume_in3": 0.2236464692986297
                 },
                 {
-                  "centroid_margin_m": 0.005835849677014782,
+                  "centroid_margin_m": 0.0063127627290411326,
                   "coverage_mode": "one convex cell",
                   "interior_boundary_area_m2": 0.0,
                   "mate": "P3",
@@ -2745,12 +2745,12 @@
                   "volume_in3": 3.746033319373428
                 },
                 {
-                  "centroid_margin_m": 0.0052416267726758115,
+                  "centroid_margin_m": 0.006346523576484131,
                   "coverage_mode": "one convex cell",
                   "interior_boundary_area_m2": 0.0,
                   "mate": "P3",
                   "status": "PASS",
-                  "volume_in3": 0.41258440539739977
+                  "volume_in3": 0.4125844053974923
                 },
                 {
                   "centroid_margin_m": 1.1296733519294833e-05,
@@ -2758,7 +2758,7 @@
                   "interior_boundary_area_m2": 0.0,
                   "mate": "P3",
                   "status": "PASS",
-                  "volume_in3": 1.6050807640942068e-06
+                  "volume_in3": 1.6050807640942066e-06
                 },
                 {
                   "centroid_margin_m": 0.005667020559418479,
@@ -2774,19 +2774,19 @@
                   "interior_boundary_area_m2": 0.0,
                   "mate": "P3",
                   "status": "PASS",
-                  "volume_in3": 1.4100156170769103
+                  "volume_in3": 1.4100156170769098
                 }
               ],
               "coverage_mode": "explicit convex partition",
               "note": "Each cell is independently contained in one mate; only the stated distance shell around cell boundaries is excluded.",
               "partition_cells": 10,
               "partition_planes": 4,
-              "partition_volume_balance_error_m3": 3.9410748969848086e-17,
+              "partition_volume_balance_error_m3": 4.233809483555895e-17,
               "status": "PASS",
-              "volume_in3": 24.578420686017267
+              "volume_in3": 24.57842068601727
             },
             {
-              "centroid_margin_m": 0.005535897435896775,
+              "centroid_margin_m": 0.005140476190475418,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "P3",
@@ -2794,12 +2794,12 @@
               "volume_in3": 7.9999999999999805
             },
             {
-              "centroid_margin_m": 0.005896428571428469,
+              "centroid_margin_m": 0.0058615384615383626,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "P3",
               "status": "PASS",
-              "volume_in3": 8.000000000000302
+              "volume_in3": 8.000000000000133
             }
           ],
           "coverage_mode": "nonconvex surface partition",
@@ -2807,12 +2807,12 @@
           "note": "Disjoint convex cells are each proved inside the actual concave cavity; their summed volume must recover its signed surface volume. Every retained cell is then proved covered by mating timber.",
           "partition_cells": 5,
           "partition_planes": 3,
-          "partition_volume_balance_error_m3": 5.551115123125783e-17,
+          "partition_volume_balance_error_m3": 5.2909066017292616e-17,
           "status": "PASS"
         }
       ],
       "cross_sections": {
-        "max_missing_area_m2": 1.6393612978308769e-15,
+        "max_missing_area_m2": 1.5978764650672051e-15,
         "max_receiver_overlap_area_m2": 1.9710734428372234e-14,
         "sections": 240,
         "status": "PASS"
@@ -2832,7 +2832,7 @@
           "status": "PASS",
           "sum_pair_overlap_area_m2": 0
         },
-        "signed_volume_m3": 0.002772018068115342,
+        "signed_volume_m3": 0.0027720180681153448,
         "status": "PASS",
         "triangles": 72,
         "vertices": 42
@@ -2843,11 +2843,11 @@
         "convex_cells": 386,
         "declared_external_trim": null,
         "failures": [],
-        "max_cavity_vertex_outside_reference_stock_m": 4.107825191113079e-15,
+        "max_cavity_vertex_outside_reference_stock_m": 4.038436252074007e-15,
         "max_interior_boundary_area_m2": 0.0,
         "partition_planes": 18,
-        "partition_volume_balance_error_m3": 2.6117996654306808e-14,
-        "reference_envelope_volume_in3": 13155.075066300386,
+        "partition_volume_balance_error_m3": 2.1593837828959295e-14,
+        "reference_envelope_volume_in3": 13155.07506630039,
         "scope": "Saved prejoinery envelope, after any explicitly listed exterior trim, is covered by final timber wood plus exported removed cavity within the stated tolerances. Added tenons outside this envelope are not counted as removed stock.",
         "status": "PASS",
         "verified_cells": 386
@@ -2863,7 +2863,7 @@
     {
       "components": [
         {
-          "centroid_margin_m": 0.025399999999999825,
+          "centroid_margin_m": 0.025399999999999846,
           "convex_volume_error_m3": 1.0842021724855044e-19,
           "coverage_mode": "one convex cell",
           "interior_boundary_area_m2": 0.0,
@@ -2873,21 +2873,21 @@
         },
         {
           "centroid_margin_m": 0.020340000000000025,
-          "convex_volume_error_m3": 2.168404344971009e-19,
+          "convex_volume_error_m3": 0.0,
           "coverage_mode": "one convex cell",
           "interior_boundary_area_m2": 0.0,
           "mate": "R3",
           "status": "PASS",
-          "volume_in3": 44.98160784748994
+          "volume_in3": 44.981607847489954
         },
         {
           "centroid_margin_m": 0.013569627672608497,
-          "convex_volume_error_m3": 8.131516293641283e-20,
+          "convex_volume_error_m3": 5.421010862427522e-20,
           "coverage_mode": "one convex cell",
           "interior_boundary_area_m2": 0.0,
           "mate": "L3-S",
           "status": "PASS",
-          "volume_in3": 11.558550058925524
+          "volume_in3": 11.558550058925526
         },
         {
           "centroid_margin_m": 0.013569627672608275,
@@ -2952,7 +2952,7 @@
         "max_cavity_vertex_outside_reference_stock_m": 4.440892098500626e-16,
         "max_interior_boundary_area_m2": 0.0,
         "partition_planes": 19,
-        "partition_volume_balance_error_m3": 7.049916206369744e-15,
+        "partition_volume_balance_error_m3": 7.480127628411992e-15,
         "reference_envelope_volume_in3": 3357.73665961011,
         "scope": "Saved prejoinery envelope, after any explicitly listed exterior trim, is covered by final timber wood plus exported removed cavity within the stated tolerances. Added tenons outside this envelope are not counted as removed stock.",
         "status": "PASS",
@@ -2971,44 +2971,44 @@
         {
           "cells": [
             {
-              "centroid_margin_m": 0.0005100573947736109,
+              "centroid_margin_m": 0.0005523828635003447,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "B3",
               "status": "PASS",
-              "volume_in3": 0.009407599205551342
+              "volume_in3": 0.009407599205545252
             },
             {
-              "centroid_margin_m": 0.0005098102225802315,
+              "centroid_margin_m": 0.0005353712856672743,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "B3",
               "status": "PASS",
-              "volume_in3": 0.018815198411118887
+              "volume_in3": 0.018815198411091954
             },
             {
-              "centroid_margin_m": 0.000524404447268978,
+              "centroid_margin_m": 0.0004914761681322766,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "B3",
               "status": "PASS",
-              "volume_in3": 0.009407599205548128
+              "volume_in3": 0.00940759920554829
             },
             {
-              "centroid_margin_m": 0.005170905179790797,
+              "centroid_margin_m": 0.004768938729184491,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "B3",
               "status": "PASS",
-              "volume_in3": 1.61418070123326
+              "volume_in3": 1.6141807012328828
             },
             {
-              "centroid_margin_m": 0.0062054424249673446,
+              "centroid_margin_m": 0.006881113355119872,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "B3",
               "status": "PASS",
-              "volume_in3": 1.6141807012336804
+              "volume_in3": 1.6141807012329261
             }
           ],
           "coverage_mode": "nonconvex surface partition",
@@ -3016,13 +3016,13 @@
           "note": "Disjoint convex cells are each proved inside the actual concave cavity; their summed volume must recover its signed surface volume. Every retained cell is then proved covered by mating timber.",
           "partition_cells": 5,
           "partition_planes": 3,
-          "partition_volume_balance_error_m3": 1.3904892862126594e-17,
+          "partition_volume_balance_error_m3": 5.9834407394043776e-18,
           "status": "PASS"
         }
       ],
       "cross_sections": {
-        "max_missing_area_m2": 4.3201446533203124e-16,
-        "max_receiver_overlap_area_m2": 2.574920654296875e-16,
+        "max_missing_area_m2": 5.223261538468138e-16,
+        "max_receiver_overlap_area_m2": 2.6226043701171873e-16,
         "sections": 129,
         "status": "PASS"
       },
@@ -3030,7 +3030,7 @@
       "mesh_check": {
         "connected_surfaces": 1,
         "failures": [],
-        "minimum_triangle_area_m2": 1.3864150274310368e-05,
+        "minimum_triangle_area_m2": 1.3864150274307536e-05,
         "raw_surface_check": {
           "coplanar_pairs_tested": 41,
           "max_overlap_area_m2": 0.0,
@@ -3041,7 +3041,7 @@
           "status": "PASS",
           "sum_pair_overlap_area_m2": 0
         },
-        "signed_volume_m3": 5.3520016638412696e-05,
+        "signed_volume_m3": 5.35200166384135e-05,
         "status": "PASS",
         "triangles": 30,
         "vertices": 17
@@ -3055,8 +3055,8 @@
         "max_cavity_vertex_outside_reference_stock_m": 3.9968028886505635e-15,
         "max_interior_boundary_area_m2": 0.0,
         "partition_planes": 5,
-        "partition_volume_balance_error_m3": 5.551115123125783e-17,
-        "reference_envelope_volume_in3": 4025.9500851841826,
+        "partition_volume_balance_error_m3": 3.3306690738754696e-16,
+        "reference_envelope_volume_in3": 4025.950085184185,
         "scope": "Saved prejoinery envelope, after any explicitly listed exterior trim, is covered by final timber wood plus exported removed cavity within the stated tolerances. Added tenons outside this envelope are not counted as removed stock.",
         "status": "PASS",
         "verified_cells": 18
@@ -3074,12 +3074,12 @@
         {
           "cells": [
             {
-              "centroid_margin_m": 0.0005564262488442218,
+              "centroid_margin_m": 0.0005564262488446658,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "B3",
               "status": "PASS",
-              "volume_in3": 0.009407599205553044
+              "volume_in3": 0.00940759920555155
             },
             {
               "centroid_margin_m": 0.000574358812008402,
@@ -3087,7 +3087,7 @@
               "interior_boundary_area_m2": 0.0,
               "mate": "B3",
               "status": "PASS",
-              "volume_in3": 0.018815198411121156
+              "volume_in3": 0.018815198411104694
             },
             {
               "centroid_margin_m": 0.0005946206022464651,
@@ -3095,23 +3095,23 @@
               "interior_boundary_area_m2": 0.0,
               "mate": "B3",
               "status": "PASS",
-              "volume_in3": 0.00940759920554428
+              "volume_in3": 0.009407599205544284
             },
             {
-              "centroid_margin_m": 0.007454135031452203,
+              "centroid_margin_m": 0.007454135031450648,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "B3",
               "status": "PASS",
-              "volume_in3": 1.614180701233625
+              "volume_in3": 1.6141807012329858
             },
             {
-              "centroid_margin_m": 0.0062405294508218745,
+              "centroid_margin_m": 0.006251465853929439,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "B3",
               "status": "PASS",
-              "volume_in3": 1.6141807012331768
+              "volume_in3": 1.6141807012331792
             }
           ],
           "coverage_mode": "nonconvex surface partition",
@@ -3119,13 +3119,13 @@
           "note": "Disjoint convex cells are each proved inside the actual concave cavity; their summed volume must recover its signed surface volume. Every retained cell is then proved covered by mating timber.",
           "partition_cells": 5,
           "partition_planes": 3,
-          "partition_volume_balance_error_m3": 1.2285365866976372e-17,
+          "partition_volume_balance_error_m3": 4.946672411965114e-19,
           "status": "PASS"
         }
       ],
       "cross_sections": {
-        "max_missing_area_m2": 5.707016604439841e-16,
-        "max_receiver_overlap_area_m2": 2.25067138671875e-16,
+        "max_missing_area_m2": 6.256103515625e-16,
+        "max_receiver_overlap_area_m2": 3.70025634765625e-16,
         "sections": 129,
         "status": "PASS"
       },
@@ -3133,7 +3133,7 @@
       "mesh_check": {
         "connected_surfaces": 1,
         "failures": [],
-        "minimum_triangle_area_m2": 1.3864150274310192e-05,
+        "minimum_triangle_area_m2": 1.386415027430829e-05,
         "raw_surface_check": {
           "coplanar_pairs_tested": 41,
           "max_overlap_area_m2": 0.0,
@@ -3144,7 +3144,7 @@
           "status": "PASS",
           "sum_pair_overlap_area_m2": 0
         },
-        "signed_volume_m3": 5.352001663841204e-05,
+        "signed_volume_m3": 5.35200166384131e-05,
         "status": "PASS",
         "triangles": 30,
         "vertices": 17
@@ -3155,11 +3155,11 @@
         "convex_cells": 18,
         "declared_external_trim": null,
         "failures": [],
-        "max_cavity_vertex_outside_reference_stock_m": 8.881784197001252e-16,
+        "max_cavity_vertex_outside_reference_stock_m": 1.6653345369377348e-15,
         "max_interior_boundary_area_m2": 0.0,
         "partition_planes": 5,
-        "partition_volume_balance_error_m3": 4.163336342344337e-17,
-        "reference_envelope_volume_in3": 4025.9500851844236,
+        "partition_volume_balance_error_m3": 1.762479051592436e-15,
+        "reference_envelope_volume_in3": 4025.9500851844246,
         "scope": "Saved prejoinery envelope, after any explicitly listed exterior trim, is covered by final timber wood plus exported removed cavity within the stated tolerances. Added tenons outside this envelope are not counted as removed stock.",
         "status": "PASS",
         "verified_cells": 18
@@ -3230,8 +3230,8 @@
         }
       ],
       "cross_sections": {
-        "max_missing_area_m2": 1.4592409133911133e-15,
-        "max_receiver_overlap_area_m2": 7.517337799072266e-16,
+        "max_missing_area_m2": 1.4563798904418945e-15,
+        "max_receiver_overlap_area_m2": 7.804632186889648e-16,
         "sections": 270,
         "status": "PASS"
       },
@@ -3250,7 +3250,7 @@
           "status": "PASS",
           "sum_pair_overlap_area_m2": 0
         },
-        "signed_volume_m3": 0.003083363030758774,
+        "signed_volume_m3": 0.003083363030758773,
         "status": "PASS",
         "triangles": 88,
         "vertices": 56
@@ -3264,7 +3264,7 @@
         "max_cavity_vertex_outside_reference_stock_m": 0.0,
         "max_interior_boundary_area_m2": 0.0,
         "partition_planes": 25,
-        "partition_volume_balance_error_m3": 1.2753686995381486e-14,
+        "partition_volume_balance_error_m3": 1.3156142841808105e-14,
         "reference_envelope_volume_in3": 6210.313682744058,
         "scope": "Saved prejoinery envelope, after any explicitly listed exterior trim, is covered by final timber wood plus exported removed cavity within the stated tolerances. Added tenons outside this envelope are not counted as removed stock.",
         "status": "PASS",
@@ -3299,26 +3299,26 @@
           "volume_in3": 21.241245969245632
         },
         {
-          "centroid_margin_m": 0.006957391915745514,
-          "convex_volume_error_m3": 1.3552527156068805e-20,
+          "centroid_margin_m": 0.006957391915746403,
+          "convex_volume_error_m3": 3.3881317890172014e-20,
           "coverage_mode": "one convex cell",
           "interior_boundary_area_m2": 0.0,
           "mate": "J4-0",
           "status": "PASS",
-          "volume_in3": 3.2283614024662435
+          "volume_in3": 3.2283614024662493
         },
         {
           "centroid_margin_m": 0.006957391915746847,
-          "convex_volume_error_m3": 1.2197274440461925e-19,
+          "convex_volume_error_m3": 2.371692252312041e-19,
           "coverage_mode": "one convex cell",
           "interior_boundary_area_m2": 0.0,
           "mate": "J4-2",
           "status": "PASS",
-          "volume_in3": 3.228361402466232
+          "volume_in3": 3.228361402466273
         }
       ],
       "cross_sections": {
-        "max_missing_area_m2": 8.208751678466796e-16,
+        "max_missing_area_m2": 6.6375732421875e-16,
         "max_receiver_overlap_area_m2": 3.560781478881836e-16,
         "sections": 393,
         "status": "PASS"
@@ -3338,7 +3338,7 @@
           "status": "PASS",
           "sum_pair_overlap_area_m2": 0
         },
-        "signed_volume_m3": 0.0008019700441102371,
+        "signed_volume_m3": 0.0008019700441102383,
         "status": "PASS",
         "triangles": 40,
         "vertices": 28
@@ -3352,7 +3352,7 @@
         "max_cavity_vertex_outside_reference_stock_m": 1.7763568394002505e-15,
         "max_interior_boundary_area_m2": 0.0,
         "partition_planes": 12,
-        "partition_volume_balance_error_m3": 9.728329253277934e-15,
+        "partition_volume_balance_error_m3": 1.1074474670635936e-14,
         "reference_envelope_volume_in3": 6050.180668328283,
         "scope": "Saved prejoinery envelope, after any explicitly listed exterior trim, is covered by final timber wood plus exported removed cavity within the stated tolerances. Added tenons outside this envelope are not counted as removed stock.",
         "status": "PASS",
@@ -3370,12 +3370,12 @@
       "components": [
         {
           "centroid_margin_m": 0.009649864166409228,
-          "convex_volume_error_m3": 2.710505431213761e-19,
+          "convex_volume_error_m3": 5.421010862427522e-20,
           "coverage_mode": "one convex cell",
           "interior_boundary_area_m2": 0.0,
           "mate": "J4-0",
           "status": "PASS",
-          "volume_in3": 27.422619235294963
+          "volume_in3": 27.422619235294974
         },
         {
           "centroid_margin_m": 0.009649864166409006,
@@ -3444,7 +3444,7 @@
                   "interior_boundary_area_m2": 0.0,
                   "mate": "P4",
                   "status": "PASS",
-                  "volume_in3": 0.41258440539750807
+                  "volume_in3": 0.412584405397508
                 },
                 {
                   "centroid_margin_m": 1.2426406869714413e-05,
@@ -3468,7 +3468,7 @@
                   "interior_boundary_area_m2": 0.0,
                   "mate": "P4",
                   "status": "PASS",
-                  "volume_in3": 1.4100156170772356
+                  "volume_in3": 1.4100156170772358
                 }
               ],
               "coverage_mode": "explicit convex partition",
@@ -3506,7 +3506,7 @@
                   "volume_in3": 13.074748175181401
                 },
                 {
-                  "centroid_margin_m": 0.005766911972996169,
+                  "centroid_margin_m": 0.005766911972995281,
                   "coverage_mode": "one convex cell",
                   "interior_boundary_area_m2": 0.0,
                   "mate": "P4",
@@ -3535,7 +3535,7 @@
                   "interior_boundary_area_m2": 0.0,
                   "mate": "P4",
                   "status": "PASS",
-                  "volume_in3": 0.22364646929885618
+                  "volume_in3": 0.2236464692988562
                 },
                 {
                   "centroid_margin_m": 0.006172715794587003,
@@ -3582,9 +3582,9 @@
               "note": "Each cell is independently contained in one mate; only the stated distance shell around cell boundaries is excluded.",
               "partition_cells": 10,
               "partition_planes": 4,
-              "partition_volume_balance_error_m3": 3.301395615218361e-17,
+              "partition_volume_balance_error_m3": 3.3068166260807885e-17,
               "status": "PASS",
-              "volume_in3": 24.57842068601678
+              "volume_in3": 24.578420686016777
             },
             {
               "centroid_margin_m": 0.00453571428571431,
@@ -3605,7 +3605,7 @@
         }
       ],
       "cross_sections": {
-        "max_missing_area_m2": 1.6992267129271599e-15,
+        "max_missing_area_m2": 1.657741880163488e-15,
         "max_receiver_overlap_area_m2": 1.9497111381497234e-14,
         "sections": 240,
         "status": "PASS"
@@ -3625,7 +3625,7 @@
           "status": "PASS",
           "sum_pair_overlap_area_m2": 0
         },
-        "signed_volume_m3": 0.0027720180681154592,
+        "signed_volume_m3": 0.002772018068115459,
         "status": "PASS",
         "triangles": 72,
         "vertices": 42
@@ -3639,7 +3639,7 @@
         "max_cavity_vertex_outside_reference_stock_m": 0.0,
         "max_interior_boundary_area_m2": 0.0,
         "partition_planes": 18,
-        "partition_volume_balance_error_m3": 1.715294573045867e-14,
+        "partition_volume_balance_error_m3": 1.8457457784393227e-14,
         "reference_envelope_volume_in3": 13155.07506630032,
         "scope": "Saved prejoinery envelope, after any explicitly listed exterior trim, is covered by final timber wood plus exported removed cavity within the stated tolerances. Added tenons outside this envelope are not counted as removed stock.",
         "status": "PASS",
@@ -3745,7 +3745,7 @@
         "max_cavity_vertex_outside_reference_stock_m": 0.0,
         "max_interior_boundary_area_m2": 0.0,
         "partition_planes": 19,
-        "partition_volume_balance_error_m3": 2.699229728619912e-15,
+        "partition_volume_balance_error_m3": 2.6853519408120974e-15,
         "reference_envelope_volume_in3": 3357.736659610101,
         "scope": "Saved prejoinery envelope, after any explicitly listed exterior trim, is covered by final timber wood plus exported removed cavity within the stated tolerances. Added tenons outside this envelope are not counted as removed stock.",
         "status": "PASS",
@@ -3764,12 +3764,12 @@
         {
           "cells": [
             {
-              "centroid_margin_m": 0.0005564262488442218,
+              "centroid_margin_m": 0.0005564262488446658,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "B4",
               "status": "PASS",
-              "volume_in3": 0.009407599205553044
+              "volume_in3": 0.00940759920555155
             },
             {
               "centroid_margin_m": 0.000574358812008402,
@@ -3777,7 +3777,7 @@
               "interior_boundary_area_m2": 0.0,
               "mate": "B4",
               "status": "PASS",
-              "volume_in3": 0.018815198411121156
+              "volume_in3": 0.018815198411104694
             },
             {
               "centroid_margin_m": 0.0005946206022464651,
@@ -3785,23 +3785,23 @@
               "interior_boundary_area_m2": 0.0,
               "mate": "B4",
               "status": "PASS",
-              "volume_in3": 0.00940759920554428
+              "volume_in3": 0.009407599205544284
             },
             {
-              "centroid_margin_m": 0.007454135031452203,
+              "centroid_margin_m": 0.007454135031450426,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "B4",
               "status": "PASS",
-              "volume_in3": 1.614180701233625
+              "volume_in3": 1.6141807012329858
             },
             {
-              "centroid_margin_m": 0.0062405294508218745,
+              "centroid_margin_m": 0.006251465853929439,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "B4",
               "status": "PASS",
-              "volume_in3": 1.6141807012331768
+              "volume_in3": 1.6141807012331792
             }
           ],
           "coverage_mode": "nonconvex surface partition",
@@ -3809,7 +3809,7 @@
           "note": "Disjoint convex cells are each proved inside the actual concave cavity; their summed volume must recover its signed surface volume. Every retained cell is then proved covered by mating timber.",
           "partition_cells": 5,
           "partition_planes": 3,
-          "partition_volume_balance_error_m3": 1.2285365866976372e-17,
+          "partition_volume_balance_error_m3": 4.946672411965114e-19,
           "status": "PASS"
         }
       ],
@@ -3823,7 +3823,7 @@
       "mesh_check": {
         "connected_surfaces": 1,
         "failures": [],
-        "minimum_triangle_area_m2": 1.3864150274310192e-05,
+        "minimum_triangle_area_m2": 1.386415027430829e-05,
         "raw_surface_check": {
           "coplanar_pairs_tested": 41,
           "max_overlap_area_m2": 0.0,
@@ -3834,7 +3834,7 @@
           "status": "PASS",
           "sum_pair_overlap_area_m2": 0
         },
-        "signed_volume_m3": 5.352001663841204e-05,
+        "signed_volume_m3": 5.35200166384131e-05,
         "status": "PASS",
         "triangles": 30,
         "vertices": 17
@@ -3848,7 +3848,7 @@
         "max_cavity_vertex_outside_reference_stock_m": 4.107825191113079e-15,
         "max_interior_boundary_area_m2": 0.0,
         "partition_planes": 5,
-        "partition_volume_balance_error_m3": 1.27675647831893e-15,
+        "partition_volume_balance_error_m3": 2.0816681711721685e-16,
         "reference_envelope_volume_in3": 4025.950085184229,
         "scope": "Saved prejoinery envelope, after any explicitly listed exterior trim, is covered by final timber wood plus exported removed cavity within the stated tolerances. Added tenons outside this envelope are not counted as removed stock.",
         "status": "PASS",
@@ -3867,44 +3867,44 @@
         {
           "cells": [
             {
-              "centroid_margin_m": 0.0005100573947736109,
+              "centroid_margin_m": 0.0004930092219521676,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "B4",
               "status": "PASS",
-              "volume_in3": 0.009407599205551342
+              "volume_in3": 0.009407599205545914
             },
             {
-              "centroid_margin_m": 0.0005098102225802315,
+              "centroid_margin_m": 0.0004895624048204539,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "B4",
               "status": "PASS",
-              "volume_in3": 0.018815198411118887
+              "volume_in3": 0.01881519841108843
             },
             {
-              "centroid_margin_m": 0.000524404447268978,
+              "centroid_margin_m": 0.0004914761681318325,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "B4",
               "status": "PASS",
-              "volume_in3": 0.009407599205548128
+              "volume_in3": 0.009407599205543888
             },
             {
-              "centroid_margin_m": 0.005170905179791241,
+              "centroid_margin_m": 0.005788830516231691,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "B4",
               "status": "PASS",
-              "volume_in3": 1.6141807012331988
+              "volume_in3": 1.6141807012328804
             },
             {
-              "centroid_margin_m": 0.006235986766288004,
+              "centroid_margin_m": 0.006895626133401667,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "B4",
               "status": "PASS",
-              "volume_in3": 1.6141807012336804
+              "volume_in3": 1.614180701232971
             }
           ],
           "coverage_mode": "nonconvex surface partition",
@@ -3912,13 +3912,13 @@
           "note": "Disjoint convex cells are each proved inside the actual concave cavity; their summed volume must recover its signed surface volume. Every retained cell is then proved covered by mating timber.",
           "partition_cells": 5,
           "partition_planes": 3,
-          "partition_volume_balance_error_m3": 1.2603850255143989e-17,
+          "partition_volume_balance_error_m3": 5.5091022889419694e-18,
           "status": "PASS"
         }
       ],
       "cross_sections": {
-        "max_missing_area_m2": 5.424549605863582e-16,
-        "max_receiver_overlap_area_m2": 3.1280517578125e-16,
+        "max_missing_area_m2": 6.370794904322075e-16,
+        "max_receiver_overlap_area_m2": 3.24249267578125e-16,
         "sections": 129,
         "status": "PASS"
       },
@@ -3926,7 +3926,7 @@
       "mesh_check": {
         "connected_surfaces": 1,
         "failures": [],
-        "minimum_triangle_area_m2": 1.3864150274310366e-05,
+        "minimum_triangle_area_m2": 1.3864150274307534e-05,
         "raw_surface_check": {
           "coplanar_pairs_tested": 41,
           "max_overlap_area_m2": 0.0,
@@ -3937,7 +3937,7 @@
           "status": "PASS",
           "sum_pair_overlap_area_m2": 0
         },
-        "signed_volume_m3": 5.352001663841299e-05,
+        "signed_volume_m3": 5.35200166384136e-05,
         "status": "PASS",
         "triangles": 30,
         "vertices": 17
@@ -3951,8 +3951,8 @@
         "max_cavity_vertex_outside_reference_stock_m": 3.774758283725532e-15,
         "max_interior_boundary_area_m2": 0.0,
         "partition_planes": 5,
-        "partition_volume_balance_error_m3": 7.216449660063518e-16,
-        "reference_envelope_volume_in3": 4025.9500851841826,
+        "partition_volume_balance_error_m3": 9.159339953157541e-16,
+        "reference_envelope_volume_in3": 4025.950085184185,
         "scope": "Saved prejoinery envelope, after any explicitly listed exterior trim, is covered by final timber wood plus exported removed cavity within the stated tolerances. Added tenons outside this envelope are not counted as removed stock.",
         "status": "PASS",
         "verified_cells": 18
@@ -3969,43 +3969,43 @@
       "components": [
         {
           "centroid_margin_m": 0.020680427794254642,
-          "convex_volume_error_m3": 1.0842021724855044e-19,
+          "convex_volume_error_m3": 0.0,
           "coverage_mode": "one convex cell",
           "interior_boundary_area_m2": 0.0,
           "mate": "K5-B",
           "status": "PASS",
-          "volume_in3": 44.08221557936384
+          "volume_in3": 44.08221557936383
         },
         {
-          "centroid_margin_m": 0.020680427794254636,
-          "convex_volume_error_m3": 3.2526065174565133e-19,
+          "centroid_margin_m": 0.020680427794254733,
+          "convex_volume_error_m3": 4.336808689942018e-19,
           "coverage_mode": "one convex cell",
           "interior_boundary_area_m2": 0.0,
           "mate": "K5-A",
           "status": "PASS",
-          "volume_in3": 44.08221557936386
+          "volume_in3": 44.08221557936387
         },
         {
           "centroid_margin_m": 0.025399999999998535,
-          "convex_volume_error_m3": 0.0,
+          "convex_volume_error_m3": 1.0842021724855044e-19,
           "coverage_mode": "one convex cell",
           "interior_boundary_area_m2": 0.0,
           "mate": "T5",
           "status": "PASS",
-          "volume_in3": 31.999999999999655
+          "volume_in3": 31.99999999999965
         },
         {
           "centroid_margin_m": 0.02034000000000028,
-          "convex_volume_error_m3": 1.0842021724855044e-19,
+          "convex_volume_error_m3": 5.421010862427522e-20,
           "coverage_mode": "one convex cell",
           "interior_boundary_area_m2": 0.0,
           "mate": "B5",
           "status": "PASS",
-          "volume_in3": 25.99696269072764
+          "volume_in3": 25.996962690727642
         },
         {
           "centroid_margin_m": 0.020339999999999026,
-          "convex_volume_error_m3": 5.421010862427522e-20,
+          "convex_volume_error_m3": 0.0,
           "coverage_mode": "one convex cell",
           "interior_boundary_area_m2": 0.0,
           "mate": "B4",
@@ -4023,7 +4023,7 @@
         }
       ],
       "cross_sections": {
-        "max_missing_area_m2": 1.2203454971313476e-15,
+        "max_missing_area_m2": 1.2063980102539063e-15,
         "max_receiver_overlap_area_m2": 7.517337799072266e-16,
         "sections": 270,
         "status": "PASS"
@@ -4054,10 +4054,10 @@
         "convex_cells": 1067,
         "declared_external_trim": null,
         "failures": [],
-        "max_cavity_vertex_outside_reference_stock_m": 3.95516952522712e-15,
+        "max_cavity_vertex_outside_reference_stock_m": 4.440892098500626e-15,
         "max_interior_boundary_area_m2": 0.0,
         "partition_planes": 25,
-        "partition_volume_balance_error_m3": 3.416711358283919e-14,
+        "partition_volume_balance_error_m3": 3.325117958752344e-14,
         "reference_envelope_volume_in3": 6210.313682744151,
         "scope": "Saved prejoinery envelope, after any explicitly listed exterior trim, is covered by final timber wood plus exported removed cavity within the stated tolerances. Added tenons outside this envelope are not counted as removed stock.",
         "status": "PASS",
@@ -4080,38 +4080,38 @@
           "interior_boundary_area_m2": 0.0,
           "mate": "K6-A",
           "status": "PASS",
-          "volume_in3": 21.24124596924611
+          "volume_in3": 21.241245969246126
         },
         {
           "centroid_margin_m": 0.022528995514027095,
-          "convex_volume_error_m3": 1.0842021724855044e-19,
+          "convex_volume_error_m3": 3.2526065174565133e-19,
           "coverage_mode": "one convex cell",
           "interior_boundary_area_m2": 0.0,
           "mate": "K5-B",
           "status": "PASS",
-          "volume_in3": 21.24124596924558
+          "volume_in3": 21.241245969245593
         },
         {
-          "centroid_margin_m": 0.006957391915745514,
-          "convex_volume_error_m3": 3.3881317890172014e-20,
+          "centroid_margin_m": 0.0069573919157459585,
+          "convex_volume_error_m3": 1.3552527156068805e-19,
           "coverage_mode": "one convex cell",
           "interior_boundary_area_m2": 0.0,
           "mate": "J5-0",
           "status": "PASS",
-          "volume_in3": 3.2283614024662457
+          "volume_in3": 3.228361402466236
         },
         {
           "centroid_margin_m": 0.006957391915746403,
-          "convex_volume_error_m3": 1.3552527156068805e-19,
+          "convex_volume_error_m3": 5.421010862427522e-19,
           "coverage_mode": "one convex cell",
           "interior_boundary_area_m2": 0.0,
           "mate": "J5-2",
           "status": "PASS",
-          "volume_in3": 3.228361402466285
+          "volume_in3": 3.2283614024663345
         }
       ],
       "cross_sections": {
-        "max_missing_area_m2": 8.208751678466796e-16,
+        "max_missing_area_m2": 6.7138671875e-16,
         "max_receiver_overlap_area_m2": 3.560781478881836e-16,
         "sections": 393,
         "status": "PASS"
@@ -4120,7 +4120,7 @@
       "mesh_check": {
         "connected_surfaces": 4,
         "failures": [],
-        "minimum_triangle_area_m2": 7.36648212075287e-05,
+        "minimum_triangle_area_m2": 7.366482120752566e-05,
         "raw_surface_check": {
           "coplanar_pairs_tested": 18,
           "max_overlap_area_m2": 0.0,
@@ -4131,7 +4131,7 @@
           "status": "PASS",
           "sum_pair_overlap_area_m2": 0
         },
-        "signed_volume_m3": 0.0008019700441102357,
+        "signed_volume_m3": 0.0008019700441102366,
         "status": "PASS",
         "triangles": 40,
         "vertices": 28
@@ -4145,8 +4145,8 @@
         "max_cavity_vertex_outside_reference_stock_m": 1.7763568394002505e-15,
         "max_interior_boundary_area_m2": 0.0,
         "partition_planes": 12,
-        "partition_volume_balance_error_m3": 5.176414852314792e-15,
-        "reference_envelope_volume_in3": 6050.180668328284,
+        "partition_volume_balance_error_m3": 8.951173136040325e-15,
+        "reference_envelope_volume_in3": 6050.180668328285,
         "scope": "Saved prejoinery envelope, after any explicitly listed exterior trim, is covered by final timber wood plus exported removed cavity within the stated tolerances. Added tenons outside this envelope are not counted as removed stock.",
         "status": "PASS",
         "verified_cells": 87
@@ -4162,8 +4162,8 @@
     {
       "components": [
         {
-          "centroid_margin_m": 0.009649864166409117,
-          "convex_volume_error_m3": 1.6263032587282567e-19,
+          "centroid_margin_m": 0.009649864166408895,
+          "convex_volume_error_m3": 0.0,
           "coverage_mode": "one convex cell",
           "interior_boundary_area_m2": 0.0,
           "mate": "J5-0",
@@ -4172,19 +4172,19 @@
         },
         {
           "centroid_margin_m": 0.009649864166408673,
-          "convex_volume_error_m3": 1.0842021724855044e-19,
+          "convex_volume_error_m3": 2.168404344971009e-19,
           "coverage_mode": "one convex cell",
           "interior_boundary_area_m2": 0.0,
           "mate": "J4-2",
           "status": "PASS",
-          "volume_in3": 27.422619235294377
+          "volume_in3": 27.422619235294384
         },
         {
           "cells": [
             {
               "cells": [
                 {
-                  "centroid_margin_m": 0.01611492829416928,
+                  "centroid_margin_m": 0.017782841603414236,
                   "coverage_mode": "one convex cell",
                   "interior_boundary_area_m2": 0.0,
                   "mate": "P5",
@@ -4200,39 +4200,39 @@
                   "volume_in3": 3.5985509910248345e-06
                 },
                 {
-                  "centroid_margin_m": 0.004746328114297427,
+                  "centroid_margin_m": 0.005096943228377171,
                   "coverage_mode": "one convex cell",
                   "interior_boundary_area_m2": 0.0,
                   "mate": "P5",
                   "status": "PASS",
-                  "volume_in3": 0.8490492420068553
+                  "volume_in3": 0.8490492420067557
                 },
                 {
-                  "centroid_margin_m": 0.007086851966376706,
+                  "centroid_margin_m": 0.007543792223628554,
                   "coverage_mode": "one convex cell",
                   "interior_boundary_area_m2": 0.0,
                   "mate": "B4",
                   "status": "PASS",
-                  "volume_in3": 2.6959246964921912
+                  "volume_in3": 2.6959246964922357
                 },
                 {
-                  "centroid_margin_m": 0.0018641382553683528,
+                  "centroid_margin_m": 0.0018339292853699618,
                   "coverage_mode": "one convex cell",
                   "interior_boundary_area_m2": 0.0,
                   "mate": "P5",
                   "status": "PASS",
-                  "volume_in3": 0.22364646929870402
+                  "volume_in3": 0.22364646929874157
                 },
                 {
-                  "centroid_margin_m": 0.005890744176434648,
+                  "centroid_margin_m": 0.006139355802900148,
                   "coverage_mode": "one convex cell",
                   "interior_boundary_area_m2": 0.0,
                   "mate": "P5",
                   "status": "PASS",
-                  "volume_in3": 3.7460333193735162
+                  "volume_in3": 3.7460333193735154
                 },
                 {
-                  "centroid_margin_m": 1.27561144127597e-05,
+                  "centroid_margin_m": 1.0436820883974463e-05,
                   "coverage_mode": "one convex cell",
                   "interior_boundary_area_m2": 0.0,
                   "mate": "P5",
@@ -4240,63 +4240,63 @@
                   "volume_in3": 1.6050807644275157e-06
                 },
                 {
-                  "centroid_margin_m": 0.004985436185880765,
+                  "centroid_margin_m": 0.0062441188212591925,
                   "coverage_mode": "one convex cell",
                   "interior_boundary_area_m2": 0.0,
                   "mate": "P5",
                   "status": "PASS",
-                  "volume_in3": 0.41258440539733204
+                  "volume_in3": 0.41258440539724117
                 },
                 {
-                  "centroid_margin_m": 0.005851690834592027,
+                  "centroid_margin_m": 0.006166491886839154,
                   "coverage_mode": "one convex cell",
                   "interior_boundary_area_m2": 0.0,
                   "mate": "P5",
                   "status": "PASS",
-                  "volume_in3": 2.1664135575609795
+                  "volume_in3": 2.166413557560932
                 },
                 {
-                  "centroid_margin_m": 0.005564602203256719,
+                  "centroid_margin_m": 0.006008539112821065,
                   "coverage_mode": "one convex cell",
                   "interior_boundary_area_m2": 0.0,
                   "mate": "P5",
                   "status": "PASS",
-                  "volume_in3": 1.410015617076962
+                  "volume_in3": 1.410015617076978
                 }
               ],
               "coverage_mode": "explicit convex partition",
               "note": "Each cell is independently contained in one mate; only the stated distance shell around cell boundaries is excluded.",
               "partition_cells": 10,
               "partition_planes": 4,
-              "partition_volume_balance_error_m3": 5.274643569141979e-17,
+              "partition_volume_balance_error_m3": 4.8518047218726323e-17,
               "status": "PASS",
-              "volume_in3": 24.578420686017573
+              "volume_in3": 24.578420686017694
             },
             {
-              "centroid_margin_m": 0.016383544562297736,
+              "centroid_margin_m": 0.017198341923677862,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "P5",
               "status": "PASS",
-              "volume_in3": 49.156841372031906
+              "volume_in3": 49.15684137203174
             },
             {
               "cells": [
                 {
-                  "centroid_margin_m": 0.01742042959731186,
+                  "centroid_margin_m": 0.017420429597311778,
                   "coverage_mode": "one convex cell",
                   "interior_boundary_area_m2": 0.0,
                   "mate": "P5",
                   "status": "PASS",
-                  "volume_in3": 13.074748175181677
+                  "volume_in3": 13.07474817518126
                 },
                 {
-                  "centroid_margin_m": 0.005203483265659337,
+                  "centroid_margin_m": 0.005203483265658448,
                   "coverage_mode": "one convex cell",
                   "interior_boundary_area_m2": 0.0,
                   "mate": "P5",
                   "status": "PASS",
-                  "volume_in3": 0.8490492420069672
+                  "volume_in3": 0.8490492420066917
                 },
                 {
                   "centroid_margin_m": 1.2745032687000446e-05,
@@ -4304,7 +4304,7 @@
                   "interior_boundary_area_m2": 0.0,
                   "mate": "P5",
                   "status": "PASS",
-                  "volume_in3": 3.598550990873329e-06
+                  "volume_in3": 3.59855099087333e-06
                 },
                 {
                   "centroid_margin_m": 0.009145474154101496,
@@ -4328,15 +4328,15 @@
                   "interior_boundary_area_m2": 0.0,
                   "mate": "P5",
                   "status": "PASS",
-                  "volume_in3": 3.7460333193732867
+                  "volume_in3": 3.746033319373299
                 },
                 {
-                  "centroid_margin_m": 0.0061744391255853515,
+                  "centroid_margin_m": 0.006174439125584463,
                   "coverage_mode": "one convex cell",
                   "interior_boundary_area_m2": 0.0,
                   "mate": "P5",
                   "status": "PASS",
-                  "volume_in3": 0.41258440539746544
+                  "volume_in3": 0.4125844053973879
                 },
                 {
                   "centroid_margin_m": 1.2756114411871522e-05,
@@ -4347,7 +4347,7 @@
                   "volume_in3": 1.6050807642101326e-06
                 },
                 {
-                  "centroid_margin_m": 0.0060076489441622805,
+                  "centroid_margin_m": 0.006007648944161392,
                   "coverage_mode": "one convex cell",
                   "interior_boundary_area_m2": 0.0,
                   "mate": "P5",
@@ -4355,7 +4355,7 @@
                   "volume_in3": 2.1664135575608237
                 },
                 {
-                  "centroid_margin_m": 0.006218292235726786,
+                  "centroid_margin_m": 0.006218292235727674,
                   "coverage_mode": "one convex cell",
                   "interior_boundary_area_m2": 0.0,
                   "mate": "P5",
@@ -4367,7 +4367,7 @@
               "note": "Each cell is independently contained in one mate; only the stated distance shell around cell boundaries is excluded.",
               "partition_cells": 10,
               "partition_planes": 4,
-              "partition_volume_balance_error_m3": 5.274643569141979e-17,
+              "partition_volume_balance_error_m3": 4.0332320816460765e-17,
               "status": "PASS",
               "volume_in3": 24.578420686016507
             },
@@ -4380,12 +4380,12 @@
               "volume_in3": 8.000000000000123
             },
             {
-              "centroid_margin_m": 0.005442857142856639,
+              "centroid_margin_m": 0.005896428571428025,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "P5",
               "status": "PASS",
-              "volume_in3": 8.00000000000007
+              "volume_in3": 8.000000000000151
             }
           ],
           "coverage_mode": "nonconvex surface partition",
@@ -4393,12 +4393,12 @@
           "note": "Disjoint convex cells are each proved inside the actual concave cavity; their summed volume must recover its signed surface volume. Every retained cell is then proved covered by mating timber.",
           "partition_cells": 5,
           "partition_planes": 3,
-          "partition_volume_balance_error_m3": 5.984795992119984e-17,
+          "partition_volume_balance_error_m3": 6.049848122469115e-17,
           "status": "PASS"
         }
       ],
       "cross_sections": {
-        "max_missing_area_m2": 2.3313209695098314e-15,
+        "max_missing_area_m2": 2.285544602322331e-15,
         "max_receiver_overlap_area_m2": 1.9497111381497234e-14,
         "sections": 240,
         "status": "PASS"
@@ -4418,7 +4418,7 @@
           "status": "PASS",
           "sum_pair_overlap_area_m2": 0
         },
-        "signed_volume_m3": 0.0027720180681153465,
+        "signed_volume_m3": 0.0027720180681153448,
         "status": "PASS",
         "triangles": 72,
         "vertices": 42
@@ -4429,11 +4429,11 @@
         "convex_cells": 386,
         "declared_external_trim": null,
         "failures": [],
-        "max_cavity_vertex_outside_reference_stock_m": 3.9968028886505635e-15,
+        "max_cavity_vertex_outside_reference_stock_m": 3.95516952522712e-15,
         "max_interior_boundary_area_m2": 0.0,
         "partition_planes": 18,
-        "partition_volume_balance_error_m3": 2.842170943040401e-14,
-        "reference_envelope_volume_in3": 13155.075066300431,
+        "partition_volume_balance_error_m3": 2.7894353493707058e-14,
+        "reference_envelope_volume_in3": 13155.07506630043,
         "scope": "Saved prejoinery envelope, after any explicitly listed exterior trim, is covered by final timber wood plus exported removed cavity within the stated tolerances. Added tenons outside this envelope are not counted as removed stock.",
         "status": "PASS",
         "verified_cells": 386
@@ -4449,7 +4449,7 @@
     {
       "components": [
         {
-          "centroid_margin_m": 0.025399999999999825,
+          "centroid_margin_m": 0.025399999999999798,
           "convex_volume_error_m3": 1.0842021724855044e-19,
           "coverage_mode": "one convex cell",
           "interior_boundary_area_m2": 0.0,
@@ -4459,21 +4459,21 @@
         },
         {
           "centroid_margin_m": 0.020340000000000025,
-          "convex_volume_error_m3": 1.0842021724855044e-19,
+          "convex_volume_error_m3": 2.168404344971009e-19,
           "coverage_mode": "one convex cell",
           "interior_boundary_area_m2": 0.0,
           "mate": "R5",
           "status": "PASS",
-          "volume_in3": 44.98160784748995
+          "volume_in3": 44.98160784748994
         },
         {
           "centroid_margin_m": 0.013569627672608497,
-          "convex_volume_error_m3": 5.421010862427522e-20,
+          "convex_volume_error_m3": 2.710505431213761e-20,
           "coverage_mode": "one convex cell",
           "interior_boundary_area_m2": 0.0,
           "mate": "L5-S",
           "status": "PASS",
-          "volume_in3": 11.558550058925526
+          "volume_in3": 11.558550058925528
         },
         {
           "centroid_margin_m": 0.013569627672608275,
@@ -4491,10 +4491,10 @@
           "interior_boundary_area_m2": 0.0,
           "mate": "L4-S",
           "status": "PASS",
-          "volume_in3": 11.558550058925402
+          "volume_in3": 11.558550058925404
         },
         {
-          "centroid_margin_m": 0.013569627672608497,
+          "centroid_margin_m": 0.013569627672608386,
           "convex_volume_error_m3": 0.0,
           "coverage_mode": "one convex cell",
           "interior_boundary_area_m2": 0.0,
@@ -4538,7 +4538,7 @@
         "max_cavity_vertex_outside_reference_stock_m": 4.440892098500626e-16,
         "max_interior_boundary_area_m2": 0.0,
         "partition_planes": 19,
-        "partition_volume_balance_error_m3": 7.78543896018391e-15,
+        "partition_volume_balance_error_m3": 7.66053886991358e-15,
         "reference_envelope_volume_in3": 3357.73665961011,
         "scope": "Saved prejoinery envelope, after any explicitly listed exterior trim, is covered by final timber wood plus exported removed cavity within the stated tolerances. Added tenons outside this envelope are not counted as removed stock.",
         "status": "PASS",
@@ -4557,44 +4557,44 @@
         {
           "cells": [
             {
-              "centroid_margin_m": 0.0005488122445411747,
+              "centroid_margin_m": 0.0005245904634363363,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "B5",
               "status": "PASS",
-              "volume_in3": 0.009407599205563097
+              "volume_in3": 0.009407599205547859
             },
             {
-              "centroid_margin_m": 0.0006338257418359028,
+              "centroid_margin_m": 0.0005563160423007751,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "B5",
               "status": "PASS",
-              "volume_in3": 0.018815198411119963
+              "volume_in3": 0.018815198411071533
             },
             {
-              "centroid_margin_m": 0.0006461057243543067,
+              "centroid_margin_m": 0.000566834440739683,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "B5",
               "status": "PASS",
-              "volume_in3": 0.009407599205537836
+              "volume_in3": 0.009407599205536113
             },
             {
-              "centroid_margin_m": 0.007383710631555296,
+              "centroid_margin_m": 0.007951077366881054,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "B5",
               "status": "PASS",
-              "volume_in3": 1.6141807012337952
+              "volume_in3": 1.6141807012329972
             },
             {
-              "centroid_margin_m": 0.006050004260387265,
+              "centroid_margin_m": 0.006537507953420896,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "B5",
               "status": "PASS",
-              "volume_in3": 1.6141807012329195
+              "volume_in3": 1.6141807012328748
             }
           ],
           "coverage_mode": "nonconvex surface partition",
@@ -4602,13 +4602,13 @@
           "note": "Disjoint convex cells are each proved inside the actual concave cavity; their summed volume must recover its signed surface volume. Every retained cell is then proved covered by mating timber.",
           "partition_cells": 5,
           "partition_planes": 3,
-          "partition_volume_balance_error_m3": 1.0238934266409982e-17,
+          "partition_volume_balance_error_m3": 5.441339653161625e-18,
           "status": "PASS"
         }
       ],
       "cross_sections": {
-        "max_missing_area_m2": 5.493192002177238e-16,
-        "max_receiver_overlap_area_m2": 2.951622009277344e-16,
+        "max_missing_area_m2": 5.493173375725746e-16,
+        "max_receiver_overlap_area_m2": 3.256797790527344e-16,
         "sections": 129,
         "status": "PASS"
       },
@@ -4616,7 +4616,7 @@
       "mesh_check": {
         "connected_surfaces": 1,
         "failures": [],
-        "minimum_triangle_area_m2": 1.3864150274310368e-05,
+        "minimum_triangle_area_m2": 1.3864150274307536e-05,
         "raw_surface_check": {
           "coplanar_pairs_tested": 41,
           "max_overlap_area_m2": 0.0,
@@ -4627,7 +4627,7 @@
           "status": "PASS",
           "sum_pair_overlap_area_m2": 0
         },
-        "signed_volume_m3": 5.3520016638412696e-05,
+        "signed_volume_m3": 5.35200166384135e-05,
         "status": "PASS",
         "triangles": 30,
         "vertices": 17
@@ -4638,11 +4638,11 @@
         "convex_cells": 18,
         "declared_external_trim": null,
         "failures": [],
-        "max_cavity_vertex_outside_reference_stock_m": 4.440892098500626e-15,
+        "max_cavity_vertex_outside_reference_stock_m": 4.773959005888173e-15,
         "max_interior_boundary_area_m2": 0.0,
         "partition_planes": 5,
-        "partition_volume_balance_error_m3": 4.163336342344337e-17,
-        "reference_envelope_volume_in3": 4025.950085184115,
+        "partition_volume_balance_error_m3": 3.3306690738754696e-16,
+        "reference_envelope_volume_in3": 4025.950085184114,
         "scope": "Saved prejoinery envelope, after any explicitly listed exterior trim, is covered by final timber wood plus exported removed cavity within the stated tolerances. Added tenons outside this envelope are not counted as removed stock.",
         "status": "PASS",
         "verified_cells": 18
@@ -4665,7 +4665,7 @@
               "interior_boundary_area_m2": 0.0,
               "mate": "B5",
               "status": "PASS",
-              "volume_in3": 0.0094075992055437
+              "volume_in3": 0.009407599205543698
             },
             {
               "centroid_margin_m": 0.0006159244744496917,
@@ -4673,7 +4673,7 @@
               "interior_boundary_area_m2": 0.0,
               "mate": "B5",
               "status": "PASS",
-              "volume_in3": 0.01881519841108622
+              "volume_in3": 0.018815198411082337
             },
             {
               "centroid_margin_m": 0.0006927976497927979,
@@ -4681,23 +4681,23 @@
               "interior_boundary_area_m2": 0.0,
               "mate": "B5",
               "status": "PASS",
-              "volume_in3": 0.009407599205533992
+              "volume_in3": 0.009407599205537411
             },
             {
-              "centroid_margin_m": 0.006129225452329301,
+              "centroid_margin_m": 0.006594325066407336,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "B5",
               "status": "PASS",
-              "volume_in3": 1.6141807012331397
+              "volume_in3": 1.6141807012330607
             },
             {
-              "centroid_margin_m": 0.007815384615387999,
+              "centroid_margin_m": 0.007120255984454982,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "B5",
               "status": "PASS",
-              "volume_in3": 1.614180701233447
+              "volume_in3": 1.6141807012329314
             }
           ],
           "coverage_mode": "nonconvex surface partition",
@@ -4705,13 +4705,13 @@
           "note": "Disjoint convex cells are each proved inside the actual concave cavity; their summed volume must recover its signed surface volume. Every retained cell is then proved covered by mating timber.",
           "partition_cells": 5,
           "partition_planes": 3,
-          "partition_volume_balance_error_m3": 7.867242014097942e-18,
+          "partition_volume_balance_error_m3": 2.947674656444965e-18,
           "status": "PASS"
         }
       ],
       "cross_sections": {
-        "max_missing_area_m2": 5.424549605863582e-16,
-        "max_receiver_overlap_area_m2": 3.1280517578125e-16,
+        "max_missing_area_m2": 6.7163349517535e-16,
+        "max_receiver_overlap_area_m2": 2.9850006103515625e-16,
         "sections": 129,
         "status": "PASS"
       },
@@ -4719,7 +4719,7 @@
       "mesh_check": {
         "connected_surfaces": 1,
         "failures": [],
-        "minimum_triangle_area_m2": 1.3864150274310192e-05,
+        "minimum_triangle_area_m2": 1.386415027430829e-05,
         "raw_surface_check": {
           "coplanar_pairs_tested": 41,
           "max_overlap_area_m2": 0.0,
@@ -4730,7 +4730,7 @@
           "status": "PASS",
           "sum_pair_overlap_area_m2": 0
         },
-        "signed_volume_m3": 5.3520016638412046e-05,
+        "signed_volume_m3": 5.35200166384131e-05,
         "status": "PASS",
         "triangles": 30,
         "vertices": 17
@@ -4741,10 +4741,10 @@
         "convex_cells": 18,
         "declared_external_trim": null,
         "failures": [],
-        "max_cavity_vertex_outside_reference_stock_m": 1.1102230246251565e-15,
+        "max_cavity_vertex_outside_reference_stock_m": 1.3322676295501878e-15,
         "max_interior_boundary_area_m2": 0.0,
         "partition_planes": 5,
-        "partition_volume_balance_error_m3": 2.942091015256665e-15,
+        "partition_volume_balance_error_m3": 2.4147350785597155e-15,
         "reference_envelope_volume_in3": 4025.9500851844236,
         "scope": "Saved prejoinery envelope, after any explicitly listed exterior trim, is covered by final timber wood plus exported removed cavity within the stated tolerances. Added tenons outside this envelope are not counted as removed stock.",
         "status": "PASS",
@@ -4771,7 +4771,7 @@
         },
         {
           "centroid_margin_m": 0.020680427794254302,
-          "convex_volume_error_m3": 6.505213034913027e-19,
+          "convex_volume_error_m3": 8.673617379884035e-19,
           "coverage_mode": "one convex cell",
           "interior_boundary_area_m2": 0.0,
           "mate": "K6-A",
@@ -4816,8 +4816,8 @@
         }
       ],
       "cross_sections": {
-        "max_missing_area_m2": 1.3657808303833007e-15,
-        "max_receiver_overlap_area_m2": 7.517337799072266e-16,
+        "max_missing_area_m2": 1.362919807434082e-15,
+        "max_receiver_overlap_area_m2": 7.804632186889648e-16,
         "sections": 270,
         "status": "PASS"
       },
@@ -4836,7 +4836,7 @@
           "status": "PASS",
           "sum_pair_overlap_area_m2": 0
         },
-        "signed_volume_m3": 0.0030833630307587727,
+        "signed_volume_m3": 0.003083363030758773,
         "status": "PASS",
         "triangles": 88,
         "vertices": 56
@@ -4850,7 +4850,7 @@
         "max_cavity_vertex_outside_reference_stock_m": 0.0,
         "max_interior_boundary_area_m2": 0.0,
         "partition_planes": 25,
-        "partition_volume_balance_error_m3": 1.5307199952019346e-14,
+        "partition_volume_balance_error_m3": 1.5487611193520934e-14,
         "reference_envelope_volume_in3": 6210.313682744058,
         "scope": "Saved prejoinery envelope, after any explicitly listed exterior trim, is covered by final timber wood plus exported removed cavity within the stated tolerances. Added tenons outside this envelope are not counted as removed stock.",
         "status": "PASS",
@@ -4885,26 +4885,26 @@
           "volume_in3": 21.241245969245632
         },
         {
-          "centroid_margin_m": 0.006957391915745514,
-          "convex_volume_error_m3": 6.776263578034403e-21,
+          "centroid_margin_m": 0.0069573919157459585,
+          "convex_volume_error_m3": 6.776263578034403e-20,
           "coverage_mode": "one convex cell",
           "interior_boundary_area_m2": 0.0,
           "mate": "J6-0",
           "status": "PASS",
-          "volume_in3": 3.228361402466243
+          "volume_in3": 3.2283614024662515
         },
         {
           "centroid_margin_m": 0.006957391915746403,
-          "convex_volume_error_m3": 1.2197274440461925e-19,
+          "convex_volume_error_m3": 2.168404344971009e-19,
           "coverage_mode": "one convex cell",
           "interior_boundary_area_m2": 0.0,
           "mate": "J6-2",
           "status": "PASS",
-          "volume_in3": 3.228361402466232
+          "volume_in3": 3.228361402466272
         }
       ],
       "cross_sections": {
-        "max_missing_area_m2": 8.208751678466796e-16,
+        "max_missing_area_m2": 6.6375732421875e-16,
         "max_receiver_overlap_area_m2": 3.560781478881836e-16,
         "sections": 393,
         "status": "PASS"
@@ -4924,7 +4924,7 @@
           "status": "PASS",
           "sum_pair_overlap_area_m2": 0
         },
-        "signed_volume_m3": 0.0008019700441102367,
+        "signed_volume_m3": 0.0008019700441102383,
         "status": "PASS",
         "triangles": 40,
         "vertices": 28
@@ -4938,7 +4938,7 @@
         "max_cavity_vertex_outside_reference_stock_m": 1.7763568394002505e-15,
         "max_interior_boundary_area_m2": 0.0,
         "partition_planes": 12,
-        "partition_volume_balance_error_m3": 1.0685896612017132e-14,
+        "partition_volume_balance_error_m3": 6.786238238021269e-15,
         "reference_envelope_volume_in3": 6050.180668328284,
         "scope": "Saved prejoinery envelope, after any explicitly listed exterior trim, is covered by final timber wood plus exported removed cavity within the stated tolerances. Added tenons outside this envelope are not counted as removed stock.",
         "status": "PASS",
@@ -4956,21 +4956,21 @@
       "components": [
         {
           "centroid_margin_m": 0.009649864166409228,
-          "convex_volume_error_m3": 5.421010862427522e-20,
+          "convex_volume_error_m3": 1.6263032587282567e-19,
           "coverage_mode": "one convex cell",
           "interior_boundary_area_m2": 0.0,
           "mate": "J6-0",
           "status": "PASS",
-          "volume_in3": 27.422619235294974
+          "volume_in3": 27.422619235294967
         },
         {
           "centroid_margin_m": 0.009649864166409006,
-          "convex_volume_error_m3": 1.6263032587282567e-19,
+          "convex_volume_error_m3": 2.168404344971009e-19,
           "coverage_mode": "one convex cell",
           "interior_boundary_area_m2": 0.0,
           "mate": "J5-2",
           "status": "PASS",
-          "volume_in3": 27.42261923529449
+          "volume_in3": 27.422619235294494
         },
         {
           "cells": [
@@ -5001,12 +5001,12 @@
                   "volume_in3": 0.22364646929890863
                 },
                 {
-                  "centroid_margin_m": 0.006198416902638115,
+                  "centroid_margin_m": 0.006198416902637227,
                   "coverage_mode": "one convex cell",
                   "interior_boundary_area_m2": 0.0,
                   "mate": "P6",
                   "status": "PASS",
-                  "volume_in3": 0.41258440539750657
+                  "volume_in3": 0.4125844053974438
                 },
                 {
                   "centroid_margin_m": 0.006347924024027396,
@@ -5014,7 +5014,7 @@
                   "interior_boundary_area_m2": 0.0,
                   "mate": "P6",
                   "status": "PASS",
-                  "volume_in3": 2.1664135575608143
+                  "volume_in3": 2.1664135575608787
                 },
                 {
                   "centroid_margin_m": 0.005727151627480609,
@@ -5025,7 +5025,7 @@
                   "volume_in3": 1.410015617077165
                 },
                 {
-                  "centroid_margin_m": 0.017101287594345038,
+                  "centroid_margin_m": 0.01616153729134348,
                   "coverage_mode": "one convex cell",
                   "interior_boundary_area_m2": 0.0,
                   "mate": "P6",
@@ -5038,7 +5038,7 @@
                   "interior_boundary_area_m2": 0.0,
                   "mate": "P6",
                   "status": "PASS",
-                  "volume_in3": 3.5985509900606887e-06
+                  "volume_in3": 3.598550990060688e-06
                 },
                 {
                   "centroid_margin_m": 0.005837138836274125,
@@ -5061,7 +5061,7 @@
               "note": "Each cell is independently contained in one mate; only the stated distance shell around cell boundaries is excluded.",
               "partition_cells": 10,
               "partition_planes": 4,
-              "partition_volume_balance_error_m3": 7.643625316022806e-18,
+              "partition_volume_balance_error_m3": 7.697835424647081e-18,
               "status": "PASS",
               "volume_in3": 24.578420686017335
             },
@@ -5081,7 +5081,7 @@
                   "interior_boundary_area_m2": 0.0,
                   "mate": "P6",
                   "status": "PASS",
-                  "volume_in3": 0.22364646929891543
+                  "volume_in3": 0.22364646929890242
                 },
                 {
                   "centroid_margin_m": 0.007647790222876427,
@@ -5089,7 +5089,7 @@
                   "interior_boundary_area_m2": 0.0,
                   "mate": "B6",
                   "status": "PASS",
-                  "volume_in3": 2.6959246964921104
+                  "volume_in3": 2.6959246964922468
                 },
                 {
                   "centroid_margin_m": 0.0049185559861717465,
@@ -5097,7 +5097,7 @@
                   "interior_boundary_area_m2": 0.0,
                   "mate": "P6",
                   "status": "PASS",
-                  "volume_in3": 0.8490492420061044
+                  "volume_in3": 0.8490492420061045
                 },
                 {
                   "centroid_margin_m": 0.005972031468437944,
@@ -5105,7 +5105,7 @@
                   "interior_boundary_area_m2": 0.0,
                   "mate": "P6",
                   "status": "PASS",
-                  "volume_in3": 1.4100156170771454
+                  "volume_in3": 1.410015617077106
                 },
                 {
                   "centroid_margin_m": 0.006030049102441204,
@@ -5113,7 +5113,7 @@
                   "interior_boundary_area_m2": 0.0,
                   "mate": "P6",
                   "status": "PASS",
-                  "volume_in3": 2.1664135575607313
+                  "volume_in3": 2.1664135575608108
                 },
                 {
                   "centroid_margin_m": 0.005863931627847929,
@@ -5121,7 +5121,7 @@
                   "interior_boundary_area_m2": 0.0,
                   "mate": "P6",
                   "status": "PASS",
-                  "volume_in3": 0.4125844053971222
+                  "volume_in3": 0.41258440539712227
                 },
                 {
                   "centroid_margin_m": 1.1480502972283091e-05,
@@ -5145,7 +5145,7 @@
                   "interior_boundary_area_m2": 0.0,
                   "mate": "P6",
                   "status": "PASS",
-                  "volume_in3": 1.605080764590727e-06
+                  "volume_in3": 1.6050807645907271e-06
                 },
                 {
                   "centroid_margin_m": 0.004724680031479522,
@@ -5160,7 +5160,7 @@
               "note": "Each cell is independently contained in one mate; only the stated distance shell around cell boundaries is excluded.",
               "partition_cells": 10,
               "partition_planes": 4,
-              "partition_volume_balance_error_m3": 2.1358782797964437e-17,
+              "partition_volume_balance_error_m3": 2.4069288229178198e-17,
               "status": "PASS",
               "volume_in3": 24.578420686016777
             },
@@ -5191,7 +5191,7 @@
         }
       ],
       "cross_sections": {
-        "max_missing_area_m2": 1.712220525488195e-15,
+        "max_missing_area_m2": 1.6707356927245232e-15,
         "max_receiver_overlap_area_m2": 1.9497111381497234e-14,
         "sections": 240,
         "status": "PASS"
@@ -5211,7 +5211,7 @@
           "status": "PASS",
           "sum_pair_overlap_area_m2": 0
         },
-        "signed_volume_m3": 0.0027720180681154627,
+        "signed_volume_m3": 0.002772018068115459,
         "status": "PASS",
         "triangles": 72,
         "vertices": 42
@@ -5225,8 +5225,8 @@
         "max_cavity_vertex_outside_reference_stock_m": 0.0,
         "max_interior_boundary_area_m2": 0.0,
         "partition_planes": 18,
-        "partition_volume_balance_error_m3": 2.170486013142181e-14,
-        "reference_envelope_volume_in3": 13155.075066300322,
+        "partition_volume_balance_error_m3": 2.0122792321330962e-14,
+        "reference_envelope_volume_in3": 13155.07506630032,
         "scope": "Saved prejoinery envelope, after any explicitly listed exterior trim, is covered by final timber wood plus exported removed cavity within the stated tolerances. Added tenons outside this envelope are not counted as removed stock.",
         "status": "PASS",
         "verified_cells": 386
@@ -5252,7 +5252,7 @@
         },
         {
           "centroid_margin_m": 0.020339999999999803,
-          "convex_volume_error_m3": 0.0,
+          "convex_volume_error_m3": 1.0842021724855044e-19,
           "coverage_mode": "one convex cell",
           "interior_boundary_area_m2": 0.0,
           "mate": "R6",
@@ -5270,12 +5270,12 @@
         },
         {
           "centroid_margin_m": 0.013569627672608053,
-          "convex_volume_error_m3": 0.0,
+          "convex_volume_error_m3": 5.421010862427522e-20,
           "coverage_mode": "one convex cell",
           "interior_boundary_area_m2": 0.0,
           "mate": "L6-H",
           "status": "PASS",
-          "volume_in3": 11.55855005892512
+          "volume_in3": 11.558550058925123
         },
         {
           "centroid_margin_m": 0.013569627672608386,
@@ -5331,7 +5331,7 @@
         "max_cavity_vertex_outside_reference_stock_m": 0.0,
         "max_interior_boundary_area_m2": 0.0,
         "partition_planes": 19,
-        "partition_volume_balance_error_m3": 2.033095913844818e-15,
+        "partition_volume_balance_error_m3": 2.0261570199409107e-15,
         "reference_envelope_volume_in3": 3357.736659610101,
         "scope": "Saved prejoinery envelope, after any explicitly listed exterior trim, is covered by final timber wood plus exported removed cavity within the stated tolerances. Added tenons outside this envelope are not counted as removed stock.",
         "status": "PASS",
@@ -5355,7 +5355,7 @@
               "interior_boundary_area_m2": 0.0,
               "mate": "B6",
               "status": "PASS",
-              "volume_in3": 0.009407599205554165
+              "volume_in3": 0.009407599205551313
             },
             {
               "centroid_margin_m": 0.0005025639605071852,
@@ -5363,7 +5363,7 @@
               "interior_boundary_area_m2": 0.0,
               "mate": "B6",
               "status": "PASS",
-              "volume_in3": 0.018815198411118877
+              "volume_in3": 0.01881519841110484
             },
             {
               "centroid_margin_m": 0.00045788468556740014,
@@ -5371,15 +5371,15 @@
               "interior_boundary_area_m2": 0.0,
               "mate": "B6",
               "status": "PASS",
-              "volume_in3": 0.009407599205544159
+              "volume_in3": 0.00940759920554416
             },
             {
-              "centroid_margin_m": 0.007015656500191092,
+              "centroid_margin_m": 0.0070156565001886495,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "B6",
               "status": "PASS",
-              "volume_in3": 1.6141807012336247
+              "volume_in3": 1.6141807012330116
             },
             {
               "centroid_margin_m": 0.0056407787512049445,
@@ -5395,13 +5395,13 @@
           "note": "Disjoint convex cells are each proved inside the actual concave cavity; their summed volume must recover its signed surface volume. Every retained cell is then proved covered by mating timber.",
           "partition_cells": 5,
           "partition_planes": 3,
-          "partition_volume_balance_error_m3": 1.1045309632196076e-17,
+          "partition_volume_balance_error_m3": 3.3203691532368573e-19,
           "status": "PASS"
         }
       ],
       "cross_sections": {
-        "max_missing_area_m2": 4.711151123046875e-16,
-        "max_receiver_overlap_area_m2": 2.689361572265625e-16,
+        "max_missing_area_m2": 4.99725341796875e-16,
+        "max_receiver_overlap_area_m2": 2.5777999690035357e-16,
         "sections": 129,
         "status": "PASS"
       },
@@ -5409,7 +5409,7 @@
       "mesh_check": {
         "connected_surfaces": 1,
         "failures": [],
-        "minimum_triangle_area_m2": 1.3864150274310192e-05,
+        "minimum_triangle_area_m2": 1.386415027430829e-05,
         "raw_surface_check": {
           "coplanar_pairs_tested": 41,
           "max_overlap_area_m2": 0.0,
@@ -5420,7 +5420,7 @@
           "status": "PASS",
           "sum_pair_overlap_area_m2": 0
         },
-        "signed_volume_m3": 5.3520016638412046e-05,
+        "signed_volume_m3": 5.35200166384131e-05,
         "status": "PASS",
         "triangles": 30,
         "vertices": 17
@@ -5431,11 +5431,11 @@
         "convex_cells": 18,
         "declared_external_trim": null,
         "failures": [],
-        "max_cavity_vertex_outside_reference_stock_m": 4.884981308350689e-15,
+        "max_cavity_vertex_outside_reference_stock_m": 4.773959005888173e-15,
         "max_interior_boundary_area_m2": 0.0,
         "partition_planes": 5,
-        "partition_volume_balance_error_m3": 3.788636071533347e-15,
-        "reference_envelope_volume_in3": 4025.950085184224,
+        "partition_volume_balance_error_m3": 2.733924198139448e-15,
+        "reference_envelope_volume_in3": 4025.950085184222,
         "scope": "Saved prejoinery envelope, after any explicitly listed exterior trim, is covered by final timber wood plus exported removed cavity within the stated tolerances. Added tenons outside this envelope are not counted as removed stock.",
         "status": "PASS",
         "verified_cells": 18
@@ -5453,44 +5453,44 @@
         {
           "cells": [
             {
-              "centroid_margin_m": 0.0005905657678271226,
+              "centroid_margin_m": 0.0006253097608670544,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "B6",
               "status": "PASS",
-              "volume_in3": 0.009407599205537834
+              "volume_in3": 0.009407599205533444
             },
             {
-              "centroid_margin_m": 0.0006699766352276093,
+              "centroid_margin_m": 0.0006977279791922086,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "B6",
               "status": "PASS",
-              "volume_in3": 0.018815198411096194
+              "volume_in3": 0.018815198411070887
             },
             {
-              "centroid_margin_m": 0.0005088215338076019,
+              "centroid_margin_m": 0.0006148965219834324,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "B6",
               "status": "PASS",
-              "volume_in3": 0.009407599205552838
+              "volume_in3": 0.009407599205547252
             },
             {
-              "centroid_margin_m": 0.005347740330080786,
+              "centroid_margin_m": 0.006271348012349964,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "B6",
               "status": "PASS",
-              "volume_in3": 1.6141807012331184
+              "volume_in3": 1.6141807012329754
             },
             {
-              "centroid_margin_m": 0.008386645094327516,
+              "centroid_margin_m": 0.00795107736688172,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "B6",
               "status": "PASS",
-              "volume_in3": 1.614180701233756
+              "volume_in3": 1.6141807012331022
             }
           ],
           "coverage_mode": "nonconvex surface partition",
@@ -5498,12 +5498,12 @@
           "note": "Disjoint convex cells are each proved inside the actual concave cavity; their summed volume must recover its signed surface volume. Every retained cell is then proved covered by mating timber.",
           "partition_cells": 5,
           "partition_planes": 3,
-          "partition_volume_balance_error_m3": 1.2014315323854996e-17,
+          "partition_volume_balance_error_m3": 2.236166980751353e-18,
           "status": "PASS"
         }
       ],
       "cross_sections": {
-        "max_missing_area_m2": 6.395481787605795e-16,
+        "max_missing_area_m2": 6.370794904322075e-16,
         "max_receiver_overlap_area_m2": 4.808902740478516e-16,
         "sections": 129,
         "status": "PASS"
@@ -5512,7 +5512,7 @@
       "mesh_check": {
         "connected_surfaces": 1,
         "failures": [],
-        "minimum_triangle_area_m2": 1.3864150274310366e-05,
+        "minimum_triangle_area_m2": 1.3864150274307534e-05,
         "raw_surface_check": {
           "coplanar_pairs_tested": 41,
           "max_overlap_area_m2": 0.0,
@@ -5523,7 +5523,7 @@
           "status": "PASS",
           "sum_pair_overlap_area_m2": 0
         },
-        "signed_volume_m3": 5.352001663841299e-05,
+        "signed_volume_m3": 5.35200166384136e-05,
         "status": "PASS",
         "triangles": 30,
         "vertices": 17
@@ -5537,8 +5537,8 @@
         "max_cavity_vertex_outside_reference_stock_m": 3.6637359812630166e-15,
         "max_interior_boundary_area_m2": 0.0,
         "partition_planes": 5,
-        "partition_volume_balance_error_m3": 1.304512053934559e-15,
-        "reference_envelope_volume_in3": 4025.950085184184,
+        "partition_volume_balance_error_m3": 2.2065682614424986e-15,
+        "reference_envelope_volume_in3": 4025.9500851841885,
         "scope": "Saved prejoinery envelope, after any explicitly listed exterior trim, is covered by final timber wood plus exported removed cavity within the stated tolerances. Added tenons outside this envelope are not counted as removed stock.",
         "status": "PASS",
         "verified_cells": 18
@@ -5554,22 +5554,22 @@
     {
       "components": [
         {
-          "centroid_margin_m": 0.020680427794254636,
-          "convex_volume_error_m3": 4.336808689942018e-19,
+          "centroid_margin_m": 0.020680427794254733,
+          "convex_volume_error_m3": 5.421010862427522e-19,
           "coverage_mode": "one convex cell",
           "interior_boundary_area_m2": 0.0,
           "mate": "K7-B",
           "status": "PASS",
-          "volume_in3": 44.08221557936386
+          "volume_in3": 44.08221557936387
         },
         {
           "centroid_margin_m": 0.020680427794254642,
-          "convex_volume_error_m3": 0.0,
+          "convex_volume_error_m3": 1.0842021724855044e-19,
           "coverage_mode": "one convex cell",
           "interior_boundary_area_m2": 0.0,
           "mate": "K7-A",
           "status": "PASS",
-          "volume_in3": 44.08221557936384
+          "volume_in3": 44.08221557936383
         },
         {
           "centroid_margin_m": 0.025399999999998535,
@@ -5582,16 +5582,16 @@
         },
         {
           "centroid_margin_m": 0.02034000000000028,
-          "convex_volume_error_m3": 1.6263032587282567e-19,
+          "convex_volume_error_m3": 5.421010862427522e-20,
           "coverage_mode": "one convex cell",
           "interior_boundary_area_m2": 0.0,
           "mate": "B7",
           "status": "PASS",
-          "volume_in3": 25.99696269072765
+          "volume_in3": 25.996962690727642
         },
         {
           "centroid_margin_m": 0.020339999999999026,
-          "convex_volume_error_m3": 5.421010862427522e-20,
+          "convex_volume_error_m3": 0.0,
           "coverage_mode": "one convex cell",
           "interior_boundary_area_m2": 0.0,
           "mate": "B6",
@@ -5640,10 +5640,10 @@
         "convex_cells": 1067,
         "declared_external_trim": null,
         "failures": [],
-        "max_cavity_vertex_outside_reference_stock_m": 4.343747583845925e-15,
+        "max_cavity_vertex_outside_reference_stock_m": 4.121702978920894e-15,
         "max_interior_boundary_area_m2": 0.0,
         "partition_planes": 25,
-        "partition_volume_balance_error_m3": 3.4583447217073626e-14,
+        "partition_volume_balance_error_m3": 3.315403507286874e-14,
         "reference_envelope_volume_in3": 6210.313682743938,
         "scope": "Saved prejoinery envelope, after any explicitly listed exterior trim, is covered by final timber wood plus exported removed cavity within the stated tolerances. Added tenons outside this envelope are not counted as removed stock.",
         "status": "PASS",
@@ -5670,30 +5670,30 @@
         },
         {
           "centroid_margin_m": 0.022528995514027095,
-          "convex_volume_error_m3": 4.87890977618477e-19,
+          "convex_volume_error_m3": 5.421010862427522e-19,
           "coverage_mode": "one convex cell",
           "interior_boundary_area_m2": 0.0,
           "mate": "K7-B",
           "status": "PASS",
-          "volume_in3": 21.2412459692456
+          "volume_in3": 21.241245969245604
         },
         {
           "centroid_margin_m": 0.0069573919157459585,
-          "convex_volume_error_m3": 4.743384504624082e-20,
+          "convex_volume_error_m3": 9.486769009248164e-20,
           "coverage_mode": "one convex cell",
           "interior_boundary_area_m2": 0.0,
           "mate": "J7-0",
           "status": "PASS",
-          "volume_in3": 3.2283614024662466
+          "volume_in3": 3.2283614024662333
         },
         {
-          "centroid_margin_m": 0.006957391915746403,
-          "convex_volume_error_m3": 1.2874900798265365e-19,
+          "centroid_margin_m": 0.006957391915746847,
+          "convex_volume_error_m3": 4.743384504624082e-19,
           "coverage_mode": "one convex cell",
           "interior_boundary_area_m2": 0.0,
           "mate": "J7-2",
           "status": "PASS",
-          "volume_in3": 3.2283614024662843
+          "volume_in3": 3.2283614024663305
         }
       ],
       "cross_sections": {
@@ -5706,7 +5706,7 @@
       "mesh_check": {
         "connected_surfaces": 4,
         "failures": [],
-        "minimum_triangle_area_m2": 7.36648212075287e-05,
+        "minimum_triangle_area_m2": 7.366482120752566e-05,
         "raw_surface_check": {
           "coplanar_pairs_tested": 18,
           "max_overlap_area_m2": 0.0,
@@ -5717,7 +5717,7 @@
           "status": "PASS",
           "sum_pair_overlap_area_m2": 0
         },
-        "signed_volume_m3": 0.0008019700441102374,
+        "signed_volume_m3": 0.0008019700441102366,
         "status": "PASS",
         "triangles": 40,
         "vertices": 28
@@ -5731,7 +5731,7 @@
         "max_cavity_vertex_outside_reference_stock_m": 1.7763568394002505e-15,
         "max_interior_boundary_area_m2": 0.0,
         "partition_planes": 12,
-        "partition_volume_balance_error_m3": 8.604228440844963e-15,
+        "partition_volume_balance_error_m3": 8.1601392309949e-15,
         "reference_envelope_volume_in3": 6050.180668328283,
         "scope": "Saved prejoinery envelope, after any explicitly listed exterior trim, is covered by final timber wood plus exported removed cavity within the stated tolerances. Added tenons outside this envelope are not counted as removed stock.",
         "status": "PASS",
@@ -5749,21 +5749,21 @@
       "components": [
         {
           "centroid_margin_m": 0.009649864166409117,
-          "convex_volume_error_m3": 5.421010862427522e-20,
+          "convex_volume_error_m3": 0.0,
           "coverage_mode": "one convex cell",
           "interior_boundary_area_m2": 0.0,
           "mate": "J7-0",
           "status": "PASS",
-          "volume_in3": 27.422619235294764
+          "volume_in3": 27.422619235294768
         },
         {
           "centroid_margin_m": 0.009649864166408673,
-          "convex_volume_error_m3": 1.0842021724855044e-19,
+          "convex_volume_error_m3": 1.6263032587282567e-19,
           "coverage_mode": "one convex cell",
           "interior_boundary_area_m2": 0.0,
           "mate": "J6-2",
           "status": "PASS",
-          "volume_in3": 27.422619235294377
+          "volume_in3": 27.42261923529438
         },
         {
           "cells": [
@@ -5775,15 +5775,15 @@
                   "interior_boundary_area_m2": 0.0,
                   "mate": "P7",
                   "status": "PASS",
-                  "volume_in3": 0.2236464692985387
+                  "volume_in3": 0.22364646929853868
                 },
                 {
-                  "centroid_margin_m": 0.008094214100870634,
+                  "centroid_margin_m": 0.008094214100869745,
                   "coverage_mode": "one convex cell",
                   "interior_boundary_area_m2": 0.0,
                   "mate": "B6",
                   "status": "PASS",
-                  "volume_in3": 2.6959246964916885
+                  "volume_in3": 2.6959246964916894
                 },
                 {
                   "centroid_margin_m": 9.204745830437844e-06,
@@ -5799,10 +5799,10 @@
                   "interior_boundary_area_m2": 0.0,
                   "mate": "P7",
                   "status": "PASS",
-                  "volume_in3": 0.8490492420066459
+                  "volume_in3": 0.8490492420066458
                 },
                 {
-                  "centroid_margin_m": 0.016217629526775926,
+                  "centroid_margin_m": 0.016217629526775842,
                   "coverage_mode": "one convex cell",
                   "interior_boundary_area_m2": 0.0,
                   "mate": "P7",
@@ -5810,12 +5810,12 @@
                   "volume_in3": 13.074748175182268
                 },
                 {
-                  "centroid_margin_m": 0.005822480826744414,
+                  "centroid_margin_m": 0.005569329486451391,
                   "coverage_mode": "one convex cell",
                   "interior_boundary_area_m2": 0.0,
                   "mate": "P7",
                   "status": "PASS",
-                  "volume_in3": 1.4100156170769529
+                  "volume_in3": 1.41001561707696
                 },
                 {
                   "centroid_margin_m": 0.0062877878567353385,
@@ -5823,26 +5823,26 @@
                   "interior_boundary_area_m2": 0.0,
                   "mate": "P7",
                   "status": "PASS",
-                  "volume_in3": 2.1664135575609156
+                  "volume_in3": 2.166413557561044
                 },
                 {
-                  "centroid_margin_m": 1.3807118745212676e-05,
+                  "centroid_margin_m": 1.3915761176264141e-05,
                   "coverage_mode": "one convex cell",
                   "interior_boundary_area_m2": 0.0,
                   "mate": "P7",
                   "status": "PASS",
-                  "volume_in3": 1.6050807640942068e-06
+                  "volume_in3": 1.6050807640942064e-06
                 },
                 {
-                  "centroid_margin_m": 0.005528982914639435,
+                  "centroid_margin_m": 0.004980382448851017,
                   "coverage_mode": "one convex cell",
                   "interior_boundary_area_m2": 0.0,
                   "mate": "P7",
                   "status": "PASS",
-                  "volume_in3": 0.41258440539740965
+                  "volume_in3": 0.41258440539735824
                 },
                 {
-                  "centroid_margin_m": 0.005325342983335535,
+                  "centroid_margin_m": 0.005492399153596672,
                   "coverage_mode": "one convex cell",
                   "interior_boundary_area_m2": 0.0,
                   "mate": "P7",
@@ -5854,9 +5854,9 @@
               "note": "Each cell is independently contained in one mate; only the stated distance shell around cell boundaries is excluded.",
               "partition_cells": 10,
               "partition_planes": 4,
-              "partition_volume_balance_error_m3": 4.027811070783649e-17,
+              "partition_volume_balance_error_m3": 4.152494320619482e-17,
               "status": "PASS",
-              "volume_in3": 24.57842068601724
+              "volume_in3": 24.57842068601725
             },
             {
               "centroid_margin_m": 0.01578939251551459,
@@ -5869,44 +5869,44 @@
             {
               "cells": [
                 {
-                  "centroid_margin_m": 0.0019747379339030147,
+                  "centroid_margin_m": 0.002179028897761448,
                   "coverage_mode": "one convex cell",
                   "interior_boundary_area_m2": 0.0,
                   "mate": "P7",
                   "status": "PASS",
-                  "volume_in3": 0.22364646929870893
+                  "volume_in3": 0.2236464692987089
                 },
                 {
-                  "centroid_margin_m": 0.007545373958636414,
+                  "centroid_margin_m": 0.006163085137516955,
                   "coverage_mode": "one convex cell",
                   "interior_boundary_area_m2": 0.0,
                   "mate": "B7",
                   "status": "PASS",
-                  "volume_in3": 2.695924696491998
+                  "volume_in3": 2.6959246964919967
                 },
                 {
-                  "centroid_margin_m": 0.0042408689588864235,
+                  "centroid_margin_m": 0.005089042750664241,
                   "coverage_mode": "one convex cell",
                   "interior_boundary_area_m2": 0.0,
                   "mate": "P7",
                   "status": "PASS",
-                  "volume_in3": 0.8490492420066531
+                  "volume_in3": 0.84904924200664
                 },
                 {
-                  "centroid_margin_m": 8.504076275173134e-06,
+                  "centroid_margin_m": 9.567085808903641e-06,
                   "coverage_mode": "one convex cell",
                   "interior_boundary_area_m2": 0.0,
                   "mate": "P7",
                   "status": "PASS",
-                  "volume_in3": 3.598550991127149e-06
+                  "volume_in3": 3.5985509910236004e-06
                 },
                 {
-                  "centroid_margin_m": 0.015622264337215697,
+                  "centroid_margin_m": 0.016490167911505704,
                   "coverage_mode": "one convex cell",
                   "interior_boundary_area_m2": 0.0,
                   "mate": "P7",
                   "status": "PASS",
-                  "volume_in3": 13.074748175181655
+                  "volume_in3": 13.074748175181654
                 },
                 {
                   "centroid_margin_m": 0.005914245655430417,
@@ -5953,20 +5953,20 @@
               "note": "Each cell is independently contained in one mate; only the stated distance shell around cell boundaries is excluded.",
               "partition_cells": 10,
               "partition_planes": 4,
-              "partition_volume_balance_error_m3": 4.591596200476111e-17,
+              "partition_volume_balance_error_m3": 4.5644911461639737e-17,
               "status": "PASS",
               "volume_in3": 24.578420686016546
             },
             {
-              "centroid_margin_m": 0.005140476190475862,
+              "centroid_margin_m": 0.005442857142857083,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "P7",
               "status": "PASS",
-              "volume_in3": 8.000000000000226
+              "volume_in3": 8.00000000000012
             },
             {
-              "centroid_margin_m": 0.0055033333333329715,
+              "centroid_margin_m": 0.005079999999999973,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "P7",
@@ -5979,7 +5979,7 @@
           "note": "Disjoint convex cells are each proved inside the actual concave cavity; their summed volume must recover its signed surface volume. Every retained cell is then proved covered by mating timber.",
           "partition_cells": 5,
           "partition_planes": 3,
-          "partition_volume_balance_error_m3": 5.421010862427522e-17,
+          "partition_volume_balance_error_m3": 5.2692225582795515e-17,
           "status": "PASS"
         }
       ],
@@ -6004,7 +6004,7 @@
           "status": "PASS",
           "sum_pair_overlap_area_m2": 0
         },
-        "signed_volume_m3": 0.002772018068115342,
+        "signed_volume_m3": 0.0027720180681153448,
         "status": "PASS",
         "triangles": 72,
         "vertices": 42
@@ -6018,8 +6018,8 @@
         "max_cavity_vertex_outside_reference_stock_m": 4.038436252074007e-15,
         "max_interior_boundary_area_m2": 0.0,
         "partition_planes": 18,
-        "partition_volume_balance_error_m3": 2.4841240175987878e-14,
-        "reference_envelope_volume_in3": 13155.075066300415,
+        "partition_volume_balance_error_m3": 2.5951463200613034e-14,
+        "reference_envelope_volume_in3": 13155.075066300411,
         "scope": "Saved prejoinery envelope, after any explicitly listed exterior trim, is covered by final timber wood plus exported removed cavity within the stated tolerances. Added tenons outside this envelope are not counted as removed stock.",
         "status": "PASS",
         "verified_cells": 386
@@ -6035,7 +6035,7 @@
     {
       "components": [
         {
-          "centroid_margin_m": 0.025399999999999825,
+          "centroid_margin_m": 0.025399999999999846,
           "convex_volume_error_m3": 1.0842021724855044e-19,
           "coverage_mode": "one convex cell",
           "interior_boundary_area_m2": 0.0,
@@ -6124,7 +6124,7 @@
         "max_cavity_vertex_outside_reference_stock_m": 4.440892098500626e-16,
         "max_interior_boundary_area_m2": 0.0,
         "partition_planes": 19,
-        "partition_volume_balance_error_m3": 9.270362255620057e-15,
+        "partition_volume_balance_error_m3": 9.596490269103697e-15,
         "reference_envelope_volume_in3": 3357.736659610111,
         "scope": "Saved prejoinery envelope, after any explicitly listed exterior trim, is covered by final timber wood plus exported removed cavity within the stated tolerances. Added tenons outside this envelope are not counted as removed stock.",
         "status": "PASS",
@@ -6143,44 +6143,44 @@
         {
           "cells": [
             {
-              "centroid_margin_m": 0.0005065959180381441,
+              "centroid_margin_m": 0.0004786822287705661,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "B7",
               "status": "PASS",
-              "volume_in3": 0.009407599205566601
+              "volume_in3": 0.009407599205551512
             },
             {
-              "centroid_margin_m": 0.0006338257418359028,
+              "centroid_margin_m": 0.0006398795168700566,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "B7",
               "status": "PASS",
-              "volume_in3": 0.018815198411118984
+              "volume_in3": 0.018815198411066446
             },
             {
-              "centroid_margin_m": 0.000549461622679992,
+              "centroid_margin_m": 0.0005494616226791038,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "B7",
               "status": "PASS",
-              "volume_in3": 0.009407599205538408
+              "volume_in3": 0.00940759920553339
             },
             {
-              "centroid_margin_m": 0.006455369505366626,
+              "centroid_margin_m": 0.006522260460076534,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "B7",
               "status": "PASS",
-              "volume_in3": 1.6141807012336604
+              "volume_in3": 1.614180701233076
             },
             {
-              "centroid_margin_m": 0.007990543671392736,
+              "centroid_margin_m": 0.007990543671392292,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "B7",
               "status": "PASS",
-              "volume_in3": 1.6141807012329144
+              "volume_in3": 1.6141807012327785
             }
           ],
           "coverage_mode": "nonconvex surface partition",
@@ -6188,12 +6188,12 @@
           "note": "Disjoint convex cells are each proved inside the actual concave cavity; their summed volume must recover its signed surface volume. Every retained cell is then proved covered by mating timber.",
           "partition_cells": 5,
           "partition_planes": 3,
-          "partition_volume_balance_error_m3": 8.00276728565863e-18,
+          "partition_volume_balance_error_m3": 5.800481622797449e-18,
           "status": "PASS"
         }
       ],
       "cross_sections": {
-        "max_missing_area_m2": 6.103543564677239e-16,
+        "max_missing_area_m2": 5.493173375725746e-16,
         "max_receiver_overlap_area_m2": 3.3664703369140627e-16,
         "sections": 129,
         "status": "PASS"
@@ -6202,7 +6202,7 @@
       "mesh_check": {
         "connected_surfaces": 1,
         "failures": [],
-        "minimum_triangle_area_m2": 1.3864150274310368e-05,
+        "minimum_triangle_area_m2": 1.3864150274307536e-05,
         "raw_surface_check": {
           "coplanar_pairs_tested": 41,
           "max_overlap_area_m2": 0.0,
@@ -6213,7 +6213,7 @@
           "status": "PASS",
           "sum_pair_overlap_area_m2": 0
         },
-        "signed_volume_m3": 5.3520016638412696e-05,
+        "signed_volume_m3": 5.35200166384135e-05,
         "status": "PASS",
         "triangles": 30,
         "vertices": 17
@@ -6224,11 +6224,11 @@
         "convex_cells": 18,
         "declared_external_trim": null,
         "failures": [],
-        "max_cavity_vertex_outside_reference_stock_m": 4.6629367034256575e-15,
+        "max_cavity_vertex_outside_reference_stock_m": 4.551914400963142e-15,
         "max_interior_boundary_area_m2": 0.0,
         "partition_planes": 5,
-        "partition_volume_balance_error_m3": 3.913536161803677e-15,
-        "reference_envelope_volume_in3": 4025.950085184112,
+        "partition_volume_balance_error_m3": 1.1796119636642288e-15,
+        "reference_envelope_volume_in3": 4025.9500851841062,
         "scope": "Saved prejoinery envelope, after any explicitly listed exterior trim, is covered by final timber wood plus exported removed cavity within the stated tolerances. Added tenons outside this envelope are not counted as removed stock.",
         "status": "PASS",
         "verified_cells": 18
@@ -6246,7 +6246,7 @@
         {
           "cells": [
             {
-              "centroid_margin_m": 0.000524175075772515,
+              "centroid_margin_m": 0.0005241750757734032,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "B7",
@@ -6254,12 +6254,12 @@
               "volume_in3": 0.00940759920554381
             },
             {
-              "centroid_margin_m": 0.0005586865667521757,
+              "centroid_margin_m": 0.0005586865667517316,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "B7",
               "status": "PASS",
-              "volume_in3": 0.018815198411118363
+              "volume_in3": 0.0188151984111013
             },
             {
               "centroid_margin_m": 0.0006105858405685005,
@@ -6267,23 +6267,23 @@
               "interior_boundary_area_m2": 0.0,
               "mate": "B7",
               "status": "PASS",
-              "volume_in3": 0.009407599205550858
+              "volume_in3": 0.009407599205549075
             },
             {
-              "centroid_margin_m": 0.006430279019791207,
+              "centroid_margin_m": 0.006421013816475085,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "B7",
               "status": "PASS",
-              "volume_in3": 1.6141807012331413
+              "volume_in3": 1.614180701233058
             },
             {
-              "centroid_margin_m": 0.007951077366881054,
+              "centroid_margin_m": 0.007454135031450648,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "B7",
               "status": "PASS",
-              "volume_in3": 1.6141807012335019
+              "volume_in3": 1.6141807012330158
             }
           ],
           "coverage_mode": "nonconvex surface partition",
@@ -6291,13 +6291,13 @@
           "note": "Disjoint convex cells are each proved inside the actual concave cavity; their summed volume must recover its signed surface volume. Every retained cell is then proved covered by mating timber.",
           "partition_cells": 5,
           "partition_planes": 3,
-          "partition_volume_balance_error_m3": 9.595189226496714e-18,
+          "partition_volume_balance_error_m3": 1.0977546996415732e-18,
           "status": "PASS"
         }
       ],
       "cross_sections": {
-        "max_missing_area_m2": 6.298036515188787e-16,
-        "max_receiver_overlap_area_m2": 2.78472900390625e-16,
+        "max_missing_area_m2": 6.31736114246495e-16,
+        "max_receiver_overlap_area_m2": 2.887248992919922e-16,
         "sections": 129,
         "status": "PASS"
       },
@@ -6305,7 +6305,7 @@
       "mesh_check": {
         "connected_surfaces": 1,
         "failures": [],
-        "minimum_triangle_area_m2": 1.3864150274310192e-05,
+        "minimum_triangle_area_m2": 1.386415027430829e-05,
         "raw_surface_check": {
           "coplanar_pairs_tested": 41,
           "max_overlap_area_m2": 0.0,
@@ -6316,7 +6316,7 @@
           "status": "PASS",
           "sum_pair_overlap_area_m2": 0
         },
-        "signed_volume_m3": 5.352001663841204e-05,
+        "signed_volume_m3": 5.35200166384131e-05,
         "status": "PASS",
         "triangles": 30,
         "vertices": 17
@@ -6330,7 +6330,7 @@
         "max_cavity_vertex_outside_reference_stock_m": 1.7763568394002505e-15,
         "max_interior_boundary_area_m2": 0.0,
         "partition_planes": 5,
-        "partition_volume_balance_error_m3": 3.400058012914542e-15,
+        "partition_volume_balance_error_m3": 1.3600232051658168e-15,
         "reference_envelope_volume_in3": 4025.950085184347,
         "scope": "Saved prejoinery envelope, after any explicitly listed exterior trim, is covered by final timber wood plus exported removed cavity within the stated tolerances. Added tenons outside this envelope are not counted as removed stock.",
         "status": "PASS",
@@ -6345,7 +6345,7 @@
       }
     }
   ],
-  "cavity_sha256": "abb6dc99da44ead142c9804be74315a2c5edf401da77f25aa443bc9863e61faf",
+  "cavity_sha256": "5f696522f1eadc98293a1a624bd6f94a86acf39d0be3e408683c98f2facc5f54",
   "failures": [],
   "legacy_residual_diagnostics": [],
   "methods": {
@@ -6357,7 +6357,7 @@
     "sampling": "Independent solid-angle winding numbers for deterministic scrambled Sobol points and inward-offset triangle centroids.",
     "sections": "Canonical bay coordinates; scaled Clipper2 2D differences/intersections on three axes, just above/below vertex events and at interval quartiles. Exact coplanar boundary planes are excluded."
   },
-  "model_sha256": "08330f3b2938d22d3efa96375a40a5745ba4a57b0830df14d28771b48126fc7c",
+  "model_sha256": "69e58e2ea0bd4ee0af331002b6a60e2d74e05b2166463ae3ac9181bd8e6f43ca",
   "model_variant": "proposed-step-lap",
   "no_cavity_stock_completeness": {
     "CC0": {
@@ -6385,7 +6385,7 @@
       "max_interior_boundary_area_m2": 0.0,
       "partition_planes": 0,
       "partition_volume_balance_error_m3": 0.0,
-      "reference_envelope_volume_in3": 854.0588745030078,
+      "reference_envelope_volume_in3": 854.0588745030076,
       "scope": "Saved prejoinery envelope, after any explicitly listed exterior trim, is covered by final timber wood plus exported removed cavity within the stated tolerances. Added tenons outside this envelope are not counted as removed stock.",
       "status": "PASS",
       "verified_cells": 1
@@ -6475,7 +6475,7 @@
       "max_interior_boundary_area_m2": 0.0,
       "partition_planes": 0,
       "partition_volume_balance_error_m3": 0.0,
-      "reference_envelope_volume_in3": 854.0588745030078,
+      "reference_envelope_volume_in3": 854.0588745030076,
       "scope": "Saved prejoinery envelope, after any explicitly listed exterior trim, is covered by final timber wood plus exported removed cavity within the stated tolerances. Added tenons outside this envelope are not counted as removed stock.",
       "status": "PASS",
       "verified_cells": 1
@@ -6505,7 +6505,7 @@
       "max_interior_boundary_area_m2": 0.0,
       "partition_planes": 0,
       "partition_volume_balance_error_m3": 0.0,
-      "reference_envelope_volume_in3": 693.0813686473715,
+      "reference_envelope_volume_in3": 693.0813686473714,
       "scope": "Saved prejoinery envelope, after any explicitly listed exterior trim, is covered by final timber wood plus exported removed cavity within the stated tolerances. Added tenons outside this envelope are not counted as removed stock.",
       "status": "PASS",
       "verified_cells": 1
@@ -6535,7 +6535,7 @@
       "max_interior_boundary_area_m2": 0.0,
       "partition_planes": 0,
       "partition_volume_balance_error_m3": 0.0,
-      "reference_envelope_volume_in3": 693.0813686473706,
+      "reference_envelope_volume_in3": 693.0813686473709,
       "scope": "Saved prejoinery envelope, after any explicitly listed exterior trim, is covered by final timber wood plus exported removed cavity within the stated tolerances. Added tenons outside this envelope are not counted as removed stock.",
       "status": "PASS",
       "verified_cells": 1
@@ -6565,7 +6565,7 @@
       "max_interior_boundary_area_m2": 0.0,
       "partition_planes": 0,
       "partition_volume_balance_error_m3": 0.0,
-      "reference_envelope_volume_in3": 693.0813686473706,
+      "reference_envelope_volume_in3": 693.0813686473709,
       "scope": "Saved prejoinery envelope, after any explicitly listed exterior trim, is covered by final timber wood plus exported removed cavity within the stated tolerances. Added tenons outside this envelope are not counted as removed stock.",
       "status": "PASS",
       "verified_cells": 1
@@ -6595,7 +6595,7 @@
       "max_interior_boundary_area_m2": 0.0,
       "partition_planes": 0,
       "partition_volume_balance_error_m3": 0.0,
-      "reference_envelope_volume_in3": 693.0813686473715,
+      "reference_envelope_volume_in3": 693.0813686473714,
       "scope": "Saved prejoinery envelope, after any explicitly listed exterior trim, is covered by final timber wood plus exported removed cavity within the stated tolerances. Added tenons outside this envelope are not counted as removed stock.",
       "status": "PASS",
       "verified_cells": 1
@@ -6733,7 +6733,7 @@
       "max_interior_boundary_area_m2": 0.0,
       "partition_planes": 0,
       "partition_volume_balance_error_m3": 0.0,
-      "reference_envelope_volume_in3": 526.1228611112676,
+      "reference_envelope_volume_in3": 526.1228611112836,
       "scope": "Saved prejoinery envelope, after any explicitly listed exterior trim, is covered by final timber wood plus exported removed cavity within the stated tolerances. Added tenons outside this envelope are not counted as removed stock.",
       "status": "PASS",
       "verified_cells": 1
@@ -6871,7 +6871,7 @@
       "max_interior_boundary_area_m2": 0.0,
       "partition_planes": 0,
       "partition_volume_balance_error_m3": 0.0,
-      "reference_envelope_volume_in3": 526.1228611113006,
+      "reference_envelope_volume_in3": 526.1228611113052,
       "scope": "Saved prejoinery envelope, after any explicitly listed exterior trim, is covered by final timber wood plus exported removed cavity within the stated tolerances. Added tenons outside this envelope are not counted as removed stock.",
       "status": "PASS",
       "verified_cells": 1
@@ -6940,7 +6940,7 @@
       "max_interior_boundary_area_m2": 0.0,
       "partition_planes": 0,
       "partition_volume_balance_error_m3": 0.0,
-      "reference_envelope_volume_in3": 526.1228611112812,
+      "reference_envelope_volume_in3": 526.122861111263,
       "scope": "Saved prejoinery envelope, after any explicitly listed exterior trim, is covered by final timber wood plus exported removed cavity within the stated tolerances. Added tenons outside this envelope are not counted as removed stock.",
       "status": "PASS",
       "verified_cells": 1
@@ -7023,7 +7023,7 @@
       "max_interior_boundary_area_m2": 0.0,
       "partition_planes": 0,
       "partition_volume_balance_error_m3": 0.0,
-      "reference_envelope_volume_in3": 597.256518052347,
+      "reference_envelope_volume_in3": 597.2565180523468,
       "scope": "Saved prejoinery envelope, after any explicitly listed exterior trim, is covered by final timber wood plus exported removed cavity within the stated tolerances. Added tenons outside this envelope are not counted as removed stock.",
       "status": "PASS",
       "verified_cells": 1
@@ -7233,7 +7233,7 @@
       "max_interior_boundary_area_m2": 0.0,
       "partition_planes": 0,
       "partition_volume_balance_error_m3": 0.0,
-      "reference_envelope_volume_in3": 7679.999999999995,
+      "reference_envelope_volume_in3": 7679.999999999997,
       "scope": "Saved prejoinery envelope, after any explicitly listed exterior trim, is covered by final timber wood plus exported removed cavity within the stated tolerances. Added tenons outside this envelope are not counted as removed stock.",
       "status": "PASS",
       "verified_cells": 1
@@ -7263,7 +7263,7 @@
       "max_interior_boundary_area_m2": 0.0,
       "partition_planes": 0,
       "partition_volume_balance_error_m3": 0.0,
-      "reference_envelope_volume_in3": 7679.999999999997,
+      "reference_envelope_volume_in3": 7679.999999999995,
       "scope": "Saved prejoinery envelope, after any explicitly listed exterior trim, is covered by final timber wood plus exported removed cavity within the stated tolerances. Added tenons outside this envelope are not counted as removed stock.",
       "status": "PASS",
       "verified_cells": 1
@@ -7293,7 +7293,7 @@
       "max_interior_boundary_area_m2": 0.0,
       "partition_planes": 0,
       "partition_volume_balance_error_m3": 0.0,
-      "reference_envelope_volume_in3": 7679.999999999997,
+      "reference_envelope_volume_in3": 7679.999999999995,
       "scope": "Saved prejoinery envelope, after any explicitly listed exterior trim, is covered by final timber wood plus exported removed cavity within the stated tolerances. Added tenons outside this envelope are not counted as removed stock.",
       "status": "PASS",
       "verified_cells": 1
@@ -7341,8 +7341,8 @@
     "connected_cavity_components": 168,
     "convex_cavity_components": 144,
     "declared_exterior_brace_trims": 16,
-    "max_cavity_outside_reference_stock_m": 4.884981308350689e-15,
-    "max_missing_section_area_m2": 2.3313209695098314e-15,
+    "max_cavity_outside_reference_stock_m": 4.773959005888173e-15,
+    "max_missing_section_area_m2": 2.285544602322331e-15,
     "max_raw_timber_triangle_overlap_area_m2": 0.0,
     "max_receiver_overlap_section_area_m2": 2.0100667825588588e-14,
     "max_wood_overlap_section_area_m2": 2.004601751597912e-14,
@@ -7394,7 +7394,7 @@
         "status": "PASS",
         "sum_pair_overlap_area_m2": 0
       },
-      "signed_volume_m3": 0.09919475556218477,
+      "signed_volume_m3": 0.09919475556218475,
       "status": "PASS",
       "triangles": 108,
       "vertices": 56
@@ -7432,7 +7432,7 @@
         "status": "PASS",
         "sum_pair_overlap_area_m2": 0
       },
-      "signed_volume_m3": 0.09919475556218475,
+      "signed_volume_m3": 0.09919475556218471,
       "status": "PASS",
       "triangles": 108,
       "vertices": 56
@@ -7451,7 +7451,7 @@
         "status": "PASS",
         "sum_pair_overlap_area_m2": 0
       },
-      "signed_volume_m3": 0.09919475556218499,
+      "signed_volume_m3": 0.09919475556218495,
       "status": "PASS",
       "triangles": 108,
       "vertices": 56
@@ -7489,7 +7489,7 @@
         "status": "PASS",
         "sum_pair_overlap_area_m2": 0
       },
-      "signed_volume_m3": 0.09919475556218499,
+      "signed_volume_m3": 0.09919475556218495,
       "status": "PASS",
       "triangles": 108,
       "vertices": 56
@@ -7679,7 +7679,7 @@
         "status": "PASS",
         "sum_pair_overlap_area_m2": 0
       },
-      "signed_volume_m3": 0.013995517436249374,
+      "signed_volume_m3": 0.01399551743624937,
       "status": "PASS",
       "triangles": 16,
       "vertices": 10
@@ -7755,7 +7755,7 @@
         "status": "PASS",
         "sum_pair_overlap_area_m2": 0
       },
-      "signed_volume_m3": 0.013995517436249374,
+      "signed_volume_m3": 0.01399551743624937,
       "status": "PASS",
       "triangles": 16,
       "vertices": 10
@@ -7983,7 +7983,7 @@
         "status": "PASS",
         "sum_pair_overlap_area_m2": 0
       },
-      "signed_volume_m3": 0.06636935790653894,
+      "signed_volume_m3": 0.06636935790653901,
       "status": "PASS",
       "triangles": 72,
       "vertices": 38
@@ -8021,7 +8021,7 @@
         "status": "PASS",
         "sum_pair_overlap_area_m2": 0
       },
-      "signed_volume_m3": 0.06636935790653906,
+      "signed_volume_m3": 0.06636935790653908,
       "status": "PASS",
       "triangles": 66,
       "vertices": 35
@@ -8040,7 +8040,7 @@
         "status": "PASS",
         "sum_pair_overlap_area_m2": 0
       },
-      "signed_volume_m3": 0.06636935790653901,
+      "signed_volume_m3": 0.06636935790653907,
       "status": "PASS",
       "triangles": 66,
       "vertices": 35
@@ -8059,7 +8059,7 @@
         "status": "PASS",
         "sum_pair_overlap_area_m2": 0
       },
-      "signed_volume_m3": 0.06636935790653892,
+      "signed_volume_m3": 0.06636935790653896,
       "status": "PASS",
       "triangles": 66,
       "vertices": 35
@@ -8078,7 +8078,7 @@
         "status": "PASS",
         "sum_pair_overlap_area_m2": 0
       },
-      "signed_volume_m3": 0.06636935790653906,
+      "signed_volume_m3": 0.06636935790653904,
       "status": "PASS",
       "triangles": 66,
       "vertices": 35
@@ -8097,7 +8097,7 @@
         "status": "PASS",
         "sum_pair_overlap_area_m2": 0
       },
-      "signed_volume_m3": 0.06636935790653904,
+      "signed_volume_m3": 0.06636935790653907,
       "status": "PASS",
       "triangles": 66,
       "vertices": 35
@@ -8116,7 +8116,7 @@
         "status": "PASS",
         "sum_pair_overlap_area_m2": 0
       },
-      "signed_volume_m3": 0.06636935790653893,
+      "signed_volume_m3": 0.06636935790653896,
       "status": "PASS",
       "triangles": 66,
       "vertices": 35
@@ -8154,7 +8154,7 @@
         "status": "PASS",
         "sum_pair_overlap_area_m2": 0
       },
-      "signed_volume_m3": 0.06636935790653911,
+      "signed_volume_m3": 0.0663693579065391,
       "status": "PASS",
       "triangles": 66,
       "vertices": 35
@@ -8173,7 +8173,7 @@
         "status": "PASS",
         "sum_pair_overlap_area_m2": 0
       },
-      "signed_volume_m3": 0.06636935790653906,
+      "signed_volume_m3": 0.06636935790653901,
       "status": "PASS",
       "triangles": 66,
       "vertices": 35
@@ -8211,7 +8211,7 @@
         "status": "PASS",
         "sum_pair_overlap_area_m2": 0
       },
-      "signed_volume_m3": 0.06636935790653901,
+      "signed_volume_m3": 0.06636935790653904,
       "status": "PASS",
       "triangles": 66,
       "vertices": 35
@@ -8230,7 +8230,7 @@
         "status": "PASS",
         "sum_pair_overlap_area_m2": 0
       },
-      "signed_volume_m3": 0.0663693579065391,
+      "signed_volume_m3": 0.06636935790653911,
       "status": "PASS",
       "triangles": 66,
       "vertices": 35
@@ -8249,7 +8249,7 @@
         "status": "PASS",
         "sum_pair_overlap_area_m2": 0
       },
-      "signed_volume_m3": 0.06636935790653897,
+      "signed_volume_m3": 0.06636935790653901,
       "status": "PASS",
       "triangles": 66,
       "vertices": 35
@@ -8268,7 +8268,7 @@
         "status": "PASS",
         "sum_pair_overlap_area_m2": 0
       },
-      "signed_volume_m3": 0.06636935790653908,
+      "signed_volume_m3": 0.06636935790653911,
       "status": "PASS",
       "triangles": 66,
       "vertices": 35
@@ -8591,7 +8591,7 @@
         "status": "PASS",
         "sum_pair_overlap_area_m2": 0
       },
-      "signed_volume_m3": 0.010166102184867328,
+      "signed_volume_m3": 0.01016610218486733,
       "status": "PASS",
       "triangles": 52,
       "vertices": 28
@@ -8610,7 +8610,7 @@
         "status": "PASS",
         "sum_pair_overlap_area_m2": 0
       },
-      "signed_volume_m3": 0.01016610218486728,
+      "signed_volume_m3": 0.010166102184867276,
       "status": "PASS",
       "triangles": 52,
       "vertices": 28
@@ -8629,7 +8629,7 @@
         "status": "PASS",
         "sum_pair_overlap_area_m2": 0
       },
-      "signed_volume_m3": 0.010166102184867333,
+      "signed_volume_m3": 0.010166102184867335,
       "status": "PASS",
       "triangles": 52,
       "vertices": 28
@@ -8705,7 +8705,7 @@
         "status": "PASS",
         "sum_pair_overlap_area_m2": 0
       },
-      "signed_volume_m3": 0.010166102184867333,
+      "signed_volume_m3": 0.010166102184867335,
       "status": "PASS",
       "triangles": 52,
       "vertices": 28
@@ -8743,7 +8743,7 @@
         "status": "PASS",
         "sum_pair_overlap_area_m2": 0
       },
-      "signed_volume_m3": 0.010166102184867328,
+      "signed_volume_m3": 0.01016610218486733,
       "status": "PASS",
       "triangles": 52,
       "vertices": 28
@@ -8762,7 +8762,7 @@
         "status": "PASS",
         "sum_pair_overlap_area_m2": 0
       },
-      "signed_volume_m3": 0.01016610218486728,
+      "signed_volume_m3": 0.010166102184867276,
       "status": "PASS",
       "triangles": 52,
       "vertices": 28
@@ -8781,7 +8781,7 @@
         "status": "PASS",
         "sum_pair_overlap_area_m2": 0
       },
-      "signed_volume_m3": 0.010166102184867333,
+      "signed_volume_m3": 0.010166102184867335,
       "status": "PASS",
       "triangles": 52,
       "vertices": 28
@@ -8857,7 +8857,7 @@
         "status": "PASS",
         "sum_pair_overlap_area_m2": 0
       },
-      "signed_volume_m3": 0.010166102184867333,
+      "signed_volume_m3": 0.010166102184867335,
       "status": "PASS",
       "triangles": 52,
       "vertices": 28
@@ -9066,7 +9066,7 @@
         "status": "PASS",
         "sum_pair_overlap_area_m2": 0
       },
-      "signed_volume_m3": 0.2135381554547747,
+      "signed_volume_m3": 0.21353815545477464,
       "status": "PASS",
       "triangles": 116,
       "vertices": 60
@@ -9104,7 +9104,7 @@
         "status": "PASS",
         "sum_pair_overlap_area_m2": 0
       },
-      "signed_volume_m3": 0.21353815545477464,
+      "signed_volume_m3": 0.21353815545477461,
       "status": "PASS",
       "triangles": 116,
       "vertices": 60
@@ -9142,7 +9142,7 @@
         "status": "PASS",
         "sum_pair_overlap_area_m2": 0
       },
-      "signed_volume_m3": 0.2135381554547746,
+      "signed_volume_m3": 0.21353815545477461,
       "status": "PASS",
       "triangles": 116,
       "vertices": 60
@@ -9161,7 +9161,7 @@
         "status": "PASS",
         "sum_pair_overlap_area_m2": 0
       },
-      "signed_volume_m3": 0.21353815545477461,
+      "signed_volume_m3": 0.21353815545477464,
       "status": "PASS",
       "triangles": 116,
       "vertices": 60
@@ -9180,7 +9180,7 @@
         "status": "PASS",
         "sum_pair_overlap_area_m2": 0
       },
-      "signed_volume_m3": 0.21353815545477473,
+      "signed_volume_m3": 0.2135381554547747,
       "status": "PASS",
       "triangles": 116,
       "vertices": 60
@@ -9218,7 +9218,7 @@
         "status": "PASS",
         "sum_pair_overlap_area_m2": 0
       },
-      "signed_volume_m3": 0.12690142361600004,
+      "signed_volume_m3": 0.12690142361600001,
       "status": "PASS",
       "triangles": 44,
       "vertices": 24
@@ -9294,7 +9294,7 @@
         "status": "PASS",
         "sum_pair_overlap_area_m2": 0
       },
-      "signed_volume_m3": 0.12690142361600004,
+      "signed_volume_m3": 0.12690142361600001,
       "status": "PASS",
       "triangles": 44,
       "vertices": 24

@@ -2,7 +2,7 @@
   "revision": "R02-S2",
   "audit_revision": "R004748",
   "audit_timestamp": "2026-11-02T08:05:33-05:00",
-  "model_sha256": "b3a0363a2c2e83a541038d0ff39ad86e38d8b79ceb7415cde9174d74273086a2",
+  "model_sha256": "15fc4fbbbdd520e4d0b332140b0f80daaf8f8b36d112dceac429cab598a4d331",
   "status": "NOT STRUCTURALLY QUALIFIED \u2014 CENTER CONNECTION DESIGN HOLD",
   "confirmed": {
     "enclosure": "Enclosed, following the Bluetime photos; site-specific wind enclosure classification still to be checked.",
@@ -42,7 +42,7 @@
       "connected_cavity_components": 144,
       "convex_cavity_components": 144,
       "declared_exterior_brace_trims": 16,
-      "max_cavity_outside_reference_stock_m": 4.884981308350689e-15,
+      "max_cavity_outside_reference_stock_m": 4.773959005888173e-15,
       "max_missing_section_area_m2": 1.8001794815063477e-15,
       "max_raw_timber_triangle_overlap_area_m2": 0.0,
       "max_receiver_overlap_section_area_m2": 2.0050883104247573e-14,
@@ -65,7 +65,7 @@
   },
   "proposed_cavity_fit_audit": {
     "status": "PASS",
-    "model_sha256": "08330f3b2938d22d3efa96375a40a5745ba4a57b0830df14d28771b48126fc7c",
+    "model_sha256": "69e58e2ea0bd4ee0af331002b6a60e2d74e05b2166463ae3ac9181bd8e6f43ca",
     "summary": {
       "all_timber_stock_envelopes_verified": 104,
       "cavity_cross_sections": 10683,
@@ -75,8 +75,8 @@
       "connected_cavity_components": 168,
       "convex_cavity_components": 144,
       "declared_exterior_brace_trims": 16,
-      "max_cavity_outside_reference_stock_m": 4.884981308350689e-15,
-      "max_missing_section_area_m2": 2.3313209695098314e-15,
+      "max_cavity_outside_reference_stock_m": 4.773959005888173e-15,
+      "max_missing_section_area_m2": 2.285544602322331e-15,
       "max_raw_timber_triangle_overlap_area_m2": 0.0,
       "max_receiver_overlap_section_area_m2": 2.0100667825588588e-14,
       "max_wood_overlap_section_area_m2": 2.004601751597912e-14,

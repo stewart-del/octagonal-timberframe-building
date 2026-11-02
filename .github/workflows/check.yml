@@ -45,10 +45,12 @@ jobs:
       - run: python3 tests/test_load_review.py
       - run: python3 tests/test_cupola_panel.py
       - run: node tests/architectural-plans.cjs
+      - run: node tests/plan-print.cjs
       - run: python3 tests/test_central_support.py
       - run: node tests/schematic-walls.cjs
       - run: node tests/step-lap-review.cjs
       - run: node tests/model-variants.cjs
+      - run: node tests/display-presets.cjs
       - run: node tests/navigation-priority.cjs
       - run: python3 tests/test_step_lap.py
       - run: python3 tests/test_step_lap_auxiliary.py
@@ -58,3 +60,12 @@ jobs:
       - run: python3 tests/test_enclosure_fit.py
 
       - run: node tests/cut-face-analysis.cjs
+      - run: node tests/floor-foundation.cjs
+      - run: python3 tests/test_floor_solids.py
+      - run: node tests/foundation-integration.cjs
+      - run: python3 tests/test_top_entry_heads.py
+      - run: python3 tests/test_top_entry_auxiliary.py
+      - run: python3 tests/test_floor_bearing.py
+
+      - run: python3 tests/test_seated_support.py
+      - run: node tests/roof-coverings.cjs

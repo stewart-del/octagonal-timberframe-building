@@ -24,10 +24,10 @@ assert p['reference_dimensions']=={'overall_span_in':90.0,'strap_depth_in':4.0,'
 v=np.asarray(p['vertices']);t=np.asarray(p['triangles'],dtype=np.uint64);solid=m.Manifold(m.Mesh64(v,t))
 assert str(solid.status())=='Error.NoError' and len(solid.decompose())==1
 assert np.allclose((v.max(0)-v.min(0))/.0254,[90,14,90],atol=1e-9,rtol=0)
-# Closed connected surface with Euler characteristic 2 - 2*24 proves 24 bores.
+# Closed connected surface:24 screw bores plus9 central open cells from offset welded arms.
 edges=collections.Counter(tuple(sorted((int(tri[j]),int(tri[(j+1)%3])))) for tri in t for j in range(3))
 assert all(n==2 for n in edges.values())
-assert len(v)-len(edges)+len(t)==2-2*24
+assert len(v)-len(edges)+len(t)==2-2*33
 assert len(p['display_holes'])==24 and len({h['id'] for h in p['display_holes']})==24
 assert collections.Counter(h['arm_index'] for h in p['display_holes'])=={k:3 for k in range(8)}
 for h in p['display_holes']:
@@ -37,10 +37,13 @@ for h in p['display_holes']:
  assert (solid^probe).volume()<1e-14
 assert p['fabrication_dimensions_valid'] is False and 'illustrative' in p['geometry_purpose']
 assert 'Suppress' in p['plan_dimension_policy']
-for name in ['steel_thickness_in','hole_diameter_in','hole_centers_m','top_elevation_m']:assert 'illustrative' in p['dimension_status'][name]
+for name in ['steel_thickness_in','hole_diameter_in','hole_centers_m','top_elevation_m']:assert p['dimension_status'][name]
+assert p['display_assumptions']['steel_thickness_in']==.25
+assert p['display_assumptions']['top_elevation_in']==109
 assert not p['reference_end_faces'] and all(x is None for x in p['angles'].values())
 assert consolidate_fixture(model['parts'])==model['parts'] and consolidate_aids(model['parts'])==model['parts']
-assert make_fixture(p['display_assumptions']['top_elevation_m'])==p
+from support_fit import fit_fixture
+assert fit_fixture(model)[0]==p
 # Verify scoped migration is byte-idempotent in a sandbox copy, never regenerated timber.
 with tempfile.TemporaryDirectory(prefix='octagon-support-test-') as tmp:
  root=Path(tmp);(root/'src').mkdir();(root/'docs').mkdir()

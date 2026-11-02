@@ -11,7 +11,15 @@ from audit_cavity_fit import coplanar_surface_overlaps
 from regeneration_equivalence import assert_equivalent,test_guard
 I=.0254;raw=(R/'src/model-data.json').read_bytes();base=json.loads(raw);sha=hashlib.sha256(raw).hexdigest();data=json.loads((R/'src/step-lap-proposal.json').read_text());full=json.loads((R/'src/step-lap-proposed-model.json').read_text())
 B={p['id']:p for p in base['parts']};P={p['id']:p for p in full['parts']};changed={f'{family}{k}' for k in range(8) for family in ['B','P','R']}|{f'J{k}-{side}' for k in range(8) for side in ['0','2']}
-assert sha=='b3a0363a2c2e83a541038d0ff39ad86e38d8b79ceb7415cde9174d74273086a2','Baseline changed: re-review assumptions and regenerate, never silently rebase'
+assert sha=='15fc4fbbbdd520e4d0b332140b0f80daaf8f8b36d112dceac429cab598a4d331','Baseline changed: re-review assumptions and regenerate, never silently rebase'
+# The sole accepted baseline change was the seated temporary aid. Freeze every
+# other original component independently of the mutable migration report.
+proof_raw=(R/'docs/pre-support-baseline-part-hashes.json').read_bytes()
+assert hashlib.sha256(proof_raw).hexdigest()=='cbc6bba49f4b8389ffe0780d672aaf4b7bdccdd253825971b1625751dd51885f'
+proof=json.loads(proof_raw)
+assert set(proof)==set(B)-{'M-TMP'} and len(proof)==114
+for name,expected in proof.items():
+ assert hashlib.sha256(json.dumps(B[name],sort_keys=True,separators=(',',':')).encode()).hexdigest()==expected,(name,'non-aid baseline changed')
 assert data['baseline_model_sha256']==sha and data['canonical_model_unchanged'] is True
 assert set(B)==set(P) and len([p for p in full['parts'] if p['is_timber']])==104
 for name in B:

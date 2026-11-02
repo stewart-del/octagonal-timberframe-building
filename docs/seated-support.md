@@ -1,0 +1,11 @@
+# Temporary aid: geometric seating correction
+The earlier assembly was placed at Y71–85in; all 24 holes were below the C posts, which start at85in. This was an assembled-position defect, not an explode offset.
+
+Source diagram/owner values preserved: one welded assembly, eight L sections, three holes each,90in opposite span,4in strap depth,14in legs. The diagram does not establish steel gauge, hole sizes or erection elevation.
+
+Chosen display geometry:¼in steel thickness;3/8in bores; radial hole station43in; hole drops2/7/12in. Each L plane is offset tangentially until its inner face lies on the actual6in-wide C-post side. Legs extend upward from the actual T-tie top at95in, so the upper elevation is109in. Five-inch central extensions overlap as a connected welded display union, leaving nine small open cells around the central crossings in addition to the24 screw bores. These are model choices, not measured source dimensions or a fabrication specification. A pure rotation would produce wedge gaps rather than full side-face contact.
+
+Validation: all24 bore axes enter the corresponding C post at zero modeled gap and have approximately6in of timber along the ray. Each side contact combines the6×4in horizontal-arm region and3×10in lower-leg region, less the three faceted bores:53.670785in². This is contact geometry, not allowable bearing area or capacity. No positive-volume intersection with any104timbers above1e-10m³, one connected support solid,90×90×14in envelope. This does not establish usable screw length, access for installation, weld configuration, steel strength, temporary loads or erection stability.
+
+## Integration contract
+`fit_fixture(model)` returns a replacement M-TMP record and diagnostic report without mutating its input. Apply separately to baseline, perimeter step-lap and top-entry model records, replacing ONLY M-TMP. Recompute each serialized model SHA and rebind every source-bound load/material/enclosure/cavity record; timber arrays and self-weight inputs must stay byte-equivalent. Do not publish a baseline-only fix. Existing source-derived temporary display metadata should reflect the new face-seated revision. The original baseline remains recoverable in version control.

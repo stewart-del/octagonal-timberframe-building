@@ -41,7 +41,7 @@ assert(!src.includes('for(const e of m.mesh.edges)'),'Fallback must use feature 
 if(process.env.CAVITY_DISPLAY_OUTPUT)fs.writeFileSync(process.env.CAVITY_DISPLAY_OUTPUT,JSON.stringify(cleaned));
 // TIMESTAMP START 2026-11-02T08:55:04-05:00 | REVISION R004751
 const hash=file=>require('node:crypto').createHash('sha256').update(fs.readFileSync(path.join(root,file))).digest('hex');
-const modelHash=hash('src/model-data.json'),baselineHash='36e53d90ec9abead9a80ce87e61f298c527809818dac82b8e2bbf5bf84b25779';
+const modelHash=hash('src/model-data.json'),baselineHash=cavity.source_model_sha256;
 // TIMESTAMP START 2026-11-02T09:17:47-05:00 | REVISION R004755
 const verification={revision:'R004755',timestamp:'2026-11-02T09:17:47-05:00',passed:true,all_cavity_records_checked:Object.keys(cavity.parts).length,
  model_sha256:modelHash,pre_cavity_correction_model_sha256:baselineHash,model_bytes_unchanged:modelHash===baselineHash,cavity_source_sha256:hash('src/cavity-data.json'),
@@ -53,3 +53,4 @@ const verification={revision:'R004755',timestamp:'2026-11-02T09:17:47-05:00',pas
 if(process.env.CAVITY_VERIFICATION_OUTPUT)fs.writeFileSync(process.env.CAVITY_VERIFICATION_OUTPUT,JSON.stringify(verification,null,2)+'\n');
 console.log(JSON.stringify(verification,null,2));
 // TIMESTAMP END 2026-11-02T08:55:04-05:00 | REVISION R004751
+

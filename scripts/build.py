@@ -104,12 +104,31 @@ module_sha=hashlib.sha256((ROOT/'src/schematic-walls.js').read_bytes()).hexdiges
 assert enclosure_fit['source_model_sha256']==model_sha
 assert proposed_enclosure_fit['source_model_sha256']==proposed_sha
 assert enclosure_fit['source_module_sha256']==proposed_enclosure_fit['source_module_sha256']==module_sha
+foundation_data=json.loads((ROOT/'src/floor-foundation-solids.json').read_text())
+assert foundation_data['source_model_sha256']==model_sha
+assert foundation_data['source_module_sha256']==hashlib.sha256((ROOT/'src/floor-foundation.js').read_bytes()).hexdigest()
+# Foundation layout is valid for either selected model only when actual post centers match.
+for selected_model in [data,proposed_model]:
+ assert [next(p for p in selected_model['parts'] if p['id']=='P'+str(k))['center'][::2] for k in range(8)]==[[p[0],p[2]] for p in foundation_data['layout']['sourcePostCenters']]
 model_variants={'baseline':{'sha256':model_sha,'loadReview':load_data,'cavities':cavities,'materials':materials,'enclosureFit':enclosure_fit},
                 'proposed':{'model':proposed_model,'sha256':proposed_sha,'loadReview':proposed_load,
                             'cavities':proposed_cavities,'materials':proposed_materials,'enclosureFit':proposed_enclosure_fit}}
 
 
-for marker, value in [('/*__CUT_FACE_ANALYSIS__*/', (ROOT/'src/cut-face-analysis.js').read_text()), ('/*__CUT_ANGLE_VIEW__*/', (ROOT/'src/cut-angle-view.js').read_text()), ('/*__MODEL_VARIANTS__*/', (ROOT/'src/model-variants.js').read_text()), ('__MODEL_VARIANTS_JSON__',encode(model_variants)), ('/*__STEP_LAP_REVIEW__*/', (ROOT/'src/step-lap-review.js').read_text()), ('__STEP_LAP_PROPOSAL_JSON__',encode(step_lap)), ('/*__SCHEMATIC_WALLS__*/', 'const OCTAGON_ENCLOSURE_FIT=MODEL_CONTEXT.enclosureFit;\n'+(ROOT/'src/schematic-walls.js').read_text()), ('/*__INSPECTION_TOOLS__*/', inspection),
+# A distinct selected revision: never mix top-entry meshes with perimeter-only metadata.
+top_path=ROOT/'src/top-entry-proposed-model.json'
+top_model=json.loads(top_path.read_text())
+top_sha=hashlib.sha256(top_path.read_bytes()).hexdigest()
+top_aux={key:json.loads((ROOT/('src/top-entry-proposed-'+suffix+'.json')).read_text()) for key,suffix in [('loadReview','load-review'),('materials','material-groups'),('enclosureFit','enclosure-fit'),('cavities','cavities')]}
+for key,value in top_aux.items():
+    assert value.get('source_model_sha256',value.get('source_sha256'))==top_sha, 'Top-entry auxiliary hash mismatch: '+key
+assert top_aux['enclosureFit']['source_module_sha256']==module_sha
+assert len(top_aux['loadReview']['members'])==104
+assert [p['id'] for p in top_model['parts']]==ids
+model_variants['top-entry']={'model':top_model,'sha256':top_sha,**top_aux}
+
+
+for marker, value in [('/*__ROOF_COVERINGS__*/',(ROOT/'src/roof-coverings.js').read_text()), ('/*__DISPLAY_PRESETS__*/',(ROOT/'src/display-presets.js').read_text()), ('/*__FLOOR_FOUNDATION__*/','const FLOOR_FOUNDATION_DATA='+encode(foundation_data)+';\n'+(ROOT/'src/floor-foundation.js').read_text()),('/*__CUT_FACE_ANALYSIS__*/', (ROOT/'src/cut-face-analysis.js').read_text()), ('/*__CUT_ANGLE_VIEW__*/', (ROOT/'src/cut-angle-view.js').read_text()), ('/*__MODEL_VARIANTS__*/', (ROOT/'src/model-variants.js').read_text()), ('__MODEL_VARIANTS_JSON__',encode(model_variants)), ('/*__STEP_LAP_REVIEW__*/', (ROOT/'src/step-lap-review.js').read_text()), ('__STEP_LAP_PROPOSAL_JSON__',encode(step_lap)), ('/*__SCHEMATIC_WALLS__*/', 'const OCTAGON_ENCLOSURE_FIT=MODEL_CONTEXT.enclosureFit;\n'+(ROOT/'src/schematic-walls.js').read_text()), ('/*__INSPECTION_TOOLS__*/', inspection),
                       ('/*__ARCHITECTURAL_PLANS__*/', (ROOT/'src/architectural-plans.js').read_text()),
                       ('/*__EDGE_MEASUREMENT_TOOLS__*/', (ROOT/'src/edge-measurements.js').read_text()),
                       ('/*__LOAD_REVIEW__*/', load_review), ('/*__GEOMETRY_OVERLAYS__*/', overlays), ('__PARTS_JSON__', encode(data))]:
@@ -149,6 +168,9 @@ glb_exports=runpy.run_path(str(ROOT/'scripts/export_r01_glb.py'), run_name='__ma
 for exploded in [False,True]:
     (downloads/('Octagon-PROPOSED-step-lap-'+('exploded' if exploded else 'assembled')+'.glb')).write_bytes(
         glb_exports['export'](proposed_model,exploded,{'revision':'Proposed step-lap joinery','status':proposed_model['status'],'source_model_sha256':proposed_sha}))
+shutil.copyfile(top_path,downloads/'Octagon-TOP-ENTRY-model.json')
+for exploded in [False,True]:
+    (downloads/('Octagon-TOP-ENTRY-'+('exploded' if exploded else 'assembled')+'.glb')).write_bytes(glb_exports['export'](top_model,exploded,{'revision':'Top-entry head proposal','status':top_model['status'],'source_model_sha256':top_sha}))
 tests = ROOT/'tests'
 tests.mkdir(exist_ok=True)
 (tests/'embedded-model.json').write_text(encode(data))

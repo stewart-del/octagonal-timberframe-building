@@ -1,0 +1,6 @@
+const assert=require('node:assert/strict'),A=require('../src/floor-foundation.js'),m=require('../src/model-data.json'),snapshot=JSON.stringify(m),r=A.build(m);
+assert.equal(JSON.stringify(m),snapshot);assert.equal(r.piers.length,9);assert.equal(r.members.filter(p=>p.kind==='beam').length,8);assert.equal(r.members.filter(p=>p.kind==='joist').length,80);assert.equal(r.distances.length,36);assert(r.piers.every(p=>p.embedDepthM===null&&Math.abs(p.topY_M-p.gradeY_M-.6096)<1e-10));assert(!r.grate.active);
+for(let k=0;k<8;k++){const p=m.parts.find(p=>p.id==='P'+k);assert.equal(r.piers[k].centerM[0],p.center[0]);assert.equal(r.piers[k].centerM[2],p.center[2]);const q=r.piers[(k+4)%8];assert(Math.hypot(r.piers[k].localX_M+q.localX_M,r.piers[k].localZ_M+q.localZ_M)<1e-8);}
+const moved=JSON.parse(snapshot);moved.parts.find(p=>p.id==='P0').center[0]+=.1;assert.notEqual(A.build(moved).distances[0].lengthM,r.distances[0].lengthM);assert(A.settingOutSVG(r).includes('UNKNOWN'));assert(!/NaN|undefined/.test(A.settingOutSVG(r)));console.log('PASS:9actualcenterlines,36distances,symmetry,selectedmeshchange,no mutations,unknownembedment,deferredgrate');
+
+assert.equal(r.bearingStands.length,8);assert(r.bearingStands.every(s=>s.bottomY_M===r.piers[0].topY_M&&s.topY_M===0&&s.clearBeamWidthM>.14));

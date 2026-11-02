@@ -45,11 +45,12 @@ The hidden construction-aid layer contains one reusable symbolic green aid and o
 
 ## Proposed step lap comparison
 
-The [proposed step-lap model](docs/step-lap-proposal-review.md) implements actual complementary CSG at all 24 matching perimeter interfaces (16 J/B and 8 R/P), with both pockets on each ring beam. The main model selector switches between proposed and unchanged baseline geometry, including source-matched applied self-weight, enclosure fit, plans and qualified exports. Chosen dimensions and geometric tradeoffs remain a design proposal, not fabrication or structural approval; proposed contact pressures and baseline warning markers are withheld. Both model variants use their own independently audited recess geometry; no baseline overlay is substituted for proposed cuts.
-<!-- TIMESTAMP START 2026-11-02T09:09:36-05:00 | REVISION R004753 -->
+The [proposed step-lap model](docs/step-lap-proposal-review.md) implements actual complementary CSG at all 24 matching perimeter interfaces (16 J/B and 8 R/P), with both pockets on each ring beam. The main model selector switches between proposed and unchanged baseline geometry, including source-matched applied self-weight, enclosure fit, plans and qualified exports. Chosen dimensions and geometric tradeoffs remain a design proposal, not fabrication or structural approval; proposed contact pressures and baseline warning markers are withheld. Baseline and perimeter variants retain their own independently audited mating-filled recess geometry; no baseline overlay is substituted for changed cuts. The top-entry variant remains separately held until its own cavity proof is available.
 
-The nominal cavity-fit audit uses independent occupancy and section checks against the actual timber meshes. It is bound to both source hashes, and the build rejects stale or failed results. The pointed lower-cupola overlays are corrected without changing any timber solid. Invalid 3D residual meshes are no longer exported or displayed. Run `scripts/audit_cavity_fit.py` after fitting, then `scripts/audit_structure.py` and `scripts/build.py`. This checks geometric fit, not structural capacity or the complete raising sequence.
+## Top-entry upper-head proposal
 
-<!-- TIMESTAMP END 2026-11-02T09:09:36-05:00 | REVISION R004753 -->
+The separate [upper-head model](docs/top-entry-head-review.md) adds actual top-open J/R seats at all 16 head interfaces while preserving the 24 perimeter feet and both prior model files. Longer J stock and uncut hip blanks are explicit trial requirements. All selected-model weights and enclosure fits are regenerated; geometric fit is not structural or erection approval. Cavity-overlay repair remains required follow-on work.
 
-<!-- TIMESTAMP END 2026-11-02T10:05:34-05:00 | REVISION R004758 -->
+## Source-bound cavity proof
+
+The nominal cavity-fit audit uses independent occupancy, raw-surface and section checks against actual timber meshes. It is bound to both source hashes; the build rejects stale or failed baseline/perimeter results. Invalid residual meshes are not exported. Run `scripts/audit_cavity_fit.py` for each supported model/cavity pair, then the structural audit and build. This checks nominal geometric fit, not structural capacity or the complete raising sequence. The top-entry cavity hold is not an all-clear.

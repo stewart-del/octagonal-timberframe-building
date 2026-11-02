@@ -49,8 +49,8 @@
         }
       ],
       "cross_sections": {
-        "max_missing_area_m2": 1.7623156309127807e-15,
-        "max_receiver_overlap_area_m2": 6.26489520072937e-16,
+        "max_missing_area_m2": 1.7433464527130126e-15,
+        "max_receiver_overlap_area_m2": 6.07520341873169e-16,
         "sections": 230,
         "status": "PASS"
       },
@@ -83,7 +83,7 @@
         "max_cavity_vertex_outside_reference_stock_m": 0.0,
         "max_interior_boundary_area_m2": 0.0,
         "partition_planes": 24,
-        "partition_volume_balance_error_m3": 1.1463052729254741e-14,
+        "partition_volume_balance_error_m3": 1.1879386363489175e-14,
         "reference_envelope_volume_in3": 6210.313682744058,
         "scope": "Saved prejoinery envelope, after any explicitly listed exterior trim, is covered by final timber wood plus exported removed cavity within the stated tolerances. Added tenons outside this envelope are not counted as removed stock.",
         "status": "PASS",
@@ -119,7 +119,7 @@
         }
       ],
       "cross_sections": {
-        "max_missing_area_m2": 8.65936279296875e-16,
+        "max_missing_area_m2": 9.26971435546875e-16,
         "max_receiver_overlap_area_m2": 3.719329833984375e-16,
         "sections": 230,
         "status": "PASS"
@@ -139,7 +139,7 @@
           "status": "PASS",
           "sum_pair_overlap_area_m2": 0
         },
-        "signed_volume_m3": 0.0006961633142755491,
+        "signed_volume_m3": 0.0006961633142755492,
         "status": "PASS",
         "triangles": 16,
         "vertices": 12
@@ -153,7 +153,7 @@
         "max_cavity_vertex_outside_reference_stock_m": 0.0,
         "max_interior_boundary_area_m2": 0.0,
         "partition_planes": 6,
-        "partition_volume_balance_error_m3": 5.190292640122607e-15,
+        "partition_volume_balance_error_m3": 4.9404924595819466e-15,
         "reference_envelope_volume_in3": 6050.180668328283,
         "scope": "Saved prejoinery envelope, after any explicitly listed exterior trim, is covered by final timber wood plus exported removed cavity within the stated tolerances. Added tenons outside this envelope are not counted as removed stock.",
         "status": "PASS",
@@ -185,7 +185,7 @@
               "interior_boundary_area_m2": 0.0,
               "mate": "B0",
               "status": "PASS",
-              "volume_in3": 2.5335062453246295
+              "volume_in3": 2.53350624532463
             },
             {
               "centroid_margin_m": 0.002478990540023318,
@@ -233,7 +233,7 @@
               "interior_boundary_area_m2": 0.0,
               "mate": "P0",
               "status": "PASS",
-              "volume_in3": 5.953887395878943
+              "volume_in3": 5.953887395878944
             },
             {
               "centroid_margin_m": 0.015085875654932579,
@@ -252,15 +252,15 @@
               "volume_in3": 3.084982729665388
             },
             {
-              "centroid_margin_m": 0.012629199720841644,
+              "centroid_margin_m": 0.011178300241614814,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "P0",
               "status": "PASS",
-              "volume_in3": 4.176116284631051
+              "volume_in3": 4.176116284631019
             },
             {
-              "centroid_margin_m": 0.0036698626202937845,
+              "centroid_margin_m": 0.0030891825593419853,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "P0",
@@ -276,7 +276,7 @@
               "volume_in3": 3.2101615288604715e-06
             },
             {
-              "centroid_margin_m": 0.007123390058949575,
+              "centroid_margin_m": 0.006792851240456699,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "P0",
@@ -284,12 +284,12 @@
               "volume_in3": 0.6704544951468235
             },
             {
-              "centroid_margin_m": 0.0021707392978731477,
+              "centroid_margin_m": 0.0021609926160151005,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "P0",
               "status": "PASS",
-              "volume_in3": 0.12399196869952953
+              "volume_in3": 0.12399196869952954
             },
             {
               "centroid_margin_m": 0.001929000672225456,
@@ -321,10 +321,10 @@
               "interior_boundary_area_m2": 0.0,
               "mate": "P0",
               "status": "PASS",
-              "volume_in3": 1.770163538233421
+              "volume_in3": 1.7701635382334209
             },
             {
-              "centroid_margin_m": 0.006669352800865003,
+              "centroid_margin_m": 0.006669352800864559,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "P0",
@@ -337,7 +337,7 @@
               "interior_boundary_area_m2": 0.0,
               "mate": "P0",
               "status": "PASS",
-              "volume_in3": 1.1189629671619588
+              "volume_in3": 1.1189629671619574
             },
             {
               "centroid_margin_m": 0.010409146036832961,
@@ -361,7 +361,7 @@
               "interior_boundary_area_m2": 0.0,
               "mate": "P0",
               "status": "PASS",
-              "volume_in3": 2.315441023290537
+              "volume_in3": 2.3154410232905365
             },
             {
               "centroid_margin_m": 0.010262948986370368,
@@ -377,7 +377,7 @@
               "interior_boundary_area_m2": 0.0,
               "mate": "P0",
               "status": "PASS",
-              "volume_in3": 19.500886075897906
+              "volume_in3": 19.500886075897903
             },
             {
               "centroid_margin_m": 0.011832266165661576,
@@ -385,7 +385,7 @@
               "interior_boundary_area_m2": 0.0,
               "mate": "P0",
               "status": "PASS",
-              "volume_in3": 9.483673958315855
+              "volume_in3": 9.483673958315856
             },
             {
               "centroid_margin_m": 0.009949206019447043,
@@ -393,7 +393,7 @@
               "interior_boundary_area_m2": 0.0,
               "mate": "P0",
               "status": "PASS",
-              "volume_in3": 1.656854249492698
+              "volume_in3": 1.6568542494926977
             },
             {
               "centroid_margin_m": 0.010151989696298713,
@@ -473,7 +473,7 @@
               "interior_boundary_area_m2": 0.0,
               "mate": "P0",
               "status": "PASS",
-              "volume_in3": 0.1433864319874374
+              "volume_in3": 0.14338643198743742
             },
             {
               "centroid_margin_m": 0.002002505688299294,
@@ -481,7 +481,7 @@
               "interior_boundary_area_m2": 0.0,
               "mate": "B7",
               "status": "PASS",
-              "volume_in3": 0.1624184511673986
+              "volume_in3": 0.16241845116739856
             },
             {
               "centroid_margin_m": 1.27561144127597e-05,
@@ -500,7 +500,7 @@
               "volume_in3": 0.16905301783359755
             },
             {
-              "centroid_margin_m": 0.014888005615538269,
+              "centroid_margin_m": 0.014888005615538713,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "P0",
@@ -532,7 +532,7 @@
               "volume_in3": 4.176116284631056
             },
             {
-              "centroid_margin_m": 0.006533391860407356,
+              "centroid_margin_m": 0.006533391860408244,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "P0",
@@ -593,18 +593,18 @@
           "note": "Each cell is independently contained in one mate; only the stated distance shell around cell boundaries is excluded.",
           "partition_cells": 52,
           "partition_planes": 8,
-          "partition_volume_balance_error_m3": 1.8995222061946038e-16,
+          "partition_volume_balance_error_m3": 1.8951853975046618e-16,
           "status": "PASS",
           "volume_in3": 130.3136827440621
         },
         {
           "centroid_margin_m": 0.009649864166409228,
-          "convex_volume_error_m3": 2.710505431213761e-19,
+          "convex_volume_error_m3": 1.6263032587282567e-19,
           "coverage_mode": "one convex cell",
           "interior_boundary_area_m2": 0.0,
           "mate": "J0-0",
           "status": "PASS",
-          "volume_in3": 27.422619235294963
+          "volume_in3": 27.422619235294967
         },
         {
           "centroid_margin_m": 0.009649864166409006,
@@ -617,7 +617,7 @@
         }
       ],
       "cross_sections": {
-        "max_missing_area_m2": 1.5129153074487089e-15,
+        "max_missing_area_m2": 1.5432860720190899e-15,
         "max_receiver_overlap_area_m2": 1.994216423217726e-14,
         "sections": 305,
         "status": "PASS"
@@ -637,7 +637,7 @@
           "status": "PASS",
           "sum_pair_overlap_area_m2": 0
         },
-        "signed_volume_m3": 0.003034211092115435,
+        "signed_volume_m3": 0.0030342110921154353,
         "status": "PASS",
         "triangles": 56,
         "vertices": 34
@@ -648,10 +648,10 @@
         "convex_cells": 353,
         "declared_external_trim": null,
         "failures": [],
-        "max_cavity_vertex_outside_reference_stock_m": 0.0,
+        "max_cavity_vertex_outside_reference_stock_m": 4.440892098500626e-16,
         "max_interior_boundary_area_m2": 0.0,
         "partition_planes": 17,
-        "partition_volume_balance_error_m3": 1.3489209749195652e-14,
+        "partition_volume_balance_error_m3": 1.404432126150823e-14,
         "reference_envelope_volume_in3": 13155.075066300322,
         "scope": "Saved prejoinery envelope, after any explicitly listed exterior trim, is covered by final timber wood plus exported removed cavity within the stated tolerances. Added tenons outside this envelope are not counted as removed stock.",
         "status": "PASS",
@@ -757,7 +757,7 @@
         "max_cavity_vertex_outside_reference_stock_m": 0.0,
         "max_interior_boundary_area_m2": 0.0,
         "partition_planes": 19,
-        "partition_volume_balance_error_m3": 2.3175905639050143e-15,
+        "partition_volume_balance_error_m3": 2.3245294578089215e-15,
         "reference_envelope_volume_in3": 3357.736659610101,
         "scope": "Saved prejoinery envelope, after any explicitly listed exterior trim, is covered by final timber wood plus exported removed cavity within the stated tolerances. Added tenons outside this envelope are not counted as removed stock.",
         "status": "PASS",
@@ -774,13 +774,13 @@
     {
       "components": [
         {
-          "centroid_margin_m": 0.008620338367856029,
-          "convex_volume_error_m3": 4.336808689942018e-19,
+          "centroid_margin_m": 0.008620338367855584,
+          "convex_volume_error_m3": 4.607859233063394e-19,
           "coverage_mode": "one convex cell",
           "interior_boundary_area_m2": 0.0,
           "mate": "B0",
           "status": "PASS",
-          "volume_in3": 6.494353201754452
+          "volume_in3": 6.494353201754453
         }
       ],
       "cross_sections": {
@@ -815,10 +815,10 @@
         "convex_cells": 4,
         "declared_external_trim": null,
         "failures": [],
-        "max_cavity_vertex_outside_reference_stock_m": 9.992007221626409e-16,
+        "max_cavity_vertex_outside_reference_stock_m": 1.7763568394002505e-15,
         "max_interior_boundary_area_m2": 0.0,
         "partition_planes": 2,
-        "partition_volume_balance_error_m3": 4.3021142204224816e-16,
+        "partition_volume_balance_error_m3": 4.996003610813204e-16,
         "reference_envelope_volume_in3": 4025.9500851844223,
         "scope": "Saved prejoinery envelope, after any explicitly listed exterior trim, is covered by final timber wood plus exported removed cavity within the stated tolerances. Added tenons outside this envelope are not counted as removed stock.",
         "status": "PASS",
@@ -836,16 +836,16 @@
       "components": [
         {
           "centroid_margin_m": 0.008620338367856029,
-          "convex_volume_error_m3": 1.3552527156068805e-20,
+          "convex_volume_error_m3": 0.0,
           "coverage_mode": "one convex cell",
           "interior_boundary_area_m2": 0.0,
           "mate": "B0",
           "status": "PASS",
-          "volume_in3": 6.494353201754491
+          "volume_in3": 6.494353201754492
         }
       ],
       "cross_sections": {
-        "max_missing_area_m2": 9.769038238595373e-16,
+        "max_missing_area_m2": 1.0074214019845374e-15,
         "max_receiver_overlap_area_m2": 4.2724609375e-16,
         "sections": 49,
         "status": "PASS"
@@ -880,7 +880,7 @@
         "max_interior_boundary_area_m2": 0.0,
         "partition_planes": 2,
         "partition_volume_balance_error_m3": 9.43689570931383e-16,
-        "reference_envelope_volume_in3": 4025.950085184185,
+        "reference_envelope_volume_in3": 4025.950085184184,
         "scope": "Saved prejoinery envelope, after any explicitly listed exterior trim, is covered by final timber wood plus exported removed cavity within the stated tolerances. Added tenons outside this envelope are not counted as removed stock.",
         "status": "PASS",
         "verified_cells": 4
@@ -896,22 +896,22 @@
     {
       "components": [
         {
-          "centroid_margin_m": 0.020680427794254323,
-          "convex_volume_error_m3": 3.2526065174565133e-19,
+          "centroid_margin_m": 0.020680427794254413,
+          "convex_volume_error_m3": 5.421010862427522e-19,
           "coverage_mode": "one convex cell",
           "interior_boundary_area_m2": 0.0,
           "mate": "K1-A",
           "status": "PASS",
-          "volume_in3": 44.08221557936386
+          "volume_in3": 44.08221557936387
         },
         {
           "centroid_margin_m": 0.020680427794254642,
-          "convex_volume_error_m3": 1.0842021724855044e-19,
+          "convex_volume_error_m3": 0.0,
           "coverage_mode": "one convex cell",
           "interior_boundary_area_m2": 0.0,
           "mate": "K1-B",
           "status": "PASS",
-          "volume_in3": 44.08221557936384
+          "volume_in3": 44.08221557936383
         },
         {
           "centroid_margin_m": 0.025399999999998535,
@@ -924,21 +924,21 @@
         },
         {
           "centroid_margin_m": 0.02034000000000028,
-          "convex_volume_error_m3": 1.0842021724855044e-19,
+          "convex_volume_error_m3": 5.421010862427522e-20,
           "coverage_mode": "one convex cell",
           "interior_boundary_area_m2": 0.0,
           "mate": "B1",
           "status": "PASS",
-          "volume_in3": 25.99696269072764
+          "volume_in3": 25.996962690727642
         },
         {
           "centroid_margin_m": 0.020339999999999026,
-          "convex_volume_error_m3": 5.421010862427522e-20,
+          "convex_volume_error_m3": 0.0,
           "coverage_mode": "one convex cell",
           "interior_boundary_area_m2": 0.0,
           "mate": "B0",
           "status": "PASS",
-          "volume_in3": 25.99696269072708
+          "volume_in3": 25.996962690727077
         }
       ],
       "cross_sections": {
@@ -973,10 +973,10 @@
         "convex_cells": 986,
         "declared_external_trim": null,
         "failures": [],
-        "max_cavity_vertex_outside_reference_stock_m": 4.121702978920894e-15,
+        "max_cavity_vertex_outside_reference_stock_m": 4.107825191113079e-15,
         "max_interior_boundary_area_m2": 0.0,
         "partition_planes": 24,
-        "partition_volume_balance_error_m3": 3.169686735304822e-14,
+        "partition_volume_balance_error_m3": 2.733924198139448e-14,
         "reference_envelope_volume_in3": 6210.313682743939,
         "scope": "Saved prejoinery envelope, after any explicitly listed exterior trim, is covered by final timber wood plus exported removed cavity within the stated tolerances. Added tenons outside this envelope are not counted as removed stock.",
         "status": "PASS",
@@ -994,12 +994,12 @@
       "components": [
         {
           "centroid_margin_m": 0.022528995514027095,
-          "convex_volume_error_m3": 1.6263032587282567e-19,
+          "convex_volume_error_m3": 3.2526065174565133e-19,
           "coverage_mode": "one convex cell",
           "interior_boundary_area_m2": 0.0,
           "mate": "K1-B",
           "status": "PASS",
-          "volume_in3": 21.241245969245583
+          "volume_in3": 21.241245969245593
         },
         {
           "centroid_margin_m": 0.022528995514027095,
@@ -1008,11 +1008,11 @@
           "interior_boundary_area_m2": 0.0,
           "mate": "K2-A",
           "status": "PASS",
-          "volume_in3": 21.24124596924611
+          "volume_in3": 21.241245969246126
         }
       ],
       "cross_sections": {
-        "max_missing_area_m2": 9.276866912841797e-16,
+        "max_missing_area_m2": 8.537769317626953e-16,
         "max_receiver_overlap_area_m2": 4.634857177734375e-16,
         "sections": 230,
         "status": "PASS"
@@ -1032,7 +1032,7 @@
           "status": "PASS",
           "sum_pair_overlap_area_m2": 0
         },
-        "signed_volume_m3": 0.0006961633142755457,
+        "signed_volume_m3": 0.0006961633142755449,
         "status": "PASS",
         "triangles": 16,
         "vertices": 12
@@ -1046,8 +1046,8 @@
         "max_cavity_vertex_outside_reference_stock_m": 0.0,
         "max_interior_boundary_area_m2": 0.0,
         "partition_planes": 6,
-        "partition_volume_balance_error_m3": 8.854028621385623e-15,
-        "reference_envelope_volume_in3": 6050.180668328283,
+        "partition_volume_balance_error_m3": 1.0449974219284286e-14,
+        "reference_envelope_volume_in3": 6050.180668328282,
         "scope": "Saved prejoinery envelope, after any explicitly listed exterior trim, is covered by final timber wood plus exported removed cavity within the stated tolerances. Added tenons outside this envelope are not counted as removed stock.",
         "status": "PASS",
         "verified_cells": 21
@@ -1065,7 +1065,7 @@
         {
           "cells": [
             {
-              "centroid_margin_m": 0.002559893884070963,
+              "centroid_margin_m": 0.00280993051261591,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "P1",
@@ -1073,140 +1073,140 @@
               "volume_in3": 0.22364646929887408
             },
             {
-              "centroid_margin_m": 0.004879369571543446,
+              "centroid_margin_m": 0.005017774786276519,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "P1",
               "status": "PASS",
-              "volume_in3": 1.7701635382345176
+              "volume_in3": 1.7701635382346208
             },
             {
-              "centroid_margin_m": 0.0075361928601802575,
+              "centroid_margin_m": 0.007213384969117609,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "P1",
               "status": "PASS",
-              "volume_in3": 1.1189629671623564
+              "volume_in3": 1.11896296716219
             },
             {
-              "centroid_margin_m": 0.002694512202387145,
+              "centroid_margin_m": 0.002280875516201597,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "P1",
               "status": "PASS",
-              "volume_in3": 0.22364646929901466
+              "volume_in3": 0.22364646929899645
             },
             {
-              "centroid_margin_m": 0.007322685400871443,
+              "centroid_margin_m": 0.006415576097791309,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "B0",
               "status": "PASS",
-              "volume_in3": 2.5335062453253623
+              "volume_in3": 2.5335062453250425
             },
             {
-              "centroid_margin_m": 0.0059095632671901654,
+              "centroid_margin_m": 0.0053155085207672315,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "P1",
               "status": "PASS",
-              "volume_in3": 0.679996224173006
+              "volume_in3": 0.679996224172768
             },
             {
-              "centroid_margin_m": 0.0018830634871003227,
+              "centroid_margin_m": 0.002071369835809911,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "P1",
               "status": "PASS",
-              "volume_in3": 0.1433864319875393
+              "volume_in3": 0.14338643198748882
             },
             {
-              "centroid_margin_m": 0.008642503101425891,
+              "centroid_margin_m": 0.007624630812999023,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "B1",
               "status": "PASS",
-              "volume_in3": 2.5335062453251314
+              "volume_in3": 2.5335062453249577
             },
             {
-              "centroid_margin_m": 0.003287246744912764,
+              "centroid_margin_m": 0.003425019872438817,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "B1",
               "status": "PASS",
-              "volume_in3": 0.16241845116774248
+              "volume_in3": 0.16241845116771184
             },
             {
-              "centroid_margin_m": 0.006293819842261961,
+              "centroid_margin_m": 0.0075884121969616025,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "P1",
               "status": "PASS",
-              "volume_in3": 1.1189629671620402
+              "volume_in3": 1.1189629671621601
             },
             {
-              "centroid_margin_m": 0.010170097910145781,
+              "centroid_margin_m": 0.01083866402039968,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "P1",
               "status": "PASS",
-              "volume_in3": 3.5291513430392887
+              "volume_in3": 3.529151343039531
             },
             {
-              "centroid_margin_m": 0.003024490802791213,
+              "centroid_margin_m": 0.002254014785063596,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "B0",
               "status": "PASS",
-              "volume_in3": 0.16241845116752684
+              "volume_in3": 0.16241845116758052
             },
             {
-              "centroid_margin_m": 0.0019290006722281205,
+              "centroid_margin_m": 0.0016075005601914327,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "P1",
               "status": "PASS",
-              "volume_in3": 0.16905301783383592
+              "volume_in3": 0.16905301783390148
             },
             {
-              "centroid_margin_m": 1.2062724817241133e-05,
+              "centroid_margin_m": 1.2343782547219462e-05,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "P1",
               "status": "PASS",
-              "volume_in3": 3.5985509910249798e-06
+              "volume_in3": 3.598550991613715e-06
             },
             {
-              "centroid_margin_m": 0.004649448782224397,
+              "centroid_margin_m": 0.00516212060699317,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "P1",
               "status": "PASS",
-              "volume_in3": 2.0177354249835973
+              "volume_in3": 2.01773542498464
             },
             {
-              "centroid_margin_m": 0.010387207562931877,
+              "centroid_margin_m": 0.0097662418165827,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "P1",
               "status": "PASS",
-              "volume_in3": 2.3154410232913554
+              "volume_in3": 2.31544102329174
             },
             {
-              "centroid_margin_m": 1.2756114410983344e-05,
+              "centroid_margin_m": 1.1774874844938665e-05,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "P1",
               "status": "PASS",
-              "volume_in3": 3.5985509904886373e-06
+              "volume_in3": 3.5985509911610772e-06
             },
             {
-              "centroid_margin_m": 0.015184632717400781,
+              "centroid_margin_m": 0.01673757881664928,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "P1",
               "status": "PASS",
-              "volume_in3": 5.953887395878401
+              "volume_in3": 5.953887395878795
             },
             {
               "centroid_margin_m": 0.005571932904262056,
@@ -1217,12 +1217,12 @@
               "volume_in3": 0.6799962241726617
             },
             {
-              "centroid_margin_m": 0.001929000672225456,
+              "centroid_margin_m": 0.0019290006722263442,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "P1",
               "status": "PASS",
-              "volume_in3": 0.1690530178335755
+              "volume_in3": 0.16905301783357585
             },
             {
               "centroid_margin_m": 0.0020511695706666444,
@@ -1230,39 +1230,39 @@
               "interior_boundary_area_m2": 0.0,
               "mate": "P1",
               "status": "PASS",
-              "volume_in3": 0.14338643198748535
+              "volume_in3": 0.1433864319874906
             },
             {
-              "centroid_margin_m": 0.015862281316078253,
+              "centroid_margin_m": 0.016560909151960512,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "P1",
               "status": "PASS",
-              "volume_in3": 5.9538873958794785
+              "volume_in3": 5.9538873958792085
             },
             {
-              "centroid_margin_m": 0.01752360304195033,
+              "centroid_margin_m": 0.018691843244748263,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "P1",
               "status": "PASS",
-              "volume_in3": 6.977474347316006
+              "volume_in3": 6.977474347316381
             },
             {
-              "centroid_margin_m": 0.01061995245239089,
+              "centroid_margin_m": 0.010582685311685047,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "P1",
               "status": "PASS",
-              "volume_in3": 2.3154410232917955
+              "volume_in3": 2.315441023291817
             },
             {
-              "centroid_margin_m": 0.0220377482048848,
+              "centroid_margin_m": 0.022103227782702906,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "P1",
               "status": "PASS",
-              "volume_in3": 19.500886075900507
+              "volume_in3": 19.500886075900496
             },
             {
               "centroid_margin_m": 0.018639996483719834,
@@ -1273,63 +1273,39 @@
               "volume_in3": 6.9774743473165
             },
             {
-              "centroid_margin_m": 0.01172939851889998,
+              "centroid_margin_m": 0.011708727310977274,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "P1",
               "status": "PASS",
-              "volume_in3": 3.0849827296652967
+              "volume_in3": 3.0849827296652688
             },
             {
-              "centroid_margin_m": 0.011984999039024835,
+              "centroid_margin_m": 0.012329163851398928,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "P1",
               "status": "PASS",
-              "volume_in3": 9.483673958316441
+              "volume_in3": 9.483673958316341
             },
             {
-              "centroid_margin_m": 0.007459892480680352,
+              "centroid_margin_m": 0.009345217427959795,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "P1",
               "status": "PASS",
-              "volume_in3": 1.6568542494933667
+              "volume_in3": 1.6568542494930538
             },
             {
-              "centroid_margin_m": 0.011752256506071923,
+              "centroid_margin_m": 0.012217161918697705,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "P1",
               "status": "PASS",
-              "volume_in3": 3.0849827296654304
+              "volume_in3": 3.08498272966543
             },
             {
-              "centroid_margin_m": 0.012374392695237546,
-              "coverage_mode": "one convex cell",
-              "interior_boundary_area_m2": 0.0,
-              "mate": "P1",
-              "status": "PASS",
-              "volume_in3": 4.176116284631611
-            },
-            {
-              "centroid_margin_m": 0.0056878445362533725,
-              "coverage_mode": "one convex cell",
-              "interior_boundary_area_m2": 0.0,
-              "mate": "P1",
-              "status": "PASS",
-              "volume_in3": 0.6704544951472257
-            },
-            {
-              "centroid_margin_m": 0.002404526790742878,
-              "coverage_mode": "one convex cell",
-              "interior_boundary_area_m2": 0.0,
-              "mate": "P1",
-              "status": "PASS",
-              "volume_in3": 0.1239919686994608
-            },
-            {
-              "centroid_margin_m": 0.012394014711967216,
+              "centroid_margin_m": 0.012414036260464556,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "P1",
@@ -1337,84 +1313,108 @@
               "volume_in3": 4.176116284631466
             },
             {
-              "centroid_margin_m": 0.0030756262759844694,
+              "centroid_margin_m": 0.006623166773713329,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "P1",
               "status": "PASS",
-              "volume_in3": 0.15671083049051104
+              "volume_in3": 0.6704544951469368
             },
             {
-              "centroid_margin_m": 0.011127875669607601,
+              "centroid_margin_m": 0.0022195631914545544,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "P1",
               "status": "PASS",
-              "volume_in3": 1.6568542494930558
+              "volume_in3": 0.12399196869944396
             },
             {
-              "centroid_margin_m": 0.009417684593027609,
+              "centroid_margin_m": 0.011485300575067026,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "P1",
               "status": "PASS",
-              "volume_in3": 3.6885748538629337
+              "volume_in3": 4.17611628463143
             },
             {
-              "centroid_margin_m": 0.003419524710199795,
+              "centroid_margin_m": 0.004140364392295481,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "P1",
               "status": "PASS",
-              "volume_in3": 0.15671083049053933
+              "volume_in3": 0.1567108304905992
             },
             {
-              "centroid_margin_m": 0.0027575608085896874,
+              "centroid_margin_m": 0.011568062381952071,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "P1",
               "status": "PASS",
-              "volume_in3": 0.15471431564777333
+              "volume_in3": 1.6568542494929772
             },
             {
-              "centroid_margin_m": 1.3078995243276381e-05,
+              "centroid_margin_m": 0.01020542640214206,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "P1",
               "status": "PASS",
-              "volume_in3": 3.210161528642036e-06
+              "volume_in3": 3.688574853862921
             },
             {
-              "centroid_margin_m": 0.004624954527403524,
+              "centroid_margin_m": 0.0028777354705775693,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "P1",
               "status": "PASS",
-              "volume_in3": 1.6633772977189545
+              "volume_in3": 0.15671083049054763
             },
             {
-              "centroid_margin_m": 0.008507697540470538,
+              "centroid_margin_m": 0.002757560808587911,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "P1",
               "status": "PASS",
-              "volume_in3": 1.6568542494927399
+              "volume_in3": 0.15471431564764013
             },
             {
-              "centroid_margin_m": 1.1058252598949991e-05,
+              "centroid_margin_m": 1.148050297317127e-05,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "P1",
               "status": "PASS",
-              "volume_in3": 3.2101615289420937e-06
+              "volume_in3": 3.2101615293369725e-06
             },
             {
-              "centroid_margin_m": 0.009584279646353,
+              "centroid_margin_m": 0.006019718410887442,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "P1",
               "status": "PASS",
-              "volume_in3": 4.02140196898354
+              "volume_in3": 1.6633772977194345
+            },
+            {
+              "centroid_margin_m": 0.011908412494950227,
+              "coverage_mode": "one convex cell",
+              "interior_boundary_area_m2": 0.0,
+              "mate": "P1",
+              "status": "PASS",
+              "volume_in3": 1.6568542494929592
+            },
+            {
+              "centroid_margin_m": 1.148050297317127e-05,
+              "coverage_mode": "one convex cell",
+              "interior_boundary_area_m2": 0.0,
+              "mate": "P1",
+              "status": "PASS",
+              "volume_in3": 3.210161528942094e-06
+            },
+            {
+              "centroid_margin_m": 0.01155134156045401,
+              "coverage_mode": "one convex cell",
+              "interior_boundary_area_m2": 0.0,
+              "mate": "P1",
+              "status": "PASS",
+              "volume_in3": 4.021401968983607
             },
             {
               "centroid_margin_m": 0.006857657463267053,
@@ -1430,7 +1430,7 @@
               "interior_boundary_area_m2": 0.0,
               "mate": "P1",
               "status": "PASS",
-              "volume_in3": 0.15471431564748625
+              "volume_in3": 0.15471431564748622
             },
             {
               "centroid_margin_m": 0.002256286527733131,
@@ -1441,15 +1441,15 @@
               "volume_in3": 0.12399196869949225
             },
             {
-              "centroid_margin_m": 0.012178208429018955,
+              "centroid_margin_m": 0.012061344229790105,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "P1",
               "status": "PASS",
-              "volume_in3": 4.02140196898394
+              "volume_in3": 4.021401968983774
             },
             {
-              "centroid_margin_m": 0.01204288997787284,
+              "centroid_margin_m": 0.012237663643254404,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "P1",
@@ -1470,7 +1470,7 @@
               "interior_boundary_area_m2": 0.0,
               "mate": "P1",
               "status": "PASS",
-              "volume_in3": 10.007053901112352
+              "volume_in3": 10.00705390111235
             },
             {
               "centroid_margin_m": 0.011906768896336128,
@@ -1478,17 +1478,17 @@
               "interior_boundary_area_m2": 0.0,
               "mate": "P1",
               "status": "PASS",
-              "volume_in3": 3.346672701064063
+              "volume_in3": 3.3466727010640627
             }
           ],
-          "convex_volume_error_m3": 4.336808689942018e-19,
+          "convex_volume_error_m3": 0.0,
           "coverage_mode": "explicit convex partition",
           "note": "Each cell is independently contained in one mate; only the stated distance shell around cell boundaries is excluded.",
           "partition_cells": 52,
           "partition_planes": 8,
-          "partition_volume_balance_error_m3": 5.28656979303932e-16,
+          "partition_volume_balance_error_m3": 5.455705331947058e-16,
           "status": "PASS",
-          "volume_in3": 130.31368274406202
+          "volume_in3": 130.31368274406205
         },
         {
           "centroid_margin_m": 0.009649864166409117,
@@ -1497,21 +1497,21 @@
           "interior_boundary_area_m2": 0.0,
           "mate": "J1-0",
           "status": "PASS",
-          "volume_in3": 27.422619235294757
+          "volume_in3": 27.422619235294768
         },
         {
           "centroid_margin_m": 0.009649864166408673,
-          "convex_volume_error_m3": 5.421010862427522e-20,
+          "convex_volume_error_m3": 1.6263032587282567e-19,
           "coverage_mode": "one convex cell",
           "interior_boundary_area_m2": 0.0,
           "mate": "J0-2",
           "status": "PASS",
-          "volume_in3": 27.422619235294377
+          "volume_in3": 27.422619235294384
         }
       ],
       "cross_sections": {
         "max_missing_area_m2": 1.540506019337806e-15,
-        "max_receiver_overlap_area_m2": 1.9933223535461008e-14,
+        "max_receiver_overlap_area_m2": 1.9933163930816234e-14,
         "sections": 305,
         "status": "PASS"
       },
@@ -1530,7 +1530,7 @@
           "status": "PASS",
           "sum_pair_overlap_area_m2": 0
         },
-        "signed_volume_m3": 0.003034211092115381,
+        "signed_volume_m3": 0.0030342110921153676,
         "status": "PASS",
         "triangles": 56,
         "vertices": 34
@@ -1541,11 +1541,11 @@
         "convex_cells": 353,
         "declared_external_trim": null,
         "failures": [],
-        "max_cavity_vertex_outside_reference_stock_m": 1.7763568394002505e-15,
+        "max_cavity_vertex_outside_reference_stock_m": 4.066191827689636e-15,
         "max_interior_boundary_area_m2": 0.0,
         "partition_planes": 17,
-        "partition_volume_balance_error_m3": 2.7727820040013285e-14,
-        "reference_envelope_volume_in3": 13155.07506630065,
+        "partition_volume_balance_error_m3": 2.609024107869118e-14,
+        "reference_envelope_volume_in3": 13155.075066300424,
         "scope": "Saved prejoinery envelope, after any explicitly listed exterior trim, is covered by final timber wood plus exported removed cavity within the stated tolerances. Added tenons outside this envelope are not counted as removed stock.",
         "status": "PASS",
         "verified_cells": 353
@@ -1561,7 +1561,7 @@
     {
       "components": [
         {
-          "centroid_margin_m": 0.025399999999999825,
+          "centroid_margin_m": 0.025399999999999798,
           "convex_volume_error_m3": 1.0842021724855044e-19,
           "coverage_mode": "one convex cell",
           "interior_boundary_area_m2": 0.0,
@@ -1571,21 +1571,21 @@
         },
         {
           "centroid_margin_m": 0.020340000000000025,
-          "convex_volume_error_m3": 1.0842021724855044e-19,
+          "convex_volume_error_m3": 2.168404344971009e-19,
           "coverage_mode": "one convex cell",
           "interior_boundary_area_m2": 0.0,
           "mate": "R1",
           "status": "PASS",
-          "volume_in3": 44.98160784748995
+          "volume_in3": 44.98160784748994
         },
         {
           "centroid_margin_m": 0.013569627672608497,
-          "convex_volume_error_m3": 5.421010862427522e-20,
+          "convex_volume_error_m3": 2.710505431213761e-20,
           "coverage_mode": "one convex cell",
           "interior_boundary_area_m2": 0.0,
           "mate": "L1-S",
           "status": "PASS",
-          "volume_in3": 11.558550058925526
+          "volume_in3": 11.558550058925528
         },
         {
           "centroid_margin_m": 0.013569627672608275,
@@ -1603,10 +1603,10 @@
           "interior_boundary_area_m2": 0.0,
           "mate": "L0-S",
           "status": "PASS",
-          "volume_in3": 11.558550058925402
+          "volume_in3": 11.558550058925404
         },
         {
-          "centroid_margin_m": 0.013569627672608497,
+          "centroid_margin_m": 0.013569627672608386,
           "convex_volume_error_m3": 0.0,
           "coverage_mode": "one convex cell",
           "interior_boundary_area_m2": 0.0,
@@ -1650,7 +1650,7 @@
         "max_cavity_vertex_outside_reference_stock_m": 4.440892098500626e-16,
         "max_interior_boundary_area_m2": 0.0,
         "partition_planes": 19,
-        "partition_volume_balance_error_m3": 7.93809462606987e-15,
+        "partition_volume_balance_error_m3": 7.494005416219807e-15,
         "reference_envelope_volume_in3": 3357.736659610111,
         "scope": "Saved prejoinery envelope, after any explicitly listed exterior trim, is covered by final timber wood plus exported removed cavity within the stated tolerances. Added tenons outside this envelope are not counted as removed stock.",
         "status": "PASS",
@@ -1708,11 +1708,11 @@
         "convex_cells": 4,
         "declared_external_trim": null,
         "failures": [],
-        "max_cavity_vertex_outside_reference_stock_m": 3.9968028886505635e-15,
+        "max_cavity_vertex_outside_reference_stock_m": 3.885780586188048e-15,
         "max_interior_boundary_area_m2": 0.0,
         "partition_planes": 2,
-        "partition_volume_balance_error_m3": 9.575673587391975e-16,
-        "reference_envelope_volume_in3": 4025.950085184184,
+        "partition_volume_balance_error_m3": 8.743006318923108e-16,
+        "reference_envelope_volume_in3": 4025.9500851841885,
         "scope": "Saved prejoinery envelope, after any explicitly listed exterior trim, is covered by final timber wood plus exported removed cavity within the stated tolerances. Added tenons outside this envelope are not counted as removed stock.",
         "status": "PASS",
         "verified_cells": 4
@@ -1738,7 +1738,7 @@
         }
       ],
       "cross_sections": {
-        "max_missing_area_m2": 9.769038238595373e-16,
+        "max_missing_area_m2": 1.0074214019845374e-15,
         "max_receiver_overlap_area_m2": 4.2724609375e-16,
         "sections": 49,
         "status": "PASS"
@@ -1769,10 +1769,10 @@
         "convex_cells": 4,
         "declared_external_trim": null,
         "failures": [],
-        "max_cavity_vertex_outside_reference_stock_m": 1.6653345369377348e-15,
+        "max_cavity_vertex_outside_reference_stock_m": 1.7763568394002505e-15,
         "max_interior_boundary_area_m2": 0.0,
         "partition_planes": 2,
-        "partition_volume_balance_error_m3": 3.191891195797325e-16,
+        "partition_volume_balance_error_m3": 3.3306690738754696e-16,
         "reference_envelope_volume_in3": 4025.9500851844264,
         "scope": "Saved prejoinery envelope, after any explicitly listed exterior trim, is covered by final timber wood plus exported removed cavity within the stated tolerances. Added tenons outside this envelope are not counted as removed stock.",
         "status": "PASS",
@@ -1835,8 +1835,8 @@
         }
       ],
       "cross_sections": {
-        "max_missing_area_m2": 1.4000535011291504e-15,
-        "max_receiver_overlap_area_m2": 6.26489520072937e-16,
+        "max_missing_area_m2": 1.497805118560791e-15,
+        "max_receiver_overlap_area_m2": 6.07520341873169e-16,
         "sections": 230,
         "status": "PASS"
       },
@@ -1869,7 +1869,7 @@
         "max_cavity_vertex_outside_reference_stock_m": 0.0,
         "max_interior_boundary_area_m2": 0.0,
         "partition_planes": 24,
-        "partition_volume_balance_error_m3": 1.2032042029375134e-14,
+        "partition_volume_balance_error_m3": 1.3128387266192476e-14,
         "reference_envelope_volume_in3": 6210.313682744058,
         "scope": "Saved prejoinery envelope, after any explicitly listed exterior trim, is covered by final timber wood plus exported removed cavity within the stated tolerances. Added tenons outside this envelope are not counted as removed stock.",
         "status": "PASS",
@@ -1905,7 +1905,7 @@
         }
       ],
       "cross_sections": {
-        "max_missing_area_m2": 8.65936279296875e-16,
+        "max_missing_area_m2": 9.26971435546875e-16,
         "max_receiver_overlap_area_m2": 3.719329833984375e-16,
         "sections": 230,
         "status": "PASS"
@@ -1925,7 +1925,7 @@
           "status": "PASS",
           "sum_pair_overlap_area_m2": 0
         },
-        "signed_volume_m3": 0.0006961633142755488,
+        "signed_volume_m3": 0.0006961633142755492,
         "status": "PASS",
         "triangles": 16,
         "vertices": 12
@@ -1939,8 +1939,8 @@
         "max_cavity_vertex_outside_reference_stock_m": 0.0,
         "max_interior_boundary_area_m2": 0.0,
         "partition_planes": 6,
-        "partition_volume_balance_error_m3": 6.314393452555578e-15,
-        "reference_envelope_volume_in3": 6050.180668328285,
+        "partition_volume_balance_error_m3": 7.313594174718219e-15,
+        "reference_envelope_volume_in3": 6050.180668328284,
         "scope": "Saved prejoinery envelope, after any explicitly listed exterior trim, is covered by final timber wood plus exported removed cavity within the stated tolerances. Added tenons outside this envelope are not counted as removed stock.",
         "status": "PASS",
         "verified_cells": 21
@@ -1958,28 +1958,28 @@
         {
           "cells": [
             {
-              "centroid_margin_m": 0.0018802387731087222,
+              "centroid_margin_m": 0.0016713233538760974,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "P2",
               "status": "PASS",
-              "volume_in3": 0.14338643198709966
+              "volume_in3": 0.14338643198715914
             },
             {
-              "centroid_margin_m": 0.015240754922636324,
+              "centroid_margin_m": 0.01642019213511059,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "P2",
               "status": "PASS",
-              "volume_in3": 5.953887395877678
+              "volume_in3": 5.953887395876321
             },
             {
-              "centroid_margin_m": 0.011460324437885916,
+              "centroid_margin_m": 0.010765063819792253,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "P2",
               "status": "PASS",
-              "volume_in3": 2.3154410232914096
+              "volume_in3": 2.3154410232902713
             },
             {
               "centroid_margin_m": 1.2430479765512814e-05,
@@ -1987,18 +1987,18 @@
               "interior_boundary_area_m2": 0.0,
               "mate": "P2",
               "status": "PASS",
-              "volume_in3": 3.598550989699618e-06
+              "volume_in3": 3.5985509900594355e-06
             },
             {
-              "centroid_margin_m": 0.003482474688495607,
+              "centroid_margin_m": 0.0036563315172433164,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "P2",
               "status": "PASS",
-              "volume_in3": 2.0177354249821158
+              "volume_in3": 2.0177354249820705
             },
             {
-              "centroid_margin_m": 1.2960218222168862e-05,
+              "centroid_margin_m": 1.2756114409206987e-05,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "P2",
@@ -2006,52 +2006,52 @@
               "volume_in3": 3.5985509900594355e-06
             },
             {
-              "centroid_margin_m": 0.0169333333333333,
+              "centroid_margin_m": 0.015874999999999972,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "P2",
               "status": "PASS",
-              "volume_in3": 6.977474347313791
+              "volume_in3": 6.9774743473147405
             },
             {
-              "centroid_margin_m": 0.019598794717590184,
+              "centroid_margin_m": 0.022572488924466505,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "P2",
               "status": "PASS",
-              "volume_in3": 19.500886075897682
+              "volume_in3": 19.50088607589818
             },
             {
-              "centroid_margin_m": 0.01480201746635057,
+              "centroid_margin_m": 0.015239775503055775,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "P2",
               "status": "PASS",
-              "volume_in3": 6.9774743473152405
+              "volume_in3": 6.977474347315907
             },
             {
-              "centroid_margin_m": 0.012137540461389484,
+              "centroid_margin_m": 0.011819518676078111,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "P2",
               "status": "PASS",
-              "volume_in3": 2.3154410232904747
+              "volume_in3": 2.315441023290591
             },
             {
-              "centroid_margin_m": 0.016608551745414424,
+              "centroid_margin_m": 0.017271651630251572,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "P2",
               "status": "PASS",
-              "volume_in3": 5.953887395877484
+              "volume_in3": 5.953887395877242
             },
             {
-              "centroid_margin_m": 0.0017356050213326313,
+              "centroid_margin_m": 0.0018802387731113868,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "P2",
               "status": "PASS",
-              "volume_in3": 0.14338643198710174
+              "volume_in3": 0.14338643198719428
             },
             {
               "centroid_margin_m": 0.0025069850308101493,
@@ -2062,20 +2062,20 @@
               "volume_in3": 0.12399196869919993
             },
             {
-              "centroid_margin_m": 0.011521173149807495,
+              "centroid_margin_m": 0.01170645844680962,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "P2",
               "status": "PASS",
-              "volume_in3": 4.021401968983803
+              "volume_in3": 4.021401968982999
             },
             {
-              "centroid_margin_m": 0.01130638765951808,
+              "centroid_margin_m": 0.010161929051497154,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "P2",
               "status": "PASS",
-              "volume_in3": 1.6568542494932852
+              "volume_in3": 1.6568542494925396
             },
             {
               "centroid_margin_m": 1.2430479765512814e-05,
@@ -2083,18 +2083,18 @@
               "interior_boundary_area_m2": 0.0,
               "mate": "P2",
               "status": "PASS",
-              "volume_in3": 3.210161527461333e-06
+              "volume_in3": 3.210161527782316e-06
             },
             {
-              "centroid_margin_m": 0.003324423025996559,
+              "centroid_margin_m": 0.0036563315172433164,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "P2",
               "status": "PASS",
-              "volume_in3": 1.663377297718189
+              "volume_in3": 1.6633772977181522
             },
             {
-              "centroid_margin_m": 1.2267299614343585e-05,
+              "centroid_margin_m": 1.2756114409206987e-05,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "P2",
@@ -2107,18 +2107,18 @@
               "interior_boundary_area_m2": 0.0,
               "mate": "P2",
               "status": "PASS",
-              "volume_in3": 3.346672701062961
+              "volume_in3": 3.346672701063445
             },
             {
-              "centroid_margin_m": 0.012219783097958459,
+              "centroid_margin_m": 0.012149207765402625,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "P2",
               "status": "PASS",
-              "volume_in3": 10.007053901111512
+              "volume_in3": 10.007053901111664
             },
             {
-              "centroid_margin_m": 0.01268624282490105,
+              "centroid_margin_m": 0.011838659013228447,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "P2",
@@ -2126,76 +2126,76 @@
               "volume_in3": 3.346672701063762
             },
             {
-              "centroid_margin_m": 0.01041268209122892,
+              "centroid_margin_m": 0.012185788190932634,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "P2",
               "status": "PASS",
-              "volume_in3": 1.6568542494925245
+              "volume_in3": 1.6568542494925567
             },
             {
-              "centroid_margin_m": 0.008494569936421392,
+              "centroid_margin_m": 0.010443370213788494,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "P2",
               "status": "PASS",
-              "volume_in3": 4.021401968983123
+              "volume_in3": 4.021401968983083
             },
             {
-              "centroid_margin_m": 0.001504191018487866,
+              "centroid_margin_m": 0.0015041910184896423,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "P2",
               "status": "PASS",
-              "volume_in3": 0.12399196869916522
+              "volume_in3": 0.12399196869925061
             },
             {
-              "centroid_margin_m": 0.005317670344807013,
+              "centroid_margin_m": 0.004963158988486427,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "P2",
               "status": "PASS",
-              "volume_in3": 0.6799962241727351
+              "volume_in3": 0.6799962241727335
             },
             {
-              "centroid_margin_m": 0.007268061769497791,
+              "centroid_margin_m": 0.008919331879985393,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "B2",
               "status": "PASS",
-              "volume_in3": 2.5335062453233603
+              "volume_in3": 2.5335062453235166
             },
             {
-              "centroid_margin_m": 0.008489870933091392,
+              "centroid_margin_m": 0.008479821979881397,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "P2",
               "status": "PASS",
-              "volume_in3": 1.1189629671615082
+              "volume_in3": 1.1189629671615202
             },
             {
-              "centroid_margin_m": 0.0019076141971146043,
+              "centroid_margin_m": 0.0022323850175824944,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "P2",
               "status": "PASS",
-              "volume_in3": 0.22364646929864124
+              "volume_in3": 0.22364646929869553
             },
             {
-              "centroid_margin_m": 0.0032871951003210498,
+              "centroid_margin_m": 0.0033238665567130177,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "P2",
               "status": "PASS",
-              "volume_in3": 1.7701635382334402
+              "volume_in3": 1.7701635382339533
             },
             {
-              "centroid_margin_m": 0.001947112287540964,
+              "centroid_margin_m": 0.0019674904282096506,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "P2",
               "status": "PASS",
-              "volume_in3": 0.2236464692988032
+              "volume_in3": 0.22364646929886778
             },
             {
               "centroid_margin_m": 0.0020508059059345385,
@@ -2203,42 +2203,42 @@
               "interior_boundary_area_m2": 0.0,
               "mate": "P2",
               "status": "PASS",
-              "volume_in3": 0.16905301783395743
+              "volume_in3": 0.16905301783390297
             },
             {
-              "centroid_margin_m": 0.002674402622192318,
+              "centroid_margin_m": 0.0026301331979272646,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "B2",
               "status": "PASS",
-              "volume_in3": 0.16241845116747794
+              "volume_in3": 0.16241845116750173
             },
             {
-              "centroid_margin_m": 0.009477823058623436,
+              "centroid_margin_m": 0.0101736694426533,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "P2",
               "status": "PASS",
-              "volume_in3": 3.5291513430384676
+              "volume_in3": 3.5291513430381154
             },
             {
-              "centroid_margin_m": 0.003200507029122633,
+              "centroid_margin_m": 0.003090508190823016,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "B1",
               "status": "PASS",
-              "volume_in3": 0.16241845116759746
+              "volume_in3": 0.16241845116747836
             },
             {
-              "centroid_margin_m": 0.007728707214493369,
+              "centroid_margin_m": 0.007938603272368727,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "P2",
               "status": "PASS",
-              "volume_in3": 1.1189629671611145
+              "volume_in3": 1.118962967161342
             },
             {
-              "centroid_margin_m": 0.007862774420953844,
+              "centroid_margin_m": 0.007744864072239732,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "B1",
@@ -2251,7 +2251,7 @@
               "interior_boundary_area_m2": 0.0,
               "mate": "P2",
               "status": "PASS",
-              "volume_in3": 0.16905301783395746
+              "volume_in3": 0.16905301783390297
             },
             {
               "centroid_margin_m": 0.00557193290426472,
@@ -2259,10 +2259,10 @@
               "interior_boundary_area_m2": 0.0,
               "mate": "P2",
               "status": "PASS",
-              "volume_in3": 0.679996224172608
+              "volume_in3": 0.6799962241726624
             },
             {
-              "centroid_margin_m": 0.0055205549910715135,
+              "centroid_margin_m": 0.005865589678012206,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "P2",
@@ -2270,7 +2270,7 @@
               "volume_in3": 0.6704544951470941
             },
             {
-              "centroid_margin_m": 0.012196578131838276,
+              "centroid_margin_m": 0.012210674720867676,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "P2",
@@ -2278,15 +2278,15 @@
               "volume_in3": 4.176116284631069
             },
             {
-              "centroid_margin_m": 0.009805020843849377,
+              "centroid_margin_m": 0.010508872748589582,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "P2",
               "status": "PASS",
-              "volume_in3": 1.6568542494930065
+              "volume_in3": 1.656854249492855
             },
             {
-              "centroid_margin_m": 0.012585840117721236,
+              "centroid_margin_m": 0.012482387884845014,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "P2",
@@ -2294,68 +2294,68 @@
               "volume_in3": 3.0849827296654637
             },
             {
-              "centroid_margin_m": 0.012099770511781571,
+              "centroid_margin_m": 0.011882271578766979,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "P2",
               "status": "PASS",
-              "volume_in3": 9.483673958316233
+              "volume_in3": 9.483673958316322
             },
             {
-              "centroid_margin_m": 0.011430422142503893,
+              "centroid_margin_m": 0.010790329380200525,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "P2",
               "status": "PASS",
-              "volume_in3": 3.084982729665781
+              "volume_in3": 3.084982729665737
             },
             {
-              "centroid_margin_m": 0.0020378997414880473,
+              "centroid_margin_m": 0.0024489146636463843,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "P2",
               "status": "PASS",
-              "volume_in3": 0.15471431564790322
+              "volume_in3": 0.15471431564784247
             },
             {
-              "centroid_margin_m": 0.0025417152684736877,
+              "centroid_margin_m": 0.002678721749570734,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "P2",
               "status": "PASS",
-              "volume_in3": 0.15671083049036463
+              "volume_in3": 0.15671083049038753
             },
             {
-              "centroid_margin_m": 0.008759991511405829,
+              "centroid_margin_m": 0.00746581817220715,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "P2",
               "status": "PASS",
-              "volume_in3": 3.6885748538634826
+              "volume_in3": 3.688574853863034
             },
             {
-              "centroid_margin_m": 0.00304048167766649,
+              "centroid_margin_m": 0.002882526040402379,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "P2",
               "status": "PASS",
-              "volume_in3": 0.1567108304904892
+              "volume_in3": 0.15671083049053472
             },
             {
-              "centroid_margin_m": 0.009833728955491061,
+              "centroid_margin_m": 0.008397320812503661,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "P2",
               "status": "PASS",
-              "volume_in3": 1.656854249492567
+              "volume_in3": 1.6568542494926826
             },
             {
-              "centroid_margin_m": 0.012558690968976993,
+              "centroid_margin_m": 0.011490375811320508,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "P2",
               "status": "PASS",
-              "volume_in3": 4.176116284630931
+              "volume_in3": 4.176116284631049
             },
             {
               "centroid_margin_m": 0.0021433340802534673,
@@ -2363,7 +2363,7 @@
               "interior_boundary_area_m2": 0.0,
               "mate": "P2",
               "status": "PASS",
-              "volume_in3": 0.15471431564789231
+              "volume_in3": 0.15471431564784244
             },
             {
               "centroid_margin_m": 0.005726721909790733,
@@ -2371,7 +2371,7 @@
               "interior_boundary_area_m2": 0.0,
               "mate": "P2",
               "status": "PASS",
-              "volume_in3": 0.6704544951470445
+              "volume_in3": 0.670454495147094
             }
           ],
           "convex_volume_error_m3": 0.0,
@@ -2379,32 +2379,32 @@
           "note": "Each cell is independently contained in one mate; only the stated distance shell around cell boundaries is excluded.",
           "partition_cells": 52,
           "partition_planes": 8,
-          "partition_volume_balance_error_m3": 1.1275702593849246e-16,
+          "partition_volume_balance_error_m3": 9.540979117872439e-17,
           "status": "PASS",
           "volume_in3": 130.3136827440621
         },
         {
           "centroid_margin_m": 0.009649864166409228,
-          "convex_volume_error_m3": 5.421010862427522e-20,
+          "convex_volume_error_m3": 1.6263032587282567e-19,
           "coverage_mode": "one convex cell",
           "interior_boundary_area_m2": 0.0,
           "mate": "J2-0",
           "status": "PASS",
-          "volume_in3": 27.422619235294974
+          "volume_in3": 27.422619235294967
         },
         {
           "centroid_margin_m": 0.009649864166409006,
-          "convex_volume_error_m3": 5.421010862427522e-20,
+          "convex_volume_error_m3": 1.0842021724855044e-19,
           "coverage_mode": "one convex cell",
           "interior_boundary_area_m2": 0.0,
           "mate": "J1-2",
           "status": "PASS",
-          "volume_in3": 27.42261923529449
+          "volume_in3": 27.422619235294494
         }
       ],
       "cross_sections": {
         "max_missing_area_m2": 1.540506019337806e-15,
-        "max_receiver_overlap_area_m2": 1.994234304611159e-14,
+        "max_receiver_overlap_area_m2": 1.9942402650756363e-14,
         "sections": 305,
         "status": "PASS"
       },
@@ -2437,8 +2437,8 @@
         "max_cavity_vertex_outside_reference_stock_m": 0.0,
         "max_interior_boundary_area_m2": 0.0,
         "partition_planes": 17,
-        "partition_volume_balance_error_m3": 1.6042722705833512e-14,
-        "reference_envelope_volume_in3": 13155.075066300322,
+        "partition_volume_balance_error_m3": 1.4072076837123859e-14,
+        "reference_envelope_volume_in3": 13155.07506630032,
         "scope": "Saved prejoinery envelope, after any explicitly listed exterior trim, is covered by final timber wood plus exported removed cavity within the stated tolerances. Added tenons outside this envelope are not counted as removed stock.",
         "status": "PASS",
         "verified_cells": 353
@@ -2464,7 +2464,7 @@
         },
         {
           "centroid_margin_m": 0.020339999999999803,
-          "convex_volume_error_m3": 0.0,
+          "convex_volume_error_m3": 1.0842021724855044e-19,
           "coverage_mode": "one convex cell",
           "interior_boundary_area_m2": 0.0,
           "mate": "R2",
@@ -2478,7 +2478,7 @@
           "interior_boundary_area_m2": 0.0,
           "mate": "L2-S",
           "status": "PASS",
-          "volume_in3": 11.558550058925537
+          "volume_in3": 11.558550058925533
         },
         {
           "centroid_margin_m": 0.013569627672608053,
@@ -2543,7 +2543,7 @@
         "max_cavity_vertex_outside_reference_stock_m": 0.0,
         "max_interior_boundary_area_m2": 0.0,
         "partition_planes": 19,
-        "partition_volume_balance_error_m3": 2.851885394505871e-15,
+        "partition_volume_balance_error_m3": 2.8727020762175925e-15,
         "reference_envelope_volume_in3": 3357.736659610101,
         "scope": "Saved prejoinery envelope, after any explicitly listed exterior trim, is covered by final timber wood plus exported removed cavity within the stated tolerances. Added tenons outside this envelope are not counted as removed stock.",
         "status": "PASS",
@@ -2604,7 +2604,7 @@
         "max_cavity_vertex_outside_reference_stock_m": 4.551914400963142e-15,
         "max_interior_boundary_area_m2": 0.0,
         "partition_planes": 2,
-        "partition_volume_balance_error_m3": 9.43689570931383e-16,
+        "partition_volume_balance_error_m3": 9.71445146547012e-16,
         "reference_envelope_volume_in3": 4025.950085184229,
         "scope": "Saved prejoinery envelope, after any explicitly listed exterior trim, is covered by final timber wood plus exported removed cavity within the stated tolerances. Added tenons outside this envelope are not counted as removed stock.",
         "status": "PASS",
@@ -2631,7 +2631,7 @@
         }
       ],
       "cross_sections": {
-        "max_missing_area_m2": 9.769038238595373e-16,
+        "max_missing_area_m2": 1.0074214019845374e-15,
         "max_receiver_overlap_area_m2": 4.8828125e-16,
         "sections": 49,
         "status": "PASS"
@@ -2665,8 +2665,8 @@
         "max_cavity_vertex_outside_reference_stock_m": 4.440892098500626e-15,
         "max_interior_boundary_area_m2": 0.0,
         "partition_planes": 2,
-        "partition_volume_balance_error_m3": 8.049116928532385e-16,
-        "reference_envelope_volume_in3": 4025.9500851841876,
+        "partition_volume_balance_error_m3": 8.604228440844963e-16,
+        "reference_envelope_volume_in3": 4025.950085184184,
         "scope": "Saved prejoinery envelope, after any explicitly listed exterior trim, is covered by final timber wood plus exported removed cavity within the stated tolerances. Added tenons outside this envelope are not counted as removed stock.",
         "status": "PASS",
         "verified_cells": 4
@@ -2683,30 +2683,30 @@
       "components": [
         {
           "centroid_margin_m": 0.02068042779425433,
-          "convex_volume_error_m3": 2.168404344971009e-19,
+          "convex_volume_error_m3": 1.0842021724855044e-19,
           "coverage_mode": "one convex cell",
           "interior_boundary_area_m2": 0.0,
           "mate": "K3-A",
           "status": "PASS",
-          "volume_in3": 44.08221557936385
+          "volume_in3": 44.08221557936384
         },
         {
-          "centroid_margin_m": 0.020680427794254636,
-          "convex_volume_error_m3": 4.336808689942018e-19,
+          "centroid_margin_m": 0.020680427794254733,
+          "convex_volume_error_m3": 5.421010862427522e-19,
           "coverage_mode": "one convex cell",
           "interior_boundary_area_m2": 0.0,
           "mate": "K3-B",
           "status": "PASS",
-          "volume_in3": 44.08221557936386
+          "volume_in3": 44.08221557936387
         },
         {
           "centroid_margin_m": 0.025399999999998535,
-          "convex_volume_error_m3": 1.0842021724855044e-19,
+          "convex_volume_error_m3": 2.168404344971009e-19,
           "coverage_mode": "one convex cell",
           "interior_boundary_area_m2": 0.0,
           "mate": "T3",
           "status": "PASS",
-          "volume_in3": 31.999999999999655
+          "volume_in3": 31.99999999999965
         },
         {
           "centroid_margin_m": 0.02034000000000028,
@@ -2748,7 +2748,7 @@
           "status": "PASS",
           "sum_pair_overlap_area_m2": 0
         },
-        "signed_volume_m3": 0.0028211700067587824,
+        "signed_volume_m3": 0.002821170006758782,
         "status": "PASS",
         "triangles": 76,
         "vertices": 48
@@ -2759,10 +2759,10 @@
         "convex_cells": 986,
         "declared_external_trim": null,
         "failures": [],
-        "max_cavity_vertex_outside_reference_stock_m": 4.246603069191224e-15,
+        "max_cavity_vertex_outside_reference_stock_m": 4.427014310692812e-15,
         "max_interior_boundary_area_m2": 0.0,
         "partition_planes": 24,
-        "partition_volume_balance_error_m3": 3.0100921755149557e-14,
+        "partition_volume_balance_error_m3": 2.9379276789143205e-14,
         "reference_envelope_volume_in3": 6210.313682743939,
         "scope": "Saved prejoinery envelope, after any explicitly listed exterior trim, is covered by final timber wood plus exported removed cavity within the stated tolerances. Added tenons outside this envelope are not counted as removed stock.",
         "status": "PASS",
@@ -2780,12 +2780,12 @@
       "components": [
         {
           "centroid_margin_m": 0.022528995514027095,
-          "convex_volume_error_m3": 4.87890977618477e-19,
+          "convex_volume_error_m3": 5.421010862427522e-19,
           "coverage_mode": "one convex cell",
           "interior_boundary_area_m2": 0.0,
           "mate": "K3-B",
           "status": "PASS",
-          "volume_in3": 21.2412459692456
+          "volume_in3": 21.241245969245604
         },
         {
           "centroid_margin_m": 0.022528995514027095,
@@ -2798,8 +2798,8 @@
         }
       ],
       "cross_sections": {
-        "max_missing_area_m2": 9.276866912841797e-16,
-        "max_receiver_overlap_area_m2": 5.600303411483765e-16,
+        "max_missing_area_m2": 8.537769317626953e-16,
+        "max_receiver_overlap_area_m2": 4.431009292602539e-16,
         "sections": 230,
         "status": "PASS"
       },
@@ -2818,7 +2818,7 @@
           "status": "PASS",
           "sum_pair_overlap_area_m2": 0
         },
-        "signed_volume_m3": 0.0006961633142755453,
+        "signed_volume_m3": 0.0006961633142755449,
         "status": "PASS",
         "triangles": 16,
         "vertices": 12
@@ -2832,7 +2832,7 @@
         "max_cavity_vertex_outside_reference_stock_m": 0.0,
         "max_interior_boundary_area_m2": 0.0,
         "partition_planes": 6,
-        "partition_volume_balance_error_m3": 6.980527267330672e-15,
+        "partition_volume_balance_error_m3": 7.299716386910404e-15,
         "reference_envelope_volume_in3": 6050.180668328283,
         "scope": "Saved prejoinery envelope, after any explicitly listed exterior trim, is covered by final timber wood plus exported removed cavity within the stated tolerances. Added tenons outside this envelope are not counted as removed stock.",
         "status": "PASS",
@@ -2856,7 +2856,7 @@
               "interior_boundary_area_m2": 0.0,
               "mate": "P3",
               "status": "PASS",
-              "volume_in3": 6.9774743473166865
+              "volume_in3": 6.977474347316686
             },
             {
               "centroid_margin_m": 0.024141533303656093,
@@ -2880,7 +2880,7 @@
               "interior_boundary_area_m2": 0.0,
               "mate": "P3",
               "status": "PASS",
-              "volume_in3": 6.977474347316496
+              "volume_in3": 6.977474347316497
             },
             {
               "centroid_margin_m": 0.015612875817237803,
@@ -2896,7 +2896,7 @@
               "interior_boundary_area_m2": 0.0,
               "mate": "P3",
               "status": "PASS",
-              "volume_in3": 0.14338643198738527
+              "volume_in3": 0.1433864319873853
             },
             {
               "centroid_margin_m": 0.0021433340802543555,
@@ -2904,7 +2904,7 @@
               "interior_boundary_area_m2": 0.0,
               "mate": "P3",
               "status": "PASS",
-              "volume_in3": 0.1690530178340387
+              "volume_in3": 0.16905301783403867
             },
             {
               "centroid_margin_m": 0.005877992111375185,
@@ -2912,10 +2912,10 @@
               "interior_boundary_area_m2": 0.0,
               "mate": "P3",
               "status": "PASS",
-              "volume_in3": 0.6799962241729874
+              "volume_in3": 0.6799962241729876
             },
             {
-              "centroid_margin_m": 0.015223556062308408,
+              "centroid_margin_m": 0.01612139519670519,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "P3",
@@ -2923,7 +2923,7 @@
               "volume_in3": 5.953887395879436
             },
             {
-              "centroid_margin_m": 1.391576117715232e-05,
+              "centroid_margin_m": 1.1480502970506734e-05,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "P3",
@@ -2931,7 +2931,7 @@
               "volume_in3": 3.5985509910248345e-06
             },
             {
-              "centroid_margin_m": 0.0021433340802499146,
+              "centroid_margin_m": 0.002143334080251691,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "P3",
@@ -2939,12 +2939,12 @@
               "volume_in3": 0.1690530178336543
             },
             {
-              "centroid_margin_m": 0.0031742375327539207,
+              "centroid_margin_m": 0.0034154659319485248,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "B3",
               "status": "PASS",
-              "volume_in3": 0.162418451167678
+              "volume_in3": 0.16241845116767806
             },
             {
               "centroid_margin_m": 0.008739520928258138,
@@ -2960,7 +2960,7 @@
               "interior_boundary_area_m2": 0.0,
               "mate": "P3",
               "status": "PASS",
-              "volume_in3": 2.0177354249844726
+              "volume_in3": 2.0177354249844734
             },
             {
               "centroid_margin_m": 0.009282509298682573,
@@ -2979,20 +2979,20 @@
               "volume_in3": 1.1189629671619346
             },
             {
-              "centroid_margin_m": 1.1873971870635103e-05,
+              "centroid_margin_m": 1.0436820884862641e-05,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "P3",
               "status": "PASS",
-              "volume_in3": 3.5985509920716334e-06
+              "volume_in3": 3.5985509919203597e-06
             },
             {
-              "centroid_margin_m": 0.0040064750692430096,
+              "centroid_margin_m": 0.004215885197481839,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "B2",
               "status": "PASS",
-              "volume_in3": 0.16241845116778347
+              "volume_in3": 0.16241845116778345
             },
             {
               "centroid_margin_m": 0.009039845807055968,
@@ -3000,7 +3000,7 @@
               "interior_boundary_area_m2": 0.0,
               "mate": "B2",
               "status": "PASS",
-              "volume_in3": 2.5335062453248245
+              "volume_in3": 2.533506245324824
             },
             {
               "centroid_margin_m": 0.0017712882526330631,
@@ -3019,7 +3019,7 @@
               "volume_in3": 0.6799962241732853
             },
             {
-              "centroid_margin_m": 0.006778430351709996,
+              "centroid_margin_m": 0.0067784303517104405,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "B3",
@@ -3056,7 +3056,7 @@
               "interior_boundary_area_m2": 0.0,
               "mate": "P3",
               "status": "PASS",
-              "volume_in3": 0.2236464692986062
+              "volume_in3": 0.22364646929860618
             },
             {
               "centroid_margin_m": 0.011789968849780674,
@@ -3064,10 +3064,10 @@
               "interior_boundary_area_m2": 0.0,
               "mate": "P3",
               "status": "PASS",
-              "volume_in3": 3.346672701064057
+              "volume_in3": 3.346672701064056
             },
             {
-              "centroid_margin_m": 0.012151993407674588,
+              "centroid_margin_m": 0.012671484166247637,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "P3",
@@ -3075,15 +3075,15 @@
               "volume_in3": 10.007053901112352
             },
             {
-              "centroid_margin_m": 0.010381713785068136,
+              "centroid_margin_m": 0.011549857078088976,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "P3",
               "status": "PASS",
-              "volume_in3": 1.6568542494929228
+              "volume_in3": 1.6568542494927794
             },
             {
-              "centroid_margin_m": 0.01260465879853534,
+              "centroid_margin_m": 0.012042674071967241,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "P3",
@@ -3091,15 +3091,15 @@
               "volume_in3": 3.3466727010639397
             },
             {
-              "centroid_margin_m": 0.010048157853513207,
+              "centroid_margin_m": 0.011520997764076668,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "P3",
               "status": "PASS",
-              "volume_in3": 4.021401968983855
+              "volume_in3": 4.021401968983919
             },
             {
-              "centroid_margin_m": 0.0020511695706666444,
+              "centroid_margin_m": 0.002214074149426537,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "P3",
@@ -3107,20 +3107,20 @@
               "volume_in3": 0.12399196869940311
             },
             {
-              "centroid_margin_m": 0.0021433340802534673,
+              "centroid_margin_m": 0.0021433340802543555,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "P3",
               "status": "PASS",
-              "volume_in3": 0.15471431564780086
+              "volume_in3": 0.15471431564790944
             },
             {
-              "centroid_margin_m": 0.006857657463267941,
+              "centroid_margin_m": 0.00633014535071208,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "P3",
               "status": "PASS",
-              "volume_in3": 0.6704544951470022
+              "volume_in3": 0.6704544951471422
             },
             {
               "centroid_margin_m": 0.010276365759252393,
@@ -3131,7 +3131,7 @@
               "volume_in3": 4.021401968983295
             },
             {
-              "centroid_margin_m": 1.020489153269466e-05,
+              "centroid_margin_m": 1.0204891533582838e-05,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "P3",
@@ -3147,7 +3147,7 @@
               "volume_in3": 0.15471431564790944
             },
             {
-              "centroid_margin_m": 0.0033692997033660244,
+              "centroid_margin_m": 0.0027712283244420988,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "P3",
@@ -3160,55 +3160,55 @@
               "interior_boundary_area_m2": 0.0,
               "mate": "P3",
               "status": "PASS",
-              "volume_in3": 1.6568542494934972
+              "volume_in3": 1.6568542494934975
             },
             {
-              "centroid_margin_m": 0.005706484589175886,
+              "centroid_margin_m": 0.005896700742147765,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "P3",
               "status": "PASS",
-              "volume_in3": 1.663377297719389
+              "volume_in3": 1.6633772977193888
             },
             {
-              "centroid_margin_m": 0.010967617750537784,
+              "centroid_margin_m": 0.010332583531350359,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "P3",
               "status": "PASS",
-              "volume_in3": 3.6885748538634497
+              "volume_in3": 3.6885748538634635
             },
             {
-              "centroid_margin_m": 0.009969781633541341,
+              "centroid_margin_m": 0.009626283850075357,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "P3",
               "status": "PASS",
-              "volume_in3": 1.6568542494926994
+              "volume_in3": 1.6568542494927552
             },
             {
-              "centroid_margin_m": 1.129673352107119e-05,
+              "centroid_margin_m": 1.035533906001973e-05,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "P3",
               "status": "PASS",
-              "volume_in3": 3.21016152914412e-06
+              "volume_in3": 3.2101615291447053e-06
             },
             {
-              "centroid_margin_m": 0.0030377200679607697,
+              "centroid_margin_m": 0.0037429715034811295,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "P3",
               "status": "PASS",
-              "volume_in3": 0.15671083049052661
+              "volume_in3": 0.15671083049056056
             },
             {
-              "centroid_margin_m": 0.010705485084784971,
+              "centroid_margin_m": 0.01094265205211542,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "P3",
               "status": "PASS",
-              "volume_in3": 4.176116284631241
+              "volume_in3": 4.176116284631353
             },
             {
               "centroid_margin_m": 0.002220169944768813,
@@ -3216,7 +3216,7 @@
               "interior_boundary_area_m2": 0.0,
               "mate": "P3",
               "status": "PASS",
-              "volume_in3": 0.123991968699498
+              "volume_in3": 0.12399196869949801
             },
             {
               "centroid_margin_m": 0.0066429611050073945,
@@ -3224,7 +3224,7 @@
               "interior_boundary_area_m2": 0.0,
               "mate": "P3",
               "status": "PASS",
-              "volume_in3": 0.6704544951472438
+              "volume_in3": 0.6704544951472435
             },
             {
               "centroid_margin_m": 0.01094937310498878,
@@ -3232,7 +3232,7 @@
               "interior_boundary_area_m2": 0.0,
               "mate": "P3",
               "status": "PASS",
-              "volume_in3": 4.176116284631218
+              "volume_in3": 4.1761162846311946
             },
             {
               "centroid_margin_m": 0.009031061807713403,
@@ -3240,10 +3240,10 @@
               "interior_boundary_area_m2": 0.0,
               "mate": "P3",
               "status": "PASS",
-              "volume_in3": 3.0849827296652355
+              "volume_in3": 3.0849827296654007
             },
             {
-              "centroid_margin_m": 0.010481749269495744,
+              "centroid_margin_m": 0.010481749269496632,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "P3",
@@ -3256,15 +3256,15 @@
               "interior_boundary_area_m2": 0.0,
               "mate": "P3",
               "status": "PASS",
-              "volume_in3": 9.48367395831631
+              "volume_in3": 9.48367395831625
             },
             {
-              "centroid_margin_m": 0.011585117030612935,
+              "centroid_margin_m": 0.011585117030613823,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "P3",
               "status": "PASS",
-              "volume_in3": 3.0849827296652177
+              "volume_in3": 3.0849827296652514
             }
           ],
           "convex_volume_error_m3": 4.336808689942018e-19,
@@ -3272,27 +3272,27 @@
           "note": "Each cell is independently contained in one mate; only the stated distance shell around cell boundaries is excluded.",
           "partition_cells": 52,
           "partition_planes": 8,
-          "partition_volume_balance_error_m3": 5.78096598369271e-16,
+          "partition_volume_balance_error_m3": 5.863365348801608e-16,
           "status": "PASS",
           "volume_in3": 130.31368274406202
         },
         {
           "centroid_margin_m": 0.009649864166409117,
-          "convex_volume_error_m3": 5.421010862427522e-20,
+          "convex_volume_error_m3": 0.0,
           "coverage_mode": "one convex cell",
           "interior_boundary_area_m2": 0.0,
           "mate": "J3-0",
           "status": "PASS",
-          "volume_in3": 27.422619235294764
+          "volume_in3": 27.422619235294768
         },
         {
           "centroid_margin_m": 0.009649864166408673,
-          "convex_volume_error_m3": 5.421010862427522e-20,
+          "convex_volume_error_m3": 1.0842021724855044e-19,
           "coverage_mode": "one convex cell",
           "interior_boundary_area_m2": 0.0,
           "mate": "J2-2",
           "status": "PASS",
-          "volume_in3": 27.422619235294377
+          "volume_in3": 27.42261923529438
         }
       ],
       "cross_sections": {
@@ -3316,7 +3316,7 @@
           "status": "PASS",
           "sum_pair_overlap_area_m2": 0
         },
-        "signed_volume_m3": 0.003034211092115359,
+        "signed_volume_m3": 0.0030342110921153676,
         "status": "PASS",
         "triangles": 56,
         "vertices": 34
@@ -3327,11 +3327,11 @@
         "convex_cells": 353,
         "declared_external_trim": null,
         "failures": [],
-        "max_cavity_vertex_outside_reference_stock_m": 4.107825191113079e-15,
+        "max_cavity_vertex_outside_reference_stock_m": 4.038436252074007e-15,
         "max_interior_boundary_area_m2": 0.0,
         "partition_planes": 17,
-        "partition_volume_balance_error_m3": 2.4619195571062846e-14,
-        "reference_envelope_volume_in3": 13155.075066300386,
+        "partition_volume_balance_error_m3": 2.6645352591003757e-14,
+        "reference_envelope_volume_in3": 13155.07506630039,
         "scope": "Saved prejoinery envelope, after any explicitly listed exterior trim, is covered by final timber wood plus exported removed cavity within the stated tolerances. Added tenons outside this envelope are not counted as removed stock.",
         "status": "PASS",
         "verified_cells": 353
@@ -3347,7 +3347,7 @@
     {
       "components": [
         {
-          "centroid_margin_m": 0.025399999999999825,
+          "centroid_margin_m": 0.025399999999999846,
           "convex_volume_error_m3": 1.0842021724855044e-19,
           "coverage_mode": "one convex cell",
           "interior_boundary_area_m2": 0.0,
@@ -3357,21 +3357,21 @@
         },
         {
           "centroid_margin_m": 0.020340000000000025,
-          "convex_volume_error_m3": 2.168404344971009e-19,
+          "convex_volume_error_m3": 0.0,
           "coverage_mode": "one convex cell",
           "interior_boundary_area_m2": 0.0,
           "mate": "R3",
           "status": "PASS",
-          "volume_in3": 44.98160784748994
+          "volume_in3": 44.981607847489954
         },
         {
           "centroid_margin_m": 0.013569627672608497,
-          "convex_volume_error_m3": 8.131516293641283e-20,
+          "convex_volume_error_m3": 5.421010862427522e-20,
           "coverage_mode": "one convex cell",
           "interior_boundary_area_m2": 0.0,
           "mate": "L3-S",
           "status": "PASS",
-          "volume_in3": 11.558550058925524
+          "volume_in3": 11.558550058925526
         },
         {
           "centroid_margin_m": 0.013569627672608275,
@@ -3436,7 +3436,7 @@
         "max_cavity_vertex_outside_reference_stock_m": 4.440892098500626e-16,
         "max_interior_boundary_area_m2": 0.0,
         "partition_planes": 19,
-        "partition_volume_balance_error_m3": 7.049916206369744e-15,
+        "partition_volume_balance_error_m3": 7.480127628411992e-15,
         "reference_envelope_volume_in3": 3357.73665961011,
         "scope": "Saved prejoinery envelope, after any explicitly listed exterior trim, is covered by final timber wood plus exported removed cavity within the stated tolerances. Added tenons outside this envelope are not counted as removed stock.",
         "status": "PASS",
@@ -3453,7 +3453,7 @@
     {
       "components": [
         {
-          "centroid_margin_m": 0.008620338367855584,
+          "centroid_margin_m": 0.008620338367856029,
           "convex_volume_error_m3": 2.439454888092385e-19,
           "coverage_mode": "one convex cell",
           "interior_boundary_area_m2": 0.0,
@@ -3497,8 +3497,8 @@
         "max_cavity_vertex_outside_reference_stock_m": 3.9968028886505635e-15,
         "max_interior_boundary_area_m2": 0.0,
         "partition_planes": 2,
-        "partition_volume_balance_error_m3": 8.465450562766819e-16,
-        "reference_envelope_volume_in3": 4025.9500851841826,
+        "partition_volume_balance_error_m3": 8.743006318923108e-16,
+        "reference_envelope_volume_in3": 4025.950085184185,
         "scope": "Saved prejoinery envelope, after any explicitly listed exterior trim, is covered by final timber wood plus exported removed cavity within the stated tolerances. Added tenons outside this envelope are not counted as removed stock.",
         "status": "PASS",
         "verified_cells": 4
@@ -3524,7 +3524,7 @@
         }
       ],
       "cross_sections": {
-        "max_missing_area_m2": 9.769038238595373e-16,
+        "max_missing_area_m2": 1.0074214019845374e-15,
         "max_receiver_overlap_area_m2": 4.2724609375e-16,
         "sections": 49,
         "status": "PASS"
@@ -3555,11 +3555,11 @@
         "convex_cells": 4,
         "declared_external_trim": null,
         "failures": [],
-        "max_cavity_vertex_outside_reference_stock_m": 6.661338147750939e-16,
+        "max_cavity_vertex_outside_reference_stock_m": 1.4432899320127035e-15,
         "max_interior_boundary_area_m2": 0.0,
         "partition_planes": 2,
-        "partition_volume_balance_error_m3": 4.3021142204224816e-16,
-        "reference_envelope_volume_in3": 4025.9500851844236,
+        "partition_volume_balance_error_m3": 4.85722573273506e-16,
+        "reference_envelope_volume_in3": 4025.9500851844246,
         "scope": "Saved prejoinery envelope, after any explicitly listed exterior trim, is covered by final timber wood plus exported removed cavity within the stated tolerances. Added tenons outside this envelope are not counted as removed stock.",
         "status": "PASS",
         "verified_cells": 4
@@ -3621,7 +3621,7 @@
         }
       ],
       "cross_sections": {
-        "max_missing_area_m2": 1.4592409133911133e-15,
+        "max_missing_area_m2": 1.4563798904418945e-15,
         "max_receiver_overlap_area_m2": 7.002679303695913e-16,
         "sections": 230,
         "status": "PASS"
@@ -3655,7 +3655,7 @@
         "max_cavity_vertex_outside_reference_stock_m": 0.0,
         "max_interior_boundary_area_m2": 0.0,
         "partition_planes": 24,
-        "partition_volume_balance_error_m3": 1.2573275753879898e-14,
+        "partition_volume_balance_error_m3": 1.2809198146612744e-14,
         "reference_envelope_volume_in3": 6210.313682744058,
         "scope": "Saved prejoinery envelope, after any explicitly listed exterior trim, is covered by final timber wood plus exported removed cavity within the stated tolerances. Added tenons outside this envelope are not counted as removed stock.",
         "status": "PASS",
@@ -3691,7 +3691,7 @@
         }
       ],
       "cross_sections": {
-        "max_missing_area_m2": 8.208751678466796e-16,
+        "max_missing_area_m2": 6.6375732421875e-16,
         "max_receiver_overlap_area_m2": 3.662109375e-16,
         "sections": 230,
         "status": "PASS"
@@ -3711,7 +3711,7 @@
           "status": "PASS",
           "sum_pair_overlap_area_m2": 0
         },
-        "signed_volume_m3": 0.0006961633142755491,
+        "signed_volume_m3": 0.0006961633142755492,
         "status": "PASS",
         "triangles": 16,
         "vertices": 12
@@ -3725,7 +3725,7 @@
         "max_cavity_vertex_outside_reference_stock_m": 0.0,
         "max_interior_boundary_area_m2": 0.0,
         "partition_planes": 6,
-        "partition_volume_balance_error_m3": 6.369904603786836e-15,
+        "partition_volume_balance_error_m3": 5.176414852314792e-15,
         "reference_envelope_volume_in3": 6050.180668328283,
         "scope": "Saved prejoinery envelope, after any explicitly listed exterior trim, is covered by final timber wood plus exported removed cavity within the stated tolerances. Added tenons outside this envelope are not counted as removed stock.",
         "status": "PASS",
@@ -3749,7 +3749,7 @@
               "interior_boundary_area_m2": 0.0,
               "mate": "P4",
               "status": "PASS",
-              "volume_in3": 6.97747434731555
+              "volume_in3": 6.977474347315551
             },
             {
               "centroid_margin_m": 0.016485898394119847,
@@ -3757,7 +3757,7 @@
               "interior_boundary_area_m2": 0.0,
               "mate": "P4",
               "status": "PASS",
-              "volume_in3": 5.953887395878606
+              "volume_in3": 5.9538873958786045
             },
             {
               "centroid_margin_m": 0.0015238317185675143,
@@ -3821,7 +3821,7 @@
               "interior_boundary_area_m2": 0.0,
               "mate": "P4",
               "status": "PASS",
-              "volume_in3": 3.3466727010635267
+              "volume_in3": 3.346672701063526
             },
             {
               "centroid_margin_m": 0.010642832188345608,
@@ -3909,7 +3909,7 @@
               "interior_boundary_area_m2": 0.0,
               "mate": "P4",
               "status": "PASS",
-              "volume_in3": 2.3154410232910845
+              "volume_in3": 2.315441023291085
             },
             {
               "centroid_margin_m": 0.003714097124460025,
@@ -3941,7 +3941,7 @@
               "interior_boundary_area_m2": 0.0,
               "mate": "P4",
               "status": "PASS",
-              "volume_in3": 1.1189629671618715
+              "volume_in3": 1.1189629671618713
             },
             {
               "centroid_margin_m": 0.004252132185296631,
@@ -3949,7 +3949,7 @@
               "interior_boundary_area_m2": 0.0,
               "mate": "P4",
               "status": "PASS",
-              "volume_in3": 1.770163538234603
+              "volume_in3": 1.7701635382346028
             },
             {
               "centroid_margin_m": 0.012573723043092677,
@@ -3981,7 +3981,7 @@
               "interior_boundary_area_m2": 0.0,
               "mate": "P4",
               "status": "PASS",
-              "volume_in3": 1.6633772977181993
+              "volume_in3": 1.663377297718199
             },
             {
               "centroid_margin_m": 0.011631338134453273,
@@ -4029,7 +4029,7 @@
               "interior_boundary_area_m2": 0.0,
               "mate": "P4",
               "status": "PASS",
-              "volume_in3": 5.953887395879225
+              "volume_in3": 5.953887395879227
             },
             {
               "centroid_margin_m": 0.0018860678017382781,
@@ -4037,7 +4037,7 @@
               "interior_boundary_area_m2": 0.0,
               "mate": "P4",
               "status": "PASS",
-              "volume_in3": 0.16905301783398619
+              "volume_in3": 0.16905301783398616
             },
             {
               "centroid_margin_m": 0.002158373125554114,
@@ -4061,7 +4061,7 @@
               "interior_boundary_area_m2": 0.0,
               "mate": "P4",
               "status": "PASS",
-              "volume_in3": 3.598550990061961e-06
+              "volume_in3": 3.59855099006196e-06
             },
             {
               "centroid_margin_m": 0.003056503425105994,
@@ -4141,7 +4141,7 @@
               "interior_boundary_area_m2": 0.0,
               "mate": "P4",
               "status": "PASS",
-              "volume_in3": 0.15671083049039738
+              "volume_in3": 0.15671083049039736
             },
             {
               "centroid_margin_m": 0.010490683219773977,
@@ -4171,12 +4171,12 @@
         },
         {
           "centroid_margin_m": 0.009649864166409228,
-          "convex_volume_error_m3": 2.710505431213761e-19,
+          "convex_volume_error_m3": 5.421010862427522e-20,
           "coverage_mode": "one convex cell",
           "interior_boundary_area_m2": 0.0,
           "mate": "J4-0",
           "status": "PASS",
-          "volume_in3": 27.422619235294963
+          "volume_in3": 27.422619235294974
         },
         {
           "centroid_margin_m": 0.009649864166409006,
@@ -4209,7 +4209,7 @@
           "status": "PASS",
           "sum_pair_overlap_area_m2": 0
         },
-        "signed_volume_m3": 0.003034211092115435,
+        "signed_volume_m3": 0.0030342110921154353,
         "status": "PASS",
         "triangles": 56,
         "vertices": 34
@@ -4223,7 +4223,7 @@
         "max_cavity_vertex_outside_reference_stock_m": 0.0,
         "max_interior_boundary_area_m2": 0.0,
         "partition_planes": 17,
-        "partition_volume_balance_error_m3": 1.4349632593280148e-14,
+        "partition_volume_balance_error_m3": 1.5765166949677223e-14,
         "reference_envelope_volume_in3": 13155.07506630032,
         "scope": "Saved prejoinery envelope, after any explicitly listed exterior trim, is covered by final timber wood plus exported removed cavity within the stated tolerances. Added tenons outside this envelope are not counted as removed stock.",
         "status": "PASS",
@@ -4329,7 +4329,7 @@
         "max_cavity_vertex_outside_reference_stock_m": 0.0,
         "max_interior_boundary_area_m2": 0.0,
         "partition_planes": 19,
-        "partition_volume_balance_error_m3": 2.699229728619912e-15,
+        "partition_volume_balance_error_m3": 2.6853519408120974e-15,
         "reference_envelope_volume_in3": 3357.736659610101,
         "scope": "Saved prejoinery envelope, after any explicitly listed exterior trim, is covered by final timber wood plus exported removed cavity within the stated tolerances. Added tenons outside this envelope are not counted as removed stock.",
         "status": "PASS",
@@ -4346,13 +4346,13 @@
     {
       "components": [
         {
-          "centroid_margin_m": 0.008620338367856029,
-          "convex_volume_error_m3": 4.336808689942018e-19,
+          "centroid_margin_m": 0.008620338367855584,
+          "convex_volume_error_m3": 4.607859233063394e-19,
           "coverage_mode": "one convex cell",
           "interior_boundary_area_m2": 0.0,
           "mate": "B4",
           "status": "PASS",
-          "volume_in3": 6.494353201754452
+          "volume_in3": 6.494353201754453
         }
       ],
       "cross_sections": {
@@ -4390,7 +4390,7 @@
         "max_cavity_vertex_outside_reference_stock_m": 4.107825191113079e-15,
         "max_interior_boundary_area_m2": 0.0,
         "partition_planes": 2,
-        "partition_volume_balance_error_m3": 1.1657341758564144e-15,
+        "partition_volume_balance_error_m3": 1.0547118733938987e-15,
         "reference_envelope_volume_in3": 4025.950085184229,
         "scope": "Saved prejoinery envelope, after any explicitly listed exterior trim, is covered by final timber wood plus exported removed cavity within the stated tolerances. Added tenons outside this envelope are not counted as removed stock.",
         "status": "PASS",
@@ -4408,17 +4408,17 @@
       "components": [
         {
           "centroid_margin_m": 0.008620338367856029,
-          "convex_volume_error_m3": 1.3552527156068805e-20,
+          "convex_volume_error_m3": 0.0,
           "coverage_mode": "one convex cell",
           "interior_boundary_area_m2": 0.0,
           "mate": "B4",
           "status": "PASS",
-          "volume_in3": 6.494353201754491
+          "volume_in3": 6.494353201754492
         }
       ],
       "cross_sections": {
         "max_missing_area_m2": 6.40869140625e-16,
-        "max_receiver_overlap_area_m2": 2.74658203125e-16,
+        "max_receiver_overlap_area_m2": 2.776205074042082e-16,
         "sections": 49,
         "status": "PASS"
       },
@@ -4451,8 +4451,8 @@
         "max_cavity_vertex_outside_reference_stock_m": 4.6629367034256575e-15,
         "max_interior_boundary_area_m2": 0.0,
         "partition_planes": 2,
-        "partition_volume_balance_error_m3": 8.465450562766819e-16,
-        "reference_envelope_volume_in3": 4025.9500851841826,
+        "partition_volume_balance_error_m3": 8.743006318923108e-16,
+        "reference_envelope_volume_in3": 4025.950085184185,
         "scope": "Saved prejoinery envelope, after any explicitly listed exterior trim, is covered by final timber wood plus exported removed cavity within the stated tolerances. Added tenons outside this envelope are not counted as removed stock.",
         "status": "PASS",
         "verified_cells": 4
@@ -4468,40 +4468,40 @@
     {
       "components": [
         {
-          "centroid_margin_m": 0.020680427794254323,
-          "convex_volume_error_m3": 3.2526065174565133e-19,
+          "centroid_margin_m": 0.020680427794254413,
+          "convex_volume_error_m3": 5.421010862427522e-19,
           "coverage_mode": "one convex cell",
           "interior_boundary_area_m2": 0.0,
           "mate": "K5-A",
           "status": "PASS",
-          "volume_in3": 44.08221557936386
+          "volume_in3": 44.08221557936387
         },
         {
           "centroid_margin_m": 0.020680427794254642,
-          "convex_volume_error_m3": 1.0842021724855044e-19,
+          "convex_volume_error_m3": 0.0,
           "coverage_mode": "one convex cell",
           "interior_boundary_area_m2": 0.0,
           "mate": "K5-B",
           "status": "PASS",
-          "volume_in3": 44.08221557936384
+          "volume_in3": 44.08221557936383
         },
         {
           "centroid_margin_m": 0.025399999999998535,
-          "convex_volume_error_m3": 1.0842021724855044e-19,
+          "convex_volume_error_m3": 2.168404344971009e-19,
           "coverage_mode": "one convex cell",
           "interior_boundary_area_m2": 0.0,
           "mate": "T5",
           "status": "PASS",
-          "volume_in3": 31.999999999999655
+          "volume_in3": 31.99999999999965
         },
         {
           "centroid_margin_m": 0.02034000000000028,
-          "convex_volume_error_m3": 1.0842021724855044e-19,
+          "convex_volume_error_m3": 5.421010862427522e-20,
           "coverage_mode": "one convex cell",
           "interior_boundary_area_m2": 0.0,
           "mate": "B5",
           "status": "PASS",
-          "volume_in3": 25.99696269072764
+          "volume_in3": 25.996962690727642
         },
         {
           "centroid_margin_m": 0.020339999999999026,
@@ -4545,10 +4545,10 @@
         "convex_cells": 986,
         "declared_external_trim": null,
         "failures": [],
-        "max_cavity_vertex_outside_reference_stock_m": 3.95516952522712e-15,
+        "max_cavity_vertex_outside_reference_stock_m": 4.440892098500626e-15,
         "max_interior_boundary_area_m2": 0.0,
         "partition_planes": 24,
-        "partition_volume_balance_error_m3": 3.1336044870045043e-14,
+        "partition_volume_balance_error_m3": 3.104461132608094e-14,
         "reference_envelope_volume_in3": 6210.313682744151,
         "scope": "Saved prejoinery envelope, after any explicitly listed exterior trim, is covered by final timber wood plus exported removed cavity within the stated tolerances. Added tenons outside this envelope are not counted as removed stock.",
         "status": "PASS",
@@ -4566,12 +4566,12 @@
       "components": [
         {
           "centroid_margin_m": 0.022528995514027095,
-          "convex_volume_error_m3": 1.0842021724855044e-19,
+          "convex_volume_error_m3": 3.2526065174565133e-19,
           "coverage_mode": "one convex cell",
           "interior_boundary_area_m2": 0.0,
           "mate": "K5-B",
           "status": "PASS",
-          "volume_in3": 21.24124596924558
+          "volume_in3": 21.241245969245593
         },
         {
           "centroid_margin_m": 0.022528995514027095,
@@ -4580,12 +4580,12 @@
           "interior_boundary_area_m2": 0.0,
           "mate": "K6-A",
           "status": "PASS",
-          "volume_in3": 21.24124596924611
+          "volume_in3": 21.241245969246126
         }
       ],
       "cross_sections": {
-        "max_missing_area_m2": 8.208751678466796e-16,
-        "max_receiver_overlap_area_m2": 4.1675567626953124e-16,
+        "max_missing_area_m2": 6.7138671875e-16,
+        "max_receiver_overlap_area_m2": 3.9708614349365237e-16,
         "sections": 230,
         "status": "PASS"
       },
@@ -4604,7 +4604,7 @@
           "status": "PASS",
           "sum_pair_overlap_area_m2": 0
         },
-        "signed_volume_m3": 0.0006961633142755457,
+        "signed_volume_m3": 0.0006961633142755449,
         "status": "PASS",
         "triangles": 16,
         "vertices": 12
@@ -4618,8 +4618,8 @@
         "max_cavity_vertex_outside_reference_stock_m": 0.0,
         "max_interior_boundary_area_m2": 0.0,
         "partition_planes": 6,
-        "partition_volume_balance_error_m3": 6.439293542825908e-15,
-        "reference_envelope_volume_in3": 6050.180668328284,
+        "partition_volume_balance_error_m3": 6.286637876939949e-15,
+        "reference_envelope_volume_in3": 6050.180668328285,
         "scope": "Saved prejoinery envelope, after any explicitly listed exterior trim, is covered by final timber wood plus exported removed cavity within the stated tolerances. Added tenons outside this envelope are not counted as removed stock.",
         "status": "PASS",
         "verified_cells": 21
@@ -4650,15 +4650,15 @@
               "interior_boundary_area_m2": 0.0,
               "mate": "P5",
               "status": "PASS",
-              "volume_in3": 19.50088607590232
+              "volume_in3": 19.500886075902166
             },
             {
-              "centroid_margin_m": 0.011107369404553147,
+              "centroid_margin_m": 0.011107369404554035,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "P5",
               "status": "PASS",
-              "volume_in3": 2.315441023291855
+              "volume_in3": 2.3154410232920024
             },
             {
               "centroid_margin_m": 0.01456811718755624,
@@ -4690,7 +4690,7 @@
               "interior_boundary_area_m2": 0.0,
               "mate": "P5",
               "status": "PASS",
-              "volume_in3": 0.16905301783357324
+              "volume_in3": 0.1690530178335732
             },
             {
               "centroid_margin_m": 0.006857657463266165,
@@ -4701,31 +4701,31 @@
               "volume_in3": 0.6799962241726617
             },
             {
-              "centroid_margin_m": 0.015947730434621388,
+              "centroid_margin_m": 0.01653873146194096,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "P5",
               "status": "PASS",
-              "volume_in3": 5.953887395879433
+              "volume_in3": 5.953887395879434
             },
             {
-              "centroid_margin_m": 1.352001343590814e-05,
+              "centroid_margin_m": 1.3838770997587346e-05,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "P5",
               "status": "PASS",
-              "volume_in3": 3.5985509912400067e-06
+              "volume_in3": 3.5985509910248345e-06
             },
             {
-              "centroid_margin_m": 0.010117205242295313,
+              "centroid_margin_m": 0.011555376816595242,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "P5",
               "status": "PASS",
-              "volume_in3": 2.3154410232918328
+              "volume_in3": 2.3154410232918323
             },
             {
-              "centroid_margin_m": 0.005512460139527775,
+              "centroid_margin_m": 0.005284500190224861,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "P5",
@@ -4733,7 +4733,7 @@
               "volume_in3": 2.01773542498399
             },
             {
-              "centroid_margin_m": 1.2665627123098488e-05,
+              "centroid_margin_m": 1.1514206476270772e-05,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "P5",
@@ -4741,7 +4741,7 @@
               "volume_in3": 3.5985509910249844e-06
             },
             {
-              "centroid_margin_m": 0.0020918858484941794,
+              "centroid_margin_m": 0.002091885848493291,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "P5",
@@ -4754,7 +4754,7 @@
               "interior_boundary_area_m2": 0.0,
               "mate": "B4",
               "status": "PASS",
-              "volume_in3": 0.16241845116775197
+              "volume_in3": 0.162418451167752
             },
             {
               "centroid_margin_m": 0.010237038367046036,
@@ -4765,7 +4765,7 @@
               "volume_in3": 3.5291513430383725
             },
             {
-              "centroid_margin_m": 0.007187428349803238,
+              "centroid_margin_m": 0.0071874283498023495,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "P5",
@@ -4773,7 +4773,7 @@
               "volume_in3": 1.1189629671615684
             },
             {
-              "centroid_margin_m": 0.003940242498670088,
+              "centroid_margin_m": 0.0037084635281585676,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "B5",
@@ -4781,7 +4781,7 @@
               "volume_in3": 0.162418451167684
             },
             {
-              "centroid_margin_m": 0.008535524806809747,
+              "centroid_margin_m": 0.00853552480681019,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "B5",
@@ -4794,7 +4794,7 @@
               "interior_boundary_area_m2": 0.0,
               "mate": "P5",
               "status": "PASS",
-              "volume_in3": 0.14338643198748646
+              "volume_in3": 0.1433864319874865
             },
             {
               "centroid_margin_m": 0.0067488040906766855,
@@ -4810,7 +4810,7 @@
               "interior_boundary_area_m2": 0.0,
               "mate": "B4",
               "status": "PASS",
-              "volume_in3": 2.533506245325119
+              "volume_in3": 2.5335062453251194
             },
             {
               "centroid_margin_m": 0.0018936139862120172,
@@ -4818,7 +4818,7 @@
               "interior_boundary_area_m2": 0.0,
               "mate": "P5",
               "status": "PASS",
-              "volume_in3": 0.22364646929896534
+              "volume_in3": 0.2236464692989653
             },
             {
               "centroid_margin_m": 0.008099856990884113,
@@ -4850,7 +4850,7 @@
               "interior_boundary_area_m2": 0.0,
               "mate": "P5",
               "status": "PASS",
-              "volume_in3": 3.346672701063899
+              "volume_in3": 3.3466727010638984
             },
             {
               "centroid_margin_m": 0.01181323821702307,
@@ -4874,7 +4874,7 @@
               "interior_boundary_area_m2": 0.0,
               "mate": "P5",
               "status": "PASS",
-              "volume_in3": 3.3466727010638766
+              "volume_in3": 3.346672701063876
             },
             {
               "centroid_margin_m": 0.009903254505242653,
@@ -4882,7 +4882,7 @@
               "interior_boundary_area_m2": 0.0,
               "mate": "P5",
               "status": "PASS",
-              "volume_in3": 4.021401968983862
+              "volume_in3": 4.021401968983758
             },
             {
               "centroid_margin_m": 0.0020511695706666444,
@@ -4898,7 +4898,7 @@
               "interior_boundary_area_m2": 0.0,
               "mate": "P5",
               "status": "PASS",
-              "volume_in3": 0.15471431564748853
+              "volume_in3": 0.1547143156474885
             },
             {
               "centroid_margin_m": 0.006857657463266165,
@@ -4906,39 +4906,39 @@
               "interior_boundary_area_m2": 0.0,
               "mate": "P5",
               "status": "PASS",
-              "volume_in3": 0.6704544951468365
+              "volume_in3": 0.6704544951468364
             },
             {
-              "centroid_margin_m": 0.011901148949271079,
+              "centroid_margin_m": 0.009629108794393382,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "P5",
               "status": "PASS",
-              "volume_in3": 4.021401968983027
+              "volume_in3": 4.0214019689830875
             },
             {
-              "centroid_margin_m": 1.0355339059131552e-05,
+              "centroid_margin_m": 1.1165240948685096e-05,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "P5",
               "status": "PASS",
-              "volume_in3": 3.210161528642036e-06
+              "volume_in3": 3.2101615286420366e-06
             },
             {
-              "centroid_margin_m": 0.01112013221383723,
+              "centroid_margin_m": 0.011357623295181085,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "P5",
               "status": "PASS",
-              "volume_in3": 1.6568542494926302
+              "volume_in3": 1.6568542494925933
             },
             {
-              "centroid_margin_m": 0.004738329907477912,
+              "centroid_margin_m": 0.004558297150267343,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "P5",
               "status": "PASS",
-              "volume_in3": 1.6633772977187418
+              "volume_in3": 1.6633772977186652
             },
             {
               "centroid_margin_m": 1.1782016566819209e-05,
@@ -4949,122 +4949,122 @@
               "volume_in3": 3.210161528642036e-06
             },
             {
-              "centroid_margin_m": 0.0024730777849084618,
+              "centroid_margin_m": 0.002755715246038015,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "P5",
               "status": "PASS",
-              "volume_in3": 0.15471431564779597
+              "volume_in3": 0.15471431564765453
             },
             {
-              "centroid_margin_m": 0.0028225646960429174,
+              "centroid_margin_m": 0.004164123476453341,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "P5",
               "status": "PASS",
-              "volume_in3": 0.1567108304905325
+              "volume_in3": 0.15671083049055512
             },
             {
-              "centroid_margin_m": 0.012156710823553851,
+              "centroid_margin_m": 0.012555271648718058,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "P5",
               "status": "PASS",
-              "volume_in3": 3.68857485386284
+              "volume_in3": 3.6885748538624163
             },
             {
-              "centroid_margin_m": 0.008134453438790157,
+              "centroid_margin_m": 0.010433894082728656,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "P5",
               "status": "PASS",
-              "volume_in3": 1.656854249492957
+              "volume_in3": 1.6568542494927623
             },
             {
-              "centroid_margin_m": 0.003383832433441744,
+              "centroid_margin_m": 0.003184888439557096,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "P5",
               "status": "PASS",
-              "volume_in3": 0.15671083049051104
+              "volume_in3": 0.15671083049051102
             },
             {
-              "centroid_margin_m": 0.01263953494319825,
+              "centroid_margin_m": 0.01242014153621751,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "P5",
               "status": "PASS",
-              "volume_in3": 4.176116284631441
+              "volume_in3": 4.176116284631374
             },
             {
-              "centroid_margin_m": 0.0018786053378807566,
+              "centroid_margin_m": 0.002035155782703413,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "P5",
               "status": "PASS",
-              "volume_in3": 0.1239919686994737
+              "volume_in3": 0.12399196869942239
             },
             {
-              "centroid_margin_m": 0.006068862517303764,
+              "centroid_margin_m": 0.005740318353423035,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "P5",
               "status": "PASS",
-              "volume_in3": 0.6704544951472452
+              "volume_in3": 0.6704544951470507
             },
             {
-              "centroid_margin_m": 0.012030302357836753,
+              "centroid_margin_m": 0.01065361380966845,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "P5",
               "status": "PASS",
-              "volume_in3": 4.17611628463157
+              "volume_in3": 4.176116284631365
             },
             {
-              "centroid_margin_m": 0.009843217203416188,
+              "centroid_margin_m": 0.009105957476410964,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "P5",
               "status": "PASS",
-              "volume_in3": 3.0849827296654864
+              "volume_in3": 3.0849827296653594
             },
             {
-              "centroid_margin_m": 0.00969904010232181,
+              "centroid_margin_m": 0.008876725817887898,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "P5",
               "status": "PASS",
-              "volume_in3": 1.656854249493399
+              "volume_in3": 1.656854249492847
             },
             {
-              "centroid_margin_m": 0.011253953513212345,
+              "centroid_margin_m": 0.010925848071757116,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "P5",
               "status": "PASS",
-              "volume_in3": 9.483673958316599
+              "volume_in3": 9.483673958316501
             },
             {
-              "centroid_margin_m": 0.012381639987271154,
+              "centroid_margin_m": 0.011961802949322031,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "P5",
               "status": "PASS",
-              "volume_in3": 3.084982729665342
+              "volume_in3": 3.084982729665151
             }
           ],
-          "convex_volume_error_m3": 4.336808689942018e-19,
+          "convex_volume_error_m3": 0.0,
           "coverage_mode": "explicit convex partition",
           "note": "Each cell is independently contained in one mate; only the stated distance shell around cell boundaries is excluded.",
           "partition_cells": 52,
           "partition_planes": 8,
-          "partition_volume_balance_error_m3": 5.460042140637e-16,
+          "partition_volume_balance_error_m3": 5.065392549852277e-16,
           "status": "PASS",
-          "volume_in3": 130.31368274406202
+          "volume_in3": 130.31368274406205
         },
         {
-          "centroid_margin_m": 0.009649864166409117,
-          "convex_volume_error_m3": 1.6263032587282567e-19,
+          "centroid_margin_m": 0.009649864166408895,
+          "convex_volume_error_m3": 0.0,
           "coverage_mode": "one convex cell",
           "interior_boundary_area_m2": 0.0,
           "mate": "J5-0",
@@ -5073,16 +5073,16 @@
         },
         {
           "centroid_margin_m": 0.009649864166408673,
-          "convex_volume_error_m3": 5.421010862427522e-20,
+          "convex_volume_error_m3": 1.6263032587282567e-19,
           "coverage_mode": "one convex cell",
           "interior_boundary_area_m2": 0.0,
           "mate": "J4-2",
           "status": "PASS",
-          "volume_in3": 27.422619235294377
+          "volume_in3": 27.422619235294384
         }
       ],
       "cross_sections": {
-        "max_missing_area_m2": 1.5510365647551927e-15,
+        "max_missing_area_m2": 1.5472218674895677e-15,
         "max_receiver_overlap_area_m2": 2.0050883104247573e-14,
         "sections": 305,
         "status": "PASS"
@@ -5102,7 +5102,7 @@
           "status": "PASS",
           "sum_pair_overlap_area_m2": 0
         },
-        "signed_volume_m3": 0.003034211092115381,
+        "signed_volume_m3": 0.0030342110921153676,
         "status": "PASS",
         "triangles": 56,
         "vertices": 34
@@ -5113,11 +5113,11 @@
         "convex_cells": 353,
         "declared_external_trim": null,
         "failures": [],
-        "max_cavity_vertex_outside_reference_stock_m": 3.9968028886505635e-15,
+        "max_cavity_vertex_outside_reference_stock_m": 3.95516952522712e-15,
         "max_interior_boundary_area_m2": 0.0,
         "partition_planes": 17,
-        "partition_volume_balance_error_m3": 2.6950663922775675e-14,
-        "reference_envelope_volume_in3": 13155.075066300431,
+        "partition_volume_balance_error_m3": 2.3592239273284576e-14,
+        "reference_envelope_volume_in3": 13155.07506630043,
         "scope": "Saved prejoinery envelope, after any explicitly listed exterior trim, is covered by final timber wood plus exported removed cavity within the stated tolerances. Added tenons outside this envelope are not counted as removed stock.",
         "status": "PASS",
         "verified_cells": 353
@@ -5133,7 +5133,7 @@
     {
       "components": [
         {
-          "centroid_margin_m": 0.025399999999999825,
+          "centroid_margin_m": 0.025399999999999798,
           "convex_volume_error_m3": 1.0842021724855044e-19,
           "coverage_mode": "one convex cell",
           "interior_boundary_area_m2": 0.0,
@@ -5143,21 +5143,21 @@
         },
         {
           "centroid_margin_m": 0.020340000000000025,
-          "convex_volume_error_m3": 1.0842021724855044e-19,
+          "convex_volume_error_m3": 2.168404344971009e-19,
           "coverage_mode": "one convex cell",
           "interior_boundary_area_m2": 0.0,
           "mate": "R5",
           "status": "PASS",
-          "volume_in3": 44.98160784748995
+          "volume_in3": 44.98160784748994
         },
         {
           "centroid_margin_m": 0.013569627672608497,
-          "convex_volume_error_m3": 5.421010862427522e-20,
+          "convex_volume_error_m3": 2.710505431213761e-20,
           "coverage_mode": "one convex cell",
           "interior_boundary_area_m2": 0.0,
           "mate": "L5-S",
           "status": "PASS",
-          "volume_in3": 11.558550058925526
+          "volume_in3": 11.558550058925528
         },
         {
           "centroid_margin_m": 0.013569627672608275,
@@ -5175,10 +5175,10 @@
           "interior_boundary_area_m2": 0.0,
           "mate": "L4-S",
           "status": "PASS",
-          "volume_in3": 11.558550058925402
+          "volume_in3": 11.558550058925404
         },
         {
-          "centroid_margin_m": 0.013569627672608497,
+          "centroid_margin_m": 0.013569627672608386,
           "convex_volume_error_m3": 0.0,
           "coverage_mode": "one convex cell",
           "interior_boundary_area_m2": 0.0,
@@ -5222,7 +5222,7 @@
         "max_cavity_vertex_outside_reference_stock_m": 4.440892098500626e-16,
         "max_interior_boundary_area_m2": 0.0,
         "partition_planes": 19,
-        "partition_volume_balance_error_m3": 7.78543896018391e-15,
+        "partition_volume_balance_error_m3": 7.66053886991358e-15,
         "reference_envelope_volume_in3": 3357.73665961011,
         "scope": "Saved prejoinery envelope, after any explicitly listed exterior trim, is covered by final timber wood plus exported removed cavity within the stated tolerances. Added tenons outside this envelope are not counted as removed stock.",
         "status": "PASS",
@@ -5280,11 +5280,11 @@
         "convex_cells": 4,
         "declared_external_trim": null,
         "failures": [],
-        "max_cavity_vertex_outside_reference_stock_m": 4.440892098500626e-15,
+        "max_cavity_vertex_outside_reference_stock_m": 4.773959005888173e-15,
         "max_interior_boundary_area_m2": 0.0,
         "partition_planes": 2,
-        "partition_volume_balance_error_m3": 9.43689570931383e-16,
-        "reference_envelope_volume_in3": 4025.950085184115,
+        "partition_volume_balance_error_m3": 8.604228440844963e-16,
+        "reference_envelope_volume_in3": 4025.950085184114,
         "scope": "Saved prejoinery envelope, after any explicitly listed exterior trim, is covered by final timber wood plus exported removed cavity within the stated tolerances. Added tenons outside this envelope are not counted as removed stock.",
         "status": "PASS",
         "verified_cells": 4
@@ -5310,7 +5310,7 @@
         }
       ],
       "cross_sections": {
-        "max_missing_area_m2": 9.769038238595373e-16,
+        "max_missing_area_m2": 1.0074214019845374e-15,
         "max_receiver_overlap_area_m2": 4.8828125e-16,
         "sections": 49,
         "status": "PASS"
@@ -5341,10 +5341,10 @@
         "convex_cells": 4,
         "declared_external_trim": null,
         "failures": [],
-        "max_cavity_vertex_outside_reference_stock_m": 8.881784197001252e-16,
+        "max_cavity_vertex_outside_reference_stock_m": 1.7763568394002505e-15,
         "max_interior_boundary_area_m2": 0.0,
         "partition_planes": 2,
-        "partition_volume_balance_error_m3": 3.7470027081099033e-16,
+        "partition_volume_balance_error_m3": 2.914335439641036e-16,
         "reference_envelope_volume_in3": 4025.9500851844236,
         "scope": "Saved prejoinery envelope, after any explicitly listed exterior trim, is covered by final timber wood plus exported removed cavity within the stated tolerances. Added tenons outside this envelope are not counted as removed stock.",
         "status": "PASS",
@@ -5407,7 +5407,7 @@
         }
       ],
       "cross_sections": {
-        "max_missing_area_m2": 1.3657808303833007e-15,
+        "max_missing_area_m2": 1.362919807434082e-15,
         "max_receiver_overlap_area_m2": 7.002679303695913e-16,
         "sections": 230,
         "status": "PASS"
@@ -5441,7 +5441,7 @@
         "max_cavity_vertex_outside_reference_stock_m": 0.0,
         "max_interior_boundary_area_m2": 0.0,
         "partition_planes": 24,
-        "partition_volume_balance_error_m3": 1.251776460264864e-14,
+        "partition_volume_balance_error_m3": 1.3933298959045715e-14,
         "reference_envelope_volume_in3": 6210.313682744058,
         "scope": "Saved prejoinery envelope, after any explicitly listed exterior trim, is covered by final timber wood plus exported removed cavity within the stated tolerances. Added tenons outside this envelope are not counted as removed stock.",
         "status": "PASS",
@@ -5477,7 +5477,7 @@
         }
       ],
       "cross_sections": {
-        "max_missing_area_m2": 8.208751678466796e-16,
+        "max_missing_area_m2": 6.6375732421875e-16,
         "max_receiver_overlap_area_m2": 3.662109375e-16,
         "sections": 230,
         "status": "PASS"
@@ -5497,7 +5497,7 @@
           "status": "PASS",
           "sum_pair_overlap_area_m2": 0
         },
-        "signed_volume_m3": 0.0006961633142755488,
+        "signed_volume_m3": 0.0006961633142755492,
         "status": "PASS",
         "triangles": 16,
         "vertices": 12
@@ -5511,7 +5511,7 @@
         "max_cavity_vertex_outside_reference_stock_m": 0.0,
         "max_interior_boundary_area_m2": 0.0,
         "partition_planes": 6,
-        "partition_volume_balance_error_m3": 4.898859096158503e-15,
+        "partition_volume_balance_error_m3": 4.9404924595819466e-15,
         "reference_envelope_volume_in3": 6050.180668328284,
         "scope": "Saved prejoinery envelope, after any explicitly listed exterior trim, is covered by final timber wood plus exported removed cavity within the stated tolerances. Added tenons outside this envelope are not counted as removed stock.",
         "status": "PASS",
@@ -5530,12 +5530,60 @@
         {
           "cells": [
             {
-              "centroid_margin_m": 0.006703531060585632,
+              "centroid_margin_m": 0.006256628989878443,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "P6",
               "status": "PASS",
-              "volume_in3": 0.6799962241726472
+              "volume_in3": 0.6799962241726625
+            },
+            {
+              "centroid_margin_m": 0.0025720008963041607,
+              "coverage_mode": "one convex cell",
+              "interior_boundary_area_m2": 0.0,
+              "mate": "P6",
+              "status": "PASS",
+              "volume_in3": 0.16905301783390297
+            },
+            {
+              "centroid_margin_m": 0.009545828493385144,
+              "coverage_mode": "one convex cell",
+              "interior_boundary_area_m2": 0.0,
+              "mate": "B5",
+              "status": "PASS",
+              "volume_in3": 2.5335062453238186
+            },
+            {
+              "centroid_margin_m": 0.007863500474943219,
+              "coverage_mode": "one convex cell",
+              "interior_boundary_area_m2": 0.0,
+              "mate": "P6",
+              "status": "PASS",
+              "volume_in3": 1.11896296716158
+            },
+            {
+              "centroid_margin_m": 0.0028295074431303746,
+              "coverage_mode": "one convex cell",
+              "interior_boundary_area_m2": 0.0,
+              "mate": "B5",
+              "status": "PASS",
+              "volume_in3": 0.1624184511674952
+            },
+            {
+              "centroid_margin_m": 0.010038467820023378,
+              "coverage_mode": "one convex cell",
+              "interior_boundary_area_m2": 0.0,
+              "mate": "P6",
+              "status": "PASS",
+              "volume_in3": 3.529151343038423
+            },
+            {
+              "centroid_margin_m": 0.002774717402772346,
+              "coverage_mode": "one convex cell",
+              "interior_boundary_area_m2": 0.0,
+              "mate": "B6",
+              "status": "PASS",
+              "volume_in3": 0.16241845116747836
             },
             {
               "centroid_margin_m": 0.0021433340802534673,
@@ -5543,74 +5591,26 @@
               "interior_boundary_area_m2": 0.0,
               "mate": "P6",
               "status": "PASS",
-              "volume_in3": 0.16905301783395746
+              "volume_in3": 0.16905301783390297
             },
             {
-              "centroid_margin_m": 0.009728528128985836,
-              "coverage_mode": "one convex cell",
-              "interior_boundary_area_m2": 0.0,
-              "mate": "B5",
-              "status": "PASS",
-              "volume_in3": 2.533506245323826
-            },
-            {
-              "centroid_margin_m": 0.005976064182739105,
+              "centroid_margin_m": 0.002026110377017609,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "P6",
               "status": "PASS",
-              "volume_in3": 1.118962967161409
+              "volume_in3": 0.2236464692987273
             },
             {
-              "centroid_margin_m": 0.0033184108571136725,
-              "coverage_mode": "one convex cell",
-              "interior_boundary_area_m2": 0.0,
-              "mate": "B5",
-              "status": "PASS",
-              "volume_in3": 0.16241845116750675
-            },
-            {
-              "centroid_margin_m": 0.010133182791454587,
+              "centroid_margin_m": 0.004225047458933595,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "P6",
               "status": "PASS",
-              "volume_in3": 3.5291513430382593
+              "volume_in3": 1.770163538233387
             },
             {
-              "centroid_margin_m": 0.0024983276954539946,
-              "coverage_mode": "one convex cell",
-              "interior_boundary_area_m2": 0.0,
-              "mate": "B6",
-              "status": "PASS",
-              "volume_in3": 0.16241845116743797
-            },
-            {
-              "centroid_margin_m": 0.0021075487106774204,
-              "coverage_mode": "one convex cell",
-              "interior_boundary_area_m2": 0.0,
-              "mate": "P6",
-              "status": "PASS",
-              "volume_in3": 0.16905301783395743
-            },
-            {
-              "centroid_margin_m": 0.002026110377016277,
-              "coverage_mode": "one convex cell",
-              "interior_boundary_area_m2": 0.0,
-              "mate": "P6",
-              "status": "PASS",
-              "volume_in3": 0.2236464692986281
-            },
-            {
-              "centroid_margin_m": 0.0037296259400103615,
-              "coverage_mode": "one convex cell",
-              "interior_boundary_area_m2": 0.0,
-              "mate": "P6",
-              "status": "PASS",
-              "volume_in3": 1.7701635382330698
-            },
-            {
-              "centroid_margin_m": 0.002389221358694904,
+              "centroid_margin_m": 0.002501841582449149,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "P6",
@@ -5618,7 +5618,7 @@
               "volume_in3": 0.22364646929876542
             },
             {
-              "centroid_margin_m": 0.004895902777141359,
+              "centroid_margin_m": 0.0059230681310999955,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "P6",
@@ -5642,12 +5642,12 @@
               "volume_in3": 0.6799962241726928
             },
             {
-              "centroid_margin_m": 0.0067679440752073106,
+              "centroid_margin_m": 0.006767944075205534,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "P6",
               "status": "PASS",
-              "volume_in3": 0.6704544951470444
+              "volume_in3": 0.6704544951470941
             },
             {
               "centroid_margin_m": 0.0021433340802534673,
@@ -5655,10 +5655,10 @@
               "interior_boundary_area_m2": 0.0,
               "mate": "P6",
               "status": "PASS",
-              "volume_in3": 0.15471431564789231
+              "volume_in3": 0.15471431564784247
             },
             {
-              "centroid_margin_m": 0.011680012143819862,
+              "centroid_margin_m": 0.010789831951176332,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "P6",
@@ -5666,36 +5666,36 @@
               "volume_in3": 4.176116284630901
             },
             {
-              "centroid_margin_m": 0.011856892015786435,
+              "centroid_margin_m": 0.009123625494985355,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "P6",
               "status": "PASS",
-              "volume_in3": 1.6568542494926608
+              "volume_in3": 1.6568542494925396
             },
             {
-              "centroid_margin_m": 0.0025475407142314666,
+              "centroid_margin_m": 0.002148407866941149,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "P6",
               "status": "PASS",
-              "volume_in3": 0.15671083049048917
+              "volume_in3": 0.15671083049037088
             },
             {
-              "centroid_margin_m": 0.008283117469542134,
+              "centroid_margin_m": 0.007983780008767205,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "P6",
               "status": "PASS",
-              "volume_in3": 3.6885748538634826
+              "volume_in3": 3.688574853863197
             },
             {
-              "centroid_margin_m": 0.00253878899034099,
+              "centroid_margin_m": 0.0020182231786245453,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "P6",
               "status": "PASS",
-              "volume_in3": 0.15671083049032997
+              "volume_in3": 0.15671083049037088
             },
             {
               "centroid_margin_m": 0.002207340540657299,
@@ -5703,7 +5703,7 @@
               "interior_boundary_area_m2": 0.0,
               "mate": "P6",
               "status": "PASS",
-              "volume_in3": 0.1547143156478923
+              "volume_in3": 0.1547143156478524
             },
             {
               "centroid_margin_m": 0.010633449082736224,
@@ -5730,15 +5730,15 @@
               "volume_in3": 3.084982729665464
             },
             {
-              "centroid_margin_m": 0.010307027617573628,
+              "centroid_margin_m": 0.011043243875971775,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "P6",
               "status": "PASS",
-              "volume_in3": 1.6568542494926084
+              "volume_in3": 1.6568542494925396
             },
             {
-              "centroid_margin_m": 0.010581626238768571,
+              "centroid_margin_m": 0.011022527332050114,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "P6",
@@ -5751,34 +5751,34 @@
               "interior_boundary_area_m2": 0.0,
               "mate": "P6",
               "status": "PASS",
-              "volume_in3": 0.6704544951471304
+              "volume_in3": 0.6704544951471305
             },
             {
-              "centroid_margin_m": 0.0018802387731113868,
+              "centroid_margin_m": 0.0018802387731096104,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "P6",
               "status": "PASS",
-              "volume_in3": 0.14338643198712805
+              "volume_in3": 0.1433864319871286
             },
             {
-              "centroid_margin_m": 0.016340807722585282,
+              "centroid_margin_m": 0.016173735255315957,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "P6",
               "status": "PASS",
-              "volume_in3": 5.95388739587728
+              "volume_in3": 5.953887395877458
             },
             {
-              "centroid_margin_m": 0.00972663280445829,
+              "centroid_margin_m": 0.008278209821448002,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "P6",
               "status": "PASS",
-              "volume_in3": 2.315441023290933
+              "volume_in3": 2.3154410232909153
             },
             {
-              "centroid_margin_m": 0.016524776186696455,
+              "centroid_margin_m": 0.015492666327339477,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "P6",
@@ -5786,23 +5786,23 @@
               "volume_in3": 6.977474347315203
             },
             {
-              "centroid_margin_m": 0.021943746735973324,
+              "centroid_margin_m": 0.02181379357973956,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "P6",
               "status": "PASS",
-              "volume_in3": 19.50088607589949
+              "volume_in3": 19.50088607589968
             },
             {
-              "centroid_margin_m": 0.01758417389867617,
+              "centroid_margin_m": 0.015330077281251242,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "P6",
               "status": "PASS",
-              "volume_in3": 6.9774743473145735
+              "volume_in3": 6.977474347315164
             },
             {
-              "centroid_margin_m": 1.2430479765512814e-05,
+              "centroid_margin_m": 1.1480502967842199e-05,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "P6",
@@ -5810,36 +5810,36 @@
               "volume_in3": 3.5985509900594346e-06
             },
             {
-              "centroid_margin_m": 0.004331748733155116,
+              "centroid_margin_m": 0.004400277255575347,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "P6",
               "status": "PASS",
-              "volume_in3": 2.0177354249826926
+              "volume_in3": 2.0177354249827304
             },
             {
-              "centroid_margin_m": 1.161850663855546e-05,
+              "centroid_margin_m": 1.2547027075981987e-05,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "P6",
               "status": "PASS",
-              "volume_in3": 3.598550989699618e-06
+              "volume_in3": 3.5985509900594346e-06
             },
             {
-              "centroid_margin_m": 0.011361299389788915,
+              "centroid_margin_m": 0.011023078105800721,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "P6",
               "status": "PASS",
-              "volume_in3": 2.315441023292096
+              "volume_in3": 2.315441023291489
             },
             {
-              "centroid_margin_m": 0.014589481309114749,
+              "centroid_margin_m": 0.014599745282702248,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "P6",
               "status": "PASS",
-              "volume_in3": 5.9538873958786604
+              "volume_in3": 5.9538873958775165
             },
             {
               "centroid_margin_m": 0.0015041910184887541,
@@ -5847,7 +5847,7 @@
               "interior_boundary_area_m2": 0.0,
               "mate": "P6",
               "status": "PASS",
-              "volume_in3": 0.14338643198719425
+              "volume_in3": 0.14338643198719428
             },
             {
               "centroid_margin_m": 0.001671323353873433,
@@ -5855,26 +5855,26 @@
               "interior_boundary_area_m2": 0.0,
               "mate": "P6",
               "status": "PASS",
-              "volume_in3": 0.12399196869913681
+              "volume_in3": 0.12399196869919993
             },
             {
-              "centroid_margin_m": 0.011496220977797567,
+              "centroid_margin_m": 0.011744393959344901,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "P6",
               "status": "PASS",
-              "volume_in3": 4.021401968983063
+              "volume_in3": 4.021401968983192
             },
             {
-              "centroid_margin_m": 0.010390739712649477,
+              "centroid_margin_m": 0.010776475387157092,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "P6",
               "status": "PASS",
-              "volume_in3": 1.656854249492836
+              "volume_in3": 1.6568542494928358
             },
             {
-              "centroid_margin_m": 0.012382148846259433,
+              "centroid_margin_m": 0.011556672256508804,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "P6",
@@ -5882,20 +5882,20 @@
               "volume_in3": 3.346672701063445
             },
             {
-              "centroid_margin_m": 0.012152219266194919,
+              "centroid_margin_m": 0.012526653552555,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "P6",
               "status": "PASS",
-              "volume_in3": 10.007053901111808
+              "volume_in3": 10.007053901111828
             },
             {
-              "centroid_margin_m": 0.012422440248859523,
+              "centroid_margin_m": 0.011981070001296779,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "P6",
               "status": "PASS",
-              "volume_in3": 3.3466727010633384
+              "volume_in3": 3.3466727010634445
             },
             {
               "centroid_margin_m": 1.2430479765512814e-05,
@@ -5914,28 +5914,28 @@
               "volume_in3": 1.663377297718065
             },
             {
-              "centroid_margin_m": 1.2756114408318808e-05,
+              "centroid_margin_m": 1.2756114409206987e-05,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "P6",
               "status": "PASS",
-              "volume_in3": 3.2101615274613336e-06
+              "volume_in3": 3.210161527782316e-06
             },
             {
-              "centroid_margin_m": 0.010939344273030116,
+              "centroid_margin_m": 0.010823205232836752,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "P6",
               "status": "PASS",
-              "volume_in3": 1.6568542494932852
+              "volume_in3": 1.65685424949254
             },
             {
-              "centroid_margin_m": 0.011165812364113847,
+              "centroid_margin_m": 0.011125307875072377,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "P6",
               "status": "PASS",
-              "volume_in3": 4.021401968983803
+              "volume_in3": 4.021401968983051
             },
             {
               "centroid_margin_m": 0.002256286527731355,
@@ -5951,27 +5951,27 @@
           "note": "Each cell is independently contained in one mate; only the stated distance shell around cell boundaries is excluded.",
           "partition_cells": 52,
           "partition_planes": 8,
-          "partition_volume_balance_error_m3": 1.8084492237058214e-16,
+          "partition_volume_balance_error_m3": 1.5005358067199381e-16,
           "status": "PASS",
           "volume_in3": 130.3136827440621
         },
         {
           "centroid_margin_m": 0.009649864166409228,
-          "convex_volume_error_m3": 5.421010862427522e-20,
+          "convex_volume_error_m3": 1.6263032587282567e-19,
           "coverage_mode": "one convex cell",
           "interior_boundary_area_m2": 0.0,
           "mate": "J6-0",
           "status": "PASS",
-          "volume_in3": 27.422619235294974
+          "volume_in3": 27.422619235294967
         },
         {
           "centroid_margin_m": 0.009649864166409006,
-          "convex_volume_error_m3": 5.421010862427522e-20,
+          "convex_volume_error_m3": 1.0842021724855044e-19,
           "coverage_mode": "one convex cell",
           "interior_boundary_area_m2": 0.0,
           "mate": "J5-2",
           "status": "PASS",
-          "volume_in3": 27.42261923529449
+          "volume_in3": 27.422619235294494
         }
       ],
       "cross_sections": {
@@ -6009,8 +6009,8 @@
         "max_cavity_vertex_outside_reference_stock_m": 0.0,
         "max_interior_boundary_area_m2": 0.0,
         "partition_planes": 17,
-        "partition_volume_balance_error_m3": 1.634803403760543e-14,
-        "reference_envelope_volume_in3": 13155.075066300322,
+        "partition_volume_balance_error_m3": 1.7263968032921184e-14,
+        "reference_envelope_volume_in3": 13155.07506630032,
         "scope": "Saved prejoinery envelope, after any explicitly listed exterior trim, is covered by final timber wood plus exported removed cavity within the stated tolerances. Added tenons outside this envelope are not counted as removed stock.",
         "status": "PASS",
         "verified_cells": 353
@@ -6036,7 +6036,7 @@
         },
         {
           "centroid_margin_m": 0.020339999999999803,
-          "convex_volume_error_m3": 0.0,
+          "convex_volume_error_m3": 1.0842021724855044e-19,
           "coverage_mode": "one convex cell",
           "interior_boundary_area_m2": 0.0,
           "mate": "R6",
@@ -6054,12 +6054,12 @@
         },
         {
           "centroid_margin_m": 0.013569627672608053,
-          "convex_volume_error_m3": 0.0,
+          "convex_volume_error_m3": 5.421010862427522e-20,
           "coverage_mode": "one convex cell",
           "interior_boundary_area_m2": 0.0,
           "mate": "L6-H",
           "status": "PASS",
-          "volume_in3": 11.55855005892512
+          "volume_in3": 11.558550058925123
         },
         {
           "centroid_margin_m": 0.013569627672608386,
@@ -6115,7 +6115,7 @@
         "max_cavity_vertex_outside_reference_stock_m": 0.0,
         "max_interior_boundary_area_m2": 0.0,
         "partition_planes": 19,
-        "partition_volume_balance_error_m3": 2.033095913844818e-15,
+        "partition_volume_balance_error_m3": 2.0261570199409107e-15,
         "reference_envelope_volume_in3": 3357.736659610101,
         "scope": "Saved prejoinery envelope, after any explicitly listed exterior trim, is covered by final timber wood plus exported removed cavity within the stated tolerances. Added tenons outside this envelope are not counted as removed stock.",
         "status": "PASS",
@@ -6173,11 +6173,11 @@
         "convex_cells": 4,
         "declared_external_trim": null,
         "failures": [],
-        "max_cavity_vertex_outside_reference_stock_m": 4.884981308350689e-15,
+        "max_cavity_vertex_outside_reference_stock_m": 4.773959005888173e-15,
         "max_interior_boundary_area_m2": 0.0,
         "partition_planes": 2,
-        "partition_volume_balance_error_m3": 1.0685896612017132e-15,
-        "reference_envelope_volume_in3": 4025.950085184224,
+        "partition_volume_balance_error_m3": 1.096345236817342e-15,
+        "reference_envelope_volume_in3": 4025.950085184222,
         "scope": "Saved prejoinery envelope, after any explicitly listed exterior trim, is covered by final timber wood plus exported removed cavity within the stated tolerances. Added tenons outside this envelope are not counted as removed stock.",
         "status": "PASS",
         "verified_cells": 4
@@ -6204,7 +6204,7 @@
       ],
       "cross_sections": {
         "max_missing_area_m2": 6.40869140625e-16,
-        "max_receiver_overlap_area_m2": 2.74658203125e-16,
+        "max_receiver_overlap_area_m2": 2.776205074042082e-16,
         "sections": 49,
         "status": "PASS"
       },
@@ -6237,8 +6237,8 @@
         "max_cavity_vertex_outside_reference_stock_m": 4.440892098500626e-15,
         "max_interior_boundary_area_m2": 0.0,
         "partition_planes": 2,
-        "partition_volume_balance_error_m3": 9.575673587391975e-16,
-        "reference_envelope_volume_in3": 4025.950085184184,
+        "partition_volume_balance_error_m3": 8.743006318923108e-16,
+        "reference_envelope_volume_in3": 4025.9500851841885,
         "scope": "Saved prejoinery envelope, after any explicitly listed exterior trim, is covered by final timber wood plus exported removed cavity within the stated tolerances. Added tenons outside this envelope are not counted as removed stock.",
         "status": "PASS",
         "verified_cells": 4
@@ -6255,21 +6255,21 @@
       "components": [
         {
           "centroid_margin_m": 0.02068042779425433,
-          "convex_volume_error_m3": 2.168404344971009e-19,
+          "convex_volume_error_m3": 1.0842021724855044e-19,
           "coverage_mode": "one convex cell",
           "interior_boundary_area_m2": 0.0,
           "mate": "K7-A",
           "status": "PASS",
-          "volume_in3": 44.08221557936385
+          "volume_in3": 44.08221557936384
         },
         {
-          "centroid_margin_m": 0.020680427794254636,
-          "convex_volume_error_m3": 4.336808689942018e-19,
+          "centroid_margin_m": 0.020680427794254733,
+          "convex_volume_error_m3": 5.421010862427522e-19,
           "coverage_mode": "one convex cell",
           "interior_boundary_area_m2": 0.0,
           "mate": "K7-B",
           "status": "PASS",
-          "volume_in3": 44.08221557936386
+          "volume_in3": 44.08221557936387
         },
         {
           "centroid_margin_m": 0.025399999999998535,
@@ -6287,7 +6287,7 @@
           "interior_boundary_area_m2": 0.0,
           "mate": "B7",
           "status": "PASS",
-          "volume_in3": 25.99696269072765
+          "volume_in3": 25.996962690727642
         },
         {
           "centroid_margin_m": 0.020339999999999026,
@@ -6320,7 +6320,7 @@
           "status": "PASS",
           "sum_pair_overlap_area_m2": 0
         },
-        "signed_volume_m3": 0.0028211700067587824,
+        "signed_volume_m3": 0.002821170006758782,
         "status": "PASS",
         "triangles": 76,
         "vertices": 48
@@ -6331,10 +6331,10 @@
         "convex_cells": 986,
         "declared_external_trim": null,
         "failures": [],
-        "max_cavity_vertex_outside_reference_stock_m": 4.343747583845925e-15,
+        "max_cavity_vertex_outside_reference_stock_m": 4.121702978920894e-15,
         "max_interior_boundary_area_m2": 0.0,
         "partition_planes": 24,
-        "partition_volume_balance_error_m3": 2.824129818890242e-14,
+        "partition_volume_balance_error_m3": 2.8130275886439904e-14,
         "reference_envelope_volume_in3": 6210.313682743938,
         "scope": "Saved prejoinery envelope, after any explicitly listed exterior trim, is covered by final timber wood plus exported removed cavity within the stated tolerances. Added tenons outside this envelope are not counted as removed stock.",
         "status": "PASS",
@@ -6352,12 +6352,12 @@
       "components": [
         {
           "centroid_margin_m": 0.022528995514027095,
-          "convex_volume_error_m3": 4.87890977618477e-19,
+          "convex_volume_error_m3": 5.421010862427522e-19,
           "coverage_mode": "one convex cell",
           "interior_boundary_area_m2": 0.0,
           "mate": "K7-B",
           "status": "PASS",
-          "volume_in3": 21.2412459692456
+          "volume_in3": 21.241245969245604
         },
         {
           "centroid_margin_m": 0.022528995514027095,
@@ -6390,7 +6390,7 @@
           "status": "PASS",
           "sum_pair_overlap_area_m2": 0
         },
-        "signed_volume_m3": 0.0006961633142755453,
+        "signed_volume_m3": 0.0006961633142755449,
         "status": "PASS",
         "triangles": 16,
         "vertices": 12
@@ -6404,7 +6404,7 @@
         "max_cavity_vertex_outside_reference_stock_m": 0.0,
         "max_interior_boundary_area_m2": 0.0,
         "partition_planes": 6,
-        "partition_volume_balance_error_m3": 5.176414852314792e-15,
+        "partition_volume_balance_error_m3": 5.6343818499726694e-15,
         "reference_envelope_volume_in3": 6050.180668328283,
         "scope": "Saved prejoinery envelope, after any explicitly listed exterior trim, is covered by final timber wood plus exported removed cavity within the stated tolerances. Added tenons outside this envelope are not counted as removed stock.",
         "status": "PASS",
@@ -6428,18 +6428,18 @@
               "interior_boundary_area_m2": 0.0,
               "mate": "P7",
               "status": "PASS",
-              "volume_in3": 0.2236464692988588
+              "volume_in3": 0.22364646929887408
             },
             {
-              "centroid_margin_m": 0.003819546620555503,
+              "centroid_margin_m": 0.003257784997498625,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "P7",
               "status": "PASS",
-              "volume_in3": 1.7701635382343612
+              "volume_in3": 1.7701635382343623
             },
             {
-              "centroid_margin_m": 0.007558240710950237,
+              "centroid_margin_m": 0.006974963835558512,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "P7",
@@ -6452,7 +6452,7 @@
               "interior_boundary_area_m2": 0.0,
               "mate": "P7",
               "status": "PASS",
-              "volume_in3": 0.22364646929894405
+              "volume_in3": 0.22364646929891066
             },
             {
               "centroid_margin_m": 0.007400814346664397,
@@ -6460,7 +6460,7 @@
               "interior_boundary_area_m2": 0.0,
               "mate": "B7",
               "status": "PASS",
-              "volume_in3": 2.5335062453251047
+              "volume_in3": 2.5335062453251105
             },
             {
               "centroid_margin_m": 0.006351299403197785,
@@ -6468,7 +6468,7 @@
               "interior_boundary_area_m2": 0.0,
               "mate": "P7",
               "status": "PASS",
-              "volume_in3": 0.6799962241731217
+              "volume_in3": 0.6799962241731218
             },
             {
               "centroid_margin_m": 0.001889102365066897,
@@ -6484,7 +6484,7 @@
               "interior_boundary_area_m2": 0.0,
               "mate": "B6",
               "status": "PASS",
-              "volume_in3": 2.5335062453245
+              "volume_in3": 2.5335062453245003
             },
             {
               "centroid_margin_m": 0.003387854500599627,
@@ -6500,7 +6500,7 @@
               "interior_boundary_area_m2": 0.0,
               "mate": "P7",
               "status": "PASS",
-              "volume_in3": 3.598550991244922e-06
+              "volume_in3": 3.598550991244923e-06
             },
             {
               "centroid_margin_m": 0.006907930366811144,
@@ -6508,7 +6508,7 @@
               "interior_boundary_area_m2": 0.0,
               "mate": "P7",
               "status": "PASS",
-              "volume_in3": 1.1189629671619064
+              "volume_in3": 1.1189629671619061
             },
             {
               "centroid_margin_m": 0.0101051413549329,
@@ -6519,7 +6519,7 @@
               "volume_in3": 3.5291513430394854
             },
             {
-              "centroid_margin_m": 0.006067080514644552,
+              "centroid_margin_m": 0.0060670805146436635,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "P7",
@@ -6532,26 +6532,26 @@
               "interior_boundary_area_m2": 0.0,
               "mate": "P7",
               "status": "PASS",
-              "volume_in3": 2.3154410232918226
+              "volume_in3": 2.315441023291822
             },
             {
-              "centroid_margin_m": 0.0021214256800616837,
+              "centroid_margin_m": 0.0020035686978356892,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "B7",
               "status": "PASS",
-              "volume_in3": 0.16241845116767045
+              "volume_in3": 0.16241845116766798
             },
             {
-              "centroid_margin_m": 0.0021734838374669607,
+              "centroid_margin_m": 0.0020456318470278845,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "P7",
               "status": "PASS",
-              "volume_in3": 0.1690530178339116
+              "volume_in3": 0.16905301783391977
             },
             {
-              "centroid_margin_m": 1.0250330820582576e-05,
+              "centroid_margin_m": 1.0250330821470754e-05,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "P7",
@@ -6564,7 +6564,7 @@
               "interior_boundary_area_m2": 0.0,
               "mate": "P7",
               "status": "PASS",
-              "volume_in3": 5.953887395879426
+              "volume_in3": 5.953887395879412
             },
             {
               "centroid_margin_m": 0.004377947281925643,
@@ -6580,7 +6580,7 @@
               "interior_boundary_area_m2": 0.0,
               "mate": "P7",
               "status": "PASS",
-              "volume_in3": 0.16905301783375293
+              "volume_in3": 0.16905301783375296
             },
             {
               "centroid_margin_m": 0.0020437607533168034,
@@ -6596,7 +6596,7 @@
               "interior_boundary_area_m2": 0.0,
               "mate": "P7",
               "status": "PASS",
-              "volume_in3": 5.953887395878773
+              "volume_in3": 5.953887395878772
             },
             {
               "centroid_margin_m": 0.01705111534150472,
@@ -6628,15 +6628,15 @@
               "interior_boundary_area_m2": 0.0,
               "mate": "P7",
               "status": "PASS",
-              "volume_in3": 6.977474347315985
+              "volume_in3": 6.977474347315986
             },
             {
-              "centroid_margin_m": 0.011708727310976386,
+              "centroid_margin_m": 0.01170872731097683,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "P7",
               "status": "PASS",
-              "volume_in3": 3.084982729665151
+              "volume_in3": 3.0849827296651515
             },
             {
               "centroid_margin_m": 0.01265288865355263,
@@ -6644,7 +6644,7 @@
               "interior_boundary_area_m2": 0.0,
               "mate": "P7",
               "status": "PASS",
-              "volume_in3": 9.48367395831601
+              "volume_in3": 9.483673958316006
             },
             {
               "centroid_margin_m": 0.008889515201769616,
@@ -6652,7 +6652,7 @@
               "interior_boundary_area_m2": 0.0,
               "mate": "P7",
               "status": "PASS",
-              "volume_in3": 1.6568542494931706
+              "volume_in3": 1.656854249493171
             },
             {
               "centroid_margin_m": 0.011744485157665352,
@@ -6660,7 +6660,7 @@
               "interior_boundary_area_m2": 0.0,
               "mate": "P7",
               "status": "PASS",
-              "volume_in3": 3.0849827296652363
+              "volume_in3": 3.084982729665123
             },
             {
               "centroid_margin_m": 0.012223950960020602,
@@ -6668,7 +6668,7 @@
               "interior_boundary_area_m2": 0.0,
               "mate": "P7",
               "status": "PASS",
-              "volume_in3": 4.176116284631123
+              "volume_in3": 4.176116284631171
             },
             {
               "centroid_margin_m": 0.007193292094937576,
@@ -6700,7 +6700,7 @@
               "interior_boundary_area_m2": 0.0,
               "mate": "P7",
               "status": "PASS",
-              "volume_in3": 0.15671083049045312
+              "volume_in3": 0.1567108304904531
             },
             {
               "centroid_margin_m": 1.2426406873267126e-05,
@@ -6708,23 +6708,23 @@
               "interior_boundary_area_m2": 0.0,
               "mate": "P7",
               "status": "PASS",
-              "volume_in3": 3.2101615291463375e-06
+              "volume_in3": 3.2101615291463384e-06
             },
             {
-              "centroid_margin_m": 0.012109025557564657,
+              "centroid_margin_m": 0.012005063060365195,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "P7",
               "status": "PASS",
-              "volume_in3": 1.6568542494926208
+              "volume_in3": 1.656854249492492
             },
             {
-              "centroid_margin_m": 0.01022501671156828,
+              "centroid_margin_m": 0.010360764159518698,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "P7",
               "status": "PASS",
-              "volume_in3": 3.688574853862772
+              "volume_in3": 3.6885748538627725
             },
             {
               "centroid_margin_m": 0.005573150660777237,
@@ -6732,7 +6732,7 @@
               "interior_boundary_area_m2": 0.0,
               "mate": "P7",
               "status": "PASS",
-              "volume_in3": 1.6633772977194905
+              "volume_in3": 1.66337729771949
             },
             {
               "centroid_margin_m": 0.009751354800696,
@@ -6740,7 +6740,7 @@
               "interior_boundary_area_m2": 0.0,
               "mate": "P7",
               "status": "PASS",
-              "volume_in3": 1.656854249492752
+              "volume_in3": 1.6568542494927518
             },
             {
               "centroid_margin_m": 0.0036284766036275284,
@@ -6748,7 +6748,7 @@
               "interior_boundary_area_m2": 0.0,
               "mate": "P7",
               "status": "PASS",
-              "volume_in3": 0.15671083049032125
+              "volume_in3": 0.15671083049032128
             },
             {
               "centroid_margin_m": 0.001929000672229897,
@@ -6756,23 +6756,23 @@
               "interior_boundary_area_m2": 0.0,
               "mate": "P7",
               "status": "PASS",
-              "volume_in3": 0.15471431564778293
+              "volume_in3": 0.15471431564778287
             },
             {
-              "centroid_margin_m": 1.0436820883974463e-05,
+              "centroid_margin_m": 1.1480502971394912e-05,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "P7",
               "status": "PASS",
-              "volume_in3": 3.210161528804157e-06
+              "volume_in3": 3.210161528642036e-06
             },
             {
-              "centroid_margin_m": 0.012168514651522244,
+              "centroid_margin_m": 0.01159323267984913,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "P7",
               "status": "PASS",
-              "volume_in3": 4.021401968983383
+              "volume_in3": 4.021401968983386
             },
             {
               "centroid_margin_m": 0.006337277985715595,
@@ -6799,12 +6799,12 @@
               "volume_in3": 0.12399196869940309
             },
             {
-              "centroid_margin_m": 0.012274205456854759,
+              "centroid_margin_m": 0.012599799830979919,
               "coverage_mode": "one convex cell",
               "interior_boundary_area_m2": 0.0,
               "mate": "P7",
               "status": "PASS",
-              "volume_in3": 4.021401968983629
+              "volume_in3": 4.0214019689837786
             },
             {
               "centroid_margin_m": 0.011832511560920356,
@@ -6812,7 +6812,7 @@
               "interior_boundary_area_m2": 0.0,
               "mate": "P7",
               "status": "PASS",
-              "volume_in3": 3.346672701064105
+              "volume_in3": 3.346672701064106
             },
             {
               "centroid_margin_m": 0.010961813335623738,
@@ -6820,7 +6820,7 @@
               "interior_boundary_area_m2": 0.0,
               "mate": "P7",
               "status": "PASS",
-              "volume_in3": 1.6568542494925937
+              "volume_in3": 1.6568542494925935
             },
             {
               "centroid_margin_m": 0.012483565478997427,
@@ -6828,7 +6828,7 @@
               "interior_boundary_area_m2": 0.0,
               "mate": "P7",
               "status": "PASS",
-              "volume_in3": 10.007053901111275
+              "volume_in3": 10.007053901111277
             },
             {
               "centroid_margin_m": 0.01109223926203562,
@@ -6844,31 +6844,31 @@
           "note": "Each cell is independently contained in one mate; only the stated distance shell around cell boundaries is excluded.",
           "partition_cells": 52,
           "partition_planes": 8,
-          "partition_volume_balance_error_m3": 4.2500725161431774e-16,
+          "partition_volume_balance_error_m3": 4.2413988987632933e-16,
           "status": "PASS",
           "volume_in3": 130.31368274406202
         },
         {
           "centroid_margin_m": 0.009649864166409117,
-          "convex_volume_error_m3": 5.421010862427522e-20,
+          "convex_volume_error_m3": 0.0,
           "coverage_mode": "one convex cell",
           "interior_boundary_area_m2": 0.0,
           "mate": "J7-0",
           "status": "PASS",
-          "volume_in3": 27.422619235294764
+          "volume_in3": 27.422619235294768
         },
         {
           "centroid_margin_m": 0.009649864166408673,
-          "convex_volume_error_m3": 5.421010862427522e-20,
+          "convex_volume_error_m3": 1.0842021724855044e-19,
           "coverage_mode": "one convex cell",
           "interior_boundary_area_m2": 0.0,
           "mate": "J6-2",
           "status": "PASS",
-          "volume_in3": 27.422619235294377
+          "volume_in3": 27.42261923529438
         }
       ],
       "cross_sections": {
-        "max_missing_area_m2": 1.527565335974035e-15,
+        "max_missing_area_m2": 1.5624806565520676e-15,
         "max_receiver_overlap_area_m2": 2.004034792507589e-14,
         "sections": 305,
         "status": "PASS"
@@ -6888,7 +6888,7 @@
           "status": "PASS",
           "sum_pair_overlap_area_m2": 0
         },
-        "signed_volume_m3": 0.003034211092115359,
+        "signed_volume_m3": 0.0030342110921153676,
         "status": "PASS",
         "triangles": 56,
         "vertices": 34
@@ -6902,8 +6902,8 @@
         "max_cavity_vertex_outside_reference_stock_m": 4.038436252074007e-15,
         "max_interior_boundary_area_m2": 0.0,
         "partition_planes": 17,
-        "partition_volume_balance_error_m3": 2.300937218535637e-14,
-        "reference_envelope_volume_in3": 13155.075066300415,
+        "partition_volume_balance_error_m3": 2.3842039453825237e-14,
+        "reference_envelope_volume_in3": 13155.075066300411,
         "scope": "Saved prejoinery envelope, after any explicitly listed exterior trim, is covered by final timber wood plus exported removed cavity within the stated tolerances. Added tenons outside this envelope are not counted as removed stock.",
         "status": "PASS",
         "verified_cells": 353
@@ -6919,7 +6919,7 @@
     {
       "components": [
         {
-          "centroid_margin_m": 0.025399999999999825,
+          "centroid_margin_m": 0.025399999999999846,
           "convex_volume_error_m3": 1.0842021724855044e-19,
           "coverage_mode": "one convex cell",
           "interior_boundary_area_m2": 0.0,
@@ -7008,7 +7008,7 @@
         "max_cavity_vertex_outside_reference_stock_m": 4.440892098500626e-16,
         "max_interior_boundary_area_m2": 0.0,
         "partition_planes": 19,
-        "partition_volume_balance_error_m3": 9.270362255620057e-15,
+        "partition_volume_balance_error_m3": 9.596490269103697e-15,
         "reference_envelope_volume_in3": 3357.736659610111,
         "scope": "Saved prejoinery envelope, after any explicitly listed exterior trim, is covered by final timber wood plus exported removed cavity within the stated tolerances. Added tenons outside this envelope are not counted as removed stock.",
         "status": "PASS",
@@ -7025,7 +7025,7 @@
     {
       "components": [
         {
-          "centroid_margin_m": 0.008620338367855584,
+          "centroid_margin_m": 0.008620338367856029,
           "convex_volume_error_m3": 2.439454888092385e-19,
           "coverage_mode": "one convex cell",
           "interior_boundary_area_m2": 0.0,
@@ -7066,11 +7066,11 @@
         "convex_cells": 4,
         "declared_external_trim": null,
         "failures": [],
-        "max_cavity_vertex_outside_reference_stock_m": 4.6629367034256575e-15,
+        "max_cavity_vertex_outside_reference_stock_m": 4.551914400963142e-15,
         "max_interior_boundary_area_m2": 0.0,
         "partition_planes": 2,
-        "partition_volume_balance_error_m3": 7.355227538141662e-16,
-        "reference_envelope_volume_in3": 4025.950085184112,
+        "partition_volume_balance_error_m3": 7.494005416219807e-16,
+        "reference_envelope_volume_in3": 4025.9500851841062,
         "scope": "Saved prejoinery envelope, after any explicitly listed exterior trim, is covered by final timber wood plus exported removed cavity within the stated tolerances. Added tenons outside this envelope are not counted as removed stock.",
         "status": "PASS",
         "verified_cells": 4
@@ -7097,7 +7097,7 @@
       ],
       "cross_sections": {
         "max_missing_area_m2": 7.171630859375e-16,
-        "max_receiver_overlap_area_m2": 2.74658203125e-16,
+        "max_receiver_overlap_area_m2": 2.776205074042082e-16,
         "sections": 49,
         "status": "PASS"
       },
@@ -7127,10 +7127,10 @@
         "convex_cells": 4,
         "declared_external_trim": null,
         "failures": [],
-        "max_cavity_vertex_outside_reference_stock_m": 1.3322676295501878e-15,
+        "max_cavity_vertex_outside_reference_stock_m": 1.7763568394002505e-15,
         "max_interior_boundary_area_m2": 0.0,
         "partition_planes": 2,
-        "partition_volume_balance_error_m3": 3.3306690738754696e-16,
+        "partition_volume_balance_error_m3": 2.636779683484747e-16,
         "reference_envelope_volume_in3": 4025.950085184347,
         "scope": "Saved prejoinery envelope, after any explicitly listed exterior trim, is covered by final timber wood plus exported removed cavity within the stated tolerances. Added tenons outside this envelope are not counted as removed stock.",
         "status": "PASS",
@@ -7145,7 +7145,7 @@
       }
     }
   ],
-  "cavity_sha256": "e404ff821e1577f362fb2f645fc6426e0c1abd77af08a524bf61b35ed6e9f749",
+  "cavity_sha256": "22a6cde7f5aab9fc534a0b387581473ce0e896c8e3117dfff99356e8479feb94",
   "failures": [],
   "legacy_residual_diagnostics": [],
   "methods": {
@@ -7157,7 +7157,7 @@
     "sampling": "Independent solid-angle winding numbers for deterministic scrambled Sobol points and inward-offset triangle centroids.",
     "sections": "Canonical bay coordinates; scaled Clipper2 2D differences/intersections on three axes, just above/below vertex events and at interval quartiles. Exact coplanar boundary planes are excluded."
   },
-  "model_sha256": "b3a0363a2c2e83a541038d0ff39ad86e38d8b79ceb7415cde9174d74273086a2",
+  "model_sha256": "15fc4fbbbdd520e4d0b332140b0f80daaf8f8b36d112dceac429cab598a4d331",
   "model_variant": "baseline",
   "no_cavity_stock_completeness": {
     "CC0": {
@@ -7185,7 +7185,7 @@
       "max_interior_boundary_area_m2": 0.0,
       "partition_planes": 0,
       "partition_volume_balance_error_m3": 0.0,
-      "reference_envelope_volume_in3": 854.0588745030078,
+      "reference_envelope_volume_in3": 854.0588745030076,
       "scope": "Saved prejoinery envelope, after any explicitly listed exterior trim, is covered by final timber wood plus exported removed cavity within the stated tolerances. Added tenons outside this envelope are not counted as removed stock.",
       "status": "PASS",
       "verified_cells": 1
@@ -7275,7 +7275,7 @@
       "max_interior_boundary_area_m2": 0.0,
       "partition_planes": 0,
       "partition_volume_balance_error_m3": 0.0,
-      "reference_envelope_volume_in3": 854.0588745030078,
+      "reference_envelope_volume_in3": 854.0588745030076,
       "scope": "Saved prejoinery envelope, after any explicitly listed exterior trim, is covered by final timber wood plus exported removed cavity within the stated tolerances. Added tenons outside this envelope are not counted as removed stock.",
       "status": "PASS",
       "verified_cells": 1
@@ -7305,7 +7305,7 @@
       "max_interior_boundary_area_m2": 0.0,
       "partition_planes": 0,
       "partition_volume_balance_error_m3": 0.0,
-      "reference_envelope_volume_in3": 693.0813686473715,
+      "reference_envelope_volume_in3": 693.0813686473714,
       "scope": "Saved prejoinery envelope, after any explicitly listed exterior trim, is covered by final timber wood plus exported removed cavity within the stated tolerances. Added tenons outside this envelope are not counted as removed stock.",
       "status": "PASS",
       "verified_cells": 1
@@ -7335,7 +7335,7 @@
       "max_interior_boundary_area_m2": 0.0,
       "partition_planes": 0,
       "partition_volume_balance_error_m3": 0.0,
-      "reference_envelope_volume_in3": 693.0813686473706,
+      "reference_envelope_volume_in3": 693.0813686473709,
       "scope": "Saved prejoinery envelope, after any explicitly listed exterior trim, is covered by final timber wood plus exported removed cavity within the stated tolerances. Added tenons outside this envelope are not counted as removed stock.",
       "status": "PASS",
       "verified_cells": 1
@@ -7365,7 +7365,7 @@
       "max_interior_boundary_area_m2": 0.0,
       "partition_planes": 0,
       "partition_volume_balance_error_m3": 0.0,
-      "reference_envelope_volume_in3": 693.0813686473706,
+      "reference_envelope_volume_in3": 693.0813686473709,
       "scope": "Saved prejoinery envelope, after any explicitly listed exterior trim, is covered by final timber wood plus exported removed cavity within the stated tolerances. Added tenons outside this envelope are not counted as removed stock.",
       "status": "PASS",
       "verified_cells": 1
@@ -7395,7 +7395,7 @@
       "max_interior_boundary_area_m2": 0.0,
       "partition_planes": 0,
       "partition_volume_balance_error_m3": 0.0,
-      "reference_envelope_volume_in3": 693.0813686473715,
+      "reference_envelope_volume_in3": 693.0813686473714,
       "scope": "Saved prejoinery envelope, after any explicitly listed exterior trim, is covered by final timber wood plus exported removed cavity within the stated tolerances. Added tenons outside this envelope are not counted as removed stock.",
       "status": "PASS",
       "verified_cells": 1
@@ -7533,7 +7533,7 @@
       "max_interior_boundary_area_m2": 0.0,
       "partition_planes": 0,
       "partition_volume_balance_error_m3": 0.0,
-      "reference_envelope_volume_in3": 526.1228611112676,
+      "reference_envelope_volume_in3": 526.1228611112836,
       "scope": "Saved prejoinery envelope, after any explicitly listed exterior trim, is covered by final timber wood plus exported removed cavity within the stated tolerances. Added tenons outside this envelope are not counted as removed stock.",
       "status": "PASS",
       "verified_cells": 1
@@ -7671,7 +7671,7 @@
       "max_interior_boundary_area_m2": 0.0,
       "partition_planes": 0,
       "partition_volume_balance_error_m3": 0.0,
-      "reference_envelope_volume_in3": 526.1228611113006,
+      "reference_envelope_volume_in3": 526.1228611113052,
       "scope": "Saved prejoinery envelope, after any explicitly listed exterior trim, is covered by final timber wood plus exported removed cavity within the stated tolerances. Added tenons outside this envelope are not counted as removed stock.",
       "status": "PASS",
       "verified_cells": 1
@@ -7740,7 +7740,7 @@
       "max_interior_boundary_area_m2": 0.0,
       "partition_planes": 0,
       "partition_volume_balance_error_m3": 0.0,
-      "reference_envelope_volume_in3": 526.1228611112812,
+      "reference_envelope_volume_in3": 526.122861111263,
       "scope": "Saved prejoinery envelope, after any explicitly listed exterior trim, is covered by final timber wood plus exported removed cavity within the stated tolerances. Added tenons outside this envelope are not counted as removed stock.",
       "status": "PASS",
       "verified_cells": 1
@@ -7823,7 +7823,7 @@
       "max_interior_boundary_area_m2": 0.0,
       "partition_planes": 0,
       "partition_volume_balance_error_m3": 0.0,
-      "reference_envelope_volume_in3": 597.256518052347,
+      "reference_envelope_volume_in3": 597.2565180523468,
       "scope": "Saved prejoinery envelope, after any explicitly listed exterior trim, is covered by final timber wood plus exported removed cavity within the stated tolerances. Added tenons outside this envelope are not counted as removed stock.",
       "status": "PASS",
       "verified_cells": 1
@@ -8033,7 +8033,7 @@
       "max_interior_boundary_area_m2": 0.0,
       "partition_planes": 0,
       "partition_volume_balance_error_m3": 0.0,
-      "reference_envelope_volume_in3": 7679.999999999995,
+      "reference_envelope_volume_in3": 7679.999999999997,
       "scope": "Saved prejoinery envelope, after any explicitly listed exterior trim, is covered by final timber wood plus exported removed cavity within the stated tolerances. Added tenons outside this envelope are not counted as removed stock.",
       "status": "PASS",
       "verified_cells": 1
@@ -8063,7 +8063,7 @@
       "max_interior_boundary_area_m2": 0.0,
       "partition_planes": 0,
       "partition_volume_balance_error_m3": 0.0,
-      "reference_envelope_volume_in3": 7679.999999999997,
+      "reference_envelope_volume_in3": 7679.999999999995,
       "scope": "Saved prejoinery envelope, after any explicitly listed exterior trim, is covered by final timber wood plus exported removed cavity within the stated tolerances. Added tenons outside this envelope are not counted as removed stock.",
       "status": "PASS",
       "verified_cells": 1
@@ -8093,7 +8093,7 @@
       "max_interior_boundary_area_m2": 0.0,
       "partition_planes": 0,
       "partition_volume_balance_error_m3": 0.0,
-      "reference_envelope_volume_in3": 7679.999999999997,
+      "reference_envelope_volume_in3": 7679.999999999995,
       "scope": "Saved prejoinery envelope, after any explicitly listed exterior trim, is covered by final timber wood plus exported removed cavity within the stated tolerances. Added tenons outside this envelope are not counted as removed stock.",
       "status": "PASS",
       "verified_cells": 1
@@ -8141,7 +8141,7 @@
     "connected_cavity_components": 144,
     "convex_cavity_components": 144,
     "declared_exterior_brace_trims": 16,
-    "max_cavity_outside_reference_stock_m": 4.884981308350689e-15,
+    "max_cavity_outside_reference_stock_m": 4.773959005888173e-15,
     "max_missing_section_area_m2": 1.8001794815063477e-15,
     "max_raw_timber_triangle_overlap_area_m2": 0.0,
     "max_receiver_overlap_section_area_m2": 2.0050883104247573e-14,
@@ -8194,7 +8194,7 @@
         "status": "PASS",
         "sum_pair_overlap_area_m2": 0
       },
-      "signed_volume_m3": 0.09930056229201945,
+      "signed_volume_m3": 0.09930056229201946,
       "status": "PASS",
       "triangles": 88,
       "vertices": 46
@@ -8232,7 +8232,7 @@
         "status": "PASS",
         "sum_pair_overlap_area_m2": 0
       },
-      "signed_volume_m3": 0.09930056229201945,
+      "signed_volume_m3": 0.09930056229201946,
       "status": "PASS",
       "triangles": 88,
       "vertices": 46
@@ -8270,7 +8270,7 @@
         "status": "PASS",
         "sum_pair_overlap_area_m2": 0
       },
-      "signed_volume_m3": 0.09930056229201945,
+      "signed_volume_m3": 0.09930056229201946,
       "status": "PASS",
       "triangles": 88,
       "vertices": 46
@@ -8308,7 +8308,7 @@
         "status": "PASS",
         "sum_pair_overlap_area_m2": 0
       },
-      "signed_volume_m3": 0.09930056229201945,
+      "signed_volume_m3": 0.09930056229201946,
       "status": "PASS",
       "triangles": 88,
       "vertices": 46
@@ -8479,7 +8479,7 @@
         "status": "PASS",
         "sum_pair_overlap_area_m2": 0
       },
-      "signed_volume_m3": 0.013995517436249374,
+      "signed_volume_m3": 0.01399551743624937,
       "status": "PASS",
       "triangles": 16,
       "vertices": 10
@@ -8555,7 +8555,7 @@
         "status": "PASS",
         "sum_pair_overlap_area_m2": 0
       },
-      "signed_volume_m3": 0.013995517436249374,
+      "signed_volume_m3": 0.01399551743624937,
       "status": "PASS",
       "triangles": 16,
       "vertices": 10
@@ -8802,7 +8802,7 @@
         "status": "PASS",
         "sum_pair_overlap_area_m2": 0
       },
-      "signed_volume_m3": 0.0663164545416219,
+      "signed_volume_m3": 0.06631645454162187,
       "status": "PASS",
       "triangles": 50,
       "vertices": 27
@@ -8878,7 +8878,7 @@
         "status": "PASS",
         "sum_pair_overlap_area_m2": 0
       },
-      "signed_volume_m3": 0.06631645454162188,
+      "signed_volume_m3": 0.06631645454162187,
       "status": "PASS",
       "triangles": 50,
       "vertices": 27
@@ -8954,7 +8954,7 @@
         "status": "PASS",
         "sum_pair_overlap_area_m2": 0
       },
-      "signed_volume_m3": 0.0663164545416219,
+      "signed_volume_m3": 0.06631645454162187,
       "status": "PASS",
       "triangles": 50,
       "vertices": 27
@@ -9030,7 +9030,7 @@
         "status": "PASS",
         "sum_pair_overlap_area_m2": 0
       },
-      "signed_volume_m3": 0.06631645454162188,
+      "signed_volume_m3": 0.06631645454162187,
       "status": "PASS",
       "triangles": 50,
       "vertices": 27
@@ -9391,7 +9391,7 @@
         "status": "PASS",
         "sum_pair_overlap_area_m2": 0
       },
-      "signed_volume_m3": 0.010166102184867328,
+      "signed_volume_m3": 0.01016610218486733,
       "status": "PASS",
       "triangles": 52,
       "vertices": 28
@@ -9410,7 +9410,7 @@
         "status": "PASS",
         "sum_pair_overlap_area_m2": 0
       },
-      "signed_volume_m3": 0.01016610218486728,
+      "signed_volume_m3": 0.010166102184867276,
       "status": "PASS",
       "triangles": 52,
       "vertices": 28
@@ -9429,7 +9429,7 @@
         "status": "PASS",
         "sum_pair_overlap_area_m2": 0
       },
-      "signed_volume_m3": 0.010166102184867333,
+      "signed_volume_m3": 0.010166102184867335,
       "status": "PASS",
       "triangles": 52,
       "vertices": 28
@@ -9505,7 +9505,7 @@
         "status": "PASS",
         "sum_pair_overlap_area_m2": 0
       },
-      "signed_volume_m3": 0.010166102184867333,
+      "signed_volume_m3": 0.010166102184867335,
       "status": "PASS",
       "triangles": 52,
       "vertices": 28
@@ -9543,7 +9543,7 @@
         "status": "PASS",
         "sum_pair_overlap_area_m2": 0
       },
-      "signed_volume_m3": 0.010166102184867328,
+      "signed_volume_m3": 0.01016610218486733,
       "status": "PASS",
       "triangles": 52,
       "vertices": 28
@@ -9562,7 +9562,7 @@
         "status": "PASS",
         "sum_pair_overlap_area_m2": 0
       },
-      "signed_volume_m3": 0.01016610218486728,
+      "signed_volume_m3": 0.010166102184867276,
       "status": "PASS",
       "triangles": 52,
       "vertices": 28
@@ -9581,7 +9581,7 @@
         "status": "PASS",
         "sum_pair_overlap_area_m2": 0
       },
-      "signed_volume_m3": 0.010166102184867333,
+      "signed_volume_m3": 0.010166102184867335,
       "status": "PASS",
       "triangles": 52,
       "vertices": 28
@@ -9657,7 +9657,7 @@
         "status": "PASS",
         "sum_pair_overlap_area_m2": 0
       },
-      "signed_volume_m3": 0.010166102184867333,
+      "signed_volume_m3": 0.010166102184867335,
       "status": "PASS",
       "triangles": 52,
       "vertices": 28
@@ -9866,7 +9866,7 @@
         "status": "PASS",
         "sum_pair_overlap_area_m2": 0
       },
-      "signed_volume_m3": 0.21327596243077507,
+      "signed_volume_m3": 0.2132759624307751,
       "status": "PASS",
       "triangles": 100,
       "vertices": 52
@@ -9904,7 +9904,7 @@
         "status": "PASS",
         "sum_pair_overlap_area_m2": 0
       },
-      "signed_volume_m3": 0.21327596243077507,
+      "signed_volume_m3": 0.2132759624307751,
       "status": "PASS",
       "triangles": 100,
       "vertices": 52
@@ -9942,7 +9942,7 @@
         "status": "PASS",
         "sum_pair_overlap_area_m2": 0
       },
-      "signed_volume_m3": 0.21327596243077507,
+      "signed_volume_m3": 0.2132759624307751,
       "status": "PASS",
       "triangles": 100,
       "vertices": 52
@@ -9980,7 +9980,7 @@
         "status": "PASS",
         "sum_pair_overlap_area_m2": 0
       },
-      "signed_volume_m3": 0.21327596243077507,
+      "signed_volume_m3": 0.2132759624307751,
       "status": "PASS",
       "triangles": 100,
       "vertices": 52
@@ -10018,7 +10018,7 @@
         "status": "PASS",
         "sum_pair_overlap_area_m2": 0
       },
-      "signed_volume_m3": 0.12690142361600004,
+      "signed_volume_m3": 0.12690142361600001,
       "status": "PASS",
       "triangles": 44,
       "vertices": 24
@@ -10094,7 +10094,7 @@
         "status": "PASS",
         "sum_pair_overlap_area_m2": 0
       },
-      "signed_volume_m3": 0.12690142361600004,
+      "signed_volume_m3": 0.12690142361600001,
       "status": "PASS",
       "triangles": 44,
       "vertices": 24
