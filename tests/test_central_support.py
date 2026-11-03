@@ -63,7 +63,20 @@ assert p['display_assumptions']['top_elevation_in']==109
 assert not p['reference_end_faces'] and all(x is None for x in p['angles'].values())
 assert consolidate_fixture(model['parts'])==model['parts'] and consolidate_aids(model['parts'])==model['parts']
 from support_fit import fit_fixture
-assert fit_fixture(model)[0]==p
+# TIMESTAMP START 2026-11-03T08:41:52-05:00 | REVISION R004949
+def assert_same_fixture(actual,expected,path='fixture'):
+ """Keep topology and metadata exact; allow 1 pm numerical regeneration noise."""
+ if isinstance(expected,dict):
+  assert actual.keys()==expected.keys(),path
+  for key in expected:assert_same_fixture(actual[key],expected[key],path+'.'+key)
+ elif isinstance(expected,list):
+  assert isinstance(actual,list) and len(actual)==len(expected),path
+  for i,(a,b) in enumerate(zip(actual,expected)):assert_same_fixture(a,b,f'{path}[{i}]')
+ elif isinstance(expected,float):
+  assert isinstance(actual,(int,float)) and math.isclose(actual,expected,rel_tol=0,abs_tol=1e-12),(path,actual,expected)
+ else:assert actual==expected,(path,actual,expected)
+assert_same_fixture(fit_fixture(model)[0],p)
+# TIMESTAMP END 2026-11-03T08:41:52-05:00 | REVISION R004949
 # Verify scoped migration is byte-idempotent in a sandbox copy, never regenerated timber.
 with tempfile.TemporaryDirectory(prefix='octagon-support-test-') as tmp:
  root=Path(tmp);(root/'src').mkdir();(root/'docs').mkdir()
