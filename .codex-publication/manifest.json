@@ -1,0 +1,734 @@
+{
+  "_change_history": {
+    "revision": "R004926",
+    "timestamp": "2026-11-03T07:37:58-05:00"
+  },
+  "base_commit": "4e22d871dff1a8b6004651b33c1bc3440b3aefe7",
+  "files": [
+    {
+      "path": ".github/workflows/check.yml",
+      "size": 5280,
+      "sha256": "4884489a99ecc515a155be14656ec0f574fd830faeb3425a031d5953703a91c8",
+      "git_blob_sha": "ec6037091bc6fa6901f57f7e089602f3e3e2e941",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/brace-sections.json",
+      "size": 52608,
+      "sha256": "4ec1a2919db531a74653294d36247b1e9a5e80aeb8dea7b3c84fd1153b6eea48",
+      "git_blob_sha": "17fe88ff46308e4a1cfad95aa15ea055453f1aea",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/brace-visibility-audit.json",
+      "size": 24285,
+      "sha256": "dd04c4e624599738949125144505375b1410f3a3d36c432b8cd68cb6ecd06821",
+      "git_blob_sha": "1c8e5c820b09f88fe1291213bd619040d718c15d",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/cavity-fit-audit.json",
+      "size": 3185868,
+      "sha256": "f8ed79fdd819a3bf4cbbaad31aa8237b60145bcb1090481096b2a905335c2b3b",
+      "git_blob_sha": "fc911e553732adc3c2a77cd581e5a7a97c04fd73",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/joinery-verification.json",
+      "size": 71516,
+      "sha256": "e995e10b4a8365507ad87056da448359e09c4055fe5d239e9a95287cc4bd40fb",
+      "git_blob_sha": "2f6ada1c655cf507c2a6bb284547ae3390fe56c6",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/mudroom-proposal.md",
+      "size": 6822,
+      "sha256": "dcac96cfba98c25cd8d978acdac85765ba4c49424422b17d9ec830f405173619",
+      "git_blob_sha": "11aa26ad5250641a1aabb107f1fd47edb11040ff",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/seated-support-fit.json",
+      "size": 6874,
+      "sha256": "ea681cfe84902e95d67b2ac353fd0186ff3b3a85693bf2f01ed786f5464822a6",
+      "git_blob_sha": "338d92004e33f9e8a5258107ebe247a1d9aad519",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/seated-support-migration.json",
+      "size": 54278,
+      "sha256": "0704073a89f84230a2e7abde05178a6a1f2a2c7734e1db6a7644014aad1c0984",
+      "git_blob_sha": "363260055fda01761147a2ca12ff74dac40ff181",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/seated-support.md",
+      "size": 986,
+      "sha256": "99f5b30c6dbf61a29ddf5fd87375895649ce576635da173e7ef6aadb6fe2d356",
+      "git_blob_sha": "2a1bc594828ff37675ad0e2448f8008a8c66d2e3",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/step-lap-proposed-cavity-fit-audit.json",
+      "size": 3166238,
+      "sha256": "293b17dd008e40e70573e981483f96e0dfc11d937e70fdc1697eef4f7434656f",
+      "git_blob_sha": "2e50e929e1439a02ea9866daebb10da625e15646",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/top-entry-cavity-fit-audit.json",
+      "size": 169572,
+      "sha256": "5e18f18c1220e49e30ec8fc52a323da39e5dabf00bab301805cf4235c72aef19",
+      "git_blob_sha": "e03ee1193912dea7e96cd4bd14db49c8ea4b5e69",
+      "mode": "100644"
+    },
+    {
+      "path": "public/review/brace-sections.svg",
+      "size": 4871,
+      "sha256": "82838abe241c8765d95cca8237ef536061142ae1b4d9508ca778fc9e203e9203",
+      "git_blob_sha": "03a2fbefe03fdb0dd7a53e2f3690841b0061e904",
+      "mode": "100644"
+    },
+    {
+      "path": "public/review/interior-braces.png",
+      "size": 32508,
+      "sha256": "084a25917b27bc8befd7c3d955dd2d799dbbe0eef20f1a9921d8a2a1f07469f7",
+      "git_blob_sha": "0f19783c77a76e58675ac62bc23463302b6c5ee6",
+      "mode": "100644"
+    },
+    {
+      "path": "public/review/r01-edge-model-audit.json",
+      "size": 135669,
+      "sha256": "a88fe9d545711811e94653b7e23487ae306955ade262cab298a5a6c647369f80",
+      "git_blob_sha": "a64a7a883788e547d637fd898ce5424847b37903",
+      "mode": "100644"
+    },
+    {
+      "path": "scripts/audit_brace_sections.py",
+      "size": 8041,
+      "sha256": "eaa667bf0817dca750d186fd085dc25d3452cb1313edaea6d24dc84e48673fc4",
+      "git_blob_sha": "27850225e3a9bedd5c3dcee3e8703dbdeef33c4f",
+      "mode": "100644"
+    },
+    {
+      "path": "scripts/audit_structure.py",
+      "size": 27687,
+      "sha256": "176929c280158e6ec2dbe5916c4efd922fd1e90d0fab227d13352505e366d919",
+      "git_blob_sha": "91ac09071245bf16196e72fe378792b10d39f141",
+      "mode": "100644"
+    },
+    {
+      "path": "scripts/build.py",
+      "size": 25352,
+      "sha256": "5bd57d6e953bcca51071026d32db97226b2c952957988d3b11394701d9558f66",
+      "git_blob_sha": "3c2f8e3969faeace47e928fe8e10d6187519cdea",
+      "mode": "100644"
+    },
+    {
+      "path": "scripts/build_floor_solids.py",
+      "size": 7625,
+      "sha256": "db4de23c4c29d0801490069c62ea5577fce6877f83477e6a2ac5a696a1e90ad3",
+      "git_blob_sha": "6f6fdb78007c016eb6ddda89a34426216a30a7d6",
+      "mode": "100644"
+    },
+    {
+      "path": "scripts/compact-disassembly-route.json",
+      "size": 369751,
+      "sha256": "335a59b31b993b546f5415e5436e36925f778d2ac81c15e8126684b7a54f5a8a",
+      "git_blob_sha": "c66bcc337d06c1da39dcb3b92004e03229510233",
+      "mode": "100644"
+    },
+    {
+      "path": "scripts/export_top_entry_cavities.py",
+      "size": 13269,
+      "sha256": "1f76aee55326c30232b43cde43d3e4159158dbb14394f208e0d7e4557fe8141f",
+      "git_blob_sha": "bd31bdfdcd00fa558cafaf7108d76b0e94b023dd",
+      "mode": "100644"
+    },
+    {
+      "path": "scripts/fit_mudroom_joinery.py",
+      "size": 21224,
+      "sha256": "efd2aea674201f30e12b33f1d39718537b0093b147f99ccf2e32da5b5739798c",
+      "git_blob_sha": "2119743e4ced88072fc19ef3f2b013a6160098e9",
+      "mode": "100644"
+    },
+    {
+      "path": "scripts/fit_wall_joinery.py",
+      "size": 11340,
+      "sha256": "506053356d97f9967f5365c5f3031d070e020099e85dd627f06d0eb2b35256b5",
+      "git_blob_sha": "c483b244cbe3306161111f212e5561520e1971c7",
+      "mode": "100644"
+    },
+    {
+      "path": "scripts/plan_architectural_disassembly.py",
+      "size": 39002,
+      "sha256": "4a605fe614bc9c5907b659e69fdbf3a8836b039fb376640e5bb1c803c8a804f8",
+      "git_blob_sha": "4f212678ddb8c0cd01861de5226055c095eca453",
+      "mode": "100644"
+    },
+    {
+      "path": "scripts/plan_compact_disassembly.py",
+      "size": 19013,
+      "sha256": "794e29e2932ebcaea65f6e4023157820e024757bb72142ab86ac95be193c495e",
+      "git_blob_sha": "905708ddbf6332aacf65958ac0b0aaf1b4f398fc",
+      "mode": "100644"
+    },
+    {
+      "path": "scripts/plan_main_disassembly.py",
+      "size": 26880,
+      "sha256": "f1ba3879f596ea70c4947cd0739b0df7f2b2db0e3725e4e3af22ae37d147f8f6",
+      "git_blob_sha": "c7ab322ddbb0bcca6814bd0dc91bab0f78420074",
+      "mode": "100644"
+    },
+    {
+      "path": "scripts/plan_porch_disassembly.py",
+      "size": 14244,
+      "sha256": "d8b7611d49f4e6a23ca1361d823eafbe28673daafa0f2ce91493f71a95e6ecd9",
+      "git_blob_sha": "12404996050cc9c001f70cb5bc04d5a3fbedd8b2",
+      "mode": "100644"
+    },
+    {
+      "path": "scripts/support_fit.py",
+      "size": 4227,
+      "sha256": "432ec4eac85287c33319adc555d006f6510d1bf2548fd76d21ff98e27aa2726d",
+      "git_blob_sha": "d8c0e6963e4e4022132bb0881aa11421b0a9aa89",
+      "mode": "100644"
+    },
+    {
+      "path": "scripts/top_entry_heads.py",
+      "size": 20691,
+      "sha256": "dfcbf1ac8bb5b631960991ce1b1188389331b45cbdde34fd437cbb95fa14dd20",
+      "git_blob_sha": "249dff26dd4847603d2e00ac6db3a48ed784fc51",
+      "mode": "100644"
+    },
+    {
+      "path": "src/architectural-disassembly-plans.json",
+      "size": 2044654,
+      "sha256": "5db48a62109cfa0c823c961d29c5e7f0837e2ab2dd4237fa833a14cbb722e1b2",
+      "git_blob_sha": "080f9c108a0fa431781e422ee51934533a56505d",
+      "mode": "100644"
+    },
+    {
+      "path": "src/architectural-plans.js",
+      "size": 19362,
+      "sha256": "a93d12341dad633f76388daa83d51bdc9f5cb14f3ecf5bae1faaaef61be028e8",
+      "git_blob_sha": "2064c54f8325bd90202a29e0a9557095427400a1",
+      "mode": "100644"
+    },
+    {
+      "path": "src/cavity-data.json",
+      "size": 767875,
+      "sha256": "d96878522614c2620afc5db627939f4e025384786799f22ee1adf2c72f083859",
+      "git_blob_sha": "86d60b875cdc9a47afb005682e2dc23ee2e80346",
+      "mode": "100644"
+    },
+    {
+      "path": "src/disassembly-plan.json",
+      "size": 2044654,
+      "sha256": "5db48a62109cfa0c823c961d29c5e7f0837e2ab2dd4237fa833a14cbb722e1b2",
+      "git_blob_sha": "080f9c108a0fa431781e422ee51934533a56505d",
+      "mode": "100644"
+    },
+    {
+      "path": "src/disassembly.js",
+      "size": 3315,
+      "sha256": "7992a407f2cacb79da14ce20ca84fada459a2e41937cd3a321578ac68c6ed390",
+      "git_blob_sha": "2f8c8533097dec47c0b4ddf5d0bda8b904f8c9c6",
+      "mode": "100644"
+    },
+    {
+      "path": "src/display-presets.js",
+      "size": 3170,
+      "sha256": "e0dbf59c673711306db1edb131b9b6661d8e92ebde5f08d99d605c29c9c9b42a",
+      "git_blob_sha": "d42e1fa8d55e37dd90af91b5cfd2ea83aa3850b2",
+      "mode": "100644"
+    },
+    {
+      "path": "src/enclosure-fit.json",
+      "size": 301163,
+      "sha256": "ea04de361e209e577dc959e1ca8a4db22c9668e4def32a49d46bc7bea2fd4f0f",
+      "git_blob_sha": "eb8b294fd7bb427d90578be44d94f7afe315dcde",
+      "mode": "100644"
+    },
+    {
+      "path": "src/floor-foundation-solids.json",
+      "size": 260415,
+      "sha256": "98d604e0cecdd96679cac4c07f68074cfead30597ed67a98b99b6994a41f07a3",
+      "git_blob_sha": "6f4111bed90da2ce11c62efc420dd7c46eea9804",
+      "mode": "100644"
+    },
+    {
+      "path": "src/floor-foundation.js",
+      "size": 7760,
+      "sha256": "b5f0ab34cf6218a6c8d166b3eaa3aafdd57c2dd2a63e5046425172df51ae3341",
+      "git_blob_sha": "89473f3929e1cd0473da4c2dc871c221aa7a7740",
+      "mode": "100644"
+    },
+    {
+      "path": "src/geometry-overlays.js",
+      "size": 13500,
+      "sha256": "c18e77dd89337be5d06afca1b2718370eed0689b594d0aaaf2a8012d94b8db21",
+      "git_blob_sha": "21238f4f9ecef32cebd6112fb45a3e521a84c8c8",
+      "mode": "100644"
+    },
+    {
+      "path": "src/load-review-data.json",
+      "size": 109542,
+      "sha256": "8f3fc4156452daefa87c630a93eeda827c7d8192754ca955ea5bf0fd63e99b7f",
+      "git_blob_sha": "3291d8188d449c2ae72dcf66d9ff6c0d43b1825a",
+      "mode": "100644"
+    },
+    {
+      "path": "src/main-disassembly-plan.json",
+      "size": 1418946,
+      "sha256": "4ba51bdd3e74e40994e240007c437f14dc5b837bfc88bdfb78eb004c3cacef69",
+      "git_blob_sha": "540171877e8eb31efadb2114e3187fd1db1edbf1",
+      "mode": "100644"
+    },
+    {
+      "path": "src/material-groups.json",
+      "size": 9708,
+      "sha256": "32c87bf0389b79de11440b0da49c980640c312aa2605d09d107f062f2464267a",
+      "git_blob_sha": "791c1303864ab6bcc52ece55a4dcebdeb52f408d",
+      "mode": "100644"
+    },
+    {
+      "path": "src/model-data.json",
+      "size": 2299373,
+      "sha256": "999a07def4626a4eb8db63f28b492984e7981f60ece7122671e3d359aed809a9",
+      "git_blob_sha": "e81e8617bd13a4e9128476aa444c1250e8e1052e",
+      "mode": "100644"
+    },
+    {
+      "path": "src/model-variants.js",
+      "size": 5574,
+      "sha256": "c59a645485afa7b4aeae4e7f4c32e35568175699d8bb43aedd50eda7ea309900",
+      "git_blob_sha": "a1b8b6caff2fcf9d90b3df58a9ad6ff99bb42a66",
+      "mode": "100644"
+    },
+    {
+      "path": "src/mudroom-joinery-fit.json",
+      "size": 1943679,
+      "sha256": "eae308c7d156b680db9241fb503d7ba98e84b80ca1307b2ebfd65d06f734ac49",
+      "git_blob_sha": "73cb2cab4e4c5ae43c0255ea355d23e5ebca5a57",
+      "mode": "100644"
+    },
+    {
+      "path": "src/mudroom-roof.js",
+      "size": 8789,
+      "sha256": "480fc669689b8a23439d0579383883dfe8c2f602bf9f14c70133d0c69ff3bcec",
+      "git_blob_sha": "2a700bf55530704fd8ae496ab05b67f057446318",
+      "mode": "100644"
+    },
+    {
+      "path": "src/mudroom.js",
+      "size": 20003,
+      "sha256": "b6c696b05747fc2436690524cbc4d0cbe8a1e6046d2257bf829b4c91c351b9e4",
+      "git_blob_sha": "93de6d24fdbfa910b8284d6cf696dd6deeaec0cb",
+      "mode": "100644"
+    },
+    {
+      "path": "src/schematic-walls.js",
+      "size": 16099,
+      "sha256": "634e26f0bb4190b80a60da7fa75e84d5411ae4fd7b211966a739c4264e29f41c",
+      "git_blob_sha": "9410db7b69dfdf570c885b7b175a8067bdd954c0",
+      "mode": "100644"
+    },
+    {
+      "path": "src/seated-support.json",
+      "size": 219571,
+      "sha256": "1ed19bd19037af4a84b6f18d229212d39aa320b431baa5caecb52764f5bdf34f",
+      "git_blob_sha": "04a137dfc1430a8d1278e5b8f633e50e80fde001",
+      "mode": "100644"
+    },
+    {
+      "path": "src/step-lap-proposal.json",
+      "size": 2454560,
+      "sha256": "421d4c1e46d1799d8fd45124ca3e2a48d47c2f61185106b2ed0c678ba72a47dc",
+      "git_blob_sha": "1252af30e8234088169d1ade408976203d12b800",
+      "mode": "100644"
+    },
+    {
+      "path": "src/step-lap-proposed-cavities.json",
+      "size": 824839,
+      "sha256": "e74225b87d543422a80ca29d7e81e75b5db24489573ba2c03a156998ed695317",
+      "git_blob_sha": "4663da2c475cd8cf156412bec167e0954d4e6e3e",
+      "mode": "100644"
+    },
+    {
+      "path": "src/step-lap-proposed-enclosure-fit.json",
+      "size": 301082,
+      "sha256": "cb5adecd9ba9f448684352a19319ff9ace8c89010adad5540cef1795afca51f4",
+      "git_blob_sha": "cf216d188b6c27a7636ed1fbd2441be01bc23ac2",
+      "mode": "100644"
+    },
+    {
+      "path": "src/step-lap-proposed-load-review.json",
+      "size": 20497,
+      "sha256": "023d3e1bca32803d94d527da3a0d09578b48d4149a192d8ff218d0671d59d6f2",
+      "git_blob_sha": "435f4cce17659d13806af0958349655ffed08687",
+      "mode": "100644"
+    },
+    {
+      "path": "src/step-lap-proposed-material-groups.json",
+      "size": 6754,
+      "sha256": "5b447535f041d6a1d34e5e3597926f32c7c66d542aefec68368a22af2a925e6b",
+      "git_blob_sha": "5b10ed21ee6456d9fb8537b99ff6aee1be1ea0c5",
+      "mode": "100644"
+    },
+    {
+      "path": "src/step-lap-proposed-model.json",
+      "size": 2307258,
+      "sha256": "e99ab6900997487cb5db94db248d1a6d78658d1992d41942db7d8f050b790167",
+      "git_blob_sha": "298192211c5492903b38cbbfc5954c10eaedb7b0",
+      "mode": "100644"
+    },
+    {
+      "path": "src/top-entry-proposal.json",
+      "size": 1035626,
+      "sha256": "093a1060f03ad1a607f5f237769c5d6a71e8198f4737fda9d1bca2d44ad7e14c",
+      "git_blob_sha": "c3e65f2f393b91356d9ee5d4a1998ff2ce0781b1",
+      "mode": "100644"
+    },
+    {
+      "path": "src/top-entry-proposed-cavities.json",
+      "size": 2256943,
+      "sha256": "081648c0e51d1436bc282c3bb92e4de875f28015a927cc63cb115661ac61ca3f",
+      "git_blob_sha": "b7ab3b75614213b7b8b25e2a0835c022894cdbb7",
+      "mode": "100644"
+    },
+    {
+      "path": "src/top-entry-proposed-enclosure-fit.json",
+      "size": 301082,
+      "sha256": "043daa81e923f875323e9bb2580e2564cdb7d814c60187e462843fcec7cecc2c",
+      "git_blob_sha": "ee3503eb6c2ae2878590860f33e30ec75c4307b6",
+      "mode": "100644"
+    },
+    {
+      "path": "src/top-entry-proposed-load-review.json",
+      "size": 21454,
+      "sha256": "5072d4d1746b264c0cc71f0292d2c93ce34e76db766d8151aec7866d222f6e9a",
+      "git_blob_sha": "ae50f1da084a3d4297ef860549ea1c52c69dd85a",
+      "mode": "100644"
+    },
+    {
+      "path": "src/top-entry-proposed-material-groups.json",
+      "size": 6941,
+      "sha256": "f13ac3cf6ea11a48942630f32e3ac8527908882a7719f18c73dfeec601ce362b",
+      "git_blob_sha": "b816829d7a9f53f57c14294c2ede1dde1dfa7161",
+      "mode": "100644"
+    },
+    {
+      "path": "src/top-entry-proposed-model.json",
+      "size": 2672569,
+      "sha256": "5862387fddeed73b3be3a31856c3ce834ad8f6b402f8769c214f26fb3a75bc49",
+      "git_blob_sha": "aedc17f66b81c3dae5b22c871c58afed51e93628",
+      "mode": "100644"
+    },
+    {
+      "path": "src/viewer.template.html",
+      "size": 170332,
+      "sha256": "d392cf6d7740966aae58a5b58c3e8ab310770a9fc993c2ff45af1fc4c6be790a",
+      "git_blob_sha": "e7c8cf7d5f639f6c9219933f840af5996ad3274d",
+      "mode": "100644"
+    },
+    {
+      "path": "src/wall-joinery-fit.json",
+      "size": 3447595,
+      "sha256": "1123c8981c9492012093e1aed2f2f447cf28609fbd13c07cb2c2dbec2b29482b",
+      "git_blob_sha": "3e2fe40c70580167999b7d7103ca014113105bff",
+      "mode": "100644"
+    },
+    {
+      "path": "src/wall-joinery.js",
+      "size": 1241,
+      "sha256": "1822e828eb5108c055b6cda3751ed80f88364ccdbcd99db3edf3ba5148ed3886",
+      "git_blob_sha": "e4f18f129314a6821c88dd0bd8f6241edae1a7ee",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/architectural-plans.cjs",
+      "size": 4572,
+      "sha256": "5353c80d5fe30109da9ab52a48aeab9a509e38ec4a27ea7bd68bd42231a2cd99",
+      "git_blob_sha": "3992747c1e46d25d67cf7cf370ef84c2cc195066",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/check_viewer.cjs",
+      "size": 27228,
+      "sha256": "3af92cf5fcececef27befc0b8fa62ad59e44664266b6f61a50a3d2be6d5849d1",
+      "git_blob_sha": "9dd2dd6170409f8ce40bb042fdc029f7b633b39a",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/disassembly.cjs",
+      "size": 2847,
+      "sha256": "27df0fea8594d4d085b54887e25430b03d31103a14b7b340832832ff139f4b0d",
+      "git_blob_sha": "8e8bff614154677be8edac2aef5fa7c31d9d74eb",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/display-presets.cjs",
+      "size": 3452,
+      "sha256": "e42bc90e2d1464e8568e0a83fe9bd416ce098ab67b2aa3d391ad75df80cafed8",
+      "git_blob_sha": "be94553e0a4965d91de0d0908ae4555c0dc5fbe3",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/floor-foundation.cjs",
+      "size": 2197,
+      "sha256": "1c981479a42f7abd27d8ce59f82bfb0a7957125820f6d046613d7bb555d267e8",
+      "git_blob_sha": "bdf0cfc84c8d91b2c39a5a24abc8d5bc5a3169a1",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/foundation-integration.cjs",
+      "size": 2629,
+      "sha256": "2b1735566936b04b49088c38c0191048578631adcfd5da441c691a8d9cc0c2b6",
+      "git_blob_sha": "74c3b0abb9d1d4c4e4f870edaea405973bf1cd5b",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/geometry-overlays.cjs",
+      "size": 17492,
+      "sha256": "662ec81f289c0cbc88a26558767950664287d365e26be6cfe4baeb1744473372",
+      "git_blob_sha": "2ba92f0eb17eae6fa650886fcfc03404b701b585",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/model-variants.cjs",
+      "size": 20178,
+      "sha256": "1600f2556a57e9352306000cf58b71999ac9c070f256d7011be9c74f1428ce65",
+      "git_blob_sha": "cf6ca1891d776970cdd9c193f2dca5e1fe7fc351",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/mudroom-roof.cjs",
+      "size": 3709,
+      "sha256": "1c22fcfa98a7705fe8dc0c2269a0951cf74355072bd88552400dc51396b1b9d3",
+      "git_blob_sha": "a6e37729f0b0accec08028829b2339d2f77041c4",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/mudroom.cjs",
+      "size": 9343,
+      "sha256": "eae349f991e6cbb4251e128ceb1d6ae456d08f2e149c00713bdac57000d39063",
+      "git_blob_sha": "b5a10d908387051e34301fc6ee3b2fc9d62a890e",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/multi-selection.cjs",
+      "size": 8785,
+      "sha256": "ad0787ce65eb3419855e98d890db7bb0d0e563879199d4dd210f65bfffb850e9",
+      "git_blob_sha": "2770b46f1f3925b2dbfd2a835b4dbd0b2f284ad1",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/plan-print.cjs",
+      "size": 1968,
+      "sha256": "88b3082be701ded947596dc602f3b4d192556da61137c1d62c8938a43493c7ca",
+      "git_blob_sha": "df67505ecf791fa98de0a04afbbdd77a4ff8b65f",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/schematic-walls.cjs",
+      "size": 9985,
+      "sha256": "80cd402b07a053ca473320f722ec40c48693951b0f505962c9404c3246d2e6eb",
+      "git_blob_sha": "0ac018543e450e3b267b5bb73f6dda64571a1356",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/surface-contrast.cjs",
+      "size": 8769,
+      "sha256": "1e7331354970cc4903c897105cd1b7ce8a630c339d64eb7f552902949ff1ab79",
+      "git_blob_sha": "01d10423173721ade820903eb4bcaddb30c0c8fb",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/test_architectural_disassembly.py",
+      "size": 4664,
+      "sha256": "39c802a50083c52c8e3f6de11fc394a7b9e60cd13fd2eec40f834f613b989624",
+      "git_blob_sha": "9c7487bc913a023382516d3aac58a1d63211fcc2",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/test_central_support.py",
+      "size": 7082,
+      "sha256": "a0394c728689d2b07b97243ee63f7a617df9d6b1c8b1a6cb6f584f829d2e2e50",
+      "git_blob_sha": "a6743ca6561745adcd8ab0b5b414c8f80e9f7dad",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/test_enclosure_fit.py",
+      "size": 15733,
+      "sha256": "f66666ad70d73595619fb9de2efa134ad48819364b127b425174f6d0a92434fa",
+      "git_blob_sha": "5e62a574eb9ecb9e214a659bc51e47d6a6b4124f",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/test_floor_bearing.py",
+      "size": 1574,
+      "sha256": "c30d3260c988935cc1935ad77163f1ecf44840fde71bc5db1647e56eb4e4e45a",
+      "git_blob_sha": "0808d1de2733d71e9fed415775c95245aace7961",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/test_floor_solids.py",
+      "size": 1655,
+      "sha256": "dd6a53450bd4eafa0d54c8587b482f0d5ed1d23c54098af017c04c426adc42b7",
+      "git_blob_sha": "5619d97d453bd3b519ea4603489e8de735965156",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/test_main_disassembly.py",
+      "size": 4521,
+      "sha256": "7fc050720dc622ba600bd7cdc41f131fd0654c970330a1a9ad38545cb4142f57",
+      "git_blob_sha": "9a16ce43788fd290a2d5fa7a58a8c443316287d9",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/test_mudroom_joinery.py",
+      "size": 9040,
+      "sha256": "87622bdf830dab17196fb91f77699ca628843dd18a5b4911b5a7747b65c5ff52",
+      "git_blob_sha": "f72ef1c28c727ffb45632a3b370bca224f370124",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/test_seated_support.py",
+      "size": 1543,
+      "sha256": "5e5fb1cffed8b2c2ebf4a7323fb3ab64a07304f1be52331b7c5da6b8b3eb0680",
+      "git_blob_sha": "f0ac650ee5f7a840e0c4c83313d0f7e133e32756",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/test_step_lap.py",
+      "size": 11993,
+      "sha256": "d23691c8e5da033f5b6c08010d5914f47e46a863b9a26f9e8ab4d5da7012ad5c",
+      "git_blob_sha": "33fc39e2bf9ff8ac18399b5f9da93ee8a85884cd",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/test_wall_joinery.py",
+      "size": 2332,
+      "sha256": "3df4f44c834e594fc33a76c2d005f3fa65de7a9dc1091a200df3933f7012db9c",
+      "git_blob_sha": "6c23b2750794c8282d3b3fd43a9407251103e7a6",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/validate_exports.py",
+      "size": 4277,
+      "sha256": "09cfbeaaa0972f3dab428a6d8841a78ce9f53e069fda9f6e2bd19a271963cff4",
+      "git_blob_sha": "2775674d65077b2894c809cdd20c04c88f1082ad",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/viewer-regression.cjs",
+      "size": 40664,
+      "sha256": "71cb91a554640f84a2bb20e6ba9f59da7c273791032f51cf36aa230af28bb3ee",
+      "git_blob_sha": "4e9742b26497b5a9dad7faaf167a84ac3bbe61a8",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/wall-framing-viewer.cjs",
+      "size": 5700,
+      "sha256": "63e7249c0ee10cfd4436615ea73cf0196418950420e8dac6dca602eb53c1b762",
+      "git_blob_sha": "38575fc0c11d4047f259ffddb856fd477c791f81",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/wall-joinery.cjs",
+      "size": 1160,
+      "sha256": "9e0f1de63c731365defa5f922585e919e264e159d4ff5cfdb27a872eff10a44d",
+      "git_blob_sha": "1e0f329dc13ccbcd551f38c8bf5026154af5ac70",
+      "mode": "100644"
+    }
+  ],
+  "index": {
+    "path": "index.html",
+    "size": 22672301,
+    "sha256": "ece50477a5a6a8a9f07ea070516e52f52048f7ec817893653594b1933069a94d",
+    "git_blob_sha": "108de7aa7d5cafe625156612f25092a469a8476b",
+    "mode": "100644"
+  },
+  "bundle_sha256": "d71edc207d554bfd151d3d30aa13963c0b689ed1877d4c3c9b36ac6fd13dc4ef",
+  "chunks": [
+    {
+      "path": ".codex-publication/update.part000",
+      "local": "/tmp/octagon-update.part000",
+      "size": 393216,
+      "git_blob_sha": "077cac111def52cca4823a10afedb8e2ab7b9148"
+    },
+    {
+      "path": ".codex-publication/update.part001",
+      "local": "/tmp/octagon-update.part001",
+      "size": 393216,
+      "git_blob_sha": "b7ea523074ee7586295ba630ca6626f1295b587a"
+    },
+    {
+      "path": ".codex-publication/update.part002",
+      "local": "/tmp/octagon-update.part002",
+      "size": 393216,
+      "git_blob_sha": "4f4940484228778a61c92804c19c80d275c4cd68"
+    },
+    {
+      "path": ".codex-publication/update.part003",
+      "local": "/tmp/octagon-update.part003",
+      "size": 393216,
+      "git_blob_sha": "b526603ca2a8b1363bcbe0c0a08932cdca217595"
+    },
+    {
+      "path": ".codex-publication/update.part004",
+      "local": "/tmp/octagon-update.part004",
+      "size": 393216,
+      "git_blob_sha": "0ed75d8ad42ba1679693432d97c4b2b331c7e30a"
+    },
+    {
+      "path": ".codex-publication/update.part005",
+      "local": "/tmp/octagon-update.part005",
+      "size": 393216,
+      "git_blob_sha": "3948ad0d1357333095ee92b803ac43c59c20afbf"
+    },
+    {
+      "path": ".codex-publication/update.part006",
+      "local": "/tmp/octagon-update.part006",
+      "size": 393216,
+      "git_blob_sha": "de965586203a7bc5376f04eab528a5bf0658c72e"
+    },
+    {
+      "path": ".codex-publication/update.part007",
+      "local": "/tmp/octagon-update.part007",
+      "size": 393216,
+      "git_blob_sha": "5537a3add7e14898173c9c9b2fabc9e6581b3a37"
+    },
+    {
+      "path": ".codex-publication/update.part008",
+      "local": "/tmp/octagon-update.part008",
+      "size": 393216,
+      "git_blob_sha": "524c40f9d1694927f945b3a02a84d65202e33a5a"
+    },
+    {
+      "path": ".codex-publication/update.part009",
+      "local": "/tmp/octagon-update.part009",
+      "size": 393216,
+      "git_blob_sha": "d253585994659522e99b539bfebf7d3da78b65a0"
+    },
+    {
+      "path": ".codex-publication/update.part010",
+      "local": "/tmp/octagon-update.part010",
+      "size": 393216,
+      "git_blob_sha": "6207a25f6f3aee086be191602ca265caf35f9ef4"
+    },
+    {
+      "path": ".codex-publication/update.part011",
+      "local": "/tmp/octagon-update.part011",
+      "size": 393216,
+      "git_blob_sha": "0e7f4d35cc271384ddbc6496f8701ed827648152"
+    },
+    {
+      "path": ".codex-publication/update.part012",
+      "local": "/tmp/octagon-update.part012",
+      "size": 215810,
+      "git_blob_sha": "3f32cb0e1a99734c5bf064f38015fe38031bc839"
+    }
+  ]
+}
