@@ -11,17 +11,28 @@ from audit_cavity_fit import coplanar_surface_overlaps
 from regeneration_equivalence import assert_equivalent,test_guard
 I=.0254;raw=(R/'src/model-data.json').read_bytes();base=json.loads(raw);sha=hashlib.sha256(raw).hexdigest();data=json.loads((R/'src/step-lap-proposal.json').read_text());full=json.loads((R/'src/step-lap-proposed-model.json').read_text())
 B={p['id']:p for p in base['parts']};P={p['id']:p for p in full['parts']};changed={f'{family}{k}' for k in range(8) for family in ['B','P','R']}|{f'J{k}-{side}' for k in range(8) for side in ['0','2']}
-assert sha=='15fc4fbbbdd520e4d0b332140b0f80daaf8f8b36d112dceac429cab598a4d331','Baseline changed: re-review assumptions and regenerate, never silently rebase'
-# The sole accepted baseline change was the seated temporary aid. Freeze every
-# other original component independently of the mutable migration report.
+# TIMESTAMP START 2026-11-02T15:15:55-05:00 | REVISION R004802
+# TIMESTAMP START 2026-11-02T17:44:11-05:00 | REVISION R004823
+assert sha=='fb7bf67b4bae2c41c4e637647ad23caa6167345301af0befa780f4aa943519be','Baseline changed: re-review assumptions and regenerate, never silently rebase'
+# TIMESTAMP END 2026-11-02T17:44:11-05:00 | REVISION R004823
 proof_raw=(R/'docs/pre-support-baseline-part-hashes.json').read_bytes()
 assert hashlib.sha256(proof_raw).hexdigest()=='cbc6bba49f4b8389ffe0780d672aaf4b7bdccdd253825971b1625751dd51885f'
 proof=json.loads(proof_raw)
-assert set(proof)==set(B)-{'M-TMP'} and len(proof)==114
+# TIMESTAMP START 2026-11-02T17:44:11-05:00 | REVISION R004823
+added={f'K{k}-C' for k in range(8)}|{p['id'] for p in base['parts'] if p.get('group')=='joinery_pegs'}
+assert base['main_face_brace_revision']['revision']=='R004820'
+# TIMESTAMP END 2026-11-02T17:44:11-05:00 | REVISION R004823
+brace_scope={f'{family}{k}' for k in range(8) for family in ['P','B','T']}|{f'K{k}-{side}' for k in range(8) for side in ['A','B']}
+assert set(proof)==set(B)-{'M-TMP'}-added and len(proof)==114
+assert base['main_brace_revision']['revision']=='R004802'
 for name,expected in proof.items():
- assert hashlib.sha256(json.dumps(B[name],sort_keys=True,separators=(',',':')).encode()).hexdigest()==expected,(name,'non-aid baseline changed')
+ if name not in brace_scope:
+  assert hashlib.sha256(json.dumps(B[name],sort_keys=True,separators=(',',':')).encode()).hexdigest()==expected,(name,'unrelated baseline changed')
+# TIMESTAMP END 2026-11-02T15:15:55-05:00 | REVISION R004802
 assert data['baseline_model_sha256']==sha and data['canonical_model_unchanged'] is True
-assert set(B)==set(P) and len([p for p in full['parts'] if p['is_timber']])==104
+# TIMESTAMP START 2026-11-02T15:15:55-05:00 | REVISION R004802
+assert set(B)==set(P) and len([p for p in full['parts'] if p['is_timber']])==112
+# TIMESTAMP END 2026-11-02T15:15:55-05:00 | REVISION R004802
 for name in B:
  if name not in changed:assert B[name]==P[name],name
  else:
@@ -37,14 +48,18 @@ for name,s in S.items():
  assert str(s.status())=='Error.NoError' and len(s.decompose())==1,name
  if name in changed:
   v=np.asarray(P[name]['vertices']);t=P[name]['triangles'];edges=collections.Counter(tuple(sorted((tri[j],tri[(j+1)%3]))) for tri in t for j in range(3));assert all(c==2 for c in edges.values()),name
-# All 3340 pairs affected by any of the 40 changed members are checked independently.
+# TIMESTAMP START 2026-11-02T15:15:55-05:00 | REVISION R004802
+# All 3660 pairs affected by the 40 perimeter members are checked independently.
+# TIMESTAMP END 2026-11-02T15:15:55-05:00 | REVISION R004802
 count=0
 for a,b in itertools.combinations(S,2):
  if not ({a,b}&changed):continue
  count+=1;aa=S[a].bounding_box();bb=S[b].bounding_box()
  if any(aa[j+3]<bb[j]-1e-9 or bb[j+3]<aa[j]-1e-9 for j in range(3)):continue
  assert (S[a]^S[b]).volume()/I**3<1e-6,(a,b,'interference')
-assert count==3340 and not data['combined_geometry_audit']['interferences'] and not data['combined_geometry_audit']['lost_neighbor_contacts']
+# TIMESTAMP START 2026-11-02T15:15:55-05:00 | REVISION R004802
+assert count==3660 and not data['combined_geometry_audit']['interferences'] and not data['combined_geometry_audit']['lost_neighbor_contacts']
+# TIMESTAMP END 2026-11-02T15:15:55-05:00 | REVISION R004802
 for v in data['variants']:
  a,b=v['member_ids'];old_a,old_b=solid(B[a]),solid(B[b]);new_a,new_b=S[a],S[b]
  # Authoritative closed tongue/pocket masks avoid unstable subtraction of
@@ -94,7 +109,9 @@ assert sum(v['handed_reflection'] for v in data['variants'])==8
 assert not data['combined_geometry_audit']['held_interfaces']
 assert data['combined_geometry_audit']['implemented_interface_count']==24
 assert abs(data['baseline_timber_volume_m3']-data['proposed_timber_volume_m3'])<1e-10
-assert len(full['proposed_member_volume_centroids'])==104
+# TIMESTAMP START 2026-11-02T15:15:55-05:00 | REVISION R004802
+assert len(full['proposed_member_volume_centroids'])==112
+# TIMESTAMP END 2026-11-02T15:15:55-05:00 | REVISION R004802
 # TIMESTAMP START 2026-11-02T10:36:58-05:00 | REVISION R004765
 # Coplanar normalization must cancel a coincident internal face but preserve
 # legitimate opposite-facing, disjoint regions on that same support plane.
@@ -133,4 +150,6 @@ test_mesh_guard()
 print('Planar regeneration:',normalize_planar_retriangulation(ag,data),normalize_planar_retriangulation(fg,full))
 print("Regeneration roundoff:",assert_equivalent(ag,data,("proposal",)),assert_equivalent(fg,full,("model",)))
 assert (R/'src/model-data.json').read_bytes()==raw
-print('PASS: actual complementary tongue/pocket CSG; matched closed profiles; original-stock bounds; all 24 interfaces / 3340 affected pairs clear;104 member volumes/centroids refreshed; baseline exact; no fabricated strength/retention/manual claims')
+# TIMESTAMP START 2026-11-02T15:15:55-05:00 | REVISION R004802
+print('PASS: actual complementary tongue/pocket CSG; matched closed profiles; original-stock bounds; all 24 interfaces / 3660 affected pairs clear;112 member volumes/centroids refreshed; baseline exact; no fabricated strength/retention/manual claims')
+# TIMESTAMP END 2026-11-02T15:15:55-05:00 | REVISION R004802

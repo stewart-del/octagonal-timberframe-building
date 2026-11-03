@@ -4,7 +4,9 @@ const TimberSchematicWalls=(()=>{
  const names=orientation.faceNames;
  const usage={N:'Solid wall + bookshelves',NW:'Small window',W:'Door',SW:'Small window',S:'Solid wall + bookshelves',SE:'Small window',E:'Large window',NE:'Small window'};
  const triangles=[[0,2,1],[0,3,2],[4,5,6],[4,6,7],[0,1,5],[0,5,4],[1,2,6],[1,6,5],[2,3,7],[2,7,6],[3,0,4],[3,4,7]];
- function build(parts,{applyFit=true}={}){
+ // TIMESTAMP START 2026-11-02T18:13:09-05:00 | REVISION R004829
+ function build(parts,{applyFit=true,splitInfill=true}={}){
+ // TIMESTAMP END 2026-11-02T18:13:09-05:00 | REVISION R004829
   const components=[],walls=[],railConnections=[];
   for(let k=0;k<8;k++){
    const a=parts.find(p=>p.id==='P'+k).center,b=parts.find(p=>p.id==='P'+((k+1)%8)).center;
@@ -23,8 +25,21 @@ const TimberSchematicWalls=(()=>{
    const width=right(0)-left(0),height=Math.min(...parts.find(p=>p.id==='B'+k).vertices.map(v=>v[1])),base=Math.max(Math.min(...leftPost.vertices.map(v=>v[1])),Math.min(...rightPost.vertices.map(v=>v[1]))),dir=names[k],kind=usage[dir];
    const world=(x,y,z)=>[center[0]+u[0]*x+out[0]*z,y,center[2]+u[2]*x+out[2]*z];
    // TIMESTAMP START 2026-11-02T13:42:10-05:00 | REVISION R004782
-   const railDepth=.1524,railHeight=.1524,lowRail=(dir==='E'?.75:1.0)-railHeight;
-   const railLevels=[[base,base+railHeight],[lowRail,lowRail+railHeight],[1.30,1.30+railHeight],[2.10,Math.min(height,2.10+railHeight)]];
+   // TIMESTAMP START 2026-11-02T18:40:43-05:00 | REVISION R004837
+   // Keep the six-inch framing faces; recess the two-inch depth outside the
+   // interior knee-brace faces. These remain proposed secondary members.
+   const frameFace=.1524,railInner=dir==='W'?.0254:.0508,railOuter=dir==='W'?.0762:.1016,
+    infillInner=dir==='W'?.03095:.08255,infillOuter=dir==='W'?.05:.1016,
+    sillInner=dir==='W'?-.0762:-.0508,railHeight=frameFace,lowRail=(dir==='E'?.75:1.0)-railHeight;
+   // TIMESTAMP END 2026-11-02T18:40:43-05:00 | REVISION R004837
+   // TIMESTAMP START 2026-11-02T14:35:15-05:00 | REVISION R004794
+   // Align the upper girt with the window heads, leaving a visible infill band
+   // beneath the unchanged main beam. The west door retains its clear height.
+   // TIMESTAMP START 2026-11-02T18:32:34-05:00 | REVISION R004834
+   const upperRail=dir==='W'?2.10:1.85;
+   // TIMESTAMP END 2026-11-02T18:32:34-05:00 | REVISION R004834
+   const railLevels=[[base,base+railHeight],[lowRail,lowRail+railHeight],[1.30,1.30+railHeight],[upperRail,Math.min(height,upperRail+railHeight)]];
+   // TIMESTAMP END 2026-11-02T14:35:15-05:00 | REVISION R004794
    // Partition rectangles before meshing: neighboring wood shares faces, never volume.
    function subtractRect(rect,cut){
     const [x0,x1,y0,y1]=rect,[a,b,c,d]=cut,lo=Math.max(x0,a),hi=Math.min(x1,b),bottom=Math.max(y0,c),top=Math.min(y1,d);
@@ -32,7 +47,9 @@ const TimberSchematicWalls=(()=>{
     return [[x0,lo,y0,y1],[hi,x1,y0,y1],[lo,hi,y0,bottom],[lo,hi,top,y1]].filter(([a,b,c,d])=>b>a+1e-10&&d>c+1e-10);
    }
    function subtractAll(rect,cuts){return cuts.reduce((spans,cut)=>spans.flatMap(r=>subtractRect(r,cut)),[rect]);}
-   function box(label,x0,x1,y0,y1,z0=-.05,z1=.05,color=[.88,.86,.75],framingRole=null){
+   // TIMESTAMP START 2026-11-02T18:40:43-05:00 | REVISION R004837
+   function box(label,x0,x1,y0,y1,z0=infillInner,z1=infillOuter,color=[.88,.86,.75],framingRole=null){
+   // TIMESTAMP END 2026-11-02T18:40:43-05:00 | REVISION R004837
     if(x1<=x0||y1<=y0)return;
     const vertices=[[x0,y0,z0],[x1,y0,z0],[x1,y1,z0],[x0,y1,z0],[x0,y0,z1],[x1,y0,z1],[x1,y1,z1],[x0,y1,z1]].map(v=>{if(Math.abs(v[0]+width/2)<1e-8)v[0]=left(v[2]);else if(Math.abs(v[0]-width/2)<1e-8)v[0]=right(v[2]);return world(...v);});
     const isFraming=framingRole!==null,offset=isFraming?out.map((v,i)=>v*(.45+.12*(y0+y1)/height)+u[i]*(x0+x1)*.16+(i===1?(y0+y1-height)*.12:0)):[0,0,0];
@@ -42,13 +59,24 @@ const TimberSchematicWalls=(()=>{
    }
    let opening=null;
    if(kind==='Door')opening={width:.95,bottom:base,top:2.10};
-   else if(kind.includes('window'))opening={width:width*(dir==='E'?.65:.30),bottom:dir==='E'?.75:1.0,top:dir==='E'?1.95:1.85};
+   // TIMESTAMP START 2026-11-02T18:32:34-05:00 | REVISION R004834
+   else if(kind.includes('window'))opening={width:width*(dir==='E'?.65:.30),bottom:dir==='E'?.75:1.0,top:upperRail};
+   // TIMESTAMP END 2026-11-02T18:32:34-05:00 | REVISION R004834
    const framingRects=[],openingRects=opening?[[-opening.width/2,opening.width/2,opening.bottom,opening.top]]:[];
-   function frame(label,rect,role){framingRects.push(rect);return box(label,...rect,-railDepth/2,railDepth/2,[.50,.30,.17],role);}
+   // TIMESTAMP START 2026-11-02T18:40:43-05:00 | REVISION R004837
+   function frame(label,rect,role){
+    framingRects.push(rect);
+    const bottomSill=label.startsWith('rail0-'),piece=box(label,...rect,bottomSill?sillInner:railInner,railOuter,[.50,.30,.17],role);
+    if(bottomSill)piece.memberSection='Proposed six-by-six bottom sill with an inward floor ledge';
+    return piece;
+   }
+   // TIMESTAMP END 2026-11-02T18:40:43-05:00 | REVISION R004837
    if(opening){
     const w=opening.width/2;
-    frame('rail-jamb-left',[-w-railDepth,-w,base+railHeight,height],'jamb');
-    frame('rail-jamb-right',[w,w+railDepth,base+railHeight,height],'jamb');
+    // TIMESTAMP START 2026-11-02T18:40:43-05:00 | REVISION R004837
+    frame('rail-jamb-left',[-w-frameFace,-w,base+railHeight,height],'jamb');
+    frame('rail-jamb-right',[w,w+frameFace,base+railHeight,height],'jamb');
+    // TIMESTAMP END 2026-11-02T18:40:43-05:00 | REVISION R004837
     frame('rail-header',[-w,w,opening.top,Math.min(height,opening.top+railHeight)],'header');
     if(opening.bottom>base)frame('rail-sill',[-w,w,opening.bottom-railHeight,opening.bottom],'sill');
    }
@@ -60,19 +88,39 @@ const TimberSchematicWalls=(()=>{
     const spans=subtractAll([-width/2,width/2,y0,y1],[...openingRects,...framingRects]);
     for(let j=0;j<spans.length;j++){
      const [x0,x1,lo,hi]=spans[j],piece=frame('rail'+level+'-'+j,spans[j],'rail');
-     for(const [end,x,postId] of [['A',x0,leftPost.id],['B',x1,rightPost.id]])if(Math.abs(Math.abs(x)-width/2)<1e-8)railConnections.push({face:dir,railId:piece.id,end,postId,center:world(end==='A'?left(0):right(0),(lo+hi)/2,0),height:hi-lo,depth:railDepth,axis:u,normal:out,status:'Rail ends at post face; proposed mating joint and capacity unresolved. Not an installed connection.'});
+     // TIMESTAMP START 2026-11-02T18:40:43-05:00 | REVISION R004837
+     const midDepth=(piece.localBounds[4]+piece.localBounds[5])/2,memberDepth=piece.localBounds[5]-piece.localBounds[4];
+     for(const [end,x,postId] of [['A',x0,leftPost.id],['B',x1,rightPost.id]])if(Math.abs(Math.abs(x)-width/2)<1e-8)railConnections.push({face:dir,railId:piece.id,end,postId,center:world(end==='A'?left(midDepth):right(midDepth),(lo+hi)/2,midDepth),height:hi-lo,depth:memberDepth,axis:u,normal:out,status:'Rail ends at post face; proposed mating joint and capacity unresolved. Not an installed connection.'});
+     // TIMESTAMP END 2026-11-02T18:40:43-05:00 | REVISION R004837
     }
    }
    // Infill fills only the complement of the aperture and modeled wood framing.
-   subtractAll([-width/2,width/2,base,height],[...openingRects,...framingRects]).forEach((rect,i)=>box('infill-'+i,...rect));
+   // TIMESTAMP START 2026-11-02T18:13:09-05:00 | REVISION R004829
+   subtractAll([-width/2,width/2,base,height],[...openingRects,...framingRects]).forEach((rect,i)=>{
+    const seam=64*.0254,[x0,x1,y0,y1]=rect,parent='SCHEM-'+dir+'-infill-'+i;
+    if(splitInfill&&y0<seam&&y1>seam){
+     for(const [side,bottom,top] of [['lower',y0,seam],['upper',seam,y1]]){
+      const piece=box('infill-'+i+'-'+side,x0,x1,bottom,top);
+      Object.assign(piece,{panelAssemblyId:parent,panelSeamY_M:seam,panelSeamPart:side,
+       // TIMESTAMP START 2026-11-02T18:40:43-05:00 | REVISION R004837
+       unsplitLocalBounds:[...rect,infillInner,infillOuter],panelConstruction:'Separate three-quarter-inch infill boards behind the interior braces, with an exact shared horizontal seam; attachment and weather sealing unresolved.'});
+       // TIMESTAMP END 2026-11-02T18:40:43-05:00 | REVISION R004837
+     }
+    }else box('infill-'+i,...rect);
+   });
+   // TIMESTAMP END 2026-11-02T18:13:09-05:00 | REVISION R004829
    // TIMESTAMP END 2026-11-02T13:42:10-05:00 | REVISION R004782
    if(dir==='N'||dir==='S'){
     // Built-ins span the framing bay and meet the inside of the horizontal rails.
     // No freestanding side cabinet; shelf fastening and book loads are unresolved.
     const sw=width/2-.0127;
-    for(let j=0;j<6;j++)box('shelf'+j,-sw,sw,base+.1524+j*.35,base+.1778+j*.35,-.40,-.0762,[.67,.49,.31]);
+    // TIMESTAMP START 2026-11-02T18:40:43-05:00 | REVISION R004837
+    for(let j=0;j<6;j++)box('shelf'+j,-sw,sw,base+.1524+j*.35,base+.1778+j*.35,-.40,railInner,[.67,.49,.31]);
+    // TIMESTAMP END 2026-11-02T18:40:43-05:00 | REVISION R004837
    }
-   walls.push({face:dir,postIds:['P'+k,'P'+((k+1)%8)],usage:kind,width,height,base,opening,center:world(0,1.15,.06),normal:out,frameFit:{endClearance:0,topClearance:0,leftAtFaces:[left(-.05),left(.05)],rightAtFaces:[right(-.05),right(.05)],status:'Infill meets modeled post footprints and beam underside; attachment design unchanged.'}});
+   // TIMESTAMP START 2026-11-02T18:40:43-05:00 | REVISION R004837
+   walls.push({face:dir,postIds:['P'+k,'P'+((k+1)%8)],usage:kind,width,height,base,opening,center:world(0,1.15,infillOuter),normal:out,frameFit:{endClearance:0,topClearance:0,leftAtFaces:[left(infillInner),left(infillOuter)],rightAtFaces:[right(infillInner),right(infillOuter)],framingDepthBounds:[railInner,railOuter],infillDepthBounds:[infillInner,infillOuter],status:'Recessed infill meets modeled post footprints; secondary framing meets the beam underside. Attachment design unresolved.'}});
+   // TIMESTAMP END 2026-11-02T18:40:43-05:00 | REVISION R004837
   }
   const cupolaWindows=[];
   for(let k=0;k<8;k++){

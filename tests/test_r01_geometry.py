@@ -19,9 +19,16 @@ def radial(k):return [math.cos(k*math.pi/4),math.sin(k*math.pi/4),0]
 
 class R01Geometry(unittest.TestCase):
  def test_inventory_and_retirement(self):
-  self.assertEqual(len(PART),115)
+  # TIMESTAMP START 2026-11-02T15:15:55-05:00 | REVISION R004802
+  # TIMESTAMP START 2026-11-02T17:32:31-05:00 | REVISION R004820
+  self.assertEqual(len(PART),171)
+  self.assertEqual(sum(p.get('group')=='joinery_pegs' for p in PART.values()),48)
+  # TIMESTAMP END 2026-11-02T17:32:31-05:00 | REVISION R004820
+  # TIMESTAMP END 2026-11-02T15:15:55-05:00 | REVISION R004802
   wood=[p['id'] for p in PART.values() if p['is_timber']]
-  expected={name for k in range(8) for name in [f'P{k}',f'B{k}',f'T{k}',f'R{k}',f'C{k}',f'L{k}-S',f'L{k}-H',f'K{k}-A',f'K{k}-B',f'J{k}-0',f'J{k}-2',f'CR{k}',f'CC{k}']}
+  # TIMESTAMP START 2026-11-02T15:15:55-05:00 | REVISION R004802
+  expected={name for k in range(8) for name in [f'P{k}',f'B{k}',f'T{k}',f'R{k}',f'C{k}',f'L{k}-S',f'L{k}-H',f'K{k}-A',f'K{k}-B',f'K{k}-C',f'J{k}-0',f'J{k}-2',f'CR{k}',f'CC{k}']}
+  # TIMESTAMP END 2026-11-02T15:15:55-05:00 | REVISION R004802
   self.assertEqual(set(wood),expected)
   self.assertEqual(set(DATA['r01']['retired_ids']),{f'J{k}-1' for k in range(8)})
   self.assertTrue(all(pid not in PART for pid in DATA['r01']['retired_ids']))
@@ -36,7 +43,11 @@ class R01Geometry(unittest.TestCase):
     self.assertTrue(all(count==2 for count in edges.values()),'Mesh must be closed, including the optional envelope shell')
     self.assertGreater(p['fit_geometry']['volume_m3'],0)
     # Final tenons extend beyond the historical envelope; solid validity is checked independently.
-    self.assertEqual(p.get('fit_geometry',{}).get('structural_design_status'),'UNVERIFIED PROPOSED JOINERY' if p['is_timber'] else 'NOT DESIGNED')
+    # TIMESTAMP START 2026-11-02T17:32:31-05:00 | REVISION R004820
+    if p.get('group')=='joinery_pegs':
+     self.assertIn('STRENGTH UNVERIFIED',p['cut_status']);self.assertTrue(p['is_fastener']);self.assertIsNone(p['fit_geometry']['machining_clearance_m'])
+    else:self.assertEqual(p.get('fit_geometry',{}).get('structural_design_status'),'UNVERIFIED PROPOSED JOINERY' if p['is_timber'] else 'NOT DESIGNED')
+    # TIMESTAMP END 2026-11-02T17:32:31-05:00 | REVISION R004820
 
  def test_diameter_datums(self):
   for k in range(8):
@@ -100,7 +111,9 @@ class R01Geometry(unittest.TestCase):
   for p in PART.values():
    self.assertIsNone(p['fit_geometry']['machining_clearance_m'])
    self.assertNotIn('conceptual_key_width_fraction',p['fit_geometry'])
-   if p['group'] not in ['cupola_rafters','cupola_ceiling','cupola_plywood','temporary_fixture']:self.assertEqual({f['id'] for f in p['reference_end_faces']},{p['id']+'-A',p['id']+'-B'})
+   # TIMESTAMP START 2026-11-02T17:32:31-05:00 | REVISION R004820
+   if p['group'] not in ['cupola_rafters','cupola_ceiling','cupola_plywood','temporary_fixture','joinery_pegs'] and not p.get('main_face_brace_joinery'):self.assertEqual({f['id'] for f in p['reference_end_faces']},{p['id']+'-A',p['id']+'-B'})
+   # TIMESTAMP END 2026-11-02T17:32:31-05:00 | REVISION R004820
   materials=json.loads((ROOT/'src/material-groups.json').read_text())
   self.assertEqual(materials['source_sha256'],hashlib.sha256((ROOT/'src/model-data.json').read_bytes()).hexdigest())
   ids=[pid for g in materials['groups'] for pid in g['member_ids']]

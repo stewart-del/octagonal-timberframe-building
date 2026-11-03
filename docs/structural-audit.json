@@ -1,16 +1,17 @@
 {
-  "revision": "R02-S2",
-  "audit_revision": "R004748",
-  "audit_timestamp": "2026-11-02T08:05:33-05:00",
-  "model_sha256": "15fc4fbbbdd520e4d0b332140b0f80daaf8f8b36d112dceac429cab598a4d331",
-  "status": "NOT STRUCTURALLY QUALIFIED \u2014 CENTER CONNECTION DESIGN HOLD",
+  "revision": "R02-S3",
+  "audit_revision": "R004826",
+  "audit_timestamp": "2026-11-02T17:55:15-05:00",
+  "model_sha256": "fb7bf67b4bae2c41c4e637647ad23caa6167345301af0befa780f4aa943519be",
+  "status": "NOT STRUCTURALLY QUALIFIED \u2014 CENTER CONNECTION CAPACITY HOLD",
   "confirmed": {
     "enclosure": "Enclosed, following the Bluetime photos; site-specific wind enclosure classification still to be checked.",
     "plywood": "1/2 inch, horizontal upper ceiling/deck, explicitly confirmed by user.",
     "joinery_preference": "Use documented traditional working joinery wherever possible; keep it simple, with dovetails where appropriate and matching cavities plus a verified assembly path."
   },
   "traditional_joinery_review": {
-    "status": "DESIGN HOLD \u2014 no replacement dovetail released",
+    "status": "CAPACITY HOLD \u2014 historical straight feet and a default-only flared-foot geometric proposal",
+    "scope": "The section measurements and existing-joint findings below use the saved baseline. The default top-entry variant has the separate foot proposal described here.",
     "existing_joint": "Horizontal radial tie end into the side of a cupola upright; the lower well stays open.",
     "cupola_post_bottom_in": 85.0,
     "tie_underside_in": 85.0,
@@ -23,7 +24,19 @@
       "Size cheeks, tenon, housing, remaining timber and any peg or wedge from the actual loads and material",
       "Verify insertion, access and retention through the complete assembly sequence"
     ],
-    "provenance_limit": "The references document joint families in other structures. They do not establish the concealed joinery of the Bluetime building or approve dimensions for this model."
+    "provenance_limit": "The references document joint families in other structures. They do not establish the concealed joinery of the Bluetime building or approve dimensions for this model.",
+    "default_top_entry_proposal": {
+      "model_sha256": "0f1721341e23382e1ebb8b6a2a151522fc274ad27b77ed95197a9a8879b01395",
+      "joint": "Bottom-entry housed dovetail with a 3 by 8 inch neck, 4 inch head width, 4 inch engagement, 1:8 side flare and a separate 3/4 inch transverse wooden peg.",
+      "fit_status": "NOMINAL GEOMETRY PASS \u00b7 CAPACITY UNVERIFIED",
+      "clear_inner_diameter_in": 76,
+      "minimum_receiver_cheek_in": 1,
+      "capacity_checked": false,
+      "assembly_scope": "Local matching-solid and withdrawal tests pass. Full-scene sequencing is certified separately against the exact disassembly manifest; this report does not certify that route.",
+      "design_hold": "The one-inch minimum post cheeks, peg, bearing, neck, splitting resistance and ring/tie forces require structural design from actual loads and material.",
+      "source": "https://www.vermonttimberworks.com/learn/timber-frame-joinery/purlins-and-joists/",
+      "source_scope": "Documents the joint family only, not this foot orientation, dimensions or load capacity."
+    }
   },
   "missing_inputs": [
     "Actual building site and adopted design criteria",
@@ -34,65 +47,71 @@
   "cavity_fit_audit": {
     "status": "PASS",
     "summary": {
-      "all_timber_stock_envelopes_verified": 104,
-      "cavity_cross_sections": 8304,
-      "components_contained_in_one_mate": 136,
-      "components_covered": 144,
-      "components_partitioned": 8,
-      "connected_cavity_components": 144,
-      "convex_cavity_components": 144,
-      "declared_exterior_brace_trims": 16,
-      "max_cavity_outside_reference_stock_m": 4.773959005888173e-15,
-      "max_missing_section_area_m2": 1.8001794815063477e-15,
+      "all_timber_stock_envelopes_verified": 112,
+      "boolean_partition_components": 8,
+      "cavity_cross_sections": 50003,
+      "components_contained_in_one_mate": 168,
+      "components_covered": 216,
+      "components_partitioned": 40,
+      "connected_cavity_components": 216,
+      "convex_cavity_components": 176,
+      "declared_exterior_brace_trims": 24,
+      "max_cavity_outside_reference_stock_m": 6.1201044232461754e-15,
+      "max_missing_section_area_m2": 1.8019876507630407e-13,
       "max_raw_timber_triangle_overlap_area_m2": 0.0,
-      "max_receiver_overlap_section_area_m2": 2.0050883104247573e-14,
+      "max_receiver_overlap_section_area_m2": 1.800689697265625e-13,
       "max_wood_overlap_section_area_m2": 1.959129105807733e-14,
-      "no_cavity_stock_envelopes_verified": 56,
-      "nonconvex_cavity_components": 0,
-      "nonempty_cavity_sets": 48,
-      "raw_timber_coplanar_triangle_pairs_tested": 13912,
-      "receiver_stock_convex_cells_verified": 14640,
-      "receiver_stock_envelopes_verified": 48,
-      "timbers": 104,
+      "no_cavity_stock_envelopes_verified": 32,
+      "nonconvex_cavity_components": 40,
+      "nonempty_cavity_sets": 80,
+      "permanent_wood_fasteners": 48,
+      "physical_wood_pieces": 160,
+      "raw_timber_coplanar_triangle_pairs_tested": 68648,
+      "receiver_stock_convex_cells_verified": 54800,
+      "receiver_stock_envelopes_verified": 80,
+      "timbers": 112,
       "timbers_with_raw_surface_overlaps": 0,
-      "verified_convex_cells": 552,
-      "winding_interior_points": 25794,
+      "verified_convex_cells": 9560,
+      "winding_interior_points": 40331,
       "winding_points_in_receiver": 0,
       "winding_unoccupied_points": 0,
-      "wood_pair_cross_sections": 59620
+      "wood_pair_cross_sections": 222390
     },
     "report": "downloads/cavity-fit-audit.json"
   },
   "proposed_cavity_fit_audit": {
     "status": "PASS",
-    "model_sha256": "69e58e2ea0bd4ee0af331002b6a60e2d74e05b2166463ae3ac9181bd8e6f43ca",
+    "model_sha256": "68dc8aa4ea9945cd3b69fc64cc311d7f51bd8d6e82129d565ef9f0fb93179f3d",
     "summary": {
-      "all_timber_stock_envelopes_verified": 104,
-      "cavity_cross_sections": 10683,
-      "components_contained_in_one_mate": 144,
-      "components_covered": 168,
-      "components_partitioned": 24,
-      "connected_cavity_components": 168,
-      "convex_cavity_components": 144,
-      "declared_exterior_brace_trims": 16,
-      "max_cavity_outside_reference_stock_m": 4.773959005888173e-15,
-      "max_missing_section_area_m2": 2.285544602322331e-15,
+      "all_timber_stock_envelopes_verified": 112,
+      "boolean_partition_components": 8,
+      "cavity_cross_sections": 51232,
+      "components_contained_in_one_mate": 176,
+      "components_covered": 240,
+      "components_partitioned": 56,
+      "connected_cavity_components": 240,
+      "convex_cavity_components": 176,
+      "declared_exterior_brace_trims": 24,
+      "max_cavity_outside_reference_stock_m": 6.1201044232461754e-15,
+      "max_missing_section_area_m2": 1.8019876507630407e-13,
       "max_raw_timber_triangle_overlap_area_m2": 0.0,
       "max_receiver_overlap_section_area_m2": 2.0100667825588588e-14,
-      "max_wood_overlap_section_area_m2": 2.004601751597912e-14,
-      "no_cavity_stock_envelopes_verified": 56,
-      "nonconvex_cavity_components": 24,
-      "nonempty_cavity_sets": 48,
-      "raw_timber_coplanar_triangle_pairs_tested": 12042,
-      "receiver_stock_convex_cells_verified": 16304,
-      "receiver_stock_envelopes_verified": 48,
-      "timbers": 104,
+      "max_wood_overlap_section_area_m2": 1.8004319554559478e-13,
+      "no_cavity_stock_envelopes_verified": 32,
+      "nonconvex_cavity_components": 64,
+      "nonempty_cavity_sets": 80,
+      "permanent_wood_fasteners": 48,
+      "physical_wood_pieces": 160,
+      "raw_timber_coplanar_triangle_pairs_tested": 63143,
+      "receiver_stock_convex_cells_verified": 57816,
+      "receiver_stock_envelopes_verified": 80,
+      "timbers": 112,
       "timbers_with_raw_surface_overlaps": 0,
-      "verified_convex_cells": 408,
-      "winding_interior_points": 15999,
+      "verified_convex_cells": 9416,
+      "winding_interior_points": 31667,
       "winding_points_in_receiver": 0,
       "winding_unoccupied_points": 0,
-      "wood_pair_cross_sections": 61610
+      "wood_pair_cross_sections": 220660
     },
     "report": "downloads/step-lap-proposed-cavity-fit-audit.json"
   },
@@ -100,9 +119,9 @@
     {
       "part": "P0",
       "gross_area_in2": 64,
-      "minimum_sampled_body_area_in2": 51.01129277786873,
-      "remaining_area_percent": 79.70514496541989,
-      "station_world_axis_in": 63.55681596511253,
+      "minimum_sampled_body_area_in2": 51.33434446180578,
+      "remaining_area_percent": 80.20991322157153,
+      "station_world_axis_in": 92.01807564643798,
       "method": "Cross sections at vertex planes +/- 1 micrometre and interval midpoints; only full original rectangular sections. End miters and added tongues excluded. Area ratio is not a strength ratio."
     },
     {
@@ -132,17 +151,17 @@
     {
       "part": "T0",
       "gross_area_in2": 60,
-      "minimum_sampled_body_area_in2": 60.00000089641632,
-      "remaining_area_percent": 100.00000149402719,
-      "station_world_axis_in": -171.99996062992128,
+      "minimum_sampled_body_area_in2": 55.50005270458745,
+      "remaining_area_percent": 92.50008784097909,
+      "station_world_axis_in": -148.29479571667264,
       "method": "Cross sections at vertex planes +/- 1 micrometre and interval midpoints; only full original rectangular sections. End miters and added tongues excluded. Area ratio is not a strength ratio."
     },
     {
       "part": "B0",
       "gross_area_in2": 48,
-      "minimum_sampled_body_area_in2": 40.017404450108515,
-      "remaining_area_percent": 83.36959260439274,
-      "station_world_axis_in": -41.04937974118226,
+      "minimum_sampled_body_area_in2": 41.58068796995624,
+      "remaining_area_percent": 86.62643327074215,
+      "station_world_axis_in": -37.86841179385898,
       "method": "Cross sections at vertex planes +/- 1 micrometre and interval midpoints; only full original rectangular sections. End miters and added tongues excluded. Area ratio is not a strength ratio."
     }
   ],
@@ -150,10 +169,10 @@
     {
       "id": "S1",
       "priority": "critical",
-      "title": "Center connection design is on hold",
+      "title": "Center connection capacity remains unresolved",
       "parts": "T0\u2013T7 / R0\u2013R7 / C0\u2013C7 / cupola rings",
-      "finding": "The straight two-inch tongues have no pegs, bolts, retained dovetail or other positive withdrawal restraint. Nominal contact does not close the central force path.",
-      "action": "Use documented traditional joint families, then resolve their suitability and dimensions for this open-center system. A through wedged half-dovetail is a documented horizontal tie-to-post family, but its housing, bottom relish and assembly are unresolved here. No new dovetail is released. Do not assume the polygon or plywood alone supplies ring action."
+      "finding": "The saved baseline and historical perimeter variant retain straight lower-foot tongues without positive withdrawal restraint. The default top-entry variant now has actual flared feet, exact matching bottom-entry cavities and removable wooden pegs. Their nominal geometry passes, but the one-inch minimum receiving-post cheeks are not structurally qualified.",
+      "action": "Resolve neck, cheek, bearing, peg, splitting and block-shear demands from the cupola/ring/tie forces. The default foot is an adaptation of a documented housed-dovetail family, not verified hidden joinery from the reference building. Do not assume the polygon or plywood alone supplies ring action."
     },
     {
       "id": "S2",
@@ -167,7 +186,7 @@
       "id": "S3",
       "priority": "high",
       "title": "Two-inch insertion is not a ready-made pegged tension joint",
-      "parts": "All generic two-inch shoulder tenons",
+      "parts": "Unchanged generic two-inch shoulder tenons in the saved baseline",
       "finding": "No peg location or end distance is modeled. For illustration, the TFEC full geometry factor calls for 4D loaded-end distance in a softwood tension member: a 3/4-inch peg alone needs 3 inches from peg center to the loaded end. The current two-inch tongue cannot provide that distance.",
       "action": "Resolve species, peg diameter, receiving-face edge distances and joint arrangement together; do not simply drill the existing tongues. This comparison does not assign a capacity or prohibit every alternative tested detail."
     },
@@ -184,7 +203,7 @@
       "priority": "high",
       "title": "Braces, eave-ring joints and post bases need a complete lateral system",
       "parts": "K/B/P families and foundations",
-      "finding": "Braces use full-section diagonal sockets without a complete peg/housing design. Eave-ring joints share post heads with other cuts. No foundation anchorage is modeled. Enclosed walls are confirmed, but their sheathing and attachments are not.",
+      "finding": "All 24 main braces now use full 2 by 6 inch stock, matching one-inch face housings and 48 physical half-inch wooden pegs. Local withdrawal and fit checks pass; their bearing, peg and reduced-section capacities remain unverified. Eave-ring joints share post heads with other cuts. Foundation hardware is a geometric proposal, and enclosed-wall sheathing and attachments are not designed.",
       "action": "Trace wall/roof shear through collectors, braces or shear panels, post joints and foundations. Check both wind directions, load reversal, combined notches and erection stability."
     },
     {
@@ -217,7 +236,7 @@
     "cupola_roof_plan_area_ft2": 61.59685738336148,
     "symmetric_main_bay_plan_area_ft2": 93.45594624682204,
     "symmetric_cupola_bay_plan_area_ft2": 7.699607172920185,
-    "wood_volume_ft3": 222.33868489159528,
+    "wood_volume_ft3": 223.90998422649528,
     "usage": "For a uniform pressure q in lb/ft\u00b2 of horizontal projection, total vertical force equals q times plan area. Per-bay values apply only to a symmetric load accounting case, not individual joint reactions. Actual wind/snow are not assumed uniform or divided equally. Timber weight equals volume times confirmed density. No load magnitudes or capacities have been assigned."
   },
   "sources": [
@@ -255,6 +274,11 @@
       "title": "Timber Frame HQ: upper kingpost joinery",
       "url": "https://timberframehq.com/upper-king-post-joinery-detail/",
       "use": "Rafter-to-kingpost precedent uses a diminished housing and tenon. It supports evaluating housed bearing and retention instead of requiring a flare at every connection; its oak dimensions are not adopted."
+    },
+    {
+      "title": "Vermont Timber Works: housed dovetail family",
+      "url": "https://www.vermonttimberworks.com/learn/timber-frame-joinery/purlins-and-joists/",
+      "use": "Documents the joint family only, not this foot orientation, dimensions or load capacity."
     },
     {
       "title": "Bluetime architectural reference",

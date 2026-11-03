@@ -28,7 +28,7 @@ Section references below identify reading/checking destinations, not a declarati
 
 ## Current evidence versus unknowns
 
-**Established for the current geometry only:** 104 timber mesh volumes total 6.29593043154 m³; centroids checked; selected contact areas independently checked. Hardwood density scenarios are explicit assumptions. These observations support a weight illustration, not joint forces or strength.
+<!-- TIMESTAMP START 2026-11-02T15:19:38-05:00 | REVISION R004803 -->**Established for the current geometry only:** the current frame has 112 primary timbers, including 24 full 2 × 6-inch main knee braces. Mesh volumes and centroids are recomputed from each selected model revision; the current source-bound totals are in the structural audit and viewer load review. Hardwood density scenarios are explicit assumptions. These observations support a weight illustration, not joint forces or strength. Porch framing, roof finishes, enclosure, floor and foundation loads are outside this primary-timber subtotal.<!-- TIMESTAMP END 2026-11-02T15:19:38-05:00 | REVISION R004803 -->
 
 **Unresolved:** actual species/grade/moisture distribution, design loads/combinations, boundary conditions, connection stiffness and retention, support reactions, allowable capacities, deflections, strain, foundation behavior and safe erection procedure. The proposed step-lap image is not dimensioned design evidence.
 

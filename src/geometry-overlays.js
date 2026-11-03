@@ -16,10 +16,17 @@ function appendEdgeMeasurements(host,p){
  for(const e of measurements){const tr=document.createElement('tr');tr.dataset.edgeId=e.id;tr.title=edgeMeasurementDescription(e);for(const value of [e.id,num(e.length_in,3),e.interiorAngleDeg==null?'Unverified':angleText(e.interiorAngleDeg),e.planeAngleDeg==null?'Undefined':angleText(e.planeAngleDeg)]){const td=document.createElement('td');td.textContent=value;tr.appendChild(td);}body.appendChild(tr);}table.appendChild(body);wrap.appendChild(table);box.appendChild(wrap);
  const downloadButton=document.createElement('button');downloadButton.textContent='Download '+p.id+' edge measurements';downloadButton.onclick=()=>{const rows=[['Timber_ID','Edge_ID','Length_in','Interior_material_angle_deg','Acute_plane_angle_deg','Normal_angle_deg','Definition'],...measurements.map(e=>[p.id,e.id,e.length_in,e.interiorAngleDeg??'Unverified',e.planeAngleDeg??'Undefined',e.normalAngleDeg??'Undefined',edgeMeasurementDescription(e)])];download(p.id+'-edge-measurements.csv',rows.map(r=>r.map(csvCell).join(',')).join('\r\n'),'text/csv');};box.appendChild(downloadButton);host.appendChild(box);
 }
+// TIMESTAMP START 2026-11-02T15:06:05-05:00 | REVISION R004799
+function cavityDataFor(p){
+ if(p.joineryCavity)return p.joineryCavity.fit_audit?.status==='PASS'?p.joineryCavity:null;
+ return CAVITIES.available===false?null:CAVITIES.parts?.[p.id];
+}
 function cavityRecords(){
  if(!showHollows)return [];
- return parts.filter(p=>selectedPartIds.has(p.id)&&isShown(p)).map(p=>({p,data:CAVITIES.parts[p.id],kind:hollowMode})).filter(r=>r.data&&r.data[r.kind]?.triangles.length);
+ const candidates=[...parts,...(typeof schematicParts==='undefined'?[]:schematicParts.filter(p=>p.schematicKind==='mudroom'))];
+ return candidates.filter(p=>selectedPartIds.has(p.id)&&isShown(p)).map(p=>({p,data:cavityDataFor(p),kind:hollowMode})).filter(r=>r.data&&r.data[r.kind]?.triangles.length);
 }
+// TIMESTAMP END 2026-11-02T15:06:05-05:00 | REVISION R004799
 // Display-only sanitation. Preserve source vertices, solids and positive-volume sockets.
 // Remove only a closed, planar, disconnected shell whose signed volume is exactly zero.
 function cavityDisplayMesh(mesh){
@@ -43,8 +50,10 @@ function cavityDisplayMesh(mesh){
  return {mesh:{...mesh,triangles:mesh.triangles.filter((_,i)=>!omit.has(i))},removedComponents};
 }
 function cavityRenderMesh(p,kind){
+ // TIMESTAMP START 2026-11-02T15:06:05-05:00 | REVISION R004799
+ const source=cavityDataFor(p)?.[kind];if(!source)return null;
  const key=p.id+':'+kind;if(cavityMeshCache.has(key))return cavityMeshCache.get(key);
- const source=CAVITIES.parts[p.id]?.[kind];if(!source)return null;
+ // TIMESTAMP END 2026-11-02T15:06:05-05:00 | REVISION R004799
  // Residual diagnostics remain untouched; cleanup is limited to removed-stock overlays.
  const {mesh,removedComponents}=kind==='removed'?cavityDisplayMesh(source):{mesh:source,removedComponents:[]};
  const raw=[],edgeRaw=TimberEdgeMeasurements.featureEdges(mesh.vertices,mesh.triangles);
@@ -69,18 +78,23 @@ function drawCavityVolumes(){
   fallback.strokeStyle=cssColor(edge);fallback.lineWidth=1;for(const {p,kind} of records){const m=cavityRenderMesh(p,kind),off=offset(p);for(let i=0;i<m.edgeRaw.length;i+=12){const pp=[m.edgeRaw.slice(i,i+3),m.edgeRaw.slice(i+6,i+9)].map(v=>project(vadd(v,off)));if(pp.some(q=>!q))continue;fallback.beginPath();fallback.moveTo(pp[0].x,pp[0].y);fallback.lineTo(pp[1].x,pp[1].y);fallback.stroke();}}
  }
 }
+// TIMESTAMP START 2026-11-02T15:06:05-05:00 | REVISION R004799
 function updateHollowStatus(){
-// TIMESTAMP START 2026-11-02T10:05:34-05:00 | REVISION R004758
- const host=$('hollowStatus');if(CAVITIES.available===false||!Object.keys(CAVITIES.parts||{}).length){host.textContent=CAVITIES.status||'Recess overlay unavailable until its independent fit audit passes.';return;}if(!selected){host.textContent='Select a timber to reveal its recess volumes.';return;}
-// TIMESTAMP END 2026-11-02T10:05:34-05:00 | REVISION R004758
- const d=CAVITIES.parts[selected];if(!d){host.textContent='No verified cavity data for this timber.';return;}
-// TIMESTAMP START 2026-11-02T09:09:36-05:00 | REVISION R004753
- const removed=d.removed.volume_m3*1e6;
- host.textContent=selected+': '+num(removed,2)+' cm³ of actual recesses/notches. Amber shows the matching space occupied by mating wood in the assembled model. '+(CAVITIES.fit_audit?.status==='PASS'?'Independent cavity-fit audit passed.':'Independent cavity-fit audit is not attached.');
-// TIMESTAMP END 2026-11-02T09:09:36-05:00 | REVISION R004753
+ const host=$('hollowStatus'),p=selected?partById.get(selected):null,porch=!!p?.joineryCavity;
+ if(!porch&&(CAVITIES.available===false||!Object.keys(CAVITIES.parts||{}).length)){host.textContent=CAVITIES.status||'Recess overlay unavailable until its independent fit audit passes.';return;}
+ if(!selected){host.textContent='Select a timber to reveal its recess volumes.';return;}
+ const d=p?cavityDataFor(p):null;
+ if(!d){host.textContent=porch?'Porch joint recess geometry awaits a passing fit audit.':'No verified cavity data for this timber.';return;}
+// TIMESTAMP START 2026-11-02T17:13:18-05:00 | REVISION R004819
+ const removed=d.removed.volume_m3*1e6,entry=(d.entry_clearance?.volume_m3||0)*1e6;
+// TIMESTAMP END 2026-11-02T17:13:18-05:00 | REVISION R004819
+// TIMESTAMP START 2026-11-02T17:13:18-05:00 | REVISION R004819
+ host.textContent=selected+': '+num(removed,2)+' cm³ of actual recesses/notches. '+(entry>1e-6?num(entry,2)+' cm³ is the declared open head-entry space; the remaining amber pockets match mating wood. ':'Amber shows the matching space occupied by mating wood in the assembled model. ')+(porch?'Porch joint geometry-fit audit passed. Structural capacity remains unverified.':CAVITIES.fit_audit?.status==='PASS'?'Independent cavity-fit audit passed.':'Independent cavity-fit audit is not attached.');
+// TIMESTAMP END 2026-11-02T17:13:18-05:00 | REVISION R004819
  if(explode>0)host.textContent+=' Classification refers to the assembled model; this view is exploded.';
  if(!gl)host.textContent+=' In 2D fallback, hollow volumes are always shown as X-rays.';
 }
+// TIMESTAMP END 2026-11-02T15:06:05-05:00 | REVISION R004799
 function updateEdgeMeasurementLabels(){
  for(const label of edgeMeasurementLabels)label.style.display='none';
  if(!edgeMeasurementsOn||!selected)return;

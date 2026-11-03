@@ -15,7 +15,9 @@ for(const view of ['top','side']){const d=api.drawing(model,{view,walls:true,she
 assert(api.drawing(model,{view:'top'}).svg.includes('Site bearing unverified'));
 console.log('PASS: three independent schematic plan layers, shared design compass, unchanged canonical geometry');
 
-const floor=api.drawing(model,{view:'top',floor:true});assert(floor.parts.filter(p=>p.schematicKind==='floor').length===8);assert(floor.parts.filter(p=>p.schematicKind==='floorAssembly').length===139);assert(!floor.parts.some(p=>p.schematicKind&&!['floor','floorAssembly'].includes(p.schematicKind)));assert(floor.svg.includes('floor/grate ON'));
+// TIMESTAMP START 2026-11-02T14:50:03-05:00 | REVISION R004796
+const floor=api.drawing(model,{view:'top',floor:true});assert(floor.parts.filter(p=>p.schematicKind==='floor').length===8);assert(floor.parts.filter(p=>p.schematicKind==='floorAssembly').length===139);assert(!floor.parts.some(p=>p.schematicKind&&!['floor','floorAssembly'].includes(p.schematicKind)));assert(floor.svg.includes('floor ON'));
+// TIMESTAMP END 2026-11-02T14:50:03-05:00 | REVISION R004796
 
 // Provenance must be visible in the exported sheet, not only an internal cache key.
 for(const view of ['top','side']){const sheet=api.drawing(model,{view,modelHash:hash});assert(sheet.svg.includes('Model SHA-256: '+hash));assert(sheet.svg.includes(view==='top'?'Sheet GEOM-TOP':'Sheet GEOM-SIDE'));}

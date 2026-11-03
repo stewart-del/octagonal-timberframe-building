@@ -66,7 +66,9 @@ def build_cavities(baseline, base_cavities, proposed, proposal, hashes):
     assert proposed['proposed_review']['baseline_model_sha256'] == baseline_sha
     base_parts = {part['id']: part for part in baseline['parts'] if part['is_timber']}
     new_parts = {part['id']: part for part in proposed['parts'] if part['is_timber']}
-    assert set(base_parts) == set(new_parts) == set(base_cavities['parts']) and len(base_parts) == 104
+    # TIMESTAMP START 2026-11-02T15:15:55-05:00 | REVISION R004802
+    assert set(base_parts) == set(new_parts) == set(base_cavities['parts']) and len(base_parts) == 112
+    # TIMESTAMP END 2026-11-02T15:15:55-05:00 | REVISION R004802
     variants = proposal['variants']
     assert len(variants) == 24 and len({item['id'] for item in variants}) == 24
     assert {tuple(item['member_ids']) for item in variants} == expected_interfaces()
@@ -98,7 +100,10 @@ def build_cavities(baseline, base_cavities, proposed, proposal, hashes):
         for restoration in decreases.get(name, []):
             result = result - shape(restoration)
         # TIMESTAMP START 2026-11-02T10:50:48-05:00 | REVISION R004767
-        candidate = m.Manifold(result.to_mesh64()).set_tolerance(1e-9)
+        # TIMESTAMP START 2026-11-02T17:32:31-05:00 | REVISION R004820
+        candidate = result
+        original_volume=result.volume()
+        # TIMESTAMP END 2026-11-02T17:32:31-05:00 | REVISION R004820
         raw = candidate.to_mesh64()
         check = inspect_mesh(np.asarray(raw.vert_properties)[:, :3], np.asarray(raw.tri_verts, dtype=np.uint64))
         if check['status'] != 'PASS':
@@ -109,6 +114,9 @@ def build_cavities(baseline, base_cavities, proposed, proposal, hashes):
             cleaned = candidate.to_mesh64()
             assert inspect_mesh(np.asarray(cleaned.vert_properties)[:, :3],
                                 np.asarray(cleaned.tri_verts, dtype=np.uint64))['status'] == 'PASS', name
+        # TIMESTAMP START 2026-11-02T17:32:31-05:00 | REVISION R004820
+        assert abs(candidate.volume()-original_volume)/INCH**3<=VOLUME_TOLERANCE_IN3,(name,'raw boundary normalization changed cavity volume')
+        # TIMESTAMP END 2026-11-02T17:32:31-05:00 | REVISION R004820
         seeds[name] = candidate
         # TIMESTAMP END 2026-11-02T10:50:48-05:00 | REVISION R004767
     diagonal = np.sqrt(.5)
@@ -146,7 +154,9 @@ def build_cavities(baseline, base_cavities, proposed, proposal, hashes):
     return {'schema_version': 'proposed-step-lap-cavities-2', 'source_model_sha256': proposed_sha,
             'baseline_model_sha256': baseline_sha, 'baseline_cavity_sha256': baseline_cavity_sha,
             'proposal_sha256': proposal_sha, 'available': True, 'parts': output_parts,
-            'summary': {'complete': True, 'part_count': 104, 'changed_cavity_count': 40, 'transfer_count': 24},
+            # TIMESTAMP START 2026-11-02T15:15:55-05:00 | REVISION R004802
+            'summary': {'complete': True, 'part_count': 112, 'changed_cavity_count': 40, 'transfer_count': 24},
+            # TIMESTAMP END 2026-11-02T15:15:55-05:00 | REVISION R004802
             'status': 'Actual proposed recesses derived from corrected baseline cavities and identical retained-tongue/receiver-pocket transfer solids. Verify with the separately hash-bound proposed cavity-fit audit.',
             # TIMESTAMP START 2026-11-02T10:50:48-05:00 | REVISION R004767
             'method': 'Baseline removed stock plus receiver transfers minus stock retained by rafters; opposed coplanar folds cancelled on canonical boundary planes before completed bay-zero cavities are rotated to each bay. Raw surfaces and material-transfer volumes must pass independently. No inherited unfilled Boolean residuals and no timber edits.',
@@ -166,7 +176,9 @@ def generate():
     result = build_cavities(baseline, base_cavities, proposed, proposal,
                             (baseline_sha, cavity_sha, proposed_sha, proposal_sha))
     (ROOT / 'src/step-lap-proposed-cavities.json').write_text(json.dumps(result, separators=(',', ':')) + '\n')
-    print('Exported 104 proposed cavity records from 24 exact material transfers; proposed model', proposed_sha)
+    # TIMESTAMP START 2026-11-02T15:15:55-05:00 | REVISION R004802
+    print('Exported 112 proposed cavity records from 24 exact material transfers; proposed model', proposed_sha)
+    # TIMESTAMP END 2026-11-02T15:15:55-05:00 | REVISION R004802
     return result
 
 

@@ -24,6 +24,9 @@ const triangle={vertices:[[0,0,0],[1,0,0],[0,1,0]],triangles:[[0,1,2]],edges:[[0
 const data={parts:{A:{removed:triangle},B:{removed:triangle}},fit_audit:{status:'PASS'}};
 // TIMESTAMP END 2026-11-02T09:43:39-05:00 | REVISION R004757
 const parts=['A','B','C'].map((id,i)=>({id,displacement:[i*2,0,0],vertices:[],triangles:[]})),partById=new Map(parts.map(p=>[p.id,p]));
+// TIMESTAMP START 2026-11-02T15:06:05-05:00 | REVISION R004799
+const schematicParts=[];
+// TIMESTAMP END 2026-11-02T15:06:05-05:00 | REVISION R004799
 const selectedPartIds=new Set(['A','B']);let selected='B',explode=0,width=900,height=650,renderRequests=0;
 const hidden=new Set(),ghosts=new Set(),isShown=p=>!hidden.has(p.id),selectionAlpha=p=>ghosts.has(p.id)?.14:1,offset=p=>vmul(p.displacement,explode);
 const basis={eye:[0,0,5]},fittedBounds=new Map(parts.map(p=>[p.id,{min:[0,0,0],max:[0,0,0]}]));
@@ -76,6 +79,31 @@ selectedPartIds.clear();log=[];drawCavityVolumes();check(!log.length,'No selecti
 gl=null;log=[];drawCavityVolumes();updateHollowStatus();check(log.some(x=>x.fallbackFill)&&log.some(x=>x.fallbackStroke)&&$('hollowStatus').textContent.includes('always shown as X-rays'),'2D fallback draws cavity fill/edges and discloses its X-ray limitation');gl=originalGL;
 selected='A';explode=1;updateHollowStatus();check($('hollowStatus').textContent.includes('1000.00 cm³')&&$('hollowStatus').textContent.includes('this view is exploded'),'Cavity status uses cubic-centimetre conversion and assembled-model caveat');
 selected=null;updateHollowStatus();check($('hollowStatus').textContent.includes('Select a timber'),'Clearing selection resets cavity status');selected='A';explode=0;
+// TIMESTAMP START 2026-11-02T15:06:05-05:00 | REVISION R004799
+const porchMesh={...triangle,vertices:triangle.vertices.map(v=>[v[0]+3,v[1],v[2]]),volume_m3:.002};
+const porch={id:'MUD-JOIST-TEST',schematicKind:'mudroom',displacement:[3,2,-1],vertices:[],triangles:[],joineryCavity:{removed:porchMesh,fit_audit:{status:'PASS'}}};
+schematicParts.push(porch);partById.set(porch.id,porch);
+data.parts[porch.id]={removed:triangle};
+data.available=false;data.status='Top-entry main recesses remain held.';
+selected=porch.id;selectedPartIds.clear();selectedPartIds.add('A');selectedPartIds.add(porch.id);explode=.75;
+check(cavityRecords().length===1&&cavityRecords()[0].p===porch,'Verified porch recesses remain selectable while main-model cavities stay unavailable');
+check(cavityRenderMesh(porch,'removed').mesh.vertices===porchMesh.vertices,'Part-bound porch cavity data takes precedence over a global record with the same ID');
+check(cavityRenderMesh(parts[0],'removed')===null,'A previously cached main cavity stays unavailable during the main-model hold');
+log=[];drawCavityVolumes();
+check(log.length===2&&log.every(x=>x.translation.join(',')==='2.25,1.5,-0.75'),'Porch cavity fill and feature edges follow the selected exploded piece');
+updateHollowStatus();
+check($('hollowStatus').textContent.includes('2000.00 cm³')&&$('hollowStatus').textContent.includes('Porch joint geometry-fit audit passed.')&&$('hollowStatus').textContent.includes('Structural capacity remains unverified.')&&$('hollowStatus').textContent.includes('this view is exploded'),'Porch status identifies its own geometry audit and retains structural and assembled-state limits');
+check(data.available===false&&data.status==='Top-entry main recesses remain held.','Porch inspection never changes main-model cavity availability or status');
+hidden.add(porch.id);check(cavityRecords().length===0,'Hidden porch pieces do not produce cavity overlays');hidden.delete(porch.id);
+showHollows=false;check(cavityRecords().length===0,'The cavity master toggle also controls porch recesses');showHollows=true;
+porch.joineryCavity.fit_audit.status='FAIL';updateHollowStatus();
+check(cavityRecords().length===0&&cavityRenderMesh(porch,'removed')===null&&$('hollowStatus').textContent.includes('awaits a passing fit audit'),'Unverified porch data cannot reuse cached geometry or claim a passed audit');
+porch.joineryCavity.fit_audit.status='PASS';selected='A';updateHollowStatus();
+check($('hollowStatus').textContent==='Top-entry main recesses remain held.','Selecting a main timber restores its unavailable-cavity status');
+selected=null;updateHollowStatus();check($('hollowStatus').textContent==='Top-entry main recesses remain held.','Clearing the porch selection preserves the main-model hold');
+delete data.available;delete data.status;delete data.parts[porch.id];schematicParts.length=0;partById.delete(porch.id);
+selectedPartIds.clear();selectedPartIds.add('A');selectedPartIds.add('B');selected='A';explode=0;
+// TIMESTAMP END 2026-11-02T15:06:05-05:00 | REVISION R004799
 edgeFixtures=[makeEdge('E001',300,150),makeEdge('E002',310,150),makeEdge('E003',550,250),makeEdge('E004',600,450,5),{...makeEdge('E005',700,500),midpoint:[700,500,-1]}];
 updateEdgeMeasurementLabels();check(!edgeMeasurementLabels.length,'Edge text off by default allocates no labels');
 $('showEdgeMeasurements').onchange({target:{checked:true}});updateEdgeMeasurementLabels();

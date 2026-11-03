@@ -1,8 +1,8 @@
 {
-  "revision": "R02",
+  "revision": "R004802",
   "status": "PASS",
-  "wood_count": 104,
-  "pairs_tested": 5356,
+  "wood_count": 112,
+  "pairs_tested": 6216,
   "overlap_tolerance_in3": 1e-06,
   "gap_tolerance_mm": 0.0001,
   "overlaps": [],
@@ -327,262 +327,6 @@
       "insert_volume_in3": 6.494353201754465,
       "gap_mm": 0.0,
       "projected_contact_area_in2": 12.000218239355865
-    },
-    {
-      "owner": "K0-A",
-      "receiver": "P0",
-      "kind": "diagonal brace socket; proposed depth",
-      "insert_volume_in3": 44.08221557936367,
-      "gap_mm": 0.0,
-      "projected_contact_area_in2": 33.63075456423114
-    },
-    {
-      "owner": "K0-A",
-      "receiver": "B7",
-      "kind": "diagonal brace socket; proposed depth",
-      "insert_volume_in3": 21.241245969245412,
-      "gap_mm": 0.0,
-      "projected_contact_area_in2": 15.965547998000755
-    },
-    {
-      "owner": "K0-B",
-      "receiver": "P0",
-      "kind": "diagonal brace socket; proposed depth",
-      "insert_volume_in3": 44.082215579363755,
-      "gap_mm": 0.0,
-      "projected_contact_area_in2": 33.630754566322246
-    },
-    {
-      "owner": "K0-B",
-      "receiver": "B0",
-      "kind": "diagonal brace socket; proposed depth",
-      "insert_volume_in3": 21.24124596924564,
-      "gap_mm": 0.0,
-      "projected_contact_area_in2": 15.965548005619716
-    },
-    {
-      "owner": "K1-A",
-      "receiver": "P1",
-      "kind": "diagonal brace socket; proposed depth",
-      "insert_volume_in3": 44.0822155793644,
-      "gap_mm": 0.0,
-      "projected_contact_area_in2": 31.615461672579617
-    },
-    {
-      "owner": "K1-A",
-      "receiver": "B0",
-      "kind": "diagonal brace socket; proposed depth",
-      "insert_volume_in3": 21.241245969246286,
-      "gap_mm": 0.0,
-      "projected_contact_area_in2": 15.965548087400945
-    },
-    {
-      "owner": "K1-B",
-      "receiver": "P1",
-      "kind": "diagonal brace socket; proposed depth",
-      "insert_volume_in3": 44.08221557936374,
-      "gap_mm": 0.0,
-      "projected_contact_area_in2": 31.615461672665543
-    },
-    {
-      "owner": "K1-B",
-      "receiver": "B1",
-      "kind": "diagonal brace socket; proposed depth",
-      "insert_volume_in3": 21.241245969246325,
-      "gap_mm": 0.0,
-      "projected_contact_area_in2": 15.965548004521468
-    },
-    {
-      "owner": "K2-A",
-      "receiver": "P2",
-      "kind": "diagonal brace socket; proposed depth",
-      "insert_volume_in3": 44.08221557936394,
-      "gap_mm": 0.0,
-      "projected_contact_area_in2": 33.63075456615076
-    },
-    {
-      "owner": "K2-A",
-      "receiver": "B1",
-      "kind": "diagonal brace socket; proposed depth",
-      "insert_volume_in3": 21.241245969246155,
-      "gap_mm": 0.0,
-      "projected_contact_area_in2": 15.965547995281112
-    },
-    {
-      "owner": "K2-B",
-      "receiver": "P2",
-      "kind": "diagonal brace socket; proposed depth",
-      "insert_volume_in3": 44.08221557936434,
-      "gap_mm": 0.0,
-      "projected_contact_area_in2": 33.630754564837176
-    },
-    {
-      "owner": "K2-B",
-      "receiver": "B2",
-      "kind": "diagonal brace socket; proposed depth",
-      "insert_volume_in3": 21.241245969246116,
-      "gap_mm": 0.0,
-      "projected_contact_area_in2": 15.965548005204537
-    },
-    {
-      "owner": "K3-A",
-      "receiver": "P3",
-      "kind": "diagonal brace socket; proposed depth",
-      "insert_volume_in3": 44.08221557936456,
-      "gap_mm": 0.0,
-      "projected_contact_area_in2": 31.615461673680763
-    },
-    {
-      "owner": "K3-A",
-      "receiver": "B2",
-      "kind": "diagonal brace socket; proposed depth",
-      "insert_volume_in3": 21.241245969246272,
-      "gap_mm": 0.0,
-      "projected_contact_area_in2": 15.965548068180192
-    },
-    {
-      "owner": "K3-B",
-      "receiver": "P3",
-      "kind": "diagonal brace socket; proposed depth",
-      "insert_volume_in3": 44.082215579364146,
-      "gap_mm": 0.0,
-      "projected_contact_area_in2": 31.615461672692273
-    },
-    {
-      "owner": "K3-B",
-      "receiver": "B3",
-      "kind": "diagonal brace socket; proposed depth",
-      "insert_volume_in3": 21.241245969246023,
-      "gap_mm": 0.0,
-      "projected_contact_area_in2": 15.965548004724806
-    },
-    {
-      "owner": "K4-A",
-      "receiver": "P4",
-      "kind": "diagonal brace socket; proposed depth",
-      "insert_volume_in3": 44.082215579364174,
-      "gap_mm": 0.0,
-      "projected_contact_area_in2": 33.63075456271858
-    },
-    {
-      "owner": "K4-A",
-      "receiver": "B3",
-      "kind": "diagonal brace socket; proposed depth",
-      "insert_volume_in3": 21.24124596924598,
-      "gap_mm": 0.0,
-      "projected_contact_area_in2": 15.96554799732985
-    },
-    {
-      "owner": "K4-B",
-      "receiver": "P4",
-      "kind": "diagonal brace socket; proposed depth",
-      "insert_volume_in3": 44.08221557936308,
-      "gap_mm": 0.0,
-      "projected_contact_area_in2": 33.63075456601895
-    },
-    {
-      "owner": "K4-B",
-      "receiver": "B4",
-      "kind": "diagonal brace socket; proposed depth",
-      "insert_volume_in3": 21.241245969245664,
-      "gap_mm": 0.0,
-      "projected_contact_area_in2": 15.965548005311032
-    },
-    {
-      "owner": "K5-A",
-      "receiver": "P5",
-      "kind": "diagonal brace socket; proposed depth",
-      "insert_volume_in3": 44.08221557936319,
-      "gap_mm": 0.0,
-      "projected_contact_area_in2": 31.615461672334245
-    },
-    {
-      "owner": "K5-A",
-      "receiver": "B4",
-      "kind": "diagonal brace socket; proposed depth",
-      "insert_volume_in3": 21.241245969246034,
-      "gap_mm": 0.0,
-      "projected_contact_area_in2": 15.96554808740572
-    },
-    {
-      "owner": "K5-B",
-      "receiver": "P5",
-      "kind": "diagonal brace socket; proposed depth",
-      "insert_volume_in3": 44.082215579364,
-      "gap_mm": 0.0,
-      "projected_contact_area_in2": 31.615461672325804
-    },
-    {
-      "owner": "K5-B",
-      "receiver": "B5",
-      "kind": "diagonal brace socket; proposed depth",
-      "insert_volume_in3": 21.24124596924597,
-      "gap_mm": 0.0,
-      "projected_contact_area_in2": 15.965548004824806
-    },
-    {
-      "owner": "K6-A",
-      "receiver": "P6",
-      "kind": "diagonal brace socket; proposed depth",
-      "insert_volume_in3": 44.08221557936385,
-      "gap_mm": 0.0,
-      "projected_contact_area_in2": 33.630754566310216
-    },
-    {
-      "owner": "K6-A",
-      "receiver": "B5",
-      "kind": "diagonal brace socket; proposed depth",
-      "insert_volume_in3": 21.241245969245888,
-      "gap_mm": 0.0,
-      "projected_contact_area_in2": 15.965547996492447
-    },
-    {
-      "owner": "K6-B",
-      "receiver": "P6",
-      "kind": "diagonal brace socket; proposed depth",
-      "insert_volume_in3": 44.08221557936367,
-      "gap_mm": 0.0,
-      "projected_contact_area_in2": 33.63075456386145
-    },
-    {
-      "owner": "K6-B",
-      "receiver": "B6",
-      "kind": "diagonal brace socket; proposed depth",
-      "insert_volume_in3": 21.2412459692461,
-      "gap_mm": 0.0,
-      "projected_contact_area_in2": 15.965548004852112
-    },
-    {
-      "owner": "K7-A",
-      "receiver": "P7",
-      "kind": "diagonal brace socket; proposed depth",
-      "insert_volume_in3": 44.082215579362895,
-      "gap_mm": 0.0,
-      "projected_contact_area_in2": 31.615461672867855
-    },
-    {
-      "owner": "K7-A",
-      "receiver": "B6",
-      "kind": "diagonal brace socket; proposed depth",
-      "insert_volume_in3": 21.24124596924617,
-      "gap_mm": 0.0,
-      "projected_contact_area_in2": 15.965548068415142
-    },
-    {
-      "owner": "K7-B",
-      "receiver": "P7",
-      "kind": "diagonal brace socket; proposed depth",
-      "insert_volume_in3": 44.08221557936274,
-      "gap_mm": 0.0,
-      "projected_contact_area_in2": 31.615461672480517
-    },
-    {
-      "owner": "K7-B",
-      "receiver": "B7",
-      "kind": "diagonal brace socket; proposed depth",
-      "insert_volume_in3": 21.241245969246073,
-      "gap_mm": 0.0,
-      "projected_contact_area_in2": 15.965548005551154
     },
     {
       "owner": "T0",
@@ -1543,6 +1287,390 @@
       "insert_volume_in3": 0,
       "gap_mm": 0.0,
       "projected_contact_area_in2": 28.9705209894079
+    },
+    {
+      "owner": "K0-A",
+      "receiver": "P0",
+      "kind": "Full 2 \u00d7 6 diagonal brace socket; proposed two inch engagement",
+      "insert_volume_in3": 13.734256174096622,
+      "gap_mm": 0.0,
+      "projected_contact_area_in2": 8.299141608954098
+    },
+    {
+      "owner": "K0-A",
+      "receiver": "B7",
+      "kind": "Full 2 \u00d7 6 diagonal brace socket; proposed two inch engagement",
+      "insert_volume_in3": 16.407093891845157,
+      "gap_mm": 0.0,
+      "projected_contact_area_in2": 18.302254763978354
+    },
+    {
+      "owner": "K0-B",
+      "receiver": "P0",
+      "kind": "Full 2 \u00d7 6 diagonal brace socket; proposed two inch engagement",
+      "insert_volume_in3": 13.734256174096677,
+      "gap_mm": 0.0,
+      "projected_contact_area_in2": 23.251853712713487
+    },
+    {
+      "owner": "K0-B",
+      "receiver": "B0",
+      "kind": "Full 2 \u00d7 6 diagonal brace socket; proposed two inch engagement",
+      "insert_volume_in3": 16.407093891845246,
+      "gap_mm": 0.0,
+      "projected_contact_area_in2": 18.302254763979438
+    },
+    {
+      "owner": "K0-C",
+      "receiver": "P0",
+      "kind": "Full 2 \u00d7 6 diagonal brace socket; proposed two inch engagement",
+      "insert_volume_in3": 12.115278926009603,
+      "gap_mm": 0.0,
+      "projected_contact_area_in2": 17.543961465096885
+    },
+    {
+      "owner": "K0-C",
+      "receiver": "T0",
+      "kind": "Full 2 \u00d7 6 diagonal brace socket; proposed two inch engagement",
+      "insert_volume_in3": 11.448201489272215,
+      "gap_mm": 0.0,
+      "projected_contact_area_in2": 17.94678646533947
+    },
+    {
+      "owner": "K1-A",
+      "receiver": "P1",
+      "kind": "Full 2 \u00d7 6 diagonal brace socket; proposed two inch engagement",
+      "insert_volume_in3": 13.734256174094941,
+      "gap_mm": 0.0,
+      "projected_contact_area_in2": 7.885683514666559
+    },
+    {
+      "owner": "K1-A",
+      "receiver": "B0",
+      "kind": "Full 2 \u00d7 6 diagonal brace socket; proposed two inch engagement",
+      "insert_volume_in3": 16.407093891839462,
+      "gap_mm": 0.0,
+      "projected_contact_area_in2": 19.693618320528458
+    },
+    {
+      "owner": "K1-B",
+      "receiver": "P1",
+      "kind": "Full 2 \u00d7 6 diagonal brace socket; proposed two inch engagement",
+      "insert_volume_in3": 13.734256174092511,
+      "gap_mm": 0.0,
+      "projected_contact_area_in2": 21.39736149865129
+    },
+    {
+      "owner": "K1-B",
+      "receiver": "B1",
+      "kind": "Full 2 \u00d7 6 diagonal brace socket; proposed two inch engagement",
+      "insert_volume_in3": 16.407093891840038,
+      "gap_mm": 0.0,
+      "projected_contact_area_in2": 13.962909264648852
+    },
+    {
+      "owner": "K1-C",
+      "receiver": "P1",
+      "kind": "Full 2 \u00d7 6 diagonal brace socket; proposed two inch engagement",
+      "insert_volume_in3": 12.115278926009882,
+      "gap_mm": 0.0,
+      "projected_contact_area_in2": 17.9223325212285
+    },
+    {
+      "owner": "K1-C",
+      "receiver": "T1",
+      "kind": "Full 2 \u00d7 6 diagonal brace socket; proposed two inch engagement",
+      "insert_volume_in3": 11.448201489272208,
+      "gap_mm": 0.0,
+      "projected_contact_area_in2": 17.94678646534033
+    },
+    {
+      "owner": "K2-A",
+      "receiver": "P2",
+      "kind": "Full 2 \u00d7 6 diagonal brace socket; proposed two inch engagement",
+      "insert_volume_in3": 13.734256174097379,
+      "gap_mm": 0.0,
+      "projected_contact_area_in2": 8.23617741405521
+    },
+    {
+      "owner": "K2-A",
+      "receiver": "B1",
+      "kind": "Full 2 \u00d7 6 diagonal brace socket; proposed two inch engagement",
+      "insert_volume_in3": 16.40709389184603,
+      "gap_mm": 0.0,
+      "projected_contact_area_in2": 13.962909264647974
+    },
+    {
+      "owner": "K2-B",
+      "receiver": "P2",
+      "kind": "Full 2 \u00d7 6 diagonal brace socket; proposed two inch engagement",
+      "insert_volume_in3": 13.734256174097009,
+      "gap_mm": 0.0,
+      "projected_contact_area_in2": 23.251853712721093
+    },
+    {
+      "owner": "K2-B",
+      "receiver": "B2",
+      "kind": "Full 2 \u00d7 6 diagonal brace socket; proposed two inch engagement",
+      "insert_volume_in3": 16.407093891846277,
+      "gap_mm": 0.0,
+      "projected_contact_area_in2": 13.962909264649873
+    },
+    {
+      "owner": "K2-C",
+      "receiver": "P2",
+      "kind": "Full 2 \u00d7 6 diagonal brace socket; proposed two inch engagement",
+      "insert_volume_in3": 12.115278926009571,
+      "gap_mm": 0.0,
+      "projected_contact_area_in2": 7.9882152866996465
+    },
+    {
+      "owner": "K2-C",
+      "receiver": "T2",
+      "kind": "Full 2 \u00d7 6 diagonal brace socket; proposed two inch engagement",
+      "insert_volume_in3": 11.44820148927197,
+      "gap_mm": 0.0,
+      "projected_contact_area_in2": 17.946786465339375
+    },
+    {
+      "owner": "K3-A",
+      "receiver": "P3",
+      "kind": "Full 2 \u00d7 6 diagonal brace socket; proposed two inch engagement",
+      "insert_volume_in3": 13.734256174094988,
+      "gap_mm": 0.0,
+      "projected_contact_area_in2": 21.397361498659205
+    },
+    {
+      "owner": "K3-A",
+      "receiver": "B2",
+      "kind": "Full 2 \u00d7 6 diagonal brace socket; proposed two inch engagement",
+      "insert_volume_in3": 16.4070938918424,
+      "gap_mm": 0.0,
+      "projected_contact_area_in2": 13.962909264648811
+    },
+    {
+      "owner": "K3-B",
+      "receiver": "P3",
+      "kind": "Full 2 \u00d7 6 diagonal brace socket; proposed two inch engagement",
+      "insert_volume_in3": 13.734256174094275,
+      "gap_mm": 0.0,
+      "projected_contact_area_in2": 21.397361498672346
+    },
+    {
+      "owner": "K3-B",
+      "receiver": "B3",
+      "kind": "Full 2 \u00d7 6 diagonal brace socket; proposed two inch engagement",
+      "insert_volume_in3": 16.40709389184249,
+      "gap_mm": 0.0,
+      "projected_contact_area_in2": 13.962909264646468
+    },
+    {
+      "owner": "K3-C",
+      "receiver": "P3",
+      "kind": "Full 2 \u00d7 6 diagonal brace socket; proposed two inch engagement",
+      "insert_volume_in3": 12.115278926009475,
+      "gap_mm": 0.0,
+      "projected_contact_area_in2": 6.011924004024902
+    },
+    {
+      "owner": "K3-C",
+      "receiver": "T3",
+      "kind": "Full 2 \u00d7 6 diagonal brace socket; proposed two inch engagement",
+      "insert_volume_in3": 11.448201489272238,
+      "gap_mm": 0.0,
+      "projected_contact_area_in2": 17.946786465339642
+    },
+    {
+      "owner": "K4-A",
+      "receiver": "P4",
+      "kind": "Full 2 \u00d7 6 diagonal brace socket; proposed two inch engagement",
+      "insert_volume_in3": 13.73425617409726,
+      "gap_mm": 0.0,
+      "projected_contact_area_in2": 23.251853712716247
+    },
+    {
+      "owner": "K4-A",
+      "receiver": "B3",
+      "kind": "Full 2 \u00d7 6 diagonal brace socket; proposed two inch engagement",
+      "insert_volume_in3": 16.40709389184529,
+      "gap_mm": 0.0,
+      "projected_contact_area_in2": 13.962909264649786
+    },
+    {
+      "owner": "K4-B",
+      "receiver": "P4",
+      "kind": "Full 2 \u00d7 6 diagonal brace socket; proposed two inch engagement",
+      "insert_volume_in3": 13.7342561740968,
+      "gap_mm": 0.0,
+      "projected_contact_area_in2": 8.236177414051896
+    },
+    {
+      "owner": "K4-B",
+      "receiver": "B4",
+      "kind": "Full 2 \u00d7 6 diagonal brace socket; proposed two inch engagement",
+      "insert_volume_in3": 16.4070938917998,
+      "gap_mm": 0.0,
+      "projected_contact_area_in2": 13.962909264642724
+    },
+    {
+      "owner": "K4-C",
+      "receiver": "P4",
+      "kind": "Full 2 \u00d7 6 diagonal brace socket; proposed two inch engagement",
+      "insert_volume_in3": 12.115278926009529,
+      "gap_mm": 0.0,
+      "projected_contact_area_in2": 7.988853734788295
+    },
+    {
+      "owner": "K4-C",
+      "receiver": "T4",
+      "kind": "Full 2 \u00d7 6 diagonal brace socket; proposed two inch engagement",
+      "insert_volume_in3": 11.448201489272158,
+      "gap_mm": 0.0,
+      "projected_contact_area_in2": 17.946786465339503
+    },
+    {
+      "owner": "K5-A",
+      "receiver": "P5",
+      "kind": "Full 2 \u00d7 6 diagonal brace socket; proposed two inch engagement",
+      "insert_volume_in3": 13.734256174096192,
+      "gap_mm": 0.0,
+      "projected_contact_area_in2": 21.39736149865829
+    },
+    {
+      "owner": "K5-A",
+      "receiver": "B4",
+      "kind": "Full 2 \u00d7 6 diagonal brace socket; proposed two inch engagement",
+      "insert_volume_in3": 16.40709389183659,
+      "gap_mm": 0.0,
+      "projected_contact_area_in2": 13.962909264645733
+    },
+    {
+      "owner": "K5-B",
+      "receiver": "P5",
+      "kind": "Full 2 \u00d7 6 diagonal brace socket; proposed two inch engagement",
+      "insert_volume_in3": 13.734256174092973,
+      "gap_mm": 0.0,
+      "projected_contact_area_in2": 7.885683514667558
+    },
+    {
+      "owner": "K5-B",
+      "receiver": "B5",
+      "kind": "Full 2 \u00d7 6 diagonal brace socket; proposed two inch engagement",
+      "insert_volume_in3": 16.407093891842923,
+      "gap_mm": 0.0,
+      "projected_contact_area_in2": 19.693618320532615
+    },
+    {
+      "owner": "K5-C",
+      "receiver": "P5",
+      "kind": "Full 2 \u00d7 6 diagonal brace socket; proposed two inch engagement",
+      "insert_volume_in3": 12.11527892600728,
+      "gap_mm": 0.0,
+      "projected_contact_area_in2": 11.91131144295231
+    },
+    {
+      "owner": "K5-C",
+      "receiver": "T5",
+      "kind": "Full 2 \u00d7 6 diagonal brace socket; proposed two inch engagement",
+      "insert_volume_in3": 11.448201489271,
+      "gap_mm": 0.0,
+      "projected_contact_area_in2": 17.946786465338956
+    },
+    {
+      "owner": "K6-A",
+      "receiver": "P6",
+      "kind": "Full 2 \u00d7 6 diagonal brace socket; proposed two inch engagement",
+      "insert_volume_in3": 13.734256174096986,
+      "gap_mm": 0.0,
+      "projected_contact_area_in2": 23.251853712708943
+    },
+    {
+      "owner": "K6-A",
+      "receiver": "B5",
+      "kind": "Full 2 \u00d7 6 diagonal brace socket; proposed two inch engagement",
+      "insert_volume_in3": 16.40709389184534,
+      "gap_mm": 0.0,
+      "projected_contact_area_in2": 18.302254763977167
+    },
+    {
+      "owner": "K6-B",
+      "receiver": "P6",
+      "kind": "Full 2 \u00d7 6 diagonal brace socket; proposed two inch engagement",
+      "insert_volume_in3": 13.734256174096608,
+      "gap_mm": 0.0,
+      "projected_contact_area_in2": 8.299141608952961
+    },
+    {
+      "owner": "K6-B",
+      "receiver": "B6",
+      "kind": "Full 2 \u00d7 6 diagonal brace socket; proposed two inch engagement",
+      "insert_volume_in3": 16.407093891845033,
+      "gap_mm": 0.0,
+      "projected_contact_area_in2": 18.30225476397768
+    },
+    {
+      "owner": "K6-C",
+      "receiver": "P6",
+      "kind": "Full 2 \u00d7 6 diagonal brace socket; proposed two inch engagement",
+      "insert_volume_in3": 12.115278926009607,
+      "gap_mm": 0.0,
+      "projected_contact_area_in2": 17.54396146509626
+    },
+    {
+      "owner": "K6-C",
+      "receiver": "T6",
+      "kind": "Full 2 \u00d7 6 diagonal brace socket; proposed two inch engagement",
+      "insert_volume_in3": 11.448201489271284,
+      "gap_mm": 0.0,
+      "projected_contact_area_in2": 17.946786465339333
+    },
+    {
+      "owner": "K7-A",
+      "receiver": "P7",
+      "kind": "Full 2 \u00d7 6 diagonal brace socket; proposed two inch engagement",
+      "insert_volume_in3": 13.734256174093296,
+      "gap_mm": 0.0,
+      "projected_contact_area_in2": 13.600722649763766
+    },
+    {
+      "owner": "K7-A",
+      "receiver": "B6",
+      "kind": "Full 2 \u00d7 6 diagonal brace socket; proposed two inch engagement",
+      "insert_volume_in3": 16.407093891842823,
+      "gap_mm": 0.0,
+      "projected_contact_area_in2": 19.693618320535787
+    },
+    {
+      "owner": "K7-B",
+      "receiver": "P7",
+      "kind": "Full 2 \u00d7 6 diagonal brace socket; proposed two inch engagement",
+      "insert_volume_in3": 13.73425617409441,
+      "gap_mm": 0.0,
+      "projected_contact_area_in2": 13.600722665022477
+    },
+    {
+      "owner": "K7-B",
+      "receiver": "B7",
+      "kind": "Full 2 \u00d7 6 diagonal brace socket; proposed two inch engagement",
+      "insert_volume_in3": 16.40709389174697,
+      "gap_mm": 0.0,
+      "projected_contact_area_in2": 19.693618320531264
+    },
+    {
+      "owner": "K7-C",
+      "receiver": "P7",
+      "kind": "Full 2 \u00d7 6 diagonal brace socket; proposed two inch engagement",
+      "insert_volume_in3": 12.115278926009646,
+      "gap_mm": 0.0,
+      "projected_contact_area_in2": 17.92233252123065
+    },
+    {
+      "owner": "K7-C",
+      "receiver": "T7",
+      "kind": "Full 2 \u00d7 6 diagonal brace socket; proposed two inch engagement",
+      "insert_volume_in3": 11.448201489270946,
+      "gap_mm": 0.0,
+      "projected_contact_area_in2": 17.94678646533689
     }
   ],
   "pieces": [
@@ -1551,21 +1679,21 @@
       "connected_solids": 1,
       "valid": true,
       "original_volume_in3": 6210.313682744056,
-      "final_volume_in3": 6038.15532620388
+      "final_volume_in3": 6082.077223276555
     },
     {
       "id": "B0",
       "connected_solids": 1,
       "valid": true,
       "original_volume_in3": 6050.180668328277,
-      "final_volume_in3": 6059.692101771245
+      "final_volume_in3": 6067.031034520125
     },
     {
       "id": "T0",
       "connected_solids": 1,
       "valid": true,
       "original_volume_in3": 7680.0,
-      "final_volume_in3": 7744.0
+      "final_volume_in3": 7731.387112807769
     },
     {
       "id": "R0",
@@ -1579,7 +1707,7 @@
       "connected_solids": 1,
       "valid": true,
       "original_volume_in3": 3357.7366596101024,
-      "final_volume_in3": 3234.520851526912
+      "final_volume_in3": 3234.5208515269123
     },
     {
       "id": "L0-S",
@@ -1599,15 +1727,22 @@
       "id": "K0-A",
       "connected_solids": 1,
       "valid": true,
-      "original_volume_in3": 570.2109083488324,
-      "final_volume_in3": 526.1228611112798
+      "original_volume_in3": 523.1757569573819,
+      "final_volume_in3": 476.97209159398255
     },
     {
       "id": "K0-B",
       "connected_solids": 1,
       "valid": true,
-      "original_volume_in3": 570.2109083488297,
-      "final_volume_in3": 526.1228611112776
+      "original_volume_in3": 523.1757569573823,
+      "final_volume_in3": 476.97209159397727
+    },
+    {
+      "id": "K0-C",
+      "connected_solids": 1,
+      "valid": true,
+      "final_volume_in3": 399.0542527438486,
+      "original_volume_in3": 448.26406871193825
     },
     {
       "id": "J0-0",
@@ -1628,98 +1763,105 @@
       "connected_solids": 1,
       "valid": true,
       "original_volume_in3": 6210.313682744055,
-      "final_volume_in3": 6038.155326203868
+      "final_volume_in3": 6082.07722327654
     },
     {
       "id": "B1",
       "connected_solids": 1,
       "valid": true,
       "original_volume_in3": 6050.180668328301,
-      "final_volume_in3": 6059.69210177121
+      "final_volume_in3": 6067.031034520106
     },
     {
       "id": "T1",
       "connected_solids": 1,
       "valid": true,
       "original_volume_in3": 7680.0000000000355,
-      "final_volume_in3": 7744.000000000005
+      "final_volume_in3": 7731.387112807755
     },
     {
       "id": "R1",
       "connected_solids": 1,
       "valid": true,
       "original_volume_in3": 13155.075066300438,
-      "final_volume_in3": 13014.897752933382
+      "final_volume_in3": 13014.89775293338
     },
     {
       "id": "C1",
       "connected_solids": 1,
       "valid": true,
       "original_volume_in3": 3357.7366596101065,
-      "final_volume_in3": 3234.5208515269096
+      "final_volume_in3": 3234.520851526909
     },
     {
       "id": "L1-S",
       "connected_solids": 1,
       "valid": true,
       "original_volume_in3": 597.2565180523926,
-      "final_volume_in3": 620.3736181702393
+      "final_volume_in3": 620.3736181702392
     },
     {
       "id": "L1-H",
       "connected_solids": 1,
       "valid": true,
       "original_volume_in3": 597.2565180523926,
-      "final_volume_in3": 620.3736181702418
+      "final_volume_in3": 620.3736181702419
     },
     {
       "id": "K1-A",
       "connected_solids": 1,
       "valid": true,
-      "original_volume_in3": 570.2109083488344,
-      "final_volume_in3": 526.1228611112763
+      "original_volume_in3": 523.1757569573691,
+      "final_volume_in3": 476.9720915939629
     },
     {
       "id": "K1-B",
       "connected_solids": 1,
       "valid": true,
-      "original_volume_in3": 570.2109083488353,
-      "final_volume_in3": 526.1228611112782
+      "original_volume_in3": 523.1757569573793,
+      "final_volume_in3": 476.9720915938852
+    },
+    {
+      "id": "K1-C",
+      "connected_solids": 1,
+      "valid": true,
+      "final_volume_in3": 399.05425274384896,
+      "original_volume_in3": 448.26406871193825
     },
     {
       "id": "J1-0",
       "connected_solids": 1,
       "valid": true,
       "original_volume_in3": 4025.9500851843477,
-      "final_volume_in3": 4046.8783512178456
+      "final_volume_in3": 4046.8783512178466
     },
     {
       "id": "J1-2",
       "connected_solids": 1,
       "valid": true,
       "original_volume_in3": 4025.9500851843127,
-      "final_volume_in3": 4046.8783512178916
+      "final_volume_in3": 4046.8783512178925
     },
     {
       "id": "P2",
       "connected_solids": 1,
       "valid": true,
       "original_volume_in3": 6210.313682744056,
-      "final_volume_in3": 6038.15532620388
+      "final_volume_in3": 6082.077223276553
     },
     {
       "id": "B2",
       "connected_solids": 1,
       "valid": true,
       "original_volume_in3": 6050.180668328286,
-      "final_volume_in3": 6059.692101771245
+      "final_volume_in3": 6067.031034520112
     },
     {
       "id": "T2",
       "connected_solids": 1,
       "valid": true,
       "original_volume_in3": 7680.000000000002,
-      "final_volume_in3": 7744.0
+      "final_volume_in3": 7731.387112807767
     },
     {
       "id": "R2",
@@ -1733,35 +1875,42 @@
       "connected_solids": 1,
       "valid": true,
       "original_volume_in3": 3357.736659610103,
-      "final_volume_in3": 3234.520851526912
+      "final_volume_in3": 3234.5208515269123
     },
     {
       "id": "L2-S",
       "connected_solids": 1,
       "valid": true,
       "original_volume_in3": 597.2565180523897,
-      "final_volume_in3": 620.3736181702388
+      "final_volume_in3": 620.3736181702387
     },
     {
       "id": "L2-H",
       "connected_solids": 1,
       "valid": true,
       "original_volume_in3": 597.2565180523901,
-      "final_volume_in3": 620.373618170241
+      "final_volume_in3": 620.3736181702409
     },
     {
       "id": "K2-A",
       "connected_solids": 1,
       "valid": true,
-      "original_volume_in3": 570.2109083488323,
-      "final_volume_in3": 526.1228611112799
+      "original_volume_in3": 523.1757569573749,
+      "final_volume_in3": 476.9720915939817
     },
     {
       "id": "K2-B",
       "connected_solids": 1,
       "valid": true,
-      "original_volume_in3": 570.2109083488369,
-      "final_volume_in3": 526.1228611112768
+      "original_volume_in3": 523.1757569573739,
+      "final_volume_in3": 476.9720915939748
+    },
+    {
+      "id": "K2-C",
+      "connected_solids": 1,
+      "valid": true,
+      "final_volume_in3": 399.0542527438481,
+      "original_volume_in3": 448.2640687119298
     },
     {
       "id": "J2-0",
@@ -1775,28 +1924,28 @@
       "connected_solids": 1,
       "valid": true,
       "original_volume_in3": 4025.9500851843195,
-      "final_volume_in3": 4046.878351217883
+      "final_volume_in3": 4046.878351217882
     },
     {
       "id": "P3",
       "connected_solids": 1,
       "valid": true,
       "original_volume_in3": 6210.313682744055,
-      "final_volume_in3": 6038.155326203868
+      "final_volume_in3": 6082.07722327652
     },
     {
       "id": "B3",
       "connected_solids": 1,
       "valid": true,
       "original_volume_in3": 6050.180668328269,
-      "final_volume_in3": 6059.69210177121
+      "final_volume_in3": 6067.031034520097
     },
     {
       "id": "T3",
       "connected_solids": 1,
       "valid": true,
       "original_volume_in3": 7680.0000000000355,
-      "final_volume_in3": 7744.000000000005
+      "final_volume_in3": 7731.3871128077635
     },
     {
       "id": "R3",
@@ -1824,21 +1973,28 @@
       "connected_solids": 1,
       "valid": true,
       "original_volume_in3": 597.2565180523927,
-      "final_volume_in3": 620.3736181702418
+      "final_volume_in3": 620.3736181702419
     },
     {
       "id": "K3-A",
       "connected_solids": 1,
       "valid": true,
-      "original_volume_in3": 570.2109083488342,
-      "final_volume_in3": 526.1228611112764
+      "original_volume_in3": 523.1757569573856,
+      "final_volume_in3": 476.97209159395777
     },
     {
       "id": "K3-B",
       "connected_solids": 1,
       "valid": true,
-      "original_volume_in3": 570.2109083488351,
-      "final_volume_in3": 526.1228611112786
+      "original_volume_in3": 523.1757569573712,
+      "final_volume_in3": 476.9720915939613
+    },
+    {
+      "id": "K3-C",
+      "connected_solids": 1,
+      "valid": true,
+      "final_volume_in3": 399.05425274384885,
+      "original_volume_in3": 448.264068711912
     },
     {
       "id": "J3-0",
@@ -1852,35 +2008,35 @@
       "connected_solids": 1,
       "valid": true,
       "original_volume_in3": 4025.950085184355,
-      "final_volume_in3": 4046.8783512178925
+      "final_volume_in3": 4046.8783512178934
     },
     {
       "id": "P4",
       "connected_solids": 1,
       "valid": true,
       "original_volume_in3": 6210.313682744059,
-      "final_volume_in3": 6038.15532620388
+      "final_volume_in3": 6082.077223276556
     },
     {
       "id": "B4",
       "connected_solids": 1,
       "valid": true,
       "original_volume_in3": 6050.180668328273,
-      "final_volume_in3": 6059.692101771245
+      "final_volume_in3": 6067.031034519738
     },
     {
       "id": "T4",
       "connected_solids": 1,
       "valid": true,
       "original_volume_in3": 7680.0,
-      "final_volume_in3": 7744.0
+      "final_volume_in3": 7731.387112807767
     },
     {
       "id": "R4",
       "connected_solids": 1,
       "valid": true,
       "original_volume_in3": 13155.075066300475,
-      "final_volume_in3": 13014.89775293336
+      "final_volume_in3": 13014.897752933359
     },
     {
       "id": "C4",
@@ -1901,28 +2057,35 @@
       "connected_solids": 1,
       "valid": true,
       "original_volume_in3": 597.2565180523891,
-      "final_volume_in3": 620.373618170241
+      "final_volume_in3": 620.3736181702413
     },
     {
       "id": "K4-A",
       "connected_solids": 1,
       "valid": true,
-      "original_volume_in3": 570.2109083488276,
-      "final_volume_in3": 526.1228611112798
+      "original_volume_in3": 523.1757569573723,
+      "final_volume_in3": 476.97209159397863
     },
     {
       "id": "K4-B",
       "connected_solids": 1,
       "valid": true,
-      "original_volume_in3": 570.2109083488281,
-      "final_volume_in3": 526.1228611112776
+      "original_volume_in3": 523.1757569573723,
+      "final_volume_in3": 476.9720915938238
+    },
+    {
+      "id": "K4-C",
+      "connected_solids": 1,
+      "valid": true,
+      "final_volume_in3": 399.05425274384817,
+      "original_volume_in3": 448.2640687119395
     },
     {
       "id": "J4-0",
       "connected_solids": 1,
       "valid": true,
       "original_volume_in3": 4025.9500851843272,
-      "final_volume_in3": 4046.8783512178575
+      "final_volume_in3": 4046.8783512178593
     },
     {
       "id": "J4-2",
@@ -1936,28 +2099,28 @@
       "connected_solids": 1,
       "valid": true,
       "original_volume_in3": 6210.31368274406,
-      "final_volume_in3": 6038.155326203868
+      "final_volume_in3": 6082.077223276565
     },
     {
       "id": "B5",
       "connected_solids": 1,
       "valid": true,
       "original_volume_in3": 6050.180668328281,
-      "final_volume_in3": 6059.69210177121
+      "final_volume_in3": 6067.031034520099
     },
     {
       "id": "T5",
       "connected_solids": 1,
       "valid": true,
       "original_volume_in3": 7679.999999999972,
-      "final_volume_in3": 7744.000000000005
+      "final_volume_in3": 7731.387112807771
     },
     {
       "id": "R5",
       "connected_solids": 1,
       "valid": true,
       "original_volume_in3": 13155.075066300464,
-      "final_volume_in3": 13014.897752933382
+      "final_volume_in3": 13014.89775293338
     },
     {
       "id": "C5",
@@ -1984,50 +2147,57 @@
       "id": "K5-A",
       "connected_solids": 1,
       "valid": true,
-      "original_volume_in3": 570.2109083488342,
-      "final_volume_in3": 526.1228611112763
+      "original_volume_in3": 523.1757569573712,
+      "final_volume_in3": 476.9720915939672
     },
     {
       "id": "K5-B",
       "connected_solids": 1,
       "valid": true,
-      "original_volume_in3": 570.210908348831,
-      "final_volume_in3": 526.1228611112782
+      "original_volume_in3": 523.1757569573854,
+      "final_volume_in3": 476.97209159394373
+    },
+    {
+      "id": "K5-C",
+      "connected_solids": 1,
+      "valid": true,
+      "final_volume_in3": 399.0542527438394,
+      "original_volume_in3": 448.2640687119394
     },
     {
       "id": "J5-0",
       "connected_solids": 1,
       "valid": true,
       "original_volume_in3": 4025.950085184335,
-      "final_volume_in3": 4046.8783512178456
+      "final_volume_in3": 4046.8783512178466
     },
     {
       "id": "J5-2",
       "connected_solids": 1,
       "valid": true,
       "original_volume_in3": 4025.950085184344,
-      "final_volume_in3": 4046.8783512178916
+      "final_volume_in3": 4046.8783512178925
     },
     {
       "id": "P6",
       "connected_solids": 1,
       "valid": true,
       "original_volume_in3": 6210.31368274406,
-      "final_volume_in3": 6038.15532620388
+      "final_volume_in3": 6082.077223276557
     },
     {
       "id": "B6",
       "connected_solids": 1,
       "valid": true,
       "original_volume_in3": 6050.180668328268,
-      "final_volume_in3": 6059.692101771245
+      "final_volume_in3": 6067.031034520095
     },
     {
       "id": "T6",
       "connected_solids": 1,
       "valid": true,
       "original_volume_in3": 7680.000000000002,
-      "final_volume_in3": 7744.0
+      "final_volume_in3": 7731.387112807769
     },
     {
       "id": "R6",
@@ -2041,35 +2211,42 @@
       "connected_solids": 1,
       "valid": true,
       "original_volume_in3": 3357.7366596101024,
-      "final_volume_in3": 3234.520851526912
+      "final_volume_in3": 3234.5208515269114
     },
     {
       "id": "L6-S",
       "connected_solids": 1,
       "valid": true,
       "original_volume_in3": 597.2565180523893,
-      "final_volume_in3": 620.3736181702388
+      "final_volume_in3": 620.3736181702391
     },
     {
       "id": "L6-H",
       "connected_solids": 1,
       "valid": true,
       "original_volume_in3": 597.256518052393,
-      "final_volume_in3": 620.373618170241
+      "final_volume_in3": 620.3736181702408
     },
     {
       "id": "K6-A",
       "connected_solids": 1,
       "valid": true,
-      "original_volume_in3": 570.2109083488305,
-      "final_volume_in3": 526.1228611112799
+      "original_volume_in3": 523.1757569573739,
+      "final_volume_in3": 476.9720915939866
     },
     {
       "id": "K6-B",
       "connected_solids": 1,
       "valid": true,
-      "original_volume_in3": 570.2109083488357,
-      "final_volume_in3": 526.1228611112768
+      "original_volume_in3": 523.1757569573749,
+      "final_volume_in3": 476.9720915939725
+    },
+    {
+      "id": "K6-C",
+      "connected_solids": 1,
+      "valid": true,
+      "final_volume_in3": 399.0542527438466,
+      "original_volume_in3": 448.2640687119298
     },
     {
       "id": "J6-0",
@@ -2090,28 +2267,28 @@
       "connected_solids": 1,
       "valid": true,
       "original_volume_in3": 6210.313682744051,
-      "final_volume_in3": 6038.155326203868
+      "final_volume_in3": 6082.077223276519
     },
     {
       "id": "B7",
       "connected_solids": 1,
       "valid": true,
       "original_volume_in3": 6050.1806683282575,
-      "final_volume_in3": 6059.69210177121
+      "final_volume_in3": 6067.031034519671
     },
     {
       "id": "T7",
       "connected_solids": 1,
       "valid": true,
       "original_volume_in3": 7679.99999999999,
-      "final_volume_in3": 7744.000000000005
+      "final_volume_in3": 7731.3871128077635
     },
     {
       "id": "R7",
       "connected_solids": 1,
       "valid": true,
       "original_volume_in3": 13155.075066300406,
-      "final_volume_in3": 13014.897752933392
+      "final_volume_in3": 13014.89775293339
     },
     {
       "id": "C7",
@@ -2125,28 +2302,35 @@
       "connected_solids": 1,
       "valid": true,
       "original_volume_in3": 597.2565180523917,
-      "final_volume_in3": 620.3736181702393
+      "final_volume_in3": 620.3736181702392
     },
     {
       "id": "L7-H",
       "connected_solids": 1,
       "valid": true,
       "original_volume_in3": 597.2565180523882,
-      "final_volume_in3": 620.3736181702418
+      "final_volume_in3": 620.373618170242
     },
     {
       "id": "K7-A",
       "connected_solids": 1,
       "valid": true,
-      "original_volume_in3": 570.2109083488319,
-      "final_volume_in3": 526.1228611112764
+      "original_volume_in3": 523.1757569573793,
+      "final_volume_in3": 476.9720915939452
     },
     {
       "id": "K7-B",
       "connected_solids": 1,
       "valid": true,
-      "original_volume_in3": 570.2109083488363,
-      "final_volume_in3": 526.1228611112786
+      "original_volume_in3": 523.1757569573691,
+      "final_volume_in3": 476.9720915936509
+    },
+    {
+      "id": "K7-C",
+      "connected_solids": 1,
+      "valid": true,
+      "final_volume_in3": 399.05425274385203,
+      "original_volume_in3": 448.26406871191034
     },
     {
       "id": "J7-0",
@@ -2160,7 +2344,7 @@
       "connected_solids": 1,
       "valid": true,
       "original_volume_in3": 4025.950085184294,
-      "final_volume_in3": 4046.8783512178925
+      "final_volume_in3": 4046.8783512178934
     },
     {
       "id": "CR0",
@@ -2174,49 +2358,49 @@
       "connected_solids": 1,
       "valid": true,
       "original_volume_in3": 693.0813686473837,
-      "final_volume_in3": 693.0813686473846
+      "final_volume_in3": 693.0813686473845
     },
     {
       "id": "CR2",
       "connected_solids": 1,
       "valid": true,
       "original_volume_in3": 693.0813686473831,
-      "final_volume_in3": 693.0813686473833
+      "final_volume_in3": 693.0813686473832
     },
     {
       "id": "CR3",
       "connected_solids": 1,
       "valid": true,
       "original_volume_in3": 693.0813686473837,
-      "final_volume_in3": 693.0813686473846
+      "final_volume_in3": 693.0813686473845
     },
     {
       "id": "CR4",
       "connected_solids": 1,
       "valid": true,
       "original_volume_in3": 693.0813686473825,
-      "final_volume_in3": 693.0813686473833
+      "final_volume_in3": 693.0813686473832
     },
     {
       "id": "CR5",
       "connected_solids": 1,
       "valid": true,
       "original_volume_in3": 693.081368647384,
-      "final_volume_in3": 693.0813686473846
+      "final_volume_in3": 693.0813686473845
     },
     {
       "id": "CR6",
       "connected_solids": 1,
       "valid": true,
       "original_volume_in3": 693.0813686473826,
-      "final_volume_in3": 693.0813686473833
+      "final_volume_in3": 693.0813686473834
     },
     {
       "id": "CR7",
       "connected_solids": 1,
       "valid": true,
       "original_volume_in3": 693.0813686473839,
-      "final_volume_in3": 693.0813686473846
+      "final_volume_in3": 693.0813686473845
     },
     {
       "id": "CC0",
@@ -2237,35 +2421,35 @@
       "connected_solids": 1,
       "valid": true,
       "original_volume_in3": 854.0588745030448,
-      "final_volume_in3": 854.0588745030452
+      "final_volume_in3": 854.058874503045
     },
     {
       "id": "CC3",
       "connected_solids": 1,
       "valid": true,
       "original_volume_in3": 854.0588745030446,
-      "final_volume_in3": 854.0588745030452
+      "final_volume_in3": 854.0588745030456
     },
     {
       "id": "CC4",
       "connected_solids": 1,
       "valid": true,
       "original_volume_in3": 854.0588745030446,
-      "final_volume_in3": 854.0588745030452
+      "final_volume_in3": 854.0588745030456
     },
     {
       "id": "CC5",
       "connected_solids": 1,
       "valid": true,
       "original_volume_in3": 854.0588745030445,
-      "final_volume_in3": 854.0588745030452
+      "final_volume_in3": 854.0588745030456
     },
     {
       "id": "CC6",
       "connected_solids": 1,
       "valid": true,
       "original_volume_in3": 854.0588745030454,
-      "final_volume_in3": 854.0588745030452
+      "final_volume_in3": 854.058874503045
     },
     {
       "id": "CC7",
@@ -2291,5 +2475,27 @@
   "sheet_goods_count": 1,
   "sheet_goods_timber_overlaps": [],
   "cavity_closure_status": "Run audit_cavity_fit.py for independent cavity occupancy checks; legacy 3D residual meshes are not exported.",
-  "source_model_sha256": "15fc4fbbbdd520e4d0b332140b0f80daaf8f8b36d112dceac429cab598a4d331"
+  "source_model_sha256": "fb7bf67b4bae2c41c4e637647ad23caa6167345301af0befa780f4aa943519be",
+  "main_brace_revision": {
+    "revision": "R004802",
+    "timestamp": "2026-11-02T15:15:55-05:00",
+    "actual_section_in": [
+      2,
+      6
+    ],
+    "brace_count": 24,
+    "third_brace_ids": [
+      "K0-C",
+      "K1-C",
+      "K2-C",
+      "K3-C",
+      "K4-C",
+      "K5-C",
+      "K6-C",
+      "K7-C"
+    ],
+    "scope": "Only main brace solids and their P/B/T receiving sockets changed; new stock, not repair instructions for already-cut members.",
+    "strength_verified": false,
+    "assembly_sequence_verified": false
+  }
 }

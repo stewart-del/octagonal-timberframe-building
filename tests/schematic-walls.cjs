@@ -48,15 +48,80 @@ for(const wall of rawLayout.walls){
  }
  if(!wall.opening)continue;
  const o=wall.opening,w=o.width/2;
- assert.deepEqual([o.bottom,o.top],wall.face==='W'?[0,2.10]:wall.face==='E'?[.75,1.95]:[1,1.85]);
+ // TIMESTAMP START 2026-11-02T18:32:34-05:00 | REVISION R004834
+ assert.deepEqual([o.bottom,o.top],wall.face==='W'?[0,2.10]:wall.face==='E'?[.75,1.85]:[1,1.85]);
+ // TIMESTAMP END 2026-11-02T18:32:34-05:00 | REVISION R004834
  assert.equal(o.width,wall.face==='W'?.95:wall.width*(wall.face==='E'?.65:.30));
  const frames=pieces.filter(p=>p.framingRole);
  for(const side of ['left','right']){
   const jamb=frames.find(p=>p.id==='SCHEM-'+wall.face+'-rail-jamb-'+side);assert(jamb);
-  assert.deepEqual(jamb.localBounds,side==='left'?[-w-.1524,-w,wall.base+.1524,wall.height,-.0762,.0762]:[w,w+.1524,wall.base+.1524,wall.height,-.0762,.0762]);
+  // TIMESTAMP START 2026-11-02T18:40:43-05:00 | REVISION R004837
+  const depth=wall.face==='W'?[.0254,.0762]:[.0508,.1016];
+  assert.deepEqual(jamb.localBounds,side==='left'?[-w-.1524,-w,wall.base+.1524,wall.height,...depth]:[w,w+.1524,wall.base+.1524,wall.height,...depth]);
+  // TIMESTAMP END 2026-11-02T18:40:43-05:00 | REVISION R004837
  }
  for(const p of frames){assert.equal(role.role(p),'wallStructure');assert(role.included(p,'skeleton'));assert(Math.hypot(...p.exploded_offset)>0);assert.equal(p.is_timber,false);assert(p.connectionStatus.includes('unresolved'));}
  assert.equal(frames.some(p=>p.framingRole==='sill'),wall.face!=='W');
 }
 console.log('PASS: exact 12 jambs/6 headers/5 sills, preserved six clear openings, complete disjoint wall rectangles, Skeleton role and nonzero explosion offsets');
 // TIMESTAMP END 2026-11-02T13:42:10-05:00 | REVISION R004782
+
+// TIMESTAMP START 2026-11-02T14:35:15-05:00 | REVISION R004794
+for(const filename of ['model-data.json','step-lap-proposed-model.json','top-entry-proposed-model.json']){
+ const variant=JSON.parse(fs.readFileSync(__dirname+'/../src/'+filename)),layout=lib.build(variant.parts,{applyFit:false});
+ for(const wall of layout.walls){
+  // TIMESTAMP START 2026-11-02T18:32:34-05:00 | REVISION R004834
+  const expectedBottom=wall.face==='W'?2.10:1.85;
+  // TIMESTAMP END 2026-11-02T18:32:34-05:00 | REVISION R004834
+  const girts=layout.components.filter(p=>p.face===wall.face&&p.id.startsWith('SCHEM-'+wall.face+'-rail3-'));
+  assert(girts.length,wall.face+' retains its upper girt');
+  for(const p of girts)assert.deepEqual(p.localBounds.slice(2,4),[expectedBottom,expectedBottom+.1524]);
+  if(wall.face==='W'){
+   assert.equal(wall.opening.top,2.10,'Do not lower the existing doorway to enlarge the wall band');
+   continue;
+  }
+  const bandBottom=expectedBottom+.1524,bandMid=(bandBottom+wall.height)/2;
+  assert(wall.height-bandBottom>.15,wall.face+' has a visible infill band below the main beam');
+  assert(layout.components.some(p=>p.face===wall.face&&p.schematicKind==='wall'&&p.localBounds[0]<0&&p.localBounds[1]>0&&p.localBounds[2]<bandMid&&p.localBounds[3]>bandMid),wall.face+' band contains infill above the window head');
+  if(wall.opening){
+   const head=layout.components.find(p=>p.face===wall.face&&p.framingRole==='header');
+   assert.deepEqual(head.localBounds.slice(2,4),[expectedBottom,bandBottom],'Upper girt and header form one level without a second stacked rail');
+  }
+ }
+}
+console.log('PASS: all three variants retain a visible upper wall band on seven faces; window heads align with girts and west doorway stays 2.10 m clear');
+// TIMESTAMP END 2026-11-02T14:35:15-05:00 | REVISION R004794
+
+// TIMESTAMP START 2026-11-02T18:13:09-05:00 | REVISION R004829
+const unsplit=lib.build(model.parts,{applyFit:false,splitInfill:false});
+const splitBoards=rawLayout.components.filter(p=>p.panelAssemblyId),parents=[...new Set(splitBoards.map(p=>p.panelAssemblyId))];
+assert.equal(parents.length,14);assert.equal(splitBoards.length,28);
+assert.equal(rawLayout.components.length,unsplit.components.length+14);
+for(const parent of parents){
+ const original=unsplit.components.find(p=>p.id===parent),children=splitBoards.filter(p=>p.panelAssemblyId===parent);
+ const low=children.find(p=>p.panelSeamPart==='lower'),high=children.find(p=>p.panelSeamPart==='upper');
+ assert.deepEqual(low.localBounds,[...original.localBounds.slice(0,3),64*.0254,...original.localBounds.slice(4)]);
+ assert.deepEqual(high.localBounds,[...original.localBounds.slice(0,2),64*.0254,...original.localBounds.slice(3)]);
+ assert.equal(low.localBounds[3],high.localBounds[2]);
+ assert.equal(low.panelSeamY_M,64*.0254);assert.equal(high.panelSeamY_M,64*.0254);
+}
+console.log('PASS:14 real horizontal panel seams,28 separately selectable boards, unchanged complete panel envelopes');
+// TIMESTAMP END 2026-11-02T18:13:09-05:00 | REVISION R004829
+
+// TIMESTAMP START 2026-11-02T18:40:43-05:00 | REVISION R004837
+for(const p of rawLayout.components){
+ const west=p.face==='W',infill=west?[.03095,.05]:[.08255,.1016],frame=west?[.0254,.0762]:[.0508,.1016],sill=west?[-.0762,.0762]:[-.0508,.1016];
+ if(p.schematicKind==='wall')assert.deepEqual(p.localBounds.slice(4),infill,p.id+' is three-quarter-inch infill behind the braces');
+ if(p.schematicKind==='rail')assert.deepEqual(p.localBounds.slice(4),p.id.includes('-rail0-')?sill:frame,p.id+' preserves a bottom floor ledge and recesses brace-height framing');
+ if(p.panelAssemblyId)assert.deepEqual(p.unsplitLocalBounds.slice(4),infill);
+}
+for(const connection of rawLayout.railConnections){
+ const wall=rawLayout.walls.find(w=>w.face===connection.face),post=model.parts.find(p=>p.id===wall.postIds[0]),other=model.parts.find(p=>p.id===wall.postIds[1]);
+ const origin=post.center.map((x,i)=>(x+other.center[i])/2);
+ const depth=connection.center.reduce((sum,x,i)=>sum+(x-origin[i])*wall.normal[i],0);
+ const bottomSill=connection.railId.includes('-rail0-');
+ const expectedDepth=wall.face==='W'?(bottomSill?0:.0508):(bottomSill?.0254:.0762);
+ assert(Math.abs(depth-expectedDepth)<1e-12);assert(Math.abs(connection.depth-(bottomSill?.1524:.0508))<1e-12);
+}
+console.log('PASS: recessed two-by-six secondary frames, three-quarter-inch infill, and connection markers follow their actual depths');
+// TIMESTAMP END 2026-11-02T18:40:43-05:00 | REVISION R004837

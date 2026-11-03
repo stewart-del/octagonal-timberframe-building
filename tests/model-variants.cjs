@@ -29,10 +29,18 @@ for(const [id,search] of [['top-entry',''],['proposed','?model=proposed'],['base
  check(MODEL_CONTEXT.sha256===${JSON.stringify(sha)}&&PLAN_MODEL_HASH===MODEL_CONTEXT.sha256,'Selected model and plan cache use actual source hash');
  check(MODEL_EXPORT_JSON===${JSON.stringify(JSON.stringify(expected,null,2))},'Main JSON export is exact selected source, before display mutation');
  check(JSON.stringify(parts.map(p=>[p.id,p.vertices,p.triangles]))===${JSON.stringify(JSON.stringify(expected.parts.map(p=>[p.id,p.vertices,p.triangles])))},'Actual main 3D meshes are the selected geometry');
- check(JSON.stringify(LOAD_REVIEW.members)===${JSON.stringify(JSON.stringify(load.members))},'All104 self-weight volumes and centroids match selected source');
+// TIMESTAMP START 2026-11-02T15:19:38-05:00 | REVISION R004803
+ check(JSON.stringify(LOAD_REVIEW.members)===${JSON.stringify(JSON.stringify(load.members))},'All 112 self-weight volumes and centroids match selected source');
+// TIMESTAMP END 2026-11-02T15:19:38-05:00 | REVISION R004803
  check(CAVITIES.source_model_sha256===MODEL_CONTEXT.sha256&&MATERIALS.source_sha256===MODEL_CONTEXT.sha256,'Cavities and inventory share selected source hash');
- if(MODEL_CONTEXT.id==='top-entry'){check(CAVITIES.available===false&&!showHollows&&Object.keys(CAVITIES.parts).length===0&&$('showHollows').disabled&&!$('showHollows').checked,'Top-entry recess overlay withheld without baseline substitution');selectPart('P0');updateHollowStatus();check(cavityRecords().length===0&&$('hollowStatus').textContent===CAVITIES.status,'Unavailable recess stays empty after selection');check($('cavityFitAuditLink').hidden,'No stale audit link for top-entry');}
- else {check(CAVITIES.available&&CAVITIES.fit_audit.status==='PASS'&&showHollows&&!$('showHollows').disabled,'Baseline/perimeter recess requires passing selected audit');selectPart('P0');updateHollowStatus();check(cavityRecords().length>0&&$('hollowStatus').textContent.includes('Independent cavity-fit audit passed'),'Actual audited recess visible');const prior=$('showLabels').checked;$('showLabels').checked=false;$('showLabels').onchange({target:$('showLabels')});check(cavityRecords().length>0,'Labels handler does not hide selected amber');$('showLabels').checked=prior;$('showLabels').onchange({target:$('showLabels')});check(!$('cavityFitAuditLink').hidden&&$('cavityFitAuditLink').href.includes(MODEL_CONTEXT.id==='baseline'?'downloads/cavity-fit-audit.json':'downloads/step-lap-proposed-cavity-fit-audit.json'),'Selected audit link matches actual model');}
+// TIMESTAMP START 2026-11-02T17:13:18-05:00 | REVISION R004819
+ check(CAVITIES.available&&CAVITIES.fit_audit.status==='PASS'&&showHollows&&!$('showHollows').disabled,'Each selected model requires its own passing cavity audit');
+ selectPart('P0');updateHollowStatus();check(cavityRecords().length>0&&$('hollowStatus').textContent.includes('Independent cavity-fit audit passed'),'Actual audited recess visible through selected timber');
+ const prior=$('showLabels').checked;$('showLabels').checked=false;$('showLabels').onchange({target:$('showLabels')});check(cavityRecords().length>0,'Labels handler does not hide selected amber');$('showLabels').checked=prior;$('showLabels').onchange({target:$('showLabels')});
+ const auditName=MODEL_CONTEXT.id==='baseline'?'cavity-fit-audit.json':MODEL_CONTEXT.id==='top-entry'?'top-entry-cavity-fit-audit.json':'step-lap-proposed-cavity-fit-audit.json';
+ check(!$('cavityFitAuditLink').hidden&&$('cavityFitAuditLink').href.includes('downloads/'+auditName),'Selected audit link matches actual model');
+ if(MODEL_CONTEXT.id==='top-entry'){selectPart('R0');updateHollowStatus();check($('hollowStatus').textContent.includes('declared open head-entry space'),'Open head-entry space is described honestly');selectPart('C0');updateHollowStatus();check(cavityRecords().length>0,'New center dovetail cavity is visible');}
+// TIMESTAMP END 2026-11-02T17:13:18-05:00 | REVISION R004819
 
  explode=.4;cutExplode=.2;showAllAndUncenter();check(explode===0&&cutExplode===0&&$('explode').value==='0'&&schematicFloorEnabled&&schematicWallsEnabled,'Reset restores assembled geometry and visible room layers');
  const presetCamera=JSON.stringify({camera,fly,navigation});
@@ -48,6 +56,11 @@ for(const [id,search] of [['top-entry',''],['proposed','?model=proposed'],['base
  labelsOn=true;edgeMeasurementsOn=true;showAllAndUncenter();updateSchematicWalls();check(!labelsOn&&!edgeMeasurementsOn&&schematicLabels.every(x=>x.el.style.display==='none'),'Reset restores annotation-free Complete');
  selectPart('R0');inspectionPartId='R0';updatePieceCenter();check($('pieceCenterLabel').hidden,'Selection pivot text obeys Labels toggle');
  const inspectorText=n=>[n.textContent||'',...(n.children||[]).map(inspectorText)].join(' ');
+// TIMESTAMP START 2026-11-02T19:03:48-05:00 | REVISION R004848
+// TIMESTAMP START 2026-11-02T19:14:55-05:00 | REVISION R004853
+ for(const braceId of ['K2-A','K2-B','K2-C']){selectPart(braceId);const text=inspectorText($('selection'));check(text.includes('Actual full-sawn section')&&text.includes('2.00 × 6.00 in'),'Brace '+braceId+' states actual full-sawn dimensions');const proof=findNode($('selection'),'braceSectionProof');check(proof&&proof.href==='review/brace-sections.svg','Brace '+braceId+' links independent mesh-section evidence');}
+// TIMESTAMP END 2026-11-02T19:14:55-05:00 | REVISION R004853
+// TIMESTAMP END 2026-11-02T19:03:48-05:00 | REVISION R004848
  for(const timberId of ['J0-0','R0']){selectPart(timberId);const text=inspectorText($('selection'));check(text.includes('Nominal section')&&text.includes('Nominal axis length'),'Timber '+timberId+' retains timber dimensions');check(!text.includes('Owner reference overall span')&&!text.includes('8 radial L straps'),'Timber '+timberId+' never inherits temporary steel fixture metadata');}
  selectPart('M-TMP');check(inspectorText($('selection')).includes('Owner reference overall span')&&inspectorText($('selection')).includes('8 radial L straps'),'Only temporary M-TMP fixture retains its owner-reported steel dimensions');
  check(OCTAGON_ENCLOSURE_FIT.source_model_sha256===MODEL_CONTEXT.sha256,'Enclosure fit follows selected source');
@@ -70,14 +83,27 @@ for(const [id,search] of [['top-entry',''],['proposed','?model=proposed'],['base
 // Proposed GLB must advertise the same source and not inherit baseline R01 status.
 for(const [modelFile,prefix] of [['step-lap-proposed-model.json','Octagon-PROPOSED-step-lap-'],['top-entry-proposed-model.json','Octagon-TOP-ENTRY-']]){
 const proposedRaw=fs.readFileSync(path.join(root,'src',modelFile)),proposedParts=JSON.parse(proposedRaw).parts.filter(p=>!p.temporary&&p.group!=='roof_envelope');
+// TIMESTAMP START 2026-11-02T18:14:42-05:00 | REVISION R004830
+const planRaw=fs.readFileSync(path.join(root,'src/disassembly-plan.json')),variant=modelFile.startsWith('top-entry')?'top-entry':'proposed',plan=JSON.parse(planRaw).variants[variant],offsets=new Map(proposedParts.map(p=>[p.id,[0,0,0]]));
+for(const stage of plan.stages)for(const motion of stage.motions||[stage])for(const id of motion.member_ids)if(offsets.has(id))offsets.set(id,offsets.get(id).map((v,i)=>v+motion.delta_m[i]));
+// TIMESTAMP END 2026-11-02T18:14:42-05:00 | REVISION R004830
 for(const view of ['assembled','exploded']){
  const glb=fs.readFileSync(path.join(root,'dist/downloads/'+prefix+view+'.glb')),length=glb.readUInt32LE(12),meta=JSON.parse(glb.subarray(20,20+length)),binary=28+length;
  assert(meta.extras.status.includes('NOT FABRICATION'));assert.equal(meta.extras.source_model_sha256,crypto.createHash('sha256').update(proposedRaw).digest('hex'));assert.equal(meta.nodes.length,proposedParts.length);
+ // TIMESTAMP START 2026-11-02T18:14:42-05:00 | REVISION R004830
+ assert.equal(meta.extras.disassembly_pose,view==='exploded'?'checked-endpoint':'assembled-start');
+ assert.equal(meta.extras.disassembly_plan_sha256,crypto.createHash('sha256').update(planRaw).digest('hex'));assert.equal(meta.extras.disassembly_variant,variant);assert.equal(meta.extras.disassembly_status,plan.status);assert.equal(meta.extras.disassembly_stage_count,plan.stages.length);
+ assert.deepStrictEqual(meta.extras.disassembly_held_ids,plan.unmoved_ids.filter(id=>offsets.has(id)).sort());
+ // TIMESTAMP END 2026-11-02T18:14:42-05:00 | REVISION R004830
  for(const p of proposedParts){const node=meta.nodes.find(n=>n.name===p.id),mesh=meta.meshes[node.mesh].primitives[0],positions=meta.accessors[mesh.attributes.POSITION],indices=meta.accessors[mesh.indices],pv=meta.bufferViews[positions.bufferView],iv=meta.bufferViews[indices.bufferView];
-  assert.equal(positions.count,p.vertices.length);assert.equal(indices.count,p.triangles.length*3);assert.deepStrictEqual(node.translation,view==='exploded'?(p.exploded_offset||[0,0,0]):[0,0,0]);
+  // TIMESTAMP START 2026-11-02T18:14:42-05:00 | REVISION R004830
+  assert.equal(positions.count,p.vertices.length);assert.equal(indices.count,p.triangles.length*3);assert.deepStrictEqual(node.translation,view==='exploded'?offsets.get(p.id):[0,0,0]);
+  // TIMESTAMP END 2026-11-02T18:14:42-05:00 | REVISION R004830
   p.vertices.flat().forEach((v,i)=>assert(Math.abs(glb.readFloatLE(binary+pv.byteOffset+i*4)-v)<1e-6,p.id+' exported mesh coordinates'));
   p.triangles.flat().forEach((v,i)=>assert.equal(glb.readUInt32LE(binary+iv.byteOffset+i*4),v,p.id+' exported topology'));
  }
 }
 }
-console.log('PASS: actual default top-entry, perimeter proposal and baseline runtime meshes, 104 weights/centroids, hash-bound inventory/cavities/plans, reversible selector, no stale pressures/markers and source-matched JSON/GLB exports');
+// TIMESTAMP START 2026-11-02T15:19:38-05:00 | REVISION R004803
+console.log('PASS: actual default top-entry, perimeter proposal and baseline runtime meshes, 112 weights/centroids, hash-bound inventory/cavities/plans, reversible selector, no stale pressures/markers and source-matched JSON/GLB exports');
+// TIMESTAMP END 2026-11-02T15:19:38-05:00 | REVISION R004803

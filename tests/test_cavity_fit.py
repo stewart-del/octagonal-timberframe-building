@@ -70,6 +70,22 @@ LEGACY_C0_FACES = np.array([
 
 
 class CavityFitFixtures(unittest.TestCase):
+    # TIMESTAMP START 2026-11-02T17:32:31-05:00 | REVISION R004820
+    def test_boolean_partition_rejects_missing_and_double_owned_material(self):
+        source=m.Manifold.cube((1,1,1));raw=source.to_mesh64()
+        v=np.asarray(raw.vert_properties)[:,:3];f=np.asarray(raw.tri_verts)
+        def triangles(shape):
+            q=shape.to_mesh64();return np.asarray(q.vert_properties)[:,:3][np.asarray(q.tri_verts)]
+        full=audit.boolean_volume_partition(v,f,{'whole':triangles(source)})
+        self.assertEqual(full['status'],'PASS')
+        hole=m.Manifold.cube((.1,.1,.1)).translate((.45,.45,.45))
+        missing=audit.boolean_volume_partition(v,f,{'hollow':triangles(source-hole)})
+        self.assertEqual(missing['status'],'FAIL')
+        self.assertGreater(missing['uncovered_volume_m3'],.0009)
+        doubled=audit.boolean_volume_partition(v,f,{'first':triangles(source),'second':triangles(source)})
+        self.assertEqual(doubled['status'],'FAIL')
+        self.assertGreater(doubled['duplicate_ownership_volume_m3'],.99)
+    # TIMESTAMP END 2026-11-02T17:32:31-05:00 | REVISION R004820
     # TIMESTAMP START 2026-11-02T10:34:57-05:00 | REVISION R004764
     def test_slender_partition_uses_physical_halfspaces_and_volume(self):
         # Real C0 verification cell: independently orienting Qhull facets can
@@ -256,13 +272,33 @@ class CavityFitFixtures(unittest.TestCase):
         self.assertEqual(report['model_sha256'], hashlib.sha256((ROOT / 'src/model-data.json').read_bytes()).hexdigest())
         self.assertEqual(report['cavity_sha256'], hashlib.sha256((ROOT / 'src/cavity-data.json').read_bytes()).hexdigest())
         self.assertEqual(report['status'], 'PASS')
-        self.assertEqual(report['summary']['components_covered'], 144)
-        self.assertEqual(report['summary']['timbers'], 104)
-        self.assertEqual(report['summary']['nonempty_cavity_sets'], 48)
+        # TIMESTAMP START 2026-11-02T15:15:55-05:00 | REVISION R004802
+        # TIMESTAMP START 2026-11-02T17:32:31-05:00 | REVISION R004820
+        self.assertEqual(report['summary']['components_covered'], 216)
+        self.assertEqual(report['summary']['physical_wood_pieces'],160)
+        self.assertEqual(report['summary']['permanent_wood_fasteners'],48)
+        # TIMESTAMP END 2026-11-02T17:32:31-05:00 | REVISION R004820
+        # TIMESTAMP END 2026-11-02T15:15:55-05:00 | REVISION R004802
+        # TIMESTAMP START 2026-11-02T15:15:55-05:00 | REVISION R004802
+        self.assertEqual(report['summary']['timbers'], 112)
+        # TIMESTAMP END 2026-11-02T15:15:55-05:00 | REVISION R004802
+        # TIMESTAMP START 2026-11-02T15:15:55-05:00 | REVISION R004802
+        # TIMESTAMP START 2026-11-02T17:32:31-05:00 | REVISION R004820
+        self.assertEqual(report['summary']['nonempty_cavity_sets'], 80)
+        # TIMESTAMP END 2026-11-02T17:32:31-05:00 | REVISION R004820
+        # TIMESTAMP END 2026-11-02T15:15:55-05:00 | REVISION R004802
         self.assertEqual(report['summary']['winding_unoccupied_points'], 0)
-        self.assertEqual(report['summary']['receiver_stock_envelopes_verified'], 48)
-        self.assertEqual(report['summary']['all_timber_stock_envelopes_verified'], 104)
-        self.assertEqual(report['summary']['declared_exterior_brace_trims'], 16)
+        # TIMESTAMP START 2026-11-02T15:15:55-05:00 | REVISION R004802
+        # TIMESTAMP START 2026-11-02T17:32:31-05:00 | REVISION R004820
+        self.assertEqual(report['summary']['receiver_stock_envelopes_verified'], 80)
+        # TIMESTAMP END 2026-11-02T17:32:31-05:00 | REVISION R004820
+        # TIMESTAMP END 2026-11-02T15:15:55-05:00 | REVISION R004802
+        # TIMESTAMP START 2026-11-02T15:15:55-05:00 | REVISION R004802
+        self.assertEqual(report['summary']['all_timber_stock_envelopes_verified'], 112)
+        # TIMESTAMP END 2026-11-02T15:15:55-05:00 | REVISION R004802
+        # TIMESTAMP START 2026-11-02T15:15:55-05:00 | REVISION R004802
+        self.assertEqual(report['summary']['declared_exterior_brace_trims'], 24)
+        # TIMESTAMP END 2026-11-02T15:15:55-05:00 | REVISION R004802
         # TIMESTAMP START 2026-11-02T10:34:57-05:00 | REVISION R004764
         self.assertEqual(report['summary']['timbers_with_raw_surface_overlaps'], 0)
         self.assertGreater(report['summary']['raw_timber_coplanar_triangle_pairs_tested'], 0)

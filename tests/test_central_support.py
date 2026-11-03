@@ -9,11 +9,23 @@ from construction_aids import consolidate_aids
 raw=(R/'src/model-data.json').read_bytes();model=json.loads(raw);parts={p['id']:p for p in model['parts']};p=parts[FIXTURE_ID]
 proof=json.loads((R/'docs/central-support-baseline.json').read_text())
 def sha(v):return hashlib.sha256(json.dumps(v,sort_keys=True,separators=(',',':')).encode()).hexdigest()
-assert len(parts)==115 and sum(x['is_timber'] for x in parts.values())==104
-for key,h in proof['unchanged_part_hashes'].items():assert sha(parts[key])==h,key
+# TIMESTAMP START 2026-11-02T15:15:55-05:00 | REVISION R004802
+# TIMESTAMP START 2026-11-02T17:44:11-05:00 | REVISION R004823
+assert len(parts)==171 and sum(x['is_timber'] for x in parts.values())==112
+# TIMESTAMP END 2026-11-02T17:44:11-05:00 | REVISION R004823
+# TIMESTAMP END 2026-11-02T15:15:55-05:00 | REVISION R004802
+# TIMESTAMP START 2026-11-02T15:15:55-05:00 | REVISION R004802
+brace_scope={f'{f}{k}' for k in range(8) for f in ['P','B','T']}|{f'K{k}-{s}' for k in range(8) for s in ['A','B','C']}
+for key,h in proof['unchanged_part_hashes'].items():
+ if key not in brace_scope:assert sha(parts[key])==h,key
+# TIMESTAMP END 2026-11-02T15:15:55-05:00 | REVISION R004802
 assert sha({k:v for k,v in parts['M-SP0'].items() if k!='notes'})==proof['green_aid_hash_without_notes']
 assert model['r01']['cupola_outside_diameter_in']==model['source_dimensions']['cupola_outside_diameter_in']==88
-assert abs(sum(x['fit_geometry']['volume_m3'] for x in parts.values() if x['is_timber'])-6.29593043154233)<1e-10
+# TIMESTAMP START 2026-11-02T15:15:55-05:00 | REVISION R004802
+# TIMESTAMP START 2026-11-02T17:44:11-05:00 | REVISION R004823
+assert abs(sum(x['fit_geometry']['volume_m3'] for x in parts.values() if x['is_timber'])-6.3404246737588075)<1e-10
+# TIMESTAMP END 2026-11-02T17:44:11-05:00 | REVISION R004823
+# TIMESTAMP END 2026-11-02T15:15:55-05:00 | REVISION R004802
 assert {x['id'] for x in parts.values() if x['group']=='temporary_fixture'}=={FIXTURE_ID}
 assert all(model['component_id_history'][old]==FIXTURE_ID and old not in parts for old in LEGACY_IDS)
 assert p['assembly_id']=='CENTRAL-SUPPORT' and p['assembly_quantity']==1 and p['temporary'] and not p['is_timber'] and p['material']=='steel'
@@ -59,9 +71,13 @@ with tempfile.TemporaryDirectory(prefix='octagon-support-generator-') as tmp:
  for name in ['revise_r01.py','cupola_panel.py','construction_aids.py','central_support.py']:shutil.copy2(R/'scripts'/name,root/'scripts'/name)
  subprocess.run([sys.executable,str(root/'scripts/revise_r01.py')],check=True,stdout=subprocess.PIPE)
  generated=json.loads((root/'src/model-data.json').read_text());gparts={x['id']:x for x in generated['parts']}
+ # TIMESTAMP START 2026-11-02T15:15:55-05:00 | REVISION R004802
  assert len(gparts)==115 and gparts[FIXTURE_ID]==make_fixture()
+ # TIMESTAMP END 2026-11-02T15:15:55-05:00 | REVISION R004802
  assert generated['r01']['metal_count']==2 and generated['r01']['cupola_outside_diameter_in']==88
  assert all(generated['component_id_history'][x]==FIXTURE_ID for x in LEGACY_IDS)
  materials=json.loads((root/'src/material-groups.json').read_text());g=next(x for x in materials['groups'] if x['family']=='temporary_fixture')
  assert g['quantity']==1 and g['member_ids']==[FIXTURE_ID]
-print('PASS: one connected 8-L support with24 real bores;90in outer span;14in legheight;104 timber records/panel/green geometry unchanged; aliases, display limitations, scoped idempotence and disposable generator checks')
+# TIMESTAMP START 2026-11-02T15:15:55-05:00 | REVISION R004802
+print('PASS: one connected 8-L support with24 real bores;90in outer span;14in legheight;112 timber records/panel/green geometry unchanged; aliases, display limitations, scoped idempotence and disposable generator checks')
+# TIMESTAMP END 2026-11-02T15:15:55-05:00 | REVISION R004802
