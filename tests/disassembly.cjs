@@ -34,3 +34,25 @@ const rigid=D.create({status:'PASS',stages:[{id:'column',member_ids:columns,delt
 for(const progress of [0,.1,.5,.9,1])assert.deepEqual(rigid.offset(columns[0],progress),rigid.offset(columns[1],progress));
 console.log('PASS: one rigid column across its opaque and transparent rendering zones; fixed center anchors');
 // TIMESTAMP END 2026-11-03T07:02:34-05:00 | REVISION R004905
+
+// TIMESTAMP START 2026-11-03T11:58:59-05:00 | REVISION R004997
+const saved=require('../src/disassembly-plan.json').variants['top-entry'];
+const playback=D.create(saved,saved.physical_ids);
+const isFinish=id=>id.startsWith('SCHEM-FLOOR-SECTOR-')||id.startsWith('FLOOR-BAMBOO-CENTER-');
+const finishIds=saved.physical_ids.filter(isFinish);
+assert.equal(finishIds.length,16);
+assert.deepEqual(new Set(playback.stages[0].member_ids),new Set(finishIds));
+const trussIds=new Set(Array.from({length:8},(_,k)=>['R'+k,'T'+k,'C'+k]).flat());
+const lastTruss=Math.max(...playback.stages.map((s,i)=>s.member_ids.some(id=>trussIds.has(id))?i:-1));
+const supportStart=playback.stages.findIndex(s=>s.member_ids.includes('M-TMP'));
+assert.ok(supportStart>lastTruss,'The eight-L support must remain until every truss member is clear');
+for(let i=0;i<=lastTruss;i++)assert.deepEqual(playback.offset('M-TMP',(i+.5)/playback.count),[0,0,0]);
+const roofStart=playback.stages.findIndex(s=>s.member_ids.some(id=>id.startsWith('ROOF-')));
+for(const id of finishIds){
+ assert.equal(playback.offset(id,0)[1],0);
+ assert.equal(playback.offset(id,roofStart/playback.count)[1],.05,
+  'Bamboo must remain lifted while the roof covering is in place; reverse playback seats it last');
+}
+for(const id of saved.anchored_ids)assert.deepEqual(playback.offset(id,1),[0,0,0]);
+console.log('PASS: bamboo seats after the roof in reverse playback; eight-L support precedes every truss');
+// TIMESTAMP END 2026-11-03T11:58:59-05:00 | REVISION R004997

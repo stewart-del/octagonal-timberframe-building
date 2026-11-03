@@ -27,3 +27,12 @@ for member in d['layout']['members']:
 
 # TIMESTAMP END 2026-11-02T20:27:45-05:00 | REVISION R004866
 print('PASS center horizontal bearing in²',min(areas),max(areas),'joist horizontal bearing/end in²',min(joist),max(joist),'NOT capacity approval')
+
+# TIMESTAMP START 2026-11-03T12:04:27-05:00 | REVISION R005002
+for k in range(8):
+ upper=surface(P['PIER-MID-'+str(k)],pier,1)
+ underside=surface(P['FLOOR-BEAM-'+str(k)],pier,-1)
+ area=(upper^underside).area()
+ assert area>.05,(k,area)
+print('PASS: all eight midpoint piers have horizontal contact under their radial beams')
+# TIMESTAMP END 2026-11-03T12:04:27-05:00 | REVISION R005002

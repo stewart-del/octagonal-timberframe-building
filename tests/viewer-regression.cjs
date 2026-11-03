@@ -130,7 +130,9 @@ check(isShown(partById.get('M-TMP'))&&!isShown(partById.get('M-SP0')),'Complete 
     $('schematicFloor').checked=true;$('schematicFloor').onchange();check(schematicParts.filter(p=>['floor','floorAssembly'].includes(p.schematicKind)).every(isShown)&&schematicParts.filter(p=>!['floor','floorAssembly'].includes(p.schematicKind)).every(p=>!isShown(p)),'Complete floor and nine piers have an independent toggle with all walls/shelves/windows off');
     check(!schematicParts.some(p=>['grate','footer'].includes(p.schematicKind)),'Deferred grate and legacy short footers are absent from active model');
     // TIMESTAMP START 2026-11-02T20:27:45-05:00 | REVISION R004866
-check(schematicParts.filter(p=>p.id.startsWith('PIER-')&&!p.underground).length===9&&schematicParts.filter(p=>p.id.startsWith('PIER-')&&p.underground).length===9,'Nine piers have six-foot underground extensions');
+// TIMESTAMP START 2026-11-03T12:11:15-05:00 | REVISION R005013
+check(schematicParts.filter(p=>p.id.startsWith('PIER-')&&!p.underground).length===17&&schematicParts.filter(p=>p.id.startsWith('PIER-')&&p.underground).length===17,'Seventeen piers have six-foot underground extensions');
+// TIMESTAMP END 2026-11-03T12:11:15-05:00 | REVISION R005013
     check(schematicParts.filter(p=>p.underground).every(p=>selectionAlpha(p)===.28),'Underground columns are translucent');
 // TIMESTAMP END 2026-11-02T20:27:45-05:00 | REVISION R004866
     $('pierSettingOut').onclick();check($('pierModal').classList.contains('open')&&$('pierDrawing').innerHTML.includes('PIER-C'),'Setting-out button opens current nine-center SVG');
