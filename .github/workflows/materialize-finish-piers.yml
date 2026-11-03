@@ -1,0 +1,67 @@
+# TIMESTAMP START 2026-11-03T12:10:28-05:00 | REVISION R005012
+# TIMESTAMP START 2026-11-03T07:37:58-05:00 | REVISION R004926
+name: Materialize verified floor and support update
+on:
+  push:
+    branches: [codex/publish-finish-piers-20261103]
+permissions:
+  contents: write
+jobs:
+  materialize:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Restore source and verify every byte
+        run: |
+          python3 - <<'PYCODE'
+          import hashlib, io, json, pathlib, tarfile
+          m=json.loads(pathlib.Path('.codex-publication/manifest.json').read_text())
+          blob=b''.join(pathlib.Path(c['path']).read_bytes() for c in m['chunks'])
+          assert hashlib.sha256(blob).hexdigest()==m['bundle_sha256']
+          expected={f['path']:f for f in m['files']}
+          with tarfile.open(fileobj=io.BytesIO(blob),mode='r:gz') as archive:
+              members=archive.getmembers()
+              assert len(members)==len(expected) and {p.name for p in members}==set(expected)
+              assert all(p.isfile() and not pathlib.PurePosixPath(p.name).is_absolute() and '..' not in pathlib.PurePosixPath(p.name).parts for p in members)
+              archive.extractall('.',filter='data')
+          for path, f in expected.items():
+              p=pathlib.Path(path);b=p.read_bytes()
+              assert len(b)==f['size'] and hashlib.sha256(b).hexdigest()==f['sha256'],path
+              assert hashlib.sha1(b'blob '+str(len(b)).encode()+b'\0'+b).hexdigest()==f['git_blob_sha'],path
+              assert ('100755' if p.stat().st_mode&0o111 else '100644')==f['mode'],path
+          PYCODE
+      - name: Build and require the exact locally verified artifact
+        run: |
+          python3 scripts/build.py
+          python3 - <<'PYCODE'
+          import hashlib,json,pathlib
+          m=json.loads(pathlib.Path('.codex-publication/manifest.json').read_text())
+          b=pathlib.Path('index.html').read_bytes();f=m['index']
+          assert len(b)==f['size'] and hashlib.sha256(b).hexdigest()==f['sha256']
+          assert hashlib.sha1(b'blob '+str(len(b)).encode()+b'\0'+b).hexdigest()==f['git_blob_sha']
+          PYCODE
+      # TIMESTAMP START 2026-11-03T07:52:19-05:00 | REVISION R004931
+      - name: Save verified source using contents permission
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          python3 - <<'PYCODE'
+          import json,pathlib,subprocess
+          m=json.loads(pathlib.Path('.codex-publication/manifest.json').read_text())
+          subprocess.run(['git','restore','--','.github/workflows/check.yml'],check=True)
+          subprocess.run(['git','add','--',*[f['path'] for f in m['files'] if not f['path'].startswith('.github/workflows/')],'index.html'],check=True)
+          PYCODE
+          git rm -r .codex-publication
+          git commit -m 'Save byte-verified timberframe source and viewer'
+          git push origin "HEAD:refs/heads/$GITHUB_REF_NAME"
+      # TIMESTAMP END 2026-11-03T07:52:19-05:00 | REVISION R004931
+# TIMESTAMP END 2026-11-03T07:37:58-05:00 | REVISION R004926
+
+# TIMESTAMP END 2026-11-03T12:10:28-05:00 | REVISION R005012

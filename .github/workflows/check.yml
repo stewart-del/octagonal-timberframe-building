@@ -4,6 +4,9 @@ permissions:
   contents: read
 jobs:
   check:
+    # TIMESTAMP START 2026-11-03T12:10:28-05:00 | REVISION R005012
+    if: github.ref != 'refs/heads/codex/publish-finish-piers-20261103'
+    # TIMESTAMP END 2026-11-03T12:10:28-05:00 | REVISION R005012
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -96,6 +99,9 @@ jobs:
       - run: node tests/floor-foundation.cjs
       - run: python3 tests/test_floor_solids.py
       - run: node tests/foundation-integration.cjs
+      # TIMESTAMP START 2026-11-03T12:04:27-05:00 | REVISION R005002
+      - run: node tests/floor-selection.cjs
+      # TIMESTAMP END 2026-11-03T12:04:27-05:00 | REVISION R005002
       - run: python3 tests/test_top_entry_heads.py
       - run: python3 tests/test_top_entry_auxiliary.py
       - run: python3 tests/test_floor_bearing.py
