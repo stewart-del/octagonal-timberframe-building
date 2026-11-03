@@ -1,0 +1,20 @@
+# TIMESTAMP START 2026-11-03T08:48:47-05:00 | REVISION R004952
+name: Verify fixture comparison on Linux
+on:
+  push:
+    branches: [codex/verify-fixture-20261103]
+permissions:
+  contents: read
+jobs:
+  fixture:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python3 -m pip install --only-binary=:all: numpy scipy manifold3d==3.5.4
+      - run: python3 tests/test_central_support.py
+      - run: python3 tests/test_seated_support.py
+# TIMESTAMP END 2026-11-03T08:48:47-05:00 | REVISION R004952
