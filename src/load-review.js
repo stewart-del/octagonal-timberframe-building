@@ -21,7 +21,9 @@ function initLoadReview(){
 function updateLoadReview(){
  $('loadReviewOverlay').hidden=!loadReviewOn;$('loadReviewViewportLegend').hidden=!loadReviewOn;$('loadReviewControls').hidden=!loadReviewOn;
  if(!loadReviewOn){for(const el of [...loadArrowElements.values(),...loadIssueElements.values()])el.style.display='none';return;}
- const totals=loadReviewTotals();$('loadReviewSummary').textContent='Assumed '+loadDensity+' kg/m³ · ALL 104 timbers: '+num(totals.total_N/1000,2)+' kN / '+num(totals.total_N/4.4482216152605,0)+' lbf. Visible '+totals.visible_count+': '+num(totals.visible_N/1000,2)+' kN.';
+// TIMESTAMP START 2026-11-02T15:19:38-05:00 | REVISION R004803
+ const totals=loadReviewTotals();$('loadReviewSummary').textContent='Assumed '+loadDensity+' kg/m³ · ALL '+LOAD_REVIEW.members.length+' timbers: '+num(totals.total_N/1000,2)+' kN / '+num(totals.total_N/4.4482216152605,0)+' lbf. Visible '+totals.visible_count+': '+num(totals.visible_N/1000,2)+' kN.';
+// TIMESTAMP END 2026-11-02T15:19:38-05:00 | REVISION R004803
  let selectedText='Select a timber for its applied self-weight.';
  for(const row of loadReviewRows()){
   const el=loadArrowElements.get(row.member.id);el.style.display='none';if(selected===row.member.id)selectedText=row.member.id+' assumed self-weight: '+num(row.force_N,1)+' N / '+num(row.force_lbf,1)+' lbf ('+num(row.mass_kg,1)+' kg).';

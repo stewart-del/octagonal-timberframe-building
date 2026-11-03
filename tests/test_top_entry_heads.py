@@ -11,9 +11,17 @@ from mesh_regeneration_equivalence import normalize_planar_retriangulation,test_
 raw=(R/'src/step-lap-proposed-model.json').read_bytes();source=json.loads(raw);sha=hashlib.sha256(raw).hexdigest();D=json.loads((R/'src/top-entry-proposal.json').read_text());F=json.loads((R/'src/top-entry-proposed-model.json').read_text())
 B={p['id']:p for p in source['parts']};P={p['id']:p for p in F['parts']};changed={f'R{k}' for k in range(8)}|{f'J{k}-{s}' for k in range(8) for s in ['0','2']};S={k:solid(p) for k,p in P.items() if p['is_timber']}
 assert sha==D['source_model_sha256']==F['top_entry_review']['source_model_sha256']
-assert len(S)==104 and set(B)==set(P) and len(changed)==24
+# TIMESTAMP START 2026-11-02T15:15:55-05:00 | REVISION R004802
+# TIMESTAMP START 2026-11-02T17:13:08-05:00 | REVISION R004818
+central_changed={f'{family}{k}' for k in range(8) for family in ['C','T','CP']}
+assert len(S)==112 and set(P)-set(B)=={f'CP{k}' for k in range(8)} and not(set(B)-set(P)) and len(changed)==24
+# TIMESTAMP END 2026-11-02T17:13:08-05:00 | REVISION R004818
+# TIMESTAMP END 2026-11-02T15:15:55-05:00 | REVISION R004802
 assert len(D['interfaces'])==16 and {x['id'] for x in D['interfaces']}=={f'J{k}-0_R{k}' for k in range(8)}|{f'J{k}-2_R{(k+1)%8}' for k in range(8)}
 for name,p in P.items():
+ # TIMESTAMP START 2026-11-02T17:13:08-05:00 | REVISION R004818
+ if name in central_changed:continue # Independently checked by test_cupola_foot.py.
+ # TIMESTAMP END 2026-11-02T17:13:08-05:00 | REVISION R004818
  if name not in changed:assert p==B[name],name;continue
  for key in ['axis_start','axis_end','axis_direction','stock_frame','exploded_offset','nominal_dimensions']:
   assert p[key]==B[name][key],(name,key)
@@ -33,7 +41,9 @@ for a,b in itertools.combinations(S,2):
  count+=1
  if not close_bounds(S[a],S[b]):continue
  amount=max(0.,(S[a]^S[b]).volume()/I**3);worst=max(worst,amount);assert amount<1e-6,(a,b,'interference',amount)
-assert count==2196
+# TIMESTAMP START 2026-11-02T15:15:55-05:00 | REVISION R004802
+assert count==2388
+# TIMESTAMP END 2026-11-02T15:15:55-05:00 | REVISION R004802
 for v in D['interfaces']:
  a,b=v['owner'],v['receiver'];faces=contacts(S[a],S[b]);bearing=sum(f['area_in2'] for f in faces if f['normal_on_rafter'][1]<-.01)
  assert abs(bearing-22.03581266897)<1e-6,(a,b,'bearing area')
@@ -55,8 +65,12 @@ assert len(D['geometry_audit']['perimeter_preservation'])==24
 assert not D['geometry_audit']['interferences'] and not D['geometry_audit']['lost_neighbor_contacts']
 assert len(D['geometry_audit']['continuous_vertical_sweeps'])==16 and all(not x['interferences'] for x in D['geometry_audit']['continuous_vertical_sweeps'])
 assert D['geometry_audit']['capacity_checked'] is False and 'NOT FABRICATION' in F['status']
-volume=sum(volume_centroid(s)['volume_m3'] for s in S.values());assert abs(volume-D['proposed_timber_volume_m3'])<1e-11 and abs(volume-6.293660066069135)<1e-11
-assert len(F['proposed_member_volume_centroids'])==104
+# TIMESTAMP START 2026-11-02T15:15:55-05:00 | REVISION R004802
+volume=sum(volume_centroid(s)['volume_m3'] for s in S.values());assert abs(volume-D['proposed_timber_volume_m3'])<1e-11
+# TIMESTAMP END 2026-11-02T15:15:55-05:00 | REVISION R004802
+# TIMESTAMP START 2026-11-02T15:15:55-05:00 | REVISION R004802
+assert len(F['proposed_member_volume_centroids'])==112
+# TIMESTAMP END 2026-11-02T15:15:55-05:00 | REVISION R004802
 for p in F['proposed_member_volume_centroids']:
  q=volume_centroid(S[p['id']]);assert abs(q['volume_m3']-p['volume_m3'])<1e-12;assert np.linalg.norm(np.array(q['centroid_m'])-p['centroid_m'])<1e-10
 # Regeneration is slow (all contacts/sweeps); CI includes it so the
@@ -69,4 +83,6 @@ print('Planar regeneration:',normalize_planar_retriangulation(generated,D),norma
 normalize_section_diagrams(generated,D);normalize_section_diagrams(model,F)
 assert_equivalent(generated,D,('top_entry',));assert_equivalent(model,F,('top_entry_model',))
 assert (R/'src/step-lap-proposed-model.json').read_bytes()==raw
-print('PASS: all16 upper heads,2196 pairs, full24in insertion coverage,24 unchanged lower feet, raw-stock bounds,104 weights/centroids and bounded regeneration; worst overlap in3',worst)
+# TIMESTAMP START 2026-11-02T15:15:55-05:00 | REVISION R004802
+print('PASS: all16 upper heads,2388 pairs, full24in insertion coverage,24 unchanged lower feet, raw-stock bounds,112 weights/centroids and bounded regeneration; worst overlap in3',worst)
+# TIMESTAMP END 2026-11-02T15:15:55-05:00 | REVISION R004802

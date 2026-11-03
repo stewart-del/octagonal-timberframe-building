@@ -15,4 +15,6 @@ for name in ['model-data.json','step-lap-proposed-model.json','top-entry-propose
     assert all(h['wood_entry_gap_m']==0 and h['wood_path_m']>5.9*INCH for h in r['holes'])
     v=np.asarray(p['vertices']);assert np.allclose((v.max(0)-v.min(0))/INCH,[90,14,90],atol=1e-9)
     assert len(mesh(p).decompose())==1
-    print(name,'24 hole paths hit adjacent timber; no104-timber interference; original model unchanged')
+    # TIMESTAMP START 2026-11-02T17:44:11-05:00 | REVISION R004823
+    print(name,'24 hole paths hit adjacent timber; no primary-timber interference; original model unchanged')
+    # TIMESTAMP END 2026-11-02T17:44:11-05:00 | REVISION R004823

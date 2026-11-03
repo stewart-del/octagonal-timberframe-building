@@ -2,7 +2,11 @@
 (function(root){
 'use strict';
 const PRESETS={complete:'Complete',skeleton:'Skeleton',foundation:'Foundation & Posts',floor:'Floor Assembly'};
-const roles=new Set(['temporary','deferred','reference','foundation','floorStructure','floorFinish','wallStructure','wall','shelf','cupolaWindow','roofCover','post','frame','ceilingPanel']);
+// TIMESTAMP START 2026-11-02T14:22:13-05:00 | REVISION R004792
+// TIMESTAMP START 2026-11-02T17:13:08-05:00 | REVISION R004818
+const roles=new Set(['mudroom','temporary','deferred','reference','foundation','floorStructure','floorFinish','wallStructure','wall','shelf','cupolaWindow','roofCover','post','frame','ceilingPanel','jointFastener']);
+// TIMESTAMP END 2026-11-02T17:13:08-05:00 | REVISION R004818
+// TIMESTAMP END 2026-11-02T14:22:13-05:00 | REVISION R004792
 function role(p){
  if(p.temporary===true)return 'temporary';
  if(p.schematicKind==='grate'||p.deferred===true)return 'deferred';
@@ -20,11 +24,16 @@ function role(p){
  if(['wall','shelf','cupolaWindow'].includes(p.schematicKind))return p.schematicKind;
  if(['perimeter_posts','cupola_posts'].includes(p.group))return 'post';
  if(p.group==='cupola_plywood')return 'ceilingPanel';
+ // TIMESTAMP START 2026-11-02T17:13:08-05:00 | REVISION R004818
+ if(p.group==='joinery_pegs')return 'jointFastener';
+ // TIMESTAMP END 2026-11-02T17:13:08-05:00 | REVISION R004818
  return p.schematic?'wall':'frame';
 }
 function included(p,preset){const r=role(p);if(['temporary','deferred','reference'].includes(r))return false;
  if(preset==='complete')return true;
- if(preset==='skeleton')return ['foundation','floorStructure','wallStructure','post','frame'].includes(r);
+ // TIMESTAMP START 2026-11-02T17:13:08-05:00 | REVISION R004818
+ if(preset==='skeleton')return ['foundation','floorStructure','wallStructure','post','frame','jointFastener'].includes(r);
+ // TIMESTAMP END 2026-11-02T17:13:08-05:00 | REVISION R004818
  if(preset==='foundation')return ['foundation','post'].includes(r);
  if(preset==='floor')return ['foundation','floorStructure','floorFinish'].includes(r);
  throw Error('Unknown display preset '+preset);

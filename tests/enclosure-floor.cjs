@@ -4,6 +4,9 @@ assert.equal(JSON.stringify(model),before);
 const of=k=>a.components.filter(p=>p.schematicKind===k);
 assert.equal(of('floor').length,8);assert.equal(of('footer').length,8);assert.equal(of('grate').length,2);assert.equal(a.railConnections.length,64);
 assert(of('rail').length>=32);assert(of('shelf').every(p=>['N','S'].includes(p.face)));assert(of('shelf').every(p=>!p.id.includes('side')));
+// TIMESTAMP START 2026-11-02T18:40:43-05:00 | REVISION R004837
+for(const shelf of of('shelf'))assert.deepEqual(shelf.localBounds.slice(4),[-.40,.0508],'Shelf back meets the recessed rail inner face while preserving its front edge');
+// TIMESTAMP END 2026-11-02T18:40:43-05:00 | REVISION R004837
 for(const p of a.components){assert(p.vertices.flat().every(Number.isFinite));assert(!p.is_timber);}
 for(const p of of('floor')){
  assert.equal(p.material,'strand-woven bamboo');assert(Math.max(...p.vertices.map(v=>v[1]))===0);assert(Math.abs(Math.min(...p.vertices.map(v=>v[1]))+.01905)<1e-12);

@@ -16,6 +16,10 @@ def generate():
  raw=(R/'src/step-lap-proposed-model.json').read_bytes();sha=hashlib.sha256(raw).hexdigest();model=json.loads(raw)
  proposal=json.loads((R/'src/step-lap-proposal.json').read_text());parts={p['id']:p for p in model['parts'] if p['is_timber']};solids={k:solid(p) for k,p in parts.items()}
  load=json.loads((R/'src/load-review-data.json').read_text());load.update(source_model_sha256=sha,members=[dict(id=name,**volume_centroid(s)) for name,s in solids.items()],issues=[],baseline_pressure_disabled=True,model_revision='proposed-step-lap',status='Applied self-weight only; selected geometry centroids/volumes. Joint reactions, capacity and contact-derived warning markers unavailable; no baseline 64/12 in2 shortcut.')
+ # TIMESTAMP START 2026-11-02T17:32:31-05:00 | REVISION R004820
+ load['fasteners']=[dict(id=p['id'],**volume_centroid(solid(p))) for p in model['parts'] if p.get('group')=='joinery_pegs']
+ load['fastener_volume_m3']=sum(p['volume_m3'] for p in load['fasteners'])
+ # TIMESTAMP END 2026-11-02T17:32:31-05:00 | REVISION R004820
  write('step-lap-proposed-load-review.json',load)
  materials=json.loads((R/'src/material-groups.json').read_text());materials.update(source_sha256=sha,model_revision='proposed-step-lap',scope='Selected proposed model generation families; not a fabrication schedule. Changed cuts are not fabrication approved.')
  for group in materials['groups']:

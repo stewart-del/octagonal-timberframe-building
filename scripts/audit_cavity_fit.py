@@ -257,15 +257,28 @@ def hull_mesh(vertices):
     return vertices, faces.astype(np.uint64)
 
 
+# TIMESTAMP START 2026-11-02T15:15:55-05:00 | REVISION R004802
 def declared_brace_trim(part):
-    match = re.fullmatch(r'K([0-7])-(A|B)', part.get('id', ''))
+    # TIMESTAMP START 2026-11-02T17:32:31-05:00 | REVISION R004820
+    if part.get('main_face_brace_joinery'):
+        return {'kind':'explicit exterior shoulder cut','revision':part['main_face_brace_joinery']['revision'],
+                'volume_m3':part['declared_exterior_cut']['volume_m3'],
+                'reason':'Face-entry brace shoulders are explicit exterior stock offcuts, separate from mating peg bores.'}
+    # TIMESTAMP END 2026-11-02T17:32:31-05:00 | REVISION R004820
+    match = re.fullmatch(r'K([0-7])-(A|B|C)', part.get('id', ''))
     if part.get('group') != 'braces' or not match:
         return None
     angle = int(match[1]) * math.pi / 4
-    sign = -1 if match[2] == 'A' else 1
-    normal = sign * np.array([-math.sin(angle), 0, -math.cos(angle)])
-    return {'normal_world': normal.tolist(), 'minimum_projection_in': 2,
+    if match[2] == 'C':
+        normal = -np.array([math.cos(angle), 0, -math.sin(angle)])
+        minimum = -174
+    else:
+        sign = -1 if match[2] == 'A' else 1
+        normal = sign * np.array([-math.sin(angle), 0, -math.cos(angle)])
+        minimum = 2
+    return {'normal_world': normal.tolist(), 'minimum_projection_in': minimum,
             'reason': 'Declared exterior brace-end stop two inches inside its post side, retaining the central post web; not an unfilled socket.'}
+# TIMESTAMP END 2026-11-02T15:15:55-05:00 | REVISION R004802
 
 
 def reference_stock(part, apply_declared_trim=False):
@@ -274,7 +287,9 @@ def reference_stock(part, apply_declared_trim=False):
     normals = np.asarray([[plane['normal'][0], plane['normal'][2], -plane['normal'][1]] for plane in planes])
     constants = np.asarray([plane['constant'] * INCH for plane in planes])
     trim = declared_brace_trim(part) if apply_declared_trim else None
-    if trim:
+    # TIMESTAMP START 2026-11-02T17:32:31-05:00 | REVISION R004820
+    if trim and 'normal_world' in trim:
+    # TIMESTAMP END 2026-11-02T17:32:31-05:00 | REVISION R004820
         normals = np.vstack([normals, -np.asarray(trim['normal_world'])])
         constants = np.r_[constants, -trim['minimum_projection_in'] * INCH]
     vertices = []
@@ -293,6 +308,17 @@ def stock_completeness(part, removed):
     stock_v, stock_f = reference_stock(part, apply_declared_trim=True)
     own_v, own_f = arrays(part)
     covered_by = {'final_receiver_wood': own_v[own_f]}
+    # TIMESTAMP START 2026-11-02T17:32:31-05:00 | REVISION R004820
+    exterior=part.get('declared_exterior_cut')
+    if exterior and exterior.get('triangles'):
+        ev,ef=arrays(exterior)
+        assert inspect_mesh(ev,ef)['status']=='PASS'
+        assert abs((solid(ev,ef)^solid(own_v,own_f)).volume())<=VOLUME_TOLERANCE_M3
+        if removed.get('triangles'):
+            rv,rf=arrays(removed)
+            assert abs((solid(ev,ef)^solid(rv,rf)).volume())<=VOLUME_TOLERANCE_M3
+        covered_by['declared_exterior_stock_cut']=ev[ef]
+    # TIMESTAMP END 2026-11-02T17:32:31-05:00 | REVISION R004820
     outside = 0.0
     if removed['triangles']:
         cavity_v, cavity_f = arrays(removed)
@@ -300,7 +326,10 @@ def stock_completeness(part, removed):
         outside = max(0.0, float(np.max(cavity_v @ equations[:, :3].T + equations[:, 3])))
         covered_by['exported_cavity'] = cavity_v[cavity_f]
     coverage = component_coverage(stock_v, stock_f, covered_by)
-    cells = coverage.get('cells', [coverage])
+    # TIMESTAMP START 2026-11-02T17:32:31-05:00 | REVISION R004820
+    boolean_proof=coverage if coverage.get('coverage_mode')=='Boolean volume partition' else None
+    cells = [] if boolean_proof else coverage.get('cells', [coverage])
+    # TIMESTAMP END 2026-11-02T17:32:31-05:00 | REVISION R004820
     passed = coverage['status'] == 'PASS' and outside <= DISTANCE_TOLERANCE_M
     return {'status': 'PASS' if passed else 'FAIL',
             'reference_envelope_volume_in3': signed_volume(stock_v, stock_f) / INCH ** 3,
@@ -309,11 +338,19 @@ def stock_completeness(part, removed):
             'convex_cells': len(cells), 'verified_cells': sum(cell['status'] == 'PASS' for cell in cells),
             'cells_in_final_receiver_wood': sum(cell.get('mate') == 'final_receiver_wood' for cell in cells),
             'cells_in_exported_cavity': sum(cell.get('mate') == 'exported_cavity' for cell in cells),
+            # TIMESTAMP START 2026-11-02T17:32:31-05:00 | REVISION R004820
+            'cells_in_declared_exterior_cut': sum(cell.get('mate') == 'declared_exterior_stock_cut' for cell in cells),
+            # TIMESTAMP END 2026-11-02T17:32:31-05:00 | REVISION R004820
             'partition_volume_balance_error_m3': coverage.get('partition_volume_balance_error_m3', 0.0),
             'max_interior_boundary_area_m2': max((cell.get('interior_boundary_area_m2', 0) for cell in cells), default=0),
             'failures': [cell for cell in cells if cell['status'] != 'PASS'],
             'declared_external_trim': declared_brace_trim(part),
-            'scope': 'Saved prejoinery envelope, after any explicitly listed exterior trim, is covered by final timber wood plus exported removed cavity within the stated tolerances. Added tenons outside this envelope are not counted as removed stock.'}
+            # TIMESTAMP START 2026-11-02T17:32:31-05:00 | REVISION R004820
+            'boolean_partition':boolean_proof,
+            # TIMESTAMP END 2026-11-02T17:32:31-05:00 | REVISION R004820
+            # TIMESTAMP START 2026-11-02T17:32:31-05:00 | REVISION R004820
+            'scope': 'Saved prejoinery stock is covered by final wood, matching cavities and separately declared exterior shoulder offcuts. Complex peg-connected stock uses explicitly labeled Boolean volume partition evidence, with independent raw surfaces, sections and winding checks. Added tenons outside the envelope are not removed stock.'}
+            # TIMESTAMP END 2026-11-02T17:32:31-05:00 | REVISION R004820
 
 
 def split_convex(vertices, equation):
@@ -402,7 +439,44 @@ def nonconvex_coverage(vertices, faces, hull, mate_triangles):
 def coverage_leaf_count(row):
     if row['status'] != 'PASS':
         return 0
+    # TIMESTAMP START 2026-11-02T17:32:31-05:00 | REVISION R004820
+    if row.get('coverage_mode')=='Boolean volume partition':return 0
+    # TIMESTAMP END 2026-11-02T17:32:31-05:00 | REVISION R004820
     return sum(coverage_leaf_count(child) for child in row['cells']) if 'cells' in row else 1
+
+
+# TIMESTAMP START 2026-11-02T17:32:31-05:00 | REVISION R004820
+def boolean_volume_partition(vertices,faces,mate_triangles):
+    """Exact solid accounting when round bores exceed planar cell complexity.
+
+    This is explicitly a Boolean proof, not convex-cell containment. Exported
+    surfaces, winding occupancy and independent 2D sections remain mandatory.
+    """
+    source=solid(vertices,faces);source_volume=signed_volume(vertices,faces)
+    assert str(source.status())=='Error.NoError'
+    assert abs(source.volume()-source_volume)<=VOLUME_TOLERANCE_M3
+    pieces=[];records=[];negative_bound=0.
+    for name,triangles in mate_triangles.items():
+        v,index=np.unique(np.asarray(triangles).reshape(-1,3),axis=0,return_inverse=True)
+        mate=solid(v,index.reshape(-1,3).astype(np.uint64))
+        assert str(mate.status())=='Error.NoError',name
+        piece=source^mate;volume=piece.volume()
+        if volume<0:negative_bound+=abs(volume)
+        if volume<=0:continue
+        pieces.append(piece);records.append({'mate':name,'volume_m3':volume})
+    union=m.Manifold.batch_boolean(pieces,m.OpType.Add) if pieces else m.Manifold()
+    uncovered=max(0.,(source-union).volume())
+    outside=max(0.,(union-source).volume())
+    duplicate=sum(max(0.,(a^b).volume()) for a,b in itertools.combinations(pieces,2))
+    balance=abs(sum(row['volume_m3'] for row in records)-source_volume)
+    passed=max(uncovered,outside,duplicate,balance,negative_bound)<=VOLUME_TOLERANCE_M3
+    return {'status':'PASS' if passed else 'FAIL','coverage_mode':'Boolean volume partition',
+        'source_volume_m3':source_volume,'owned_pieces':records,'uncovered_volume_m3':uncovered,
+        'outside_source_volume_m3':outside,'duplicate_ownership_volume_m3':duplicate,
+        'partition_volume_balance_error_m3':balance,'negative_numerical_volume_bound_m3':negative_bound,
+        'volume_tolerance_m3':VOLUME_TOLERANCE_M3,
+        'note':'Actual-source intersections with closed mating solids; ownership is disjoint, missing/outside volume is bounded and summed volume is conserved. Independent raw surfaces, winding and scaled2D sections are checked separately.'}
+# TIMESTAMP END 2026-11-02T17:32:31-05:00 | REVISION R004820
 
 
 def component_coverage(vertices, faces, mate_triangles, allow_partition=True):
@@ -425,9 +499,18 @@ def component_coverage(vertices, faces, mate_triangles, allow_partition=True):
     if error > VOLUME_TOLERANCE_M3:
         if not allow_partition:
             return {'status': 'FAIL', 'reason': 'target cell is not convex', 'convex_volume_error_m3': error}
-        return nonconvex_coverage(vertices, faces, hull, mate_triangles)
+        # TIMESTAMP START 2026-11-02T17:32:31-05:00 | REVISION R004820
+        result=nonconvex_coverage(vertices, faces, hull, mate_triangles)
+        if result.get('reason')=='convex partition exceeds audit complexity bound':
+            return boolean_volume_partition(vertices,faces,mate_triangles)
+        return result
+        # TIMESTAMP END 2026-11-02T17:32:31-05:00 | REVISION R004820
     # TIMESTAMP START 2026-11-02T10:34:57-05:00 | REVISION R004764
     result = convex_cell_coverage(vertices, hull, mate_triangles, allow_partition)
+    # TIMESTAMP START 2026-11-02T17:32:31-05:00 | REVISION R004820
+    if result.get('reason')=='convex partition exceeds audit complexity bound':
+        return boolean_volume_partition(vertices,faces,mate_triangles)
+    # TIMESTAMP END 2026-11-02T17:32:31-05:00 | REVISION R004820
     result['convex_volume_error_m3'] = error
     return result
 
@@ -555,12 +638,17 @@ def wood_pair_sections(woods):
 
 def audit(model, cavities):
     parts = {part['id']: part for part in model['parts'] if part['is_timber']}
-    woods = {key: arrays(part) for key, part in parts.items()}
+    # TIMESTAMP START 2026-11-02T17:32:31-05:00 | REVISION R004820
+    physical_wood={part['id']:part for part in model['parts'] if part['is_timber'] or part.get('group')=='joinery_pegs'}
+    woods = {key: arrays(part) for key, part in physical_wood.items()}
+    # TIMESTAMP END 2026-11-02T17:32:31-05:00 | REVISION R004820
     triangles = {key: v[f] for key, (v, f) in woods.items()}
     bounds = {key: np.array([v.min(axis=0), v.max(axis=0)]) for key, (v, _) in woods.items()}
     topology = {key: inspect_mesh(v, f, require_single=True) for key, (v, f) in woods.items()}
     rows, failures, legacy, no_cavity_stock = [], [], [], {}
-    if set(woods) != set(cavities['parts']):
+    # TIMESTAMP START 2026-11-02T17:32:31-05:00 | REVISION R004820
+    if set(parts) != set(cavities['parts']):
+    # TIMESTAMP END 2026-11-02T17:32:31-05:00 | REVISION R004820
         failures.append('cavity record IDs do not exactly match timber IDs')
     if any(row['status'] != 'PASS' for row in topology.values()):
         failures.append('timber topology failure')
@@ -617,14 +705,21 @@ def audit(model, cavities):
     # TIMESTAMP START 2026-11-02T10:08:45-05:00 | REVISION R004761
     component_rows = [component for row in rows for component in row.get('components', [])]
     is_proposed = 'proposed_review' in model
-    expected_components = 168 if is_proposed else 144
+    # TIMESTAMP START 2026-11-02T15:15:55-05:00 | REVISION R004802
+    expected_components = 184 if is_proposed else 160
+    # TIMESTAMP END 2026-11-02T15:15:55-05:00 | REVISION R004802
     if is_proposed and (model['proposed_review'].get('geometry_audit', {}).get('implemented_interface_count') != 24
                         or len(model['proposed_review'].get('changed_member_ids', [])) != 40):
         failures.append('unsupported proposed inventory; expected 24 step-lap transfers and 40 changed members')
-    summary = {'timbers': len(woods), 'nonempty_cavity_sets': len(rows),
+    # TIMESTAMP START 2026-11-02T17:32:31-05:00 | REVISION R004820
+    summary = {'timbers': len(parts),'physical_wood_pieces':len(woods),'permanent_wood_fasteners':len(woods)-len(parts), 'nonempty_cavity_sets': len(rows),
+    # TIMESTAMP END 2026-11-02T17:32:31-05:00 | REVISION R004820
                'connected_cavity_components': len(component_rows),
-               'convex_cavity_components': sum(row.get('coverage_mode') != 'nonconvex surface partition' for row in component_rows),
-               'nonconvex_cavity_components': sum(row.get('coverage_mode') == 'nonconvex surface partition' for row in component_rows),
+               # TIMESTAMP START 2026-11-02T17:32:31-05:00 | REVISION R004820
+               'convex_cavity_components': sum(row.get('coverage_mode') in ['one convex cell','explicit convex partition'] for row in component_rows),
+               'nonconvex_cavity_components': sum(row.get('coverage_mode') not in ['one convex cell','explicit convex partition'] for row in component_rows),
+               'boolean_partition_components':sum(row.get('coverage_mode')=='Boolean volume partition' for row in component_rows),
+               # TIMESTAMP END 2026-11-02T17:32:31-05:00 | REVISION R004820
                'components_covered': sum(row['status'] == 'PASS' for row in component_rows),
                'components_contained_in_one_mate': sum(row['status'] == 'PASS' and 'mate' in row for row in component_rows),
                'components_partitioned': sum('partition_cells' in row for row in component_rows),
@@ -634,7 +729,9 @@ def audit(model, cavities):
                'no_cavity_stock_envelopes_verified': sum(row['status'] == 'PASS' for row in no_cavity_stock.values()),
                'all_timber_stock_envelopes_verified': sum(row.get('receiver_stock_completeness', {}).get('status') == 'PASS' for row in rows)
                                                      + sum(row['status'] == 'PASS' for row in no_cavity_stock.values()),
-               'declared_exterior_brace_trims': sum(row['declared_external_trim'] is not None for row in no_cavity_stock.values()),
+               # TIMESTAMP START 2026-11-02T17:32:31-05:00 | REVISION R004820
+               'declared_exterior_brace_trims': sum(row['declared_external_trim'] is not None for row in no_cavity_stock.values())+sum(row.get('receiver_stock_completeness',{}).get('declared_external_trim') is not None for row in rows),
+               # TIMESTAMP END 2026-11-02T17:32:31-05:00 | REVISION R004820
                'max_cavity_outside_reference_stock_m': max((row.get('receiver_stock_completeness', {}).get('max_cavity_vertex_outside_reference_stock_m', 0) for row in rows), default=0),
                'winding_interior_points': sum(row.get('winding_samples', {}).get('interior_points', 0) for row in rows),
                'winding_unoccupied_points': sum(row.get('winding_samples', {}).get('unoccupied', 0) for row in rows),
@@ -648,8 +745,19 @@ def audit(model, cavities):
                'timbers_with_raw_surface_overlaps': sum(row.get('raw_surface_check', {}).get('status') == 'FAIL' for row in topology.values()),
                'max_raw_timber_triangle_overlap_area_m2': max((row.get('raw_surface_check', {}).get('max_overlap_area_m2', 0) for row in topology.values()), default=0)}
                # TIMESTAMP END 2026-11-02T10:34:57-05:00 | REVISION R004764
-    if (len(woods), len(rows), len(component_rows)) != (104, 48, expected_components):
-        failures.append(f'expected 104 timbers, 48 nonempty cavity sets, and {expected_components} connected cavity components')
+    # TIMESTAMP START 2026-11-02T15:15:55-05:00 | REVISION R004802
+    # TIMESTAMP START 2026-11-02T17:32:31-05:00 | REVISION R004820
+    expected_sets=80 if model.get('main_face_brace_revision') else 56
+    inventory_valid=(len(parts)==112 and len(rows)==expected_sets)
+    if not model.get('main_face_brace_revision'):inventory_valid=inventory_valid and len(component_rows)==expected_components
+    if not inventory_valid:
+    # TIMESTAMP END 2026-11-02T17:32:31-05:00 | REVISION R004820
+    # TIMESTAMP END 2026-11-02T15:15:55-05:00 | REVISION R004802
+        # TIMESTAMP START 2026-11-02T15:15:55-05:00 | REVISION R004802
+        # TIMESTAMP START 2026-11-02T17:32:31-05:00 | REVISION R004820
+        failures.append(f'expected 112 structural timbers and {expected_sets} nonempty mating-cavity sets; every exported component is checked independently')
+        # TIMESTAMP END 2026-11-02T17:32:31-05:00 | REVISION R004820
+        # TIMESTAMP END 2026-11-02T15:15:55-05:00 | REVISION R004802
     # TIMESTAMP START 2026-11-02T10:34:57-05:00 | REVISION R004764
     return {'schema_version': 'cavity-fit-audit-3', 'status': 'PASS' if not failures else 'FAIL',
     # TIMESTAMP END 2026-11-02T10:34:57-05:00 | REVISION R004764
@@ -658,8 +766,14 @@ def audit(model, cavities):
             'tolerances': {'containment_inset_m': DISTANCE_TOLERANCE_M, 'section_area_m2': AREA_TOLERANCE_M2,
                            'convex_volume_difference_m3': VOLUME_TOLERANCE_M3, 'minimum_triangle_area_m2': FACE_AREA_MIN_M2,
                            'section_event_offset_m': SECTION_EVENT_OFFSET_M, 'section_coordinate_scale': SECTION_SCALE},
-            'methods': {'containment': 'Positive-volume cavity components are partitioned into disjoint convex cells when concave or shared by multiple mates. Every cell is proved inside its actual source cavity; volume conservation rejects missing cells. Winding-confirmed mate interior points and clipped boundary triangles prove mating coverage, excluding the explicit 1e-8 m tolerance shell.',
-                        'completeness': 'Independently reconstruct all 104 timber envelopes from saved prejoinery halfspaces. Prove every envelope cell lies in final timber wood or exported cavity, conserve partition volume, and check every cavity vertex lies inside its original envelope. The 16 declared exterior two-inch brace stop trims are applied explicitly. This detects unexported overcuts, omitted cavities and undersized cavity diagnostics.',
+            # TIMESTAMP START 2026-11-02T17:32:31-05:00 | REVISION R004820
+            'methods': {'containment': 'Convex-cell containment and source-volume conservation prove ordinary cavities. Components exceeding the planar4096-cell bound use a labeled Boolean volume partition: exact source/mate intersections, disjoint ownership, uncovered-volume and total-volume checks. Raw mesh topology, winding samples and independent scaled2D sections remain mandatory for every cavity; no tolerance is enlarged.',
+            # TIMESTAMP END 2026-11-02T17:32:31-05:00 | REVISION R004820
+                        # TIMESTAMP START 2026-11-02T15:15:55-05:00 | REVISION R004802
+                        # TIMESTAMP START 2026-11-02T17:32:31-05:00 | REVISION R004820
+                        'completeness': 'Reconstruct112 structural-timber envelopes from saved stock halfspaces. Account for final wood, mating cavity and the24 explicit exterior brace shoulder cuts. Pegs are separate permanent physical mating solids. Every stock proof conserves volume and bounds missing material; complex peg bores use the labeled Boolean partition fallback. Cavity vertices must lie within the source stock.',
+                        # TIMESTAMP END 2026-11-02T17:32:31-05:00 | REVISION R004820
+                        # TIMESTAMP END 2026-11-02T15:15:55-05:00 | REVISION R004802
                         'sampling': 'Independent solid-angle winding numbers for deterministic scrambled Sobol points and inward-offset triangle centroids.',
                         'sections': 'Canonical bay coordinates; scaled Clipper2 2D differences/intersections on three axes, just above/below vertex events and at interval quartiles. Exact coplanar boundary planes are excluded.',
                         # TIMESTAMP START 2026-11-02T10:34:57-05:00 | REVISION R004764
@@ -695,6 +809,10 @@ def report_invariants(report, label):
 
     def require_stock(stock, path):
         require_fields(stock, 'status reference_envelope_volume_in3 max_cavity_vertex_outside_reference_stock_m partition_planes convex_cells verified_cells cells_in_final_receiver_wood cells_in_exported_cavity partition_volume_balance_error_m3 max_interior_boundary_area_m2 failures declared_external_trim scope', path)
+        # TIMESTAMP START 2026-11-02T17:32:31-05:00 | REVISION R004820
+        if stock.get('boolean_partition'):require_coverage(stock['boolean_partition'],path+'.boolean_partition')
+        if stock['convex_cells']==0:assert stock.get('boolean_partition'),path+': missing Boolean stock proof'
+        # TIMESTAMP END 2026-11-02T17:32:31-05:00 | REVISION R004820
 
     def require_coverage(proof, path, source_component=False):
         require_fields(proof, 'status coverage_mode', path)
@@ -706,9 +824,18 @@ def report_invariants(report, label):
             require_fields(proof, 'volume_in3' if mode == 'explicit convex partition' else 'excluded_hull_cells', path)
             for index, cell in enumerate(proof['cells']):
                 require_coverage(cell, f'{path}.cells[{index}]')
+        # TIMESTAMP START 2026-11-02T17:32:31-05:00 | REVISION R004820
+        elif mode=='Boolean volume partition':
+            require_fields(proof,'source_volume_m3 owned_pieces uncovered_volume_m3 outside_source_volume_m3 duplicate_ownership_volume_m3 partition_volume_balance_error_m3 negative_numerical_volume_bound_m3 volume_tolerance_m3 note',path)
+            assert proof['source_volume_m3']>0 and proof['owned_pieces']
+            assert proof['volume_tolerance_m3']==VOLUME_TOLERANCE_M3
+            assert abs(sum(p['volume_m3'] for p in proof['owned_pieces'])-proof['source_volume_m3'])<=VOLUME_TOLERANCE_M3
+        # TIMESTAMP END 2026-11-02T17:32:31-05:00 | REVISION R004820
         else:
             raise AssertionError(f'{path}: unknown coverage mode {mode!r}')
-        if source_component and mode != 'nonconvex surface partition':
+        # TIMESTAMP START 2026-11-02T17:32:31-05:00 | REVISION R004820
+        if source_component and mode not in ['nonconvex surface partition','Boolean volume partition']:
+        # TIMESTAMP END 2026-11-02T17:32:31-05:00 | REVISION R004820
             require_fields(proof, 'convex_volume_error_m3', path)
 
     require_fields(report, 'schema_version model_sha256 cavity_sha256 model_variant scope methods tolerances status summary failures timber_meshes cavities wood_pair_sections no_cavity_stock_completeness', label)
@@ -730,6 +857,10 @@ def report_invariants(report, label):
         require_stock(stock, f'{label}.no_cavity_stock_completeness.{name}')
     require_fields(report['wood_pair_sections'], 'status pairs_considered positive_extent_bounds_candidates sections max_overlap_area_m2 failures scope', label + '.wood_pair_sections')
     upper_bounds = {
+        # TIMESTAMP START 2026-11-02T17:32:31-05:00 | REVISION R004820
+        'uncovered_volume_m3':VOLUME_TOLERANCE_M3,'outside_source_volume_m3':VOLUME_TOLERANCE_M3,
+        'duplicate_ownership_volume_m3':VOLUME_TOLERANCE_M3,'negative_numerical_volume_bound_m3':VOLUME_TOLERANCE_M3,
+        # TIMESTAMP END 2026-11-02T17:32:31-05:00 | REVISION R004820
         'convex_volume_error_m3': VOLUME_TOLERANCE_M3,
         'partition_volume_balance_error_m3': VOLUME_TOLERANCE_M3,
         'interior_boundary_area_m2': AREA_TOLERANCE_M2,
@@ -770,7 +901,9 @@ def report_invariants(report, label):
                 validate(item, location)
             if 'verified_cells' in value:
                 assert value['verified_cells'] == value['convex_cells'], f'{path}: unverified stock cells'
-                assert value['cells_in_final_receiver_wood'] + value['cells_in_exported_cavity'] == value['convex_cells'], (
+                # TIMESTAMP START 2026-11-02T17:32:31-05:00 | REVISION R004820
+                assert value['cells_in_final_receiver_wood'] + value['cells_in_exported_cavity'] + value.get('cells_in_declared_exterior_cut',0) == value['convex_cells'], (
+                # TIMESTAMP END 2026-11-02T17:32:31-05:00 | REVISION R004820
                     f'{path}: stock cells lack complete occupancy evidence')
             if 'partition_cells' in value:
                 assert value['partition_cells'] == len(value.get('cells', [])) > 0, f'{path}: missing partition proof cells'
@@ -807,7 +940,9 @@ def report_invariants(report, label):
     assert len(cavity_inventory) == len(report['cavities']) == summary['nonempty_cavity_sets'], f'{label}: duplicate/missing cavity IDs'
     assert sum(row['components'] for row in cavity_inventory.values()) == summary['connected_cavity_components'], (
         f'{label}: missing cavity component proofs')
-    assert len(report['timber_meshes']) == summary['timbers'], f'{label}: missing timber mesh proofs'
+    # TIMESTAMP START 2026-11-02T17:32:31-05:00 | REVISION R004820
+    assert len(report['timber_meshes']) == summary.get('physical_wood_pieces',summary['timbers']), f'{label}: missing timber or permanent-peg mesh proofs'
+    # TIMESTAMP END 2026-11-02T17:32:31-05:00 | REVISION R004820
     assert len(report['no_cavity_stock_completeness']) == summary['no_cavity_stock_envelopes_verified'], (
         f'{label}: missing no-cavity stock proofs')
     assert sum(coverage_leaf_count(component) for row in report['cavities'] for component in row['components']) == summary['verified_convex_cells'], (

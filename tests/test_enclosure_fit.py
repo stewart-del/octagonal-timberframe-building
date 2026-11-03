@@ -7,6 +7,9 @@ import manifold3d as m
 R=Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(R/'scripts'))
 from audit_cavity_fit import inspect_mesh
+# TIMESTAMP START 2026-11-02T18:40:43-05:00 | REVISION R004837
+from step_lap import contacts
+# TIMESTAMP END 2026-11-02T18:40:43-05:00 | REVISION R004837
 VARIANTS=[('model-data.json','enclosure-fit.json'),('step-lap-proposed-model.json','step-lap-proposed-enclosure-fit.json'),('top-entry-proposed-model.json','top-entry-proposed-enclosure-fit.json')]
 NODE="global.OCTAGON_ENCLOSURE_FIT=require(process.argv[2]);process.stdout.write(JSON.stringify(require('./src/schematic-walls.js').build(require(process.argv[1]).parts)))"
 def solid(p):
@@ -28,33 +31,155 @@ def section_face(p,axis,coordinate,origin,basis):
  return m.CrossSection(polygons)
 def contact_area(a,b,axis,coordinate,origin,basis):
  return (section_face(a,axis,coordinate,origin,basis)^section_face(b,axis,coordinate,origin,basis)).area()/1e12
+# TIMESTAMP START 2026-11-02T16:10:36-05:00 | REVISION R004814
+foundation_path=R/'src/floor-foundation-solids.json'
+foundation_raw=foundation_path.read_bytes()
+foundation_solids=[solid(p) for p in json.loads(foundation_raw)['parts']]
+
+# TIMESTAMP END 2026-11-02T16:10:36-05:00 | REVISION R004814
 checks=0;minimum_contact=float('inf')
 for model_name,fit_name in VARIANTS:
  raw=(R/'src'/model_name).read_bytes();model=json.loads(raw);fit=json.loads((R/'src'/fit_name).read_text())
  assert fit['source_model_sha256']==hashlib.sha256(raw).hexdigest()
  assert fit['source_module_sha256']==hashlib.sha256((R/'src/schematic-walls.js').read_bytes()).hexdigest()
+# TIMESTAMP START 2026-11-02T16:10:36-05:00 | REVISION R004814
+ assert fit['source_foundation_sha256']==hashlib.sha256(foundation_raw).hexdigest()
+# TIMESTAMP END 2026-11-02T16:10:36-05:00 | REVISION R004814
  layout=json.loads(subprocess.check_output(['node','-e',NODE,str(R/'src'/model_name),str(R/'src'/fit_name)],cwd=R));items=layout['components']
- expected={p['id'] for p in items if p['schematicKind'] in ['rail','wall','floor']}
- assert set(fit['parts'])==expected,'Every generated framing, infill and floor ID needs a current fitted mesh'
+ # TIMESTAMP START 2026-11-02T15:33:07-05:00 | REVISION R004807
+ expected={p['id'] for p in items if p['schematicKind'] in ['rail','wall','floor','shelf']}
+ # TIMESTAMP END 2026-11-02T15:33:07-05:00 | REVISION R004807
+ # TIMESTAMP START 2026-11-02T15:33:07-05:00 | REVISION R004807
+ assert set(fit['parts'])==expected,'Every generated framing, infill, floor and shelf ID needs a current fitted mesh'
+ # TIMESTAMP END 2026-11-02T15:33:07-05:00 | REVISION R004807
  frames=[p for p in items if p['schematicKind']=='rail'];infill=[p for p in items if p['schematicKind']=='wall'];floor=[p for p in items if p['schematicKind']=='floor']
- assert len(frames)==79 and len(infill)==71 and len(floor)==8
+ # TIMESTAMP START 2026-11-02T14:35:15-05:00 | REVISION R004794
+ # TIMESTAMP START 2026-11-02T18:13:09-05:00 | REVISION R004829
+ assert len(frames)==74 and len(infill)==81 and len(floor)==8
+ # TIMESTAMP END 2026-11-02T18:13:09-05:00 | REVISION R004829
+ # TIMESTAMP END 2026-11-02T14:35:15-05:00 | REVISION R004794
  assert {role:sum(p['framingRole']==role for p in frames) for role in ['jamb','header','sill']}=={'jamb':12,'header':6,'sill':5}
- timbers={p['id']:solid(p) for p in model['parts'] if p['is_timber']};footers=[solid(p) for p in items if p['schematicKind']=='footer'];solids={p['id']:solid(p) for p in frames+infill+floor}
- for p in frames+infill+floor:
+ # TIMESTAMP START 2026-11-02T15:33:07-05:00 | REVISION R004807
+ # TIMESTAMP START 2026-11-02T17:45:34-05:00 | REVISION R004824
+ timbers={p['id']:solid(p) for p in model['parts'] if p['is_timber'] or p.get('group')=='joinery_pegs'};footers=[solid(p) for p in items if p['schematicKind']=='footer'];shelves=[p for p in items if p['schematicKind']=='shelf'];solids={p['id']:solid(p) for p in frames+infill+floor+shelves}
+ # TIMESTAMP END 2026-11-02T17:45:34-05:00 | REVISION R004824
+ # TIMESTAMP END 2026-11-02T15:33:07-05:00 | REVISION R004807
+ # TIMESTAMP START 2026-11-02T15:33:07-05:00 | REVISION R004807
+ for p in frames+infill+floor+shelves:
+ # TIMESTAMP END 2026-11-02T15:33:07-05:00 | REVISION R004807
   s=solids[p['id']]
-  if p['schematicKind']=='rail':
+  # TIMESTAMP START 2026-11-02T15:33:07-05:00 | REVISION R004807
+  # TIMESTAMP START 2026-11-02T18:13:09-05:00 | REVISION R004829
+  if p['schematicKind'] in ['rail','shelf','wall']:
+  # TIMESTAMP END 2026-11-02T18:13:09-05:00 | REVISION R004829
+  # TIMESTAMP END 2026-11-02T15:33:07-05:00 | REVISION R004807
    assert len(s.decompose())==1,p['id']+' must remain one continuous piece after brace clearance'
    assert inspect_mesh(np.asarray(p['vertices']),np.asarray(p['triangles']))['status']=='PASS',p['id']
-  for t in (footers if p['schematicKind']=='floor' else timbers.values()):
+# TIMESTAMP START 2026-11-02T16:10:36-05:00 | REVISION R004814
+  for t in (footers+foundation_solids if p['schematicKind']=='floor' else timbers.values()):
+# TIMESTAMP END 2026-11-02T16:10:36-05:00 | REVISION R004814
    if overlap(s,t):assert (s^t).volume()<1e-10,p['id']
+ # TIMESTAMP START 2026-11-02T15:33:07-05:00 | REVISION R004807
+ # Shelf relief must remove exactly occupied timber, preserving board middles.
+ raw_items=json.loads(subprocess.check_output(['node','-e',"process.stdout.write(JSON.stringify(require('./src/schematic-walls.js').build(require(process.argv[1]).parts,{applyFit:false}).components))",str(R/'src'/model_name)],cwd=R))
+ # TIMESTAMP START 2026-11-02T18:40:43-05:00 | REVISION R004837
+ # Every relief must be actual permanent timber/peg occupancy. The optional
+ # porch cannot leave porch-shaped holes when the standalone room is shown.
+ raw_by_id={p['id']:p for p in raw_items}
+ assert 'source_porch_sha256' not in fit
+ porch=json.loads(subprocess.check_output(['node','-e',"process.stdout.write(JSON.stringify(require('./src/mudroom.js').build(require(process.argv[1])).components))",str(R/'src'/model_name)],cwd=R))
+ porch_solids={p['id']:solid(p) for p in porch}
+ for p in frames+infill:
+  expected=solid(raw_by_id[p['id']])
+  for obstacle in timbers.values():
+   if overlap(expected,obstacle):expected=expected-obstacle
+  actual=solids[p['id']]
+  assert abs((expected-actual).volume())+abs((actual-expected).volume())<1e-10,(p['id'],'unexpected enclosure material removed')
+  for pid,obstacle in porch_solids.items():
+   if overlap(actual,obstacle):assert abs((actual^obstacle).volume())<1e-10,(p['id'],pid,'optional porch overlap')
+ for connection in layout['railConnections']:
+  area=sum(q['area_in2']*.0254**2 for q in contacts(solids[connection['railId']],timbers[connection['postId']]))
+  assert area>1e-6,(connection['railId'],connection['postId'],'recessed rail/post contact missing')
+ # TIMESTAMP END 2026-11-02T18:40:43-05:00 | REVISION R004837
+# TIMESTAMP START 2026-11-02T16:10:36-05:00 | REVISION R004814
+ raw_floors={p['id']:p for p in raw_items if p['schematicKind']=='floor'}
+ for p in floor:
+  before=solid(raw_floors[p['id']]);after=solids[p['id']];occupied=m.Manifold()
+  for obstacle in footers+foundation_solids:
+   if overlap(before,obstacle):occupied=occupied+(before^obstacle)
+  removed=before-after
+  assert (removed-occupied).volume()<1e-10 and (occupied-removed).volume()<1e-10,p['id']+' floor relief must match actual occupied support geometry'
+  assert len(after.decompose())==len(before.decompose()),p['id']+' retain every existing bamboo plank without detached offcuts'
+  assert inspect_mesh(np.asarray(p['vertices']),np.asarray(p['triangles']),require_single=False)['status']=='PASS',p['id']+' raw floor mesh'
+
+# TIMESTAMP END 2026-11-02T16:10:36-05:00 | REVISION R004814
+ raw_shelves={p['id']:p for p in raw_items if p['schematicKind']=='shelf'}
+ # TIMESTAMP START 2026-11-02T18:13:09-05:00 | REVISION R004829
+ assert len(shelves)==12 and len(fit['parts'])==175
+ # TIMESTAMP END 2026-11-02T18:13:09-05:00 | REVISION R004829
+ changed_shelves=[]
+ for p in shelves:
+  before=solid(raw_shelves[p['id']]);after=solids[p['id']];expected_cut=m.Manifold()
+  for timber in timbers.values():
+   if overlap(before,timber):expected_cut=expected_cut+(before^timber)
+  removed=before-after
+  assert abs((after-before).volume())<1e-10,p['id']+' added shelf stock'
+  exact_remainder=before-expected_cut
+  offcuts=fit['parts'][p['id']]['discarded_end_offcuts'];offcut_union=m.Manifold()
+  for index,record in enumerate(offcuts):
+   offcut=solid(dict(record,id=p['id']+'-offcut-'+str(index)))
+   assert abs((offcut-after).volume()-offcut.volume())<1e-10
+   assert offcut.min_gap(after,.1)>1e-5 and after.volume()>offcut.volume(),p['id']+' offcut not separate from shelf middle'
+   assert abs((offcut-exact_remainder).volume())<1e-10
+   offcut_union=offcut_union+offcut
+  accounted_cut=expected_cut+offcut_union
+  assert abs((removed-accounted_cut).volume())<1e-10 and abs((accounted_cut-removed).volume())<1e-10,p['id']+' shelf stock unaccounted'
+  reconstructed=after+offcut_union
+  assert abs((reconstructed-exact_remainder).volume())<1e-10 and abs((exact_remainder-reconstructed).volume())<1e-10,p['id']+' connected shelf middle or offcuts changed'
+  # TIMESTAMP START 2026-11-02T17:45:34-05:00 | REVISION R004824
+  # TIMESTAMP START 2026-11-02T18:40:43-05:00 | REVISION R004837
+  assert len(offcuts)==(1 if p['id'].endswith('shelf5') else 0)
+  # TIMESTAMP END 2026-11-02T18:40:43-05:00 | REVISION R004837
+  # TIMESTAMP END 2026-11-02T17:45:34-05:00 | REVISION R004824
+
+  assert len(after.decompose())==1,p['id']+' split shelf board'
+  if removed.volume()>1e-10:changed_shelves.append(p['id'])
+ # TIMESTAMP START 2026-11-02T18:40:43-05:00 | REVISION R004837
+ assert sorted(changed_shelves)==sorted(p['id'] for p in shelves),'Extended shelf backs meet the post envelope and must receive its exact relief'
+ # TIMESTAMP END 2026-11-02T18:40:43-05:00 | REVISION R004837
+ # TIMESTAMP END 2026-11-02T15:33:07-05:00 | REVISION R004807
  # All new framing and infill must be disjoint, including at neighboring walls.
- for a,b in itertools.combinations(frames+infill,2):
+ # TIMESTAMP START 2026-11-02T18:40:43-05:00 | REVISION R004837
+ for a,b in itertools.combinations(frames+infill+shelves,2):
+ # TIMESTAMP END 2026-11-02T18:40:43-05:00 | REVISION R004837
   sa,sb=solids[a['id']],solids[b['id']]
   if overlap(sa,sb):assert (sa^sb).volume()<1e-10,(a['id'],b['id'])
  by_id={p['id']:p for p in items};canonical={p['id']:p for p in model['parts']}
+ # TIMESTAMP START 2026-11-02T18:40:43-05:00 | REVISION R004837
+ for p in frames:
+  if '-rail0-' not in p['id']:continue
+  area=sum(contact_area(p,q,1,0,np.zeros(3),np.eye(3)) for q in floor)
+  assert area>1e-6,(p['id'],'bottom sill must close the unchanged floor edge')
+ for face in ['N','S']:
+  wall=next(w for w in layout['walls'] if w['face']==face)
+  a=np.asarray(canonical[wall['postIds'][0]]['center']);b=np.asarray(canonical[wall['postIds'][1]]['center']);origin=(a+b)/2;origin[1]=0
+  u=b-a;u[1]=0;u/=np.linalg.norm(u);normal=origin/np.linalg.norm(origin);basis=np.array([u,[0,1,0],normal])
+  shelf=by_id['SCHEM-'+face+'-shelf2'];rail=by_id['SCHEM-'+face+'-rail1-0']
+  assert shelf['localBounds'][4:]==[-.40,.0508]
+  assert contact_area(shelf,rail,2,.0508,origin,basis)>1e-4,(face,'shelf back must touch the recessed rail')
+ # TIMESTAMP END 2026-11-02T18:40:43-05:00 | REVISION R004837
  for wall in layout['walls']:
   if not wall['opening']:continue
   o=wall['opening'];w=o['width']/2;face=wall['face'];a=np.asarray(canonical[wall['postIds'][0]]['center']);b=np.asarray(canonical[wall['postIds'][1]]['center']);origin=(a+b)/2;origin[1]=0;u=b-a;u[1]=0;u/=np.linalg.norm(u);normal=origin/np.linalg.norm(origin);basis=np.array([u,[0,1,0],normal])
+  # TIMESTAMP START 2026-11-02T18:32:34-05:00 | REVISION R004834
+  assert o['top']==(2.10 if face=='W' else 1.85),(face,'common window head elevation')
+  if face=='E':
+   assert o['bottom']==.75 and o['width']==wall['width']*.65,'Preserve wide east window sill and width'
+  header=by_id['SCHEM-'+face+'-rail-header']
+  if face!='W':
+   assert header['localBounds'][2:4]==[1.85,1.85+.1524]
+   assert abs(max(v[1] for v in header['vertices'])-(1.85+.1524))<1e-9,(face,'actual header top must match neighboring windows')
+  # TIMESTAMP END 2026-11-02T18:32:34-05:00 | REVISION R004834
   local_members=[p for p in frames+infill if p['face']==face]
   for p in local_members:
    q=(np.asarray(p['vertices'])-origin)@basis.T
@@ -67,10 +192,12 @@ for model_name,fit_name in VARIANTS:
   for jamb,x in zip(jambs,[-w,w]):
    for member in horizontal:
     area=contact_area(jamb,member,0,x,origin,basis);assert area>1e-6,(jamb['id'],member['id'],'missing face contact');minimum_contact=min(minimum_contact,area);checks+=1
-   # Full 6×6-inch foot bearing on a continuous bottom rail, not floor finish.
+   # TIMESTAMP START 2026-11-02T18:40:43-05:00 | REVISION R004837
+   # Full 2×6-inch jamb-foot bearing on a continuous recessed bottom rail.
    foot_y=jamb['localBounds'][2]
    bearing=sum(contact_area(jamb,p,1,foot_y,origin,basis) for p in local_members if p.get('framingRole')=='rail')
-   assert abs(bearing-.1524**2)<1e-10,(jamb['id'],'full jamb-foot bearing',bearing)
+   assert abs(bearing-.1524*.0508)<1e-10,(jamb['id'],'full jamb-foot bearing',bearing)
+   # TIMESTAMP END 2026-11-02T18:40:43-05:00 | REVISION R004837
    checks+=1
    # The jamb reaches the unchanged ring-beam underside with actual face contact.
    area=contact_area(jamb,canonical['B'+wall['postIds'][0][1:]],1,wall['height'],origin,basis)
@@ -89,5 +216,7 @@ for model_name,fit_name in VARIANTS:
   assert abs(max(np.array(p['vertices'])@normal)-target)<1e-8
  assert all('unresolved' in q['status'] for q in layout['railConnections'])
  assert (R/'src'/model_name).read_bytes()==raw
-print(f'PASS: all three variants; 12 continuous jambs, 6 headers, 5 sills each; {checks} fitted face contacts (minimum {minimum_contact:.9g} m²); no framing/infill/primary-timber overlaps; clear apertures and threshold preserved')
+# TIMESTAMP START 2026-11-02T15:33:07-05:00 | REVISION R004807
+print(f'PASS: all three variants; 12 continuous jambs, 6 headers, 5 sills each; {checks} fitted face contacts (minimum {minimum_contact:.9g} m²); no framing/infill/shelf/primary-timber overlaps; clear apertures and threshold preserved')
+# TIMESTAMP END 2026-11-02T15:33:07-05:00 | REVISION R004807
 # TIMESTAMP END 2026-11-02T13:42:10-05:00 | REVISION R004782

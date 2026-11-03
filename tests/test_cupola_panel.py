@@ -6,9 +6,21 @@ import manifold3d as m
 R=Path(__file__).resolve().parents[1];sys.path.insert(0,str(R/'scripts'))
 from cupola_panel import solid,consolidate
 model=json.loads((R/'src/model-data.json').read_text());parts=model['parts'];panel=next(p for p in parts if p['id']=='PLY');proof=json.loads((R/'docs/continuous-panel-baseline.json').read_text())
-assert len(parts)==115 and sum(p['is_timber'] for p in parts)==104
+# TIMESTAMP START 2026-11-02T15:15:55-05:00 | REVISION R004802
+# TIMESTAMP START 2026-11-02T17:44:11-05:00 | REVISION R004823
+assert len(parts)==171 and sum(p['is_timber'] for p in parts)==112
+# TIMESTAMP END 2026-11-02T17:44:11-05:00 | REVISION R004823
+# TIMESTAMP END 2026-11-02T15:15:55-05:00 | REVISION R004802
 assert not any(p['id'] in panel['legacy_ids'] for p in parts)
+# TIMESTAMP START 2026-11-02T15:15:55-05:00 | REVISION R004802
+brace_scope={f'{f}{k}' for k in range(8) for f in ['P','B','T']}|{f'K{k}-{s}' for k in range(8) for s in ['A','B','C']}
+# TIMESTAMP END 2026-11-02T15:15:55-05:00 | REVISION R004802
 for p in parts:
+ # TIMESTAMP START 2026-11-02T15:15:55-05:00 | REVISION R004802
+ # TIMESTAMP START 2026-11-02T17:44:11-05:00 | REVISION R004823
+ if p['id'] in brace_scope or p.get('group')=='joinery_pegs':continue # Independently verified in test_main_braces.py.
+ # TIMESTAMP END 2026-11-02T17:44:11-05:00 | REVISION R004823
+ # TIMESTAMP END 2026-11-02T15:15:55-05:00 | REVISION R004802
  if p['id']=='PLY':continue
  if p['group']=='temporary_fixture':continue # Separately audited by test_central_support.py.
  if p['id']=='M-SP0':
@@ -32,4 +44,6 @@ assert next(p for p in parts if p['id']=='M-SP0')['temporary']
 assert len([p for p in parts if p['group']=='metal_spacers'])==1
 assert len([p for p in parts if p.get('assembly_id')=='CENTRAL-SUPPORT'])==1
 assert 'commercial sheet' in ' '.join(panel['notes']) and 'diaphragm' in ' '.join(panel['notes'])
-print('PASS: one panel, original union/envelope/thickness/volume preserved; all permanent non-panel parts exact; surviving green-aid geometry exact;104 timber weights unchanged; ID history and unified explode retained')
+# TIMESTAMP START 2026-11-02T15:15:55-05:00 | REVISION R004802
+print('PASS: one panel, original union/envelope/thickness/volume preserved; unrelated permanent parts and surviving green aid exact; brace migration checked separately; ID history and unified explode retained')
+# TIMESTAMP END 2026-11-02T15:15:55-05:00 | REVISION R004802

@@ -48,8 +48,23 @@ for part in parts:
         assert cut.get("part_id", pid) == pid
         assert not cut.get("mate_part_id") or cut["mate_part_id"] in by_id, f"Stale mate: {pid}"
     if pid in retained:
-        assert [f["id"] for f in part["reference_end_faces"]] == [pid + "-A", pid + "-B"]
-        assert all(f["part_id"] == pid for f in part["reference_end_faces"])
+        # TIMESTAMP START 2026-11-02T19:14:55-05:00 | REVISION R004853
+        revised_brace = part.get("main_face_brace_joinery")
+        if revised_brace:
+            assert re.fullmatch(r"K[0-7]-[AB]", pid), f"Unexpected revised legacy brace: {pid}"
+            assert revised_brace["id"] == pid
+            assert len(revised_brace["actual_section_m"]) == 2
+            assert all(math.isclose(actual, expected, abs_tol=1e-12)
+                       for actual, expected in zip(revised_brace["actual_section_m"], (0.0508, 0.1524))), pid
+            for dimensions in (part["dimensions"], part["nominal_dimensions"]):
+                assert dimensions["width_in"] == 2 and dimensions["depth_in"] == 6, pid
+                assert math.isclose(dimensions["width_m"], 0.0508, abs_tol=1e-12), pid
+                assert math.isclose(dimensions["depth_m"], 0.1524, abs_tol=1e-12), pid
+            assert part["reference_end_faces"] == [], f"Retired brace end overlay returned: {pid}"
+        else:
+            assert [f["id"] for f in part["reference_end_faces"]] == [pid + "-A", pid + "-B"]
+            assert all(f["part_id"] == pid for f in part["reference_end_faces"])
+        # TIMESTAMP END 2026-11-02T19:14:55-05:00 | REVISION R004853
         assert part["angles"].get("fabrication_end_A_cut_deg") is None
         assert part["angles"].get("fabrication_end_B_cut_deg") is None
 

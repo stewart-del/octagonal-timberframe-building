@@ -161,12 +161,16 @@ def build_proposal(data,source_hash):
   # The sloping original lower face truncates J/B near its inner seat edge.
   blank=inside_band(original,[0,1,0],top-spec['max_engagement_in']*I,top)
   blank=inside_band(blank,width,float(width@origin-spec['tongue_width_in']*I/2),float(width@origin+spec['tongue_width_in']*I/2))
-  tongue=resolved(blank^sb)
+  # TIMESTAMP START 2026-11-02T17:42:50-05:00 | REVISION R004822
+  tongue=regular_boundary(blank^sb)
+  # TIMESTAMP END 2026-11-02T17:42:50-05:00 | REVISION R004822
   assert tongue.volume()>1e-10,'No available original stock to form a tongue'
   candidate_tongues[spec['id']]=tongue
   if spec['id']==spec['seed_id']:
    # TIMESTAMP START 2026-11-02T10:36:58-05:00 | REVISION R004765
-   new_a=regular_boundary(resolved(sa+tongue));new_b=regular_boundary(resolved(sb-tongue))
+   # TIMESTAMP START 2026-11-02T17:42:50-05:00 | REVISION R004822
+   new_a=regular_boundary(sa+tongue);new_b=regular_boundary(sb-tongue)
+   # TIMESTAMP END 2026-11-02T17:42:50-05:00 | REVISION R004822
    # TIMESTAMP END 2026-11-02T10:36:58-05:00 | REVISION R004765
    seed_shapes[spec['id']]={'rafter':new_a,'receiver':new_b,'tongue':tongue}
   else:
@@ -233,7 +237,9 @@ def build_proposal(data,source_hash):
  # Form both distinct B0 pockets once, verify the serialized result, then
  # rotate the complete ring-beam member to every bay. P0 has one hip pocket.
  # TIMESTAMP START 2026-11-02T10:36:58-05:00 | REVISION R004765
- paired_b0=regular_boundary(resolved(solids['B0']-(tongues['J0-0_B0']+tongues['J0-2_B0'])))
+ # TIMESTAMP START 2026-11-02T17:42:50-05:00 | REVISION R004822
+ paired_b0=regular_boundary(solids['B0']-(tongues['J0-0_B0']+tongues['J0-2_B0']))
+ # TIMESTAMP END 2026-11-02T17:42:50-05:00 | REVISION R004822
  # TIMESTAMP END 2026-11-02T10:36:58-05:00 | REVISION R004765
  expected_removal=tongues['J0-0_B0'].volume()+tongues['J0-2_B0'].volume()
  assert abs((solids['B0'].volume()-paired_b0.volume())-expected_removal)/I**3<TOL_IN3,'HOLD: accumulated B0 pockets failed volume conservation'
@@ -281,7 +287,9 @@ def build_proposal(data,source_hash):
  for v in variants:
   own=set(v['member_ids']);v['measurements']['neighbor_contacts']=[n for n in neighbors if {n['a'],n['b']}&own];v['measurements']['neighbor_interferences']=[n for n in overlaps if {n['a'],n['b']}&own]
   if overlaps or lost:v['geometry_status']='REJECTED';v['findings'].append('STOP: interfering solids or lost neighboring contact detected. Do not replicate.')
-  else:v['findings'].append('All affected pairs checked against all 104 timber solids: no new positive-volume intersection and no lost baseline face contact. This is geometry evidence only.')
+  # TIMESTAMP START 2026-11-02T15:15:55-05:00 | REVISION R004802
+  else:v['findings'].append('All affected pairs checked against all 112 timber solids: no new positive-volume intersection and no lost baseline face contact. This is geometry evidence only.')
+  # TIMESTAMP END 2026-11-02T15:15:55-05:00 | REVISION R004802
  # Also ensure the temporary metal and independent non-timber panel remain clear.
  nonwood=[]
  for name in changed:
@@ -294,7 +302,9 @@ def build_proposal(data,source_hash):
  if nonwood:
   for v in variants:v['geometry_status']='REJECTED';v['findings'].append('STOP: new interference with non-timber component.')
  limits=['Proposed step-lap joinery using chosen design assumptions. This is not fabrication, strength, uplift, stability or erection approval.','The original reference image is undimensioned. Selected widths and engagement are not measurements from it.','The owner-uploaded timber-frame manual has not been read; externally verified TFEC 1-2019 is not that attachment.','Model selection binds meshes, plans, exports, removed-stock overlays and recomputed applied self-weight to the selected geometry. Baseline contact warning markers and fixed-area pressure shortcuts are disabled for the proposed model; reactions and capacities remain unsolved.','All 24 requested matching perimeter interfaces are represented in the separate proposed model: 16 short-rafter/ring and 8 main-hip/post joints. The canonical baseline stays unchanged; this is not structural or fabrication approval.']
- result={'schema_version':'step-lap-proposal-2','status':'PROPOSED STEP-LAP JOINERY — NOT FABRICATION APPROVED','baseline_model_sha256':source_hash,'canonical_model_unchanged':True,'limitations':limits,'variants':variants,'combined_geometry_audit':{'changed_member_ids':sorted(changed),'requested_interface_count':24,'implemented_interface_count':len(variants),'held_interfaces':[],'family_isometry_checks':isometry,'timber_count':104,'affected_pairs_considered':sum(bool({a,b}&changed) for a,b in itertools.combinations(solids,2)),'interferences':overlaps,'lost_neighbor_contacts':lost,'new_non_timber_interferences':nonwood,'geometry_status':'PASS' if not(overlaps or lost or nonwood) else 'REJECTED','capacity_checked':False}}
+ # TIMESTAMP START 2026-11-02T15:15:55-05:00 | REVISION R004802
+ result={'schema_version':'step-lap-proposal-2','status':'PROPOSED STEP-LAP JOINERY — NOT FABRICATION APPROVED','baseline_model_sha256':source_hash,'canonical_model_unchanged':True,'limitations':limits,'variants':variants,'combined_geometry_audit':{'changed_member_ids':sorted(changed),'requested_interface_count':24,'implemented_interface_count':len(variants),'held_interfaces':[],'family_isometry_checks':isometry,'timber_count':112,'affected_pairs_considered':sum(bool({a,b}&changed) for a,b in itertools.combinations(solids,2)),'interferences':overlaps,'lost_neighbor_contacts':lost,'new_non_timber_interferences':nonwood,'geometry_status':'PASS' if not(overlaps or lost or nonwood) else 'REJECTED','capacity_checked':False}}
+ # TIMESTAMP END 2026-11-02T15:15:55-05:00 | REVISION R004802
  full=copy.deepcopy(data);lookup={p['id']:p for v in variants for p in v['proposed_parts']};full['parts']=[lookup.get(p['id'],p) for p in full['parts']];full['title']='Proposed step-lap joinery model';full['status']=result['status'];full['source_model']='Separate proposed model derived from baseline '+source_hash;full['proposed_review']={'baseline_model_sha256':source_hash,'changed_member_ids':sorted(changed),'geometry_audit':result['combined_geometry_audit'],'limitations':limits,'fabrication_dimensions_valid':False};full['notes']=full['notes']+limits;full['joinery_verification']={'status':'PROPOSED GEOMETRY ONLY','scope':'Current derived pair/contact audit; baseline joinery approval fields intentionally not inherited. No structural verification.'};full['fit_audit']={'status':'PROPOSED GEOMETRY ONLY','capacity_checked':False}
  full['proposed_member_volume_centroids']=[dict(id=name,**volume_centroid(s)) for name,s in proposed.items()]
  result['proposed_timber_volume_m3']=sum(x['volume_m3'] for x in full['proposed_member_volume_centroids']);result['baseline_timber_volume_m3']=sum(s.volume() for s in solids.values())

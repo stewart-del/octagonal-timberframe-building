@@ -1,0 +1,20 @@
+{
+  "revision": "R01",
+  "retained_legacy_timbers": 88,
+  "retired_midpoint_rafters": [
+    "J0-1",
+    "J1-1",
+    "J2-1",
+    "J3-1",
+    "J4-1",
+    "J5-1",
+    "J6-1",
+    "J7-1"
+  ],
+  "model_items": 171,
+  "short_rafter_contact_faces": 16,
+  "source_model_sha256": "fb7bf67b4bae2c41c4e637647ad23caa6167345301af0befa780f4aa943519be",
+  "embedded_model_matches_source": true,
+  "local_links_exist": true,
+  "scope": "Geometry/data and packaging validation; no structural or fabrication approval."
+}

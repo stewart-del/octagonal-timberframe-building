@@ -14,7 +14,9 @@ function context(variants,search=''){
  const cavityAuditPassed=v.cavities?.fit_audit?.status==='PASS';
  const cavityAvailable=cavityAuditPassed&&v.cavities.available!==false&&Object.keys(v.cavities.parts||{}).length>0;
  const cavities=cavityAvailable?{...v.cavities,available:true}:{source_model_sha256:sha,parts:{},available:false,status:'Recess overlay unavailable: the selected model has no complete passing cavity-fit audit. No overlay from another model is substituted.'};
- const label=id==='top-entry'?'Top-entry head proposal':isProposed?'Perimeter step-lap proposal':'Saved baseline model';
+// TIMESTAMP START 2026-11-02T18:01:36-05:00 | REVISION R004828
+ const label=id==='top-entry'?'Removable joinery proposal':isProposed?'Perimeter step-lap proposal':'Saved baseline model';
+// TIMESTAMP END 2026-11-02T18:01:36-05:00 | REVISION R004828
  return {...v,id,isProposed,label,loadReview,cavities,cavityAuditPassed:cavityAvailable,pressureAvailable:!isProposed,contactMarkersAvailable:!isProposed,exportPrefix:id==='top-entry'?'TOP-ENTRY-NOT-FABRICATION-':isProposed?'PROPOSED-NOT-FABRICATION-':'BASELINE-',status:isProposed?label+' · geometry review only, not fabrication approved':'Saved baseline · geometry study, not construction approved'};
 }
 function exportName(selected,name){return name.startsWith('TOP-ENTRY-NOT-FABRICATION-')||name.startsWith('PROPOSED-NOT-FABRICATION-')||name.startsWith('BASELINE-')?name:selected.exportPrefix+name;}
@@ -31,7 +33,9 @@ function bind(selected,{document,location,beforeChange=()=>{}}){
   if($('hypotheticalPressure'))$('hypotheticalPressure').textContent='Unavailable for proposed joints: baseline 64/12 in² pressure shortcuts are disabled. Reactions and capacities remain unsolved.';
   if($('loadIssueDetail'))$('loadIssueDetail').textContent='Baseline contact warning markers are disabled for this model. Their absence does not establish restraint or capacity; use the proposed joint review.';
  }
- const auditLink=$('cavityFitAuditLink');if(auditLink){auditLink.hidden=!selected.cavityAuditPassed;if(selected.cavityAuditPassed)auditLink.href='downloads/'+(selected.id==='baseline'?'cavity-fit-audit.json':'step-lap-proposed-cavity-fit-audit.json');else auditLink.removeAttribute?.('href');}
+ // TIMESTAMP START 2026-11-02T17:13:18-05:00 | REVISION R004819
+ const auditLink=$('cavityFitAuditLink');if(auditLink){auditLink.hidden=!selected.cavityAuditPassed;if(selected.cavityAuditPassed)auditLink.href='downloads/'+(selected.id==='baseline'?'cavity-fit-audit.json':selected.id==='top-entry'?'top-entry-cavity-fit-audit.json':'step-lap-proposed-cavity-fit-audit.json');else auditLink.removeAttribute?.('href');}
+// TIMESTAMP END 2026-11-02T17:13:18-05:00 | REVISION R004819
  for(const id of ['showHollows','hollowXray'])if($(id))$(id).disabled=!selected.cavities.available;
  if(!selected.cavities.available){if($('showHollows'))$('showHollows').checked=false;if($('hollowStatus'))$('hollowStatus').textContent=selected.cavities.status;}
  else if($('hollowStatus')&&!$('hollowStatus').textContent)$('hollowStatus').textContent=selected.label+': independent cavity-fit audit passed. Select a timber to reveal its matching recesses.';

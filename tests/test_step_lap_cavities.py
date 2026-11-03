@@ -45,7 +45,9 @@ class ProposedCavityFixtures(unittest.TestCase):
             if name not in changed:
                 self.assertEqual(self.cavities['parts'][name]['removed'], self.base_cavities['parts'][name]['removed'])
         self.assertTrue(self.cavities['available'])
-        self.assertEqual(len(self.cavities['parts']), 104)
+        # TIMESTAMP START 2026-11-02T15:15:55-05:00 | REVISION R004802
+        self.assertEqual(len(self.cavities['parts']), 112)
+        # TIMESTAMP END 2026-11-02T15:15:55-05:00 | REVISION R004802
         self.assertTrue(all(set(row) == {'removed'} for row in self.cavities['parts'].values()))
 
     def test_each_transfer_switches_actual_wood_and_cavity_ownership(self):
@@ -90,10 +92,17 @@ class ProposedCavityFixtures(unittest.TestCase):
         self.assertEqual(report['model_variant'], 'proposed-step-lap')
         self.assertEqual(report['model_sha256'], self.hashes[2])
         self.assertEqual(report['cavity_sha256'], hashlib.sha256((ROOT / 'src/step-lap-proposed-cavities.json').read_bytes()).hexdigest())
-        self.assertEqual(report['summary']['connected_cavity_components'], 168)
-        self.assertEqual(report['summary']['nonconvex_cavity_components'], 24)
-        self.assertEqual(report['summary']['components_covered'], 168)
-        self.assertEqual(report['summary']['all_timber_stock_envelopes_verified'], 104)
+        # TIMESTAMP START 2026-11-02T17:32:31-05:00 | REVISION R004820
+        self.assertEqual(report['summary']['connected_cavity_components'], 240)
+        self.assertEqual(report['summary']['nonconvex_cavity_components'], 64)
+        self.assertEqual(report['summary']['components_covered'], 240)
+        self.assertEqual(report['summary']['physical_wood_pieces'], 160)
+        self.assertEqual(report['summary']['permanent_wood_fasteners'], 48)
+        self.assertEqual(report['summary']['declared_exterior_brace_trims'], 24)
+        # TIMESTAMP END 2026-11-02T17:32:31-05:00 | REVISION R004820
+        # TIMESTAMP START 2026-11-02T15:15:55-05:00 | REVISION R004802
+        self.assertEqual(report['summary']['all_timber_stock_envelopes_verified'], 112)
+        # TIMESTAMP END 2026-11-02T15:15:55-05:00 | REVISION R004802
         self.assertEqual(report['summary']['winding_unoccupied_points'], 0)
         self.assertEqual(report['summary']['winding_points_in_receiver'], 0)
 

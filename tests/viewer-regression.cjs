@@ -23,7 +23,9 @@ function runViewerTests(source,model,{search='?model=baseline',skipLegacy=false}
   }
   const findId=(node,id)=>node.id===id?node:node.children.map(c=>findId(c,id)).find(Boolean);
   const nodes=new Map();document={root:new Element(),hidden:false,activeElement:null,getElementById:id=>nodes.get(id)||findId(document.root,id),createElement:tag=>new Element(tag),createElementNS:(ns,tag)=>new Element(tag),addEventListener:(k,f)=>(listeners[k]??=[]).push(f),querySelector:tag=>nodes.get(tag)};
-  const ids=[...source.matchAll(/\$\('([^']+)'\)/g)].map(m=>m[1]);ids.push('schematicWalls','schematicShelves','schematicCupolaWindows','layerFoundation','layerFloorStructure','layerFloorFinish','layerWallStructure','layerRoofCover','presetComplete','presetSkeleton','presetFoundation','presetFloor','plansTop','plansSide','model-data','header','main','scene','labels','orbitNav','freeNav');
+// TIMESTAMP START 2026-11-02T14:22:13-05:00 | REVISION R004792
+  const ids=[...source.matchAll(/\$\('([^']+)'\)/g)].map(m=>m[1]);ids.push('layerMudroom','schematicWalls','schematicShelves','schematicCupolaWindows','layerFoundation','layerFloorStructure','layerFloorFinish','layerWallStructure','layerRoofCover','presetComplete','presetSkeleton','presetFoundation','presetFloor','plansTop','plansSide','model-data','header','main','scene','labels','orbitNav','freeNav');
+// TIMESTAMP END 2026-11-02T14:22:13-05:00 | REVISION R004792
   for(const id of new Set(ids)){if(id==='cutDetail'||id==='isolatePiece')continue;const el=new Element(id==='scene'?'canvas':id==='search'?'input':/Button|closeSchedule|Nav$/.test(id)?'button':'div');el.id=id;nodes.set(id,el);document.root.appendChild(el);}
   nodes.get('scheduleModal').append(nodes.get('closeSchedule'),nodes.get('scheduleNote'),nodes.get('scheduleHead'),nodes.get('scheduleRows'));
   nodes.get('main').append(nodes.get('scene'));nodes.get('model-data').textContent=JSON.stringify(model);
@@ -36,19 +38,55 @@ function runViewerTests(source,model,{search='?model=baseline',skipLegacy=false}
     const key=(value,target=$('freeNav'),extra={})=>({key:value,target,shiftKey:false,preventDefault(){this.prevented=true;},...extra});
     const walk=el=>[el,...el.children.flatMap(walk)];
     const expectedDefault=parts.filter(p=>defaultGroups().some(g=>g.id===p.group));
-    check(parts.filter(isTimber).length===104,'R02 has 88 retained plus 8 roof rafters and 8 horizontal ceiling timbers');
+// TIMESTAMP START 2026-11-02T15:07:59-05:00 | REVISION R004800
+    check(parts.filter(isTimber).length===112,'Current frame includes 24 full-size braces and 112 primary timbers');
+// TIMESTAMP END 2026-11-02T15:07:59-05:00 | REVISION R004800
     check(parts.filter(p=>p.group==='radial_rafters').length===8&&parts.filter(p=>p.group==='secondary_approx').length===16,'Roof contains eight hips and sixteen short rafters');
     check(!parts.some(p=>/^J[0-7]-1$/.test(p.id)),'All eight midpoint rafters are retired');
     check(!parts.some(p=>p.temporary&&isShown(p)),'Temporary fixture is hidden initially');
     check(parts.filter(isShown).length===expectedDefault.length,'Initial view respects current default group visibility');
     check(schematicWallsEnabled&&schematicParts.filter(p=>!['deferred','temporary'].includes(OctagonDisplayPresets.role(p))).every(isShown),'Complete permanent building is visible by default without entering canonical inventory');
+// TIMESTAMP START 2026-11-02T14:22:13-05:00 | REVISION R004792
+    const mudroomPieces=schematicParts.filter(p=>p.schematicKind==='mudroom');
+    check(mudroomPieces.length>20&&mudroomPieces.every(isShown),'Open porch is included in the default complete view');
+    check(!mudroomCutaway&&mudroomPieces.filter(p=>p.mudroomScreen).every(isShown),'Porch roof starts visible');
+    $('lookInsideMudroom').onclick();
+    check(mudroomCutaway&&mudroomPieces.filter(p=>p.mudroomScreen).every(p=>!isShown(p))&&mudroomPieces.filter(p=>!p.mudroomScreen).every(isShown),'Roof control hides only the porch roof assembly');
+    check(camera.target.every(Number.isFinite)&&camera.distance>0,'Mudroom view has a valid framing target');
+    $('lookInsideMudroom').onclick();check(!mudroomCutaway&&mudroomPieces.every(isShown),'Roof control restores the entire porch');
+    $('lookInsideMudroom').onclick();syncDisplayPreset();check($('displayPresetStatus').textContent==='Custom','Cutaway does not falsely report a complete building');
+    applyDisplayPreset('complete');check(!mudroomCutaway&&mudroomPieces.every(isShown),'Complete from interior view restores the porch roof');
+    $('lookInsideMudroom').onclick();$('resetView').onclick();check(!mudroomCutaway&&mudroomPieces.every(isShown),'Reset from interior view restores the porch roof');
+    const bench=mudroomPieces.find(p=>p.mudroomRole==='furniture');
+    check(!!bench,'Mudroom furniture exists');selectPart(bench.id);
+    check(selected===bench.id&&selectedPartIds.has(bench.id)&&selectionAlpha(bench)===.38,'Mudroom pieces select and reveal transparent geometry');
+    check(walk($('selection')).some(el=>el.textContent==='Active porch piece'),'Mudroom selection has a dedicated component inspector');
+// TIMESTAMP START 2026-11-02T15:57:59-05:00 | REVISION R004811
+    explode=.5/disassembly.count;check(mudroomPieces.every(isShown),'Porch solids stay visible throughout disassembly');
+    check(mudroomPieces.some(p=>length(offset(p))>0)&&mudroomPieces.some(p=>length(offset(p))===0),'Released porch pieces move while later stages remain assembled');
+// TIMESTAMP END 2026-11-02T15:57:59-05:00 | REVISION R004811
+    explode=0;clearPieceSelection();
+    selectedPartIds.add(bench.id);selectedPartIds.add('P0');selected='P0';selectPart('P0',true);
+    check(selected===bench.id&&selectedPartIds.size===1,'Mixed timber/mudroom selection safely returns to the mudroom inspector');clearPieceSelection();
+    applyDisplayPreset('skeleton');check(mudroomPieces.every(p=>!isShown(p)),'Skeleton excludes the separate mudroom proposal');
+    applyDisplayPreset('complete');check(mudroomPieces.every(isShown),'Complete restores the whole porch');
+    const porchPlan=OctagonPlans.drawing(PLAN_DATA,{view:'top',mudroom:true,roofCover:false});
+    check(porchPlan.parts.some(p=>p.id==='MUD-BENCH-L')&&porchPlan.parts.some(p=>p.mudroomRole==='drain'),'Porch plan contains benches and drain');
+    check(!porchPlan.parts.some(p=>p.mudroomRoof||p.mudroomRole==='roof'),'Porch interior plan omits the roof when roofing is off');
+    const roofedPlan=OctagonPlans.drawing(PLAN_DATA,{view:'top',mudroom:true,roofCover:true});
+    check(roofedPlan.parts.some(p=>p.id==='MUD-ROOF'),'Roofed plan includes the porch roof');
+    const withoutPorch=OctagonPlans.drawing(PLAN_DATA,{view:'top',mudroom:false});
+    check(!withoutPorch.parts.some(p=>p.schematicKind==='mudroom'),'Porch plan toggle excludes the addition independently');
+// TIMESTAMP END 2026-11-02T14:22:13-05:00 | REVISION R004792
     for(const binding of Object.values(displayLayerBindings)){binding[2](false);}syncDisplayControls();
     check(schematicParts.every(p=>fittedCenter(p).every(Number.isFinite)),'Schematic centers support ghost sorting during multi-selection');
     const canonicalCount=parts.length;
     matrix();$('layerWallStructure').checked=true;$('layerWallStructure').onchange();$('schematicWalls').checked=true;$('schematicWalls').onchange();updateSchematicWalls();
     check(schematicParts.filter(p=>['wall','rail','footer'].includes(p.schematicKind)).every(isShown)&&schematicParts.filter(p=>!['wall','rail','footer'].includes(p.schematicKind)).every(p=>!isShown(p))&&parts.length===canonicalCount,'Wall toggle displays only separate provisional layer, not timber/load members');
     // TIMESTAMP START 2026-11-02T13:49:06-05:00 | REVISION R004787
-    explode=.5;updateSchematicWalls();check(schematicParts.filter(p=>p.schematicKind==='rail').every(isShown)&&schematicParts.filter(p=>p.schematicKind!=='rail').every(p=>!isShown(p)),'Wall framing remains visible and separates while infill pauses during explode');
+// TIMESTAMP START 2026-11-02T15:57:59-05:00 | REVISION R004811
+    explode=.5;updateSchematicWalls();check(schematicParts.filter(p=>layerShown(p)).every(isShown),'Active enclosure layers stay visible during the verified sequence');
+// TIMESTAMP END 2026-11-02T15:57:59-05:00 | REVISION R004811
     // TIMESTAMP END 2026-11-02T13:49:06-05:00 | REVISION R004787
     explode=0;isolatedId='P0';check(schematicParts.every(p=>!isShown(p)),'Wall layer stays out of isolated joint inspection');
     isolatedId=null;$('layerWallStructure').checked=false;$('layerWallStructure').onchange();$('schematicWalls').checked=false;$('schematicWalls').onchange();updateSchematicWalls();
@@ -69,7 +107,9 @@ function runViewerTests(source,model,{search='?model=baseline',skipLegacy=false}
     $('schematicFloor').checked=false;$('schematicFloor').onchange();
     const panel=parts.find(p=>p.id==='PLY');
     check(parts.filter(p=>p.group==='cupola_plywood').length===1&&!!panel,'Plywood is one selectable assembly, not eight display sectors');
-    check(panel.exploded_offset.join(',')==='0,6.2,0','Whole panel explodes vertically as one assembly');
+// TIMESTAMP START 2026-11-02T15:57:59-05:00 | REVISION R004811
+    check(panel.exploded_offset.join(',')==='0,6.2,0','Plywood retains its legacy static export offset independently of sequence playback');
+// TIMESTAMP END 2026-11-02T15:57:59-05:00 | REVISION R004811
     selectPart('PLY');check(selected==='PLY'&&selectedPartIds.has('PLY'),'Panel selection has one stable assembly ID');
     clearPieceSelection();
     const aids=parts.filter(p=>p.group==='metal_spacers'||p.group==='temporary_fixture');
@@ -78,7 +118,9 @@ function runViewerTests(source,model,{search='?model=baseline',skipLegacy=false}
     $('constructionAids').onclick();check(aids.every(p=>!isShown(p))&&$('constructionAids').getAttribute('aria-pressed')==='false','Second construction-aid click hides both aids again');
     const fixture=parts.find(p=>p.id==='M-TMP');
     check(parts.filter(p=>p.group==='temporary_fixture').length===1&&fixture.assembly_quantity===1&&fixture.display_holes.length===24,'Central support is one stable assembly with 24 display holes');
-    check(!isTimber(fixture)&&fixture.exploded_offset.join(',')==='0,-1.5,0','Whole support explodes together and is not counted as timber');
+// TIMESTAMP START 2026-11-02T15:57:59-05:00 | REVISION R004811
+    check(!isTimber(fixture)&&fixture.exploded_offset.join(',')==='0,-1.5,0','Symbolic temporary support keeps its static export metadata and is not counted as timber');
+// TIMESTAMP END 2026-11-02T15:57:59-05:00 | REVISION R004811
     selectPart('M-TMP3');check(selected==='M-TMP'&&selectedPartIds.size===1,'Legacy arm selection resolves to the one support assembly');
     check(walk($('selection')).some(e=>String(e.textContent).includes('NOT drilling')),'Fixture inspector explicitly marks hole thickness and elevation assumptions as not fabrication');
     check(!walk($('selection')).some(e=>e.id==='selectedAngles'||String(e.textContent).includes('edge measurements')),'Fixture suppresses timber angle and edge fabrication-style tools');
@@ -162,7 +204,9 @@ function runViewerTests(source,model,{search='?model=baseline',skipLegacy=false}
     const jamb=schematicParts.find(p=>p.framingRole==='jamb');selectPart(jamb.id);selectPart('P0',true);selectPart('P0',true);
     check(selected===jamb.id&&selectedPartIds.size===1&&walk($('selection')).some(el=>el.textContent==='Active wall framing'),'Removing a main timber from a mixed selection restores the jamb inspector');
     focusPart(jamb);const jambPivot=inspectionPivot.slice();$('explode').value='50';$('explode').oninput({target:{value:'50'}});
-    check(isShown(jamb)&&length(vsub(inspectionPivot,vadd(jambPivot,vmul(jamb.exploded_offset,.5))))<1e-12,'Exploding framing retains its focused pivot');
+// TIMESTAMP START 2026-11-02T15:57:59-05:00 | REVISION R004811
+    check(isShown(jamb)&&length(vsub(inspectionPivot,vadd(jambPivot,offset(jamb))))<1e-12,'Sequential framing motion retains its focused pivot');
+// TIMESTAMP END 2026-11-02T15:57:59-05:00 | REVISION R004811
     togglePieceIsolation(jamb);check(isolatedId===jamb.id&&isShown(jamb),'Framing can be isolated while exploded');showAllAndUncenter();
     // TIMESTAMP END 2026-11-02T13:49:06-05:00 | REVISION R004787
     showMatingPair(joint);check(selectedPartIds.size===2&&selectedPartIds.has('J0-0')&&selectedPartIds.has('R0')&&parts.filter(isShown).length===2,'Contact pair view isolates rafter and receiving hip');
@@ -175,16 +219,30 @@ function runViewerTests(source,model,{search='?model=baseline',skipLegacy=false}
     $('restoreFrame').onclick();check(selected===null&&selectedCut===null&&selectedPartIds.size===0&&inspectionPivot===null,'Restore frame clears selection and inspection pivots');
     check(parts.filter(isShown).length===parts.filter(p=>OctagonDisplayPresets.included(p,'skeleton')).length&&isolatedId===null,'Restore frame follows Skeleton structural groups');
     check(!$('cornerFindings').open&&$('cornerContext').hidden,'Restore frame exits joint context');
-    $('reviewP0').onclick();check(selected==='P0'&&parts.filter(isShown).length===7,'P0 close-up restores corner and braces');
+// TIMESTAMP START 2026-11-02T15:07:59-05:00 | REVISION R004800
+// TIMESTAMP START 2026-11-02T18:01:36-05:00 | REVISION R004828
+    $('reviewP0').onclick();check(selected==='P0'&&parts.filter(p=>isShown(p)&&isTimber(p)).length===8,'P0 close-up restores corner and all three braces');
+    check(parts.filter(p=>isShown(p)&&p.group==='joinery_pegs').length===6,'P0 close-up includes its six physical retaining pegs');
+// TIMESTAMP END 2026-11-02T18:01:36-05:00 | REVISION R004828
+// TIMESTAMP END 2026-11-02T15:07:59-05:00 | REVISION R004800
     check(showHollows&&selectionAlpha(partById.get('P0'))===.38&&cavityRecords().length===1,'Saved-baseline diagnostic recess display remains available through transparent timber');
     $('reviewCupola').onclick();check(selected==='C0'&&parts.filter(isShown).filter(p=>p.group==='cupola_rafters').length===8,'Cupola shortcut includes its eight roof rafters');
+// TIMESTAMP START 2026-11-02T15:57:59-05:00 | REVISION R004811
+    check(visibleDisassemblyExclusions().length===0,'Cupola shortcut excludes symbolic construction aids');
     $('explode').value='60';$('explode').oninput({target:$('explode')});check(explode===.6,'Restored explode control moves assembly');
+// TIMESTAMP END 2026-11-02T15:57:59-05:00 | REVISION R004811
     check(!loadReviewOn,'Load review starts off');
-    check(LOAD_REVIEW.members.length===104&&LOAD_REVIEW.members.every(m=>partById.get(m.id).is_timber),'Load review includes exactly104timbers, no plywood, steel or envelope');
+// TIMESTAMP START 2026-11-02T15:07:59-05:00 | REVISION R004800
+    check(LOAD_REVIEW.members.length===112&&LOAD_REVIEW.members.every(m=>partById.get(m.id).is_timber),'Load review includes exactly112timbers, no plywood, steel or envelope');
+// TIMESTAMP END 2026-11-02T15:07:59-05:00 | REVISION R004800
     const netVolume=LOAD_REVIEW.members.reduce((sum,m)=>sum+m.volume_m3,0);
-    check(Math.abs(netVolume-6.29593043154233)<1e-10,'Applied weight uses verified current net mesh volume');
+// TIMESTAMP START 2026-11-02T15:07:59-05:00 | REVISION R004800
+    check(Math.abs(netVolume-parts.filter(isTimber).reduce((sum,p)=>sum+Math.abs(p.triangles.reduce((v,t)=>{const a=p.vertices[t[0]],b=p.vertices[t[1]],c=p.vertices[t[2]];return v+(a[0]*(b[1]*c[2]-b[2]*c[1])+a[1]*(b[2]*c[0]-b[0]*c[2])+a[2]*(b[0]*c[1]-b[1]*c[0]))/6;},0)),0))<1e-10,'Applied weight uses verified current net mesh volume');
+// TIMESTAMP END 2026-11-02T15:07:59-05:00 | REVISION R004800
     showAllAndUncenter();const initialLoadTotals=loadReviewTotals();
-    check(initialLoadTotals.visible_count===104&&Math.abs(initialLoadTotals.total_N-netVolume*780*9.80665)<1e-8,'Total and visible self-weight use assumed density and SIgravity');
+// TIMESTAMP START 2026-11-02T15:07:59-05:00 | REVISION R004800
+    check(initialLoadTotals.visible_count===112&&Math.abs(initialLoadTotals.total_N-netVolume*780*9.80665)<1e-8,'Total and visible self-weight use assumed density and SIgravity');
+// TIMESTAMP END 2026-11-02T15:07:59-05:00 | REVISION R004800
     const member=LOAD_REVIEW.members.find(m=>m.id==='P0'), low=timberGravity(member,520),high=timberGravity(member,900);
     check(high.force_N>low.force_N&&gravityArrowWidth(high.force_N)>gravityArrowWidth(low.force_N),'Arrow width increases monotonically with force across density scenarios');
     check(length(vsub(member.centroid_m,partById.get('P0').center))>1e-4,'Weight acts at volume centroid rather than nominalmodel center');
@@ -192,7 +250,9 @@ function runViewerTests(source,model,{search='?model=baseline',skipLegacy=false}
     check(length(vsub(loadRow.point,vadd(member.centroid_m,offset(partById.get('P0')))))<1e-12,'Applied gravity origin follows exploded member offset');
     hiddenPieces.add('P0');visible.delete('radial_rafters');loadReviewOn=true;matrix();updateLoadReview();
     check(loadArrowElements.get('P0').style.display==='none'&&LOAD_REVIEW.members.filter(m=>m.id.startsWith('R')).every(m=>loadArrowElements.get(m.id).style.display==='none'),'Hidden members and disabledgroups have no gravity arrows');
-    const partialTotals=loadReviewTotals();check(partialTotals.visible_count===95&&partialTotals.visible_N<partialTotals.total_N&&partialTotals.total_N===initialLoadTotals.total_N,'Visible subtotal changes but all104total remains stable');
+// TIMESTAMP START 2026-11-02T15:07:59-05:00 | REVISION R004800
+    const partialTotals=loadReviewTotals();check(partialTotals.visible_count===103&&partialTotals.visible_N<partialTotals.total_N&&partialTotals.total_N===initialLoadTotals.total_N,'Visible subtotal changes but all112total remains stable');
+// TIMESTAMP END 2026-11-02T15:07:59-05:00 | REVISION R004800
     check(!$('loadReviewOverlay').hidden&&!$('loadReviewViewportLegend').hidden,'Enabled load review shows overlay and limitation legend');
     loadReviewOn=false;updateLoadReview();check($('loadReviewOverlay').hidden&&[...loadArrowElements.values(),...loadIssueElements.values()].every(el=>el.style.display==='none'),'Toggle off clears all arrows and warning markers');
     check(hypotheticalPressure('',64)===null&&hypotheticalPressure(-1,64)===null&&hypotheticalPressure('bad',12)===null,'Bearing pressure stays unavailable for absent or invalid reactions');
