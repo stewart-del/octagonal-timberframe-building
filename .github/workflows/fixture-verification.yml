@@ -14,7 +14,9 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - run: python3 -m pip install --only-binary=:all: numpy scipy manifold3d==3.5.4
+      # TIMESTAMP START 2026-11-03T08:50:29-05:00 | REVISION R004953
+      - run: "python3 -m pip install --only-binary=:all: numpy scipy manifold3d==3.5.4"
+      # TIMESTAMP END 2026-11-03T08:50:29-05:00 | REVISION R004953
       - run: python3 tests/test_central_support.py
       - run: python3 tests/test_seated_support.py
 # TIMESTAMP END 2026-11-03T08:48:47-05:00 | REVISION R004952
