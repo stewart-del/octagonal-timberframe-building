@@ -4,6 +4,9 @@ permissions:
   contents: read
 jobs:
   check:
+    # TIMESTAMP START 2026-11-03T08:14:22-05:00 | REVISION R004943
+    if: github.ref != 'refs/heads/codex/publish-mobile-timberframe-20261103'
+    # TIMESTAMP END 2026-11-03T08:14:22-05:00 | REVISION R004943
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4

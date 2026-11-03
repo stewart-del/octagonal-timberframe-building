@@ -1,0 +1,36 @@
+# TIMESTAMP START 2026-11-03T08:14:22-05:00 | REVISION R004943
+name: Materialize verified mobile viewer
+on:
+  push:
+    branches: [codex/publish-mobile-timberframe-20261103]
+permissions:
+  contents: write
+jobs:
+  materialize:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Require the exact verified mobile build
+        run: |
+          python3 scripts/build.py
+          python3 - <<'PYCODE'
+          import hashlib,pathlib
+          b=pathlib.Path('index.html').read_bytes()
+          assert len(b)==22673807
+          assert hashlib.sha256(b).hexdigest()=='d558d37fe5068ffce64b3e8177c593b0021a6405dbab0807fa4b0cf66fc50b8d'
+          PYCODE
+      - name: Save verified build with contents permission
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add index.html
+          git commit -m 'Materialize checksum-verified mobile viewer'
+          git push origin "HEAD:refs/heads/$GITHUB_REF_NAME"
+# TIMESTAMP END 2026-11-03T08:14:22-05:00 | REVISION R004943

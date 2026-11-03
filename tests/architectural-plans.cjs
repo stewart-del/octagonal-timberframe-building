@@ -23,8 +23,14 @@ assert(Math.abs(measurements['Outside posts: opposite corners']/.0254-360)<1e-6)
 assert(Math.abs(measurements['Opposite post centerlines']/.0254-352)<1e-6);
 assert(Math.abs(measurements['Cupola clear inside diameter']/.0254-76)<1e-6);
 assert(Math.abs(measurements['Short rafter J0-0 overall axial length']/.0254-139.3864162)<1e-5);
-assert(api.drawing(model,{view:'top'}).svg.includes('Design north ↑'));
-assert(api.drawing(model,{view:'top'}).svg.includes('Site bearing unverified'));
+// TIMESTAMP START 2026-11-03T08:08:16-05:00 | REVISION R004938
+const sitePlan=api.drawing(model,{view:'top'}).svg;
+assert(sitePlan.includes('Site north ↑')&&sitePlan.includes('Porch / door face west'));
+assert(!sitePlan.includes('Site bearing unverified'));
+const porchLayout=require('../src/mudroom.js').build(model),siteEast=global.TimberSchematicWalls.orientation.east;
+assert(Math.abs(porchLayout.outward.reduce((sum,x,i)=>sum-x*siteEast[i],0)-1)<1e-12,'Porch outward is site west');
+assert(api.drawing(model,{view:'side',mudroom:true}).svg.includes('WEST ELEVATION'));
+// TIMESTAMP END 2026-11-03T08:08:16-05:00 | REVISION R004938
 const walls=api.drawing(model,{walls:true});assert(walls.parts.some(p=>p.wallJoineryJointIds&&p.schematicKind==='rail'));
 const aids=api.drawing(model,{aids:true,hidden:true});assert(aids.parts.some(p=>p.material==='steel'));assert(aids.svg.includes('Dashed gray'));
 for(const kind of ['shelf','cupolaWindow']){const d=api.drawing(model,{shelves:kind==='shelf',cupolaWindows:kind==='cupolaWindow'});assert(d.parts.some(p=>p.schematicKind===kind));}
