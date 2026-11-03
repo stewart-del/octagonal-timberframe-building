@@ -82345,7 +82345,7 @@
       }
     }
   ],
-  "cavity_sha256": "e91533ff01aac549cc127e43ffae15295150245728ccbde81fd33db35e8bb2e9",
+  "cavity_sha256": "d96878522614c2620afc5db627939f4e025384786799f22ee1adf2c72f083859",
   "failures": [],
   "legacy_residual_diagnostics": [],
   "methods": {
@@ -82357,7 +82357,7 @@
     "sampling": "Independent solid-angle winding numbers for deterministic scrambled Sobol points and inward-offset triangle centroids.",
     "sections": "Canonical bay coordinates; scaled Clipper2 2D differences/intersections on three axes, just above/below vertex events and at interval quartiles. Exact coplanar boundary planes are excluded."
   },
-  "model_sha256": "fb7bf67b4bae2c41c4e637647ad23caa6167345301af0befa780f4aa943519be",
+  "model_sha256": "999a07def4626a4eb8db63f28b492984e7981f60ece7122671e3d359aed809a9",
   "model_variant": "baseline",
   "no_cavity_stock_completeness": {
     "CC0": {

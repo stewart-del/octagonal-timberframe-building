@@ -1,364 +1,276 @@
 {
   "chosen_top_in": 109.0,
-  "post_side_in": 2.9999999999999996,
-  "thickness_in": 0.25,
+  "thickness_in": 0.125,
+  "rigid_rotation_y_degrees": -4.7,
   "holes": [
     {
       "id": "M-TMP-ARM0-DISPLAY-HOLE1",
       "receiver": "C0",
-      "wood_entry_gap_m": 0,
-      "wood_path_m": 0.15239999000000012,
+      "wood_entry_gap_m": 0.011750589962862051,
+      "wood_path_m": 0.15291419127529152,
       "axis_into_wood": [
+        0.08193850863004093,
         -0.0,
-        0.0,
-        -1.0
+        -0.9966373868180366
       ]
     },
     {
       "id": "M-TMP-ARM0-DISPLAY-HOLE2",
       "receiver": "C0",
-      "wood_entry_gap_m": 0,
-      "wood_path_m": 0.15239998999999999,
+      "wood_entry_gap_m": 0.011750589962862051,
+      "wood_path_m": 0.15291419127529168,
       "axis_into_wood": [
+        0.08193850863004093,
         -0.0,
-        0.0,
-        -1.0
+        -0.9966373868180366
       ]
     },
     {
       "id": "M-TMP-ARM0-DISPLAY-HOLE3",
       "receiver": "C0",
-      "wood_entry_gap_m": 0,
-      "wood_path_m": 0.15239998999999999,
+      "wood_entry_gap_m": 0.011750589962862051,
+      "wood_path_m": 0.15291419127529168,
       "axis_into_wood": [
+        0.08193850863004093,
         -0.0,
-        0.0,
-        -1.0
+        -0.9966373868180366
       ]
     },
     {
       "id": "M-TMP-ARM1-DISPLAY-HOLE1",
       "receiver": "C1",
-      "wood_entry_gap_m": 0,
-      "wood_path_m": 0.15239999000000007,
+      "wood_entry_gap_m": 0.01175058996286209,
+      "wood_path_m": 0.15291419127529154,
       "axis_into_wood": [
-        -0.7071067811865475,
-        0.0,
-        -0.7071067811865476
+        -0.6467897795104595,
+        -0.0,
+        -0.7626683296956884
       ]
     },
     {
       "id": "M-TMP-ARM1-DISPLAY-HOLE2",
       "receiver": "C1",
-      "wood_entry_gap_m": 0,
-      "wood_path_m": 0.15239999000000007,
+      "wood_entry_gap_m": 0.011750589962862087,
+      "wood_path_m": 0.15291419127529152,
       "axis_into_wood": [
-        -0.7071067811865475,
-        0.0,
-        -0.7071067811865476
+        -0.6467897795104595,
+        -0.0,
+        -0.7626683296956884
       ]
     },
     {
       "id": "M-TMP-ARM1-DISPLAY-HOLE3",
       "receiver": "C1",
-      "wood_entry_gap_m": 0,
-      "wood_path_m": 0.1523999900000001,
+      "wood_entry_gap_m": 0.011750589962862087,
+      "wood_path_m": 0.15291419127529152,
       "axis_into_wood": [
-        -0.7071067811865475,
-        0.0,
-        -0.7071067811865476
+        -0.6467897795104595,
+        -0.0,
+        -0.7626683296956884
       ]
     },
     {
       "id": "M-TMP-ARM2-DISPLAY-HOLE1",
       "receiver": "C2",
-      "wood_entry_gap_m": 0,
-      "wood_path_m": 0.15239998999999993,
+      "wood_entry_gap_m": 0.011750589962862122,
+      "wood_path_m": 0.15291419127529152,
       "axis_into_wood": [
-        -1.0,
-        0.0,
-        -6.123233995736766e-17
+        -0.9966373868180366,
+        -0.0,
+        -0.08193850863004098
       ]
     },
     {
       "id": "M-TMP-ARM2-DISPLAY-HOLE2",
       "receiver": "C2",
-      "wood_entry_gap_m": 0,
-      "wood_path_m": 0.15239999000000007,
+      "wood_entry_gap_m": 0.011750589962862122,
+      "wood_path_m": 0.15291419127529168,
       "axis_into_wood": [
-        -1.0,
-        0.0,
-        -6.123233995736766e-17
+        -0.9966373868180366,
+        -0.0,
+        -0.08193850863004098
       ]
     },
     {
       "id": "M-TMP-ARM2-DISPLAY-HOLE3",
       "receiver": "C2",
-      "wood_entry_gap_m": 0,
-      "wood_path_m": 0.15239999000000004,
+      "wood_entry_gap_m": 0.011750589962862122,
+      "wood_path_m": 0.15291419127529168,
       "axis_into_wood": [
-        -1.0,
-        0.0,
-        -6.123233995736766e-17
+        -0.9966373868180366,
+        -0.0,
+        -0.08193850863004098
       ]
     },
     {
       "id": "M-TMP-ARM3-DISPLAY-HOLE1",
       "receiver": "C3",
-      "wood_entry_gap_m": 0,
-      "wood_path_m": 0.15239999000000012,
+      "wood_entry_gap_m": 0.01175058996286209,
+      "wood_path_m": 0.15291419127529154,
       "axis_into_wood": [
-        -0.7071067811865476,
-        0.0,
-        0.7071067811865475
+        -0.7626683296956884,
+        -0.0,
+        0.6467897795104595
       ]
     },
     {
       "id": "M-TMP-ARM3-DISPLAY-HOLE2",
       "receiver": "C3",
-      "wood_entry_gap_m": 0,
-      "wood_path_m": 0.15239999000000007,
+      "wood_entry_gap_m": 0.01175058996286209,
+      "wood_path_m": 0.15291419127529146,
       "axis_into_wood": [
-        -0.7071067811865476,
-        0.0,
-        0.7071067811865475
+        -0.7626683296956884,
+        -0.0,
+        0.6467897795104595
       ]
     },
     {
       "id": "M-TMP-ARM3-DISPLAY-HOLE3",
       "receiver": "C3",
-      "wood_entry_gap_m": 0,
-      "wood_path_m": 0.1523999900000001,
+      "wood_entry_gap_m": 0.011750589962862087,
+      "wood_path_m": 0.15291419127529152,
       "axis_into_wood": [
-        -0.7071067811865476,
-        0.0,
-        0.7071067811865475
+        -0.7626683296956884,
+        -0.0,
+        0.6467897795104595
       ]
     },
     {
       "id": "M-TMP-ARM4-DISPLAY-HOLE1",
       "receiver": "C4",
-      "wood_entry_gap_m": 0,
-      "wood_path_m": 0.15239999000000018,
+      "wood_entry_gap_m": 0.011750589962862193,
+      "wood_path_m": 0.15291419127529152,
       "axis_into_wood": [
-        -1.2246467991473532e-16,
-        0.0,
-        1.0
+        -0.08193850863004105,
+        -0.0,
+        0.9966373868180366
       ]
     },
     {
       "id": "M-TMP-ARM4-DISPLAY-HOLE2",
       "receiver": "C4",
-      "wood_entry_gap_m": 0,
-      "wood_path_m": 0.15239999000000015,
+      "wood_entry_gap_m": 0.011750589962862193,
+      "wood_path_m": 0.15291419127529168,
       "axis_into_wood": [
-        -1.2246467991473532e-16,
-        0.0,
-        1.0
+        -0.08193850863004105,
+        -0.0,
+        0.9966373868180366
       ]
     },
     {
       "id": "M-TMP-ARM4-DISPLAY-HOLE3",
       "receiver": "C4",
-      "wood_entry_gap_m": 0,
-      "wood_path_m": 0.15239999000000012,
+      "wood_entry_gap_m": 0.011750589962862193,
+      "wood_path_m": 0.15291419127529168,
       "axis_into_wood": [
-        -1.2246467991473532e-16,
-        0.0,
-        1.0
+        -0.08193850863004105,
+        -0.0,
+        0.9966373868180366
       ]
     },
     {
       "id": "M-TMP-ARM5-DISPLAY-HOLE1",
       "receiver": "C5",
-      "wood_entry_gap_m": 0,
-      "wood_path_m": 0.15239999000000023,
+      "wood_entry_gap_m": 0.011750589962862162,
+      "wood_path_m": 0.15291419127529166,
       "axis_into_wood": [
-        0.7071067811865475,
-        0.0,
-        0.7071067811865477
+        0.6467897795104595,
+        -0.0,
+        0.7626683296956885
       ]
     },
     {
       "id": "M-TMP-ARM5-DISPLAY-HOLE2",
       "receiver": "C5",
-      "wood_entry_gap_m": 0,
-      "wood_path_m": 0.15239999000000018,
+      "wood_entry_gap_m": 0.011750589962862164,
+      "wood_path_m": 0.15291419127529143,
       "axis_into_wood": [
-        0.7071067811865475,
-        0.0,
-        0.7071067811865477
+        0.6467897795104595,
+        -0.0,
+        0.7626683296956885
       ]
     },
     {
       "id": "M-TMP-ARM5-DISPLAY-HOLE3",
       "receiver": "C5",
-      "wood_entry_gap_m": 0,
-      "wood_path_m": 0.15239999000000015,
+      "wood_entry_gap_m": 0.011750589962862164,
+      "wood_path_m": 0.15291419127529143,
       "axis_into_wood": [
-        0.7071067811865475,
-        0.0,
-        0.7071067811865477
+        0.6467897795104595,
+        -0.0,
+        0.7626683296956885
       ]
     },
     {
       "id": "M-TMP-ARM6-DISPLAY-HOLE1",
       "receiver": "C6",
-      "wood_entry_gap_m": 0,
-      "wood_path_m": 0.15239999000000015,
+      "wood_entry_gap_m": 0.011750589962862247,
+      "wood_path_m": 0.15291419127529152,
       "axis_into_wood": [
-        1.0,
-        0.0,
-        1.8369701987210297e-16
+        0.9966373868180366,
+        -0.0,
+        0.08193850863004111
       ]
     },
     {
       "id": "M-TMP-ARM6-DISPLAY-HOLE2",
       "receiver": "C6",
-      "wood_entry_gap_m": 0,
-      "wood_path_m": 0.15239999000000023,
+      "wood_entry_gap_m": 0.011750589962862247,
+      "wood_path_m": 0.15291419127529168,
       "axis_into_wood": [
-        1.0,
-        0.0,
-        1.8369701987210297e-16
+        0.9966373868180366,
+        -0.0,
+        0.08193850863004111
       ]
     },
     {
       "id": "M-TMP-ARM6-DISPLAY-HOLE3",
       "receiver": "C6",
-      "wood_entry_gap_m": 0,
-      "wood_path_m": 0.1523999900000002,
+      "wood_entry_gap_m": 0.011750589962862247,
+      "wood_path_m": 0.15291419127529168,
       "axis_into_wood": [
-        1.0,
-        0.0,
-        1.8369701987210297e-16
+        0.9966373868180366,
+        -0.0,
+        0.08193850863004111
       ]
     },
     {
       "id": "M-TMP-ARM7-DISPLAY-HOLE1",
       "receiver": "C7",
-      "wood_entry_gap_m": 0,
-      "wood_path_m": 0.15239999000000054,
+      "wood_entry_gap_m": 0.011750589962862247,
+      "wood_path_m": 0.15291419127529166,
       "axis_into_wood": [
-        0.7071067811865477,
-        0.0,
-        -0.7071067811865474
+        0.7626683296956884,
+        -0.0,
+        -0.6467897795104594
       ]
     },
     {
       "id": "M-TMP-ARM7-DISPLAY-HOLE2",
       "receiver": "C7",
-      "wood_entry_gap_m": 0,
-      "wood_path_m": 0.1523999900000002,
+      "wood_entry_gap_m": 0.011750589962862247,
+      "wood_path_m": 0.15291419127529163,
       "axis_into_wood": [
-        0.7071067811865477,
-        0.0,
-        -0.7071067811865474
+        0.7626683296956884,
+        -0.0,
+        -0.6467897795104594
       ]
     },
     {
       "id": "M-TMP-ARM7-DISPLAY-HOLE3",
       "receiver": "C7",
-      "wood_entry_gap_m": 0,
-      "wood_path_m": 0.1523999900000003,
+      "wood_entry_gap_m": 0.011750589962862249,
+      "wood_path_m": 0.15291419127529163,
       "axis_into_wood": [
-        0.7071067811865477,
-        0.0,
-        -0.7071067811865474
+        0.7626683296956884,
+        -0.0,
+        -0.6467897795104594
       ]
     }
   ],
   "positive_intersections": [],
-  "contact_faces": [
-    {
-      "receiver": "C0",
-      "plane_normal": [
-        -0.0,
-        0.0,
-        -1.0
-      ],
-      "gross_face_area_in2": 54,
-      "net_face_area_in2": 53.670785081597785,
-      "bores_deducted": true
-    },
-    {
-      "receiver": "C1",
-      "plane_normal": [
-        -0.7071067811865475,
-        0.0,
-        -0.7071067811865476
-      ],
-      "gross_face_area_in2": 54,
-      "net_face_area_in2": 53.670785081597785,
-      "bores_deducted": true
-    },
-    {
-      "receiver": "C2",
-      "plane_normal": [
-        -1.0,
-        0.0,
-        -6.123233995736766e-17
-      ],
-      "gross_face_area_in2": 54,
-      "net_face_area_in2": 53.670785081597785,
-      "bores_deducted": true
-    },
-    {
-      "receiver": "C3",
-      "plane_normal": [
-        -0.7071067811865476,
-        0.0,
-        0.7071067811865475
-      ],
-      "gross_face_area_in2": 54,
-      "net_face_area_in2": 53.670785081597785,
-      "bores_deducted": true
-    },
-    {
-      "receiver": "C4",
-      "plane_normal": [
-        -1.2246467991473532e-16,
-        0.0,
-        1.0
-      ],
-      "gross_face_area_in2": 54,
-      "net_face_area_in2": 53.670785081597785,
-      "bores_deducted": true
-    },
-    {
-      "receiver": "C5",
-      "plane_normal": [
-        0.7071067811865475,
-        0.0,
-        0.7071067811865477
-      ],
-      "gross_face_area_in2": 54,
-      "net_face_area_in2": 53.670785081597785,
-      "bores_deducted": true
-    },
-    {
-      "receiver": "C6",
-      "plane_normal": [
-        1.0,
-        0.0,
-        1.8369701987210297e-16
-      ],
-      "gross_face_area_in2": 54,
-      "net_face_area_in2": 53.670785081597785,
-      "bores_deducted": true
-    },
-    {
-      "receiver": "C7",
-      "plane_normal": [
-        0.7071067811865477,
-        0.0,
-        -0.7071067811865474
-      ],
-      "gross_face_area_in2": 54,
-      "net_face_area_in2": 53.670785081597785,
-      "bores_deducted": true
-    }
-  ],
+  "contact_faces": [],
+  "flush_seating": false,
   "assembly_components": 1,
   "temporary": true,
   "structural_capacity": "not calculated",

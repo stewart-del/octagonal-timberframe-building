@@ -1,3 +1,4 @@
+// TIMESTAMP START 2026-11-02T20:53:48-05:00 | REVISION R004873
 const fs=require('node:fs'),path=require('node:path');
 const candidates=[path.resolve(__dirname,'../src/viewer.template.html'),path.resolve(__dirname,'../site/src/viewer.template.html')];
 const templatePath=process.argv[2]||candidates.find(p=>fs.existsSync(p));
@@ -38,10 +39,12 @@ const fallbackFeatureCache=new Map();
 let requested=true,VP=[],program={},loc={opacity:'opacity',lineMode:'lineMode',color:'color',translation:'translation',viewProjection:'VP',surfaceContrast:'surfaceContrast'};
 let depth=true,blend=false,polygon=false,opacity=1,bound=null,log=[],throwOn=null;
 const gl={BLEND:'BLEND',POLYGON_OFFSET_FILL:'POLYGON',SRC_ALPHA:'SRC',ONE_MINUS_SRC_ALPHA:'ONE_MINUS',COLOR_BUFFER_BIT:1,DEPTH_BUFFER_BIT:2,LINES:'LINES',TRIANGLES:'TRIANGLES',
- depthMask(v){depth=v},enable(cap){if(cap===this.BLEND)blend=true;if(cap===this.POLYGON_OFFSET_FILL)polygon=true},disable(cap){if(cap===this.BLEND)blend=false;if(cap===this.POLYGON_OFFSET_FILL)polygon=false},polygonOffset(f,u){log.push(['bias',f,u])},clear(){},useProgram(){},uniformMatrix4fv(){},uniform3fv(){},uniform1f(k,v){if(k==='opacity')opacity=v;if(k==='surfaceContrast')log.push(['contrast',v])},blendFunc(){},
+ depthMask(v){depth=v},enable(cap){if(cap===this.BLEND)blend=true;if(cap===this.POLYGON_OFFSET_FILL)polygon=true},disable(cap){if(cap===this.BLEND)blend=false;if(cap===this.POLYGON_OFFSET_FILL)polygon=false},polygonOffset(f,u){log.push(['bias',f,u])},clear(){},useProgram(){},uniformMatrix4fv(){},uniform3fv(k,v){if(v.length!==3)throw Error('Vec3 shader received '+v.length+' channels');},uniform1f(k,v){if(k==='opacity')opacity=v;if(k==='surfaceContrast')log.push(['contrast',v])},blendFunc(){},
  drawArrays(type){log.push(['draw',bound,type,depth,blend,polygon,opacity]);if(type===this.TRIANGLES&&bound===throwOn)throw Error('draw failure')}};
 const bind=b=>bound=b,gridBuffer='GRID',gridCount=2,basis={eye:[0,0,50]},matrix=()=>{};
-const meshParts=[{part:{id:'A'},buffer:'A',edgeBuffer:'Aedge',count:3,edgeCount:2},{part:{id:'G'},buffer:'G',edgeBuffer:'Gedge',count:3,edgeCount:2}];
+// TIMESTAMP START 2026-11-02T21:09:01-05:00 | REVISION R004877
+const meshParts=[{part:{id:'A'},buffer:'A',edgeBuffer:'Aedge',count:3,edgeCount:2},{part:{id:'G',schematic:true,color:[.55,.39,.24,1]},buffer:'G',edgeBuffer:'Gedge',count:3,edgeCount:2}];
+// TIMESTAMP END 2026-11-02T21:09:01-05:00 | REVISION R004877
 const isShown=()=>true,isSelectedMember=p=>p.id==='A',selectionAlpha=p=>p.id==='A'?1:.14,offset=()=>[0,0,0],fittedCenter=()=>[0,0,0],groupColor=()=>[.5,.4,.3];
 let afterCuts=null,afterCavity=null;
 const drawCavityVolumes=()=>afterCavity={depth,blend,polygon,opacity},updateEdgeMeasurementLabels=()=>{},updateHollowStatus=()=>{},updateLoadReview=()=>{},updateSchematicWalls=()=>{},drawCutFaces=()=>afterCuts={depth,blend,polygon,opacity},updateLabels=()=>{},updateEndLabels=()=>{},updateCutLabel=()=>{},updatePieceCenter=()=>{},fallback=null;
@@ -50,6 +53,7 @@ check(source.includes('edgesOn=true,highContrast=true')&&source.includes('id="wi
 check(source.includes('uniform float surfaceContrast')&&source.includes('mix(lit,color,lineMode)'),'Surface shader exposes contrast and leaves line overlay colors unlit');
 const normals=[[1,0,0],[-1,0,0],[0,1,0],[0,-1,0],[0,0,1],[0,0,-1]],base=[.5,.4,.3];
 const ordinary=normals.map(n=>surfaceDisplayColor(base,n,false)),bright=normals.map(n=>surfaceDisplayColor(base,n,true));
+check(surfaceDisplayColor([...base,1],[0,1,0]).length===3,'RGBA source colors produce RGB fallback colors');
 check(bright.every((c,i)=>c.every((v,k)=>v>ordinary[i][k]&&v>=0&&v<=1)),'Every axial face is brighter than regular mode with bounded RGB');
 const means=bright.map(c=>c.reduce((s,x)=>s+x,0)/3),oldMeans=ordinary.map(c=>c.reduce((s,x)=>s+x,0)/3);
 check(Math.max(...means)-Math.min(...means)>Math.max(...oldMeans)-Math.min(...oldMeans),'Axial faces have a wider orientation-driven tonal range');
@@ -73,3 +77,10 @@ return passed;
 `)(source,TimberEdgeMeasurements);
 console.log(JSON.stringify({method:'Actual template functions; normal math and renderer state without browser',source:templatePath,passed:results.length,assertions:results},null,2));
 
+
+// TIMESTAMP END 2026-11-02T20:53:48-05:00 | REVISION R004873
+// TIMESTAMP START 2026-11-02T20:53:48-05:00 | REVISION R004873
+const model=require('../src/model-data.json'),main=require('../src/roof-coverings.js').build(model).components.filter(p=>p.material==='cedar'),porch=require('../src/mudroom-roof.js').build(model).components.filter(p=>p.material==='cedar');
+require('node:assert/strict').deepEqual([...new Set(main.map(p=>p.color.slice(0,3).join(',')))].sort(),[...new Set(porch.map(p=>p.color.slice(0,3).join(',')))].sort());
+console.log('PASS: porch and main roofs share the same three cedar shades');
+// TIMESTAMP END 2026-11-02T20:53:48-05:00 | REVISION R004873

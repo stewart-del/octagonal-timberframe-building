@@ -6,51 +6,45 @@ import manifold3d as m
 from central_support import make_fixture,INCH
 
 def mesh(p):return m.Manifold(m.Mesh64(np.asarray(p['vertices']),np.asarray(p['triangles'],dtype=np.uint64)))
+# TIMESTAMP START 2026-11-03T06:59:29-05:00 | REVISION R004900
 def fit_fixture(model):
+    """Restore the original radial L form; alter only its rigid placement."""
     parts={p['id']:p for p in model['parts']}
-    # Actual post side is 3in from radial plane. Actual tie top establishes lower leg datum.
-    post=np.asarray(parts['C0']['vertices'])/INCH
-    side=float(post[:,2].max());top=max(v[1] for v in parts['T0']['vertices'])/INCH+14
-    thickness=.25;offset=side+thickness/2
-    arm=m.Manifold.cube((50,4,thickness)).translate((-5,-4,-thickness/2))
-    arm+=m.Manifold.cube((4,14,thickness)).translate((41,-14,-thickness/2))
-    for d in (2,7,12):arm-=m.Manifold.cylinder(thickness+1,.375/2,circular_segments=32,center=True).translate((43,-d,0))
-    arm=arm.translate((0,top,offset));solid=m.Manifold()
-    for k in range(8):solid+=arm.rotate((0,k*45,0))
-    solid=solid.scale((INCH,)*3);v=np.asarray(solid.to_mesh64().vert_properties)[:,:3];t=solid.to_mesh64().tri_verts.tolist()
-    p=make_fixture(top*INCH)
-    p.update(vertices=v.tolist(),triangles=t,faces=t,center=((v.min(0)+v.max(0))/2).tolist())
-    p['label_position']=p['center'];p['fit_geometry']['volume_m3']=solid.volume()
-    p['display_assumptions'].update(steel_thickness_in=thickness,tangential_offset_in=offset,central_overlap_extension_in=5)
-    p['source_geometry_metadata']['revision']='central-support-face-seated-2'
+    top=max(v[1] for v in parts['T0']['vertices'])+14*INCH
+    p=make_fixture(top);angle=-4.7;a=math.radians(angle);c,s=math.cos(a),math.sin(a)
+    rotation=np.array([[c,0,s],[0,1,0],[-s,0,c]])
+    for key in ['vertices']:
+        p[key]=(np.asarray(p[key])@rotation.T).tolist()
+    for key in ['center','label_position','axis_start','axis_end','axis_direction']:
+        p[key]=(rotation@np.asarray(p[key])).tolist()
+    p['stock_frame']={k:(rotation@np.asarray(v)).tolist() for k,v in p['stock_frame'].items()}
+    for hole in p['display_holes']:
+        for key in ['center_m','axis']:hole[key]=(rotation@np.asarray(hole[key])).tolist()
+    p['display_assumptions']['rigid_rotation_y_degrees']=angle
+    p['source_geometry_metadata']['revision']='central-support-original-form-raised-3'
     p['source_geometry_metadata']['illustrative_display_assumptions']=copy.deepcopy(p['display_assumptions'])
-    p['dimension_status']['top_elevation_m']='chosen erection display level: outer leg bottom at actual lower-tie top; not verified erection sequence'
-    p['notes']=[n for n in p['notes'] if 'Placement retains' not in n and '1/8' not in n]
-    p['notes']+=['Outer legs seat against actual cupola-post side faces. Each radial L is tangentially offset; 5in central extensions overlap as one welded display union. Pure rotation would leave wedge-shaped gaps.','Chosen display thickness 1/4in, hole diameter3/8in and screw positions remain unspecified construction details, not approved fabrication.','The lower leg aligns with lower-tie top; all24 hole axes meet adjacent post wood. This geometric fit does not verify screw engagement, weld design, installation access or support capacity.']
-    p['dimension_status']['steel_thickness_in']='chosen 1/4in display thickness; steel grade and required gauge not established'
+    p['dimension_status']['top_elevation_m']='retained current display elevation: lower leg at actual lower-tie top'
     p['source_geometry_metadata']['dimension_status']=copy.deepcopy(p['dimension_status'])
-    p['display_holes']=[];report={'chosen_top_in':top,'post_side_in':side,'thickness_in':thickness,'holes':[],'positive_intersections':[],'contact_faces':[]}
-    for k in range(8):
-        a=k*math.pi/4;c,s=math.cos(a),math.sin(a)
-        # Rotation convention matches Manifold Y rotation; into timber is negative local Z.
-        inward=np.array([-s,0,-c]);receiver=parts[f'C{k}']
-        for j,d in enumerate((2,7,12)):
-            center=np.array([43*c+offset*s,top-d,-43*s+offset*c])*INCH
-            origin=center+inward*thickness/2*INCH
-            ray=ray_hit(origin+inward*1e-8,inward,receiver)
-            assert ray is not None and ray>0
-            h={'id':f'M-TMP-ARM{k}-DISPLAY-HOLE{j+1}','arm_index':k,'center_m':center.tolist(),'axis':(-inward).tolist(),'diameter_in':.375,'status':'DISPLAY ONLY — NOT DRILLING OR FASTENER SPECIFICATION'}
-            p['display_holes'].append(h)
-            report['holes'].append({'id':h['id'],'receiver':receiver['id'],'wood_entry_gap_m':0,'wood_path_m':ray,'axis_into_wood':inward.tolist()})
-        report['contact_faces'].append({'receiver':receiver['id'],'plane_normal':inward.tolist(),'gross_face_area_in2':6*4+3*10,'net_face_area_in2':6*4+3*10-3*16*(.375/2)**2*math.sin(2*math.pi/32),'bores_deducted':True})
+    p['notes']=[n for n in p['notes'] if not n.startswith('Placement retains')]
+    p['notes'].append('Original simple radial L shape restored at the retained height and center, with a rigid -4.7 degree rotation for post clearance. The legs are not flush against the post faces; the visible gap is not a designed fastening detail.')
+    solid=mesh(p);p['fit_geometry']['volume_m3']=solid.volume()
+    report={'chosen_top_in':top/INCH,'thickness_in':.125,'rigid_rotation_y_degrees':angle,'holes':[],'positive_intersections':[],'contact_faces':[],'flush_seating':False}
+    for h in p['display_holes']:
+        inward=-np.asarray(h['axis']);receiver=parts['C'+str(h['arm_index'])]
+        origin=np.asarray(h['center_m'])+inward*.125/2*INCH
+        entry=ray_hit(origin,inward,receiver)
+        assert entry is not None and entry>0
+        path=ray_hit(origin+inward*(entry+1e-8),inward,receiver)
+        assert path is not None and path>0
+        report['holes'].append({'id':h['id'],'receiver':receiver['id'],'wood_entry_gap_m':entry,'wood_path_m':path+1e-8,'axis_into_wood':inward.tolist()})
     for q in parts.values():
         if q.get('is_timber'):
             vol=(solid^mesh(q)).volume()
             if vol>1e-10:report['positive_intersections'].append({'id':q['id'],'volume_m3':vol})
-    assert not report['positive_intersections']
-    assert len(solid.decompose())==1
+    assert not report['positive_intersections'] and len(solid.decompose())==1
     report.update(assembly_components=1,temporary=True,structural_capacity='not calculated',screw_and_weld_specification='not established',timbers_unchanged=True)
     return p,report
+# TIMESTAMP END 2026-11-03T06:59:29-05:00 | REVISION R004900
 
 def ray_hit(o,d,p):
     """Nearest positive ray/triangle crossing (origin just inside the actual timber)."""

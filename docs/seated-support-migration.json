@@ -1117,5 +1117,860 @@
       "screw_and_weld_specification": "not established",
       "timbers_unchanged": true
     }
+  },
+  {
+    "model": "model-data.json",
+    "previous_sha256": "fb7bf67b4bae2c41c4e637647ad23caa6167345301af0befa780f4aa943519be",
+    "new_sha256": "999a07def4626a4eb8db63f28b492984e7981f60ece7122671e3d359aed809a9",
+    "timber_records_unchanged": true,
+    "fit": {
+      "chosen_top_in": 109.0,
+      "thickness_in": 0.125,
+      "rigid_rotation_y_degrees": -4.7,
+      "holes": [
+        {
+          "id": "M-TMP-ARM0-DISPLAY-HOLE1",
+          "receiver": "C0",
+          "wood_entry_gap_m": 0.011750589962862051,
+          "wood_path_m": 0.15291419127529152,
+          "axis_into_wood": [
+            0.08193850863004093,
+            -0.0,
+            -0.9966373868180366
+          ]
+        },
+        {
+          "id": "M-TMP-ARM0-DISPLAY-HOLE2",
+          "receiver": "C0",
+          "wood_entry_gap_m": 0.011750589962862051,
+          "wood_path_m": 0.15291419127529168,
+          "axis_into_wood": [
+            0.08193850863004093,
+            -0.0,
+            -0.9966373868180366
+          ]
+        },
+        {
+          "id": "M-TMP-ARM0-DISPLAY-HOLE3",
+          "receiver": "C0",
+          "wood_entry_gap_m": 0.011750589962862051,
+          "wood_path_m": 0.15291419127529168,
+          "axis_into_wood": [
+            0.08193850863004093,
+            -0.0,
+            -0.9966373868180366
+          ]
+        },
+        {
+          "id": "M-TMP-ARM1-DISPLAY-HOLE1",
+          "receiver": "C1",
+          "wood_entry_gap_m": 0.01175058996286209,
+          "wood_path_m": 0.15291419127529154,
+          "axis_into_wood": [
+            -0.6467897795104595,
+            -0.0,
+            -0.7626683296956884
+          ]
+        },
+        {
+          "id": "M-TMP-ARM1-DISPLAY-HOLE2",
+          "receiver": "C1",
+          "wood_entry_gap_m": 0.011750589962862087,
+          "wood_path_m": 0.15291419127529152,
+          "axis_into_wood": [
+            -0.6467897795104595,
+            -0.0,
+            -0.7626683296956884
+          ]
+        },
+        {
+          "id": "M-TMP-ARM1-DISPLAY-HOLE3",
+          "receiver": "C1",
+          "wood_entry_gap_m": 0.011750589962862087,
+          "wood_path_m": 0.15291419127529152,
+          "axis_into_wood": [
+            -0.6467897795104595,
+            -0.0,
+            -0.7626683296956884
+          ]
+        },
+        {
+          "id": "M-TMP-ARM2-DISPLAY-HOLE1",
+          "receiver": "C2",
+          "wood_entry_gap_m": 0.011750589962862122,
+          "wood_path_m": 0.15291419127529152,
+          "axis_into_wood": [
+            -0.9966373868180366,
+            -0.0,
+            -0.08193850863004098
+          ]
+        },
+        {
+          "id": "M-TMP-ARM2-DISPLAY-HOLE2",
+          "receiver": "C2",
+          "wood_entry_gap_m": 0.011750589962862122,
+          "wood_path_m": 0.15291419127529168,
+          "axis_into_wood": [
+            -0.9966373868180366,
+            -0.0,
+            -0.08193850863004098
+          ]
+        },
+        {
+          "id": "M-TMP-ARM2-DISPLAY-HOLE3",
+          "receiver": "C2",
+          "wood_entry_gap_m": 0.011750589962862122,
+          "wood_path_m": 0.15291419127529168,
+          "axis_into_wood": [
+            -0.9966373868180366,
+            -0.0,
+            -0.08193850863004098
+          ]
+        },
+        {
+          "id": "M-TMP-ARM3-DISPLAY-HOLE1",
+          "receiver": "C3",
+          "wood_entry_gap_m": 0.01175058996286209,
+          "wood_path_m": 0.15291419127529154,
+          "axis_into_wood": [
+            -0.7626683296956884,
+            -0.0,
+            0.6467897795104595
+          ]
+        },
+        {
+          "id": "M-TMP-ARM3-DISPLAY-HOLE2",
+          "receiver": "C3",
+          "wood_entry_gap_m": 0.01175058996286209,
+          "wood_path_m": 0.15291419127529146,
+          "axis_into_wood": [
+            -0.7626683296956884,
+            -0.0,
+            0.6467897795104595
+          ]
+        },
+        {
+          "id": "M-TMP-ARM3-DISPLAY-HOLE3",
+          "receiver": "C3",
+          "wood_entry_gap_m": 0.011750589962862087,
+          "wood_path_m": 0.15291419127529152,
+          "axis_into_wood": [
+            -0.7626683296956884,
+            -0.0,
+            0.6467897795104595
+          ]
+        },
+        {
+          "id": "M-TMP-ARM4-DISPLAY-HOLE1",
+          "receiver": "C4",
+          "wood_entry_gap_m": 0.011750589962862193,
+          "wood_path_m": 0.15291419127529152,
+          "axis_into_wood": [
+            -0.08193850863004105,
+            -0.0,
+            0.9966373868180366
+          ]
+        },
+        {
+          "id": "M-TMP-ARM4-DISPLAY-HOLE2",
+          "receiver": "C4",
+          "wood_entry_gap_m": 0.011750589962862193,
+          "wood_path_m": 0.15291419127529168,
+          "axis_into_wood": [
+            -0.08193850863004105,
+            -0.0,
+            0.9966373868180366
+          ]
+        },
+        {
+          "id": "M-TMP-ARM4-DISPLAY-HOLE3",
+          "receiver": "C4",
+          "wood_entry_gap_m": 0.011750589962862193,
+          "wood_path_m": 0.15291419127529168,
+          "axis_into_wood": [
+            -0.08193850863004105,
+            -0.0,
+            0.9966373868180366
+          ]
+        },
+        {
+          "id": "M-TMP-ARM5-DISPLAY-HOLE1",
+          "receiver": "C5",
+          "wood_entry_gap_m": 0.011750589962862162,
+          "wood_path_m": 0.15291419127529166,
+          "axis_into_wood": [
+            0.6467897795104595,
+            -0.0,
+            0.7626683296956885
+          ]
+        },
+        {
+          "id": "M-TMP-ARM5-DISPLAY-HOLE2",
+          "receiver": "C5",
+          "wood_entry_gap_m": 0.011750589962862164,
+          "wood_path_m": 0.15291419127529143,
+          "axis_into_wood": [
+            0.6467897795104595,
+            -0.0,
+            0.7626683296956885
+          ]
+        },
+        {
+          "id": "M-TMP-ARM5-DISPLAY-HOLE3",
+          "receiver": "C5",
+          "wood_entry_gap_m": 0.011750589962862164,
+          "wood_path_m": 0.15291419127529143,
+          "axis_into_wood": [
+            0.6467897795104595,
+            -0.0,
+            0.7626683296956885
+          ]
+        },
+        {
+          "id": "M-TMP-ARM6-DISPLAY-HOLE1",
+          "receiver": "C6",
+          "wood_entry_gap_m": 0.011750589962862247,
+          "wood_path_m": 0.15291419127529152,
+          "axis_into_wood": [
+            0.9966373868180366,
+            -0.0,
+            0.08193850863004111
+          ]
+        },
+        {
+          "id": "M-TMP-ARM6-DISPLAY-HOLE2",
+          "receiver": "C6",
+          "wood_entry_gap_m": 0.011750589962862247,
+          "wood_path_m": 0.15291419127529168,
+          "axis_into_wood": [
+            0.9966373868180366,
+            -0.0,
+            0.08193850863004111
+          ]
+        },
+        {
+          "id": "M-TMP-ARM6-DISPLAY-HOLE3",
+          "receiver": "C6",
+          "wood_entry_gap_m": 0.011750589962862247,
+          "wood_path_m": 0.15291419127529168,
+          "axis_into_wood": [
+            0.9966373868180366,
+            -0.0,
+            0.08193850863004111
+          ]
+        },
+        {
+          "id": "M-TMP-ARM7-DISPLAY-HOLE1",
+          "receiver": "C7",
+          "wood_entry_gap_m": 0.011750589962862247,
+          "wood_path_m": 0.15291419127529166,
+          "axis_into_wood": [
+            0.7626683296956884,
+            -0.0,
+            -0.6467897795104594
+          ]
+        },
+        {
+          "id": "M-TMP-ARM7-DISPLAY-HOLE2",
+          "receiver": "C7",
+          "wood_entry_gap_m": 0.011750589962862247,
+          "wood_path_m": 0.15291419127529163,
+          "axis_into_wood": [
+            0.7626683296956884,
+            -0.0,
+            -0.6467897795104594
+          ]
+        },
+        {
+          "id": "M-TMP-ARM7-DISPLAY-HOLE3",
+          "receiver": "C7",
+          "wood_entry_gap_m": 0.011750589962862249,
+          "wood_path_m": 0.15291419127529163,
+          "axis_into_wood": [
+            0.7626683296956884,
+            -0.0,
+            -0.6467897795104594
+          ]
+        }
+      ],
+      "positive_intersections": [],
+      "contact_faces": [],
+      "flush_seating": false,
+      "assembly_components": 1,
+      "temporary": true,
+      "structural_capacity": "not calculated",
+      "screw_and_weld_specification": "not established",
+      "timbers_unchanged": true
+    }
+  },
+  {
+    "model": "step-lap-proposed-model.json",
+    "previous_sha256": "68dc8aa4ea9945cd3b69fc64cc311d7f51bd8d6e82129d565ef9f0fb93179f3d",
+    "new_sha256": "e99ab6900997487cb5db94db248d1a6d78658d1992d41942db7d8f050b790167",
+    "timber_records_unchanged": true,
+    "fit": {
+      "chosen_top_in": 109.0,
+      "thickness_in": 0.125,
+      "rigid_rotation_y_degrees": -4.7,
+      "holes": [
+        {
+          "id": "M-TMP-ARM0-DISPLAY-HOLE1",
+          "receiver": "C0",
+          "wood_entry_gap_m": 0.011750589962862051,
+          "wood_path_m": 0.15291419127529152,
+          "axis_into_wood": [
+            0.08193850863004093,
+            -0.0,
+            -0.9966373868180366
+          ]
+        },
+        {
+          "id": "M-TMP-ARM0-DISPLAY-HOLE2",
+          "receiver": "C0",
+          "wood_entry_gap_m": 0.011750589962862051,
+          "wood_path_m": 0.15291419127529168,
+          "axis_into_wood": [
+            0.08193850863004093,
+            -0.0,
+            -0.9966373868180366
+          ]
+        },
+        {
+          "id": "M-TMP-ARM0-DISPLAY-HOLE3",
+          "receiver": "C0",
+          "wood_entry_gap_m": 0.011750589962862051,
+          "wood_path_m": 0.15291419127529168,
+          "axis_into_wood": [
+            0.08193850863004093,
+            -0.0,
+            -0.9966373868180366
+          ]
+        },
+        {
+          "id": "M-TMP-ARM1-DISPLAY-HOLE1",
+          "receiver": "C1",
+          "wood_entry_gap_m": 0.01175058996286209,
+          "wood_path_m": 0.15291419127529154,
+          "axis_into_wood": [
+            -0.6467897795104595,
+            -0.0,
+            -0.7626683296956884
+          ]
+        },
+        {
+          "id": "M-TMP-ARM1-DISPLAY-HOLE2",
+          "receiver": "C1",
+          "wood_entry_gap_m": 0.011750589962862087,
+          "wood_path_m": 0.15291419127529152,
+          "axis_into_wood": [
+            -0.6467897795104595,
+            -0.0,
+            -0.7626683296956884
+          ]
+        },
+        {
+          "id": "M-TMP-ARM1-DISPLAY-HOLE3",
+          "receiver": "C1",
+          "wood_entry_gap_m": 0.011750589962862087,
+          "wood_path_m": 0.15291419127529152,
+          "axis_into_wood": [
+            -0.6467897795104595,
+            -0.0,
+            -0.7626683296956884
+          ]
+        },
+        {
+          "id": "M-TMP-ARM2-DISPLAY-HOLE1",
+          "receiver": "C2",
+          "wood_entry_gap_m": 0.011750589962862122,
+          "wood_path_m": 0.15291419127529152,
+          "axis_into_wood": [
+            -0.9966373868180366,
+            -0.0,
+            -0.08193850863004098
+          ]
+        },
+        {
+          "id": "M-TMP-ARM2-DISPLAY-HOLE2",
+          "receiver": "C2",
+          "wood_entry_gap_m": 0.011750589962862122,
+          "wood_path_m": 0.15291419127529168,
+          "axis_into_wood": [
+            -0.9966373868180366,
+            -0.0,
+            -0.08193850863004098
+          ]
+        },
+        {
+          "id": "M-TMP-ARM2-DISPLAY-HOLE3",
+          "receiver": "C2",
+          "wood_entry_gap_m": 0.011750589962862122,
+          "wood_path_m": 0.15291419127529168,
+          "axis_into_wood": [
+            -0.9966373868180366,
+            -0.0,
+            -0.08193850863004098
+          ]
+        },
+        {
+          "id": "M-TMP-ARM3-DISPLAY-HOLE1",
+          "receiver": "C3",
+          "wood_entry_gap_m": 0.01175058996286209,
+          "wood_path_m": 0.15291419127529154,
+          "axis_into_wood": [
+            -0.7626683296956884,
+            -0.0,
+            0.6467897795104595
+          ]
+        },
+        {
+          "id": "M-TMP-ARM3-DISPLAY-HOLE2",
+          "receiver": "C3",
+          "wood_entry_gap_m": 0.01175058996286209,
+          "wood_path_m": 0.15291419127529146,
+          "axis_into_wood": [
+            -0.7626683296956884,
+            -0.0,
+            0.6467897795104595
+          ]
+        },
+        {
+          "id": "M-TMP-ARM3-DISPLAY-HOLE3",
+          "receiver": "C3",
+          "wood_entry_gap_m": 0.011750589962862087,
+          "wood_path_m": 0.15291419127529152,
+          "axis_into_wood": [
+            -0.7626683296956884,
+            -0.0,
+            0.6467897795104595
+          ]
+        },
+        {
+          "id": "M-TMP-ARM4-DISPLAY-HOLE1",
+          "receiver": "C4",
+          "wood_entry_gap_m": 0.011750589962862193,
+          "wood_path_m": 0.15291419127529152,
+          "axis_into_wood": [
+            -0.08193850863004105,
+            -0.0,
+            0.9966373868180366
+          ]
+        },
+        {
+          "id": "M-TMP-ARM4-DISPLAY-HOLE2",
+          "receiver": "C4",
+          "wood_entry_gap_m": 0.011750589962862193,
+          "wood_path_m": 0.15291419127529168,
+          "axis_into_wood": [
+            -0.08193850863004105,
+            -0.0,
+            0.9966373868180366
+          ]
+        },
+        {
+          "id": "M-TMP-ARM4-DISPLAY-HOLE3",
+          "receiver": "C4",
+          "wood_entry_gap_m": 0.011750589962862193,
+          "wood_path_m": 0.15291419127529168,
+          "axis_into_wood": [
+            -0.08193850863004105,
+            -0.0,
+            0.9966373868180366
+          ]
+        },
+        {
+          "id": "M-TMP-ARM5-DISPLAY-HOLE1",
+          "receiver": "C5",
+          "wood_entry_gap_m": 0.011750589962862162,
+          "wood_path_m": 0.15291419127529166,
+          "axis_into_wood": [
+            0.6467897795104595,
+            -0.0,
+            0.7626683296956885
+          ]
+        },
+        {
+          "id": "M-TMP-ARM5-DISPLAY-HOLE2",
+          "receiver": "C5",
+          "wood_entry_gap_m": 0.011750589962862164,
+          "wood_path_m": 0.15291419127529143,
+          "axis_into_wood": [
+            0.6467897795104595,
+            -0.0,
+            0.7626683296956885
+          ]
+        },
+        {
+          "id": "M-TMP-ARM5-DISPLAY-HOLE3",
+          "receiver": "C5",
+          "wood_entry_gap_m": 0.011750589962862164,
+          "wood_path_m": 0.15291419127529143,
+          "axis_into_wood": [
+            0.6467897795104595,
+            -0.0,
+            0.7626683296956885
+          ]
+        },
+        {
+          "id": "M-TMP-ARM6-DISPLAY-HOLE1",
+          "receiver": "C6",
+          "wood_entry_gap_m": 0.011750589962862247,
+          "wood_path_m": 0.15291419127529152,
+          "axis_into_wood": [
+            0.9966373868180366,
+            -0.0,
+            0.08193850863004111
+          ]
+        },
+        {
+          "id": "M-TMP-ARM6-DISPLAY-HOLE2",
+          "receiver": "C6",
+          "wood_entry_gap_m": 0.011750589962862247,
+          "wood_path_m": 0.15291419127529168,
+          "axis_into_wood": [
+            0.9966373868180366,
+            -0.0,
+            0.08193850863004111
+          ]
+        },
+        {
+          "id": "M-TMP-ARM6-DISPLAY-HOLE3",
+          "receiver": "C6",
+          "wood_entry_gap_m": 0.011750589962862247,
+          "wood_path_m": 0.15291419127529168,
+          "axis_into_wood": [
+            0.9966373868180366,
+            -0.0,
+            0.08193850863004111
+          ]
+        },
+        {
+          "id": "M-TMP-ARM7-DISPLAY-HOLE1",
+          "receiver": "C7",
+          "wood_entry_gap_m": 0.011750589962862247,
+          "wood_path_m": 0.15291419127529166,
+          "axis_into_wood": [
+            0.7626683296956884,
+            -0.0,
+            -0.6467897795104594
+          ]
+        },
+        {
+          "id": "M-TMP-ARM7-DISPLAY-HOLE2",
+          "receiver": "C7",
+          "wood_entry_gap_m": 0.011750589962862247,
+          "wood_path_m": 0.15291419127529163,
+          "axis_into_wood": [
+            0.7626683296956884,
+            -0.0,
+            -0.6467897795104594
+          ]
+        },
+        {
+          "id": "M-TMP-ARM7-DISPLAY-HOLE3",
+          "receiver": "C7",
+          "wood_entry_gap_m": 0.011750589962862249,
+          "wood_path_m": 0.15291419127529163,
+          "axis_into_wood": [
+            0.7626683296956884,
+            -0.0,
+            -0.6467897795104594
+          ]
+        }
+      ],
+      "positive_intersections": [],
+      "contact_faces": [],
+      "flush_seating": false,
+      "assembly_components": 1,
+      "temporary": true,
+      "structural_capacity": "not calculated",
+      "screw_and_weld_specification": "not established",
+      "timbers_unchanged": true
+    }
+  },
+  {
+    "model": "top-entry-proposed-model.json",
+    "previous_sha256": "0f1721341e23382e1ebb8b6a2a151522fc274ad27b77ed95197a9a8879b01395",
+    "new_sha256": "5862387fddeed73b3be3a31856c3ce834ad8f6b402f8769c214f26fb3a75bc49",
+    "timber_records_unchanged": true,
+    "fit": {
+      "chosen_top_in": 109.0,
+      "thickness_in": 0.125,
+      "rigid_rotation_y_degrees": -4.7,
+      "holes": [
+        {
+          "id": "M-TMP-ARM0-DISPLAY-HOLE1",
+          "receiver": "C0",
+          "wood_entry_gap_m": 0.0117505899628621,
+          "wood_path_m": 0.1529141912752915,
+          "axis_into_wood": [
+            0.08193850863004093,
+            -0.0,
+            -0.9966373868180366
+          ]
+        },
+        {
+          "id": "M-TMP-ARM0-DISPLAY-HOLE2",
+          "receiver": "C0",
+          "wood_entry_gap_m": 0.011750589962862053,
+          "wood_path_m": 0.15291419127529168,
+          "axis_into_wood": [
+            0.08193850863004093,
+            -0.0,
+            -0.9966373868180366
+          ]
+        },
+        {
+          "id": "M-TMP-ARM0-DISPLAY-HOLE3",
+          "receiver": "C0",
+          "wood_entry_gap_m": 0.011750589962862053,
+          "wood_path_m": 0.15291419127529168,
+          "axis_into_wood": [
+            0.08193850863004093,
+            -0.0,
+            -0.9966373868180366
+          ]
+        },
+        {
+          "id": "M-TMP-ARM1-DISPLAY-HOLE1",
+          "receiver": "C1",
+          "wood_entry_gap_m": 0.011750589962862058,
+          "wood_path_m": 0.15291419127529166,
+          "axis_into_wood": [
+            -0.6467897795104595,
+            -0.0,
+            -0.7626683296956884
+          ]
+        },
+        {
+          "id": "M-TMP-ARM1-DISPLAY-HOLE2",
+          "receiver": "C1",
+          "wood_entry_gap_m": 0.011750589962862086,
+          "wood_path_m": 0.15291419127529152,
+          "axis_into_wood": [
+            -0.6467897795104595,
+            -0.0,
+            -0.7626683296956884
+          ]
+        },
+        {
+          "id": "M-TMP-ARM1-DISPLAY-HOLE3",
+          "receiver": "C1",
+          "wood_entry_gap_m": 0.011750589962862086,
+          "wood_path_m": 0.15291419127529152,
+          "axis_into_wood": [
+            -0.6467897795104595,
+            -0.0,
+            -0.7626683296956884
+          ]
+        },
+        {
+          "id": "M-TMP-ARM2-DISPLAY-HOLE1",
+          "receiver": "C2",
+          "wood_entry_gap_m": 0.0117505899628621,
+          "wood_path_m": 0.15291419127529157,
+          "axis_into_wood": [
+            -0.9966373868180366,
+            -0.0,
+            -0.08193850863004098
+          ]
+        },
+        {
+          "id": "M-TMP-ARM2-DISPLAY-HOLE2",
+          "receiver": "C2",
+          "wood_entry_gap_m": 0.011750589962862124,
+          "wood_path_m": 0.15291419127529168,
+          "axis_into_wood": [
+            -0.9966373868180366,
+            -0.0,
+            -0.08193850863004098
+          ]
+        },
+        {
+          "id": "M-TMP-ARM2-DISPLAY-HOLE3",
+          "receiver": "C2",
+          "wood_entry_gap_m": 0.011750589962862124,
+          "wood_path_m": 0.15291419127529168,
+          "axis_into_wood": [
+            -0.9966373868180366,
+            -0.0,
+            -0.08193850863004098
+          ]
+        },
+        {
+          "id": "M-TMP-ARM3-DISPLAY-HOLE1",
+          "receiver": "C3",
+          "wood_entry_gap_m": 0.011750589962862058,
+          "wood_path_m": 0.15291419127529166,
+          "axis_into_wood": [
+            -0.7626683296956884,
+            -0.0,
+            0.6467897795104595
+          ]
+        },
+        {
+          "id": "M-TMP-ARM3-DISPLAY-HOLE2",
+          "receiver": "C3",
+          "wood_entry_gap_m": 0.011750589962862086,
+          "wood_path_m": 0.15291419127529152,
+          "axis_into_wood": [
+            -0.7626683296956884,
+            -0.0,
+            0.6467897795104595
+          ]
+        },
+        {
+          "id": "M-TMP-ARM3-DISPLAY-HOLE3",
+          "receiver": "C3",
+          "wood_entry_gap_m": 0.011750589962862086,
+          "wood_path_m": 0.15291419127529152,
+          "axis_into_wood": [
+            -0.7626683296956884,
+            -0.0,
+            0.6467897795104595
+          ]
+        },
+        {
+          "id": "M-TMP-ARM4-DISPLAY-HOLE1",
+          "receiver": "C4",
+          "wood_entry_gap_m": 0.011750589962862185,
+          "wood_path_m": 0.15291419127529154,
+          "axis_into_wood": [
+            -0.08193850863004105,
+            -0.0,
+            0.9966373868180366
+          ]
+        },
+        {
+          "id": "M-TMP-ARM4-DISPLAY-HOLE2",
+          "receiver": "C4",
+          "wood_entry_gap_m": 0.011750589962862192,
+          "wood_path_m": 0.15291419127529168,
+          "axis_into_wood": [
+            -0.08193850863004105,
+            -0.0,
+            0.9966373868180366
+          ]
+        },
+        {
+          "id": "M-TMP-ARM4-DISPLAY-HOLE3",
+          "receiver": "C4",
+          "wood_entry_gap_m": 0.011750589962862192,
+          "wood_path_m": 0.15291419127529168,
+          "axis_into_wood": [
+            -0.08193850863004105,
+            -0.0,
+            0.9966373868180366
+          ]
+        },
+        {
+          "id": "M-TMP-ARM5-DISPLAY-HOLE1",
+          "receiver": "C5",
+          "wood_entry_gap_m": 0.011750589962862254,
+          "wood_path_m": 0.15291419127529157,
+          "axis_into_wood": [
+            0.6467897795104595,
+            -0.0,
+            0.7626683296956885
+          ]
+        },
+        {
+          "id": "M-TMP-ARM5-DISPLAY-HOLE2",
+          "receiver": "C5",
+          "wood_entry_gap_m": 0.011750589962862166,
+          "wood_path_m": 0.15291419127529143,
+          "axis_into_wood": [
+            0.6467897795104595,
+            -0.0,
+            0.7626683296956885
+          ]
+        },
+        {
+          "id": "M-TMP-ARM5-DISPLAY-HOLE3",
+          "receiver": "C5",
+          "wood_entry_gap_m": 0.011750589962862166,
+          "wood_path_m": 0.15291419127529143,
+          "axis_into_wood": [
+            0.6467897795104595,
+            -0.0,
+            0.7626683296956885
+          ]
+        },
+        {
+          "id": "M-TMP-ARM6-DISPLAY-HOLE1",
+          "receiver": "C6",
+          "wood_entry_gap_m": 0.011750589962862185,
+          "wood_path_m": 0.15291419127529157,
+          "axis_into_wood": [
+            0.9966373868180366,
+            -0.0,
+            0.08193850863004111
+          ]
+        },
+        {
+          "id": "M-TMP-ARM6-DISPLAY-HOLE2",
+          "receiver": "C6",
+          "wood_entry_gap_m": 0.011750589962862249,
+          "wood_path_m": 0.15291419127529168,
+          "axis_into_wood": [
+            0.9966373868180366,
+            -0.0,
+            0.08193850863004111
+          ]
+        },
+        {
+          "id": "M-TMP-ARM6-DISPLAY-HOLE3",
+          "receiver": "C6",
+          "wood_entry_gap_m": 0.011750589962862249,
+          "wood_path_m": 0.15291419127529168,
+          "axis_into_wood": [
+            0.9966373868180366,
+            -0.0,
+            0.08193850863004111
+          ]
+        },
+        {
+          "id": "M-TMP-ARM7-DISPLAY-HOLE1",
+          "receiver": "C7",
+          "wood_entry_gap_m": 0.011750589962862134,
+          "wood_path_m": 0.15291419127529174,
+          "axis_into_wood": [
+            0.7626683296956884,
+            -0.0,
+            -0.6467897795104594
+          ]
+        },
+        {
+          "id": "M-TMP-ARM7-DISPLAY-HOLE2",
+          "receiver": "C7",
+          "wood_entry_gap_m": 0.01175058996286225,
+          "wood_path_m": 0.15291419127529163,
+          "axis_into_wood": [
+            0.7626683296956884,
+            -0.0,
+            -0.6467897795104594
+          ]
+        },
+        {
+          "id": "M-TMP-ARM7-DISPLAY-HOLE3",
+          "receiver": "C7",
+          "wood_entry_gap_m": 0.01175058996286225,
+          "wood_path_m": 0.15291419127529163,
+          "axis_into_wood": [
+            0.7626683296956884,
+            -0.0,
+            -0.6467897795104594
+          ]
+        }
+      ],
+      "positive_intersections": [],
+      "contact_faces": [],
+      "flush_seating": false,
+      "assembly_components": 1,
+      "temporary": true,
+      "structural_capacity": "not calculated",
+      "screw_and_weld_specification": "not established",
+      "timbers_unchanged": true
+    }
   }
 ]

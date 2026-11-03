@@ -21,8 +21,11 @@ const dom=`'use strict';for(const id of ${JSON.stringify(htmlIds)}){if(!document
 const baseline=JSON.parse(fs.readFileSync(path.join(root,'src/model-data.json')));
 const {runViewerTests}=require('./viewer-regression.cjs');
 for(const [id,search] of [['top-entry',''],['proposed','?model=proposed'],['baseline','?model=baseline']]){
- const filename=id==='baseline'?'model-data.json':id==='top-entry'?'top-entry-proposed-model.json':'step-lap-proposed-model.json',raw=fs.readFileSync(path.join(root,'src',filename)),expected=JSON.parse(raw),sha=crypto.createHash('sha256').update(raw).digest('hex');
+// TIMESTAMP START 2026-11-03T06:44:16-05:00 | REVISION R004894
+ const filename=id==='baseline'?'model-data.json':id==='top-entry'?'top-entry-proposed-model.json':'step-lap-proposed-model.json',raw=fs.readFileSync(path.join(root,'src',filename)),wallFit=require('../src/wall-joinery-fit.json').variants[id],expected=require('../src/wall-joinery.js').applyModel(JSON.parse(raw),wallFit),sha=crypto.createHash('sha256').update(raw).digest('hex');
  const load=JSON.parse(fs.readFileSync(path.join(root,'src',id==='baseline'?'load-review-data.json':id==='top-entry'?'top-entry-proposed-load-review.json':'step-lap-proposed-load-review.json')));
+ load.members=load.members.map(p=>wallFit.primary_parts[p.id]?{...p,...wallFit.primary_parts[p.id].wallJoineryMass}:p);
+// TIMESTAMP END 2026-11-03T06:44:16-05:00 | REVISION R004894
  const checks=`
  const check=(ok,message)=>{if(!ok)throw Error(message);assertions.push(message);};
  check(MODEL_CONTEXT.id===${JSON.stringify(id)},'Boot selects ${id}');
@@ -35,18 +38,24 @@ for(const [id,search] of [['top-entry',''],['proposed','?model=proposed'],['base
  check(CAVITIES.source_model_sha256===MODEL_CONTEXT.sha256&&MATERIALS.source_sha256===MODEL_CONTEXT.sha256,'Cavities and inventory share selected source hash');
 // TIMESTAMP START 2026-11-02T17:13:18-05:00 | REVISION R004819
  check(CAVITIES.available&&CAVITIES.fit_audit.status==='PASS'&&showHollows&&!$('showHollows').disabled,'Each selected model requires its own passing cavity audit');
- selectPart('P0');updateHollowStatus();check(cavityRecords().length>0&&$('hollowStatus').textContent.includes('Independent cavity-fit audit passed'),'Actual audited recess visible through selected timber');
+ // TIMESTAMP START 2026-11-03T06:44:16-05:00 | REVISION R004894
+ selectPart('P0');updateHollowStatus();check(cavityRecords().length>0&&$('hollowStatus').textContent.includes('Joint geometry-fit audit passed'),'Actual fitted post recess visible through selected timber');
+ // TIMESTAMP END 2026-11-03T06:44:16-05:00 | REVISION R004894
  const prior=$('showLabels').checked;$('showLabels').checked=false;$('showLabels').onchange({target:$('showLabels')});check(cavityRecords().length>0,'Labels handler does not hide selected amber');$('showLabels').checked=prior;$('showLabels').onchange({target:$('showLabels')});
  const auditName=MODEL_CONTEXT.id==='baseline'?'cavity-fit-audit.json':MODEL_CONTEXT.id==='top-entry'?'top-entry-cavity-fit-audit.json':'step-lap-proposed-cavity-fit-audit.json';
  check(!$('cavityFitAuditLink').hidden&&$('cavityFitAuditLink').href.includes('downloads/'+auditName),'Selected audit link matches actual model');
- if(MODEL_CONTEXT.id==='top-entry'){selectPart('R0');updateHollowStatus();check($('hollowStatus').textContent.includes('declared open head-entry space'),'Open head-entry space is described honestly');selectPart('C0');updateHollowStatus();check(cavityRecords().length>0,'New center dovetail cavity is visible');}
+// TIMESTAMP START 2026-11-03T06:44:16-05:00 | REVISION R004894
+ if(MODEL_CONTEXT.id==='top-entry'){selectPart('R0');updateHollowStatus();check($('hollowStatus').textContent.includes('declared open joint-entry space'),'Open head-entry space is described honestly');selectPart('C0');updateHollowStatus();check(cavityRecords().length>0,'New center dovetail cavity is visible');}
+// TIMESTAMP END 2026-11-03T06:44:16-05:00 | REVISION R004894
 // TIMESTAMP END 2026-11-02T17:13:18-05:00 | REVISION R004819
 
  explode=.4;cutExplode=.2;showAllAndUncenter();check(explode===0&&cutExplode===0&&$('explode').value==='0'&&schematicFloorEnabled&&schematicWallsEnabled,'Reset restores assembled geometry and visible room layers');
  const presetCamera=JSON.stringify({camera,fly,navigation});
  for(const key of ['complete','skeleton','foundation','floor']){applyDisplayPreset(key);check(JSON.stringify({camera,fly,navigation})===presetCamera,'Preset '+key+' preserves camera and navigation');check([...parts,...schematicParts].every(p=>isShown(p)===OctagonDisplayPresets.included(p,key)),'Preset '+key+' shows exact permanent semantic layers');check($('displayPresetStatus').textContent.includes(OctagonDisplayPresets.PRESETS[key]),'Preset '+key+' reports active assembled state');}
  applyDisplayPreset('skeleton');$('layerFloorFinish').checked=true;$('layerFloorFinish').onchange();check($('displayPresetStatus').textContent==='Custom'&&schematicParts.filter(p=>OctagonDisplayPresets.role(p)==='floorFinish').every(isShown),'Independent finish toggle creates Custom without locking');
- $('constructionAids').onclick();check(parts.filter(p=>p.temporary).some(isShown),'Temporary aids remain manually available');showAllAndUncenter();check(!parts.some(p=>p.temporary&&isShown(p))&&$('displayPresetStatus').textContent.includes('Complete'),'Reset restores Complete and hides temporary aids');
+// TIMESTAMP START 2026-11-03T06:44:16-05:00 | REVISION R004894
+ $('constructionAids').onclick();check(parts.filter(p=>p.temporary).some(isShown),'Temporary aids remain manually available');showAllAndUncenter();check(isShown(partById.get('M-TMP'))&&!isShown(partById.get('M-SP0'))&&$('displayPresetStatus').textContent.includes('Complete'),'Reset restores Complete with welded support and green aid hidden');
+// TIMESTAMP END 2026-11-03T06:44:16-05:00 | REVISION R004894
  document.createElementNS=(namespace,tag)=>document.createElement(tag);
  selectPart('J0-0');const findNode=(n,id)=>n.id===id?n:(n.children||[]).map(c=>findNode(c,id)).find(Boolean);const cutEntry=findNode($('selection'),'pieceCutAngles');check(!!cutEntry,'Current piece offers separate Cut angles button');cutEntry.focus();cutEntry.onclick();check($('cutAnglesModal').classList.contains('open')&&navigationBlocked(canvas),'Cut-angle dialog blocks navigation');cutAngleView.renderPiece('J0-0');const cutReport=cutAngleView.getReport();check(cutReport.partId==='J0-0'&&cutReport.parameters.model_sha256===MODEL_CONTEXT.sha256,'Cut-angle report binds selected model hash');check(JSON.stringify(cutReport)===JSON.stringify(OctagonCutFaces.analysePart(partById.get('J0-0'),{revision:MODEL_CONTEXT.label,parameters:{model_sha256:MODEL_CONTEXT.sha256,model_revision:DATA.revision}})),'Cut-angle UI uses shared current-mesh analysis without independent angles');cutAngleView.renderPiece(schematicParts[0].id);check(cutAngleView.getReport().partId===schematicParts[0].id,'Cut list includes room-layer meshes without inventing stock axes');cutAngleView.close();check(document.activeElement===cutEntry&&!document.querySelector('main').inert,'Cut-angle close restores invoker and background');
  matrix();updateSchematicWalls();check(!labelsOn&&schematicLabels.every(x=>x.el.style.display==='none'),'Initial wall/window/bookshelf annotations are off');
@@ -64,11 +73,15 @@ for(const [id,search] of [['top-entry',''],['proposed','?model=proposed'],['base
  for(const timberId of ['J0-0','R0']){selectPart(timberId);const text=inspectorText($('selection'));check(text.includes('Nominal section')&&text.includes('Nominal axis length'),'Timber '+timberId+' retains timber dimensions');check(!text.includes('Owner reference overall span')&&!text.includes('8 radial L straps'),'Timber '+timberId+' never inherits temporary steel fixture metadata');}
  selectPart('M-TMP');check(inspectorText($('selection')).includes('Owner reference overall span')&&inspectorText($('selection')).includes('8 radial L straps'),'Only temporary M-TMP fixture retains its owner-reported steel dimensions');
  check(OCTAGON_ENCLOSURE_FIT.source_model_sha256===MODEL_CONTEXT.sha256,'Enclosure fit follows selected source');
- for(const p of schematicParts){const fitted=OCTAGON_ENCLOSURE_FIT.parts[p.id];if(fitted)check(JSON.stringify(p.vertices)===JSON.stringify(fitted.vertices),'Runtime fitted '+p.id+' uses selected clearance mesh');}
+// TIMESTAMP START 2026-11-03T06:44:16-05:00 | REVISION R004894
+ for(const p of schematicParts){const fitted=MODEL_CONTEXT.wallJoinery.wall_parts[p.id]||OCTAGON_ENCLOSURE_FIT.parts[p.id];if(fitted)check(JSON.stringify(p.vertices)===JSON.stringify(fitted.vertices),'Runtime fitted '+p.id+' uses selected wall joint or clearance mesh');}
+// TIMESTAMP END 2026-11-03T06:44:16-05:00 | REVISION R004894
  $('schematicFloor').checked=true;$('schematicFloor').onchange();check(schematicParts.filter(p=>['floor','grate'].includes(p.schematicKind)).every(isShown),'Floor/grate toggle retained on selected model');
  check($('modelVariant').value===MODEL_CONTEXT.id,'Selector displays actual boot choice');
  check(LOAD_REVIEW.issues.length===${id!=='baseline'?0:load.issues.length},'Contact markers never reuse baseline data on proposal');
- check(!!$('hypotheticalSeat').disabled===MODEL_CONTEXT.isProposed,'Baseline pressure shortcuts disabled on proposal');
+// TIMESTAMP START 2026-11-03T06:44:16-05:00 | REVISION R004894
+ check($('hypotheticalSeat').disabled&&!MODEL_CONTEXT.pressureAvailable,'Old pressure shortcuts stay disabled on the fitted wall models');
+// TIMESTAMP END 2026-11-03T06:44:16-05:00 | REVISION R004894
  $('hypotheticalReaction').value='1000';updateHypotheticalPressure();
  if(MODEL_CONTEXT.isProposed)check($('hypotheticalPressure').textContent.includes('disabled'),'Direct pressure refresh cannot restore stale shortcut');
  $('plansFloor').checked=true;refreshPlans();check(plansSVG.top.includes(MODEL_CONTEXT.label)&&plansSVG.side.includes(MODEL_CONTEXT.label),'Plan title states selected revision');
@@ -82,7 +95,9 @@ for(const [id,search] of [['top-entry',''],['proposed','?model=proposed'],['base
 }
 // Proposed GLB must advertise the same source and not inherit baseline R01 status.
 for(const [modelFile,prefix] of [['step-lap-proposed-model.json','Octagon-PROPOSED-step-lap-'],['top-entry-proposed-model.json','Octagon-TOP-ENTRY-']]){
-const proposedRaw=fs.readFileSync(path.join(root,'src',modelFile)),proposedParts=JSON.parse(proposedRaw).parts.filter(p=>!p.temporary&&p.group!=='roof_envelope');
+// TIMESTAMP START 2026-11-03T06:44:16-05:00 | REVISION R004894
+const proposedRaw=fs.readFileSync(path.join(root,'src',modelFile)),wallFit=require('../src/wall-joinery-fit.json').variants[modelFile.startsWith('top-entry')?'top-entry':'proposed'],proposedParts=require('../src/wall-joinery.js').applyModel(JSON.parse(proposedRaw),wallFit).parts.filter(p=>!p.temporary&&p.group!=='roof_envelope');
+// TIMESTAMP END 2026-11-03T06:44:16-05:00 | REVISION R004894
 // TIMESTAMP START 2026-11-02T18:14:42-05:00 | REVISION R004830
 const planRaw=fs.readFileSync(path.join(root,'src/disassembly-plan.json')),variant=modelFile.startsWith('top-entry')?'top-entry':'proposed',plan=JSON.parse(planRaw).variants[variant],offsets=new Map(proposedParts.map(p=>[p.id,[0,0,0]]));
 for(const stage of plan.stages)for(const motion of stage.motions||[stage])for(const id of motion.member_ids)if(offsets.has(id))offsets.set(id,offsets.get(id).map((v,i)=>v+motion.delta_m[i]));

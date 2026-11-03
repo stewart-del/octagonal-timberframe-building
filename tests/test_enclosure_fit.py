@@ -193,10 +193,14 @@ for model_name,fit_name in VARIANTS:
    for member in horizontal:
     area=contact_area(jamb,member,0,x,origin,basis);assert area>1e-6,(jamb['id'],member['id'],'missing face contact');minimum_contact=min(minimum_contact,area);checks+=1
    # TIMESTAMP START 2026-11-02T18:40:43-05:00 | REVISION R004837
-   # Full 2×6-inch jamb-foot bearing on a continuous recessed bottom rail.
+   # TIMESTAMP START 2026-11-03T06:58:53-05:00 | REVISION R004899
+   # A full4x4 jamb has4x2 inches of contact on the two-inch-deep bottom rail.
+   # TIMESTAMP END 2026-11-03T06:58:53-05:00 | REVISION R004899
    foot_y=jamb['localBounds'][2]
    bearing=sum(contact_area(jamb,p,1,foot_y,origin,basis) for p in local_members if p.get('framingRole')=='rail')
-   assert abs(bearing-.1524*.0508)<1e-10,(jamb['id'],'full jamb-foot bearing',bearing)
+   # TIMESTAMP START 2026-11-03T06:58:53-05:00 | REVISION R004899
+   assert abs(bearing-.1016*.0508)<1e-10,(jamb['id'],'4x2-inch jamb-to-rail contact',bearing)
+   # TIMESTAMP END 2026-11-03T06:58:53-05:00 | REVISION R004899
    # TIMESTAMP END 2026-11-02T18:40:43-05:00 | REVISION R004837
    checks+=1
    # The jamb reaches the unchanged ring-beam underside with actual face contact.

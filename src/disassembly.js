@@ -17,6 +17,13 @@ function create(plan,sceneIds){
     tracks.get(id).push({index,from:from.slice(),to:to.slice(),delta:move.delta_m.slice()});ends.set(id,to);
    }
   }
+  // TIMESTAMP START 2026-11-03T07:02:34-05:00 | REVISION R004905
+  for(const id of known){if(!id.endsWith('-BELOW')||!known.has(id.slice(0,-6))||!(id.startsWith('PIER-')||id.startsWith('MUD-SUPPORT-')))continue;
+   const delta=pid=>motions.find(move=>move.member_ids.includes(pid))?.delta_m||zero(),a=delta(id),b=delta(id.slice(0,-6));
+   if(a.some((x,k)=>x!==b[k]))throw Error('A continuous column cannot split at grade: '+id);
+  }
+  if((plan.anchored_ids||[]).some(id=>seen.has(id)))throw Error('The central anchors must remain fixed');
+  // TIMESTAMP END 2026-11-03T07:02:34-05:00 | REVISION R004905
   return {...stage,motions,member_ids:[...seen]};
  });
  const count=stages.length,clamp=p=>Math.max(0,Math.min(1,Number.isFinite(p)?p:0));

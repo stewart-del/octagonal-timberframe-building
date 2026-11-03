@@ -92,7 +92,9 @@ check(cavityRenderMesh(parts[0],'removed')===null,'A previously cached main cavi
 log=[];drawCavityVolumes();
 check(log.length===2&&log.every(x=>x.translation.join(',')==='2.25,1.5,-0.75'),'Porch cavity fill and feature edges follow the selected exploded piece');
 updateHollowStatus();
-check($('hollowStatus').textContent.includes('2000.00 cm³')&&$('hollowStatus').textContent.includes('Porch joint geometry-fit audit passed.')&&$('hollowStatus').textContent.includes('Structural capacity remains unverified.')&&$('hollowStatus').textContent.includes('this view is exploded'),'Porch status identifies its own geometry audit and retains structural and assembled-state limits');
+// TIMESTAMP START 2026-11-03T06:44:16-05:00 | REVISION R004894
+check($('hollowStatus').textContent.includes('2000.00 cm³')&&$('hollowStatus').textContent.includes('Joint geometry-fit audit passed.')&&$('hollowStatus').textContent.includes('Structural capacity remains unverified.')&&$('hollowStatus').textContent.includes('this view is exploded'),'Porch status identifies its own geometry audit and retains structural and assembled-state limits');
+// TIMESTAMP END 2026-11-03T06:44:16-05:00 | REVISION R004894
 check(data.available===false&&data.status==='Top-entry main recesses remain held.','Porch inspection never changes main-model cavity availability or status');
 hidden.add(porch.id);check(cavityRecords().length===0,'Hidden porch pieces do not produce cavity overlays');hidden.delete(porch.id);
 showHollows=false;check(cavityRecords().length===0,'The cavity master toggle also controls porch recesses');showHollows=true;

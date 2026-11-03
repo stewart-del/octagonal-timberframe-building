@@ -1,12 +1,12 @@
 {
-  "source_sha256": "fb7bf67b4bae2c41c4e637647ad23caa6167345301af0befa780f4aa943519be",
+  "source_sha256": "999a07def4626a4eb8db63f28b492984e7981f60ece7122671e3d359aed809a9",
   "summary": {
     "components": 171,
-    "featureEdges": 20156,
+    "featureEdges": 19940,
     "interiorAngles": 16078,
     "closedConsistentTimbers": 158,
     "minimumEdges": 9,
-    "maximumEdges": 2640,
+    "maximumEdges": 2424,
     "reflexEdges": 4058,
     "minLengthIn": 0.0018641092366600207,
     "maxLengthIn": 164.4384383287558,
@@ -14,7 +14,7 @@
     "maxPlaneAngleDeg": 90,
     "minInteriorAngleDeg": 22.5,
     "maxInteriorAngleDeg": 337.50000000000006,
-    "allModelAnalysisMs": 998.955542
+    "allModelAnalysisMs": 1044.6354159999999
   },
   "parts": [
     {
@@ -2056,22 +2056,22 @@
     },
     {
       "id": "M-TMP",
-      "edges": 2640,
+      "edges": 2424,
       "interiorAngles": 0,
       "reflexEdges": 0,
-      "minLengthIn": 0.036756427623572244,
-      "maxLengthIn": 41.75000000000001,
-      "minPlaneAngleDeg": 11.249999999960455,
+      "minLengthIn": 0.03675642762356931,
+      "maxLengthIn": 44.849111652351695,
+      "minPlaneAngleDeg": 11.249999999956444,
       "maxPlaneAngleDeg": 90,
       "minInteriorAngleDeg": null,
       "maxInteriorAngleDeg": null,
       "closedConsistent": false,
       "connectedComponents": 1,
       "boundaryIntervals": 0,
-      "nonManifoldIntervals": 12,
+      "nonManifoldIntervals": 21,
       "inconsistentIntervals": 0,
       "skippedTriangles": 0,
-      "signedVolumeM3": 0.007775877243811895,
+      "signedVolumeM3": 0.00359481398004317,
       "status": "interior_angle_unverified",
       "interiorAngleAssumption": "Closed consistently wound single shell is an embedded solid boundary; self-intersections are not tested."
     },

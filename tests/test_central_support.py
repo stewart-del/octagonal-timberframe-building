@@ -35,11 +35,17 @@ assert model['r01']['metal_count']==model['source_dimensions']['metal_count']==2
 assert p['reference_dimensions']=={'overall_span_in':90.0,'strap_depth_in':4.0,'outer_leg_height_in':14.0,'radial_strap_count':8,'holes_per_strap':3,'total_holes':24}
 v=np.asarray(p['vertices']);t=np.asarray(p['triangles'],dtype=np.uint64);solid=m.Manifold(m.Mesh64(v,t))
 assert str(solid.status())=='Error.NoError' and len(solid.decompose())==1
-assert np.allclose((v.max(0)-v.min(0))/.0254,[90,14,90],atol=1e-9,rtol=0)
-# Closed connected surface:24 screw bores plus9 central open cells from offset welded arms.
+# TIMESTAMP START 2026-11-03T06:59:29-05:00 | REVISION R004900
+a=math.radians(-p['display_assumptions']['rigid_rotation_y_degrees']);c,s=math.cos(a),math.sin(a)
+local=v@np.array([[c,0,-s],[0,1,0],[s,0,c]])
+assert np.allclose((local.max(0)-local.min(0))/.0254,[90,14,90],atol=1e-9,rtol=0)
+# Closed original radial form:24 screw bores, no added central open cells.
+# TIMESTAMP END 2026-11-03T06:59:29-05:00 | REVISION R004900
 edges=collections.Counter(tuple(sorted((int(tri[j]),int(tri[(j+1)%3])))) for tri in t for j in range(3))
 assert all(n==2 for n in edges.values())
-assert len(v)-len(edges)+len(t)==2-2*33
+# TIMESTAMP START 2026-11-03T06:59:29-05:00 | REVISION R004900
+assert len(v)-len(edges)+len(t)==2-2*24
+# TIMESTAMP END 2026-11-03T06:59:29-05:00 | REVISION R004900
 assert len(p['display_holes'])==24 and len({h['id'] for h in p['display_holes']})==24
 assert collections.Counter(h['arm_index'] for h in p['display_holes'])=={k:3 for k in range(8)}
 for h in p['display_holes']:
@@ -50,7 +56,9 @@ for h in p['display_holes']:
 assert p['fabrication_dimensions_valid'] is False and 'illustrative' in p['geometry_purpose']
 assert 'Suppress' in p['plan_dimension_policy']
 for name in ['steel_thickness_in','hole_diameter_in','hole_centers_m','top_elevation_m']:assert p['dimension_status'][name]
-assert p['display_assumptions']['steel_thickness_in']==.25
+# TIMESTAMP START 2026-11-03T06:59:29-05:00 | REVISION R004900
+assert p['display_assumptions']['steel_thickness_in']==.125
+# TIMESTAMP END 2026-11-03T06:59:29-05:00 | REVISION R004900
 assert p['display_assumptions']['top_elevation_in']==109
 assert not p['reference_end_faces'] and all(x is None for x in p['angles'].values())
 assert consolidate_fixture(model['parts'])==model['parts'] and consolidate_aids(model['parts'])==model['parts']

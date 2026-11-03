@@ -16,7 +16,13 @@ def measure(part):
         for a,b in zip(face,np.roll(face,-1)):edges.setdefault(tuple(sorted([int(a),int(b)])),[]).append(index)
     features=[(np.linalg.norm(vertices[b]-vertices[a]),a,b) for (a,b),adjacent in edges.items()
               if len(adjacent)==2 and abs(normals[adjacent[0]]@normals[adjacent[1]])<.99999]
-    length,a,b=max(features);axis=(vertices[b]-vertices[a])/length
+# TIMESTAMP START 2026-11-02T20:47:22-05:00 | REVISION R004872
+    longest=max(row[0] for row in features)
+    # Equal parallel edges need a geometric tie-break independent of BLAS last bits.
+    candidates=[row for row in features if abs(row[0]-longest)<1e-9]
+    length,a,b=min(candidates,key=lambda row:tuple(np.round(np.sort(vertices[[row[1],row[2]]],axis=0).ravel(),9)))
+    axis=(vertices[b]-vertices[a])/length
+# TIMESTAMP END 2026-11-02T20:47:22-05:00 | REVISION R004872
     if axis[1]<0:axis=-axis
     origin=(vertices[a]+vertices[b])/2;u=np.cross(axis,[0,1,0]);u/=np.linalg.norm(u);v=np.cross(axis,u)
     rotation=np.array([u,v,axis]);transform=np.column_stack([rotation,-rotation@origin])
@@ -30,7 +36,12 @@ def measure(part):
         boxes.append((float(np.prod(dimensions)),q,dimensions))
     _,outline,dimensions=min(boxes,key=lambda item:item[0])
     if dimensions[0]>dimensions[1]:outline=outline[:,[1,0]];dimensions=dimensions[::-1]
+# TIMESTAMP START 2026-11-02T20:47:22-05:00 | REVISION R004872
     outline-=outline.min(0);area=section.area()/1e12/INCH**2
+    outline=np.round(outline,8)
+    outline=outline[np.argsort(np.arctan2(outline[:,1]-3,outline[:,0]-1))]
+    start=min(range(len(outline)),key=lambda index:tuple(outline[index]));outline=np.roll(outline,-start,axis=0)
+# TIMESTAMP END 2026-11-02T20:47:22-05:00 | REVISION R004872
     assert np.allclose(dimensions,[2,6],rtol=0,atol=1e-7),(part['id'],dimensions)
     assert abs(area-12)<1e-7,(part['id'],area)
     return {'id':part['id'],'measured_width_in':float(dimensions[0]),'measured_depth_in':float(dimensions[1]),
@@ -80,7 +91,14 @@ def build():
             'scope':'Full body stock section, outside end joinery; capacity and fabrication dimensions remain unqualified.',
             'inspector_labels_match_geometry':True,'measurements':rows,
             'image':{'path':'public/review/brace-sections.svg','sha256':hashlib.sha256(svg.encode()).hexdigest()}}
-    return report,svg
+# TIMESTAMP START 2026-11-02T20:47:22-05:00 | REVISION R004872
+    def stable(value):
+        if isinstance(value,float):return round(value,8)
+        if isinstance(value,list):return [stable(item) for item in value]
+        if isinstance(value,dict):return {key:stable(item) for key,item in value.items()}
+        return value
+    return stable(report),svg
+# TIMESTAMP END 2026-11-02T20:47:22-05:00 | REVISION R004872
 
 if __name__=='__main__':
     parser=argparse.ArgumentParser();parser.add_argument('--check',action='store_true');args=parser.parse_args();report,svg=build()

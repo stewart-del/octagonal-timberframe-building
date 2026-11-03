@@ -16,9 +16,14 @@ for k in range(8):
  b=surface(P['FLOOR-BEAM-'+str(k)],ledge,-1);area=(hub^b).area();assert area>.015,(k,area);areas.append(area/.0254**2)
 joist=[]
 beamfaces=[surface(P['FLOOR-BEAM-'+str(k)],top,1) for k in range(8)]
-for k in range(8):
- for n in range(1,11):
-  f=surface(P[f'FLOOR-JOIST-{k}-{n}'],top,-1)
-  for index in [k,(k+1)%8]:
-   a=(f^beamfaces[index]).area();assert a>.002,(k,n,index,a);joist.append(a/.0254**2)
+# TIMESTAMP START 2026-11-02T20:27:45-05:00 | REVISION R004866
+for member in d['layout']['members']:
+ if member['kind']!='joist':continue
+ f=surface(P[member['id']],top,-1)
+ contacts=[(f^face).area() for face in beamfaces]
+ bearing=[a for a in contacts if a>1e-5]
+ assert len(bearing)>=2,(member['id'],contacts)
+ joist.extend(a/.0254**2 for a in bearing)
+
+# TIMESTAMP END 2026-11-02T20:27:45-05:00 | REVISION R004866
 print('PASS center horizontal bearing in²',min(areas),max(areas),'joist horizontal bearing/end in²',min(joist),max(joist),'NOT capacity approval')

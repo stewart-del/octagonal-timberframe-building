@@ -25,3 +25,12 @@ assert.throws(()=>D.create({...plan,stages:[{motions:[{member_ids:['beam'],delta
 assert.throws(()=>D.create({...plan,status:'FAILED'},[]),/verified/);
 console.log('PASS: peg-first timing, slot withdrawal before lateral parking, coordinated motion, reversible playback, explicit locked pieces and visible-step navigation. Collision proofs belong to the source-bound plan audit.');
 // TIMESTAMP END 2026-11-02T15:57:59-05:00 | REVISION R004811
+
+// TIMESTAMP START 2026-11-03T07:02:34-05:00 | REVISION R004905
+const columns=['PIER-0','PIER-0-BELOW'];
+assert.throws(()=>D.create({status:'PASS',stages:[{id:'split',member_ids:['PIER-0-BELOW'],delta_m:[0,-.12,0]}]},columns),/continuous column/);
+assert.throws(()=>D.create({status:'PASS',anchored_ids:['PIER-C'],stages:[{id:'anchor',member_ids:['PIER-C'],delta_m:[0,1,0]}]},['PIER-C']),/anchors/);
+const rigid=D.create({status:'PASS',stages:[{id:'column',member_ids:columns,delta_m:[1,0,0]}]},columns);
+for(const progress of [0,.1,.5,.9,1])assert.deepEqual(rigid.offset(columns[0],progress),rigid.offset(columns[1],progress));
+console.log('PASS: one rigid column across its opaque and transparent rendering zones; fixed center anchors');
+// TIMESTAMP END 2026-11-03T07:02:34-05:00 | REVISION R004905

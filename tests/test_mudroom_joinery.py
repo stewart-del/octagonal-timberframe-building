@@ -97,6 +97,22 @@ for p in braces:
     assert abs(np.ptp(vertices@perp)-.1524)<1e-9,pid+' must be full 6-inch stock'
     joints=[j for j in fit['joints'] if j['donor']==pid]
     assert len(joints)==2 and joints[0]['insertion_direction_world']==joints[1]['insertion_direction_world']
+    # TIMESTAMP START 2026-11-03T07:32:15-05:00 | REVISION R004924
+    # Filled cavities alone miss an open wedge outside both original stocks.
+    # Require complete plumb/level end faces, wholly inside receiver profiles.
+    post=next(records[j['receiver']] for j in joints if records[j['receiver']]['id'].startswith('MUD-POST-'))
+    beam=next(records[j['receiver']] for j in joints if not records[j['receiver']]['id'].startswith('MUD-POST-'))
+    post_v=(np.asarray(post['joineryStock']['vertices'])-origin)@basis.T
+    beam_v=(np.asarray(beam['joineryStock']['vertices'])-origin)@basis.T
+    foot=(post_v[:,run_axis].max() if sign>0 else post_v[:,run_axis].min())-sign*.0254
+    head=beam_v[:,1].min()+.0254
+    for dimension,value,receiver_v in [(run_axis,foot,post_v),(1,head,beam_v)]:
+        cap=[tri for tri in p['joineryStock']['triangles'] if np.all(np.abs(vertices[tri,dimension]-value)<1e-8)]
+        area=sum(np.linalg.norm(np.cross(vertices[t[1]]-vertices[t[0]],vertices[t[2]]-vertices[t[0]]))/2 for t in cap)
+        assert abs(area-2*6*np.sqrt(2)*.0254**2)<1e-9,(pid,'incomplete nested end face',dimension,area)
+        cap_v=vertices[sorted({i for tri in cap for i in tri})]
+        assert np.all(cap_v>=receiver_v.min(0)-1e-8) and np.all(cap_v<=receiver_v.max(0)+1e-8),(pid,'end extends outside its receiver')
+    # TIMESTAMP END 2026-11-03T07:32:15-05:00 | REVISION R004924
     receivers=solids[joints[0]['receiver']]+solids[joints[1]['receiver']]
     travel=swept(solids[pid],-np.asarray(joints[0]['insertion_direction_world'])*.15)
     assert (travel^receivers).volume()<TOL,pid+' cannot enter both face housings'

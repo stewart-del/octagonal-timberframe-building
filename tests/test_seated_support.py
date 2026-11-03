@@ -12,8 +12,14 @@ for name in ['model-data.json','step-lap-proposed-model.json','top-entry-propose
     assert json.dumps(model['parts'],sort_keys=True)==before
     assert r['assembly_components']==1 and not r['positive_intersections']
     assert len(r['holes'])==24
-    assert all(h['wood_entry_gap_m']==0 and h['wood_path_m']>5.9*INCH for h in r['holes'])
-    v=np.asarray(p['vertices']);assert np.allclose((v.max(0)-v.min(0))/INCH,[90,14,90],atol=1e-9)
+    # TIMESTAMP START 2026-11-03T06:59:29-05:00 | REVISION R004900
+    assert all(0<h['wood_entry_gap_m']<.5*INCH and h['wood_path_m']>5.9*INCH for h in r['holes'])
+    assert not r['flush_seating'] and not r['contact_faces']
+    a=math.radians(-r['rigid_rotation_y_degrees']);c,s=math.cos(a),math.sin(a)
+    v=np.asarray(p['vertices'])@np.array([[c,0,-s],[0,1,0],[s,0,c]])
+    assert np.allclose((v.max(0)-v.min(0))/INCH,[90,14,90],atol=1e-9)
+    assert p['display_assumptions']['steel_thickness_in']==.125
+    # TIMESTAMP END 2026-11-03T06:59:29-05:00 | REVISION R004900
     assert len(mesh(p).decompose())==1
     # TIMESTAMP START 2026-11-02T17:44:11-05:00 | REVISION R004823
     print(name,'24 hole paths hit adjacent timber; no primary-timber interference; original model unchanged')

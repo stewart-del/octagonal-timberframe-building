@@ -1,23 +1,46 @@
-const fs=require('fs'),assert=require('assert');
+// TIMESTAMP START 2026-11-02T21:09:01-05:00 | REVISION R004877
+const fs=require('fs'),assert=require('node:assert/strict');
 require('../src/edge-measurements.js');require('../src/schematic-walls.js');require('../src/architectural-plans.js');
-const model=JSON.parse(fs.readFileSync(process.argv[2]||require('path').join(__dirname,'../src/model-data.json'))),api=global.OctagonPlans;
-const hash=require('crypto').createHash('sha256').update(JSON.stringify(model)).digest('hex');
-for(const view of ['top','side']){const d=api.drawing(model,{view});assert(d.parts.every(p=>p.material!=='steel'&&p.material!=='surface'&&!p.temporary));assert(d.parts.some(p=>p.material==='plywood'));assert(!/NaN|Infinity|undefined/.test(d.svg));assert(d.svg.includes('NOT CONSTRUCTION APPROVED'));assert(!/<polygon|<rect/.test(d.svg),'No shaded solid geometry');const axis=view==='top'?2:1;assert(d.svg.includes(api.measure(d.bounds.size[0])));assert(d.svg.includes(api.measure(d.bounds.size[axis])));fs.writeFileSync('/tmp/octagon-'+view+'-plan.svg',d.svg);}
-const aids=api.drawing(model,{view:'side',aids:true,hidden:true});assert(aids.parts.some(p=>p.material==='steel'));assert(!aids.parts.some(p=>p.material==='surface'));assert(aids.svg.includes('construction aids included'));assert(aids.svg.includes('Dashed gray'));
-assert.deepStrictEqual(api.project([2,3,4],'top'),[2,-4,3]);assert.deepStrictEqual(api.project([2,3,4],'side'),[2,-3,4]);assert.equal(hash,require('crypto').createHash('sha256').update(JSON.stringify(model)).digest('hex'));
-console.log('PASS: canonical mesh orthographic projections, conditional bounds, default exclusions, temporary inclusion, pure non-mutating geometry, SVG output');
-const topAxes=api.drawing(model,{view:'top'}).svg;
-assert(topAxes.includes('+Z ↑ (model axis)'));
-assert(!topAxes.includes('+Z ↓'));
-
-for(const kind of ['wall','shelf','cupolaWindow']){const opts={view:'top',walls:kind==='wall',shelves:kind==='shelf',cupolaWindows:kind==='cupolaWindow'},d=api.drawing(model,opts);assert(d.parts.some(p=>p.schematicKind===kind));assert(!d.parts.some(p=>p.schematicKind&&!(kind==='wall'?['wall','rail','footer']:[kind]).includes(p.schematicKind)));}
-for(const view of ['top','side']){const d=api.drawing(model,{view,walls:true,shelves:true,cupolaWindows:true,hidden:true});fs.writeFileSync('/tmp/octagon-walls-'+view+'.svg',d.svg);assert(d.svg.includes('cupola windows ON'));}
+const api=global.OctagonPlans,W=require('../src/wall-joinery.js'),fit=require('../src/wall-joinery-fit.json').variants['top-entry'];
+const raw=require('../src/top-entry-proposed-model.json'),model={...W.applyModel(raw,fit),wallJoinery:fit};
+const snapshot=JSON.stringify(model),hash=require('crypto').createHash('sha256').update(snapshot).digest('hex');
+for(const view of ['top','side']){
+ const main=api.drawing(model,{view,floor:true,modelHash:hash}),porch=api.drawing(model,{view,mudroom:true,modelHash:hash});
+ assert(main.parts.every(p=>p.schematicKind!=='mudroom'));assert(porch.parts.every(p=>p.schematicKind==='mudroom'));
+ // TIMESTAMP START 2026-11-02T22:13:32-05:00 | REVISION R004886
+ assert(porch.parts.some(p=>p.id==='MUD-RAFTER-L-2')&&porch.parts.some(p=>p.id==='MUD-PLATE-L'),'Porch framing remains present without covering layers');
+ assert(porch.parts.every(p=>!p.roofLayer),'Cover toggle omits only roof skin, deck and flashing');
+ // TIMESTAMP END 2026-11-02T22:13:32-05:00 | REVISION R004886
+ assert(main.svg.includes('MAIN BUILDING'));assert(porch.svg.includes('PORCH'));assert(!/NaN|Infinity|undefined/.test(main.svg+porch.svg));
+ assert(main.svg.includes('Model SHA-256: '+hash));assert(main.svg.includes('NOT CONSTRUCTION APPROVED'));
+ assert(!/<polygon|<rect/.test(main.svg),'Sheets use hidden-line geometry');
+ assert(main.parts.filter(p=>p.schematicKind==='floorAssembly').length===89);
+ assert(main.measurements.rows.some(([k,v])=>k.includes('Underground')&&Math.abs(v-1.8288)<1e-9));
+ fs.writeFileSync('/tmp/octagon-main-'+view+'.svg',main.svg);fs.writeFileSync('/tmp/octagon-porch-'+view+'.svg',porch.svg);
+}
+const measurements=Object.fromEntries(api.measurements(model).rows);
+assert(Math.abs(measurements['Outside posts: opposite corners']/.0254-360)<1e-6);
+assert(Math.abs(measurements['Opposite post centerlines']/.0254-352)<1e-6);
+assert(Math.abs(measurements['Cupola clear inside diameter']/.0254-76)<1e-6);
+assert(Math.abs(measurements['Short rafter J0-0 overall axial length']/.0254-139.3864162)<1e-5);
+assert(api.drawing(model,{view:'top'}).svg.includes('Design north ↑'));
 assert(api.drawing(model,{view:'top'}).svg.includes('Site bearing unverified'));
-console.log('PASS: three independent schematic plan layers, shared design compass, unchanged canonical geometry');
+const walls=api.drawing(model,{walls:true});assert(walls.parts.some(p=>p.wallJoineryJointIds&&p.schematicKind==='rail'));
+const aids=api.drawing(model,{aids:true,hidden:true});assert(aids.parts.some(p=>p.material==='steel'));assert(aids.svg.includes('Dashed gray'));
+for(const kind of ['shelf','cupolaWindow']){const d=api.drawing(model,{shelves:kind==='shelf',cupolaWindows:kind==='cupolaWindow'});assert(d.parts.some(p=>p.schematicKind===kind));}
+assert.equal(snapshot,JSON.stringify(model));
+console.log('PASS: separate main/porch sheets, compass alignment, exact spans and axial lengths, floor levels, fitted wall joints, provenance and nonmutation');
+// TIMESTAMP END 2026-11-02T21:09:01-05:00 | REVISION R004877
 
-// TIMESTAMP START 2026-11-02T14:50:03-05:00 | REVISION R004796
-const floor=api.drawing(model,{view:'top',floor:true});assert(floor.parts.filter(p=>p.schematicKind==='floor').length===8);assert(floor.parts.filter(p=>p.schematicKind==='floorAssembly').length===139);assert(!floor.parts.some(p=>p.schematicKind&&!['floor','floorAssembly'].includes(p.schematicKind)));assert(floor.svg.includes('floor ON'));
-// TIMESTAMP END 2026-11-02T14:50:03-05:00 | REVISION R004796
+// TIMESTAMP START 2026-11-03T07:12:33-05:00 | REVISION R004914
+assert(!aids.parts.some(p=>p.id==='M-SP0'||p.group==='metal_spacers'),'Retired construction aid is excluded from plans');
+const support=aids.parts.find(p=>p.id==='M-TMP');assert(support);assert.deepEqual(support.vertices,model.parts.find(p=>p.id==='M-TMP').vertices);
+assert.equal(support.source_geometry_metadata.revision,'central-support-original-form-raised-3');
+assert.equal(support.display_assumptions.steel_thickness_in,.125);assert.equal(support.display_assumptions.top_elevation_in,109);
+// TIMESTAMP END 2026-11-03T07:12:33-05:00 | REVISION R004914
 
-// Provenance must be visible in the exported sheet, not only an internal cache key.
-for(const view of ['top','side']){const sheet=api.drawing(model,{view,modelHash:hash});assert(sheet.svg.includes('Model SHA-256: '+hash));assert(sheet.svg.includes(view==='top'?'Sheet GEOM-TOP':'Sheet GEOM-SIDE'));}
+// TIMESTAMP START 2026-11-03T07:17:50-05:00 | REVISION R004916
+for(const porch of [false,true]){const m=api.measurements(model,porch),r=m.roofSection;assert(r.run>0&&r.rise>0&&r.span>=r.run*2);assert(Math.abs(Math.hypot(r.run,r.rise)-r.slopeLength)<1e-12);assert.equal(r.angle,(Math.atan2(r.rise,r.run)*180/Math.PI).toFixed(2)+'°');const d=api.drawing(model,{view:'side',mudroom:porch});assert(d.svg.includes('DIMENSIONED HALF SECTION')&&d.svg.includes('Vertical rise'));assert(d.svg.includes('class="value"'));}
+assert(measurements['Main hip R0 inclination'].endsWith('°'));assert(measurements['Radial tie T0 overall axial length']>0);assert.equal(measurements['Main post / cupola post sections'],'8 × 8 in / 6 × 6 in');
+
+// TIMESTAMP END 2026-11-03T07:17:50-05:00 | REVISION R004916

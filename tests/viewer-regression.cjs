@@ -37,13 +37,17 @@ function runViewerTests(source,model,{search='?model=baseline',skipLegacy=false}
     const check=(condition,message)=>{if(!condition)throw Error(message);assertions.push(message);};
     const key=(value,target=$('freeNav'),extra={})=>({key:value,target,shiftKey:false,preventDefault(){this.prevented=true;},...extra});
     const walk=el=>[el,...el.children.flatMap(walk)];
-    const expectedDefault=parts.filter(p=>defaultGroups().some(g=>g.id===p.group));
+    // TIMESTAMP START 2026-11-02T20:27:45-05:00 | REVISION R004866
+const expectedDefault=parts.filter(p=>OctagonDisplayPresets.included(p,'complete'));
+// TIMESTAMP END 2026-11-02T20:27:45-05:00 | REVISION R004866
 // TIMESTAMP START 2026-11-02T15:07:59-05:00 | REVISION R004800
     check(parts.filter(isTimber).length===112,'Current frame includes 24 full-size braces and 112 primary timbers');
 // TIMESTAMP END 2026-11-02T15:07:59-05:00 | REVISION R004800
     check(parts.filter(p=>p.group==='radial_rafters').length===8&&parts.filter(p=>p.group==='secondary_approx').length===16,'Roof contains eight hips and sixteen short rafters');
     check(!parts.some(p=>/^J[0-7]-1$/.test(p.id)),'All eight midpoint rafters are retired');
-    check(!parts.some(p=>p.temporary&&isShown(p)),'Temporary fixture is hidden initially');
+    // TIMESTAMP START 2026-11-02T20:27:45-05:00 | REVISION R004866
+check(isShown(partById.get('M-TMP'))&&!isShown(partById.get('M-SP0')),'Complete shows the central welded fixture');
+// TIMESTAMP END 2026-11-02T20:27:45-05:00 | REVISION R004866
     check(parts.filter(isShown).length===expectedDefault.length,'Initial view respects current default group visibility');
     check(schematicWallsEnabled&&schematicParts.filter(p=>!['deferred','temporary'].includes(OctagonDisplayPresets.role(p))).every(isShown),'Complete permanent building is visible by default without entering canonical inventory');
 // TIMESTAMP START 2026-11-02T14:22:13-05:00 | REVISION R004792
@@ -68,11 +72,36 @@ function runViewerTests(source,model,{search='?model=baseline',skipLegacy=false}
     explode=0;clearPieceSelection();
     selectedPartIds.add(bench.id);selectedPartIds.add('P0');selected='P0';selectPart('P0',true);
     check(selected===bench.id&&selectedPartIds.size===1,'Mixed timber/mudroom selection safely returns to the mudroom inspector');clearPieceSelection();
-    applyDisplayPreset('skeleton');check(mudroomPieces.every(p=>!isShown(p)),'Skeleton excludes the separate mudroom proposal');
+    // TIMESTAMP START 2026-11-02T20:19:08-05:00 | REVISION R004863
+    // TIMESTAMP START 2026-11-03T07:01:25-05:00 | REVISION R004903
+    applyDisplayPreset('skeleton');check(mudroomPieces.filter(p=>['framing','foundation','floor','stair'].includes(p.mudroomRole)).every(isShown)&&mudroomPieces.filter(p=>!['framing','foundation','floor','stair'].includes(p.mudroomRole)).every(p=>!isShown(p)),'Skeleton includes porch framing, full supports, floor and stairs');
+    // TIMESTAMP END 2026-11-03T07:01:25-05:00 | REVISION R004903
+    check(mudroomPieces.some(p=>p.id.startsWith('MUD-RAFTER-')&&isShown(p))&&mudroomPieces.some(p=>p.id.startsWith('MUD-BRACE-')&&isShown(p)),'Skeleton retains porch rafters and knee braces');
+    // TIMESTAMP END 2026-11-02T20:19:08-05:00 | REVISION R004863
     applyDisplayPreset('complete');check(mudroomPieces.every(isShown),'Complete restores the whole porch');
+// TIMESTAMP START 2026-11-03T07:02:34-05:00 | REVISION R004905
+    for(const id of ['PIER-0','PIER-C','MUD-SUPPORT-L-BACK']){
+      const top=partById.get(id),below=partById.get(id+'-BELOW');selectPart(below.id);
+      check(selected===id&&selectedPartIds.size===1&&isSelectedMember(top)&&isSelectedMember(below),'Either visible zone selects one whole column '+id);
+      check(selectionAlpha(below)===.28,'Buried column remains transparent when selected '+id);
+      const box=selectedSetBounds();check(box.members.length===2&&box.max[1]-box.min[1]>6*.3048,'Selection bounds include full column '+id);
+      togglePieceIsolation(top);check(isShown(top)&&isShown(below)&&!isShown(partById.get('P0')),'Isolation retains both column zones '+id);
+      check(Math.abs(inspectionPivot[1]-box.center[1])<1e-9,'Column focus centers full height '+id);
+      applyDisplayPreset('complete');selectPart(top.id);selectPart(below.id,true);check(selectedPartIds.size===0,'Shift-click either zone toggles one whole column '+id);
+      selectPart(below.id,true);check(inspectionPartId===id,'Shift-select one logical column retains a following focus pivot '+id);clearPieceSelection();
+    }
+    clearPieceSelection();applyDisplayPreset('complete');
+
+// TIMESTAMP END 2026-11-03T07:02:34-05:00 | REVISION R004905
+    // TIMESTAMP START 2026-11-03T07:08:54-05:00 | REVISION R004911
+    fitModel();matrix();check(camera.target.every((v,i)=>Math.abs(v-interiorCenter()[i])<1e-9),'Default orbit center is the interior octagonal room center');
+    check([...parts,...schematicParts].filter(isShown).every(p=>p.vertices.every(v=>{const q=project(vadd(v,offset(p)));return q&&q.x>0&&q.x<width&&q.y>0&&q.y<height;})),'Default perspective contains every visible building vertex, including porch, stairs and buried columns');
+    // TIMESTAMP END 2026-11-03T07:08:54-05:00 | REVISION R004911
     const porchPlan=OctagonPlans.drawing(PLAN_DATA,{view:'top',mudroom:true,roofCover:false});
     check(porchPlan.parts.some(p=>p.id==='MUD-BENCH-L')&&porchPlan.parts.some(p=>p.mudroomRole==='drain'),'Porch plan contains benches and drain');
-    check(!porchPlan.parts.some(p=>p.mudroomRoof||p.mudroomRole==='roof'),'Porch interior plan omits the roof when roofing is off');
+    // TIMESTAMP START 2026-11-02T22:10:21-05:00 | REVISION R004884
+    check(!porchPlan.parts.some(p=>p.roofLayer)&&porchPlan.parts.some(p=>p.id==='MUD-RAFTER-L-2'),'Porch drawings retain roof framing when covering layers are off');
+    // TIMESTAMP END 2026-11-02T22:10:21-05:00 | REVISION R004884
     const roofedPlan=OctagonPlans.drawing(PLAN_DATA,{view:'top',mudroom:true,roofCover:true});
     check(roofedPlan.parts.some(p=>p.id==='MUD-ROOF'),'Roofed plan includes the porch roof');
     const withoutPorch=OctagonPlans.drawing(PLAN_DATA,{view:'top',mudroom:false});
@@ -100,7 +129,10 @@ function runViewerTests(source,model,{search='?model=baseline',skipLegacy=false}
     $('schematicCupolaWindows').checked=false;$('schematicCupolaWindows').onchange();
     $('schematicFloor').checked=true;$('schematicFloor').onchange();check(schematicParts.filter(p=>['floor','floorAssembly'].includes(p.schematicKind)).every(isShown)&&schematicParts.filter(p=>!['floor','floorAssembly'].includes(p.schematicKind)).every(p=>!isShown(p)),'Complete floor and nine piers have an independent toggle with all walls/shelves/windows off');
     check(!schematicParts.some(p=>['grate','footer'].includes(p.schematicKind)),'Deferred grate and legacy short footers are absent from active model');
-    check(schematicParts.filter(p=>p.id.startsWith('PIER-')).length===9,'Nine current piers exist in runtime model');
+    // TIMESTAMP START 2026-11-02T20:27:45-05:00 | REVISION R004866
+check(schematicParts.filter(p=>p.id.startsWith('PIER-')&&!p.underground).length===9&&schematicParts.filter(p=>p.id.startsWith('PIER-')&&p.underground).length===9,'Nine piers have six-foot underground extensions');
+    check(schematicParts.filter(p=>p.underground).every(p=>selectionAlpha(p)===.28),'Underground columns are translucent');
+// TIMESTAMP END 2026-11-02T20:27:45-05:00 | REVISION R004866
     $('pierSettingOut').onclick();check($('pierModal').classList.contains('open')&&$('pierDrawing').innerHTML.includes('PIER-C'),'Setting-out button opens current nine-center SVG');
     $('closePierModal').onclick();check(!$('pierModal').classList.contains('open'),'Setting-out close restores scene');
     openPierSettingOut('PIER-3');check($('pierTitle').textContent.includes('PIER-3'),'Selected pier opens identifiable setting-out screen');closePierSettingOut();
@@ -113,7 +145,10 @@ function runViewerTests(source,model,{search='?model=baseline',skipLegacy=false}
     selectPart('PLY');check(selected==='PLY'&&selectedPartIds.has('PLY'),'Panel selection has one stable assembly ID');
     clearPieceSelection();
     const aids=parts.filter(p=>p.group==='metal_spacers'||p.group==='temporary_fixture');
-    check(aids.length===2&&aids.every(p=>p.temporary&&!isShown(p)),'One green aid and one complete black assembly are construction-only and hidden by default');
+    // TIMESTAMP START 2026-11-02T22:10:21-05:00 | REVISION R004884
+    check(aids.length===2&&aids.every(p=>p.temporary)&&isShown(partById.get('M-TMP'))&&!isShown(partById.get('M-SP0')),'Complete retains the welded support while the green aid is hidden');
+    $('constructionAids').onclick();check(aids.every(p=>!isShown(p)),'The first click hides the visible welded support');
+    // TIMESTAMP END 2026-11-02T22:10:21-05:00 | REVISION R004884
     $('constructionAids').onclick();check(aids.every(isShown)&&$('constructionAids').getAttribute('aria-pressed')==='true','Construction-aid control reveals both aids without permanent load credit');
     $('constructionAids').onclick();check(aids.every(p=>!isShown(p))&&$('constructionAids').getAttribute('aria-pressed')==='false','Second construction-aid click hides both aids again');
     const fixture=parts.find(p=>p.id==='M-TMP');
@@ -147,7 +182,9 @@ function runViewerTests(source,model,{search='?model=baseline',skipLegacy=false}
     check($('isolatePiece').textContent==='Show all & uncenter'&&$('isolatePiece').getAttribute('aria-pressed')==='true','Isolation button advertises its reverse action');
     const isolatedDistance=camera.distance;$('isolatePiece').onclick();
     check(isolatedId===null&&hiddenPieces.size===0&&parts.every(p=>isShown(p)===OctagonDisplayPresets.included(p,'complete')),'Second isolate click restores ALL pieces, including previously hidden groups and members');
-    check(parts.filter(p=>p.temporary||p.group==='roof_envelope').every(p=>!isShown(p)),'Restore Complete excludes temporary aids and reference envelope');
+    // TIMESTAMP START 2026-11-02T20:27:45-05:00 | REVISION R004866
+check(isShown(partById.get('M-TMP'))&&parts.filter(p=>(p.temporary&&p.id!=='M-TMP')||p.group==='roof_envelope').every(p=>!isShown(p)),'Restore Complete includes welded fixture and excludes green aid and reference envelope');
+// TIMESTAMP END 2026-11-02T20:27:45-05:00 | REVISION R004866
     check(selected===null&&selectedPartIds.size===0&&inspectionPartId===null&&inspectionCutId===null&&inspectionPivot===null,'Second isolate click clears former selection and all inspection centering');
     check(camera.distance>isolatedDistance,'Second isolate click frames the complete model rather than the isolated member');
     selectPart('C0');$('isolatePiece').onclick();$('isolatePiece').onclick();
@@ -225,7 +262,9 @@ function runViewerTests(source,model,{search='?model=baseline',skipLegacy=false}
     check(parts.filter(p=>isShown(p)&&p.group==='joinery_pegs').length===6,'P0 close-up includes its six physical retaining pegs');
 // TIMESTAMP END 2026-11-02T18:01:36-05:00 | REVISION R004828
 // TIMESTAMP END 2026-11-02T15:07:59-05:00 | REVISION R004800
-    check(showHollows&&selectionAlpha(partById.get('P0'))===.38&&cavityRecords().length===1,'Saved-baseline diagnostic recess display remains available through transparent timber');
+    // TIMESTAMP START 2026-11-02T22:10:21-05:00 | REVISION R004884
+    check(showHollows&&selectionAlpha(partById.get('P0'))===.38&&cavityRecords().some(r=>r.kind==='removed')&&cavityRecords().some(r=>r.kind==='additional_removed'),'Original and complementary wall cavities both display through transparent timber');
+    // TIMESTAMP END 2026-11-02T22:10:21-05:00 | REVISION R004884
     $('reviewCupola').onclick();check(selected==='C0'&&parts.filter(isShown).filter(p=>p.group==='cupola_rafters').length===8,'Cupola shortcut includes its eight roof rafters');
 // TIMESTAMP START 2026-11-02T15:57:59-05:00 | REVISION R004811
     check(visibleDisassemblyExclusions().length===0,'Cupola shortcut excludes symbolic construction aids');
@@ -268,7 +307,9 @@ function runViewerTests(source,model,{search='?model=baseline',skipLegacy=false}
     refreshPlans();openPlans();
     check($('plansModal').classList.contains('open')&&document.querySelector('main').inert,'Architectural plans opens a modal and isolates background input');
     check(navigationBlocked(canvas),'Free navigation pauses while plans are open');
-    check(plansSVG.top.includes('TOP PLAN')&&plansSVG.side.includes('SIDE ELEVATION'),'Both canonical orthographic drawings render');
+    // TIMESTAMP START 2026-11-02T22:10:21-05:00 | REVISION R004884
+    check(plansSVG.top.includes('MAIN BUILDING — PLAN')&&plansSVG.side.includes('MAIN BUILDING — NORTH ELEVATION'),'Main-building plan and north elevation are scoped independently of the porch');
+    // TIMESTAMP END 2026-11-02T22:10:21-05:00 | REVISION R004884
     check(explode===priorExplode,'Plans never alter the 3D exploded state');
     $('plansZoom').value='2';resizePlans();check($('plansTop').style.width==='200%','Plans zoom scales crisp SVG sheets');
     closePlans();check(!$('plansModal').classList.contains('open')&&!document.querySelector('main').inert&&document.activeElement===$('plansButton'),'Closing plans restores background and invoking focus');

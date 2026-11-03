@@ -13,7 +13,10 @@ I=.0254;raw=(R/'src/model-data.json').read_bytes();base=json.loads(raw);sha=hash
 B={p['id']:p for p in base['parts']};P={p['id']:p for p in full['parts']};changed={f'{family}{k}' for k in range(8) for family in ['B','P','R']}|{f'J{k}-{side}' for k in range(8) for side in ['0','2']}
 # TIMESTAMP START 2026-11-02T15:15:55-05:00 | REVISION R004802
 # TIMESTAMP START 2026-11-02T17:44:11-05:00 | REVISION R004823
-assert sha=='fb7bf67b4bae2c41c4e637647ad23caa6167345301af0befa780f4aa943519be','Baseline changed: re-review assumptions and regenerate, never silently rebase'
+# TIMESTAMP START 2026-11-03T07:26:01-05:00 | REVISION R004920
+# R004900 changes only the non-timber fixture; protected timber hashes below remain exact.
+assert sha=='999a07def4626a4eb8db63f28b492984e7981f60ece7122671e3d359aed809a9','Baseline changed: re-review assumptions and regenerate, never silently rebase'
+# TIMESTAMP END 2026-11-03T07:26:01-05:00 | REVISION R004920
 # TIMESTAMP END 2026-11-02T17:44:11-05:00 | REVISION R004823
 proof_raw=(R/'docs/pre-support-baseline-part-hashes.json').read_bytes()
 assert hashlib.sha256(proof_raw).hexdigest()=='cbc6bba49f4b8389ffe0780d672aaf4b7bdccdd253825971b1625751dd51885f'

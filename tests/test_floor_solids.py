@@ -12,3 +12,15 @@ for i,a in enumerate(keys):
   if ss[a].min_gap(ss[b],.00001)<1e-7:contacts[a].append(b);contacts[b].append(a)
 print('overlaps',over[:12],'isolated',[k for k,v in contacts.items() if not v]);assert not over;assert all(contacts.values())
 print('PASS',len(keys),'positive solids, no pair overlaps above1e-9m3, each touches another; contact is NOT capacity or full loadpath verification')
+# TIMESTAMP START 2026-11-02T21:30:42-05:00 | REVISION R004880
+import sys
+sys.path.insert(0,str(R/'scripts'))
+from plan_architectural_disassembly import sweep_cover,VOLUME_TOLERANCE_M3
+for pid,s in ss.items():
+ if not pid.startswith('FLOOR-JOIST-'):continue
+ sweep,account=sweep_cover(s,[0,.17,0])
+ for plate,q in ss.items():
+  if plate.startswith('POST-BEARING-STAND-') and '-SIDE' in plate:
+   assert (sweep^q).volume()+account['discarded_prism_volume_m3']<VOLUME_TOLERANCE_M3,(pid,plate)
+print('PASS: every north-south joist clears the open sideplate slots after headplate removal')
+# TIMESTAMP END 2026-11-02T21:30:42-05:00 | REVISION R004880

@@ -140,6 +140,21 @@ for relative,sha in top_cavity_audit['sources'].items():
 top_aux['cavities']['fit_audit']={key:top_cavity_audit[key] for key in ['status','summary']}
 # TIMESTAMP END 2026-11-02T17:13:18-05:00 | REVISION R004819
 model_variants['top-entry']={'model':top_model,'sha256':top_sha,**top_aux}
+# TIMESTAMP START 2026-11-02T20:38:50-05:00 | REVISION R004870
+wall_joinery=json.loads((ROOT/'src/wall-joinery-fit.json').read_text())
+wall_joinery_sha=hashlib.sha256((ROOT/'src/wall-joinery-fit.json').read_bytes()).hexdigest()
+for variant,fit in wall_joinery['variants'].items():
+    assert fit['status']=='PASS'
+    for relative,expected in fit['sources'].items():assert hashlib.sha256((ROOT/relative).read_bytes()).hexdigest()==expected, 'Stale wall joinery: '+relative
+wall_joinery_code='const WALL_JOINERY_DATA='+encode(wall_joinery)+';\n'+(ROOT/'src/wall-joinery.js').read_text()
+def assembled_model(model,variant):
+    fit=wall_joinery['variants'][variant]
+    return {**model,'parts':[{**p,**fit['primary_parts'][p['id']], 'faces':fit['primary_parts'][p['id']]['triangles'],
+        'fit_geometry':{**p.get('fit_geometry',{}),'volume_m3':fit['primary_parts'][p['id']]['volume_m3']}}
+        if p['id'] in fit['primary_parts'] else p for p in model['parts']],
+        'wall_joinery_revision':'R004870','wall_joinery_fit_sha256':wall_joinery_sha}
+
+# TIMESTAMP END 2026-11-02T20:38:50-05:00 | REVISION R004870
 # TIMESTAMP START 2026-11-02T18:39:35-05:00 | REVISION R004836
 brace_visibility=json.loads((ROOT/'docs/brace-visibility-audit.json').read_text())
 assert brace_visibility['status']=='PASS' and brace_visibility['physical_braces_in_complete']==24
@@ -185,13 +200,20 @@ for variant in ['baseline','proposed','top-entry']:
         assert hashlib.sha256((ROOT/relative).read_bytes()).hexdigest()==sha, 'Disassembly source is stale: '+relative
     model_file={'baseline':'model-data.json','proposed':'step-lap-proposed-model.json','top-entry':'top-entry-proposed-model.json'}[variant]
     enclosure_file={'baseline':'enclosure-fit.json','proposed':'step-lap-proposed-enclosure-fit.json','top-entry':'top-entry-proposed-enclosure-fit.json'}[variant]
-    required_sources={'src/'+name for name in [model_file,enclosure_file,'floor-foundation-solids.json','mudroom-joinery-fit.json','mudroom.js','mudroom-roof.js','roof-coverings.js','floor-foundation.js','schematic-walls.js','display-presets.js']}
+    # TIMESTAMP START 2026-11-02T20:38:50-05:00 | REVISION R004870
+    required_sources={'src/'+name for name in [model_file,enclosure_file,'wall-joinery-fit.json','wall-joinery.js','floor-foundation-solids.json','mudroom-joinery-fit.json','mudroom.js','mudroom-roof.js','roof-coverings.js','floor-foundation.js','schematic-walls.js','display-presets.js']}
+    # TIMESTAMP END 2026-11-02T20:38:50-05:00 | REVISION R004870
     assert required_sources<=set(plan['sources']), 'Disassembly proof omits a physical geometry source'
     physical=set(plan['physical_ids']);moved={pid for stage in plan['stages'] for motion in stage.get('motions',[stage]) for pid in motion['member_ids']}
     blocked={pid for group in plan['blocked'] for pid in group['member_ids']}
     assert len(physical)==len(plan['physical_ids']) and moved<=physical and blocked<=physical
-    assert moved==set(plan['moved_ids']) and physical-moved==set(plan['unmoved_ids'])
-    assert physical-moved<=blocked, 'Disassembly proof must account for every physical piece'
+    # TIMESTAMP START 2026-11-03T06:58:53-05:00 | REVISION R004899
+    fixed=set(plan['anchored_ids'])
+    assert fixed==({'FLOOR-CENTRAL-HUB','PIER-C','PIER-C-BELOW'} if variant=='top-entry' else set())
+    assert not fixed & moved and fixed<=physical
+    assert moved==set(plan['moved_ids']) and physical-moved-fixed==set(plan['unmoved_ids'])
+    assert physical-moved-fixed<=blocked, 'Disassembly proof must account for every physical piece'
+    # TIMESTAMP END 2026-11-03T06:58:53-05:00 | REVISION R004899
     assert len({stage['id'] for stage in plan['stages']})==len(plan['stages']), 'Disassembly stage identifiers must be unique'
     assert all(entry.get('physical') is False and entry['id'] not in physical for entry in plan['excluded'])
     if plan['status']=='PASS':
@@ -204,6 +226,9 @@ template=template.replace('/*__DISASSEMBLY__*/',disassembly_code)
 
 # TIMESTAMP START 2026-11-02T15:07:59-05:00 | REVISION R004800
 # TIMESTAMP START 2026-11-02T14:22:13-05:00 | REVISION R004792
+# TIMESTAMP START 2026-11-02T20:38:50-05:00 | REVISION R004870
+template=template.replace('/*__WALL_JOINERY__*/',wall_joinery_code)
+# TIMESTAMP END 2026-11-02T20:38:50-05:00 | REVISION R004870
 for marker, value in [('/*__MUDROOM__*/',mudroom_code), ('/*__ROOF_COVERINGS__*/',(ROOT/'src/roof-coverings.js').read_text()), ('/*__DISPLAY_PRESETS__*/',(ROOT/'src/display-presets.js').read_text()), ('/*__FLOOR_FOUNDATION__*/','const FLOOR_FOUNDATION_DATA='+encode(foundation_data)+';\n'+(ROOT/'src/floor-foundation.js').read_text()),('/*__CUT_FACE_ANALYSIS__*/', (ROOT/'src/cut-face-analysis.js').read_text()), ('/*__CUT_ANGLE_VIEW__*/', (ROOT/'src/cut-angle-view.js').read_text()), ('/*__MODEL_VARIANTS__*/', (ROOT/'src/model-variants.js').read_text()), ('__MODEL_VARIANTS_JSON__',encode(model_variants)), ('/*__STEP_LAP_REVIEW__*/', (ROOT/'src/step-lap-review.js').read_text()), ('__STEP_LAP_PROPOSAL_JSON__',encode(step_lap)), ('/*__SCHEMATIC_WALLS__*/', 'const OCTAGON_ENCLOSURE_FIT=MODEL_CONTEXT.enclosureFit;\n'+(ROOT/'src/schematic-walls.js').read_text()), ('/*__INSPECTION_TOOLS__*/', inspection),
                       ('/*__ARCHITECTURAL_PLANS__*/', (ROOT/'src/architectural-plans.js').read_text()),
                       ('/*__EDGE_MEASUREMENT_TOOLS__*/', (ROOT/'src/edge-measurements.js').read_text()),
@@ -242,8 +267,10 @@ downloads.mkdir(exist_ok=True)
 # TIMESTAMP START 2026-11-02T19:03:48-05:00 | REVISION R004848
 shutil.copyfile(ROOT/'docs/brace-sections.json',downloads/'brace-section-audit.json')
 # TIMESTAMP END 2026-11-02T19:03:48-05:00 | REVISION R004848
-shutil.copyfile(model_path, downloads/'Octagon-R01-model.json')
-shutil.copyfile(ROOT/'src/step-lap-proposed-model.json',downloads/'Octagon-PROPOSED-step-lap-model.json')
+# TIMESTAMP START 2026-11-02T20:38:50-05:00 | REVISION R004870
+(downloads/'Octagon-R01-model.json').write_text(encode(assembled_model(data,'baseline'))+'\n')
+(downloads/'Octagon-PROPOSED-step-lap-model.json').write_text(encode(assembled_model(proposed_model,'proposed'))+'\n')
+# TIMESTAMP END 2026-11-02T20:38:50-05:00 | REVISION R004870
 # TIMESTAMP START 2026-11-02T10:05:34-05:00 | REVISION R004758
 # TIMESTAMP START 2026-11-02T17:13:18-05:00 | REVISION R004819
 audit_downloads=['r01-change-register.json','r01-verification.json','joinery-verification.json','structural-audit.json','cavity-fit-audit.json','step-lap-proposed-cavity-fit-audit.json','top-entry-cavity-fit-audit.json']
@@ -264,6 +291,9 @@ for variant,model,prefix,revision,source_sha in [
     ('proposed',proposed_model,'Octagon-PROPOSED-step-lap-','Proposed step-lap joinery',proposed_sha),
     ('top-entry',top_model,'Octagon-TOP-ENTRY-','Removable joinery proposal',top_sha),
 ]:
+# TIMESTAMP START 2026-11-02T20:38:50-05:00 | REVISION R004870
+    model=assembled_model(model,variant)
+# TIMESTAMP END 2026-11-02T20:38:50-05:00 | REVISION R004870
     plan=disassembly_plans['variants'][variant]
     offsets={p['id']:[0.,0.,0.] for p in model['parts']}
     for stage in plan['stages']:
@@ -285,7 +315,9 @@ for variant,model,prefix,revision,source_sha in [
                        'disassembly_scope':'Canonical frame/cupola subset; '+('static endpoint' if exploded else 'assembled start')+' of the checked full-scene sequence.'}
         target.write_bytes(glb_exports['export'](endpoint_model if exploded else model,exploded,pose_metadata))
 # TIMESTAMP END 2026-11-02T18:14:42-05:00 | REVISION R004830
-shutil.copyfile(top_path,downloads/'Octagon-TOP-ENTRY-model.json')
+# TIMESTAMP START 2026-11-02T20:38:50-05:00 | REVISION R004870
+(downloads/'Octagon-TOP-ENTRY-model.json').write_text(encode(assembled_model(top_model,'top-entry'))+'\n')
+# TIMESTAMP END 2026-11-02T20:38:50-05:00 | REVISION R004870
 tests = ROOT/'tests'
 tests.mkdir(exist_ok=True)
 (tests/'embedded-model.json').write_text(encode(data))

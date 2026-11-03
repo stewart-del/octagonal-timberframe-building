@@ -56,8 +56,10 @@ for(const wall of rawLayout.walls){
  for(const side of ['left','right']){
   const jamb=frames.find(p=>p.id==='SCHEM-'+wall.face+'-rail-jamb-'+side);assert(jamb);
   // TIMESTAMP START 2026-11-02T18:40:43-05:00 | REVISION R004837
-  const depth=wall.face==='W'?[.0254,.0762]:[.0508,.1016];
-  assert.deepEqual(jamb.localBounds,side==='left'?[-w-.1524,-w,wall.base+.1524,wall.height,...depth]:[w,w+.1524,wall.base+.1524,wall.height,...depth]);
+// TIMESTAMP START 2026-11-02T20:31:01-05:00 | REVISION R004867
+  const inner=wall.face==='W'?.0254:.0508,depth=[inner,inner+.1016];
+  assert.deepEqual(jamb.localBounds,side==='left'?[-w-.1016,-w,wall.base+.1524,wall.height,...depth]:[w,w+.1016,wall.base+.1524,wall.height,...depth]);
+// TIMESTAMP END 2026-11-02T20:31:01-05:00 | REVISION R004867
   // TIMESTAMP END 2026-11-02T18:40:43-05:00 | REVISION R004837
  }
  for(const p of frames){assert.equal(role.role(p),'wallStructure');assert(role.included(p,'skeleton'));assert(Math.hypot(...p.exploded_offset)>0);assert.equal(p.is_timber,false);assert(p.connectionStatus.includes('unresolved'));}
@@ -112,7 +114,9 @@ console.log('PASS:14 real horizontal panel seams,28 separately selectable boards
 for(const p of rawLayout.components){
  const west=p.face==='W',infill=west?[.03095,.05]:[.08255,.1016],frame=west?[.0254,.0762]:[.0508,.1016],sill=west?[-.0762,.0762]:[-.0508,.1016];
  if(p.schematicKind==='wall')assert.deepEqual(p.localBounds.slice(4),infill,p.id+' is three-quarter-inch infill behind the braces');
- if(p.schematicKind==='rail')assert.deepEqual(p.localBounds.slice(4),p.id.includes('-rail0-')?sill:frame,p.id+' preserves a bottom floor ledge and recesses brace-height framing');
+// TIMESTAMP START 2026-11-02T20:31:01-05:00 | REVISION R004867
+ if(p.schematicKind==='rail')assert.deepEqual(p.localBounds.slice(4),p.framingRole==='jamb'?[frame[0],frame[0]+.1016]:p.id.includes('-rail0-')?sill:frame,p.id+' preserves sill ledges, 4×4 jambs and recessed horizontal rails');
+// TIMESTAMP END 2026-11-02T20:31:01-05:00 | REVISION R004867
  if(p.panelAssemblyId)assert.deepEqual(p.unsplitLocalBounds.slice(4),infill);
 }
 for(const connection of rawLayout.railConnections){
