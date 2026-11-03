@@ -46,16 +46,19 @@ jobs:
           assert len(b)==f['size'] and hashlib.sha256(b).hexdigest()==f['sha256']
           assert hashlib.sha1(b'blob '+str(len(b)).encode()+b'\0'+b).hexdigest()==f['git_blob_sha']
           PYCODE
-      - name: Save verified source and remove temporary publication files
+      # TIMESTAMP START 2026-11-03T07:52:19-05:00 | REVISION R004931
+      - name: Save verified source using contents permission
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           python3 - <<'PYCODE'
           import json,pathlib,subprocess
           m=json.loads(pathlib.Path('.codex-publication/manifest.json').read_text())
-          subprocess.run(['git','add','--',*[f['path'] for f in m['files']],'index.html'],check=True)
+          subprocess.run(['git','restore','--','.github/workflows/check.yml'],check=True)
+          subprocess.run(['git','add','--',*[f['path'] for f in m['files'] if not f['path'].startswith('.github/workflows/')],'index.html'],check=True)
           PYCODE
-          git rm -r .codex-publication .github/workflows/materialize-current.yml
+          git rm -r .codex-publication
           git commit -m 'Save byte-verified timberframe source and viewer'
           git push origin "HEAD:refs/heads/$GITHUB_REF_NAME"
+      # TIMESTAMP END 2026-11-03T07:52:19-05:00 | REVISION R004931
 # TIMESTAMP END 2026-11-03T07:37:58-05:00 | REVISION R004926
