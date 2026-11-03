@@ -107,8 +107,17 @@ for model_name,fit_name in VARIANTS:
   before=solid(raw_floors[p['id']]);after=solids[p['id']];occupied=m.Manifold()
   for obstacle in footers+foundation_solids:
    if overlap(before,obstacle):occupied=occupied+(before^obstacle)
+  # TIMESTAMP START 2026-11-03T12:04:27-05:00 | REVISION R005002
+  # The finish ends at the wall sill footprint instead of being trapped under
+  # it. Match only actual sill shadows, retaining the original support cuts.
+  for frame in frames:
+   obstacle=solids[frame['id']];box=obstacle.bounding_box()
+   if box[1]<=1e-8 and box[4]>=.05:
+    cutter=obstacle.translate([0,-.05,0])
+    if overlap(before,cutter):occupied=occupied+(before^cutter)
   removed=before-after
-  assert (removed-occupied).volume()<1e-10 and (occupied-removed).volume()<1e-10,p['id']+' floor relief must match actual occupied support geometry'
+  assert (removed-occupied).volume()<1e-10 and (occupied-removed).volume()<1e-10,p['id']+' floor relief must match support geometry and covered sill footprints'
+  # TIMESTAMP END 2026-11-03T12:04:27-05:00 | REVISION R005002
   assert len(after.decompose())==len(before.decompose()),p['id']+' retain every existing bamboo plank without detached offcuts'
   assert inspect_mesh(np.asarray(p['vertices']),np.asarray(p['triangles']),require_single=False)['status']=='PASS',p['id']+' raw floor mesh'
 
@@ -158,8 +167,10 @@ for model_name,fit_name in VARIANTS:
  # TIMESTAMP START 2026-11-02T18:40:43-05:00 | REVISION R004837
  for p in frames:
   if '-rail0-' not in p['id']:continue
-  area=sum(contact_area(p,q,1,0,np.zeros(3),np.eye(3)) for q in floor)
-  assert area>1e-6,(p['id'],'bottom sill must close the unchanged floor edge')
+  # TIMESTAMP START 2026-11-03T12:04:27-05:00 | REVISION R005002
+  gap=min(solids[p['id']].min_gap(solids[q['id']],.01) for q in floor)
+  assert gap<1e-7,(p['id'],'finish edge must meet the sill without extending underneath it')
+  # TIMESTAMP END 2026-11-03T12:04:27-05:00 | REVISION R005002
  for face in ['N','S']:
   wall=next(w for w in layout['walls'] if w['face']==face)
   a=np.asarray(canonical[wall['postIds'][0]]['center']);b=np.asarray(canonical[wall['postIds'][1]]['center']);origin=(a+b)/2;origin[1]=0
@@ -217,7 +228,10 @@ for model_name,fit_name in VARIANTS:
  for k,p in enumerate(floor):
   normal=np.array([np.cos((k+.5)*np.pi/4),0,-np.sin((k+.5)*np.pi/4)])
   post=canonical['P'+str(k)];radius=np.hypot(post['center'][0],post['center'][2]);target=radius*np.cos(np.pi/8)-.05
-  assert abs(max(np.array(p['vertices'])@normal)-target)<1e-8
+  # TIMESTAMP START 2026-11-03T12:04:27-05:00 | REVISION R005002
+  edge=max(np.array(p['vertices'])@normal)
+  assert target-.00080001<=edge<=target+1e-8,(p['id'],'only the covered 0.8 mm sill-edge strip may recede')
+  # TIMESTAMP END 2026-11-03T12:04:27-05:00 | REVISION R005002
  assert all('unresolved' in q['status'] for q in layout['railConnections'])
  assert (R/'src'/model_name).read_bytes()==raw
 # TIMESTAMP START 2026-11-02T15:33:07-05:00 | REVISION R004807

@@ -14,7 +14,9 @@ for(const view of ['top','side']){
  assert(main.svg.includes('MAIN BUILDING'));assert(porch.svg.includes('PORCH'));assert(!/NaN|Infinity|undefined/.test(main.svg+porch.svg));
  assert(main.svg.includes('Model SHA-256: '+hash));assert(main.svg.includes('NOT CONSTRUCTION APPROVED'));
  assert(!/<polygon|<rect/.test(main.svg),'Sheets use hidden-line geometry');
- assert(main.parts.filter(p=>p.schematicKind==='floorAssembly').length===89);
+// TIMESTAMP START 2026-11-03T12:04:27-05:00 | REVISION R005002
+ assert(main.parts.filter(p=>p.schematicKind==='floorAssembly').length===105);
+// TIMESTAMP END 2026-11-03T12:04:27-05:00 | REVISION R005002
  assert(main.measurements.rows.some(([k,v])=>k.includes('Underground')&&Math.abs(v-1.8288)<1e-9));
  fs.writeFileSync('/tmp/octagon-main-'+view+'.svg',main.svg);fs.writeFileSync('/tmp/octagon-porch-'+view+'.svg',porch.svg);
 }
