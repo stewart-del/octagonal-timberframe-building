@@ -29,10 +29,16 @@ function role(p){
  // TIMESTAMP END 2026-11-02T17:13:08-05:00 | REVISION R004818
  return p.schematic?'wall':'frame';
 }
-function included(p,preset){const r=role(p);if(['temporary','deferred','reference'].includes(r))return false;
+// TIMESTAMP START 2026-11-02T20:27:45-05:00 | REVISION R004866
+function included(p,preset){const r=role(p);if(p.id==='M-TMP'&&preset==='complete')return true;if(['temporary','deferred','reference'].includes(r))return false;
+// TIMESTAMP END 2026-11-02T20:27:45-05:00 | REVISION R004866
  if(preset==='complete')return true;
  // TIMESTAMP START 2026-11-02T17:13:08-05:00 | REVISION R004818
- if(preset==='skeleton')return ['foundation','floorStructure','wallStructure','post','frame','jointFastener'].includes(r);
+ // TIMESTAMP START 2026-11-02T20:19:08-05:00 | REVISION R004863
+ // TIMESTAMP START 2026-11-03T07:01:25-05:00 | REVISION R004903
+ if(preset==='skeleton')return ['foundation','floorStructure','wallStructure','post','frame','jointFastener'].includes(r)||(r==='mudroom'&&['foundation','framing','floor','stair'].includes(p.mudroomRole));
+ // TIMESTAMP END 2026-11-03T07:01:25-05:00 | REVISION R004903
+ // TIMESTAMP END 2026-11-02T20:19:08-05:00 | REVISION R004863
  // TIMESTAMP END 2026-11-02T17:13:08-05:00 | REVISION R004818
  if(preset==='foundation')return ['foundation','post'].includes(r);
  if(preset==='floor')return ['foundation','floorStructure','floorFinish'].includes(r);

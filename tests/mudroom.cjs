@@ -43,6 +43,10 @@ for(const filename of ['model-data.json','step-lap-proposed-model.json','top-ent
  assert.equal(r.components.filter(p=>/^MUD-BENCH-[LR]$/.test(p.id)).length,2);assert.equal(r.components.filter(p=>/^MUD-SHOE-SHELF-/.test(p.id)).length,2);assert.equal(r.components.filter(p=>/^MUD-HOOK-[LR]-\d$/.test(p.id)).length,6);
  assert(!r.components.some(p=>p.mudroomRole==='wall'||/^MUD-(WALL|WINDOW|DOOR|FRONT-JAMB|REAR-CLOSURE|BACKREST)/.test(p.id)),'Open porch must have no enclosure, glazing, door or separate bench backs');
  assert(r.components.filter(p=>p.mudroomScreen).every(p=>p.mudroomRoof),'Roof cutaway must retain the open porch guards and posts');
+// TIMESTAMP START 2026-11-02T20:31:01-05:00 | REVISION R004867
+ for(const p of r.components.filter(p=>/^MUD-(POST-|ENTRY-GUARD-POST-)/.test(p.id))){near(p.localBounds[1]-p.localBounds[0],4*.0254);near(p.localBounds[5]-p.localBounds[4],4*.0254);}
+ for(const p of r.components.filter(p=>p.underground)){near(p.localBounds[3]-p.localBounds[2],6*.3048);near(p.displayOpacity,.28);}
+// TIMESTAMP END 2026-11-02T20:31:01-05:00 | REVISION R004867
  near(d.entryWidthM,.95);near(byId['MUD-ENTRY-GUARD-POST-R'].localBounds[0]-byId['MUD-ENTRY-GUARD-POST-L'].localBounds[1],d.entryWidthM);
  for(const side of ['L','R']){
   const bench=byId['MUD-BENCH-'+side],guard=byId['MUD-GUARD-TOP-'+side],pickets=r.components.filter(p=>p.id.startsWith('MUD-GUARD-PICKET-'+side+'-')).sort((a,b)=>a.localBounds[4]-b.localBounds[4]);
@@ -64,7 +68,9 @@ for(const filename of ['model-data.json','step-lap-proposed-model.json','top-ent
  // TIMESTAMP END 2026-11-02T15:00:19-05:00 | REVISION R004797
  assert(r.components.filter(p=>p.mudroomScreen).some(p=>p.mudroomRole==='roof'));assert(r.components.filter(p=>/^MUD-BENCH-[LR]$/.test(p.id)).every(p=>!p.mudroomScreen));
  // TIMESTAMP START 2026-11-02T15:00:19-05:00 | REVISION R004797
- near(d.roofHighY_M,2.725);near(d.roofPitch,1/3);assert(d.minimumInteriorRoofHeightM>2.1);assert(r.notes.some(s=>s.includes('not specified')));
+ // TIMESTAMP START 2026-11-02T21:55:01-05:00 | REVISION R004881
+ near(d.roofHighY_M,2.9745342078732953);near(d.roofPitch,1/3);assert(d.minimumInteriorRoofHeightM>2.1);assert(r.notes.some(s=>s.includes('not specified')));
+ // TIMESTAMP END 2026-11-02T21:55:01-05:00 | REVISION R004881
  // TIMESTAMP END 2026-11-02T15:00:19-05:00 | REVISION R004797
  assert.equal(crypto.createHash('sha256').update(fs.readFileSync(path)).digest('hex'),crypto.createHash('sha256').update(before).digest('hex'));
 }

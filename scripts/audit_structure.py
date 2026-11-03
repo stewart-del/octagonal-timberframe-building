@@ -1,3 +1,5 @@
+# TIMESTAMP START 2026-11-02T20:42:47-05:00 | REVISION R004871
+# Restore the original six-inch cupola and remove the R004869 four-inch trial.
 # TIMESTAMP START 2026-11-01T23:19:38-05:00 | REVISION R004668
 """Measured geometry and load-path screening; never a structural capacity check."""
 from pathlib import Path
@@ -188,3 +190,5 @@ page='<!-- TIMESTAMP START 2026-11-02T15:15:55-05:00 | REVISION R004802 -->'+pag
 # TIMESTAMP END 2026-11-02T15:15:55-05:00 | REVISION R004802
 print(json.dumps({'status':report['status'],'sections':sections,'main_plan_ft2':main,'cupola_plan_ft2':cap}))
 # TIMESTAMP END 2026-11-01T23:19:38-05:00 | REVISION R004668
+
+# TIMESTAMP END 2026-11-02T20:42:47-05:00 | REVISION R004871

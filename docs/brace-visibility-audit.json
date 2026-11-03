@@ -3,16 +3,18 @@
   "timestamp": "2026-11-02T18:37:05-05:00",
   "status": "PASS",
   "sources": {
-    "src/top-entry-proposed-model.json": "0f1721341e23382e1ebb8b6a2a151522fc274ad27b77ed95197a9a8879b01395",
-    "src/top-entry-proposed-enclosure-fit.json": "85f3c45ca74d827fbf001aa1858148fe857f9189a6a8d9594be25fcd02426e2c",
-    "src/floor-foundation-solids.json": "14203ad8626a56ec45c7aaafaa024b1d18dac023f81f09316d91e8f5ac10a7bb",
-    "src/mudroom-joinery-fit.json": "ce36c55bbcd0ae5631aca1012ac5f195382f93544d3c8854c947686c9a64d268",
-    "src/mudroom.js": "7f577af2e06de53d70d89fcd73a71ceca0008f3b14ffd6a409a724e84a2b737d",
-    "src/mudroom-roof.js": "4f37a38ed764190e5ee51bb9462dc2a5539385239490e75d4ac495e8c02a8b0a",
+    "src/top-entry-proposed-model.json": "5862387fddeed73b3be3a31856c3ce834ad8f6b402f8769c214f26fb3a75bc49",
+    "src/top-entry-proposed-enclosure-fit.json": "043daa81e923f875323e9bb2580e2564cdb7d814c60187e462843fcec7cecc2c",
+    "src/wall-joinery-fit.json": "1123c8981c9492012093e1aed2f2f447cf28609fbd13c07cb2c2dbec2b29482b",
+    "src/wall-joinery.js": "1822e828eb5108c055b6cda3751ed80f88364ccdbcd99db3edf3ba5148ed3886",
+    "src/floor-foundation-solids.json": "98d604e0cecdd96679cac4c07f68074cfead30597ed67a98b99b6994a41f07a3",
+    "src/mudroom-joinery-fit.json": "eae308c7d156b680db9241fb503d7ba98e84b80ca1307b2ebfd65d06f734ac49",
+    "src/mudroom.js": "b6c696b05747fc2436690524cbc4d0cbe8a1e6046d2257bf829b4c91c351b9e4",
+    "src/mudroom-roof.js": "480fc669689b8a23439d0579383883dfe8c2f602bf9f14c70133d0c69ff3bcec",
     "src/roof-coverings.js": "a956b8626e061e054f1c0c1a70e1643361b1fd16767e7f58223ef723dcb31fb9",
-    "src/floor-foundation.js": "00930cf4922fe42c41830050fab64ae82f718ef1912f032d24af70b8776a10fe",
-    "src/schematic-walls.js": "7ae7517a5102bfae0a947515e9fd0c7ea7a599287d02c616a086499e2ffaf6aa",
-    "src/display-presets.js": "e6fa815ebe3bed0705830b82490ae3c1c578ecea342800921fc3ef4da120ae38",
+    "src/floor-foundation.js": "b5f0ab34cf6218a6c8d166b3eaa3aafdd57c2dd2a63e5046425172df51ae3341",
+    "src/schematic-walls.js": "634e26f0bb4190b80a60da7fa75e84d5411ae4fd7b211966a739c4264e29f41c",
+    "src/display-presets.js": "e0dbf59c673711306db1edb131b9b6661d8e92ebde5f08d99d605c29c9c9b42a",
     "scripts/audit_brace_visibility.py": "2516448c05baecd5340725fa7c4b1b9c7562231345394c7997c8a56019a582a2"
   },
   "method": "Nearest actual mesh-ray intersections from two interior eye positions; twelve largest front-facing triangle centroids per brace, excluding self-occluded faces. Area-weighted samples are not a whole-surface visibility percentage.",
@@ -853,6 +855,6 @@
   ],
   "image": {
     "path": "public/review/interior-braces.png",
-    "sha256": "50bb5fd9a0cf3746511e7a175a32c5a6100fbb4bf219ac4d141786ae213527e7"
+    "sha256": "084a25917b27bc8befd7c3d955dd2d799dbbe0eef20f1a9921d8a2a1f07469f7"
   }
 }

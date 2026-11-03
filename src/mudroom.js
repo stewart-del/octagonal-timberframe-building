@@ -12,7 +12,11 @@ function build(model,{applyJoinery=true}={}){
  const origin=[(a.center[0]+b.center[0])/2,0,(a.center[2]+b.center[2])/2],span=Math.hypot(b.center[0]-a.center[0],b.center[2]-a.center[2]),u=[(b.center[0]-a.center[0])/span,0,(b.center[2]-a.center[2])/span],radius=Math.hypot(origin[0],origin[2]),n=[origin[0]/radius,0,origin[2]/radius];
  const world=(x,y,z)=>[origin[0]+u[0]*x+n[0]*z,y,origin[2]+u[2]*x+n[2]*z];
  const local=v=>[(v[0]-origin[0])*u[0]+(v[2]-origin[2])*u[2],v[1],(v[0]-origin[0])*n[0]+(v[2]-origin[2])*n[2]];
- const width=8*F,depth=8*F,h=width/2,t=5.5*I,stud=3.5*I,rear=3*I,front=rear+depth,backFloor=-6*I,frontFloor=backFloor-depth/48,grade=-1.18775,slabBottom=backFloor-8*I;
+// TIMESTAMP START 2026-11-02T20:27:45-05:00 | REVISION R004866
+// TIMESTAMP START 2026-11-02T20:31:01-05:00 | REVISION R004867
+ const width=8*F,depth=8*F,h=width/2,t=5.5*I,stud=3.5*I,post=4*I,rear=3*I,front=rear+depth,backFloor=-6*I,frontFloor=backFloor-depth/48,grade=-(.01905+.0381+6*I+.286+2*F),slabBottom=backFloor-8*I;
+// TIMESTAMP END 2026-11-02T20:31:01-05:00 | REVISION R004867
+// TIMESTAMP END 2026-11-02T20:27:45-05:00 | REVISION R004866
  const floorHeight=z=>backFloor-(Math.min(front,Math.max(rear,z))-rear)/48;
  // TIMESTAMP START 2026-11-02T15:00:19-05:00 | REVISION R004797
  const roofAPI=typeof OctagonMudroomRoof!=='undefined'?OctagonMudroomRoof:require('./mudroom-roof.js'),roofSpec=roofAPI.spec(model),rafterDepth=5.5*I,rafterVerticalDepth=rafterDepth*Math.sqrt(1+roofSpec.pitch**2),beamTop=roofSpec.deckBottom(h)-rafterVerticalDepth,beamDepth=5.5*I;
@@ -54,11 +58,17 @@ function build(model,{applyJoinery=true}={}){
  for(let k=0;k<bars;k++){const x=-h+(k+.5)*width/bars;prism('GRATE-BAR-'+k,'Open drain grate bar '+(k+1),'drain',x-barWidth/2,x+barWidth/2,drainStart+rail,front-rail,(x,z)=>floorHeight(z)-grateThickness,(x,z)=>floorHeight(z),colors.metal);}
  // Four supports touch the slab underside; below-grade footing design is not implied.
  const pier=.254;
- for(const [side,x] of [['L',-h+.06],['R',h-.06]])for(const [end,z] of [['BACK',rear+.18],['FRONT',front-.18]])prism('SUPPORT-'+side+'-'+end,'Mudroom floor support proposal','foundation',x-pier/2,x+pier/2,z-pier/2,z+pier/2,grade,slabBottom,colors.concrete);
+// TIMESTAMP START 2026-11-02T20:27:45-05:00 | REVISION R004866
+ for(const [side,x] of [['L',-h+.06],['R',h-.06]])for(const [end,z] of [['BACK',rear+.18],['FRONT',front-.18]]){prism('SUPPORT-'+side+'-'+end,'Mudroom floor support proposal','foundation',x-pier/2,x+pier/2,z-pier/2,z+pier/2,grade,slabBottom,colors.concrete);
+  prism('SUPPORT-'+side+'-'+end+'-BELOW','Porch support six-foot underground column','foundation',x-pier/2,x+pier/2,z-pier/2,z+pier/2,grade-6*F,grade,colors.concrete,{underground:true,displayOpacity:.28});
+ }
+// TIMESTAMP END 2026-11-02T20:27:45-05:00 | REVISION R004866
  // A threshold cap bridges the existing floor edge; its under-step meets the pan.
  prism('THRESHOLD-CAP','Level doorway threshold bridge','floor',-.475,.475,-.05,rear,-.01905,0,colors.wood);
- prism('THRESHOLD-RISER','Single step up to the main room','floor',-.475,.475,.0225,rear,slabBottom,-.01905,colors.wood);
- for(const [side,x0,x1] of [['L',-h,-.475],['R',.475,h]])prism('PAN-BACK-'+side,'Washdown pan rear upstand','floor',x0,x1,.0225,rear,slabBottom,0,colors.floor);
+ // TIMESTAMP START 2026-11-02T21:06:57-05:00 | REVISION R004876
+ prism('THRESHOLD-RISER','Single step up to the main room','floor',-.475,.475,I,rear,slabBottom,-.01905,colors.wood);
+ for(const [side,x0,x1] of [['L',-h,-.475],['R',.475,h]])prism('PAN-BACK-'+side,'Washdown pan rear upstand','floor',x0,x1,I,rear,slabBottom,0,colors.floor);
+ // TIMESTAMP END 2026-11-02T21:06:57-05:00 | REVISION R004876
  // Open sides: corner posts carry the roof; level guards sit directly behind the benches.
  // TIMESTAMP START 2026-11-02T15:00:19-05:00 | REVISION R004797
  const porchGuardTop=backFloor+38*I,guardRail=3.5*I,picketWidth=1.5*I,maxPicketGap=3.5*I;
@@ -69,8 +79,13 @@ function build(model,{applyJoinery=true}={}){
   prism('PLATE-'+side,'Continuous porch roof beam','framing',x0,x1,rear,front+t,beamTop-beamDepth,beamTop,colors.wood);
   // TIMESTAMP END 2026-11-02T15:00:19-05:00 | REVISION R004797
   // TIMESTAMP START 2026-11-02T15:00:19-05:00 | REVISION R004797
-  for(const [end,z0,z1] of [['BACK',rear,rear+t],['FRONT',front,front+t]])prism('POST-'+side+'-'+end,'Porch corner post','framing',x0,x1,z0,z1,(x,z)=>floorHeight(z)+stud,beamTop-beamDepth,colors.wood);
-  const z0=rear+t,z1=front,length=z1-z0,count=Math.ceil(length/(picketWidth+maxPicketGap)),gap=(length-count*picketWidth)/(count+1),px0=side==='L'?-h-1.5*I:h,px1=side==='L'?-h:h+1.5*I;
+// TIMESTAMP START 2026-11-02T20:31:01-05:00 | REVISION R004867
+  const postX0=side==='L'?x0:x1-post,postX1=side==='L'?x0+post:x1;
+  for(const [end,z0,z1] of [['BACK',rear,rear+post],['FRONT',front+t-post,front+t]])prism('POST-'+side+'-'+end,'Porch full 4 × 4 corner post','framing',postX0,postX1,z0,z1,(x,z)=>floorHeight(z)+stud,beamTop-beamDepth,colors.wood);
+// TIMESTAMP END 2026-11-02T20:31:01-05:00 | REVISION R004867
+// TIMESTAMP START 2026-11-02T20:31:01-05:00 | REVISION R004867
+  const z0=rear+post,z1=front+t-post,length=z1-z0,count=Math.ceil(length/(picketWidth+maxPicketGap)),gap=(length-count*picketWidth)/(count+1),px0=side==='L'?-h-1.5*I:h,px1=side==='L'?-h:h+1.5*I;
+// TIMESTAMP END 2026-11-02T20:31:01-05:00 | REVISION R004867
   // TIMESTAMP END 2026-11-02T15:00:19-05:00 | REVISION R004797
   prism('GUARD-TOP-'+side,'Level railing behind side bench','framing',x0,x1,z0,z1,porchGuardTop-guardRail,porchGuardTop,colors.wood);
   for(let k=0;k<count;k++){const z=z0+gap+k*(picketWidth+gap);prism('GUARD-PICKET-'+side+'-'+k,'Porch side railing vertical','framing',px0,px1,z,z+picketWidth,(x,z)=>floorHeight(z)+stud,porchGuardTop-guardRail,colors.wood);}
@@ -87,9 +102,13 @@ function build(model,{applyJoinery=true}={}){
  // TIMESTAMP START 2026-11-02T15:00:19-05:00 | REVISION R004797
  const entryHalf=.475,frontGuardTop=frontFloor+36*I;
  // TIMESTAMP END 2026-11-02T15:00:19-05:00 | REVISION R004797
- for(const [side,x0,x1] of [['L',-h,-entryHalf-stud],['R',entryHalf+stud,h]]){
+// TIMESTAMP START 2026-11-02T20:31:01-05:00 | REVISION R004867
+ for(const [side,x0,x1] of [['L',-h-t+post,-entryHalf-post],['R',entryHalf+post,h+t-post]]){
+// TIMESTAMP END 2026-11-02T20:31:01-05:00 | REVISION R004867
   // TIMESTAMP START 2026-11-02T15:00:19-05:00 | REVISION R004797
-  prism('FRONT-SILL-'+side,'Porch front guard base','framing',side==='L'?x0:entryHalf,side==='L'?-entryHalf:x1,front,front+t,frontFloor,frontFloor+stud,colors.wood);
+// TIMESTAMP START 2026-11-02T20:31:01-05:00 | REVISION R004867
+  prism('FRONT-SILL-'+side,'Porch front guard base','framing',side==='L'?-h:entryHalf,side==='L'?-entryHalf:h,front,front+t,frontFloor,frontFloor+stud,colors.wood);
+// TIMESTAMP END 2026-11-02T20:31:01-05:00 | REVISION R004867
   // TIMESTAMP END 2026-11-02T15:00:19-05:00 | REVISION R004797
   // TIMESTAMP START 2026-11-02T15:00:19-05:00 | REVISION R004797
   prism('FRONT-GUARD-'+side,'Porch front guard rail','framing',x0,x1,front,front+t,frontGuardTop-guardRail,frontGuardTop,colors.wood);
@@ -100,7 +119,9 @@ function build(model,{applyJoinery=true}={}){
   // TIMESTAMP END 2026-11-02T15:00:19-05:00 | REVISION R004797
  }
  // TIMESTAMP START 2026-11-02T15:00:19-05:00 | REVISION R004797
- for(const [side,x0,x1] of [['L',-entryHalf-stud,-entryHalf],['R',entryHalf,entryHalf+stud]])prism('ENTRY-GUARD-POST-'+side,'Porch railing post beside open stair passage','framing',x0,x1,front,front+t,frontFloor+stud,frontGuardTop,colors.wood);
+// TIMESTAMP START 2026-11-02T20:31:01-05:00 | REVISION R004867
+ for(const [side,x0,x1] of [['L',-entryHalf-post,-entryHalf],['R',entryHalf,entryHalf+post]])prism('ENTRY-GUARD-POST-'+side,'Porch full 4 × 4 railing post beside open stair passage','framing',x0,x1,front+t-post,front+t,frontFloor+stud,frontGuardTop,colors.wood);
+// TIMESTAMP END 2026-11-02T20:31:01-05:00 | REVISION R004867
  // TIMESTAMP END 2026-11-02T15:00:19-05:00 | REVISION R004797
  // TIMESTAMP START 2026-11-02T15:00:19-05:00 | REVISION R004797
  prism('HEADER-FRONT','Porch front roof header','framing',-h,h,front,front+t,beamTop-.10,beamTop,colors.wood,{mudroomScreen:true,mudroomRoof:true});
@@ -117,8 +138,9 @@ function build(model,{applyJoinery=true}={}){
   }
   // The shelf spans and caps the four lower legs, carrying the upper legs above it.
   prism('SHOE-SHELF-'+side,'Shoe storage under bench','furniture',x0,x1,benchZ0,benchZ1,shelfTop-shelfThick,shelfTop,colors.wood);
-  const boardX0=side==='L'?-h:-.475-.10,boardX1=side==='L'?-.475-.10:h;
-  const bx0=side==='L'?boardX0:.575,bx1=side==='L'?boardX1:h;
+  // TIMESTAMP START 2026-11-02T21:06:57-05:00 | REVISION R004876
+  const bx0=side==='L'?-h:.475+4*I,bx1=side==='L'?-.475-4*I:h;
+  // TIMESTAMP END 2026-11-02T21:06:57-05:00 | REVISION R004876
   prism('COAT-BOARD-'+side,'Wall coat rack','furniture',bx0,bx1,rear,rear+I,1.35,1.50,colors.wood);
   for(let k=0;k<3;k++){const x=bx0+(k+.5)*(bx1-bx0)/3,hook=I/4,z0=rear+I,z1=z0+2*I;prism('HOOK-'+side+'-'+k,'Coat hook','furniture',x-hook/2,x+hook/2,z0,z1,1.40,1.40+hook,colors.metal);prism('HOOK-LIP-'+side+'-'+k,'Coat hook upturn','furniture',x-hook/2,x+hook/2,z1-hook,z1,1.40+hook,1.43,colors.metal);}
  }

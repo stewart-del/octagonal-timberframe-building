@@ -50,6 +50,10 @@ jobs:
       - run: python3 tests/test_central_support.py
 # TIMESTAMP START 2026-11-02T14:22:13-05:00 | REVISION R004792
       - run: node tests/schematic-walls.cjs
+      # TIMESTAMP START 2026-11-02T21:09:01-05:00 | REVISION R004877
+      - run: node tests/wall-joinery.cjs
+      - run: python3 tests/test_wall_joinery.py
+      # TIMESTAMP END 2026-11-02T21:09:01-05:00 | REVISION R004877
       - run: node tests/mudroom.cjs
 # TIMESTAMP START 2026-11-02T15:07:59-05:00 | REVISION R004800
       - run: node tests/mudroom-roof.cjs

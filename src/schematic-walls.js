@@ -28,7 +28,9 @@ const TimberSchematicWalls=(()=>{
    // TIMESTAMP START 2026-11-02T18:40:43-05:00 | REVISION R004837
    // Keep the six-inch framing faces; recess the two-inch depth outside the
    // interior knee-brace faces. These remain proposed secondary members.
-   const frameFace=.1524,railInner=dir==='W'?.0254:.0508,railOuter=dir==='W'?.0762:.1016,
+// TIMESTAMP START 2026-11-02T20:31:01-05:00 | REVISION R004867
+   const frameFace=.1524,jambFace=.1016,railInner=dir==='W'?.0254:.0508,railOuter=dir==='W'?.0762:.1016,
+// TIMESTAMP END 2026-11-02T20:31:01-05:00 | REVISION R004867
     infillInner=dir==='W'?.03095:.08255,infillOuter=dir==='W'?.05:.1016,
     sillInner=dir==='W'?-.0762:-.0508,railHeight=frameFace,lowRail=(dir==='E'?.75:1.0)-railHeight;
    // TIMESTAMP END 2026-11-02T18:40:43-05:00 | REVISION R004837
@@ -66,7 +68,9 @@ const TimberSchematicWalls=(()=>{
    // TIMESTAMP START 2026-11-02T18:40:43-05:00 | REVISION R004837
    function frame(label,rect,role){
     framingRects.push(rect);
-    const bottomSill=label.startsWith('rail0-'),piece=box(label,...rect,bottomSill?sillInner:railInner,railOuter,[.50,.30,.17],role);
+// TIMESTAMP START 2026-11-02T20:31:01-05:00 | REVISION R004867
+    const bottomSill=label.startsWith('rail0-'),piece=box(label,...rect,bottomSill?sillInner:railInner,role==='jamb'?railInner+jambFace:railOuter,[.50,.30,.17],role);
+// TIMESTAMP END 2026-11-02T20:31:01-05:00 | REVISION R004867
     if(bottomSill)piece.memberSection='Proposed six-by-six bottom sill with an inward floor ledge';
     return piece;
    }
@@ -74,8 +78,12 @@ const TimberSchematicWalls=(()=>{
    if(opening){
     const w=opening.width/2;
     // TIMESTAMP START 2026-11-02T18:40:43-05:00 | REVISION R004837
-    frame('rail-jamb-left',[-w-frameFace,-w,base+railHeight,height],'jamb');
-    frame('rail-jamb-right',[w,w+frameFace,base+railHeight,height],'jamb');
+// TIMESTAMP START 2026-11-02T20:31:01-05:00 | REVISION R004867
+    frame('rail-jamb-left',[-w-jambFace,-w,base+railHeight,height],'jamb');
+// TIMESTAMP END 2026-11-02T20:31:01-05:00 | REVISION R004867
+// TIMESTAMP START 2026-11-02T20:31:01-05:00 | REVISION R004867
+    frame('rail-jamb-right',[w,w+jambFace,base+railHeight,height],'jamb');
+// TIMESTAMP END 2026-11-02T20:31:01-05:00 | REVISION R004867
     // TIMESTAMP END 2026-11-02T18:40:43-05:00 | REVISION R004837
     frame('rail-header',[-w,w,opening.top,Math.min(height,opening.top+railHeight)],'header');
     if(opening.bottom>base)frame('rail-sill',[-w,w,opening.bottom-railHeight,opening.bottom],'sill');

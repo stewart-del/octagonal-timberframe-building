@@ -11,7 +11,12 @@ let tested=0;
 for(const filename of ['model-data.json','step-lap-proposed-model.json','top-entry-proposed-model.json']){
  const model=require('../src/'+filename),before=JSON.stringify(model),{components:parts,spec:s}=roof.build(model);
  assert.equal(JSON.stringify(model),before);assert.equal(s.pitch,4/12);assert(Math.abs(s.halfWidthM-53.5*.0254)<1e-12);assert(parts.some(p=>p.id==='MUD-ROOF'));
- assert(parts.filter(p=>p.roofLayer==='cedar').length>100);assert.equal(parts.filter(p=>p.roofLayer==='flashing').length,10);
+ // TIMESTAMP START 2026-11-02T21:55:01-05:00 | REVISION R004881
+ assert(parts.filter(p=>p.roofLayer==='cedar').length>100);assert.equal(parts.filter(p=>p.roofLayer==='flashing').length,4);
+ assert(!parts.some(p=>/-(RISER|UPPER|APRON)$/.test(p.id)),'Continuous valley has no stepped fascia risers');
+ assert(s.deckBottom(s.halfWidthM)>=s.mainTop(s.mainEaveZ_M)+.001-1e-10,'Full-width porch deck clears the main eave');
+ assert(s.junctionZ(s.halfWidthM)<s.mainEaveZ_M,'Both valley ends meet the main roof before its eave');
+ // TIMESTAMP END 2026-11-02T21:55:01-05:00 | REVISION R004881
  assert(s.deckBottom(s.halfWidthM)-.1397-(-.2032)>2.28,'Rafter underside retains front headroom');
  assert(s.firstFrameZ_M-3.5*.0254/2>s.mainEaveZ_M,'New frame clears the main eave');
  assert.equal(new Set(parts.map(p=>p.id)).size,parts.length);assert.equal(new Set(parts.map(p=>JSON.stringify(p.exploded_offset))).size,parts.length);

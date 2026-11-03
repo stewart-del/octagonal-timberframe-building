@@ -18,14 +18,18 @@ VARIANTS={'baseline':('model-data.json','enclosure-fit.json'),'proposed':('step-
 VOLUME_TOLERANCE_M3=1e-6*.0254**3
 PRISM_DISCARD_M3=1e-14
 BOX_TOLERANCE_M=0.
-NODE_SCENE="""const model=require('./src/'+process.argv[1]);
+# TIMESTAMP START 2026-11-02T20:38:50-05:00 | REVISION R004870
+NODE_SCENE="""const base=require('./src/'+process.argv[1]);
+const variant=process.argv[1].startsWith('top-entry')?'top-entry':process.argv[1].startsWith('step-lap')?'proposed':'baseline';
+const W=require('./src/wall-joinery.js'),fit=require('./src/wall-joinery-fit.json').variants[variant],model=W.applyModel(base,fit);
 global.OCTAGON_ENCLOSURE_FIT=require('./src/'+process.argv[2]);
 const parts=[...model.parts,...require('./src/roof-coverings.js').build(model).components,
- ...require('./src/floor-foundation.js').roomLayout(model,require('./src/schematic-walls.js').build(model.parts),require('./src/floor-foundation-solids.json')).components,
+ ...require('./src/floor-foundation.js').roomLayout(model,W.applyLayout(require('./src/schematic-walls.js').build(model.parts),fit),require('./src/floor-foundation-solids.json')).components,
  ...require('./src/mudroom.js').build(model).components];
 const roles=require('./src/display-presets.js');
 process.stdout.write(JSON.stringify({parts:parts.filter(p=>roles.included(p,'complete')),
  excluded:parts.filter(p=>!roles.included(p,'complete')).map(p=>({id:p.id,reason:roles.role(p),physical:false}))}));"""
+# TIMESTAMP END 2026-11-02T20:38:50-05:00 | REVISION R004870
 
 @dataclass
 class Scene:
@@ -54,7 +58,7 @@ def load_scene(variant='baseline'):
         s=m.Manifold(m.Mesh64(np.asarray(p['vertices'],dtype=float),np.asarray(p['triangles'],dtype=np.uint64)))
         assert str(s.status())=='Error.NoError' and s.volume()>0,(pid,str(s.status()),s.volume())
         solids[pid]=s
-    files=[model,enclosure,'floor-foundation-solids.json','mudroom-joinery-fit.json','mudroom.js','mudroom-roof.js','roof-coverings.js','floor-foundation.js','schematic-walls.js','display-presets.js']
+    files=[model,enclosure,'wall-joinery-fit.json','wall-joinery.js','floor-foundation-solids.json','mudroom-joinery-fit.json','mudroom.js','mudroom-roof.js','roof-coverings.js','floor-foundation.js','schematic-walls.js','display-presets.js']
     sources={'src/'+name:hashlib.sha256((ROOT/'src'/name).read_bytes()).hexdigest() for name in files}
     return Scene(variant,parts,solids,{pid:np.zeros(3) for pid in parts},sources,raw['excluded'])
 
@@ -260,8 +264,10 @@ def apply_floor_phases(scene):
     if not attempt_move(scene,'Lower the complete floor and support assembly clear of the posts',ids,[0,-6,0],blocked):return blocked
     def radial(pid,distance):
         if pid.startswith('FLOOR-JOIST-'):
-            k=int(pid.split('-')[2]);angle=-(k+.5)*np.pi/4
-            return np.array([np.cos(angle),0,np.sin(angle)])*distance
+            # TIMESTAMP START 2026-11-02T21:01:13-05:00 | REVISION R004875
+            east=np.array([np.sin(np.pi/8),0,np.cos(np.pi/8)])
+            return east*(1 if np.asarray(scene.parts[pid]['center'])@east>=0 else -1)*distance
+            # TIMESTAMP END 2026-11-02T21:01:13-05:00 | REVISION R004875
         c=np.asarray(scene.parts[pid]['center'],float).copy();c[1]=0
         if np.linalg.norm(c)<1e-8:c=np.array([np.cos(np.pi/8),0,-np.sin(np.pi/8)])
         return c/np.linalg.norm(c)*distance
@@ -276,7 +282,10 @@ def apply_floor_phases(scene):
         if pid.startswith('POST-BEARING-STAND-') and pid.endswith('-HEAD') and not release(pid,3,22):return blocked
     if not attempt_move(scene,'Lift the subfloor free',["FLOOR-SUBFLOOR"],[0,.6,0],blocked):return blocked
     if not attempt_move(scene,'Park the subfloor beside the assembly',["FLOOR-SUBFLOOR"],[22,0,0],blocked):return blocked
-    joists=sorted([pid for pid in ids if pid.startswith('FLOOR-JOIST-')],key=lambda pid:int(pid.split('-')[-1]),reverse=True)
+    # TIMESTAMP START 2026-11-02T21:01:13-05:00 | REVISION R004875
+    east=np.array([np.sin(np.pi/8),0,np.cos(np.pi/8)])
+    joists=sorted([pid for pid in ids if pid.startswith('FLOOR-JOIST-')],key=lambda pid:-abs(np.asarray(scene.parts[pid]['center'])@east))
+    # TIMESTAMP END 2026-11-02T21:01:13-05:00 | REVISION R004875
     for pid in joists:
         if not release(pid,.7,12):return blocked
     for k in range(8):
@@ -344,16 +353,39 @@ def prepare_scene(variant='baseline'):
     blocked.extend(apply_wall_phases(scene))
     return scene,blocked
 
+# TIMESTAMP START 2026-11-03T06:54:15-05:00 | REVISION R004896
+CENTER_ANCHORS={'FLOOR-CENTRAL-HUB','PIER-C','PIER-C-BELOW'}
+
+def anchored_ids(scene):
+    return CENTER_ANCHORS & set(scene.parts) if scene.variant=='top-entry' else set()
+
 def output_snapshot(scene,blocked=None):
     moved={pid for stage in scene.stages for q in stage.get('motions',[stage]) for pid in q['member_ids']}
-    return {'status':'PARTIAL' if blocked or moved!=set(scene.parts) else 'PASS','sources':scene.sources,'physical_piece_count':len(scene.parts),'stages':scene.stages,'blocked':blocked or [],'excluded':scene.excluded,'moved_ids':sorted(moved),'scope':'Nominal geometry and continuous straight translations; structural dismantling procedure, access and lifting remain unspecified.'}
+    fixed=anchored_ids(scene)
+    assert not moved & fixed and all(np.array_equal(scene.offsets[pid],np.zeros(3)) for pid in fixed)
+    return {'status':'PARTIAL' if blocked or moved|fixed!=set(scene.parts) else 'PASS','sources':scene.sources,'physical_piece_count':len(scene.parts),'stages':scene.stages,'blocked':blocked or [],'excluded':scene.excluded,'moved_ids':sorted(moved),'anchored_ids':sorted(fixed),'scope':'Nominal geometry and continuous straight translations around the stationary central pier and floor hub; structural dismantling procedure, access and lifting remain unspecified.'}
 
+# TIMESTAMP END 2026-11-03T06:54:15-05:00 | REVISION R004896
+
+# TIMESTAMP START 2026-11-03T07:02:34-05:00 | REVISION R004905
+def column_pairs(scene):
+    return [(pid[:-6],pid) for pid in scene.parts if pid.endswith('-BELOW') and pid[:-6] in scene.parts and (pid.startswith('PIER-') or pid.startswith('MUD-SUPPORT-'))]
+
+def assert_rigid_columns(scene,stage):
+    deltas={pid:np.asarray(q['delta_m']) for q in stage.get('motions',[stage]) for pid in q['member_ids']}
+    for above,below in column_pairs(scene):
+        assert np.array_equal(deltas.get(above,np.zeros(3)),deltas.get(below,np.zeros(3))),('A continuous column cannot split at grade',stage['id'],above)
+
+# TIMESTAMP END 2026-11-03T07:02:34-05:00 | REVISION R004905
 def replay_stages(variant,stages):
     """Recompute all proofs in a fresh full scene; never trust saved pair proofs."""
     scene=load_scene(variant);initial=audit_initial_scene(scene)
     assert initial['status']=='PASS',initial['collisions']
     checks=0;maximum=initial['maximum_intersection_m3'];discarded=0.
     for stage in stages:
+# TIMESTAMP START 2026-11-03T07:02:34-05:00 | REVISION R004905
+        assert_rigid_columns(scene,stage)
+# TIMESTAMP END 2026-11-03T07:02:34-05:00 | REVISION R004905
         if 'motions' in stage:
             proof=check_multi_stage(scene,stage['motions'])
             assert proof['status']=='PASS',(stage['id'],proof['collisions'])
@@ -371,32 +403,73 @@ def audit_final_joinery(scene):
     ids={pid for pid,p in scene.parts.items() if p.get('is_timber') or p.get('group')=='joinery_pegs' or pid=='PLY' or p.get('schematicKind') in ['floorAssembly','wall','rail','shelf']}
     ids.update(porch['parts']);ids.update(p['id'] for p in porch['added_parts']);ids&=set(scene.parts)
     boxes={pid:scene.solids[pid].bounding_box() for pid in ids};pairs=[];remaining=[]
+    # TIMESTAMP START 2026-11-03T06:54:15-05:00 | REVISION R004896
+# TIMESTAMP START 2026-11-03T07:02:34-05:00 | REVISION R004905
+    fixed=anchored_ids(scene);anchored_pairs=[];continuous_columns={frozenset(pair) for pair in column_pairs(scene)};column_seams=[]
+# TIMESTAMP END 2026-11-03T07:02:34-05:00 | REVISION R004905
     contact_tolerance=1e-6;separation_tolerance=1e-5
+    # TIMESTAMP END 2026-11-03T06:54:15-05:00 | REVISION R004896
     for a,b in itertools.combinations(sorted(ids),2):
         aa,bb=boxes[a],boxes[b]
         if any(aa[i+3]+contact_tolerance<bb[i] or bb[i+3]+contact_tolerance<aa[i] for i in range(3)):continue
         initial_gap=scene.solids[a].min_gap(scene.solids[b],contact_tolerance*2)
         if initial_gap>contact_tolerance:continue
+        # TIMESTAMP START 2026-11-03T06:54:15-05:00 | REVISION R004896
+# TIMESTAMP START 2026-11-03T07:02:34-05:00 | REVISION R004905
+        if frozenset((a,b)) in continuous_columns:
+            column_seams.append([a,b]);continue
+        if a in fixed and b in fixed:
+            anchored_pairs.append([a,b]);continue
+# TIMESTAMP END 2026-11-03T07:02:34-05:00 | REVISION R004905
+        # TIMESTAMP END 2026-11-03T06:54:15-05:00 | REVISION R004896
         gap=scene.current(a).min_gap(scene.current(b),separation_tolerance*2)
         pairs.append([a,b])
         if gap<=separation_tolerance:remaining.append({'a':a,'b':b,'final_gap_m':gap})
     return {'status':'PASS' if not remaining else 'PARTIAL','initial_mating_pair_count':len(pairs),
-        'remaining_mating_pairs':remaining,'minimum_required_final_gap_m':separation_tolerance,
+        # TIMESTAMP START 2026-11-03T06:54:15-05:00 | REVISION R004896
+        'remaining_mating_pairs':remaining,'intentionally_anchored_mating_pairs':anchored_pairs,'continuous_column_display_seams':column_seams,'minimum_required_final_gap_m':separation_tolerance,
+        # TIMESTAMP END 2026-11-03T06:54:15-05:00 | REVISION R004896
         'scope':'All initially contacting canonical timber/pegs, fitted porch stock/pegs, floor/support members and individual wall rails/infill/shelves; non-interlocking roof covering and window assemblies may remain grouped.'}
 
-def generate_complete_certificate():
+# TIMESTAMP START 2026-11-02T21:01:13-05:00 | REVISION R004875
+def generate_complete_certificate(candidate_directory=None):
+# TIMESTAMP END 2026-11-02T21:01:13-05:00 | REVISION R004875
     """Plan and independently replay the complete current physical scene."""
     from plan_main_disassembly import apply_primary_phases
+    # TIMESTAMP START 2026-11-02T21:01:13-05:00 | REVISION R004875
     files=['scripts/plan_architectural_disassembly.py','scripts/plan_porch_disassembly.py',
-        'scripts/plan_main_disassembly.py','docs/cupola-foot-prototype.json']
+        # TIMESTAMP START 2026-11-03T06:36:08-05:00 | REVISION R004891
+        'scripts/plan_main_disassembly.py','scripts/plan_compact_disassembly.py','scripts/compact-disassembly-route.json','docs/cupola-foot-prototype.json']
+        # TIMESTAMP END 2026-11-03T06:36:08-05:00 | REVISION R004891
+    # TIMESTAMP END 2026-11-02T21:01:13-05:00 | REVISION R004875
     script_hashes={name:hashlib.sha256((ROOT/name).read_bytes()).hexdigest() for name in files}
     variants={};primary_variants={}
     for variant in ['top-entry','baseline','proposed']:
-        planned,prefix_blocked=prepare_scene(variant);prefix_count=len(planned.stages)
+        # TIMESTAMP START 2026-11-02T21:01:13-05:00 | REVISION R004875
+        if candidate_directory:
+            # Candidates contain proposed translations only. Their cached proofs
+            # never authorize publication: every stage is independently replayed
+            # below against the current full scene and all parked obstacles.
+            candidate=json.loads((Path(candidate_directory)/(variant+'.json')).read_text())
+            planned=load_scene(variant);planned.stages=candidate['stages'];planned.version=len(planned.stages)
+            for stage in planned.stages:
+                for motion in stage.get('motions',[stage]):
+                    for pid in motion['member_ids']:planned.offsets[pid]+=np.asarray(motion['delta_m'])
+            prefix_count=candidate.get('prefix_stage_count',0);prefix_blocked=[];primary_blocked=candidate.get('blocked',[])
+        elif variant=='top-entry':
+            from plan_compact_disassembly import complete_plan
+            planned=load_scene(variant);prefix_count=0;prefix_blocked=[];primary_blocked=complete_plan(planned)
+        else:
+            planned,prefix_blocked=prepare_scene(variant);prefix_count=len(planned.stages)
+            primary_blocked=apply_primary_phases(planned)
         print(variant,'prerequisite stages',prefix_count,'pending groups',len(prefix_blocked),flush=True)
-        primary_blocked=apply_primary_phases(planned)
+        # TIMESTAMP END 2026-11-02T21:01:13-05:00 | REVISION R004875
         moved={pid for stage in planned.stages for q in stage.get('motions',[stage]) for pid in q['member_ids']}
-        unmoved=set(planned.parts)-moved
+        # TIMESTAMP START 2026-11-03T06:54:15-05:00 | REVISION R004896
+        fixed=anchored_ids(planned)
+        assert not moved & fixed and all(np.array_equal(planned.offsets[pid],np.zeros(3)) for pid in fixed)
+        unmoved=set(planned.parts)-moved-fixed
+        # TIMESTAMP END 2026-11-03T06:54:15-05:00 | REVISION R004896
         blocked=list(primary_blocked)
         for group in prefix_blocked:
             held=[pid for pid in group['member_ids'] if pid in unmoved]
@@ -423,7 +496,9 @@ def generate_complete_certificate():
             blocked.append({'member_ids':sorted({pid for pair in separation['remaining_mating_pairs'] for pid in [pair['a'],pair['b']]}),'reason':'These initially mating physical surfaces remain in contact after the available sequence.'})
         result=output_snapshot(replayed,blocked);result['sources'].update(script_hashes)
         result.update(verification=verification,physical_ids=sorted(replayed.parts),unmoved_ids=sorted(unmoved),
-            coverage={'physical_piece_count':len(replayed.parts),'moved_piece_count':len(moved),'unmoved_piece_count':len(unmoved)},
+            # TIMESTAMP START 2026-11-03T06:54:15-05:00 | REVISION R004896
+            coverage={'physical_piece_count':len(replayed.parts),'moved_piece_count':len(moved),'unmoved_piece_count':len(unmoved),'anchored_piece_count':len(fixed)},
+            # TIMESTAMP END 2026-11-03T06:54:15-05:00 | REVISION R004896
             stage_count=len(replayed.stages),prefix_stage_count=prefix_count,
             completion_status='Complete geometric withdrawal sequence' if not blocked and not unmoved else 'Partial verified sequence; listed physical pieces remain held')
         if unmoved:result['status']='PARTIAL'
@@ -432,7 +507,9 @@ def generate_complete_certificate():
         primary_variants[variant]={'status':result['status'],'sources':result['sources'],
             'prefix_stage_count':prefix_count,'stages':tail,'blocked':blocked,
             'moved_ids':sorted({pid for stage in tail for q in stage.get('motions',[stage]) for pid in q['member_ids']}),
-            'verification':verification,'physical_ids':result['physical_ids'],'unmoved_ids':result['unmoved_ids']}
+            # TIMESTAMP START 2026-11-03T06:54:15-05:00 | REVISION R004896
+            'verification':verification,'physical_ids':result['physical_ids'],'unmoved_ids':result['unmoved_ids'],'anchored_ids':result['anchored_ids']}
+            # TIMESTAMP END 2026-11-03T06:54:15-05:00 | REVISION R004896
         print(variant,'independent replay',verification['status'],'pair checks',verification['continuous_pair_checks'],flush=True)
     assert variants['top-entry']['status']=='PASS',variants['top-entry']['blocked']
     for result in variants.values():
@@ -440,16 +517,21 @@ def generate_complete_certificate():
     common={'schema_version':1,'status':'PASS' if all(q['status']=='PASS' for q in variants.values()) else 'PARTIAL',
         'variants':variants,'coordinate_system':'World model X/Y/Z in metres; stage deltas accumulate; all parked pieces remain obstacles',
         'scope':'Nominal geometric disassembly visualization; structural dismantling, access and lifting require separate planning'}
-    architectural={**common,'_change_history':{'revision':'R004809','timestamp_start':'2026-11-02T15:51:57-05:00','timestamp_end':'2026-11-02T15:51:57-05:00'}}
-    primary={**common,'variants':primary_variants,'_change_history':{'revision':'R004810','timestamp_start':'2026-11-02T15:56:09-05:00','timestamp_end':'2026-11-02T15:56:09-05:00'}}
-    combined={**common,'_change_history':{'revision':'R004812','timestamp_start':'2026-11-02T16:00:30-05:00','timestamp_end':'2026-11-02T16:00:30-05:00'}}
+    # TIMESTAMP START 2026-11-02T21:01:13-05:00 | REVISION R004875
+    history={'revision':'R004875','timestamp_start':'2026-11-02T21:01:13-05:00','timestamp_end':'2026-11-02T21:01:13-05:00'}
+    architectural={**common,'_change_history':history}
+    primary={**common,'variants':primary_variants,'_change_history':history}
+    combined={**common,'_change_history':history}
+    # TIMESTAMP END 2026-11-02T21:01:13-05:00 | REVISION R004875
     for name,document in [('architectural-disassembly-plans.json',architectural),('main-disassembly-plan.json',primary),('disassembly-plan.json',combined)]:
         (ROOT/'src'/name).write_text(json.dumps(document,separators=(',',':'))+'\n')
     return combined
 
 if __name__=='__main__':
-    parser=argparse.ArgumentParser();parser.add_argument('--variant',choices=VARIANTS,default='baseline');parser.add_argument('--inventory',action='store_true');parser.add_argument('--complete-certificate',action='store_true');args=parser.parse_args()
-    if args.complete_certificate:generate_complete_certificate()
+    # TIMESTAMP START 2026-11-02T21:01:13-05:00 | REVISION R004875
+    parser=argparse.ArgumentParser();parser.add_argument('--variant',choices=VARIANTS,default='baseline');parser.add_argument('--inventory',action='store_true');parser.add_argument('--complete-certificate',action='store_true');parser.add_argument('--candidate-directory');args=parser.parse_args()
+    if args.complete_certificate:generate_complete_certificate(args.candidate_directory)
+    # TIMESTAMP END 2026-11-02T21:01:13-05:00 | REVISION R004875
     else:
         scene=load_scene(args.variant)
         print(json.dumps({'variant':args.variant,'physical_piece_count':len(scene.parts),'architectural_piece_count':len(architectural_ids(scene)),'sources':scene.sources,'excluded':scene.excluded},indent=2))

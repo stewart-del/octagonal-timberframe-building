@@ -6,6 +6,12 @@ import struct
 
 ROOT = Path(__file__).resolve().parents[1]
 model = json.loads((ROOT / 'src/model-data.json').read_text())
+# TIMESTAMP START 2026-11-03T06:43:46-05:00 | REVISION R004893
+# The downloadable solid includes the same complementary post sockets as the viewer.
+wall_fit=json.loads((ROOT/'src/wall-joinery-fit.json').read_text())['variants']['baseline']
+model={**model,'parts':[{**p,**wall_fit['primary_parts'].get(p['id'],{})} for p in model['parts']]}
+# TIMESTAMP END 2026-11-03T06:43:46-05:00 | REVISION R004893
+
 # TIMESTAMP START 2026-11-02T18:14:42-05:00 | REVISION R004830
 import hashlib
 plan_bytes=(ROOT/'src/disassembly-plan.json').read_bytes()

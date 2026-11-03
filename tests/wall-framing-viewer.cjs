@@ -31,7 +31,9 @@ for(const filename of ['model-data.json','step-lap-proposed-model.json','top-ent
   syncDisplayControls(){},renderList(){},syncFocusButton(){},syncIsolationButton(){},focusSelectedParts(){},requestRender(){},togglePieceFocus(){},togglePieceIsolation(){},cutAngleView:{openPiece(){}},
   clearPieceSelection(){selectedPartIds.clear();context.selected=null;},matrix(){},width:800,height:600,aspect:4/3,basis:{eye:[0,0,20],forward:[0,0,-1],right:[1,0,0],up:[0,1,0]},cutMeshes:[],triangleHit:()=>null};
  vm.createContext(context);
- for(const name of ['isShown','isSelectedMember','selectionAlpha','selectedSetBounds','selectWallFraming','selectPart','pick'])vm.runInContext(extract(name),context);
+// TIMESTAMP START 2026-11-03T07:26:01-05:00 | REVISION R004920
+ for(const name of ['logicalPieceId','isColumn','columnSegments','columnBounds','isShown','isSelectedMember','selectionAlpha','selectedSetBounds','selectWallFraming','selectPart','pick'])vm.runInContext(extract(name),context);
+// TIMESTAMP END 2026-11-03T07:26:01-05:00 | REVISION R004920
  const first=jambs[0],second=jambs[1];
  for(const amount of [0,.25,.75,1]){context.explode=amount;for(const p of framing){assert(context.isShown(p));assert.deepEqual(context.offset(p),mul(p.exploded_offset,amount));}}
  context.hiddenPieces.add(first.id);assert(!context.isShown(first));context.hiddenPieces.clear();

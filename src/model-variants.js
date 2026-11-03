@@ -27,7 +27,9 @@ function bind(selected,{document,location,beforeChange=()=>{}}){
  const badge=$('modelRevisionBadge');if(badge)badge.textContent=selected.label;
  const plan=$('plansRevision');if(plan)plan.textContent=selected.status;
  for(const [id,mode] of [['modelVariantAssembled','assembled'],['modelVariantExploded','exploded']])if($(id)){$(id).href='downloads/'+(selected.id==='top-entry'?'Octagon-TOP-ENTRY-':selected.isProposed?'Octagon-PROPOSED-step-lap-':'Octagon-R01-')+mode+'.glb';$(id).download=selected.exportPrefix+mode+'.glb';}
- if(selected.isProposed){
+ // TIMESTAMP START 2026-11-03T06:52:37-05:00 | REVISION R004895
+ if(!selected.pressureAvailable){
+ // TIMESTAMP END 2026-11-03T06:52:37-05:00 | REVISION R004895
   for(const id of ['hypotheticalSeat','hypotheticalReaction'])if($(id))$(id).disabled=true;
   if($('hypotheticalSeat')){$('hypotheticalSeat').innerHTML='<option value="">Unavailable for proposed joints</option>';$('hypotheticalSeat').value='';}
   if($('hypotheticalPressure'))$('hypotheticalPressure').textContent='Unavailable for proposed joints: baseline 64/12 in² pressure shortcuts are disabled. Reactions and capacities remain unsolved.';

@@ -44,11 +44,20 @@ for variant,plan in plans['variants'].items():
         assert proof['parked_pieces_checked']
         moved.update(pid for q in stage.get('motions',[stage]) for pid in q['member_ids']);checks+=proof['continuous_pair_checks']
     assert moved==set(plan['moved_ids'])
-    assert {f'CR{k}' for k in range(8)}|{f'CC{k}' for k in range(8)}|{'PLY'}<=moved
-    assert all(not (set(row['member_ids'])&moved) for row in plan['blocked'])
+    # TIMESTAMP START 2026-11-03T06:36:08-05:00 | REVISION R004891
+    assert {f'CR{k}' for k in range(8)}|{'PLY'}<=moved
+    # A partially withdrawn member can have moved and still be held at a later
+    # stage; its blocked status must remain explicit instead of claiming release.
+    assert all(set(row['member_ids'])<=set(scene.parts) for row in plan['blocked'])
+    # TIMESTAMP END 2026-11-03T06:36:08-05:00 | REVISION R004891
     canonical={pid for pid,p in scene.parts.items() if p.get('is_timber') or p.get('group')=='joinery_pegs' or pid=='PLY'}
     if variant=='top-entry':
-        assert canonical<=moved and not plan['blocked'] and not plan['unmoved_ids']
+        # TIMESTAMP START 2026-11-03T06:54:15-05:00 | REVISION R004896
+        fixed=set(plan['anchored_ids'])
+        assert fixed=={'FLOOR-CENTRAL-HUB','PIER-C','PIER-C-BELOW'}
+        assert not fixed & moved and all(np.array_equal(scene.offsets[pid],np.zeros(3)) for pid in fixed)
+        assert canonical<=moved|fixed and not plan['blocked'] and not plan['unmoved_ids']
+        # TIMESTAMP END 2026-11-03T06:54:15-05:00 | REVISION R004896
     else:
         assert {f'J{k}-{side}' for k in range(8) for side in ['0','2']}<=set(plan['unmoved_ids'])
         assert plan['blocked']

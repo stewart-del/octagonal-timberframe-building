@@ -105,7 +105,9 @@ def generate():
             base='MUD-SILL-'+side+'-'+end
             pair(pid,base,1,-1,[1.5*INCH,3.5*INCH],0,INCH,.5*INCH)
         pair('MUD-ENTRY-GUARD-POST-'+side,'MUD-FRONT-SILL-'+side,1,-1,[1.5*INCH,3.5*INCH],0,INCH,.375*INCH)
-        pair('MUD-HEADER-FRONT','MUD-PLATE-'+side,0,-1 if side=='L' else 1,[1.5*INCH,3.5*INCH],.25*INCH,INCH,.5*INCH,[0,0,INCH])
+# TIMESTAMP START 2026-11-02T20:34:05-05:00 | REVISION R004868
+        pair('MUD-HEADER-FRONT','MUD-PLATE-'+side,0,-1 if side=='L' else 1,[1.5*INCH,3.5*INCH],.25*INCH,INCH,.5*INCH,[0,0,-INCH])
+# TIMESTAMP END 2026-11-02T20:34:05-05:00 | REVISION R004868
     def register_joint(family,donor,receiver,connector,direction,metadata=None):
         jid='PJ-'+str(len(joints)+1).zfill(3)
         for pid in [donor,receiver]:part_joint_ids[pid].append(jid)
@@ -124,7 +126,9 @@ def generate():
     def roof_clip(s):
         # The drawing blank is profiled to the two deck-underface planes before
         # joint cuts; above-roof waste is not shown as a mating cavity.
-        offset=-2.701/np.sqrt(1+1/9)
+        # TIMESTAMP START 2026-11-02T21:55:01-05:00 | REVISION R004881
+        offset=-(layout['dimensions']['roofHighY_M']-.024)/np.sqrt(1+1/9)
+        # TIMESTAMP END 2026-11-02T21:55:01-05:00 | REVISION R004881
         return s.trim_by_plane([1/3,-1,0],offset).trim_by_plane([-1/3,-1,0],offset)
     for k in range(5):
         left='MUD-RAFTER-L-'+str(k);right='MUD-RAFTER-R-'+str(k)
@@ -162,9 +166,18 @@ def generate():
         a=(plo+phi)/2;a[normal_axis]=normal_face-outside_sign*INCH;a[run_axis]=post_face;a[1]=blo[1]-.50
         b=a.copy();b[run_axis]+=run_sign*.50;b[1]=blo[1]
         direction=(b-a)/np.linalg.norm(b-a);perp=np.zeros(3);perp[1]=direction[run_axis];perp[run_axis]=-direction[1];normal=np.zeros(3);normal[normal_axis]=1
-        start=a-direction*INCH;end=b+direction*INCH
+        # TIMESTAMP START 2026-11-03T07:32:15-05:00 | REVISION R004924
+        # Allow the full diagonal width, then profile ends to the receiver planes.
+        # A one-inch square-ended extension left an exposed wedge below the beam.
+        start=a-direction*4.5*INCH;end=b+direction*4.5*INCH
         vertices=[c+normal*x*INCH+perp*y*3*INCH for c in [start,end] for x in [-1,1] for y in [-1,1]]
-        stock=m.Manifold.hull_points(np.asarray(vertices));assert stock.volume()>0
+        stock=m.Manifold.hull_points(np.asarray(vertices))
+        end_lo=np.full(3,-10.);end_hi=np.full(3,10.)
+        if run_sign>0:end_lo[run_axis]=post_face-INCH
+        else:end_hi[run_axis]=post_face+INCH
+        end_hi[1]=blo[1]+INCH
+        stock=stock^cube(end_lo,end_hi);assert stock.volume()>0
+        # TIMESTAMP END 2026-11-03T07:32:15-05:00 | REVISION R004924
         original[pid]=stock;additions[pid]=m.Manifold();cuts[pid]=m.Manifold();part_joint_ids[pid]=[];extra_members.add(pid)
         mesh=export(stock);center=world((start+end)/2).tolist()
         records[pid]={'id':pid,'name':'Actual 2 × 6 porch knee brace','schematic':True,'schematicKind':'mudroom','displayRole':'mudroom','mudroomRole':'framing','group':'mudroom','face':'W','material':'timber brace proposal','is_timber':False,'vertices':mesh['vertices'],'triangles':mesh['triangles'],'center':center,'color':[.58,.38,.22],'exploded_offset':(np.eye(3)[normal_axis]*outside_sign*.8@basis+np.array([0,.2,0])).tolist(),'stockWidthM':2*INCH,'stockDepthM':6*INCH,'connectionStatus':'Documented face-housed pegged brace family; chosen dimensions and capacity require review.'}
@@ -197,7 +210,12 @@ def generate():
         pieces=s.decompose();kept=[p for p in pieces if abs(p.volume())>1e-12]
         numerical_residual+=sum(abs(p.volume()) for p in pieces if abs(p.volume())<=1e-12)
         assert len(kept)==1 and kept[0].volume()>0,(pid,'disconnected occupied stock',[p.volume() for p in pieces])
-        final[pid]=kept[0]
+        # TIMESTAMP START 2026-11-02T22:14:21-05:00 | REVISION R004887
+        normalized=kept[0].simplify(1e-10)
+        error=abs((kept[0]-normalized).volume())+abs((normalized-kept[0]).volume())
+        assert error<1e-12,(pid,'normalization changed occupied stock',error)
+        final[pid]=normalized
+        # TIMESTAMP END 2026-11-02T22:14:21-05:00 | REVISION R004887
     for pid,s in final.items():assert str(s.status())=='Error.NoError' and s.volume()>0 and len(s.decompose())==1,(pid,str(s.status()),s.volume(),[q.volume() for q in s.decompose()])
     all_solids={**final,**pegs};maximum_overlap=0.0;checks=0
     for (aid,a),(bid,b) in itertools.combinations(all_solids.items(),2):

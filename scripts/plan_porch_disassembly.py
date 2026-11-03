@@ -12,7 +12,9 @@ from plan_architectural_disassembly import check_stage, apply_stage
 
 ROOT=Path(__file__).resolve().parents[1]
 
-def apply_porch_phases(scene,skip_cover=False):
+# TIMESTAMP START 2026-11-02T21:01:13-05:00 | REVISION R004875
+def apply_porch_phases(scene,skip_cover=False,parking_scale=1.):
+# TIMESTAMP END 2026-11-02T21:01:13-05:00 | REVISION R004875
     fit=json.loads((ROOT/'src/mudroom-joinery-fit.json').read_text())
     center=(np.asarray(scene.parts['P2']['center'])+np.asarray(scene.parts['P3']['center']))/2;center[1]=0
     tangent=np.asarray(scene.parts['P3']['center'])-np.asarray(scene.parts['P2']['center']);tangent[1]=0;tangent/=np.linalg.norm(tangent)
@@ -20,8 +22,39 @@ def apply_porch_phases(scene,skip_cover=False):
     start=len(scene.stages);blocked=[]
     class Blocked(Exception):pass
     def move(ids,delta,label):
-        ids=list(ids);world=np.asarray(delta)@basis
+        # TIMESTAMP START 2026-11-02T21:01:13-05:00 | REVISION R004875
+        ids=list(ids);delta=np.asarray(delta,float)
+        parking=label.startswith('Park ') or max(abs(delta))>=.7 and (label.startswith(('Move ','Raise ')) or label.startswith('Separate the schematic'))
+        if parking:
+            delta*=parking_scale
+        world=delta@basis
+        if parking_scale<1 and parking:
+            from plan_compact_disassembly import route
+            target=scene.offsets[ids[0]]+world
+            tweaks=[np.zeros(3),*[np.array(q)@basis for amount in [.15,.3,.6] for q in [[0,amount,0],[0,-amount,0],[amount,0,0],[-amount,0,0],[0,0,amount],[0,0,-amount]]]]
+            for tweak in tweaks:
+                proof=route(scene,ids,target+tweak,label,[basis[0],basis[2]])
+                if proof is True:return
+            blocked.append({'label':label,'member_ids':ids,'proof':proof});raise Blocked(label)
+        # TIMESTAMP END 2026-11-02T21:01:13-05:00 | REVISION R004875
         proof=check_stage(scene,ids,world,stop_first=True)
+        # TIMESTAMP START 2026-11-02T21:01:13-05:00 | REVISION R004875
+        if proof['status']!='PASS' and parking_scale<1:
+            from plan_architectural_disassembly import clone_scene
+            hit=proof['collisions'][0];obstacle=hit['obstacle_id']
+            if hit['obstacle_parked'] and obstacle.startswith(('MUD-PEG-','MUD-BRACE-')):
+                for amount in [.1,.2,.4,.8]:
+                    for direction in [basis[0],-basis[0],basis[1],-basis[1],basis[2],-basis[2]]:
+                        trial=clone_scene(scene);shift=direction*amount
+                        clearance=check_stage(trial,[obstacle],shift,stop_first=True)
+                        if clearance['status']!='PASS':continue
+                        apply_stage(trial,[obstacle],shift,clearance,'Leave clearance around released '+obstacle)
+                        retry=check_stage(trial,ids,world,stop_first=True)
+                        if retry['status']!='PASS':continue
+                        apply_stage(trial,ids,world,retry,label)
+                        scene.offsets=trial.offsets;scene.stages=trial.stages;scene.version=trial.version
+                        return
+        # TIMESTAMP END 2026-11-02T21:01:13-05:00 | REVISION R004875
         if proof['status']!='PASS':
             blocked.append({'label':label,'member_ids':ids,'delta_m':world.tolist(),'proof':proof})
             raise Blocked(label)

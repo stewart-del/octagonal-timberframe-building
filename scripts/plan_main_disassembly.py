@@ -211,16 +211,40 @@ def release_brace_with_fitted_companions(scene,pid):
             return True
     return False
 
-def apply_retained_bent_lower_phases(scene):
+# TIMESTAMP START 2026-11-02T21:01:13-05:00 | REVISION R004875
+def apply_retained_bent_lower_phases(scene,compact=False):
+# TIMESTAMP END 2026-11-02T21:01:13-05:00 | REVISION R004875
     """Open the perimeter while preserving the two intact infilled bents."""
     from plan_architectural_disassembly import check_multi_stage,apply_multi_stage,attempt_path
     blocked=[]
     def together(label,motions):
+        # TIMESTAMP START 2026-11-02T21:01:13-05:00 | REVISION R004875
+        if compact:
+            from plan_compact_disassembly import carried_ids
+            motions=[{**q,'member_ids':carried_ids(scene,q['member_ids'])} for q in motions]
+        # TIMESTAMP END 2026-11-02T21:01:13-05:00 | REVISION R004875
         proof=check_multi_stage(scene,motions,stop_first=True)
         if proof['status']!='PASS':
             blocked.append({'member_ids':[pid for q in motions for pid in q['member_ids']],'reason':label,'collisions':proof['collisions']});return False
         apply_multi_stage(scene,motions,proof,label);return True
     def path(pid,label,candidates):
+        # TIMESTAMP START 2026-11-02T21:01:13-05:00 | REVISION R004875
+        if compact:
+            from plan_compact_disassembly import settle_primary,loose_walls
+            prefixes=[];seen=set()
+            for segments in candidates:
+                prefix=[q for q in segments if np.linalg.norm(q)<=1.61]
+                key=json.dumps([np.asarray(q).tolist() for q in prefix])
+                if key not in seen:prefixes.append(prefix);seen.add(key)
+            for retry in range(2):
+                for prefix in prefixes:
+                    result=settle_primary(scene,pid,prefix)
+                    if result is True:return True
+                before=scene.version
+                if retry==0:loose_walls(scene)
+                if scene.version==before:break
+            blocked.append({'member_ids':[pid],'reason':label,'collisions':result['collisions']});return False
+        # TIMESTAMP END 2026-11-02T21:01:13-05:00 | REVISION R004875
         proof=None
         for segments in candidates:
             ok,proof=attempt_path(scene,label,[pid],segments)

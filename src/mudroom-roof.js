@@ -14,9 +14,19 @@ function spec(model){
  const tangent=[(b.center[0]-a.center[0])/length,0,(b.center[2]-a.center[2])/length],radius=Math.hypot(origin[0],origin[2]),outward=[origin[0]/radius,0,origin[2]/radius];
  const world=(x,y,z)=>[origin[0]+tangent[0]*x+outward[0]*z,y,origin[2]+tangent[2]*x+outward[2]*z];
  const local=v=>[dot(sub(v,origin),tangent),v[1],dot(sub(v,origin),outward)];
- const ridgeRoofTopY_M=2.725,pitch=1/3,halfWidthM=48*I+5.5*I,frontZ_M=3*I+96*I+5.5*I,mainEaveZ_M=.5631969630188812,mainTopInterceptM=2.699767541206628,mainSlope=.36079740009746375;
+ // TIMESTAMP START 2026-11-02T21:55:01-05:00 | REVISION R004881
+ const pitch=1/3,halfWidthM=48*I+5.5*I,frontZ_M=3*I+96*I+5.5*I;
+ const mainAPI=typeof TimberRoofCoverings!=='undefined'?TimberRoofCoverings:require('./roof-coverings.js');
+ const hip=parts.find(p=>p.id==='R2'),ends=[hip.axis_start,hip.axis_end],radii=ends.map(v=>Math.hypot(v[0],v[2]));
+ const mainSlope=Math.abs((ends[1][1]-ends[0][1])/(radii[1]-radii[0]))/Math.cos(Math.PI/8);
+ const mainVertices=mainAPI.build(model).components.filter(p=>p.material==='cedar'&&p.roof_face===2).flatMap(p=>p.vertices.map(local));
+ const mainEaveZ_M=Math.max(...mainVertices.map(v=>v[2])),mainTopInterceptM=Math.max(...mainVertices.map(v=>v[1]+mainSlope*v[2]));
+ const ridgeRoofTopY_M=mainTopInterceptM-mainSlope*mainEaveZ_M+pitch*halfWidthM+.024+.001;
+ // TIMESTAMP END 2026-11-02T21:55:01-05:00 | REVISION R004881
  const roofTop=x=>ridgeRoofTopY_M-Math.abs(x)*pitch,deckTop=x=>roofTop(x)-.004,deckBottom=x=>deckTop(x)-.020,mainTop=z=>mainTopInterceptM-mainSlope*z;
- const junctionZ=x=>(mainTopInterceptM-roofTop(x))/mainSlope,transitionX_M=(ridgeRoofTopY_M-mainTop(mainEaveZ_M))/pitch;
+ // TIMESTAMP START 2026-11-02T21:55:01-05:00 | REVISION R004881
+ const junctionZ=x=>(mainTopInterceptM-roofTop(x))/mainSlope,transitionX_M=Math.min(halfWidthM,(ridgeRoofTopY_M-mainTop(mainEaveZ_M))/pitch);
+ // TIMESTAMP END 2026-11-02T21:55:01-05:00 | REVISION R004881
  return {origin,tangent,outward,world,local,ridgeRoofTopY_M,pitch,halfWidthM,frontZ_M,mainEaveZ_M,mainTopInterceptM,mainSlope,roofTop,deckTop,deckBottom,mainTop,junctionZ,transitionX_M,firstFrameZ_M:.66,cedarThicknessM:.004,deckThicknessM:.020,cedarCourseM:6*I,cedarWidthM:6*I,cedarStaggerM:3*I};
 }
 // Convex closed polyhedra are clipped as occupied volumes, including cap faces.
@@ -78,12 +88,9 @@ function build(model){
  // Replace the first deck ID with the stable selection identifier used by the viewer.
  if(components.length)components[0].id='MUD-ROOF';
  const thickness=.001,lap=.05,c=s.transitionX_M;
- for(const [side,a,b] of [['L',-h,-c],['R',c,h]]){
-  // Outer parts of the old eave sit above the new gable: a stepped apron closes that face.
-  add('MUD-ROOF-FLASH-'+side+'-UPPER','Existing-eave upper flashing',prism([[a,e-lap],[b,e-lap],[b,e],[a,e]],(x,z)=>s.mainTop(z),(x,z)=>s.mainTop(z)+thickness),[.39,.43,.43],'metal flashing proposal',{roofLayer:'flashing'});
-  add('MUD-ROOF-FLASH-'+side+'-RISER','Stepped fascia flashing',prism([[a,e],[b,e],[b,e+thickness],[a,e+thickness]],(x)=>s.roofTop(x),(x)=>s.mainTop(e)+thickness),[.39,.43,.43],'metal flashing proposal',{roofLayer:'flashing'});
-  add('MUD-ROOF-FLASH-'+side+'-APRON','Porch-side flashing apron',prism([[a,e+thickness],[b,e+thickness],[b,e+lap],[a,e+lap]],(x)=>s.roofTop(x),(x)=>s.roofTop(x)+thickness),[.39,.43,.43],'metal flashing proposal',{roofLayer:'flashing'});
- }
+ // TIMESTAMP START 2026-11-02T21:55:01-05:00 | REVISION R004881
+ // The raised deck clears the main eave across its full width; stepped fascia pieces are removed.
+ // TIMESTAMP END 2026-11-02T21:55:01-05:00 | REVISION R004881
  for(const [side,a,b] of [['L',-c,0],['R',0,c]]){
   // Two exactly meeting planar strips follow the roof intersection, one on each roof surface.
   const line=x=>s.junctionZ(x);

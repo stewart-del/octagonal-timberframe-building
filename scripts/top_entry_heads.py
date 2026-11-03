@@ -1,3 +1,5 @@
+# TIMESTAMP START 2026-11-02T20:42:47-05:00 | REVISION R004871
+# Restore the original six-inch cupola and remove the R004869 four-inch trial.
 """Representative top-entry J/R head proposal, separate from released V13.
 Chosen dimensions describe a new/raw-stock design, not a repair of cut timbers.
 No load/connection capacity or safe assembly/erection certification.
@@ -204,3 +206,5 @@ def main():
  print(json.dumps({k:v for k,v in proposal['geometry_audit'].items() if k not in ['neighbors','family_isometry_checks','perimeter_preservation']},indent=2));print('TOTAL',proposal['proposed_timber_volume_m3'])
  if proposal['geometry_audit']['geometry_status']!='PASS':raise SystemExit('HOLD: all-node geometry audit failed')
 if __name__=='__main__':main()
+
+# TIMESTAMP END 2026-11-02T20:42:47-05:00 | REVISION R004871

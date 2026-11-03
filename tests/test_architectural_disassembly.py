@@ -45,7 +45,12 @@ if '--replay-plan' in sys.argv:
         assert proof['status']=='PASS' and set(entry['physical_ids'])==set(scene.parts)
         moved={pid for stage in scene.stages for q in stage.get('motions',[stage]) for pid in q['member_ids']}
         assert moved==set(entry['moved_ids'])
-        assert set(entry['unmoved_ids'])==set(scene.parts)-moved
+        # TIMESTAMP START 2026-11-03T06:54:15-05:00 | REVISION R004896
+        fixed=set(entry['anchored_ids'])
+        assert fixed==({'FLOOR-CENTRAL-HUB','PIER-C','PIER-C-BELOW'} if variant=='top-entry' else set())
+        assert not moved & fixed and all(np.array_equal(scene.offsets[pid],np.zeros(3)) for pid in fixed)
+        assert set(entry['unmoved_ids'])==set(scene.parts)-moved-fixed
+        # TIMESTAMP END 2026-11-03T06:54:15-05:00 | REVISION R004896
         blocked={pid for group in entry['blocked'] for pid in group['member_ids']}
         assert set(entry['unmoved_ids'])<=blocked,'Every physical piece without a path must be reported'
         assert all(q.get('physical') is False for q in entry['excluded'])

@@ -2475,7 +2475,7 @@
   "sheet_goods_count": 1,
   "sheet_goods_timber_overlaps": [],
   "cavity_closure_status": "Run audit_cavity_fit.py for independent cavity occupancy checks; legacy 3D residual meshes are not exported.",
-  "source_model_sha256": "fb7bf67b4bae2c41c4e637647ad23caa6167345301af0befa780f4aa943519be",
+  "source_model_sha256": "999a07def4626a4eb8db63f28b492984e7981f60ece7122671e3d359aed809a9",
   "main_brace_revision": {
     "revision": "R004802",
     "timestamp": "2026-11-02T15:15:55-05:00",

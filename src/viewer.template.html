@@ -34,10 +34,14 @@
  body.plans-print #plansModal .modal-card{display:block!important;height:auto!important;min-height:0!important;max-height:none!important;overflow:visible!important;box-shadow:none;border-radius:0;margin:0;padding:0}
  body.plans-print #plansModal .plans-toolbar,body.plans-print #plansModal .modal-head,body.plans-print #plansMeasurements,body.plans-print #plansModal .plans-note{display:none!important}
  body.plans-print #plansModal .plans-scroll{display:block!important;overflow:visible!important;height:auto!important;max-height:none!important;margin:0;padding:0!important;background:white}
- body.plans-print #plansModal .plans-sheet{display:block;width:100%!important;min-width:0!important;max-width:100%!important;height:180mm!important;margin:0!important;padding:0;box-shadow:none;break-inside:avoid;page-break-inside:avoid;break-after:auto;page-break-after:auto}
+ /* TIMESTAMP START 2026-11-03T07:21:14-05:00 | REVISION R004918 */
+ body.plans-print #plansModal .plans-sheet{display:block;width:100%!important;min-width:0!important;max-width:100%!important;height:390mm!important;margin:0!important;padding:0;box-shadow:none;break-inside:avoid;page-break-inside:avoid;break-after:auto;page-break-after:auto}
+ /* TIMESTAMP END 2026-11-03T07:21:14-05:00 | REVISION R004918 */
  body.plans-print #plansModal .plans-sheet+.plans-sheet{break-before:page;page-break-before:always}
  body.plans-print #plansModal .plans-sheet svg{display:block;width:100%!important;height:100%!important;max-width:100%;overflow:visible}
- @page{size:landscape;margin:10mm}
+ /* TIMESTAMP START 2026-11-03T07:21:14-05:00 | REVISION R004918 */
+ @page{size:A3 portrait;margin:10mm}
+ /* TIMESTAMP END 2026-11-03T07:21:14-05:00 | REVISION R004918 */
 }
 
 .step-lap-modal{padding:3vh 3vw;z-index:46}.step-lap-modal .modal-card{height:94vh;max-width:1500px;margin:auto}.step-lap-scroll{overflow:auto;padding:0 20px 22px}.step-lap-toolbar{display:flex;gap:12px;align-items:center;flex-wrap:wrap;padding:12px 20px;border-bottom:1px solid var(--line)}.step-lap-toolbar label{display:flex;align-items:center;gap:6px;font-size:12px}.step-lap-toolbar select{max-width:300px;padding:5px;border:1px solid var(--line);border-radius:5px}.step-lap-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:14px 0}.step-lap-grid>div{border:1px solid var(--line);border-radius:8px;overflow:hidden}.step-lap-grid svg{display:block;width:100%;height:auto}.step-lap-state{padding:10px 13px;background:#eef4ef;border-left:3px solid #67876b;font-size:12px}.step-lap-state.warning{background:#fff1df;border-color:#b57430}.step-lap-note{font-size:12px;color:var(--muted);line-height:1.5}.step-lap-key{display:flex;gap:16px;flex-wrap:wrap;font-size:11px}.step-lap-key i{display:inline-block;width:9px;height:9px;border-radius:2px;margin-right:5px}.step-lap-scroll details{border-top:1px solid var(--line);margin-top:14px;padding-top:10px}.step-lap-scroll tbody tr{cursor:default}.step-lap-scroll td:first-child{width:52%;color:var(--ink);font-weight:500}.step-lap-scroll li{margin:6px 0;font-size:12px}@media(max-width:850px){.step-lap-grid{grid-template-columns:1fr}.step-lap-modal{padding:1vh 2vw}.step-lap-modal .modal-card{height:98vh}.step-lap-toolbar label{width:100%}.step-lap-toolbar select{flex:1}}
@@ -71,7 +75,9 @@ select:focus-visible,a:focus-visible,canvas:focus-visible{outline:3px solid #176
 <!-- TIMESTAMP END 2026-11-02T18:01:36-05:00 | REVISION R004828 -->
 <section class="section priority-card" aria-labelledby="cornerTitle"><span class="priority-eyebrow">Corrected framing · R01</span><h2 id="cornerTitle">Explore connections</h2><button id="reviewP0" class="primary-button">P0 corner close-up</button><button id="reviewCupola" class="primary-button">Cupola connections</button><button id="reviewCorner" class="primary-button">Inspect rafter-to-hip joints</button><button id="roofPlan">Top framing plan</button><button id="restoreFrame" class="secondary-link">Restore full frame</button><p class="corner-members">R0 · J0-0 · J7-2</p><details id="cornerFindings"><summary>Frame layout &amp; changes</summary><p>Eight main triangular frames and sixteen short rafters. Two short rafters in each bay meet the sides of the main hips; the eight inward-running midpoint rafters are removed.</p><p>Lower ties are 6 × 10 in. The 30 ft diameter is measured across the outside post faces; roof tips span 33 ft 4 in. Cupola spacers and the temporary black fixture are separate metal parts.</p><p>The new short-rafter end surfaces follow the hip side planes. Housing, tenon and fastener details remain to be designed.</p><a href="r01.html">Dimensions, changes &amp; joint status</a></details><div id="cornerContext" class="description" role="status" hidden></div></section>
 <!-- TIMESTAMP END 2026-11-01T22:44:38-05:00 | REVISION R004653 -->
-<details class="section" id="roomLayers" open><summary>Walls, openings &amp; bookshelves</summary><label class="checkline"><input id="schematicWalls" type="checkbox"><svg class="layer-icon" viewBox="0 0 24 26" aria-hidden="true" focusable="false"><path d="M3 12L12 4L21 12M6 10V21H18V10M4 23H20" fill="none" stroke="currentColor" stroke-width=".8" opacity=".55"/><path d="M6 11V21M18 11V21" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/></svg> Show walls, windows &amp; door</label><label class="checkline"><input id="schematicShelves" type="checkbox"><svg class="layer-icon" viewBox="0 0 24 26" aria-hidden="true" focusable="false"><path d="M3 12L12 4L21 12M6 10V21H18V10M4 23H20" fill="none" stroke="currentColor" stroke-width=".8" opacity=".55"/><path d="M7 13H11M7 16H11M7 19H11M7 12V20M11 12V20" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/></svg> Show bookshelves independently</label><label class="checkline"><input id="schematicFloor" type="checkbox"><svg class="layer-icon" viewBox="0 0 24 26" aria-hidden="true" focusable="false"><path d="M3 12L12 4L21 12M6 10V21H18V10M4 23H20" fill="none" stroke="currentColor" stroke-width=".8" opacity=".55"/><path d="M5 20H19M5 17H19M8 17V20M12 17V20M16 17V20" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/></svg> Show floor assembly (all)</label><label class="checkline"><input id="schematicCupolaWindows" type="checkbox"><svg class="layer-icon" viewBox="0 0 24 26" aria-hidden="true" focusable="false"><path d="M3 12L12 4L21 12M6 10V21H18V10M4 23H20" fill="none" stroke="currentColor" stroke-width=".8" opacity=".55"/><path d="M9 6V10H15V6M12 6V10" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/></svg> Show eight cupola window frames</label><details class="floor-layer-controls"><summary>Structure, floor &amp; roof layers</summary><label class="checkline"><input type="checkbox" id="layerFoundation" checked><svg class="layer-icon" viewBox="0 0 24 26" aria-hidden="true" focusable="false"><path d="M3 12L12 4L21 12M6 10V21H18V10M4 23H20" fill="none" stroke="currentColor" stroke-width=".8" opacity=".55"/><path d="M6 21V11M18 21V11M4 23H8M16 23H20" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/></svg> Foundation &amp; bearing stands</label><label class="checkline"><input type="checkbox" id="layerFloorStructure" checked><svg class="layer-icon" viewBox="0 0 24 26" aria-hidden="true" focusable="false"><path d="M3 12L12 4L21 12M6 10V21H18V10M4 23H20" fill="none" stroke="currentColor" stroke-width=".8" opacity=".55"/><path d="M6 21V10M18 21V10M6 15H18M6 21L18 10M3 12L12 4L21 12" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/></svg> Floor beams, joists &amp; subfloor</label><label class="checkline"><input type="checkbox" id="layerFloorFinish" checked><svg class="layer-icon" viewBox="0 0 24 26" aria-hidden="true" focusable="false"><path d="M3 12L12 4L21 12M6 10V21H18V10M4 23H20" fill="none" stroke="currentColor" stroke-width=".8" opacity=".55"/><path d="M5 20H19M5 17H19M8 17V20M12 17V20M16 17V20" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/></svg> Bamboo floor finish</label><label class="checkline"><input type="checkbox" id="layerWallStructure" checked><svg class="layer-icon" viewBox="0 0 24 26" aria-hidden="true" focusable="false"><path d="M3 12L12 4L21 12M6 10V21H18V10M4 23H20" fill="none" stroke="currentColor" stroke-width=".8" opacity=".55"/><path d="M6 12H18M6 16H18M6 20H18" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/></svg><!-- TIMESTAMP START 2026-11-02T13:42:47-05:00 | REVISION R004783 --> Wall framing<!-- TIMESTAMP END 2026-11-02T13:42:47-05:00 | REVISION R004783 --></label><label class="checkline"><input type="checkbox" id="layerRoofCover" checked><svg class="layer-icon" viewBox="0 0 24 26" aria-hidden="true" focusable="false"><path d="M3 12L12 4L21 12M6 10V21H18V10M4 23H20" fill="none" stroke="currentColor" stroke-width=".8" opacity=".55"/><path d="M3 12L12 4L21 12" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/></svg> Copper &amp; cedar roof covering</label></details><details><summary>Design assumptions &amp; chosen display dimensions</summary><p class="description">Rails: 6 × 6 in display section, interrupted around clear openings; post joints unresolved. Nine piers replace the earlier short footer illustrations. Floor: eight strand-woven bamboo sectors,¾in display thickness, approximately150mm concentric octagonal strips. Center grate deferred; bamboo center filled. Floor proposal:38.1mm subfloor,235mm joists,286mm radial beams/hub,140mm beam width; pier diameter406.4mm is a display assumption, exposed height609.6mm, embedment unknown. Center hub:203.2mm core apothem,350mm lower shoulder apothem,143mm shoulder height; matching beam end seats. Joist ends follow radial-bay miter planes. Geometric bearing areas are not capacity approval. Steel bearing stands bridge equal-height pier tops to unchanged post feet; connections/capacity undesigned. Shelves span the N/S framing bays and meet rail backs; fastening/book loads unresolved. These are chosen visual proportions, not photo measurements.</p><p class="description">Cupola frames are illustrative; glass, ventilation, attachment and added loads are unverified. No timber cuts.</p><p class="description">Design compass only: P0–P1 = N; site north unverified. N/S solid with bookshelves; E large window; W door; four diagonal faces small windows.</p><p class="description">Illustrative proportions, not measured from the photo. Wall bracing, headers, fastening and all added loads are unverified. Walls, shelves, books, floor assembly, foundation supports, rails and copper/cedar roof coverings add loads not included in timber self-weight. Foundations, joists and their connections remain subject to structural verification.</p></details><button id="pierSettingOut">Nine-pier setting-out / print</button><p class="description">Center grate deferred. Floor stack, joists, beams, stands and nine piers are proposed geometry; spans, bearing, anchors, soil and embedment remain undesigned. Added loads are NOT included in <!-- TIMESTAMP START 2026-11-02T15:07:59-05:00 | REVISION R004800 -->the primary timber self-weight<!-- TIMESTAMP END 2026-11-02T15:07:59-05:00 | REVISION R004800 -->.</p><p id="schematicWallStatus" class="description"></p></details>
+<!-- TIMESTAMP START 2026-11-02T21:09:01-05:00 | REVISION R004877 -->
+<details class="section" id="roomLayers" open><summary>Walls, openings &amp; bookshelves</summary><label class="checkline"><input id="schematicWalls" type="checkbox"><svg class="layer-icon" viewBox="0 0 24 26" aria-hidden="true" focusable="false"><path d="M3 12L12 4L21 12M6 10V21H18V10M4 23H20" fill="none" stroke="currentColor" stroke-width=".8" opacity=".55"/><path d="M6 11V21M18 11V21" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/></svg> Show walls, windows &amp; door</label><label class="checkline"><input id="schematicShelves" type="checkbox"><svg class="layer-icon" viewBox="0 0 24 26" aria-hidden="true" focusable="false"><path d="M3 12L12 4L21 12M6 10V21H18V10M4 23H20" fill="none" stroke="currentColor" stroke-width=".8" opacity=".55"/><path d="M7 13H11M7 16H11M7 19H11M7 12V20M11 12V20" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/></svg> Show bookshelves independently</label><label class="checkline"><input id="schematicFloor" type="checkbox"><svg class="layer-icon" viewBox="0 0 24 26" aria-hidden="true" focusable="false"><path d="M3 12L12 4L21 12M6 10V21H18V10M4 23H20" fill="none" stroke="currentColor" stroke-width=".8" opacity=".55"/><path d="M5 20H19M5 17H19M8 17V20M12 17V20M16 17V20" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/></svg> Show floor assembly (all)</label><label class="checkline"><input id="schematicCupolaWindows" type="checkbox"><svg class="layer-icon" viewBox="0 0 24 26" aria-hidden="true" focusable="false"><path d="M3 12L12 4L21 12M6 10V21H18V10M4 23H20" fill="none" stroke="currentColor" stroke-width=".8" opacity=".55"/><path d="M9 6V10H15V6M12 6V10" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/></svg> Show eight cupola window frames</label><details class="floor-layer-controls"><summary>Structure, floor &amp; roof layers</summary><label class="checkline"><input type="checkbox" id="layerFoundation" checked><svg class="layer-icon" viewBox="0 0 24 26" aria-hidden="true" focusable="false"><path d="M3 12L12 4L21 12M6 10V21H18V10M4 23H20" fill="none" stroke="currentColor" stroke-width=".8" opacity=".55"/><path d="M6 21V11M18 21V11M4 23H8M16 23H20" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/></svg> Foundation &amp; bearing stands</label><label class="checkline"><input type="checkbox" id="layerFloorStructure" checked><svg class="layer-icon" viewBox="0 0 24 26" aria-hidden="true" focusable="false"><path d="M3 12L12 4L21 12M6 10V21H18V10M4 23H20" fill="none" stroke="currentColor" stroke-width=".8" opacity=".55"/><path d="M6 21V10M18 21V10M6 15H18M6 21L18 10M3 12L12 4L21 12" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/></svg> Floor beams, joists &amp; subfloor</label><label class="checkline"><input type="checkbox" id="layerFloorFinish" checked><svg class="layer-icon" viewBox="0 0 24 26" aria-hidden="true" focusable="false"><path d="M3 12L12 4L21 12M6 10V21H18V10M4 23H20" fill="none" stroke="currentColor" stroke-width=".8" opacity=".55"/><path d="M5 20H19M5 17H19M8 17V20M12 17V20M16 17V20" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/></svg> Bamboo floor finish</label><label class="checkline"><input type="checkbox" id="layerWallStructure" checked><svg class="layer-icon" viewBox="0 0 24 26" aria-hidden="true" focusable="false"><path d="M3 12L12 4L21 12M6 10V21H18V10M4 23H20" fill="none" stroke="currentColor" stroke-width=".8" opacity=".55"/><path d="M6 12H18M6 16H18M6 20H18" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/></svg><!-- TIMESTAMP START 2026-11-02T13:42:47-05:00 | REVISION R004783 --> Wall framing<!-- TIMESTAMP END 2026-11-02T13:42:47-05:00 | REVISION R004783 --></label><label class="checkline"><input type="checkbox" id="layerRoofCover" checked><svg class="layer-icon" viewBox="0 0 24 26" aria-hidden="true" focusable="false"><path d="M3 12L12 4L21 12M6 10V21H18V10M4 23H20" fill="none" stroke="currentColor" stroke-width=".8" opacity=".55"/><path d="M3 12L12 4L21 12" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/></svg> Copper &amp; cedar roof covering</label></details><details><summary>Design assumptions &amp; chosen display dimensions</summary><p class="description">Wall rails have exterior-entry housed dovetails with matching post and jamb sockets. Main posts remain 8 × 8 in; cupola posts 6 × 6 in; porch posts and opening jambs 4 × 4 in. Nine piers replace the earlier short footer illustrations. Floor: eight strand-woven bamboo sectors,¾in display thickness, approximately150mm concentric octagonal strips. Center grate deferred; bamboo center filled. Floor proposal:38.1mm subfloor,full 2 × 6 in north–south joists,286mm radial beams/hub,140mm beam width; pier diameter406.4mm is a display assumption, exposed height609.6mm, six-foot underground columns shown transparent. Center hub:203.2mm core apothem,350mm lower shoulder apothem,143mm shoulder height; matching beam end seats. Parallel joists are clipped to the octagonal perimeter and bear on eight radial beams meeting the central hub. Geometric bearing areas are not capacity approval. Steel bearing stands bridge equal-height pier tops to unchanged post feet; connections/capacity undesigned. Shelves span the N/S framing bays and meet rail backs; fastening/book loads unresolved. These are chosen visual proportions, not photo measurements.</p><p class="description">Cupola frames are illustrative; glass, ventilation, attachment and added loads are unverified. Wall connection cuts are included in the displayed geometry.</p><p class="description">Design compass only: P0–P1 = N; site north unverified. N/S solid with bookshelves; E large window; W door; four diagonal faces small windows.</p><p class="description">Illustrative proportions, not measured from the photo. Wall bracing, headers, fastening and all added loads are unverified. Walls, shelves, books, floor assembly, foundation supports, rails and copper/cedar roof coverings add loads not included in timber self-weight. Foundations, joists and their connections remain subject to structural verification.</p></details><button id="pierSettingOut">Nine-pier setting-out / print</button><p class="description">Center grate deferred. Floor stack, joists, beams, stands and nine piers are proposed geometry; spans, bearing, anchors, soil capacity and footing design remain unresolved. Added loads are NOT included in <!-- TIMESTAMP START 2026-11-02T15:07:59-05:00 | REVISION R004800 -->the primary timber self-weight<!-- TIMESTAMP END 2026-11-02T15:07:59-05:00 | REVISION R004800 -->.</p><p id="schematicWallStatus" class="description"></p></details>
+<!-- TIMESTAMP END 2026-11-02T21:09:01-05:00 | REVISION R004877 -->
 <!-- TIMESTAMP START 2026-11-02T14:22:13-05:00 | REVISION R004792 -->
 <section class="section" id="mudroomControls"><h2>Sunken porch</h2><label class="checkline"><input id="layerMudroom" type="checkbox" checked> Show porch</label><p class="description">8 × 8 ft inside · one step below the main floor · slopes outward to a drain grate</p><div class="mini-actions"><button id="viewMudroom">View porch</button><button id="lookInsideMudroom" aria-pressed="false">Hide porch roof</button></div><p class="description" id="mudroomStatus" role="status">Open porch · roof shown</p></section>
 <!-- TIMESTAMP END 2026-11-02T14:22:13-05:00 | REVISION R004792 -->
@@ -113,8 +119,12 @@ select:focus-visible,a:focus-visible,canvas:focus-visible{outline:3px solid #176
 </main>
 <div class="modal" id="scheduleModal" role="dialog" aria-modal="true" aria-labelledby="scheduleTitle"><div class="modal-card"><div class="modal-head"><h2 id="scheduleTitle">Component schedule</h2><button id="closeSchedule">Close</button></div><div class="table-note" id="scheduleNote">Lengths and inclinations are calculated from the current geometry. Actual fabrication cuts and joints remain VERIFY.</div><div class="table-wrap"><table><thead><tr id="scheduleHead"><th>Piece</th><th>Group / member</th><th>Nominal axis length</th><th>Nominal section</th><th>Axis inclination</th><th>R01 end references</th><th>Model vertical bevel</th><th>Conditional plan miter</th><th>Fabrication status</th></tr></thead><tbody id="scheduleRows"></tbody></table></div></div></div>
 <div class="modal" id="plansModal" role="dialog" aria-modal="true" aria-labelledby="plansTitle"><div class="modal-card"><div class="modal-head"><h2 id="plansTitle">Architectural plans · line drawings</h2><button id="closePlans">Close plans</button></div><div class="plans-toolbar"><label><input type="checkbox" id="plansAids"> Include construction aids</label><label><input type="checkbox" id="plansWalls"> Walls, windows &amp; door</label><label><input type="checkbox" id="plansShelves"> Bookshelves</label><label><input type="checkbox" id="plansFloor"> Complete proposed floor &amp; nine piers</label><label><input type="checkbox" id="plansCupolaWindows"> Cupola window frames</label><label><input type="checkbox" id="plansRoofCover"> Roof covering</label><!-- TIMESTAMP START 2026-11-02T14:22:13-05:00 | REVISION R004792 -->
-<label><input type="checkbox" id="plansMudroom" checked> Porch</label>
-<!-- TIMESTAMP END 2026-11-02T14:22:13-05:00 | REVISION R004792 --><label><input type="checkbox" id="plansHidden"> Dashed hidden edges</label><label>Zoom <select id="plansZoom"><option value="1">Fit sheet</option><option value="1.5">150%</option><option value="2">200%</option><option value="3">300%</option></select></label><button id="plansTopSVG">Download top SVG</button><button id="plansSideSVG">Download side SVG</button><button id="printPlans">Print / save PDF</button></div><p class="plans-note">Same selected assembled model, independent of 3D visibility/explosion. Dimensions are measured mesh extents, not stock sizes or saw settings. Source dimensions and provisional geometry are not independently revalidated here. Ground/bearing heights, material and joint design remain unresolved. TFEC-informed review — not structurally qualified.</p><p id="plansBusy" class="plans-note" role="status" aria-live="polite"></p><div class="plans-scroll"><div class="plans-sheet" id="plansTop"></div><div class="plans-sheet" id="plansSide"></div><details id="plansMeasurements"><summary>Component measurements · modeled bounding extents</summary><p>All three dimensions are world-axis bounds, not cut lengths. Source-reported cupola outside diameter is 88 in; the temporary support's owner-reported span is separate. Temporary steel thickness, holes, positions and attachment details may be illustrative: these are NOT drilling or steel-fabrication dimensions. Source status is retained in the model notes.</p><table><thead><tr><th>ID</th><th>Member</th><th>X extent</th><th>Y extent</th><th>Z extent</th></tr></thead><tbody id="plansDimensionRows"></tbody></table></details></div></div></div>
+<!-- TIMESTAMP START 2026-11-02T20:56:29-05:00 | REVISION R004874 -->
+<label><input type="checkbox" id="plansMudroom"> Porch drawings only</label>
+<!-- TIMESTAMP END 2026-11-02T20:56:29-05:00 | REVISION R004874 -->
+<!-- TIMESTAMP START 2026-11-02T21:09:01-05:00 | REVISION R004877 -->
+<!-- TIMESTAMP END 2026-11-02T14:22:13-05:00 | REVISION R004792 --><label><input type="checkbox" id="plansHidden"> Dashed hidden edges</label><label>Zoom <select id="plansZoom"><option value="1">Fit sheet</option><option value="1.5">150%</option><option value="2">200%</option><option value="3">300%</option></select></label><button id="plansTopSVG">Download top SVG</button><button id="plansSideSVG">Download side SVG</button><button id="printPlans">Print / save PDF</button></div><p class="plans-note">Same selected assembled model, independent of 3D visibility/explosion. Dimensions are measured mesh extents, not stock sizes or saw settings. Source dimensions and provisional geometry are not independently revalidated here. Ground/bearing heights, material and joint design remain unresolved. TFEC-informed review — not structurally qualified.</p><p id="plansBusy" class="plans-note" role="status" aria-live="polite"></p><div class="plans-scroll"><div class="plans-sheet" id="plansTop"></div><div class="plans-sheet" id="plansSide"></div><details id="plansMeasurements"><summary>Component measurements · actual axial lengths</summary><p>Axial length is measured along the member axis from its current mesh. X/Y/Z extents are world-axis bounds. These are modeled overall dimensions, not fabrication cut lengths. Cupola outside diameter is 88 in; clear inside diameter is 76 in. Temporary steel thickness, holes, positions and attachment details may be illustrative: these are NOT drilling or steel-fabrication dimensions. Source status is retained in the model notes.</p><table><thead><tr><th>ID</th><th>Member</th><th>Overall axial length</th><th>X extent</th><th>Y extent</th><th>Z extent</th></tr></thead><tbody id="plansDimensionRows"></tbody></table></details></div></div></div>
+<!-- TIMESTAMP END 2026-11-02T21:09:01-05:00 | REVISION R004877 -->
 <div class="modal step-lap-modal" id="stepLapModal" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="stepLapTitle"><div class="modal-card"><div class="modal-head"><h2 id="stepLapTitle">Proposed step-lap joinery</h2><button id="closeStepLap">Close comparison</button></div><div class="step-lap-toolbar"><label>Joint <select id="stepLapPair"></select></label><label>View <select id="stepLapView"><option value="iso">Isometric</option><option value="top">Top</option><option value="section">Longitudinal center section</option></select></label><label><input type="checkbox" id="stepLapExplode"> Lift rafter for inspection</label><label><input type="checkbox" id="stepLapRemoved"> Show removed and restored wood</label><label><input type="checkbox" id="stepLapNormals"> Contact face normals</label><button id="stepLapReset">Reset view</button></div><div class="step-lap-scroll"><p class="step-lap-note"><strong>Real proposed mating-cut geometry.</strong> Geometry review only—not fabrication approved. This comparison does not change the main model selection. Main plans and self-weight follow that selection; baseline force markers are not applied to proposed geometry.</p><div id="stepLapState" class="step-lap-state" role="status"></div><div class="step-lap-grid"><div id="stepLapCurrent"></div><div id="stepLapProposed"></div></div><div class="step-lap-key"><span><i style="background:#789b92"></i>Rafter</span><span><i style="background:#c59d68"></i>Receiving timber</span><span><i style="background:#d67c2e"></i>Removed wood</span><span><i style="background:#4b9b71"></i>Restored within original stock</span><span><i style="background:#a84762"></i>Contact normals, not forces</span></div><p class="step-lap-note">Both views use the same local crop and scale. Cut edges at the crop boundary are not new timber cuts. In the section view, lines are actual mesh intersections with the longitudinal center plane. The exploded view lifts only the rafter 6 in for inspection; it is not an assembly instruction.</p><details><summary>Chosen parameters and measured geometry</summary><p class="step-lap-note">Dimensions are chosen design assumptions, not measurements from the reference image or verified construction details. Areas below are geometric measurements at named sections, not whole-member minimum sections or strength checks. The complete contact and neighbor audit remains in the JSON download.</p><table><thead><tr><th>Parameter or result</th><th>Value and basis</th></tr></thead><tbody id="stepLapMetrics"></tbody></table></details><details><summary>Limits and unresolved design inputs</summary><ul id="stepLapLimitations"></ul><p class="step-lap-note">The owner-uploaded timber-frame manual has not been read. The independently checked external TFEC reference is not a substitute for that attachment or a professional review.</p></details><div class="selection-actions"><button id="stepLapSVG">Download proposed view SVG</button><button id="stepLapJSON">Download proposed pair JSON</button><a href="downloads/Octagon-PROPOSED-step-lap-model.json" download>Proposed full-model JSON</a></div><p class="step-lap-note">Comparison downloads are separate from the baseline and named PROPOSED-NOT-FABRICATION.</p></div></div></div>
 <div class="modal" id="cutAnglesModal" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="cutAnglesTitle"><div class="modal-card"><div class="modal-head"><h2 id="cutAnglesTitle">Cut angles</h2><button id="closeCutAngles">Close cut angles</button></div><div class="cut-angle-toolbar"><button id="cutAnglesAll">All pieces</button><button id="cutAnglesCSV">Download CSV</button><button id="cutAnglesJSON">Download full JSON</button></div><p class="plans-note" id="cutAnglesSummary" role="status"></p><p class="plans-note">Angles measured from the selected model's actual planar faces and stock axes. These are geometric angles, not saw settings or a verified manufacturing cut list. Cut depth and joint capacity require separate verification. The full list includes frame and room-layer meshes; components without recorded stock axes show unavailable reference angles.</p><div id="cutAnglesScroll" class="cut-angle-scroll"><div id="cutFaceSketch"></div><div id="cutAnglesContent"></div></div></div></div>
 <div class="modal" id="pierModal" role="dialog" aria-modal="true" aria-labelledby="pierTitle"><div class="modal-card"><div class="modal-head"><h2 id="pierTitle">Nine-pier setting-out</h2><button id="closePierModal">Close</button></div><button id="printPiers">Print setting-out</button><button id="downloadPiers">Download SVG</button><div id="pierDrawing"></div></div></div><style>#pierDrawing>svg{width:100%;height:auto}@media print{body.pier-print> :not(#pierModal){display:none!important}body.pier-print #pierModal{display:block!important;position:static!important;background:white}body.pier-print #pierModal button{display:none!important}}</style><script type="application/json" id="model-data">__PARTS_JSON__</script>
@@ -123,9 +133,15 @@ select:focus-visible,a:focus-visible,canvas:focus-visible{outline:3px solid #176
 /*__MODEL_VARIANTS__*/
 const MODEL_VARIANTS=__MODEL_VARIANTS_JSON__;
 MODEL_VARIANTS.baseline.model=JSON.parse(document.getElementById('model-data').textContent);
-const MODEL_CONTEXT=OctagonModelVariants.context(MODEL_VARIANTS,window.location.search||'');
+// TIMESTAMP START 2026-11-02T20:38:50-05:00 | REVISION R004870
+/*__WALL_JOINERY__*/
+const initialModelContext=OctagonModelVariants.context(MODEL_VARIANTS,window.location.search||'');
+const MODEL_CONTEXT=OctagonWallJoinery.applyContext(initialModelContext,WALL_JOINERY_DATA.variants[initialModelContext.id]);
+// TIMESTAMP END 2026-11-02T20:38:50-05:00 | REVISION R004870
 const DATA=MODEL_CONTEXT.model,MODEL_EXPORT_JSON=JSON.stringify(DATA,null,2);
-const PLAN_DATA={...DATA,revision:MODEL_CONTEXT.label};
+// TIMESTAMP START 2026-11-02T21:09:01-05:00 | REVISION R004877
+const PLAN_DATA={...DATA,revision:MODEL_CONTEXT.label,wallJoinery:MODEL_CONTEXT.wallJoinery};
+// TIMESTAMP END 2026-11-02T21:09:01-05:00 | REVISION R004877
 const $=id=>document.getElementById(id);
 const parts=DATA.parts||[];
 const canonicalPartId=id=>DATA.component_id_history?.[id]||id;
@@ -134,13 +150,17 @@ const canonicalPartId=id=>DATA.component_id_history?.[id]||id;
 /*__ROOF_COVERINGS__*/
 // TIMESTAMP START 2026-11-02T14:22:13-05:00 | REVISION R004792
 /*__MUDROOM__*/
-const schematicLayout=OctagonFloorFoundation.roomLayout(DATA,TimberSchematicWalls.build(parts),FLOOR_FOUNDATION_DATA),mudroomLayout=OctagonMudroom.build(DATA),schematicParts=[...schematicLayout.components,...TimberRoofCoverings.build(DATA).components,...mudroomLayout.components];
+// TIMESTAMP START 2026-11-02T20:38:50-05:00 | REVISION R004870
+const schematicLayout=OctagonFloorFoundation.roomLayout(DATA,OctagonWallJoinery.applyLayout(TimberSchematicWalls.build(parts),MODEL_CONTEXT.wallJoinery),FLOOR_FOUNDATION_DATA),mudroomLayout=OctagonMudroom.build(DATA),schematicParts=[...schematicLayout.components,...TimberRoofCoverings.build(DATA).components,...mudroomLayout.components];
+// TIMESTAMP END 2026-11-02T20:38:50-05:00 | REVISION R004870
 // TIMESTAMP START 2026-11-02T15:57:59-05:00 | REVISION R004811
 /*__DISASSEMBLY__*/
 const disassemblyScene=new Map([...parts,...schematicParts].map(p=>[p.id,p]));
 const disassembly=OctagonDisassembly.create(DISASSEMBLY_PLANS.variants[MODEL_CONTEXT.id],[...disassemblyScene.keys()]);
 // TIMESTAMP END 2026-11-02T15:57:59-05:00 | REVISION R004811
-let mudroomEnabled=true,mudroomCutaway=false;
+// TIMESTAMP START 2026-11-02T20:19:08-05:00 | REVISION R004863
+let mudroomEnabled=true,mudroomCutaway=false,mudroomStructureOnly=false;
+// TIMESTAMP END 2026-11-02T20:19:08-05:00 | REVISION R004863
 // TIMESTAMP END 2026-11-02T14:22:13-05:00 | REVISION R004792
 /*__DISPLAY_PRESETS__*/
 let schematicWallsEnabled=true,schematicShelvesEnabled=true,schematicCupolaWindowsEnabled=true,schematicFloorEnabled=true;
@@ -158,11 +178,15 @@ if(DATA.main_roof_overhang_normal_ft!=null){const note=$('geometrySummary');note
 const defaultGroups=()=>groups.filter(g=>parts.some(p=>p.group===g.id&&OctagonDisplayPresets.included(p,'complete')));
 const visible=new Set(defaultGroups().map(g=>g.id));
 let isolatedId=null;const hiddenPieces=new Set();let inspectionCutId=null;
-function layerShown(p){const role=OctagonDisplayPresets.role(p);if(role==='deferred')return false;const binding=displayLayerBindings[role];return binding?binding[1]():false;}
+// TIMESTAMP START 2026-11-02T20:19:08-05:00 | REVISION R004863
+function layerShown(p){const role=OctagonDisplayPresets.role(p);if(role==='deferred')return false;if(role==='mudroom'&&mudroomStructureOnly&&!OctagonDisplayPresets.included(p,'skeleton'))return false;const binding=displayLayerBindings[role];return binding?binding[1]():false;}
+// TIMESTAMP END 2026-11-02T20:19:08-05:00 | REVISION R004863
 // TIMESTAMP START 2026-11-02T13:42:47-05:00 | REVISION R004783
 // TIMESTAMP START 2026-11-02T14:22:13-05:00 | REVISION R004792
 // TIMESTAMP START 2026-11-02T15:57:59-05:00 | REVISION R004811
-function isShown(p){if(p.schematic)return layerShown(p)&&!(p.schematicKind==='mudroom'&&mudroomCutaway&&p.mudroomScreen)&&!hiddenPieces.has(p.id)&&(!isolatedId||p.id===isolatedId);return visible.has(p.group)&&!hiddenPieces.has(p.id)&&(!isolatedId||p.id===isolatedId);}
+// TIMESTAMP START 2026-11-03T07:02:34-05:00 | REVISION R004905
+function isShown(p){if(p.schematic)return layerShown(p)&&!(p.schematicKind==='mudroom'&&mudroomCutaway&&p.mudroomScreen)&&!hiddenPieces.has(p.id)&&(!isolatedId||logicalPieceId(p.id)===isolatedId);return visible.has(p.group)&&!hiddenPieces.has(p.id)&&(!isolatedId||logicalPieceId(p.id)===isolatedId);}
+// TIMESTAMP END 2026-11-03T07:02:34-05:00 | REVISION R004905
 // TIMESTAMP END 2026-11-02T15:57:59-05:00 | REVISION R004811
 // TIMESTAMP END 2026-11-02T14:22:13-05:00 | REVISION R004792
 // TIMESTAMP END 2026-11-02T13:42:47-05:00 | REVISION R004783
@@ -256,21 +280,31 @@ function project(p){const q=[0,0,0,0];for(let r=0;r<4;r++)q[r]=VP[r]*p[0]+VP[4+r
 function resize(){const r=canvas.getBoundingClientRect();width=Math.max(1,r.width);height=Math.max(1,r.height);aspect=width/height;dpr=Math.min(2,window.devicePixelRatio||1);const w=Math.round(width*dpr),h=Math.round(height*dpr);if(canvas.width!==w||canvas.height!==h){canvas.width=w;canvas.height=h;}if(gl)gl.viewport(0,0,w,h);requestRender();}
 let requested=false;
 function requestRender(){if(!requested){requested=true;requestAnimationFrame(render);}}
-function isSelectedMember(p) {
-  return selectedPartIds.has(p.id);
-}
+// TIMESTAMP START 2026-11-03T07:02:34-05:00 | REVISION R004905
+function logicalPieceId(id){return /^(PIER-(C|[0-7])|MUD-SUPPORT-(L|R)-(BACK|FRONT))(-BELOW)?$/.test(id)?id.replace(/-BELOW$/,''):id;}
+function columnSegments(p){return schematicParts.filter(q=>logicalPieceId(q.id)===logicalPieceId(p.id));}
+function isColumn(p){return /^(PIER-(C|[0-7])|MUD-SUPPORT-(L|R)-(BACK|FRONT))(-BELOW)?$/.test(p.id);}
+function isSelectedMember(p) {return selectedPartIds.has(logicalPieceId(p.id));}
+function columnBounds(p){const members=columnSegments(p),vertices=members.flatMap(q=>q.vertices.map(v=>vadd(v,offset(q))));const min=[0,1,2].map(i=>Math.min(...vertices.map(v=>v[i]))),max=[0,1,2].map(i=>Math.max(...vertices.map(v=>v[i])));return {members,vertices,min,max,center:min.map((x,i)=>(x+max[i])/2)};}
+
+// TIMESTAMP END 2026-11-03T07:02:34-05:00 | REVISION R004905
 
 // TIMESTAMP START 2026-11-01T22:44:38-05:00 | REVISION R004653
+// TIMESTAMP START 2026-11-02T21:09:01-05:00 | REVISION R004877
 function selectionAlpha(p) {
-  if (isSelectedMember(p) && showHollows) return .38;
-  return selectedPartIds.size > 1 && !isSelectedMember(p) ? .14 : 1;
+ const materialAlpha=Number.isFinite(p.displayOpacity)?p.displayOpacity:1;
+ const contextAlpha=isSelectedMember(p)&&showHollows?.38:selectedPartIds.size>1&&!isSelectedMember(p)?.14:1;
+ return Math.min(materialAlpha,contextAlpha);
 }
+// TIMESTAMP END 2026-11-02T21:09:01-05:00 | REVISION R004877
 // TIMESTAMP END 2026-11-01T22:44:38-05:00 | REVISION R004653
 
 
 function selectedSetBounds() {
   // TIMESTAMP START 2026-11-02T13:42:47-05:00 | REVISION R004783
-  const members = [...parts,...schematicParts].filter(p => selectedPartIds.has(p.id));
+// TIMESTAMP START 2026-11-03T07:02:34-05:00 | REVISION R004905
+  const members = [...parts,...schematicParts].filter(isSelectedMember);
+// TIMESTAMP END 2026-11-03T07:02:34-05:00 | REVISION R004905
   // TIMESTAMP END 2026-11-02T13:42:47-05:00 | REVISION R004783
   if (!members.length) return null;
   const min = [Infinity, Infinity, Infinity], max = [-Infinity, -Infinity, -Infinity];
@@ -291,10 +325,12 @@ function selectedSetBounds() {
 function focusSelectedParts() {
   const bounds = selectedSetBounds();
   if (!bounds) return false;
-  if (bounds.members.length === 1) {
-    focusPart(bounds.members[0]);
+  // TIMESTAMP START 2026-11-03T07:02:34-05:00 | REVISION R004905
+  if (selectedPartIds.size === 1) {
+    focusPart(bounds.members.find(p=>p.id===[...selectedPartIds][0])||bounds.members[0]);
     return true;
   }
+  // TIMESTAMP END 2026-11-03T07:02:34-05:00 | REVISION R004905
   clearMovement();
   inspectionPartId = null;
   inspectionCutId = null;
@@ -327,7 +363,9 @@ function render() {
       const p = m.part, highlighted = isSelectedMember(p);
       gl.uniform1f(loc.opacity, opacity);
       gl.uniform3fv(loc.translation, offset(p));
-      gl.uniform3fv(loc.color, highlighted ? [.12, .62, .75] : (p.schematic?p.color:groupColor(p.group)));
+// TIMESTAMP START 2026-11-02T20:53:48-05:00 | REVISION R004873
+      gl.uniform3fv(loc.color, highlighted ? [.12, .62, .75] : (p.schematic?p.color.slice(0,3):groupColor(p.group)));
+// TIMESTAMP END 2026-11-02T20:53:48-05:00 | REVISION R004873
       gl.uniform1f(loc.lineMode, 0);
       bind(m.buffer);
       // Bias filled surfaces slightly behind their true feature edges.
@@ -378,7 +416,9 @@ function updateEndLabels(){for(const el of endLabels)el.style.display='none';if(
 function surfaceDisplayColor(base, normal, contrast = highContrast) {
   const n = unit(normal), key = Math.max(0, dot(n, unit([-.4, .8, .5]))), fill = Math.max(0, dot(n, unit([.7, .3, -.6])));
   const light = contrast ? Math.min(1.20, .56 + .64 * key + .18 * fill) : .48 + .40 * key + .12 * fill;
-  return base.map(c => Math.max(0, Math.min(1, (contrast ? c * .72 + .28 : c) * light)));
+// TIMESTAMP START 2026-11-02T20:53:48-05:00 | REVISION R004873
+  return base.slice(0,3).map(c => Math.max(0, Math.min(1, (contrast ? c * .72 + .28 : c) * light)));
+// TIMESTAMP END 2026-11-02T20:53:48-05:00 | REVISION R004873
 }
 function memberEdgeColor(highlighted) {
   return highContrast ? (highlighted ? [.025, .16, .20] : [.11, .085, .06]) : (highlighted ? [.04, .32, .42] : [.24, .20, .15]);
@@ -524,13 +564,18 @@ function syncDisplayPreset(){
 function applyDisplayPreset(key){
 // TIMESTAMP START 2026-11-02T14:22:13-05:00 | REVISION R004792
  if(!OctagonDisplayPresets.PRESETS[key])throw Error('Unknown preset');
- mudroomCutaway=false;
+ // TIMESTAMP START 2026-11-02T20:19:08-05:00 | REVISION R004863
+ mudroomCutaway=false;mudroomStructureOnly=key==='skeleton';
+ // TIMESTAMP END 2026-11-02T20:19:08-05:00 | REVISION R004863
 // TIMESTAMP END 2026-11-02T14:22:13-05:00 | REVISION R004792
  isolatedId=null;hiddenPieces.clear();visible.clear();search='';$('search').value='';
  labelsOn=false;detailOn=false;edgeMeasurementsOn=false;$('showLabels').checked=false;$('autoDetails').checked=false;$('showEdgeMeasurements').checked=false;
  for(const p of parts)if(OctagonDisplayPresets.included(p,key))visible.add(p.group);
  for(const p of parts)if(visible.has(p.group)&&!OctagonDisplayPresets.included(p,key))hiddenPieces.add(p.id);
  for(const [role,binding] of Object.entries(displayLayerBindings))binding[2](OctagonDisplayPresets.included({displayRole:role},key));
+ // TIMESTAMP START 2026-11-02T20:19:08-05:00 | REVISION R004863
+ if(mudroomStructureOnly)mudroomEnabled=true;
+ // TIMESTAMP END 2026-11-02T20:19:08-05:00 | REVISION R004863
  explode=0;cutExplode=0;$('explode').value='0';$('explodeValue').textContent='0%';$('cutExplode').value='0';$('cutExplodeValue').textContent='0%';
  if(selected&&!isShown(partById.get(selected)))clearPieceSelection();
  syncDisplayControls();renderGroups();renderList();syncIsolationButton();requestRender();
@@ -539,11 +584,15 @@ function applyDisplayPreset(key){
 function updateMudroomControls(){
  $('lookInsideMudroom').textContent=mudroomCutaway?'Show porch roof':'Hide porch roof';
  $('lookInsideMudroom').setAttribute('aria-pressed',String(mudroomCutaway));
- $('mudroomStatus').textContent=!mudroomEnabled?'Porch hidden':mudroomCutaway?'Porch interior · roof hidden':'Open porch · roof shown';
+ // TIMESTAMP START 2026-11-02T20:19:08-05:00 | REVISION R004863
+ $('mudroomStatus').textContent=!mudroomEnabled?'Porch hidden':mudroomStructureOnly?'Porch structure':mudroomCutaway?'Porch interior · roof hidden':'Open porch · roof shown';
+ // TIMESTAMP END 2026-11-02T20:19:08-05:00 | REVISION R004863
 }
 function viewMudroom(inside=false){
  releaseMouseLook();setNavigation('orbit');clearMovement();clearPieceSelection();isolatedId=null;
- mudroomEnabled=true;mudroomCutaway=inside;explode=0;cutExplode=0;
+ // TIMESTAMP START 2026-11-02T20:19:08-05:00 | REVISION R004863
+ mudroomEnabled=true;mudroomCutaway=inside;mudroomStructureOnly=false;explode=0;cutExplode=0;
+ // TIMESTAMP END 2026-11-02T20:19:08-05:00 | REVISION R004863
  $('explode').value='0';$('explodeValue').textContent='0%';$('cutExplode').value='0';$('cutExplodeValue').textContent='0%';
  for(const p of mudroomLayout.components)hiddenPieces.delete(p.id);
  const d=mudroomLayout.dimensions,w=schematicLayout.walls.find(w=>w.face==='W');
@@ -556,7 +605,9 @@ function initSchematicWalls(){
  $('lookInsideMudroom').onclick=()=>viewMudroom(!mudroomCutaway);
 // TIMESTAMP END 2026-11-02T14:22:13-05:00 | REVISION R004792
  $('schematicFloor').onchange=()=>{foundationEnabled=floorStructureEnabled=floorFinishEnabled=$('schematicFloor').checked;syncDisplayControls();requestRender();};
- for(const binding of Object.values(displayLayerBindings))$(binding[0]).onchange=()=>{binding[2]($(binding[0]).checked);syncDisplayControls();requestRender();};
+ // TIMESTAMP START 2026-11-02T20:19:08-05:00 | REVISION R004863
+ for(const binding of Object.values(displayLayerBindings))$(binding[0]).onchange=()=>{binding[2]($(binding[0]).checked);if(binding[0]==='layerMudroom')mudroomStructureOnly=false;syncDisplayControls();requestRender();};
+ // TIMESTAMP END 2026-11-02T20:19:08-05:00 | REVISION R004863
  for(const [id,key] of [['presetComplete','complete'],['presetSkeleton','skeleton'],['presetFoundation','foundation'],['presetFloor','floor']])$(id).onclick=()=>applyDisplayPreset(key);
  syncDisplayControls();
  for(const w of schematicLayout.walls){const el=document.createElement('div');el.className='label detail';el.style.pointerEvents='none';el.style.display='none';el.textContent=w.face+' · '+w.usage;el.title=schematicLayout.compass;labelLayer.appendChild(el);schematicLabels.push({el,wall:w});}
@@ -593,28 +644,44 @@ function selectWallFraming(p,additive=false,preserveSelection=false){
  }else{if(!preserveSelection)selectedPartIds.clear();selectedPartIds.add(p.id);}
  if(selected!==p.id){inspectionCutId=null;inspectionPartId=null;inspectionPivot=null;}
  if(selectedPartIds.size>1)isolatedId=null;else if(isolatedId)isolatedId=p.id;
- const mudroom=p.schematicKind==='mudroom';
- selected=p.id;selectedCut=null;hiddenPieces.delete(p.id);if(mudroom){mudroomEnabled=true;if(p.mudroomScreen)mudroomCutaway=false;}else wallStructureEnabled=true;syncDisplayControls();
+// TIMESTAMP START 2026-11-03T07:02:34-05:00 | REVISION R004905
+ const column=isColumn(p),mudroom=p.schematicKind==='mudroom';
+ selected=p.id;selectedCut=null;for(const q of column?columnSegments(p):[p])hiddenPieces.delete(q.id);if(mudroom){mudroomEnabled=true;if(p.mudroomScreen)mudroomCutaway=false;}else if(column)foundationEnabled=true;else wallStructureEnabled=true;syncDisplayControls();
+// TIMESTAMP END 2026-11-03T07:02:34-05:00 | REVISION R004905
  const host=$('selection');host.replaceChildren();
- const heading=document.createElement('h2');heading.textContent=mudroom?'Active porch piece':'Active wall framing';
+// TIMESTAMP START 2026-11-03T07:02:34-05:00 | REVISION R004905
+ const heading=document.createElement('h2');heading.textContent=column?'Active pier':mudroom?'Active porch piece':'Active wall framing';
+// TIMESTAMP END 2026-11-03T07:02:34-05:00 | REVISION R004905
  const title=document.createElement('h3');title.className='selection-title';title.textContent=p.id;
  const name=document.createElement('div');name.className='selection-name';name.textContent=p.name;host.append(heading,title,name);
  if(selectedPartIds.size>1){const count=document.createElement('div');count.textContent=selectedPartIds.size+' selected · Shift-click toggles a piece.';host.appendChild(count);}
  const actions=document.createElement('div');actions.className='selection-actions';
- for(const [id,label,action] of [['focusPiece','Focus piece',()=>{togglePieceFocus(p);syncFocusButton();}],['isolatePiece','Isolate & center',()=>togglePieceIsolation(p)],['pieceCutAngles','Cut angles',()=>cutAngleView.openPiece(p.id)],['clearFramingSelection','Clear selection',clearPieceSelection]]){const button=document.createElement('button');button.id=id;button.textContent=label;button.onclick=action;actions.appendChild(button);}
+ for(const [id,label,action] of [['focusPiece','Focus piece',()=>{togglePieceFocus(p);syncFocusButton();}],['isolatePiece','Isolate & center',()=>togglePieceIsolation(p)],['pieceCutAngles','Cut angles',()=>cutAngleView.openPiece(p.id)],['clearFramingSelection','Clear selection',clearPieceSelection]]){
+ // TIMESTAMP START 2026-11-03T07:02:34-05:00 | REVISION R004905
+ if(column&&id==='pieceCutAngles')continue;
+ // TIMESTAMP END 2026-11-03T07:02:34-05:00 | REVISION R004905
+ const button=document.createElement('button');button.id=id;button.textContent=label;button.onclick=action;actions.appendChild(button);}
  host.appendChild(actions);
- if(p.localBounds){const b=p.localBounds;addMetric(host,'Nominal width × height × depth',[b[1]-b[0],b[3]-b[2],b[5]-b[4]].map(v=>num(v/.0254,3)).join(' × ')+' in');}
- addMetric(host,mudroom?'Porch component':'Wall / framing role',mudroom?(p.mudroomRole||'component'):p.face+' / '+(p.framingRole||'rail'));
+// TIMESTAMP START 2026-11-03T07:02:34-05:00 | REVISION R004905
+ if(column){const b=columnBounds(p);addMetric(host,'Full column height',num((b.max[1]-b.min[1])/.0254,3)+' in');addMetric(host,'Buried depth','6 ft');if(p.id.startsWith('PIER-')){const setting=document.createElement('button');setting.textContent='Pier setting out';setting.onclick=()=>openPierSettingOut(p.id);host.appendChild(setting);}}else if(p.localBounds){const b=p.localBounds;addMetric(host,'Nominal width × height × depth',[b[1]-b[0],b[3]-b[2],b[5]-b[4]].map(v=>num(v/.0254,3)).join(' × ')+' in');}
+// TIMESTAMP END 2026-11-03T07:02:34-05:00 | REVISION R004905
+// TIMESTAMP START 2026-11-03T07:02:34-05:00 | REVISION R004905
+ addMetric(host,column?'Column':mudroom?'Porch component':'Wall / framing role',column?'One continuous support; buried portion shown transparent':mudroom?(p.mudroomRole||'component'):p.face+' / '+(p.framingRole||'rail'));
+// TIMESTAMP END 2026-11-03T07:02:34-05:00 | REVISION R004905
  const status=document.createElement('p');status.className='description';status.textContent=mudroom?'Proposed porch geometry. Drain routing, waterproofing, roof flashing, supports and structural connections require design.':'Proposed wall framing. Clear opening dimensions are retained. Contact and clearance cuts are modeled; member sizing, joinery, fastening and structural capacity remain unverified.';host.appendChild(status);
  renderList();syncFocusButton();syncIsolationButton();if(additive)focusSelectedParts();requestRender();
 }
 // TIMESTAMP END 2026-11-02T14:22:13-05:00 | REVISION R004792
 // TIMESTAMP END 2026-11-02T13:42:47-05:00 | REVISION R004783
 function selectPart(id,additive=false,preserveSelection=false){
- id=canonicalPartId(id);
+// TIMESTAMP START 2026-11-03T07:02:34-05:00 | REVISION R004905
+ id=logicalPieceId(canonicalPartId(id));
+// TIMESTAMP END 2026-11-03T07:02:34-05:00 | REVISION R004905
  // TIMESTAMP START 2026-11-02T13:42:47-05:00 | REVISION R004783
 // TIMESTAMP START 2026-11-02T14:22:13-05:00 | REVISION R004792
- const framing=schematicParts.find(p=>p.id===id&&['rail','mudroom'].includes(p.schematicKind));
+// TIMESTAMP START 2026-11-03T07:02:34-05:00 | REVISION R004905
+ const framing=schematicParts.find(p=>p.id===id&&(isColumn(p)||['rail','mudroom'].includes(p.schematicKind)));
+// TIMESTAMP END 2026-11-03T07:02:34-05:00 | REVISION R004905
 // TIMESTAMP END 2026-11-02T14:22:13-05:00 | REVISION R004792
  if(framing){selectWallFraming(framing,additive,preserveSelection);return;}
  // TIMESTAMP END 2026-11-02T13:42:47-05:00 | REVISION R004783
@@ -623,7 +690,9 @@ function selectPart(id,additive=false,preserveSelection=false){
  else{if(!preserveSelection)selectedPartIds.clear();selectedPartIds.add(id);}
  // TIMESTAMP START 2026-11-02T13:42:47-05:00 | REVISION R004783
 // TIMESTAMP START 2026-11-02T14:22:13-05:00 | REVISION R004792
- const remainingFraming=schematicParts.find(p=>p.id===id&&['rail','mudroom'].includes(p.schematicKind));
+// TIMESTAMP START 2026-11-03T07:02:34-05:00 | REVISION R004905
+ const remainingFraming=schematicParts.find(p=>p.id===id&&(isColumn(p)||['rail','mudroom'].includes(p.schematicKind)));
+// TIMESTAMP END 2026-11-03T07:02:34-05:00 | REVISION R004905
 // TIMESTAMP END 2026-11-02T14:22:13-05:00 | REVISION R004792
  if(remainingFraming){selectWallFraming(remainingFraming,false,true);return;}
  // TIMESTAMP END 2026-11-02T13:42:47-05:00 | REVISION R004783
@@ -639,7 +708,9 @@ function selectPart(id,additive=false,preserveSelection=false){
  const actions=document.createElement('div');actions.className='selection-actions';const focus=document.createElement('button');focus.id='focusPiece';focus.className='primary-action';focus.onclick=()=>{togglePieceFocus(p);syncFocusButton();};const isolate=document.createElement('button');isolate.id='isolatePiece';isolate.textContent='Isolate & center';isolate.onclick=()=>togglePieceIsolation(p);const endA=document.createElement('button');endA.textContent='Inspect End A';endA.onclick=()=>{selectPart(p.id);inspectEnd(p,'A');};const endB=document.createElement('button');endB.textContent='Inspect End B';endB.onclick=()=>{selectPart(p.id);inspectEnd(p,'B');};const cutAngles=document.createElement('button');cutAngles.id='pieceCutAngles';cutAngles.textContent='Cut angles';cutAngles.className='primary-action';cutAngles.onclick=()=>cutAngleView.openPiece(p.id);const clear=document.createElement('button');clear.textContent='Clear selection';clear.onclick=clearPieceSelection;if(p.fabrication_dimensions_valid===false)actions.append(focus,isolate,cutAngles,clear);else actions.append(focus,isolate,cutAngles,endA,endB,clear);host.appendChild(actions);syncFocusButton();syncIsolationButton();
 // TIMESTAMP START 2026-11-01T23:19:38-05:00 | REVISION R004668
 // TIMESTAMP START 2026-11-02T19:03:48-05:00 | REVISION R004848
- if(p.id==='M-TMP'){addMetric(host,'Owner reference overall span','90 in / 7 ft 6 in · not the 88 in cupola');addMetric(host,'Reference strap depth / outer leg height','4 in / 14 in total height');addMetric(host,'One temporary welded assembly','8 radial L straps · 3 display holes each · 24 total');}else{addMetric(host,p.main_face_brace_joinery?'Actual full-sawn section':'Nominal section',num(widthIn(p),2)+' × '+num(depthIn(p),2)+' in');addMetric(host,'Nominal axis length',feet(lengthFt(p))+' / '+num(dims(p).length_m,3)+' m');}const status=document.createElement('p');status.className='description';status.textContent=p.id==='M-TMP'?'ILLUSTRATIVE DISPLAY ONLY. Thickness 1/8 in, hole diameter 3/8 in, centers at radius 43 in and 2/7/12 in below top, 4 in leg width and 85 in top elevation are display assumptions — NOT drilling, cut, weld, screw or erection specifications. No capacity or permanent load credit.':p.is_timber===false?'Schematic '+(p.material==='plywood'?'horizontal ½-inch plywood; grade, seams and attachment unresolved.':p.material==='steel'?'metal component; stock and fastening dimensions unresolved.':'roof envelope; not a timber schedule.'):p.main_face_brace_joinery?'Full-sawn 2 × 6-inch body verified from perpendicular mesh sections. Joint sizing and capacity remain unverified.':p.group==='cupola_bands'||p.group==='braces'||p.group==='eave_ring'?'Contextual member; section and connection assumptions remain to be confirmed.':'R01 reference geometry; construction joint details remain unresolved.';/* Status retained in the collapsed assumptions/provenance panel below. */
+// TIMESTAMP START 2026-11-03T07:02:34-05:00 | REVISION R004905
+ if(p.id==='M-TMP'){addMetric(host,'Owner reference overall span','90 in / 7 ft 6 in · not the 88 in cupola');addMetric(host,'Reference strap depth / outer leg height','4 in / 14 in total height');addMetric(host,'One temporary welded assembly','8 radial L straps · 3 display holes each · 24 total');}else{addMetric(host,p.main_face_brace_joinery?'Actual full-sawn section':'Nominal section',num(widthIn(p),2)+' × '+num(depthIn(p),2)+' in');addMetric(host,'Nominal axis length',feet(lengthFt(p))+' / '+num(dims(p).length_m,3)+' m');}const status=document.createElement('p');status.className='description';status.textContent=p.id==='M-TMP'?'ILLUSTRATIVE DISPLAY ONLY. Thickness 1/8 in, hole diameter 3/8 in, centers at radius 43 in and 2/7/12 in below top, 4 in leg width and 109 in top elevation and −4.7° rigid placement rotation are display assumptions — NOT drilling, cut, weld, screw or erection specifications. No capacity or permanent load credit.':p.is_timber===false?'Schematic '+(p.material==='plywood'?'horizontal ½-inch plywood; grade, seams and attachment unresolved.':p.material==='steel'?'metal component; stock and fastening dimensions unresolved.':'roof envelope; not a timber schedule.'):p.main_face_brace_joinery?'Full-sawn 2 × 6-inch body verified from perpendicular mesh sections. Joint sizing and capacity remain unverified.':p.group==='cupola_bands'||p.group==='braces'||p.group==='eave_ring'?'Contextual member; section and connection assumptions remain to be confirmed.':'R01 reference geometry; construction joint details remain unresolved.';/* Status retained in the collapsed assumptions/provenance panel below. */
+// TIMESTAMP END 2026-11-03T07:02:34-05:00 | REVISION R004905
  if(p.main_face_brace_joinery){const proof=document.createElement('a');proof.id='braceSectionProof';proof.href='review/brace-sections.svg';proof.target='_blank';proof.rel='noopener';proof.textContent='View measured 2 × 6 cross-sections';host.appendChild(proof);}
 // TIMESTAMP END 2026-11-02T19:03:48-05:00 | REVISION R004848
 // TIMESTAMP END 2026-11-01T23:19:38-05:00 | REVISION R004668
@@ -661,9 +732,13 @@ function syncFocusButton(){
  button.textContent=multiple?'Frame selected pieces':focused?'Unfocus piece':'Focus piece';
  button.setAttribute('aria-pressed',String(focused));
 }
-function fittedCenter(p){if(p.schematic)return vadd(p.center,offset(p));const {min,max}=fittedBounds.get(p.id);return vadd(min.map((v,i)=>(v+max[i])/2),offset(p));}
+// TIMESTAMP START 2026-11-03T07:02:34-05:00 | REVISION R004905
+function fittedCenter(p){if(isColumn(p))return columnBounds(p).center;if(p.schematic)return vadd(p.center,offset(p));const {min,max}=fittedBounds.get(p.id);return vadd(min.map((v,i)=>(v+max[i])/2),offset(p));}
+// TIMESTAMP END 2026-11-03T07:02:34-05:00 | REVISION R004905
 function setPiecePivot(p){inspectionCutId=null;inspectionPartId=p.id;inspectionPivot=fittedCenter(p);}
-function focusPart(p){clearMovement();setPiecePivot(p);let radius=0;for(const v of p.vertices)radius=Math.max(radius,length(vsub(vadd(v,offset(p)),inspectionPivot)));const halfFov=Math.min(25*Math.PI/180,Math.atan(Math.tan(25*Math.PI/180)*aspect));focusPoint(inspectionPivot.slice(),Math.max(.15,radius/Math.sin(halfFov)*1.1));}
+// TIMESTAMP START 2026-11-03T07:02:34-05:00 | REVISION R004905
+function focusPart(p){clearMovement();setPiecePivot(p);let radius=0;const vertices=isColumn(p)?columnBounds(p).vertices:p.vertices.map(v=>vadd(v,offset(p)));for(const v of vertices)radius=Math.max(radius,length(vsub(v,inspectionPivot)));const halfFov=Math.min(25*Math.PI/180,Math.atan(Math.tan(25*Math.PI/180)*aspect));focusPoint(inspectionPivot.slice(),Math.max(.15,radius/Math.sin(halfFov)*1.1));}
+// TIMESTAMP END 2026-11-03T07:02:34-05:00 | REVISION R004905
 function syncIsolationButton(){
  const button=document.getElementById('isolatePiece');if(!button)return;
  const active=isolatedId===selected;
@@ -685,7 +760,27 @@ function updatePieceCenter(){syncFocusButton();syncIsolationButton();const marke
 // TIMESTAMP END 2026-11-02T13:42:47-05:00 | REVISION R004783
 function setFlySpeed(value){flySpeed=Math.max(.01,Math.min(5,Number(value)||1.5));$('flySpeed').value=String(flySpeed);$('flySpeedValue').textContent=flySpeed.toFixed(2)+' m/s';updateNavigationStatus();}
 // TIMESTAMP START 2026-11-02T14:22:13-05:00 | REVISION R004792
-function fitModel(){inspectionPivot=null;inspectionPartId=null;inspectionCutId=null;const verts=[...parts,...schematicParts].filter(p=>isShown(p)).flatMap(p=>p.vertices.map(v=>vadd(v,offset(p))));if(!verts.length)return;const min=[Infinity,Infinity,Infinity],max=[-Infinity,-Infinity,-Infinity];for(const v of verts)for(let i=0;i<3;i++){min[i]=Math.min(min[i],v[i]);max[i]=Math.max(max[i],v[i]);}camera.target=min.map((v,i)=>(v+max[i])/2);let radius=0;for(const v of verts)radius=Math.max(radius,length(vsub(v,camera.target)));const halfVertical=25*Math.PI/180;const halfFov=Math.min(halfVertical,Math.atan(Math.tan(halfVertical)*aspect));camera.distance=Math.max(6,radius/Math.sin(halfFov)*1.08);camera.theta=mudroomEnabled?Math.atan2(mudroomLayout.outward[0],mudroomLayout.outward[2])+.35:.72;camera.phi=mudroomEnabled?.38:.52;clearMovement();if(navigation==='free')freeFromOrbit();requestRender();}
+// TIMESTAMP START 2026-11-03T06:52:37-05:00 | REVISION R004895
+// TIMESTAMP START 2026-11-03T07:08:54-05:00 | REVISION R004911
+function interiorCenter(){
+ const posts=parts.filter(p=>p.group==='perimeter_posts'),rings=parts.filter(p=>p.group==='eave_ring');
+ const floor=Math.min(...posts.flatMap(p=>p.vertices.map(v=>v[1]))),head=Math.min(...rings.flatMap(p=>p.vertices.map(v=>v[1])));
+ return [posts.reduce((sum,p)=>sum+p.center[0],0)/posts.length,(floor+head)/2,posts.reduce((sum,p)=>sum+p.center[2],0)/posts.length];
+}
+function fitModel(){
+ inspectionPivot=null;inspectionPartId=null;inspectionCutId=null;resize();
+ const shown=[...parts,...schematicParts].filter(isShown),verts=shown.flatMap(p=>p.vertices.map(v=>vadd(v,offset(p))));if(!verts.length)return;
+ const min=[Infinity,Infinity,Infinity],max=[-Infinity,-Infinity,-Infinity];for(const v of verts)for(let i=0;i<3;i++){min[i]=Math.min(min[i],v[i]);max[i]=Math.max(max[i],v[i]);}
+ const wholeRoom=!isolatedId&&parts.filter(p=>p.group==='perimeter_posts').every(isShown);
+ camera.target=wholeRoom?interiorCenter():min.map((v,i)=>(v+max[i])/2);
+ camera.theta=mudroomEnabled?Math.atan2(mudroomLayout.outward[0],mudroomLayout.outward[2])+.65:.72;camera.phi=.34;
+ let radius=0;for(const v of verts)radius=Math.max(radius,length(vsub(v,camera.target)));
+ const halfVertical=25*Math.PI/180,halfFov=Math.min(halfVertical,Math.atan(Math.tan(halfVertical)*aspect));
+ camera.distance=Math.max(6,radius/Math.sin(halfFov)*1.15);
+ clearMovement();if(navigation==='free')freeFromOrbit();requestRender();
+}
+// TIMESTAMP END 2026-11-03T07:08:54-05:00 | REVISION R004911
+// TIMESTAMP END 2026-11-03T06:52:37-05:00 | REVISION R004895
 // TIMESTAMP END 2026-11-02T14:22:13-05:00 | REVISION R004792
 function triangleHit(origin,dir,a,b,c){const e1=vsub(b,a),e2=vsub(c,a),h=cross(dir,e2),det=dot(e1,h);if(Math.abs(det)<1e-8)return null;const inv=1/det,s=vsub(origin,a),u=dot(s,h)*inv;if(u<0||u>1)return null;const q=cross(s,e1),v=dot(dir,q)*inv;if(v<0||u+v>1)return null;const t=dot(e2,q)*inv;return t>.0005?t:null;}
 function pick(x, y, additive = false) {
@@ -717,7 +812,9 @@ for (const p of [...parts,...schematicParts.filter(p=>p.id.startsWith('PIER-')||
     }
   }
   // Ghost members remain pickable; Shift on a cut overlay toggles its owner.
-  if(hit?.id.startsWith('PIER-')){openPierSettingOut(hit.id);return;}
+// TIMESTAMP START 2026-11-03T07:02:34-05:00 | REVISION R004905
+  // Piers select their full column; setting out remains an inspector action.
+// TIMESTAMP END 2026-11-03T07:02:34-05:00 | REVISION R004905
   if (additive && (cutHit || hit)) selectPart(cutHit ? cutHit.part_id : hit.id, true);
   else if (cutHit) selectCut(cutHit);
   else if (hit) selectPart(hit.id, false);
@@ -725,7 +822,9 @@ for (const p of [...parts,...schematicParts.filter(p=>p.id.startsWith('PIER-')||
 
 // TIMESTAMP START 2026-11-02T13:42:47-05:00 | REVISION R004783
 // TIMESTAMP START 2026-11-02T14:22:13-05:00 | REVISION R004792
-const partById=new Map([...parts,...schematicParts.filter(p=>['rail','mudroom'].includes(p.schematicKind))].map(p=>[p.id,p]));
+// TIMESTAMP START 2026-11-03T07:02:34-05:00 | REVISION R004905
+const partById=new Map([...parts,...schematicParts.filter(p=>isColumn(p)||['rail','mudroom'].includes(p.schematicKind))].map(p=>[p.id,p]));
+// TIMESTAMP END 2026-11-03T07:02:34-05:00 | REVISION R004905
 // TIMESTAMP END 2026-11-02T14:22:13-05:00 | REVISION R004792
 // TIMESTAMP END 2026-11-02T13:42:47-05:00 | REVISION R004783
 function faceNormal(vertices,triangles){for(const tri of triangles){const n=cross(vsub(vertices[tri[1]],vertices[tri[0]]),vsub(vertices[tri[2]],vertices[tri[0]]));if(length(n)>1e-10)return unit(n);}return [0,1,0];}
@@ -786,7 +885,9 @@ for(const [id,direction] of [['disassemblyPrevious',-1],['disassemblyNext',1]])$
 
 // TIMESTAMP END 2026-11-02T15:57:59-05:00 | REVISION R004811
 // TIMESTAMP START 2026-11-02T15:57:59-05:00 | REVISION R004811
-$('explode').oninput=e=>{const pivotPart=partById.get(inspectionPartId),before=pivotPart?offset(pivotPart):null;explode=Number(e.target.value)/100;if(pivotPart){const delta=vsub(offset(pivotPart),before);inspectionPivot=vadd(inspectionPivot,delta);if(navigation==='orbit')camera.target=vadd(camera.target,delta);}else if(selectedPartIds.size>1&&inspectionPivot){const next=selectedSetBounds().center,delta=vsub(next,inspectionPivot);inspectionPivot=next;if(navigation==='orbit')camera.target=vadd(camera.target,delta);}$('explodeValue').textContent=Number(e.target.value).toFixed(2).replace(/\.?0+$/,'')+'%';updateDisassemblyStatus();syncDisplayPreset();if(!selected&&hiddenPieces.size===0)fitModel();requestRender();};$('showLabels').onchange=e=>{labelsOn=e.target.checked;requestRender();};$('autoDetails').onchange=e=>{detailOn=e.target.checked;requestRender();};$('wireframe').onchange=e=>{edgesOn=e.target.checked;requestRender();};$('surfaceContrast').onchange=e=>{highContrast=e.target.checked;requestRender();};$('search').oninput=e=>{search=e.target.value.toLowerCase().trim();renderList();};
+// TIMESTAMP START 2026-11-02T21:01:13-05:00 | REVISION R004875
+$('explode').oninput=e=>{const pivotPart=partById.get(inspectionPartId),before=pivotPart?offset(pivotPart):null;explode=Number(e.target.value)/100;if(pivotPart){const delta=vsub(offset(pivotPart),before);inspectionPivot=vadd(inspectionPivot,delta);if(navigation==='orbit')camera.target=vadd(camera.target,delta);}else if(selectedPartIds.size>1&&inspectionPivot){const next=selectedSetBounds().center,delta=vsub(next,inspectionPivot);inspectionPivot=next;if(navigation==='orbit')camera.target=vadd(camera.target,delta);}$('explodeValue').textContent=Number(e.target.value).toFixed(2).replace(/\.?0+$/,'')+'%';updateDisassemblyStatus();syncDisplayPreset();requestRender();};$('showLabels').onchange=e=>{labelsOn=e.target.checked;requestRender();};$('autoDetails').onchange=e=>{detailOn=e.target.checked;requestRender();};$('wireframe').onchange=e=>{edgesOn=e.target.checked;requestRender();};$('surfaceContrast').onchange=e=>{highContrast=e.target.checked;requestRender();};$('search').oninput=e=>{search=e.target.value.toLowerCase().trim();renderList();};
+// TIMESTAMP END 2026-11-02T21:01:13-05:00 | REVISION R004875
 // TIMESTAMP END 2026-11-02T15:57:59-05:00 | REVISION R004811
 // TIMESTAMP END 2026-11-02T13:42:47-05:00 | REVISION R004783
 // TIMESTAMP END 2026-11-01T23:06:10-05:00 | REVISION R004659
@@ -940,7 +1041,9 @@ let plansReturnFocus=null,plansSVG={},plansRequest=0;
 // TIMESTAMP START 2026-11-02T14:22:13-05:00 | REVISION R004792
 function planOptions(){return {mudroom:$('plansMudroom').checked,modelHash:PLAN_MODEL_HASH,aids:$('plansAids').checked,hidden:$('plansHidden').checked,walls:$('plansWalls').checked,shelves:$('plansShelves').checked,cupolaWindows:$('plansCupolaWindows').checked,floor:$('plansFloor').checked,roofCover:$('plansRoofCover').checked};}
 // TIMESTAMP END 2026-11-02T14:22:13-05:00 | REVISION R004792
-function installPlans(drawings){for(const view of ['top','side']){if(plansSVG[view]!==drawings[view].svg){plansSVG[view]=drawings[view].svg;$(view==='top'?'plansTop':'plansSide').innerHTML=drawings[view].svg;}}const options=planOptions();const host=$('plansDimensionRows');host.replaceChildren();for(const p of parts.filter(p=>OctagonPlans.included(p,options.aids))){const row=document.createElement('tr'),b=OctagonPlans.bounds([p]);for(const value of [p.id,p.name,...b.size.map(OctagonPlans.measure)]){const td=document.createElement('td');td.textContent=value;row.appendChild(td);}host.appendChild(row);}resizePlans();}
+// TIMESTAMP START 2026-11-02T21:09:01-05:00 | REVISION R004877
+function installPlans(drawings){for(const view of ['top','side']){if(plansSVG[view]!==drawings[view].svg){plansSVG[view]=drawings[view].svg;$(view==='top'?'plansTop':'plansSide').innerHTML=drawings[view].svg;}}const options=planOptions();const host=$('plansDimensionRows');host.replaceChildren();for(const p of drawings.top.parts){const row=document.createElement('tr'),b=OctagonPlans.bounds([p]);for(const value of [p.id,p.name,p.axis_start&&p.axis_end?OctagonPlans.measure(OctagonPlans.axialLength(p)):'—',...b.size.map(OctagonPlans.measure)]){const td=document.createElement('td');td.textContent=value;row.appendChild(td);}host.appendChild(row);}resizePlans();}
+// TIMESTAMP END 2026-11-02T21:09:01-05:00 | REVISION R004877
 function refreshPlans(){const options=planOptions(),drawings={};for(const view of ['top','side'])drawings[view]=OctagonPlans.drawing(PLAN_DATA,{...options,view});installPlans(drawings);}
 async function requestPlansRefresh(){const request=++plansRequest,options=planOptions(),drawings={};$('plansBusy').textContent='Drawing line plans… controls remain available';$('plansTopSVG').disabled=true;$('plansSideSVG').disabled=true;$('printPlans').disabled=true;await new Promise(resolve=>setTimeout(resolve,0));for(const view of ['top','side']){drawings[view]=await OctagonPlans.drawingAsync(PLAN_DATA,{...options,view,isCancelled:()=>request!==plansRequest});if(request!==plansRequest||!drawings[view])return;}installPlans(drawings);$('plansBusy').textContent='Line plans ready';$('plansTopSVG').disabled=false;$('plansSideSVG').disabled=false;$('printPlans').disabled=false;}
 function resizePlans(){const width=Number($('plansZoom').value)||1;for(const id of ['plansTop','plansSide'])$(id).style.width=(width*100)+'%';}

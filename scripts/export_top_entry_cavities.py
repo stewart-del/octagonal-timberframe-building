@@ -1,3 +1,5 @@
+# TIMESTAMP START 2026-11-02T20:42:47-05:00 | REVISION R004871
+# Restore the original six-inch cupola and remove the R004869 four-inch trial.
 # TIMESTAMP START 2026-11-02T17:13:18-05:00 | REVISION R004819
 """Export actual pockets, explicit head-entry space and separate blank offcuts.
 
@@ -193,3 +195,5 @@ def export():
 
 if __name__=='__main__':export()
 # TIMESTAMP END 2026-11-02T17:13:18-05:00 | REVISION R004819
+
+# TIMESTAMP END 2026-11-02T20:42:47-05:00 | REVISION R004871
