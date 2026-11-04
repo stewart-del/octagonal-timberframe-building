@@ -1,3 +1,5 @@
+<!-- TIMESTAMP START 2026-11-04T20:33:26+00:00 | REVISION R000023 -->
+<!-- TIMESTAMP START 2026-11-04T19:33:21+00:00 | REVISION R000014 -->
 <!-- TIMESTAMP START 2026-11-04T12:56:41+00:00 | REVISION R000006 -->
 <!doctype html>
 <html lang="en">
@@ -177,7 +179,12 @@ const SAVED_MODEL_CONTEXT=OctagonWallJoinery.applyContext(initialModelContext,WA
 /* PARAMETRIC_VIEWER_BODY_START */
 function startViewer(MODEL_CONTEXT){
 // TIMESTAMP END 2026-11-03T13:30:29-05:00 | REVISION R005026
-const DATA=MODEL_CONTEXT.model,MODEL_EXPORT_JSON=JSON.stringify(DATA,null,2);
+// TIMESTAMP START 2026-11-04T19:27:13+00:00 | REVISION R000001
+const DATA=MODEL_CONTEXT.model;
+const modelExportData={...DATA,parts:DATA.parts.map(part=>({...part}))};
+let modelExportJSON=null;
+function modelExport(){return modelExportJSON??(modelExportJSON=JSON.stringify(modelExportData,null,2));}
+// TIMESTAMP END 2026-11-04T19:27:13+00:00 | REVISION R000001
 // TIMESTAMP START 2026-11-02T21:09:01-05:00 | REVISION R004877
 const PLAN_DATA={...DATA,revision:MODEL_CONTEXT.label,wallJoinery:MODEL_CONTEXT.wallJoinery};
 // TIMESTAMP END 2026-11-02T21:09:01-05:00 | REVISION R004877
@@ -300,9 +307,16 @@ function buildBuffer(data){const b=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFF
 function featureEdges(vertices,triangles){return TimberEdgeMeasurements.featureEdges(vertices,triangles);}
 
 for(const p of [...parts,...schematicParts]){
- const vertices=p.vertices||[],triangles=p.triangles||[];const raw=[],edgeRaw=[],unique=new Set();
+ // TIMESTAMP START 2026-11-04T19:29:44+00:00 | REVISION R000002
+ const vertices=p.vertices||[],triangles=p.triangles||[];const raw=[];
+ const cachedEdges=MODEL_CONTEXT.parametric?null:MODEL_CONTEXT.meshCache?.get(p.id);
+ if(MODEL_CONTEXT.meshCache&&!MODEL_CONTEXT.parametric&&!cachedEdges)throw Error('Missing drawing edges: '+p.id);
+ const edgeRaw=cachedEdges||featureEdges(vertices,triangles);
+ // TIMESTAMP END 2026-11-04T19:29:44+00:00 | REVISION R000002
  for(const tri of triangles){const a=vertices[tri[0]],b=vertices[tri[1]],c=vertices[tri[2]];if(!a||!b||!c)continue;const n=unit(cross(vsub(b,a),vsub(c,a)));for(const v of [a,b,c])raw.push(...v,...n);}
- edgeRaw.push(...featureEdges(vertices,triangles));
+ // TIMESTAMP START 2026-11-04T19:29:44+00:00 | REVISION R000002
+ // Drawing edges reuse the matching build cache; changed dimensions compute their own.
+ // TIMESTAMP END 2026-11-04T19:29:44+00:00 | REVISION R000002
  meshParts.push({part:p,raw,count:raw.length/6,edgeCount:edgeRaw.length/6,buffer:gl?buildBuffer(raw):null,edgeBuffer:gl?buildBuffer(edgeRaw):null});
  if(p.schematic)continue;
  const lab=document.createElement('button');lab.className='label';lab.title='Select '+p.id;lab.addEventListener('click',e=>{e.stopPropagation();selectPart(p.id,!!e.shiftKey);});lab.dataset.part=p.id;labelLayer.appendChild(lab);p._label=lab;
@@ -765,7 +779,9 @@ function selectWallFraming(p,additive=false,preserveSelection=false){
   else{const ys=p.vertices.map(v=>v[1]);addMetric(host,'Vertical thickness',num((Math.max(...ys)-Math.min(...ys))/.0254,3)+' in');}
  }
 // TIMESTAMP START 2026-11-03T13:59:01-05:00 | REVISION R005033
- OctagonJoineryDimensions.render(host,p.id,{model:DATA,porch:mudroomLayout,wall:MODEL_CONTEXT.wallJoinery},document);
+// TIMESTAMP START 2026-11-04T19:33:21+00:00 | REVISION R000014
+ OctagonJoineryDimensions.render(host,p.id,{model:DATA,part:p,porch:mudroomLayout,wall:MODEL_CONTEXT.wallJoinery},document);
+// TIMESTAMP END 2026-11-04T19:33:21+00:00 | REVISION R000014
 // TIMESTAMP END 2026-11-03T13:59:01-05:00 | REVISION R005033
  const status=document.createElement('p');status.className='description';status.textContent=floor?'Modeled floor component; select, focus or isolate to inspect its actual geometry.':mudroom?'Proposed porch geometry. Drain routing, waterproofing, roof flashing, supports and structural connections require design.':'Proposed wall framing. Clear opening dimensions are retained. Contact and clearance cuts are modeled; member sizing, joinery, fastening and structural capacity remain unverified.';host.appendChild(status);
 // TIMESTAMP END 2026-11-03T12:04:27-05:00 | REVISION R005002
@@ -819,7 +835,9 @@ function selectPart(id,additive=false,preserveSelection=false){
 // TIMESTAMP END 2026-11-02T19:03:48-05:00 | REVISION R004848
 // TIMESTAMP END 2026-11-01T23:19:38-05:00 | REVISION R004668
 // TIMESTAMP START 2026-11-03T13:59:01-05:00 | REVISION R005033
- OctagonJoineryDimensions.render(host,p.id,{model:DATA,porch:mudroomLayout,wall:MODEL_CONTEXT.wallJoinery},document);
+// TIMESTAMP START 2026-11-04T19:33:21+00:00 | REVISION R000014
+ OctagonJoineryDimensions.render(host,p.id,{model:DATA,part:p,porch:mudroomLayout,wall:MODEL_CONTEXT.wallJoinery},document);
+// TIMESTAMP END 2026-11-04T19:33:21+00:00 | REVISION R000014
 // TIMESTAMP END 2026-11-03T13:59:01-05:00 | REVISION R005033
  const metadata=document.createElement('details'),ms=document.createElement('summary');metadata.dataset.inspectorKey='dimensions';ms.textContent='Member dimensions & identifiers';metadata.appendChild(ms);addMetric(metadata,'Model reference',p.fabrication_dimensions_valid===false?p.id+(p.id==='M-TMP'?' | one display assembly; no fabrication ends':' | modeled member; fabrication cuts not approved'):p.id+' | Ends '+p.id+'-A / '+p.id+'-B');addMetric(metadata,'Member family',groupMap.get(p.group)?.label||clean(p.group));if(p.fitted_axial_extent_inches!=null)addMetric(metadata,'Current solid axial extent',num(p.fitted_axial_extent_inches,4)+' in');host.appendChild(metadata);
  /* Full face angles are available through Cut angles, not dumped into the inspector. */
@@ -1018,7 +1036,9 @@ $('explode').oninput=e=>{const pivotPart=partById.get(inspectionPartId),before=p
 $('constructionAids').onclick=()=>{const aids=parts.filter(p=>p.group==='metal_spacers'||p.group==='temporary_fixture');const on=aids.some(isShown);isolatedId=null;for(const p of aids){hiddenPieces.delete(p.id);on?visible.delete(p.group):visible.add(p.group);}renderGroups();renderList();requestRender();};
 $('allPermanent').onclick=()=>applyDisplayPreset('complete');$('hidePieces').onclick=()=>{isolatedId=null;parts.forEach(p=>hiddenPieces.add(p.id));for(const binding of Object.values(displayLayerBindings))binding[2](false);syncDisplayControls();renderList();requestRender();};$('allGroups').onclick=()=>{applyDisplayPreset('complete');$('cornerContext').hidden=true;hiddenPieces.clear();groups.forEach(g=>visible.add(g.id));renderGroups();renderList();requestRender();};
 function download(name,text,type){const url=URL.createObjectURL(new Blob([text],{type})),a=document.createElement('a');a.href=url;a.download=OctagonModelVariants.exportName(MODEL_CONTEXT,name);a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);}
-$('downloadJSON').onclick=()=>download('octagon-parts.json',MODEL_EXPORT_JSON,'application/json');
+// TIMESTAMP START 2026-11-04T19:27:13+00:00 | REVISION R000001
+$('downloadJSON').onclick=()=>download('octagon-parts.json',modelExport(),'application/json');
+// TIMESTAMP END 2026-11-04T19:27:13+00:00 | REVISION R000001
 const csvCell=v=>'"'+String(v??'').replaceAll('"','""')+'"';
 $('downloadCSV').onclick=()=>{const head=['ID','Name','Group','Length_ft','Width_in','Depth_in','Axis_inclination_deg','Plan_direction_deg','Modeled_end_off_square_deg','Modeled_end_A_off_square_deg','Modeled_end_B_off_square_deg','Modeled_vertical_bevel_deg','Conditional_plan_miter_deg','Fabrication_status'];const rows=parts.map(p=>[p.id,p.name,p.group,lengthFt(p),widthIn(p),depthIn(p),angle(p).axis_inclination_deg,angle(p).azimuth_deg,angle(p).display_end_cut_off_square_deg,angle(p).display_end_A_off_square_deg,angle(p).display_end_B_off_square_deg,angle(p).modeled_vertical_bevel_deg,angle(p).conditional_plan_miter_off_square_deg,p.cut_status]);download('octagon-parts-schedule.csv',[head,...rows].map(r=>r.map(csvCell).join(',')).join('\r\n'),'text/csv');};
 let scheduleReturnFocus=null;
@@ -1228,3 +1248,5 @@ window.octagonViewer={context:MODEL_CONTEXT,parts,schematicParts,motion,setMotio
 
 
 <!-- TIMESTAMP END 2026-11-04T12:56:41+00:00 | REVISION R000006 -->
+<!-- TIMESTAMP END 2026-11-04T19:33:21+00:00 | REVISION R000014 -->
+<!-- TIMESTAMP END 2026-11-04T20:33:26+00:00 | REVISION R000023 -->

@@ -24,6 +24,11 @@ for joint in model['tenon_schedule']:
     points=np.asarray(joint['connector']['vertices']);normal=np.asarray(joint['insertion_direction'])
     depth=np.ptp(points@normal)/I
     assert abs(depth-3)<1e-5,(joint['id'],'tenon depth',depth)
+    # TIMESTAMP START 2026-11-04T20:12:02+00:00 | REVISION R000019
+    if joint.get('bearing_direction'):
+        plane=max(points@np.asarray(joint['bearing_direction']))
+        assert abs(plane-joint['bearing_coordinate_m'])<1e-6,(joint['id'],'bearing plane detached from current tenon')
+    # TIMESTAMP END 2026-11-04T20:12:02+00:00 | REVISION R000019
     donor,receiver=shapes[joint['donor']],shapes[joint['receiver']]
     assert donor.min_gap(receiver,.01)<1e-6,(joint['id'],'joint gap')
 # TIMESTAMP END 2026-11-03T16:50:27-05:00 | REVISION R005061

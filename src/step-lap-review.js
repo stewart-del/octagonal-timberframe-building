@@ -1,3 +1,4 @@
+// TIMESTAMP START 2026-11-04T20:33:26+00:00 | REVISION R000023
 /* Separate proposed CSG joinery comparison. Never replaces canonical parts or loads. */
 (function(root){
 'use strict';
@@ -57,6 +58,28 @@ function tradeoff(v){const m=v.measurements||{},a=m.baseline_horizontal_bearing_
  if(sec)text+='Post top-band section: '+rounded(sec.baseline_area_in2)+' → '+rounded(sec.proposed_area_in2)+' in². ';
  return text+(sec?'The top-band slice is not the whole-post minimum. ':'Contact is redistributed onto inclined faces. ')+'Area alone establishes neither capacity loss nor gain.';}
 function createController(data,{document,save,release=()=>{},onOpen=()=>{},onClose=()=>{}}){
+// TIMESTAMP START 2026-11-04T19:27:13+00:00 | REVISION R000001
+ if(typeof data==='function'){
+  let controller=null,pending=null;
+  const button=document.getElementById('openStepLap');
+  button.textContent='Earlier joint study';
+  const open=()=>{
+   if(controller){controller.open();return Promise.resolve(controller);}
+   if(pending)return pending;
+   button.setAttribute('aria-busy','true');
+   pending=Promise.resolve().then(data).then(value=>{
+    controller=createController(value,{document,save,release,onOpen,onClose});
+    controller.open();return controller;
+   }).catch(error=>{
+    pending=null;document.getElementById('parameterStatus').textContent='Could not load the earlier joint study. Click to retry. '+error.message;
+    return null;
+   }).finally(()=>button.removeAttribute('aria-busy'));
+   return pending;
+  };
+  button.onclick=open;
+  return {open,close:()=>controller?.close(),set:(...args)=>controller?.set(...args)};
+ }
+// TIMESTAMP END 2026-11-04T19:27:13+00:00 | REVISION R000001
  const $=id=>document.getElementById(id),state={open:false,variantId:data.variants?.[0]?.id||'',view:'iso',explode:true,removed:false,normals:false};let returnFocus=null;
  const selected=()=>data.variants.find(v=>v.id===state.variantId)||data.variants[0];
  const writeList=(id,items)=>{const host=$(id);host.replaceChildren();for(const text of items){const li=document.createElement('li');li.textContent=text;host.appendChild(li);}};
@@ -86,3 +109,4 @@ function createController(data,{document,save,release=()=>{},onOpen=()=>{},onClo
 }
 root.OctagonStepLap={drawing,localPoint,projection,cropPolygon,cropLine,sectionSegments,flatEntries,summaryRows,tradeoff,createController};
 })(typeof globalThis!=='undefined'?globalThis:this);
+// TIMESTAMP END 2026-11-04T20:33:26+00:00 | REVISION R000023

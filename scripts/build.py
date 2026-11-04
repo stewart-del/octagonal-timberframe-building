@@ -1,3 +1,4 @@
+# TIMESTAMP START 2026-11-04T20:33:26+00:00 | REVISION R000023
 # TIMESTAMP START 2026-11-01T23:19:38-05:00 | REVISION R004668
 # TIMESTAMP START 2026-11-01T22:44:38-05:00 | REVISION R004653
 #!/usr/bin/env python3
@@ -164,6 +165,15 @@ visibility_image=brace_visibility['image']
 assert visibility_image['path']=='public/review/interior-braces.png'
 assert hashlib.sha256((ROOT/visibility_image['path']).read_bytes()).hexdigest()==visibility_image['sha256'], 'Interior brace image is stale'
 # TIMESTAMP END 2026-11-02T18:39:35-05:00 | REVISION R004836
+# TIMESTAMP START 2026-11-04T19:33:21+00:00 | REVISION R000014
+shoulder_audit=json.loads((ROOT/'docs/brace-shoulder-audit.json').read_text())
+assert shoulder_audit['status']=='PASS'
+assert shoulder_audit['script_sha256']==hashlib.sha256((ROOT/'scripts/audit_brace_shoulders.py').read_bytes()).hexdigest(),'Brace shoulder audit script is stale'
+for result in shoulder_audit['variants']:
+    for relative,sha in result['sources'].items():
+        assert hashlib.sha256((ROOT/relative).read_bytes()).hexdigest()==sha,'Brace shoulder geometry proof is stale: '+relative
+assert hashlib.sha256((ROOT/shoulder_audit['image']['path']).read_bytes()).hexdigest()==shoulder_audit['image']['sha256'],'Brace detail image is stale'
+# TIMESTAMP END 2026-11-04T19:33:21+00:00 | REVISION R000014
 # TIMESTAMP START 2026-11-02T19:03:48-05:00 | REVISION R004848
 brace_sections=json.loads((ROOT/'docs/brace-sections.json').read_text())
 assert brace_sections['status']=='PASS' and brace_sections['primary_brace_count']==24
@@ -268,6 +278,9 @@ shutil.copyfile(ROOT/'src/parametric-source.json',dist/'parametric-source.json')
 # TIMESTAMP START 2026-11-02T19:03:48-05:00 | REVISION R004848
 (dist/'review').mkdir(exist_ok=True)
 shutil.copyfile(ROOT/'public/review/brace-sections.svg',dist/'review/brace-sections.svg')
+# TIMESTAMP START 2026-11-04T19:33:21+00:00 | REVISION R000014
+shutil.copyfile(ROOT/'public/review/brace-shoulders.png',dist/'review/brace-shoulders.png')
+# TIMESTAMP END 2026-11-04T19:33:21+00:00 | REVISION R000014
 # TIMESTAMP END 2026-11-02T19:03:48-05:00 | REVISION R004848
 # Current pages only; historical NAV-05 reports remain available through Git history.
 for name in ['about.html', 'r01.html', 'joinery.html', 'structural-audit.html', 'JOINT-DESIGN-BRIEF.md',
@@ -341,6 +354,12 @@ tests = ROOT/'tests'
 tests.mkdir(exist_ok=True)
 (tests/'embedded-model.json').write_text(encode(data))
 (tests/'viewer-script-check.js').write_text('\n'.join(scripts))
+# TIMESTAMP START 2026-11-04T19:27:13+00:00 | REVISION R000001
+from build_runtime import write_runtime
+print(json.dumps(write_runtime(template, model=data, variants=model_variants,
+    wall_joinery=wall_joinery, foundation=foundation_data, mudroom=mudroom_fit,
+    disassembly=disassembly_plans, study=step_lap)))
+# TIMESTAMP END 2026-11-04T19:27:13+00:00 | REVISION R000001
 print(json.dumps({'revision':'R01', 'components':len(ids), 'html_bytes':len(template.encode()),
                   'model_sha256':model_sha, 'output':'dist/index.html', 'network_dependencies':False}))
 
@@ -348,3 +367,4 @@ print(json.dumps({'revision':'R01', 'components':len(ids), 'html_bytes':len(temp
 # TIMESTAMP END 2026-11-01T22:44:38-05:00 | REVISION R004653
 
 # TIMESTAMP END 2026-11-01T23:19:38-05:00 | REVISION R004668
+# TIMESTAMP END 2026-11-04T20:33:26+00:00 | REVISION R000023

@@ -63,7 +63,9 @@ def build(model):
         post_axis=0 if suffix=='C' else 2
         post_sign=-1 if suffix in ['B','C'] else 1
         face=(172 if suffix=='C' else 4*post_sign)*I
-        base=np.array([176*I,(50 if suffix=='C' else 62)*I,0.])
+        # TIMESTAMP START 2026-11-04T19:42:40+00:00 | REVISION R000016
+        base=np.array([176*I,(44 if suffix=='C' else 62)*I,0.])
+        # TIMESTAMP END 2026-11-04T19:42:40+00:00 | REVISION R000016
         a=base+e*((face-base[post_axis])/e[post_axis])
         beam_y=min(v[1] for v in records[receiver]['vertices'])
         run=24*I if suffix=='C' else beam_y-a[1]
@@ -80,21 +82,31 @@ def build(model):
         endpoints=[('P0',a-up*.5*I,post_in,post_cross,up),(receiver,b,up,normal,e)]
         local_joints=[]
         for rid,face_center,inward,cross,along in endpoints:
-            if rid=='P0':
-                # Keep this entire tongue inside the brace's true two-inch
-                # stock width. Post and brace planes meet at 22.5 degrees;
-                # six flat mortise faces accommodate that real orientation.
-                travel=-e;cosine=float(travel@inward)
-                tongue=oriented_box(face_center+travel*1.5*I/cosine,[travel,cross,along],[5*I/cosine,I,2*I])
-                mouth=float(face_center@inward)
-                tongue=tongue.trim_by_plane(inward.tolist(),mouth).trim_by_plane((-inward).tolist(),-mouth-3*I)
-                root=oriented_box(face_center-travel*.05*I,[travel,cross,along],[.5*I,I,2*I])
-            else:
-                tongue=oriented_box(face_center+inward*1.5*I,[inward,cross,along],[3*I,I,2*I])
-                root=oriented_box(face_center-inward*.05*I,[inward,cross,along],[.1*I,I,2*I])
+            # TIMESTAMP START 2026-11-04T19:42:40+00:00 | REVISION R000016
+            # Keep the brace's sloping heel, but square its nose against an
+            # INTERNAL bearing wall. This is the supplied housed-brace profile,
+            # not a small rectangular pencil tongue on an exterior shoulder.
+            bearing=-up if rid=='P0' else e
+            data=np.asarray(exterior.to_mesh64().vert_properties)[:,:3]
+            mouth=float(face_center@inward)
+            cap=data[abs(data@inward-mouth)<1e-8]
+            assert len(cap)>=3,(suffix,rid,'missing shoulder cap')
+            nose=float(max(cap@bearing)-.75*I)
+            strip=blank.trim_by_plane(cross.tolist(),float(face_center@cross-.5*I)).trim_by_plane((-cross).tolist(),float(-face_center@cross-.5*I))
+            tongue=strip.trim_by_plane(inward.tolist(),mouth).trim_by_plane((-inward).tolist(),-mouth-3*I).trim_by_plane((-bearing).tolist(),-nose)
+            root=strip.trim_by_plane(inward.tolist(),mouth-.05*I).trim_by_plane((-inward).tolist(),-mouth-.05*I).trim_by_plane((-bearing).tolist(),-nose)
+            # TIMESTAMP END 2026-11-04T19:42:40+00:00 | REVISION R000016
+            # TIMESTAMP START 2026-11-04T19:42:40+00:00 | REVISION R000016
+            if suffix=='C' and rid!='P0':
+                # Owner: gravity-seated square tenon at the cross-beam end.
+                tongue=oriented_box(face_center+up*1.5*I,[up,cross,e],[3*I,I,2*I])
+                root=oriented_box(face_center-up*.05*I,[up,cross,e],[.1*I,I,2*I])
+            # TIMESTAMP END 2026-11-04T19:42:40+00:00 | REVISION R000016
             assert (tongue-restored[rid]).volume()/I**3<1e-6,(suffix,rid,'tenon leaves receiver stock')
             assert (root^body).volume()/I**3>.05,(suffix,rid,'tenon root misses brace')
-            body=body+tongue+root
+            # TIMESTAMP START 2026-11-04T19:42:40+00:00 | REVISION R000016
+            body=body+tongue
+            # TIMESTAMP END 2026-11-04T19:42:40+00:00 | REVISION R000016
             local_joints.append((rid,tongue,face_center,inward,cross,along))
         body=clean(body)
         assert (body-blank).volume()/I**3<1e-6,(suffix,'tenon cannot be cut from full 2x6 stock')
@@ -103,7 +115,15 @@ def build(model):
             specs[pid]={'id':pid,'axis_start':rotate(a,k).tolist(),'axis_end':rotate(b,k).tolist(),'stock_frame':{'axis':rotate(axis,k).tolist(),'width':rotate(normal,k).tolist(),'depth':rotate(depth,k).tolist()},'tenons':[]}
             for rid,tongue,center,inward,cross,along in local_joints:
                 target=rid[0]+str((int(rid[1])+k)%8)
-                joint={'id':f'BJ-{pid}-{target}','donor':pid,'receiver':target,'projection_m':3*I,'width_m':I,'height_m':2*I,'shape':'straight flat-ended tenon','face_center':rotate(center,k).tolist(),'insertion_direction':rotate(inward,k).tolist(),'width_direction':rotate(cross,k).tolist(),'height_direction':rotate(along,k).tolist(),'connector':mesh(tongue.rotate([0,45*k,0]))}
+                # TIMESTAMP START 2026-11-04T19:42:40+00:00 | REVISION R000016
+                vertices=np.asarray(tongue.to_mesh64().vert_properties)[:,:3]
+                bearing=-up if rid=='P0' else e
+                joint={'id':f'BJ-{pid}-{target}','donor':pid,'receiver':target,'projection_m':3*I,'width_m':I,'height_m':float(np.ptp(vertices@along)),'shape':'housed brace tenon with squared internal bearing end','face_center':rotate(center,k).tolist(),'insertion_direction':rotate(inward,k).tolist(),'width_direction':rotate(cross,k).tolist(),'height_direction':rotate(along,k).tolist(),'bearing_direction':rotate(bearing,k).tolist(),'bearing_coordinate_m':float(max(vertices@bearing)),'outer_shoulder_lip_m':.75*I,'connector':mesh(tongue.rotate([0,45*k,0]))}
+                # TIMESTAMP END 2026-11-04T19:42:40+00:00 | REVISION R000016
+                # TIMESTAMP START 2026-11-04T19:42:40+00:00 | REVISION R000016
+                if suffix=='C' and rid!='P0':
+                    joint.update(shape='simple square-seated vertical tenon',gravity_seated=True,bearing_direction=[0,1,0],bearing_coordinate_m=float(max(vertices@up)))
+                # TIMESTAMP END 2026-11-04T19:42:40+00:00 | REVISION R000016
                 joints.append(joint);specs[pid]['tenons'].append(joint)
     receivers=dict(restored)
     for joint in joints:

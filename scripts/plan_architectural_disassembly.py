@@ -522,7 +522,9 @@ def generate_complete_certificate(candidate_directory=None):
     # TIMESTAMP START 2026-11-02T21:01:13-05:00 | REVISION R004875
     # TIMESTAMP START 2026-11-04T12:48:28+00:00 | REVISION R000004
     from datetime import datetime,timezone
-    history={'revision':'R000004','timestamp_start':'2026-11-04T12:48:28+00:00','timestamp_end':datetime.now(timezone.utc).isoformat(),'ledger_origin':'cloud; authoritative Mac ledger requires reconciliation'}
+    # TIMESTAMP START 2026-11-04T20:18:09+00:00 | REVISION R000021
+    history={'revision':'R000021','timestamp_start':'2026-11-04T20:18:09+00:00','timestamp_end':datetime.now(timezone.utc).isoformat(),'ledger_origin':'cloud; authoritative Mac ledger requires reconciliation'}
+    # TIMESTAMP END 2026-11-04T20:18:09+00:00 | REVISION R000021
     # TIMESTAMP END 2026-11-04T12:48:28+00:00 | REVISION R000004
     architectural={**common,'_change_history':history}
     primary={**common,'variants':primary_variants,'_change_history':history}

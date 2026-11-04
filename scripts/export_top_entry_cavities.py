@@ -64,7 +64,9 @@ def entry_regions(proposal):
     seed=union(cutters)
     return {f'R{k}':seed.rotate((0,45*k,0)) for k in range(8)}
 
-def generate(model=None,proposal=None):
+# TIMESTAMP START 2026-11-04T20:04:39+00:00 | REVISION R000018
+def generate(model=None,proposal=None,unchanged_seeds=None):
+# TIMESTAMP END 2026-11-04T20:04:39+00:00 | REVISION R000018
     model=model or read(ROOT/'src/top-entry-proposed-model.json')
     proposal=proposal or read(ROOT/'src/top-entry-proposal.json')
     timbers={p['id']:p for p in model['parts'] if p['is_timber']}
@@ -79,6 +81,17 @@ def generate(model=None,proposal=None):
         return result
     def seed(pid):
         if pid in seeds:return seeds[pid]
+        # TIMESTAMP START 2026-11-04T20:04:39+00:00 | REVISION R000018
+        retained=(unchanged_seeds or {}).get(pid)
+        if retained:
+            fingerprint=hashlib.sha256(json.dumps(timbers[pid],sort_keys=True,separators=(',',':')).encode()).hexdigest()
+            if fingerprint==retained['part_sha256']:
+                # This is input mesh geometry, never a reused verification.
+                # audit() below still checks every pocket against current mates.
+                seeds[pid]=copy.deepcopy(retained['record'])
+                print('Retain exact unchanged cavity geometry',pid,flush=True)
+                return seeds[pid]
+        # TIMESTAMP END 2026-11-04T20:04:39+00:00 | REVISION R000018
         if pid=='J0-2':
             diagonal=np.sqrt(.5);reflection=np.array([[diagonal,0,-diagonal],[0,1,0],[-diagonal,0,-diagonal]])
             seeds[pid]=transform_record(seed('J0-0'),reflection)

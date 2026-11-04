@@ -1,3 +1,4 @@
+// TIMESTAMP START 2026-11-04T20:33:26+00:00 | REVISION R000023
 'use strict';
 const assert=require('node:assert');
 require('../src/model-variants.js');
@@ -13,7 +14,11 @@ api.bind(api.context(variants,'?model=proposed'),{document,location,beforeChange
 nodes.get('modelVariant').onchange();assert.equal(visits.length,0);nodes.get('modelVariant').value='bad';nodes.get('modelVariant').onchange();assert.equal(visits.length,0);assert.equal(nodes.get('modelVariant').value,'proposed');nodes.get('modelVariant').value='baseline';nodes.get('modelVariant').onchange();assert.equal(visits.length,1);assert.equal(changes.length,1);assert(visits[0].includes('model=baseline')&&visits[0].endsWith('#part=P0'));
 api.bind(api.context(withoutCavities,'?model=proposed'),{document,location});assert(nodes.get('showHollows').disabled&&!nodes.get('showHollows').checked);assert.equal(JSON.stringify(variants),before,'Selection does not mutate either source bundle');
 const fs=require('node:fs'),path=require('node:path'),crypto=require('node:crypto'),root=path.join(__dirname,'..');
-const html=fs.readFileSync(path.join(root,'dist/index.html'),'utf8');
+// TIMESTAMP START 2026-11-04T19:27:13+00:00 | REVISION R000001
+// The complete offline export supports this synchronous geometry harness.
+// runtime-loading.cjs and browser QA exercise the published asynchronous loader.
+const html=fs.readFileSync(path.join(root,'index.html'),'utf8');
+// TIMESTAMP END 2026-11-04T19:27:13+00:00 | REVISION R000001
 const blocks=[...html.matchAll(/<script\b([^>]*)>([\s\S]*?)<\/script>/gi)].map(([,attrs,body])=>({attrs,body,type:attrs.match(/\btype="([^"]+)"/i)?.[1]||''}));
 const source=blocks.filter(b=>['','text/javascript','application/javascript'].includes(b.type)).map(b=>b.body).join('\n');
 const htmlIds=[...html.matchAll(/<[\w-]+\b[^>]*\bid=["']([^"']+)["']/g)].map(m=>m[1]);
@@ -30,7 +35,10 @@ for(const [id,search] of [['top-entry',''],['proposed','?model=proposed'],['base
  const check=(ok,message)=>{if(!ok)throw Error(message);assertions.push(message);};
  check(MODEL_CONTEXT.id===${JSON.stringify(id)},'Boot selects ${id}');
  check(MODEL_CONTEXT.sha256===${JSON.stringify(sha)}&&PLAN_MODEL_HASH===MODEL_CONTEXT.sha256,'Selected model and plan cache use actual source hash');
- check(MODEL_EXPORT_JSON===${JSON.stringify(JSON.stringify(expected,null,2))},'Main JSON export is exact selected source, before display mutation');
+ // TIMESTAMP START 2026-11-04T19:27:13+00:00 | REVISION R000001
+ check(modelExportJSON===null,'Model export serialization waits for a download');
+ check(modelExport()===${JSON.stringify(JSON.stringify(expected,null,2))},'Main JSON export is exact selected source, before display mutation');
+ // TIMESTAMP END 2026-11-04T19:27:13+00:00 | REVISION R000001
  check(JSON.stringify(parts.map(p=>[p.id,p.vertices,p.triangles]))===${JSON.stringify(JSON.stringify(expected.parts.map(p=>[p.id,p.vertices,p.triangles])))},'Actual main 3D meshes are the selected geometry');
 // TIMESTAMP START 2026-11-02T15:19:38-05:00 | REVISION R004803
  check(JSON.stringify(LOAD_REVIEW.members)===${JSON.stringify(JSON.stringify(load.members))},'All 112 self-weight volumes and centroids match selected source');
@@ -87,7 +95,9 @@ for(const [id,search] of [['top-entry',''],['proposed','?model=proposed'],['base
  $('plansFloor').checked=true;refreshPlans();check(plansSVG.top.includes(MODEL_CONTEXT.label)&&plansSVG.side.includes(MODEL_CONTEXT.label),'Plan title states selected revision');
  check($('modelVariantAssembled').href.includes(MODEL_CONTEXT.id==='top-entry'?'TOP-ENTRY':MODEL_CONTEXT.isProposed?'PROPOSED-step-lap':'R01'),'GLB link follows selected geometry');
  const saved=[];download=(name,text,type)=>saved.push([OctagonModelVariants.exportName(MODEL_CONTEXT,name),text,type]);
- $('downloadJSON').onclick();check(saved[0][0].startsWith(MODEL_CONTEXT.exportPrefix)&&saved[0][1]===MODEL_EXPORT_JSON,'Actual export button downloads selected source with revision-qualified name');
+ // TIMESTAMP START 2026-11-04T19:27:13+00:00 | REVISION R000001
+ $('downloadJSON').onclick();check(saved[0][0].startsWith(MODEL_CONTEXT.exportPrefix)&&saved[0][1]===modelExport(),'Actual export button downloads selected source with revision-qualified name');
+ // TIMESTAMP END 2026-11-04T19:27:13+00:00 | REVISION R000001
  $('modelVariant').value=MODEL_CONTEXT.isProposed?'baseline':'proposed';$('modelVariant').onchange();
  check(window.location.assigned.includes('model='+(MODEL_CONTEXT.isProposed?'baseline':'proposed')),'Actual selector navigates to reversible chosen revision');
  `;
@@ -124,3 +134,4 @@ for(const view of ['assembled','exploded']){
 // TIMESTAMP START 2026-11-02T15:19:38-05:00 | REVISION R004803
 console.log('PASS: actual default top-entry, perimeter proposal and baseline runtime meshes, 112 weights/centroids, hash-bound inventory/cavities/plans, reversible selector, no stale pressures/markers and source-matched JSON/GLB exports');
 // TIMESTAMP END 2026-11-02T15:19:38-05:00 | REVISION R004803
+// TIMESTAMP END 2026-11-04T20:33:26+00:00 | REVISION R000023

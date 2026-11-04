@@ -1,3 +1,4 @@
+// TIMESTAMP START 2026-11-04T20:33:26+00:00 | REVISION R000023
 'use strict';
 const fs=require('fs'),path=require('path'),assert=require('assert'),crypto=require('crypto');
 require('../src/step-lap-review.js');
@@ -50,7 +51,10 @@ function scriptBlocks(html){return [...html.matchAll(/<script\b([^>]*)>([\s\S]*?
 const executable=b=>['','text/javascript','application/javascript'].includes(b.type);
 const templateBlocks=scriptBlocks(template);
 assert.equal(templateBlocks.filter(b=>executable(b)&&b.body.includes('/*__STEP_LAP_REVIEW__*/')).length,1,'Step-lap embed marker must be in an executable script');
-const html=fs.readFileSync(path.join(__dirname,'../dist/index.html'),'utf8'),blocks=scriptBlocks(html);
+// TIMESTAMP START 2026-11-04T19:27:13+00:00 | REVISION R000001
+// Exercise synchronous inspection with the complete offline export.
+const html=fs.readFileSync(path.join(__dirname,'../index.html'),'utf8'),blocks=scriptBlocks(html);
+// TIMESTAMP END 2026-11-04T19:27:13+00:00 | REVISION R000001
 for(const b of blocks.filter(b=>b.type==='application/json'))assert.doesNotThrow(()=>JSON.parse(b.body),'Invalid JSON data script: '+b.id);
 const embeddedModel=JSON.parse(blocks.find(b=>b.id==='model-data').body);
 assert.deepStrictEqual(embeddedModel,JSON.parse(canonical),'Built HTML must use canonical baseline, not proposal');
@@ -90,3 +94,4 @@ console.log(`PASS: ${data.variants.length} actual proposal/baseline mesh pairs, 
 const cssTemplate=require('fs').readFileSync('src/viewer.template.html','utf8');
 const beforeStepStyles=cssTemplate.split('<style>')[1].split('.step-lap-modal')[0];
 assert.equal([...beforeStepStyles].reduce((n,c)=>n+(c==='{'?1:c==='}'?-1:0),0),0,'step-lap screen styles must be outside print media');
+// TIMESTAMP END 2026-11-04T20:33:26+00:00 | REVISION R000023

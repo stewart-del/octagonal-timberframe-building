@@ -148,9 +148,13 @@ for model_name,fit_name in VARIANTS:
   # TIMESTAMP START 2026-11-02T17:45:34-05:00 | REVISION R004824
   # TIMESTAMP START 2026-11-02T18:40:43-05:00 | REVISION R004837
   # TIMESTAMP START 2026-11-04T13:00:51+00:00 | REVISION R000007
-  # Lowered centered braces leave connected shelf stock; no detached end is discarded.
-  # Exact boolean reconstruction above still accounts for every removed fragment.
-  assert len(offcuts)==0,p['id']+' unexpected detached shelf stock'
+  # TIMESTAMP START 2026-11-04T20:54:04+00:00 | REVISION R000025
+  # The longer inward supports now cross the ends of the fourth shelves.
+  # Keep exact stock reconstruction above: each recorded end must be separate
+  # waste, and all retained wood must remain the single connected middle.
+  expected_offcuts=2 if p['id'] in ['SCHEM-N-shelf4','SCHEM-S-shelf4'] else 0
+  assert len(offcuts)==expected_offcuts,p['id']+' unexpected detached shelf stock'
+  # TIMESTAMP END 2026-11-04T20:54:04+00:00 | REVISION R000025
   # TIMESTAMP END 2026-11-04T13:00:51+00:00 | REVISION R000007
   # TIMESTAMP END 2026-11-02T18:40:43-05:00 | REVISION R004837
   # TIMESTAMP END 2026-11-02T17:45:34-05:00 | REVISION R004824

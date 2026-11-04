@@ -1,3 +1,4 @@
+# TIMESTAMP START 2026-11-04T20:33:26+00:00 | REVISION R000023
 name: Check R01 geometry and viewer
 on: [push, pull_request]
 permissions:
@@ -38,7 +39,10 @@ jobs:
       - run: node --check tests/viewer-script-check.js
       - run: node tests/check_viewer.cjs
       - run: node tests/fallback-edge-index.cjs
-      - run: node tests/viewer-regression.cjs dist/index.html
+      # TIMESTAMP START 2026-11-04T19:27:13+00:00 | REVISION R000001
+      - run: node tests/viewer-regression.cjs index.html
+      - run: node tests/runtime-loading.cjs
+      # TIMESTAMP END 2026-11-04T19:27:13+00:00 | REVISION R000001
       - run: node tests/multi-selection.cjs src/viewer.template.html
       - run: node tests/mouse-look-regression.cjs src/viewer.template.html
       - run: node tests/surface-contrast.cjs src/viewer.template.html
@@ -113,8 +117,12 @@ jobs:
       # TIMESTAMP START 2026-11-03T17:08:46-05:00 | REVISION R005066
       - run: python3 tests/test_revised_joinery.py
       - run: python3 tests/test_peg_engagement.py
+      # TIMESTAMP START 2026-11-04T19:39:10+00:00 | REVISION R000015
+      - run: python3 scripts/audit_brace_shoulders.py --self-test
+      # TIMESTAMP END 2026-11-04T19:39:10+00:00 | REVISION R000015
       - run: node tests/joinery-dimensions.cjs
       - run: node tests/motion-modes.cjs
       - run: node tests/parametric-model.cjs top-entry 5 96
       - run: python3 tests/test_parametric_geometry.py /tmp/octagon-parameter-top-entry-5-96.json
       # TIMESTAMP END 2026-11-03T17:08:46-05:00 | REVISION R005066
+# TIMESTAMP END 2026-11-04T20:33:26+00:00 | REVISION R000023

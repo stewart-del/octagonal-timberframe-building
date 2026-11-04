@@ -1,0 +1,565 @@
+{
+  "status": "PASS",
+  "revision": "R000014",
+  "timestamp": "2026-11-04T19:33:21+00:00",
+  "script_sha256": "60c2d28af77b27c0aa8bd82da6a87da745be5afc243a528dc85652ea10f09ba1",
+  "variants": [
+    {
+      "variant": "baseline",
+      "status": "PASS",
+      "sources": {
+        "src/model-data.json": "d4978e388ad82eff7e39671dc069348bca6e8f89c4d7fbcffe0e7a435263afee",
+        "src/enclosure-fit.json": "120a54b5e564d01d3f34db26b14745e1c4ec31a8ae732ac6f82cb56e150ea82d",
+        "src/wall-joinery-fit.json": "7fbd9350c8d0abda618376e9903482ac0e062f59fae9454ca1711fad5fc0b92b",
+        "src/wall-joinery.js": "1822e828eb5108c055b6cda3751ed80f88364ccdbcd99db3edf3ba5148ed3886",
+        "src/floor-foundation-solids.json": "12900e09b7561e25d561d6ef5bf76b92d4d94d3118b5dd1ec8aa9c2fe417dce2",
+        "src/mudroom-joinery-fit.json": "da19fd084006eea06f184eb3961c718f683d28ea6198542582f814b649682b3d",
+        "src/mudroom.js": "c24c846803d1500474a3e06c387cd2856cc67ea291d144d42a5efa9bb6242c51",
+        "src/mudroom-roof.js": "480fc669689b8a23439d0579383883dfe8c2f602bf9f14c70133d0c69ff3bcec",
+        "src/roof-coverings.js": "a956b8626e061e054f1c0c1a70e1643361b1fd16767e7f58223ef723dcb31fb9",
+        "src/floor-foundation.js": "df013f9ceff53aa0593228bda5482e49a69013bad01d33ea360f2985bf772012",
+        "src/schematic-walls.js": "634e26f0bb4190b80a60da7fa75e84d5411ae4fd7b211966a739c4264e29f41c",
+        "src/display-presets.js": "e0dbf59c673711306db1edb131b9b6661d8e92ebde5f08d99d605c29c9c9b42a"
+      },
+      "outer_joints": [
+        {
+          "brace": "K0-A",
+          "receiver": "B7",
+          "tenon_depth_in": 3.0000000000000018,
+          "internal_bearing_area_in2": 3.0000000000003277,
+          "minimum_blank_length_in": 48.03099242694665,
+          "body_reference_length_in": 38.234891832756105,
+          "flat_tip_and_square_sides": true,
+          "peg_crosses_tenon": true
+        },
+        {
+          "brace": "K0-B",
+          "receiver": "B0",
+          "tenon_depth_in": 3.0000000000000018,
+          "internal_bearing_area_in2": 3.0000000000003277,
+          "minimum_blank_length_in": 48.03099242694665,
+          "body_reference_length_in": 38.234891832756105,
+          "flat_tip_and_square_sides": true,
+          "peg_crosses_tenon": true
+        },
+        {
+          "brace": "K1-A",
+          "receiver": "B0",
+          "tenon_depth_in": 3.0000000000000018,
+          "internal_bearing_area_in2": 3.0000000000017044,
+          "minimum_blank_length_in": 48.030992426946646,
+          "body_reference_length_in": 38.23489183275609,
+          "flat_tip_and_square_sides": true,
+          "peg_crosses_tenon": true
+        },
+        {
+          "brace": "K1-B",
+          "receiver": "B1",
+          "tenon_depth_in": 3.0000000000000018,
+          "internal_bearing_area_in2": 2.999999999998951,
+          "minimum_blank_length_in": 48.03099242694665,
+          "body_reference_length_in": 38.23489183275609,
+          "flat_tip_and_square_sides": true,
+          "peg_crosses_tenon": true
+        },
+        {
+          "brace": "K2-A",
+          "receiver": "B1",
+          "tenon_depth_in": 3.0000000000000018,
+          "internal_bearing_area_in2": 3.0000000000003277,
+          "minimum_blank_length_in": 48.03099242694665,
+          "body_reference_length_in": 38.234891832756105,
+          "flat_tip_and_square_sides": true,
+          "peg_crosses_tenon": true
+        },
+        {
+          "brace": "K2-B",
+          "receiver": "B2",
+          "tenon_depth_in": 3.0000000000000018,
+          "internal_bearing_area_in2": 3.0000000000003277,
+          "minimum_blank_length_in": 48.03099242694665,
+          "body_reference_length_in": 38.23489183275611,
+          "flat_tip_and_square_sides": true,
+          "peg_crosses_tenon": true
+        },
+        {
+          "brace": "K3-A",
+          "receiver": "B2",
+          "tenon_depth_in": 3.0000000000000018,
+          "internal_bearing_area_in2": 3.0000000000017044,
+          "minimum_blank_length_in": 48.03099242694665,
+          "body_reference_length_in": 38.23489183275609,
+          "flat_tip_and_square_sides": true,
+          "peg_crosses_tenon": true
+        },
+        {
+          "brace": "K3-B",
+          "receiver": "B3",
+          "tenon_depth_in": 3.0000000000000018,
+          "internal_bearing_area_in2": 2.999999999998951,
+          "minimum_blank_length_in": 48.030992426946646,
+          "body_reference_length_in": 38.23489183275609,
+          "flat_tip_and_square_sides": true,
+          "peg_crosses_tenon": true
+        },
+        {
+          "brace": "K4-A",
+          "receiver": "B3",
+          "tenon_depth_in": 3.0000000000000018,
+          "internal_bearing_area_in2": 3.0000000000003277,
+          "minimum_blank_length_in": 48.03099242694665,
+          "body_reference_length_in": 38.234891832756105,
+          "flat_tip_and_square_sides": true,
+          "peg_crosses_tenon": true
+        },
+        {
+          "brace": "K4-B",
+          "receiver": "B4",
+          "tenon_depth_in": 3.0000000000000018,
+          "internal_bearing_area_in2": 3.0000000000003277,
+          "minimum_blank_length_in": 48.03099242694665,
+          "body_reference_length_in": 38.234891832756105,
+          "flat_tip_and_square_sides": true,
+          "peg_crosses_tenon": true
+        },
+        {
+          "brace": "K5-A",
+          "receiver": "B4",
+          "tenon_depth_in": 3.0000000000000018,
+          "internal_bearing_area_in2": 3.0000000000017044,
+          "minimum_blank_length_in": 48.030992426946646,
+          "body_reference_length_in": 38.234891832756105,
+          "flat_tip_and_square_sides": true,
+          "peg_crosses_tenon": true
+        },
+        {
+          "brace": "K5-B",
+          "receiver": "B5",
+          "tenon_depth_in": 3.0000000000000018,
+          "internal_bearing_area_in2": 2.999999999998951,
+          "minimum_blank_length_in": 48.03099242694665,
+          "body_reference_length_in": 38.2348918327561,
+          "flat_tip_and_square_sides": true,
+          "peg_crosses_tenon": true
+        },
+        {
+          "brace": "K6-A",
+          "receiver": "B5",
+          "tenon_depth_in": 3.0000000000000018,
+          "internal_bearing_area_in2": 3.0000000000003277,
+          "minimum_blank_length_in": 48.03099242694665,
+          "body_reference_length_in": 38.234891832756105,
+          "flat_tip_and_square_sides": true,
+          "peg_crosses_tenon": true
+        },
+        {
+          "brace": "K6-B",
+          "receiver": "B6",
+          "tenon_depth_in": 3.0000000000000018,
+          "internal_bearing_area_in2": 3.0000000000003277,
+          "minimum_blank_length_in": 48.030992426946646,
+          "body_reference_length_in": 38.23489183275611,
+          "flat_tip_and_square_sides": true,
+          "peg_crosses_tenon": true
+        },
+        {
+          "brace": "K7-A",
+          "receiver": "B6",
+          "tenon_depth_in": 3.0000000000000018,
+          "internal_bearing_area_in2": 3.0000000000017044,
+          "minimum_blank_length_in": 48.03099242694665,
+          "body_reference_length_in": 38.234891832756105,
+          "flat_tip_and_square_sides": true,
+          "peg_crosses_tenon": true
+        },
+        {
+          "brace": "K7-B",
+          "receiver": "B7",
+          "tenon_depth_in": 3.0000000000000018,
+          "internal_bearing_area_in2": 2.999999999998951,
+          "minimum_blank_length_in": 48.03099242694666,
+          "body_reference_length_in": 38.2348918327561,
+          "flat_tip_and_square_sides": true,
+          "peg_crosses_tenon": true
+        }
+      ],
+      "inward_foot_in": 44,
+      "outer_foot_in": 62,
+      "foot_separation_in": 18,
+      "minimum_internal_post_bearing_area_in2": 2.999999999999919
+    },
+    {
+      "variant": "proposed",
+      "status": "PASS",
+      "sources": {
+        "src/step-lap-proposed-model.json": "43c540f947e5e5130928a14a14600ca64f01bafc317e8276201c0190db2f2333",
+        "src/step-lap-proposed-enclosure-fit.json": "4c0d47bc735fe1b636281f3a2ef8f77de0ac0a2ae9ceac02bfc9f9c8e37cf8dc",
+        "src/wall-joinery-fit.json": "7fbd9350c8d0abda618376e9903482ac0e062f59fae9454ca1711fad5fc0b92b",
+        "src/wall-joinery.js": "1822e828eb5108c055b6cda3751ed80f88364ccdbcd99db3edf3ba5148ed3886",
+        "src/floor-foundation-solids.json": "12900e09b7561e25d561d6ef5bf76b92d4d94d3118b5dd1ec8aa9c2fe417dce2",
+        "src/mudroom-joinery-fit.json": "da19fd084006eea06f184eb3961c718f683d28ea6198542582f814b649682b3d",
+        "src/mudroom.js": "c24c846803d1500474a3e06c387cd2856cc67ea291d144d42a5efa9bb6242c51",
+        "src/mudroom-roof.js": "480fc669689b8a23439d0579383883dfe8c2f602bf9f14c70133d0c69ff3bcec",
+        "src/roof-coverings.js": "a956b8626e061e054f1c0c1a70e1643361b1fd16767e7f58223ef723dcb31fb9",
+        "src/floor-foundation.js": "df013f9ceff53aa0593228bda5482e49a69013bad01d33ea360f2985bf772012",
+        "src/schematic-walls.js": "634e26f0bb4190b80a60da7fa75e84d5411ae4fd7b211966a739c4264e29f41c",
+        "src/display-presets.js": "e0dbf59c673711306db1edb131b9b6661d8e92ebde5f08d99d605c29c9c9b42a"
+      },
+      "outer_joints": [
+        {
+          "brace": "K0-A",
+          "receiver": "B7",
+          "tenon_depth_in": 3.0000000000000018,
+          "internal_bearing_area_in2": 3.0000000000003277,
+          "minimum_blank_length_in": 48.03099242694665,
+          "body_reference_length_in": 38.234891832756105,
+          "flat_tip_and_square_sides": true,
+          "peg_crosses_tenon": true
+        },
+        {
+          "brace": "K0-B",
+          "receiver": "B0",
+          "tenon_depth_in": 3.0000000000000018,
+          "internal_bearing_area_in2": 3.0000000000003277,
+          "minimum_blank_length_in": 48.03099242694665,
+          "body_reference_length_in": 38.234891832756105,
+          "flat_tip_and_square_sides": true,
+          "peg_crosses_tenon": true
+        },
+        {
+          "brace": "K1-A",
+          "receiver": "B0",
+          "tenon_depth_in": 3.0000000000000018,
+          "internal_bearing_area_in2": 3.0000000000017044,
+          "minimum_blank_length_in": 48.030992426946646,
+          "body_reference_length_in": 38.23489183275609,
+          "flat_tip_and_square_sides": true,
+          "peg_crosses_tenon": true
+        },
+        {
+          "brace": "K1-B",
+          "receiver": "B1",
+          "tenon_depth_in": 3.0000000000000018,
+          "internal_bearing_area_in2": 2.999999999998951,
+          "minimum_blank_length_in": 48.03099242694665,
+          "body_reference_length_in": 38.23489183275609,
+          "flat_tip_and_square_sides": true,
+          "peg_crosses_tenon": true
+        },
+        {
+          "brace": "K2-A",
+          "receiver": "B1",
+          "tenon_depth_in": 3.0000000000000018,
+          "internal_bearing_area_in2": 3.0000000000003277,
+          "minimum_blank_length_in": 48.03099242694665,
+          "body_reference_length_in": 38.234891832756105,
+          "flat_tip_and_square_sides": true,
+          "peg_crosses_tenon": true
+        },
+        {
+          "brace": "K2-B",
+          "receiver": "B2",
+          "tenon_depth_in": 3.0000000000000018,
+          "internal_bearing_area_in2": 3.0000000000003277,
+          "minimum_blank_length_in": 48.03099242694665,
+          "body_reference_length_in": 38.23489183275611,
+          "flat_tip_and_square_sides": true,
+          "peg_crosses_tenon": true
+        },
+        {
+          "brace": "K3-A",
+          "receiver": "B2",
+          "tenon_depth_in": 3.0000000000000018,
+          "internal_bearing_area_in2": 3.0000000000017044,
+          "minimum_blank_length_in": 48.03099242694665,
+          "body_reference_length_in": 38.23489183275609,
+          "flat_tip_and_square_sides": true,
+          "peg_crosses_tenon": true
+        },
+        {
+          "brace": "K3-B",
+          "receiver": "B3",
+          "tenon_depth_in": 3.0000000000000018,
+          "internal_bearing_area_in2": 2.999999999998951,
+          "minimum_blank_length_in": 48.030992426946646,
+          "body_reference_length_in": 38.23489183275609,
+          "flat_tip_and_square_sides": true,
+          "peg_crosses_tenon": true
+        },
+        {
+          "brace": "K4-A",
+          "receiver": "B3",
+          "tenon_depth_in": 3.0000000000000018,
+          "internal_bearing_area_in2": 3.0000000000003277,
+          "minimum_blank_length_in": 48.03099242694665,
+          "body_reference_length_in": 38.234891832756105,
+          "flat_tip_and_square_sides": true,
+          "peg_crosses_tenon": true
+        },
+        {
+          "brace": "K4-B",
+          "receiver": "B4",
+          "tenon_depth_in": 3.0000000000000018,
+          "internal_bearing_area_in2": 3.0000000000003277,
+          "minimum_blank_length_in": 48.03099242694665,
+          "body_reference_length_in": 38.234891832756105,
+          "flat_tip_and_square_sides": true,
+          "peg_crosses_tenon": true
+        },
+        {
+          "brace": "K5-A",
+          "receiver": "B4",
+          "tenon_depth_in": 3.0000000000000018,
+          "internal_bearing_area_in2": 3.0000000000017044,
+          "minimum_blank_length_in": 48.030992426946646,
+          "body_reference_length_in": 38.234891832756105,
+          "flat_tip_and_square_sides": true,
+          "peg_crosses_tenon": true
+        },
+        {
+          "brace": "K5-B",
+          "receiver": "B5",
+          "tenon_depth_in": 3.0000000000000018,
+          "internal_bearing_area_in2": 2.999999999998951,
+          "minimum_blank_length_in": 48.03099242694665,
+          "body_reference_length_in": 38.2348918327561,
+          "flat_tip_and_square_sides": true,
+          "peg_crosses_tenon": true
+        },
+        {
+          "brace": "K6-A",
+          "receiver": "B5",
+          "tenon_depth_in": 3.0000000000000018,
+          "internal_bearing_area_in2": 3.0000000000003277,
+          "minimum_blank_length_in": 48.03099242694665,
+          "body_reference_length_in": 38.234891832756105,
+          "flat_tip_and_square_sides": true,
+          "peg_crosses_tenon": true
+        },
+        {
+          "brace": "K6-B",
+          "receiver": "B6",
+          "tenon_depth_in": 3.0000000000000018,
+          "internal_bearing_area_in2": 3.0000000000003277,
+          "minimum_blank_length_in": 48.030992426946646,
+          "body_reference_length_in": 38.23489183275611,
+          "flat_tip_and_square_sides": true,
+          "peg_crosses_tenon": true
+        },
+        {
+          "brace": "K7-A",
+          "receiver": "B6",
+          "tenon_depth_in": 3.0000000000000018,
+          "internal_bearing_area_in2": 3.0000000000017044,
+          "minimum_blank_length_in": 48.03099242694665,
+          "body_reference_length_in": 38.234891832756105,
+          "flat_tip_and_square_sides": true,
+          "peg_crosses_tenon": true
+        },
+        {
+          "brace": "K7-B",
+          "receiver": "B7",
+          "tenon_depth_in": 3.0000000000000018,
+          "internal_bearing_area_in2": 2.999999999998951,
+          "minimum_blank_length_in": 48.03099242694666,
+          "body_reference_length_in": 38.2348918327561,
+          "flat_tip_and_square_sides": true,
+          "peg_crosses_tenon": true
+        }
+      ],
+      "inward_foot_in": 44,
+      "outer_foot_in": 62,
+      "foot_separation_in": 18,
+      "minimum_internal_post_bearing_area_in2": 2.999999999999919
+    },
+    {
+      "variant": "top-entry",
+      "status": "PASS",
+      "sources": {
+        "src/top-entry-proposed-model.json": "06ded23bdc3c40814331f7ff0aa73afb364c90f4b0bcb3c39659f7cab6508cde",
+        "src/top-entry-proposed-enclosure-fit.json": "9a1be3ab56ed0da2318db205cfd8475fba9aa950b1166123a8ec7b97aef1d956",
+        "src/wall-joinery-fit.json": "7fbd9350c8d0abda618376e9903482ac0e062f59fae9454ca1711fad5fc0b92b",
+        "src/wall-joinery.js": "1822e828eb5108c055b6cda3751ed80f88364ccdbcd99db3edf3ba5148ed3886",
+        "src/floor-foundation-solids.json": "12900e09b7561e25d561d6ef5bf76b92d4d94d3118b5dd1ec8aa9c2fe417dce2",
+        "src/mudroom-joinery-fit.json": "da19fd084006eea06f184eb3961c718f683d28ea6198542582f814b649682b3d",
+        "src/mudroom.js": "c24c846803d1500474a3e06c387cd2856cc67ea291d144d42a5efa9bb6242c51",
+        "src/mudroom-roof.js": "480fc669689b8a23439d0579383883dfe8c2f602bf9f14c70133d0c69ff3bcec",
+        "src/roof-coverings.js": "a956b8626e061e054f1c0c1a70e1643361b1fd16767e7f58223ef723dcb31fb9",
+        "src/floor-foundation.js": "df013f9ceff53aa0593228bda5482e49a69013bad01d33ea360f2985bf772012",
+        "src/schematic-walls.js": "634e26f0bb4190b80a60da7fa75e84d5411ae4fd7b211966a739c4264e29f41c",
+        "src/display-presets.js": "e0dbf59c673711306db1edb131b9b6661d8e92ebde5f08d99d605c29c9c9b42a"
+      },
+      "outer_joints": [
+        {
+          "brace": "K0-A",
+          "receiver": "B7",
+          "tenon_depth_in": 3.0000000000000018,
+          "internal_bearing_area_in2": 3.0000000000003277,
+          "minimum_blank_length_in": 48.03099242694665,
+          "body_reference_length_in": 38.234891832756105,
+          "flat_tip_and_square_sides": true,
+          "peg_crosses_tenon": true
+        },
+        {
+          "brace": "K0-B",
+          "receiver": "B0",
+          "tenon_depth_in": 3.0000000000000018,
+          "internal_bearing_area_in2": 3.0000000000003277,
+          "minimum_blank_length_in": 48.03099242694665,
+          "body_reference_length_in": 38.234891832756105,
+          "flat_tip_and_square_sides": true,
+          "peg_crosses_tenon": true
+        },
+        {
+          "brace": "K1-A",
+          "receiver": "B0",
+          "tenon_depth_in": 3.0000000000000018,
+          "internal_bearing_area_in2": 3.0000000000017044,
+          "minimum_blank_length_in": 48.030992426946646,
+          "body_reference_length_in": 38.23489183275609,
+          "flat_tip_and_square_sides": true,
+          "peg_crosses_tenon": true
+        },
+        {
+          "brace": "K1-B",
+          "receiver": "B1",
+          "tenon_depth_in": 3.0000000000000018,
+          "internal_bearing_area_in2": 2.999999999998951,
+          "minimum_blank_length_in": 48.03099242694665,
+          "body_reference_length_in": 38.23489183275609,
+          "flat_tip_and_square_sides": true,
+          "peg_crosses_tenon": true
+        },
+        {
+          "brace": "K2-A",
+          "receiver": "B1",
+          "tenon_depth_in": 3.0000000000000018,
+          "internal_bearing_area_in2": 3.0000000000003277,
+          "minimum_blank_length_in": 48.03099242694665,
+          "body_reference_length_in": 38.234891832756105,
+          "flat_tip_and_square_sides": true,
+          "peg_crosses_tenon": true
+        },
+        {
+          "brace": "K2-B",
+          "receiver": "B2",
+          "tenon_depth_in": 3.0000000000000018,
+          "internal_bearing_area_in2": 3.0000000000003277,
+          "minimum_blank_length_in": 48.03099242694665,
+          "body_reference_length_in": 38.23489183275611,
+          "flat_tip_and_square_sides": true,
+          "peg_crosses_tenon": true
+        },
+        {
+          "brace": "K3-A",
+          "receiver": "B2",
+          "tenon_depth_in": 3.0000000000000018,
+          "internal_bearing_area_in2": 3.0000000000017044,
+          "minimum_blank_length_in": 48.03099242694665,
+          "body_reference_length_in": 38.23489183275609,
+          "flat_tip_and_square_sides": true,
+          "peg_crosses_tenon": true
+        },
+        {
+          "brace": "K3-B",
+          "receiver": "B3",
+          "tenon_depth_in": 3.0000000000000018,
+          "internal_bearing_area_in2": 2.999999999998951,
+          "minimum_blank_length_in": 48.030992426946646,
+          "body_reference_length_in": 38.23489183275609,
+          "flat_tip_and_square_sides": true,
+          "peg_crosses_tenon": true
+        },
+        {
+          "brace": "K4-A",
+          "receiver": "B3",
+          "tenon_depth_in": 3.0000000000000018,
+          "internal_bearing_area_in2": 3.0000000000003277,
+          "minimum_blank_length_in": 48.03099242694665,
+          "body_reference_length_in": 38.234891832756105,
+          "flat_tip_and_square_sides": true,
+          "peg_crosses_tenon": true
+        },
+        {
+          "brace": "K4-B",
+          "receiver": "B4",
+          "tenon_depth_in": 3.0000000000000018,
+          "internal_bearing_area_in2": 3.0000000000003277,
+          "minimum_blank_length_in": 48.03099242694665,
+          "body_reference_length_in": 38.234891832756105,
+          "flat_tip_and_square_sides": true,
+          "peg_crosses_tenon": true
+        },
+        {
+          "brace": "K5-A",
+          "receiver": "B4",
+          "tenon_depth_in": 3.0000000000000018,
+          "internal_bearing_area_in2": 3.0000000000017044,
+          "minimum_blank_length_in": 48.030992426946646,
+          "body_reference_length_in": 38.234891832756105,
+          "flat_tip_and_square_sides": true,
+          "peg_crosses_tenon": true
+        },
+        {
+          "brace": "K5-B",
+          "receiver": "B5",
+          "tenon_depth_in": 3.0000000000000018,
+          "internal_bearing_area_in2": 2.999999999998951,
+          "minimum_blank_length_in": 48.03099242694665,
+          "body_reference_length_in": 38.2348918327561,
+          "flat_tip_and_square_sides": true,
+          "peg_crosses_tenon": true
+        },
+        {
+          "brace": "K6-A",
+          "receiver": "B5",
+          "tenon_depth_in": 3.0000000000000018,
+          "internal_bearing_area_in2": 3.0000000000003277,
+          "minimum_blank_length_in": 48.03099242694665,
+          "body_reference_length_in": 38.234891832756105,
+          "flat_tip_and_square_sides": true,
+          "peg_crosses_tenon": true
+        },
+        {
+          "brace": "K6-B",
+          "receiver": "B6",
+          "tenon_depth_in": 3.0000000000000018,
+          "internal_bearing_area_in2": 3.0000000000003277,
+          "minimum_blank_length_in": 48.030992426946646,
+          "body_reference_length_in": 38.23489183275611,
+          "flat_tip_and_square_sides": true,
+          "peg_crosses_tenon": true
+        },
+        {
+          "brace": "K7-A",
+          "receiver": "B6",
+          "tenon_depth_in": 3.0000000000000018,
+          "internal_bearing_area_in2": 3.0000000000017044,
+          "minimum_blank_length_in": 48.03099242694665,
+          "body_reference_length_in": 38.234891832756105,
+          "flat_tip_and_square_sides": true,
+          "peg_crosses_tenon": true
+        },
+        {
+          "brace": "K7-B",
+          "receiver": "B7",
+          "tenon_depth_in": 3.0000000000000018,
+          "internal_bearing_area_in2": 2.999999999998951,
+          "minimum_blank_length_in": 48.03099242694666,
+          "body_reference_length_in": 38.2348918327561,
+          "flat_tip_and_square_sides": true,
+          "peg_crosses_tenon": true
+        }
+      ],
+      "inward_foot_in": 44,
+      "outer_foot_in": 62,
+      "foot_separation_in": 18,
+      "minimum_internal_post_bearing_area_in2": 2.999999999999919
+    }
+  ],
+  "image": {
+    "path": "public/review/brace-shoulders.png",
+    "sha256": "fffc3fc079d73d994e0535b32ccf333715a19c4fd28c19e9039692cb7ce5be24"
+  },
+  "scope": "Nominal joint geometry and minimum blank envelope; no machining allowances or structural capacity calculation."
+}

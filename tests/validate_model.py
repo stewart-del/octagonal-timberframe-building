@@ -1,3 +1,4 @@
+# TIMESTAMP START 2026-11-04T20:33:26+00:00 | REVISION R000023
 # TIMESTAMP START 2026-11-01T23:06:10-05:00 | REVISION R004659
 """Validate the built R01 viewer against canonical model and local assets.
 
@@ -10,13 +11,24 @@ import json
 import math
 import re
 import sys
+# TIMESTAMP START 2026-11-04T19:27:13+00:00 | REVISION R000001
+import gzip
+# TIMESTAMP END 2026-11-04T19:27:13+00:00 | REVISION R000001
 
 ROOT = Path(__file__).resolve().parents[1]
 path = Path(sys.argv[1]) if len(sys.argv) > 1 else ROOT / "dist/index.html"
 html = path.read_text(encoding="utf-8")
 match = re.search(r'<script[^>]*id="model-data"[^>]*>(.*?)</script>', html, re.S)
-assert match, "Missing embedded model"
-data = json.loads(match.group(1))
+# TIMESTAMP START 2026-11-04T19:27:13+00:00 | REVISION R000001
+if match:
+    data = json.loads(match.group(1))
+else:
+    assets = re.search(r'<script[^>]*id="site-assets"[^>]*>(.*?)</script>', html, re.S)
+    assert assets, 'Missing model asset manifest'
+    manifest = json.loads(assets.group(1))
+    bundle = json.loads(gzip.decompress((path.parent / manifest['variants']['baseline']).read_bytes()))
+    data = bundle['variants']['baseline']['model']
+# TIMESTAMP END 2026-11-04T19:27:13+00:00 | REVISION R000001
 source = json.loads((ROOT / "src/model-data.json").read_text())
 assert data == source, "Built viewer is stale relative to src/model-data.json"
 assert data["units"] == "meters" and data["up_axis"] == "Y"
@@ -100,3 +112,4 @@ print(json.dumps({
 }, indent=2))
 
 # TIMESTAMP END 2026-11-01T23:06:10-05:00 | REVISION R004659
+# TIMESTAMP END 2026-11-04T20:33:26+00:00 | REVISION R000023

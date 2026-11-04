@@ -71,12 +71,19 @@ def generate(variant,source_dir,output_dir):
         for pid,shape in original_entries(proposal).items():entries[pid]=entries.get(pid,m.Manifold())+shape
     # TIMESTAMP END 2026-11-03T15:58:36-05:00 | REVISION R005044
     names=['scripts/audit_revised_joinery.py','scripts/export_top_entry_cavities.py','scripts/audit_cavity_fit.py','scripts/step_lap.py','scripts/apply_joinery_revision.py','scripts/three_inch_tenons.py','scripts/center_brace_tenons.py']
+    # TIMESTAMP START 2026-11-04T20:04:39+00:00 | REVISION R000018
+    names.append('src/unchanged-roof-cavity-seeds.json')
+    # TIMESTAMP END 2026-11-04T20:04:39+00:00 | REVISION R000018
     sources={name:sha(ROOT/name) for name in names};sources['src/'+model_name]=sha(path)
     if variant=='top-entry':sources['src/top-entry-proposal.json']=sha(ROOT/'src/top-entry-proposal.json')
     previous_sources=audit.sources;previous_packed=audit.packed;previous_solid=audit.solid
     audit.entry_regions=lambda _:entries;audit.sources=lambda:sources;audit.packed=packed;audit.solid=native_solid
     try:
-        cavities=audit.generate(model,proposal);cavities['source_model_sha256']=sha(path)
+        # TIMESTAMP START 2026-11-04T20:04:39+00:00 | REVISION R000018
+        retained=json.loads((ROOT/'src/unchanged-roof-cavity-seeds.json').read_text())['variants'][variant]
+        cavities=audit.generate(model,proposal,unchanged_seeds=retained);cavities['source_model_sha256']=sha(path)
+        cavities['retained_input_geometry']={'file':'src/unchanged-roof-cavity-seeds.json','members':sorted(retained),'verification':'All records independently audited below against current physical stock and mating solids.'}
+        # TIMESTAMP END 2026-11-04T20:04:39+00:00 | REVISION R000018
         report=audit.audit(model,cavities,proposal);report['model_sha256']=sha(path)
     finally:audit.entry_regions=original_entries;audit.sources=previous_sources;audit.packed=previous_packed;audit.solid=previous_solid
     if report['status']!='PASS':save(Path('/tmp/octagon-'+variant+'-cavity-failure-report.json'),report)

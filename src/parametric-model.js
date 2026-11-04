@@ -177,6 +177,9 @@ function core(context,input,source,module){
   const tenonSchedule=(base.tenon_schedule||[]).map(j=>{
    const next=clone(j),map=partMaps[j.donor];
    if(next.face_center)next.face_center=map(next.face_center);
+   // TIMESTAMP START 2026-11-04T20:12:02+00:00 | REVISION R000019
+   if(next.bearing_direction&&Number.isFinite(next.bearing_coordinate_m))next.bearing_coordinate_m+=dot(next.bearing_direction,sub(next.face_center,j.face_center));
+   // TIMESTAMP END 2026-11-04T20:12:02+00:00 | REVISION R000019
    for(const key of ['connector','cutting_tool'])if(next[key])next[key].vertices=next[key].vertices.map(map);
    // TIMESTAMP START 2026-11-03T16:50:27-05:00 | REVISION R005061
    if(roofTongues[j.donor]){

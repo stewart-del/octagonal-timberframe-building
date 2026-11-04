@@ -45,7 +45,10 @@ for model in models:
             assert abs((exterior^s).volume())/I**3<1e-6,(name,'exterior cut crosses wood')
             # TIMESTAMP END 2026-11-02T17:32:31-05:00 | REVISION R004820
             # TIMESTAMP START 2026-11-03T17:00:04-05:00 | REVISION R005063
-            expected_length=np.hypot(24,35) if side=='C' else np.sqrt(2)*(89.03615129287599-62)
+            # TIMESTAMP START 2026-11-04T20:17:46+00:00 | REVISION R000020
+            expected_length=np.hypot(24,41) if side=='C' else np.sqrt(2)*(89.03615129287599-62)
+            assert abs(p['axis_start'][1]/I-(44 if side=='C' else 62))<1e-8
+            # TIMESTAMP END 2026-11-04T20:17:46+00:00 | REVISION R000020
             assert abs(np.linalg.norm(np.asarray(p['axis_end'])-p['axis_start'])/I-expected_length)<1e-8
             # TIMESTAMP END 2026-11-03T17:00:04-05:00 | REVISION R005063
             assert np.linalg.norm(p['exploded_offset'])>1 and len(s.decompose())==1

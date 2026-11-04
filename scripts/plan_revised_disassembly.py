@@ -20,12 +20,20 @@ UP=np.array([0.,1.,0.])
 # TIMESTAMP START 2026-11-03T16:49:21-05:00 | REVISION R005060
 precleared=set()
 # TIMESTAMP END 2026-11-03T16:49:21-05:00 | REVISION R005060
+# TIMESTAMP START 2026-11-04T20:23:51+00:00 | REVISION R000022
+deferred_shelves=set()
+# TIMESTAMP END 2026-11-04T20:23:51+00:00 | REVISION R000022
 def save(scene,phase,index=0):
-    CHECKPOINT.write_text(json.dumps({'variant':scene.variant,'sources':scene.sources,'phase':phase,'index':index,'stages':scene.stages,'precleared':sorted(precleared)},separators=(',',':'))+'\n')
+    # TIMESTAMP START 2026-11-04T20:23:51+00:00 | REVISION R000022
+    CHECKPOINT.write_text(json.dumps({'variant':scene.variant,'sources':scene.sources,'phase':phase,'index':index,'stages':scene.stages,'precleared':sorted(precleared),'deferred_shelves':sorted(deferred_shelves)},separators=(',',':'))+'\n')
+    # TIMESTAMP END 2026-11-04T20:23:51+00:00 | REVISION R000022
 def require(result):
     assert result is True,result
 def replay_one(scene,stage):
     if all(pid in precleared for motion in stage.get('motions',[stage]) for pid in motion['member_ids']):return
+    # TIMESTAMP START 2026-11-04T20:23:51+00:00 | REVISION R000022
+    if all(pid in deferred_shelves for motion in stage.get('motions',[stage]) for pid in motion['member_ids']):return
+    # TIMESTAMP END 2026-11-04T20:23:51+00:00 | REVISION R000022
     if 'motions' in stage:
         proof=check_multi_stage(scene,stage['motions'],stop_first=True)
         assert proof['status']=='PASS',(stage['label'],proof)
@@ -52,6 +60,16 @@ def replay_one(scene,stage):
                         retry=move(trial,stage['member_ids'],stage['delta_m'],stage['label'])
                         if retry is not True:continue
                         scene.offsets=trial.offsets;scene.stages=trial.stages;scene.version=trial.version;result=True;break
+        # TIMESTAMP START 2026-11-04T20:23:51+00:00 | REVISION R000022
+        if result is not True and len(stage['member_ids'])==1:
+            pid=stage['member_ids'][0]
+            if scene.parts[pid].get('schematicKind')=='shelf':
+                # Clear movable parked pegs first. A shelf still trapped by
+                # the longer brace stays physically present until it releases.
+                deferred_shelves.add(pid)
+                print('Retain shelf until inward support clears',pid,flush=True)
+                return
+        # TIMESTAMP END 2026-11-04T20:23:51+00:00 | REVISION R000022
         require(result)
     # TIMESTAMP END 2026-11-03T16:49:21-05:00 | REVISION R005060
 def lower_frame(scene):
@@ -62,8 +80,20 @@ def lower_frame(scene):
         # TIMESTAMP START 2026-11-03T17:12:03-05:00 | REVISION R005068
         if np.allclose(scene.offsets[tie],scene.parts[tie]['exploded_offset'],atol=1e-10):continue
         # TIMESTAMP END 2026-11-03T17:12:03-05:00 | REVISION R005068
-        require(move(scene,[tie,brace],-r*.12,'Withdraw radial tie and inward brace '+str(k)))
-        require(move(scene,[brace],-UP*.1,'Lower inward brace from tie mortise '+str(k)))
+        # TIMESTAMP START 2026-11-04T20:23:51+00:00 | REVISION R000022
+        def release(ids,delta,label):
+            result=move(scene,ids,delta,label)
+            if result is not True:
+                other=result['collisions'][0]['obstacle_id']
+                if scene.parts[other].get('schematicKind')=='shelf':
+                    deferred_shelves.discard(other)
+                    replay_one(scene,{'member_ids':[other],'delta_m':(-UP*.25).tolist(),
+                        'label':'Lower retained shelf before inward support release '+other})
+                    result=move(scene,ids,delta,label)
+            require(result)
+        release([tie,brace],-r*.12,'Withdraw radial tie and inward brace '+str(k))
+        release([brace],-UP*.1,'Lower inward brace from tie mortise '+str(k))
+        # TIMESTAMP END 2026-11-04T20:23:51+00:00 | REVISION R000022
         # TIMESTAMP START 2026-11-03T17:12:03-05:00 | REVISION R005068
         target=np.asarray(scene.parts[brace]['exploded_offset'])
         tangent=np.array([-r[2],0,r[0]])
@@ -173,6 +203,9 @@ def main():
     # TIMESTAMP END 2026-11-04T12:46:13+00:00 | REVISION R000003
     if args.resume and CHECKPOINT.exists():
         saved=json.loads(CHECKPOINT.read_text());precleared.update(saved.get('precleared',[]));assert saved['sources']==scene.sources,'Checkpoint geometry changed'
+        # TIMESTAMP START 2026-11-04T20:23:51+00:00 | REVISION R000022
+        deferred_shelves.update(saved.get('deferred_shelves',[]))
+        # TIMESTAMP END 2026-11-04T20:23:51+00:00 | REVISION R000022
         scene.stages=saved['stages'];scene.version=len(scene.stages);phase=saved['phase'];index=saved['index']
         for stage in scene.stages:
             for motion in stage.get('motions',[stage]):
@@ -220,7 +253,9 @@ def main():
         print('PASS',len(scene.stages),'stages; all physical pieces accounted for',flush=True)
     except BaseException:
         # TIMESTAMP START 2026-11-04T12:46:13+00:00 | REVISION R000003
-        FAILURE.write_text(json.dumps({'phase':phase,'sources':scene.sources,'stages':scene.stages,'precleared':sorted(precleared)},separators=(',',':'))+'\n')
+        # TIMESTAMP START 2026-11-04T20:23:51+00:00 | REVISION R000022
+        FAILURE.write_text(json.dumps({'phase':phase,'sources':scene.sources,'stages':scene.stages,'precleared':sorted(precleared),'deferred_shelves':sorted(deferred_shelves)},separators=(',',':'))+'\n')
+        # TIMESTAMP END 2026-11-04T20:23:51+00:00 | REVISION R000022
         # TIMESTAMP END 2026-11-04T12:46:13+00:00 | REVISION R000003
         raise
 

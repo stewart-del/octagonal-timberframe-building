@@ -14,7 +14,19 @@ assert set(B)==set(P)
 assert proposal['baseline_model_sha256']==hashlib.sha256((R/'src/model-data.json').read_bytes()).hexdigest()
 changed={pid for pid in P if P[pid]!=B[pid]}
 assert changed==set(full['proposed_review']['changed_member_ids'])==set(proposal['combined_geometry_audit']['changed_member_ids'])
-assert changed<={f'{f}{k}' for k in range(8) for f in ['P','B','R']}|{f'J{k}-{side}' for k in range(8) for side in ['0','2']}
+# TIMESTAMP START 2026-11-04T20:53:01+00:00 | REVISION R000024
+perimeter_ids={f'{f}{k}' for k in range(8) for f in ['P','B','R']}|{f'J{k}-{side}' for k in range(8) for side in ['0','2']}
+for pid in changed-perimeter_ids:
+ # Regenerated cheek measurements may differ by floating-point roundoff.
+ # Keep every mesh, bore, dimension and all other metadata byte-identical.
+ assert pid.startswith('MAIN-PEG-') and P[pid]['group']=='joinery_pegs',pid
+ values=[part['peg_geometry']['receiver_cheek_lengths_in'] for part in [B[pid],P[pid]]]
+ assert all(len(value)==2 for value in values)
+ assert np.allclose(*values,rtol=0,atol=1e-12),(pid,'material peg measurement changed')
+ records=[{**part,'peg_geometry':{key:value for key,value in part['peg_geometry'].items()
+          if key!='receiver_cheek_lengths_in'}} for part in [B[pid],P[pid]]]
+ assert records[0]==records[1],(pid,'unexpected physical or metadata variant change')
+# TIMESTAMP END 2026-11-04T20:53:01+00:00 | REVISION R000024
 shapes={pid:solid(p) for pid,p in P.items() if p['is_timber']}
 for pid,s in shapes.items():
  assert inspect_mesh(*arrays(P[pid]),require_single=True)['status']=='PASS',pid
