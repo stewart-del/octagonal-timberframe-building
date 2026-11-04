@@ -15,3 +15,8 @@ public/downloads/Octagon-model-and-review.zip.tmp
 # TIMESTAMP START 2026-11-04T12:46:13+00:00 | REVISION R000003
 .codex-runtime/
 # TIMESTAMP END 2026-11-04T12:46:13+00:00 | REVISION R000003
+
+# TIMESTAMP START 2026-11-04T21:11:41+00:00 | REVISION R000027
+# The build generates the complete offline export; Sites source blobs cap at 32 MiB.
+/index.html
+# TIMESTAMP END 2026-11-04T21:11:41+00:00 | REVISION R000027
