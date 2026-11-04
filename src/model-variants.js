@@ -17,7 +17,9 @@ function context(variants,search=''){
 // TIMESTAMP START 2026-11-02T18:01:36-05:00 | REVISION R004828
  const label=id==='top-entry'?'Removable joinery proposal':isProposed?'Perimeter step-lap proposal':'Saved baseline model';
 // TIMESTAMP END 2026-11-02T18:01:36-05:00 | REVISION R004828
- return {...v,id,isProposed,label,loadReview,cavities,cavityAuditPassed:cavityAvailable,pressureAvailable:!isProposed,contactMarkersAvailable:!isProposed,exportPrefix:id==='top-entry'?'TOP-ENTRY-NOT-FABRICATION-':isProposed?'PROPOSED-NOT-FABRICATION-':'BASELINE-',status:isProposed?label+' · geometry review only, not fabrication approved':'Saved baseline · geometry study, not construction approved'};
+// TIMESTAMP START 2026-11-03T16:17:49-05:00 | REVISION R005051
+ return {...v,id,isProposed,label,loadReview,cavities,cavityAuditPassed:cavityAvailable,pressureAvailable:!isProposed&&!v.loadReview.baseline_pressure_disabled,contactMarkersAvailable:!isProposed&&!v.loadReview.baseline_pressure_disabled,exportPrefix:id==='top-entry'?'TOP-ENTRY-NOT-FABRICATION-':isProposed?'PROPOSED-NOT-FABRICATION-':'BASELINE-',status:isProposed?label+' · geometry review only, not fabrication approved':'Saved baseline · geometry study, not construction approved'};
+// TIMESTAMP END 2026-11-03T16:17:49-05:00 | REVISION R005051
 }
 function exportName(selected,name){return name.startsWith('TOP-ENTRY-NOT-FABRICATION-')||name.startsWith('PROPOSED-NOT-FABRICATION-')||name.startsWith('BASELINE-')?name:selected.exportPrefix+name;}
 function bind(selected,{document,location,beforeChange=()=>{}}){

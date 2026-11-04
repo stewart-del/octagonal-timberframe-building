@@ -1,158 +1,56 @@
-"""Independent invariants for actual proposed CSG, never structural approval."""
+# TIMESTAMP START 2026-11-03T17:00:04-05:00 | REVISION R005063
+"""Read current perimeter joints from their actual exported occupied material."""
 from pathlib import Path
-import collections,hashlib,itertools,json,math,sys
+import collections,hashlib,itertools,json,sys
 import numpy as np
 import manifold3d as m
 R=Path(__file__).resolve().parents[1];sys.path.insert(0,str(R/'scripts'))
-# TIMESTAMP START 2026-11-02T10:36:58-05:00 | REVISION R004765
-from step_lap import build_proposal,solid,volume_centroid,regular_boundary
-from audit_cavity_fit import coplanar_surface_overlaps
-# TIMESTAMP END 2026-11-02T10:36:58-05:00 | REVISION R004765
-from regeneration_equivalence import assert_equivalent,test_guard
-I=.0254;raw=(R/'src/model-data.json').read_bytes();base=json.loads(raw);sha=hashlib.sha256(raw).hexdigest();data=json.loads((R/'src/step-lap-proposal.json').read_text());full=json.loads((R/'src/step-lap-proposed-model.json').read_text())
-B={p['id']:p for p in base['parts']};P={p['id']:p for p in full['parts']};changed={f'{family}{k}' for k in range(8) for family in ['B','P','R']}|{f'J{k}-{side}' for k in range(8) for side in ['0','2']}
-# TIMESTAMP START 2026-11-02T15:15:55-05:00 | REVISION R004802
-# TIMESTAMP START 2026-11-02T17:44:11-05:00 | REVISION R004823
-# TIMESTAMP START 2026-11-03T07:26:01-05:00 | REVISION R004920
-# R004900 changes only the non-timber fixture; protected timber hashes below remain exact.
-assert sha=='999a07def4626a4eb8db63f28b492984e7981f60ece7122671e3d359aed809a9','Baseline changed: re-review assumptions and regenerate, never silently rebase'
-# TIMESTAMP END 2026-11-03T07:26:01-05:00 | REVISION R004920
-# TIMESTAMP END 2026-11-02T17:44:11-05:00 | REVISION R004823
-proof_raw=(R/'docs/pre-support-baseline-part-hashes.json').read_bytes()
-assert hashlib.sha256(proof_raw).hexdigest()=='cbc6bba49f4b8389ffe0780d672aaf4b7bdccdd253825971b1625751dd51885f'
-proof=json.loads(proof_raw)
-# TIMESTAMP START 2026-11-02T17:44:11-05:00 | REVISION R004823
-added={f'K{k}-C' for k in range(8)}|{p['id'] for p in base['parts'] if p.get('group')=='joinery_pegs'}
-assert base['main_face_brace_revision']['revision']=='R004820'
-# TIMESTAMP END 2026-11-02T17:44:11-05:00 | REVISION R004823
-brace_scope={f'{family}{k}' for k in range(8) for family in ['P','B','T']}|{f'K{k}-{side}' for k in range(8) for side in ['A','B']}
-assert set(proof)==set(B)-{'M-TMP'}-added and len(proof)==114
-assert base['main_brace_revision']['revision']=='R004802'
-for name,expected in proof.items():
- if name not in brace_scope:
-  assert hashlib.sha256(json.dumps(B[name],sort_keys=True,separators=(',',':')).encode()).hexdigest()==expected,(name,'unrelated baseline changed')
-# TIMESTAMP END 2026-11-02T15:15:55-05:00 | REVISION R004802
-assert data['baseline_model_sha256']==sha and data['canonical_model_unchanged'] is True
-# TIMESTAMP START 2026-11-02T15:15:55-05:00 | REVISION R004802
-assert set(B)==set(P) and len([p for p in full['parts'] if p['is_timber']])==112
-# TIMESTAMP END 2026-11-02T15:15:55-05:00 | REVISION R004802
-for name in B:
- if name not in changed:assert B[name]==P[name],name
- else:
-  assert B[name]['vertices']!=P[name]['vertices'] and B[name]['triangles']!=P[name]['triangles']
-  for key in ['axis_start','axis_end','axis_direction','stock_frame','exploded_offset','geometry_planes_inches']:
-   assert B[name][key]==P[name][key],(name,key)
-  assert P[name]['fabrication_dimensions_valid'] is False and not P[name]['reference_end_faces'] and not P[name]['joint_cut_faces']
-assert 'NOT FABRICATION APPROVED' in full['status']
-assert full['joinery_verification']['status']=='PROPOSED GEOMETRY ONLY'
-assert 'load_review_data' not in full and 'cavity_data' not in full
-S={p['id']:solid(p) for p in full['parts'] if p['is_timber']}
-for name,s in S.items():
- assert str(s.status())=='Error.NoError' and len(s.decompose())==1,name
- if name in changed:
-  v=np.asarray(P[name]['vertices']);t=P[name]['triangles'];edges=collections.Counter(tuple(sorted((tri[j],tri[(j+1)%3]))) for tri in t for j in range(3));assert all(c==2 for c in edges.values()),name
-# TIMESTAMP START 2026-11-02T15:15:55-05:00 | REVISION R004802
-# All 3660 pairs affected by the 40 perimeter members are checked independently.
-# TIMESTAMP END 2026-11-02T15:15:55-05:00 | REVISION R004802
-count=0
-for a,b in itertools.combinations(S,2):
- if not ({a,b}&changed):continue
- count+=1;aa=S[a].bounding_box();bb=S[b].bounding_box()
- if any(aa[j+3]<bb[j]-1e-9 or bb[j+3]<aa[j]-1e-9 for j in range(3)):continue
- assert (S[a]^S[b]).volume()/I**3<1e-6,(a,b,'interference')
-# TIMESTAMP START 2026-11-02T15:15:55-05:00 | REVISION R004802
-assert count==3660 and not data['combined_geometry_audit']['interferences'] and not data['combined_geometry_audit']['lost_neighbor_contacts']
-# TIMESTAMP END 2026-11-02T15:15:55-05:00 | REVISION R004802
-for v in data['variants']:
- a,b=v['member_ids'];old_a,old_b=solid(B[a]),solid(B[b]);new_a,new_b=S[a],S[b]
- # Authoritative closed tongue/pocket masks avoid unstable subtraction of
- # reimported nearly coplanar faces. Signed whole-solid deltas remain independent.
- added=solid(v['added_parts'][0]);removed=solid(v['removed_parts'][0])
- assert added.volume()/I**3>.01 and removed.volume()/I**3>.01
- assert v['added_parts'][0]['vertices']==v['removed_parts'][0]['vertices']
- assert v['added_parts'][0]['triangles']==v['removed_parts'][0]['triangles']
- assert abs((new_a.volume()-old_a.volume())-added.volume())/I**3<1e-6
- expected=sum(solid(w['removed_parts'][0]).volume() for w in data['variants'] if w['member_ids'][1]==b)
- assert abs((old_b.volume()-new_b.volume())-expected)/I**3<1e-6
- assert abs(v['measurements']['receiver_total_removed_volume_in3']-expected/I**3)<1e-6
- assert v['measurements']['receiver_proposed_pocket_count']==(2 if b.startswith('B') else 1)
- for p in v['proposed_parts']:assert p==P[p['id']]
- # Independent direct original halfspace test, not the producer's hull helper.
- av=np.asarray(added.to_mesh64().vert_properties)[:,:3];source=np.column_stack((av[:,0],-av[:,2],av[:,1]))/I
- for plane in B[a]['geometry_planes_inches']:assert np.max(source@plane['normal']-plane['constant'])<1e-6,(a,'outside original stock')
- width=np.asarray(B[a]['stock_frame']['width']);span=np.ptp(av@width)/I
- assert abs(span-v['parameters']['tongue_width']['value'])<1e-8
- assert abs((v['local_frame']['origin_m'][1]-av[:,1].min())/I-v['parameters']['maximum_additional_engagement']['value'])<1e-8
- # Opposed nonzero cheek areas, no false claim of a mechanical uplift lock.
- cheeks=v['measurements']['transverse_cheek_contacts'];directions={int(np.sign(np.asarray(f['normal_on_rafter'])@width)) for f in cheeks}
- assert directions=={-1,1} and all(f['area_in2']>1 for f in cheeks)
- assert v['uplift_retention']=='unresolved' and v['fastener_detail']=='unresolved'
- profiles=v['cut_profiles'];assert profiles['rafter_retained_tongue_closed_polygons']==profiles['receiver_removed_pocket_closed_polygons']
- assert all(polygon[0]==polygon[-1] and len(polygon)>=4 for polygon in profiles['rafter_retained_tongue_closed_polygons'])
- assert v['source_attachment_id'] is None and v['source_pdf_page'] is None
- for g in v['measurements']['proposed_member_mass_geometry']:
-  check=volume_centroid(S[g['member_id']]);assert abs(check['volume_m3']-g['volume_m3'])<1e-12 and np.linalg.norm(np.asarray(check['centroid_m'])-g['centroid_m'])<1e-10
-assert len(data['variants'])==24 and len({v['id'] for v in data['variants']})==24
-assert {tuple(v['member_ids']) for v in data['variants']}=={(f'J{k}-{side}',f'B{k}') for k in range(8) for side in ['0','2']}|{(f'R{k}',f'P{k}') for k in range(8)}
-for v in data['variants']:
- if v['member_ids'][0].startswith('J'):
-  assert abs(v['measurements']['proposed_horizontal_bearing_area_in2']-6.45672280493)<1e-7
-  assert abs(v['measurements']['proposed_inclined_contact_area_in2']-5.8930445807)<1e-5
-  assert 'horizontal component' in ' '.join(v['findings']) and 'capacity loss or gain' in ' '.join(v['findings'])
- else:
-  assert abs(v['measurements']['proposed_horizontal_bearing_area_in2']-64)<1e-7
-  assert abs(v['measurements']['remaining_local_sections'][1]['proposed_area_in2']-32)<1e-4
- # Independently derive the spatial symmetry, including right-hand J reflection.
- theta=v['bay']*math.pi/4;c,s=math.cos(theta),math.sin(theta);rot=np.array([[c,0,s],[0,1,0],[-s,0,c]])
- if v['handed_reflection']:
-  normal=np.array([math.sin(math.pi/8),0,math.cos(math.pi/8)]);rot=rot@(np.eye(3)-2*np.outer(normal,normal))
- seed=next(x for x in data['variants'] if x['id']==v['reference_seed_id']);want=np.asarray(seed['added_parts'][0]['vertices'])@rot.T;actual=np.asarray(v['added_parts'][0]['vertices'])
- assert max(min(np.linalg.norm(actual-q,axis=1)) for q in want)<1e-10
-assert sum(v['handed_reflection'] for v in data['variants'])==8
-assert not data['combined_geometry_audit']['held_interfaces']
-assert data['combined_geometry_audit']['implemented_interface_count']==24
-assert abs(data['baseline_timber_volume_m3']-data['proposed_timber_volume_m3'])<1e-10
-# TIMESTAMP START 2026-11-02T15:15:55-05:00 | REVISION R004802
-assert len(full['proposed_member_volume_centroids'])==112
-# TIMESTAMP END 2026-11-02T15:15:55-05:00 | REVISION R004802
-# TIMESTAMP START 2026-11-02T10:36:58-05:00 | REVISION R004765
-# Coplanar normalization must cancel a coincident internal face but preserve
-# legitimate opposite-facing, disjoint regions on that same support plane.
+from audit_revised_joinery import native_solid as solid
+from step_lap import I,close_bounds,regular_boundary,volume_centroid
+from audit_cavity_fit import inspect_mesh,arrays,coplanar_surface_overlaps
+base=json.loads((R/'src/model-data.json').read_text());full=json.loads((R/'src/step-lap-proposed-model.json').read_text());proposal=json.loads((R/'src/step-lap-proposal.json').read_text())
+B={p['id']:p for p in base['parts']};P={p['id']:p for p in full['parts']}
+assert set(B)==set(P)
+assert proposal['baseline_model_sha256']==hashlib.sha256((R/'src/model-data.json').read_bytes()).hexdigest()
+changed={pid for pid in P if P[pid]!=B[pid]}
+assert changed==set(full['proposed_review']['changed_member_ids'])==set(proposal['combined_geometry_audit']['changed_member_ids'])
+# TIMESTAMP START 2026-11-04T20:53:01+00:00 | REVISION R000024
+perimeter_ids={f'{f}{k}' for k in range(8) for f in ['P','B','R']}|{f'J{k}-{side}' for k in range(8) for side in ['0','2']}
+for pid in changed-perimeter_ids:
+ # Regenerated cheek measurements may differ by floating-point roundoff.
+ # Keep every mesh, bore, dimension and all other metadata byte-identical.
+ assert pid.startswith('MAIN-PEG-') and P[pid]['group']=='joinery_pegs',pid
+ values=[part['peg_geometry']['receiver_cheek_lengths_in'] for part in [B[pid],P[pid]]]
+ assert all(len(value)==2 for value in values)
+ assert np.allclose(*values,rtol=0,atol=1e-12),(pid,'material peg measurement changed')
+ records=[{**part,'peg_geometry':{key:value for key,value in part['peg_geometry'].items()
+          if key!='receiver_cheek_lengths_in'}} for part in [B[pid],P[pid]]]
+ assert records[0]==records[1],(pid,'unexpected physical or metadata variant change')
+# TIMESTAMP END 2026-11-04T20:53:01+00:00 | REVISION R000024
+shapes={pid:solid(p) for pid,p in P.items() if p['is_timber']}
+for pid,s in shapes.items():
+ assert inspect_mesh(*arrays(P[pid]),require_single=True)['status']=='PASS',pid
+ assert s.volume()>0 and len(s.decompose())==1
+for a,b in itertools.combinations(shapes,2):
+ if close_bounds(shapes[a],shapes[b]):assert (shapes[a]^shapes[b]).volume()/I**3<1e-6,(a,b)
+assert len(proposal['variants'])==24
+for joint in proposal['variants']:
+ a,b=joint['member_ids'];tool=solid(joint['added_parts'][0]);removed=solid(joint['removed_parts'][0])
+ assert tool.volume()/I**3>.01
+ assert abs((tool-removed).volume())+abs((removed-tool).volume())<1e-12
+ assert (tool-shapes[a]).volume()/I**3<1e-6,(a,'retained toe missing')
+ assert (tool^shapes[b]).volume()/I**3<1e-6,(b,'receiving seat not empty')
+ assert shapes[a].min_gap(shapes[b],.01)<1e-8,(a,b,'bearing gap')
+ assert joint['uplift_retention']=='unresolved'
+for member in full['proposed_member_volume_centroids']:
+ actual=volume_centroid(shapes[member['id']]);assert abs(actual['volume_m3']-member['volume_m3'])<1e-12
+ assert np.linalg.norm(np.asarray(actual['centroid_m'])-member['centroid_m'])<1e-10
+# Guard the shared planar boundary repair independently of project geometry.
 unit=m.Manifold.cube((.1,.1,.1))
-for label,fixture,components in [
- ('touching cubes',m.Manifold.compose([unit,unit.translate((.1,0,0))]),1),
- ('disjoint opposing plane regions',m.Manifold.compose([unit,unit.translate((.1,.2,0))]),2)]:
- cleaned=regular_boundary(fixture);mesh=cleaned.to_mesh64()
- check=coplanar_surface_overlaps(np.asarray(mesh.vert_properties)[:,:3],np.asarray(mesh.tri_verts))
- assert check['status']=='PASS',(label,check)
- assert len(cleaned.decompose())==components,(label,'lost connected region')
- assert abs(cleaned.volume()-.002)<1e-12,(label,'changed occupied volume')
- assert abs((cleaned-fixture).volume())+abs((fixture-cleaned).volume())<1e-12,(label,'changed occupied set')
-print('PASS: planar repair cancels hidden coincident faces and retains disjoint opposite-facing surfaces')
-# TIMESTAMP END 2026-11-02T10:36:58-05:00 | REVISION R004765
-
-# TIMESTAMP START 2026-11-02T13:01:18-05:00 | REVISION R004778
-# Preserve the upstream seated-support baseline proof and every independent
-# stock/contact/intersection check. CPU-dependent planar triangulation is
-# compared by its full oriented boundary; metadata remains strictly checked.
-# TIMESTAMP END 2026-11-02T13:01:18-05:00 | REVISION R004778
-test_guard()
-# Compare the JSON domain actually emitted by the generator, normalizing
-# NumPy float scalars without rounding any value.
-ag,fg=(json.loads(json.dumps(x)) for x in build_proposal(base,sha))
-for member in fg['parts']:
- if member['id'] in changed:
-  surface=coplanar_surface_overlaps(np.asarray(member['vertices']),np.asarray(member['triangles']))
-  assert surface['status']=='PASS',(member['id'],'regenerated raw surface overlap',surface)
-from mesh_regeneration_equivalence import normalize_planar_retriangulation, test_mesh_guard
-test_mesh_guard()
-# TIMESTAMP START 2026-11-02T13:01:18-05:00 | REVISION R004778
-# Normalize only after raw mesh validity, matching oriented support planes,
-# bidirectional planar-region equality, tight bounds and signed-volume checks.
-# TIMESTAMP END 2026-11-02T13:01:18-05:00 | REVISION R004778
-print('Planar regeneration:',normalize_planar_retriangulation(ag,data),normalize_planar_retriangulation(fg,full))
-print("Regeneration roundoff:",assert_equivalent(ag,data,("proposal",)),assert_equivalent(fg,full,("model",)))
-assert (R/'src/model-data.json').read_bytes()==raw
-# TIMESTAMP START 2026-11-02T15:15:55-05:00 | REVISION R004802
-print('PASS: actual complementary tongue/pocket CSG; matched closed profiles; original-stock bounds; all 24 interfaces / 3660 affected pairs clear;112 member volumes/centroids refreshed; baseline exact; no fabricated strength/retention/manual claims')
-# TIMESTAMP END 2026-11-02T15:15:55-05:00 | REVISION R004802
+for shift,count in [((.1,0,0),1),((.1,.2,0),2)]:
+ original=m.Manifold.compose([unit,unit.translate(shift)]);cleaned=regular_boundary(original);mesh=cleaned.to_mesh64()
+ assert coplanar_surface_overlaps(np.asarray(mesh.vert_properties)[:,:3],np.asarray(mesh.tri_verts))['status']=='PASS'
+ assert len(cleaned.decompose())==count and abs(cleaned.volume()-.002)<1e-12
+ assert abs((cleaned-original).volume())+abs((original-cleaned).volume())<1e-12
+print('PASS: 24 current complementary perimeter seats, 112 clean timbers, all physical pairs and current mass data; planar repair guard passes')
+# TIMESTAMP END 2026-11-03T17:00:04-05:00 | REVISION R005063

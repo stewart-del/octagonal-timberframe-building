@@ -71,24 +71,36 @@ function build(model,{applyJoinery=true}={}){
  // TIMESTAMP END 2026-11-02T21:06:57-05:00 | REVISION R004876
  // Open sides: corner posts carry the roof; level guards sit directly behind the benches.
  // TIMESTAMP START 2026-11-02T15:00:19-05:00 | REVISION R004797
- const porchGuardTop=backFloor+38*I,guardRail=3.5*I,picketWidth=1.5*I,maxPicketGap=3.5*I;
+// TIMESTAMP START 2026-11-03T13:59:01-05:00 | REVISION R005033
+ const porchGuardTop=backFloor+40*I,guardRail=4.5*I,baseRail=4.5*I,picketWidth=1.5*I,maxPicketGap=3.5*I;
+// TIMESTAMP END 2026-11-03T13:59:01-05:00 | REVISION R005033
  // TIMESTAMP END 2026-11-02T15:00:19-05:00 | REVISION R004797
  for(const [side,x0,x1] of [['L',-h-t,-h],['R',h,h+t]]){
-  prism('SILL-'+side,'Porch '+side+' guard base','framing',x0,x1,rear,front+t,(x,z)=>floorHeight(z),(x,z)=>floorHeight(z)+stud,colors.wood);
+// TIMESTAMP START 2026-11-03T13:59:01-05:00 | REVISION R005033
+  prism('SILL-'+side,'Porch '+side+' guard base','framing',x0,x1,rear,front+t,(x,z)=>floorHeight(z),(x,z)=>floorHeight(z)+baseRail,colors.wood);
+// TIMESTAMP END 2026-11-03T13:59:01-05:00 | REVISION R005033
   // TIMESTAMP START 2026-11-02T15:00:19-05:00 | REVISION R004797
   prism('PLATE-'+side,'Continuous porch roof beam','framing',x0,x1,rear,front+t,beamTop-beamDepth,beamTop,colors.wood);
   // TIMESTAMP END 2026-11-02T15:00:19-05:00 | REVISION R004797
   // TIMESTAMP START 2026-11-02T15:00:19-05:00 | REVISION R004797
 // TIMESTAMP START 2026-11-02T20:31:01-05:00 | REVISION R004867
-  const postX0=side==='L'?x0:x1-post,postX1=side==='L'?x0+post:x1;
-  for(const [end,z0,z1] of [['BACK',rear,rear+post],['FRONT',front+t-post,front+t]])prism('POST-'+side+'-'+end,'Porch full 4 × 4 corner post','framing',postX0,postX1,z0,z1,(x,z)=>floorHeight(z)+stud,beamTop-beamDepth,colors.wood);
+// TIMESTAMP START 2026-11-03T13:59:01-05:00 | REVISION R005033
+  const postX0=(x0+x1-post)/2,postX1=(x0+x1+post)/2;
+// TIMESTAMP END 2026-11-03T13:59:01-05:00 | REVISION R005033
+// TIMESTAMP START 2026-11-03T13:59:01-05:00 | REVISION R005033
+  for(const [end,z0,z1] of [['BACK',rear+(t-post)/2,rear+(t+post)/2],['FRONT',front+(t-post)/2,front+(t+post)/2]])prism('POST-'+side+'-'+end,'Porch full 4 × 4 corner post','framing',postX0,postX1,z0,z1,(x,z)=>floorHeight(z)+baseRail,beamTop-beamDepth,colors.wood);
+// TIMESTAMP END 2026-11-03T13:59:01-05:00 | REVISION R005033
 // TIMESTAMP END 2026-11-02T20:31:01-05:00 | REVISION R004867
 // TIMESTAMP START 2026-11-02T20:31:01-05:00 | REVISION R004867
-  const z0=rear+post,z1=front+t-post,length=z1-z0,count=Math.ceil(length/(picketWidth+maxPicketGap)),gap=(length-count*picketWidth)/(count+1),px0=side==='L'?-h-1.5*I:h,px1=side==='L'?-h:h+1.5*I;
+// TIMESTAMP START 2026-11-03T13:59:01-05:00 | REVISION R005033
+  const z0=rear+(t+post)/2,z1=front+(t-post)/2,length=z1-z0,count=Math.ceil(length/(picketWidth+maxPicketGap)),gap=(length-count*picketWidth)/(count+1),px0=side==='L'?-h-1.5*I:h,px1=side==='L'?-h:h+1.5*I;
+// TIMESTAMP END 2026-11-03T13:59:01-05:00 | REVISION R005033
 // TIMESTAMP END 2026-11-02T20:31:01-05:00 | REVISION R004867
   // TIMESTAMP END 2026-11-02T15:00:19-05:00 | REVISION R004797
   prism('GUARD-TOP-'+side,'Level railing behind side bench','framing',x0,x1,z0,z1,porchGuardTop-guardRail,porchGuardTop,colors.wood);
-  for(let k=0;k<count;k++){const z=z0+gap+k*(picketWidth+gap);prism('GUARD-PICKET-'+side+'-'+k,'Porch side railing vertical','framing',px0,px1,z,z+picketWidth,(x,z)=>floorHeight(z)+stud,porchGuardTop-guardRail,colors.wood);}
+// TIMESTAMP START 2026-11-03T13:59:01-05:00 | REVISION R005033
+  for(let k=0;k<count;k++){const z=z0+gap+k*(picketWidth+gap);prism('GUARD-PICKET-'+side+'-'+k,'Porch side railing vertical','framing',px0,px1,z,z+picketWidth,(x,z)=>floorHeight(z)+baseRail,porchGuardTop-guardRail,colors.wood);}
+// TIMESTAMP END 2026-11-03T13:59:01-05:00 | REVISION R005033
  }
  // TIMESTAMP START 2026-11-02T15:00:19-05:00 | REVISION R004797
  const frameStations=Array.from({length:5},(_,k)=>roofSpec.firstFrameZ_M+k*(front+t-stud/2-roofSpec.firstFrameZ_M)/4);
@@ -103,11 +115,15 @@ function build(model,{applyJoinery=true}={}){
  const entryHalf=.475,frontGuardTop=frontFloor+36*I;
  // TIMESTAMP END 2026-11-02T15:00:19-05:00 | REVISION R004797
 // TIMESTAMP START 2026-11-02T20:31:01-05:00 | REVISION R004867
- for(const [side,x0,x1] of [['L',-h-t+post,-entryHalf-post],['R',entryHalf+post,h+t-post]]){
+// TIMESTAMP START 2026-11-03T13:59:01-05:00 | REVISION R005033
+ for(const [side,x0,x1] of [['L',-h-(t-post)/2,-entryHalf-post],['R',entryHalf+post,h+(t-post)/2]]){
+// TIMESTAMP END 2026-11-03T13:59:01-05:00 | REVISION R005033
 // TIMESTAMP END 2026-11-02T20:31:01-05:00 | REVISION R004867
   // TIMESTAMP START 2026-11-02T15:00:19-05:00 | REVISION R004797
 // TIMESTAMP START 2026-11-02T20:31:01-05:00 | REVISION R004867
-  prism('FRONT-SILL-'+side,'Porch front guard base','framing',side==='L'?-h:entryHalf,side==='L'?-entryHalf:h,front,front+t,frontFloor,frontFloor+stud,colors.wood);
+// TIMESTAMP START 2026-11-03T13:59:01-05:00 | REVISION R005033
+  prism('FRONT-SILL-'+side,'Porch front guard base','framing',side==='L'?-h:entryHalf,side==='L'?-entryHalf:h,front,front+t,frontFloor,frontFloor+baseRail,colors.wood);
+// TIMESTAMP END 2026-11-03T13:59:01-05:00 | REVISION R005033
 // TIMESTAMP END 2026-11-02T20:31:01-05:00 | REVISION R004867
   // TIMESTAMP END 2026-11-02T15:00:19-05:00 | REVISION R004797
   // TIMESTAMP START 2026-11-02T15:00:19-05:00 | REVISION R004797
@@ -115,12 +131,16 @@ function build(model,{applyJoinery=true}={}){
   // TIMESTAMP END 2026-11-02T15:00:19-05:00 | REVISION R004797
   const length=x1-x0,count=Math.ceil(length/(picketWidth+maxPicketGap)),gap=(length-count*picketWidth)/(count+1);
   // TIMESTAMP START 2026-11-02T15:00:19-05:00 | REVISION R004797
-  for(let k=0;k<count;k++){const x=x0+gap+k*(picketWidth+gap);prism('FRONT-PICKET-'+side+'-'+k,'Porch front railing vertical','framing',x,x+picketWidth,front,front+guardRail,frontFloor+stud,frontGuardTop-guardRail,colors.wood);}
+// TIMESTAMP START 2026-11-03T13:59:01-05:00 | REVISION R005033
+  for(let k=0;k<count;k++){const x=x0+gap+k*(picketWidth+gap);prism('FRONT-PICKET-'+side+'-'+k,'Porch front railing vertical','framing',x,x+picketWidth,front,front+guardRail,frontFloor+baseRail,frontGuardTop-guardRail,colors.wood);}
+// TIMESTAMP END 2026-11-03T13:59:01-05:00 | REVISION R005033
   // TIMESTAMP END 2026-11-02T15:00:19-05:00 | REVISION R004797
  }
  // TIMESTAMP START 2026-11-02T15:00:19-05:00 | REVISION R004797
 // TIMESTAMP START 2026-11-02T20:31:01-05:00 | REVISION R004867
- for(const [side,x0,x1] of [['L',-entryHalf-post,-entryHalf],['R',entryHalf,entryHalf+post]])prism('ENTRY-GUARD-POST-'+side,'Porch full 4 × 4 railing post beside open stair passage','framing',x0,x1,front+t-post,front+t,frontFloor+stud,frontGuardTop,colors.wood);
+// TIMESTAMP START 2026-11-03T13:59:01-05:00 | REVISION R005033
+ for(const [side,x0,x1] of [['L',-entryHalf-post,-entryHalf],['R',entryHalf,entryHalf+post]])prism('ENTRY-GUARD-POST-'+side,'Porch full 4 × 4 railing post beside open stair passage','framing',x0,x1,front+(t-post)/2,front+(t+post)/2,frontFloor+baseRail,frontGuardTop,colors.wood);
+// TIMESTAMP END 2026-11-03T13:59:01-05:00 | REVISION R005033
 // TIMESTAMP END 2026-11-02T20:31:01-05:00 | REVISION R004867
  // TIMESTAMP END 2026-11-02T15:00:19-05:00 | REVISION R004797
  // TIMESTAMP START 2026-11-02T15:00:19-05:00 | REVISION R004797

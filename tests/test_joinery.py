@@ -59,32 +59,18 @@ for k in range(8):
 print('PASS: horizontal half-inch plywood, eight horizontal spokes and plywood/timber separation')
 # TIMESTAMP END 2026-11-01T23:19:38-05:00 | REVISION R004668
 
-# TIMESTAMP START 2026-11-02T08:55:04-05:00 | REVISION R004751
-# Inspect raw connected triangle components before any Boolean kernel can repair them.
-# The lower C socket is independently specified by the retained straight T tenon.
+# TIMESTAMP START 2026-11-03T17:00:04-05:00 | REVISION R005063
+# Current lower cupola tongues are three inches deep. Check their actual
+# occupied material against both exported cavities and the receiving timber.
 for k in range(8):
-    name=f'C{k}';record=cavities['parts'][name]['removed']
-    vv=np.asarray(record['vertices']);tt=np.asarray(record['triangles'])
-    radial=np.array([math.cos(k*math.pi/4),0,-math.sin(k*math.pi/4)])
-    tangent=np.array([math.sin(k*math.pi/4),0,math.cos(k*math.pi/4)])
-    local=np.column_stack([vv@radial,vv[:,1],vv@tangent])/.0254
-    low=[j for j,t in enumerate(tt) if np.all(local[t,1]<100)]
-    assert len(low)==12,(name,'lower cavity must have twelve box triangles',len(low))
-    ids=sorted(set(int(i) for j in low for i in tt[j]))
-    expected=np.array(list(itertools.product([42.,44.],[86.,94.],[-1.,1.])))
-    assert len(ids)==8,(name,'unexpected lower cavity vertices')
-    assert all(np.min(np.linalg.norm(expected-v,axis=1))<1e-7 for v in local[ids]),(name,'point or oversized socket')
-    edge_count={}
-    for j in low:
-        for a,b in zip(tt[j],np.roll(tt[j],-1)):
-            edge=tuple(sorted((int(a),int(b))));edge_count[edge]=edge_count.get(edge,0)+1
-    assert all(n==2 for n in edge_count.values()),(name,'lower cavity is not closed')
-    origin=vv[ids].mean(axis=0)
-    volume=sum(np.dot(vv[t[0]]-origin,np.cross(vv[t[1]]-origin,vv[t[2]]-origin))/6 for t in tt[low])/.0254**3
-    assert abs(volume-32)<1e-7,(name,'lower socket volume',volume)
-    owner=solids[f'T{k}']
-    box=m.Manifold.cube([2*.0254,8*.0254,2*.0254]).translate([42*.0254,86*.0254,-.0254]).rotate([0,k*45,0])
-    assert abs((box-owner).volume()/.0254**3)<1e-6,(name,'mating tenon does not fill socket')
-    assert abs((box^solids[name]).volume()/.0254**3)<1e-6,(name,'socket overlaps receiving timber')
-print('PASS: all eight raw lower cupola sockets are closed 2 × 2 × 8 inch boxes, filled by mating ties without receiving-timber overlap')
-# TIMESTAMP END 2026-11-02T08:55:04-05:00 | REVISION R004751
+    joint=next(j for j in data['tenon_schedule'] if j['donor']==f'T{k}' and j['receiver']==f'C{k}')
+    connector=solid(joint['connector']);v=np.asarray(joint['connector']['vertices'])
+    assert abs(np.ptp(v@np.asarray(joint['insertion_direction']))/.0254-3)<1e-7
+    assert abs(np.ptp(v@np.asarray(joint['width_direction']))/.0254-2)<1e-7
+    assert abs(np.ptp(v@np.asarray(joint['height_direction']))/.0254-8)<1e-7
+    cavity=solid(cavities['parts'][f'C{k}']['removed'])
+    assert (connector-cavity).volume()/.0254**3<1e-6
+    assert (connector-solids[f'T{k}']).volume()/.0254**3<1e-6
+    assert (connector^solids[f'C{k}']).volume()/.0254**3<1e-6
+print('PASS: all eight actual three-inch lower cupola tenons fill their matching sockets')
+# TIMESTAMP END 2026-11-03T17:00:04-05:00 | REVISION R005063

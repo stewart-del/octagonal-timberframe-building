@@ -1,3 +1,4 @@
+// TIMESTAMP START 2026-11-03T17:20:17-05:00 | REVISION R005073
 const fs=require('node:fs'),assert=require('node:assert/strict'),path=require('node:path');
 const root=path.resolve(__dirname,'..');
 const src=fs.readFileSync(path.join(root,'src/geometry-overlays.js'),'utf8');
@@ -48,9 +49,11 @@ const verification={revision:'R004755',timestamp:'2026-11-02T09:17:47-05:00',pas
  changed_display_records:results,removed_overlay_components:results,
  scope:'Removed-only source cavities require no display filtering. No residual diagnostic geometry or occupancy volume is exported. Model hash comparison establishes byte identity for this cavity correction only. This test is not a complete cavity-closure or structural certification.',
  renderer_checks:['Source records not mutated','Corrected removed cavities retain every triangle','Synthetic closed planar exact-zero-volume shell removed','Tiny positive-volume shell retained','Open planar diagnostic surface retained','Feature edges used by WebGL and fallback','Cube has twelve feature edges','No residual diagnostic geometry or occupancy volume exported'],
- lower_cupola_regression:'tests/test_joinery.py independently checks all eight raw lower cavity components against the 2 × 2 × 8 inch box and mating timber exports.'};
+ lower_cupola_regression:'tests/test_joinery.py independently checks all eight raw lower cavity components against the actual three-inch projecting lower tenons and mating timber exports.'};
 // TIMESTAMP END 2026-11-02T09:17:47-05:00 | REVISION R004755
 if(process.env.CAVITY_VERIFICATION_OUTPUT)fs.writeFileSync(process.env.CAVITY_VERIFICATION_OUTPUT,JSON.stringify(verification,null,2)+'\n');
 console.log(JSON.stringify(verification,null,2));
 // TIMESTAMP END 2026-11-02T08:55:04-05:00 | REVISION R004751
 
+
+// TIMESTAMP END 2026-11-03T17:20:17-05:00 | REVISION R005073

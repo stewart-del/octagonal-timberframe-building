@@ -25,7 +25,9 @@ function measurements(model,porch=false){
  const porchAPI=typeof OctagonMudroom!=='undefined'?OctagonMudroom:require('./mudroom.js');
  const n=root.TimberSchematicWalls.orientation.north,e=root.TimberSchematicWalls.orientation.east;
  const span=(pieces,axis)=>{const q=pieces.flatMap(p=>p.vertices.map(v=>dot(v,axis)));return Math.max(...q)-Math.min(...q);};
- if(porch){const layout=porchAPI.build(model),d=layout.dimensions,roof=typeof OctagonMudroomRoof!=='undefined'?OctagonMudroomRoof.spec(model):require('./mudroom-roof.js').spec(model);
+// TIMESTAMP START 2026-11-03T13:32:57-05:00 | REVISION R005027
+ if(porch){const layout=model.generatedLayouts?.mudroom||porchAPI.build(model),d=layout.dimensions,roof=typeof OctagonMudroomRoof!=='undefined'?OctagonMudroomRoof.spec(model):require('./mudroom-roof.js').spec(model);
+// TIMESTAMP END 2026-11-03T13:32:57-05:00 | REVISION R005027
   const p=layout.components.find(p=>p.id==='MUD-RAFTER-L-2'),axis=unit([roof.tangent[0],roof.pitch,roof.tangent[2]]),q=p.vertices.map(v=>dot(v,axis));
 // TIMESTAMP START 2026-11-03T07:17:50-05:00 | REVISION R004916
   return {rows:[['Clear floor width',d.clearWidthM],['Clear floor depth',d.clearDepthM],['Roof span across eaves',2*roof.halfWidthM],['Gable rise: eave to ridge',roof.halfWidthM*roof.pitch],['Gable horizontal run',roof.halfWidthM],['Gable pitch',String(roof.pitch*12)+' : 12'],['Gable roof angle',degrees(Math.atan(roof.pitch))],['Porch post section','4 × 4 in'],['Porch rafter section',(p.stockWidthM/.0254).toFixed(2)+' × '+(p.stockDepthM/.0254).toFixed(2)+' in'],['Middle rafter overall axial length',Math.max(...q)-Math.min(...q)],['Ridge above main finished floor',roof.ridgeRoofTopY_M],['Porch floor fall, rear to front',d.backFloorY_M-d.frontFloorY_M],['Stair rise per step',d.stairRiserM],['Stair tread depth',d.stairTreadM],['Underground column depth',6*.3048]],roofSection:{run:roof.halfWidthM,rise:roof.halfWidthM*roof.pitch,span:2*roof.halfWidthM,angle:degrees(Math.atan(roof.pitch)),slopeLength:Math.hypot(roof.halfWidthM,roof.halfWidthM*roof.pitch),endLabel:'Ridge'},floor:F,axis:roof.tangent,normal:roof.outward};}
@@ -45,7 +47,9 @@ const layouts=new WeakMap(),results=new WeakMap();
 function* drawSteps(model,{view='top',aids=false,hidden=false,walls=false,shelves=false,cupolaWindows=false,floor=false,roofCover=false,mudroom=false,modelHash=''}={}){
 // TIMESTAMP END 2026-11-02T14:22:13-05:00 | REVISION R004792
 // TIMESTAMP START 2026-11-02T21:09:01-05:00 | REVISION R004877
- let schematic=layouts.get(model);if(!schematic){schematic=root.TimberSchematicWalls?.build(model.parts);if(schematic&&model.wallJoinery){const W=root.OctagonWallJoinery||(typeof require==='function'?require('./wall-joinery.js'):null);schematic=W.applyLayout(schematic,model.wallJoinery);}if(schematic&&root.OctagonFloorFoundation){const f=typeof FLOOR_FOUNDATION_DATA!=='undefined'?FLOOR_FOUNDATION_DATA:(typeof require==='function'?require('./floor-foundation-solids.json'):null);if(f)schematic=root.OctagonFloorFoundation.roomLayout(model,schematic,f);}if(schematic)layouts.set(model,schematic);}
+// TIMESTAMP START 2026-11-03T13:32:57-05:00 | REVISION R005027
+ let schematic=model.generatedLayouts?.schematic||layouts.get(model);if(!schematic){schematic=root.TimberSchematicWalls?.build(model.parts);if(schematic&&model.wallJoinery){const W=root.OctagonWallJoinery||(typeof require==='function'?require('./wall-joinery.js'):null);schematic=W.applyLayout(schematic,model.wallJoinery);}if(schematic&&root.OctagonFloorFoundation){const f=typeof FLOOR_FOUNDATION_DATA!=='undefined'?FLOOR_FOUNDATION_DATA:(typeof require==='function'?require('./floor-foundation-solids.json'):null);if(f)schematic=root.OctagonFloorFoundation.roomLayout(model,schematic,f);}if(schematic)layouts.set(model,schematic);}
+// TIMESTAMP END 2026-11-03T13:32:57-05:00 | REVISION R005027
 // TIMESTAMP END 2026-11-02T21:09:01-05:00 | REVISION R004877
  const roofAPI=typeof TimberRoofCoverings!=='undefined'?TimberRoofCoverings:(typeof require==='function'?require('./roof-coverings.js'):null);
  const layout=schematic,extras=(layout?.components||[]).filter(p=>p.schematicKind==='shelf'?shelves:p.schematicKind==='cupolaWindow'?cupolaWindows:['floor','floorAssembly'].includes(p.schematicKind)?floor:walls);
@@ -55,7 +59,9 @@ function* drawSteps(model,{view='top',aids=false,hidden=false,walls=false,shelve
 const metrics=measurements(model,mudroom),north=metrics.normal,east=metrics.axis;
  const projection=v=>view==='top'?[dot(v,east),-dot(v,north),v[1]]:[dot(v,east),-v[1],dot(v,north)];
  // TIMESTAMP START 2026-11-02T22:13:32-05:00 | REVISION R004886
- const parts=mudroom?mudroomAPI.build(model).components.filter(p=>roofCover||!p.roofLayer):[...model.parts.filter(p=>included(p,aids)),...extras,...(roofCover&&roofAPI?roofAPI.build(model).components:[])],b=bounds(parts),axis=view==='top'?2:1;
+// TIMESTAMP START 2026-11-03T13:32:57-05:00 | REVISION R005027
+ const parts=mudroom?(model.generatedLayouts?.mudroom||mudroomAPI.build(model)).components.filter(p=>roofCover||!p.roofLayer):[...model.parts.filter(p=>included(p,aids)),...extras,...(roofCover&&roofAPI?roofAPI.build(model).components:[])],b=bounds(parts),axis=view==='top'?2:1;
+// TIMESTAMP END 2026-11-03T13:32:57-05:00 | REVISION R005027
  // TIMESTAMP END 2026-11-02T22:13:32-05:00 | REVISION R004886
 // TIMESTAMP END 2026-11-02T20:56:29-05:00 | REVISION R004874
 // TIMESTAMP END 2026-11-02T14:22:13-05:00 | REVISION R004792

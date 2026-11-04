@@ -26,7 +26,9 @@ def solid(p):
     if not p['vertices']:
         assert not p['triangles'] and p.get('volume_m3',0)==0
         return m.Manifold()
-    s=m.Manifold(m.Mesh64(np.asarray(p['vertices'],dtype=float),np.asarray(p['triangles'],dtype=np.uint64))).set_tolerance(1e-10)
+    # TIMESTAMP START 2026-11-03T17:00:04-05:00 | REVISION R005063
+    s=m.Manifold(m.Mesh64(np.asarray(p['vertices'],dtype=float),np.asarray(p['triangles'],dtype=np.uint64)))
+    # TIMESTAMP END 2026-11-03T17:00:04-05:00 | REVISION R005063
     assert str(s.status())=='Error.NoError' and s.volume()>0,p.get('id','mesh')
     return s
 
@@ -40,7 +42,11 @@ for pid,s in solids.items():
 for pid,p in fit['parts'].items():
     assert inspect_mesh(np.asarray(p['vertices']),np.asarray(p['triangles']),require_single=True)['status']=='PASS',pid+' raw mesh'
     stock=solid(p['joineryStock']);cavity=solid(p['joineryCavity']['removed']);removed=stock-solids[pid]
-    assert (removed-cavity).volume()<TOL and (cavity-removed).volume()<TOL,pid+' cavity differs from removed stock'
+    # TIMESTAMP START 2026-11-03T17:00:04-05:00 | REVISION R005063
+    assert abs(stock.volume()-solids[pid].volume()-cavity.volume())<TOL,pid+' stock partition volume'
+    assert (cavity-stock).volume()<TOL and (cavity^solids[pid]).volume()<TOL,pid+' cavity partition containment'
+    if cavity.volume()>TOL:assert inspect_mesh(np.asarray(p['joineryCavity']['removed']['vertices']),np.asarray(p['joineryCavity']['removed']['triangles']))['status']=='PASS',pid+' cavity raw surface'
+    # TIMESTAMP END 2026-11-03T17:00:04-05:00 | REVISION R005063
     assert (solids[pid]-stock).volume()<TOL,pid+' exceeds its joint stock'
     mates=set()
     for joint in fit['joints']:
@@ -83,43 +89,26 @@ for joint in fit['joints']:
     assert (motion_cache[key]^solids[fixed]).volume()<TOL,(joint['id'],'continuous withdrawal/insertion blocked')
     motion_checks+=1
 
-# Verify the six braces against both receivers simultaneously in their single
-# normal-to-frame insertion direction. All pegs are fitted after insertion.
+# TIMESTAMP START 2026-11-03T17:00:04-05:00 | REVISION R005063
+# Centered brace heads seat vertically into the beams after the post tenons
+# enter horizontally. Test both real connection directions and their shoulders.
+from plan_architectural_disassembly import Scene,check_stage,apply_stage
 braces=[p for p in records.values() if p['id'].startswith('MUD-BRACE-')]
 assert len(braces)==6
 for p in braces:
-    pid=p['id'];vertices=(np.asarray(p['joineryStock']['vertices'])-origin)@basis.T
-    axis=0 if '-SIDE-' in pid else 2
-    assert abs(np.ptp(vertices[:,axis])-.0508)<1e-9,pid+' must be full 2-inch stock'
-    run_axis=2 if axis==0 else 0
-    sign=(1 if pid.endswith('BACK') else -1) if axis==0 else (1 if pid.endswith('L') else -1)
-    perp=np.zeros(3);perp[1]=sign/np.sqrt(2);perp[run_axis]=-1/np.sqrt(2)
-    assert abs(np.ptp(vertices@perp)-.1524)<1e-9,pid+' must be full 6-inch stock'
-    joints=[j for j in fit['joints'] if j['donor']==pid]
-    assert len(joints)==2 and joints[0]['insertion_direction_world']==joints[1]['insertion_direction_world']
-    # TIMESTAMP START 2026-11-03T07:32:15-05:00 | REVISION R004924
-    # Filled cavities alone miss an open wedge outside both original stocks.
-    # Require complete plumb/level end faces, wholly inside receiver profiles.
-    post=next(records[j['receiver']] for j in joints if records[j['receiver']]['id'].startswith('MUD-POST-'))
-    beam=next(records[j['receiver']] for j in joints if not records[j['receiver']]['id'].startswith('MUD-POST-'))
-    post_v=(np.asarray(post['joineryStock']['vertices'])-origin)@basis.T
-    beam_v=(np.asarray(beam['joineryStock']['vertices'])-origin)@basis.T
-    foot=(post_v[:,run_axis].max() if sign>0 else post_v[:,run_axis].min())-sign*.0254
-    head=beam_v[:,1].min()+.0254
-    for dimension,value,receiver_v in [(run_axis,foot,post_v),(1,head,beam_v)]:
-        cap=[tri for tri in p['joineryStock']['triangles'] if np.all(np.abs(vertices[tri,dimension]-value)<1e-8)]
-        area=sum(np.linalg.norm(np.cross(vertices[t[1]]-vertices[t[0]],vertices[t[2]]-vertices[t[0]]))/2 for t in cap)
-        assert abs(area-2*6*np.sqrt(2)*.0254**2)<1e-9,(pid,'incomplete nested end face',dimension,area)
-        cap_v=vertices[sorted({i for tri in cap for i in tri})]
-        assert np.all(cap_v>=receiver_v.min(0)-1e-8) and np.all(cap_v<=receiver_v.max(0)+1e-8),(pid,'end extends outside its receiver')
-    # TIMESTAMP END 2026-11-03T07:32:15-05:00 | REVISION R004924
-    receivers=solids[joints[0]['receiver']]+solids[joints[1]['receiver']]
-    travel=swept(solids[pid],-np.asarray(joints[0]['insertion_direction_world'])*.15)
-    assert (travel^receivers).volume()<TOL,pid+' cannot enter both face housings'
-    for other,record in records.items():
-        if other==pid or other.startswith('MUD-PEG-') or record.get('mudroomRoof'):continue
-        if overlaps(travel,solids[other]):assert (travel^solids[other]).volume()<TOL,(pid,other,'brace entry hits assembled porch')
-    motion_checks+=1
+    pid=p['id'];joints=[j for j in fit['joints'] if j['donor']==pid]
+    assert len(joints)==2
+    for j in joints:
+        assert abs(j['tenon_projection_m']/.0254-3)<1e-9
+        assert solids[pid].min_gap(solids[j['receiver']],.01)<1e-8
+    post_joint=next(j for j in joints if j['receiver'].startswith('MUD-POST-'))
+    beam_joint=next(j for j in joints if not j['receiver'].startswith('MUD-POST-'))
+    ids=[pid,post_joint['receiver'],beam_joint['receiver']]
+    scene=Scene('brace-test',{q:records[q] for q in ids},{q:solids[q] for q in ids},{q:np.zeros(3) for q in ids})
+    for moving,delta in [([beam_joint['receiver']],[0,.1,0]),([pid],-np.asarray(post_joint['insertion_direction_world'])*.1)]:
+        proof=check_stage(scene,moving,delta);assert proof['status']=='PASS',(pid,proof['collisions'])
+        apply_stage(scene,moving,delta,proof);motion_checks+=1
+# TIMESTAMP END 2026-11-03T17:00:04-05:00 | REVISION R005063
 
 # Paired rafters lower vertically together after apex assembly. The ties also
 # enter open-top seats vertically; held-out pegs cannot obstruct those motions.

@@ -36,14 +36,26 @@ def generate():
         return m.Manifold.cube((hi-lo).tolist()).translate(lo.tolist())
     def bounds(pid):
         b=original[pid].bounding_box();return np.array(b[:3]),np.array(b[3:])
-    def export(s):
+    def export(s,normalize=False):
         if s.is_empty():return {'vertices':[],'triangles':[],'volume_m3':0.0}
+        # TIMESTAMP START 2026-11-03T17:06:17-05:00 | REVISION R005064
+        if normalize:
+            from audit_revised_joinery import packed,native_solid
+            s=native_solid(packed(s))
+        # TIMESTAMP END 2026-11-03T17:06:17-05:00 | REVISION R005064
         mesh=s.to_mesh64();v=world(np.asarray(mesh.vert_properties)[:,:3]);ts=np.asarray(mesh.tri_verts)
         return {'vertices':v.tolist(),'triangles':ts.tolist(),'volume_m3':s.volume()}
     def pair(donor,receiver,axis,direction,widths,housing,tenon_length,peg_diameter=0,peg_offset=None):
+        # TIMESTAMP START 2026-11-03T13:59:01-05:00 | REVISION R005033
+        housing=0.;tenon_length=3*INCH
+        # TIMESTAMP END 2026-11-03T13:59:01-05:00 | REVISION R005033
         lo,hi=bounds(donor);rlo,rhi=bounds(receiver);cross=[k for k in range(3) if k!=axis]
         face=hi[axis] if direction>0 else lo[axis];center=(lo+hi)/2
         for k in cross:center[k]=(max(lo[k],rlo[k])+min(hi[k],rhi[k]))/2
+        # TIMESTAMP START 2026-11-03T13:59:01-05:00 | REVISION R005033
+        # Keep the header mortise above the post-head mortise in the same plate.
+        if donor=='MUD-HEADER-FRONT':center[1]=hi[1]-1.25*INCH
+        # TIMESTAMP END 2026-11-03T13:59:01-05:00 | REVISION R005033
         center[axis]=face
         cross_lo=lo.copy()-1;cross_hi=hi.copy()+1
         for k,w in zip(cross,widths):cross_lo[k]=center[k]-w/2;cross_hi[k]=center[k]+w/2
@@ -80,6 +92,9 @@ def generate():
             assert (cyl^connector).volume()>1e-10,(jid,'peg misses tenon')
             cuts[donor]=cuts[donor]+cyl;cuts[receiver]=cuts[receiver]+cyl
             peg_id='MUD-PEG-'+jid;pegs[peg_id]=cyl;entry['peg_id']=peg_id;entry['peg_diameter_m']=peg_diameter
+            # TIMESTAMP START 2026-11-03T15:35:25-05:00 | REVISION R005035
+            entry['peg_axis_world']=(np.eye(3)[peg_axis]@basis).tolist();entry['peg_center_world']=world(c).tolist()
+            # TIMESTAMP END 2026-11-03T15:35:25-05:00 | REVISION R005035
         joints.append(entry)
     # Rails use deep shoulders and centered tenons; perpendicular corner joints
     # are vertically staggered in the architectural module before fitting.
@@ -123,6 +138,9 @@ def generate():
         peg=peg.translate(c.tolist());c[axis]-=.001;bore=bore.translate(c.tolist())
         cuts[donor]=cuts[donor]+bore;cuts[receiver]=cuts[receiver]+bore
         pid='MUD-PEG-'+joint['id'];pegs[pid]=peg;joint.update(peg_id=pid,peg_diameter_m=diameter)
+        # TIMESTAMP START 2026-11-03T15:35:25-05:00 | REVISION R005035
+        joint['peg_axis_world']=(np.eye(3)[axis]@basis).tolist();joint['peg_center_world']=world(c).tolist()
+        # TIMESTAMP END 2026-11-03T15:35:25-05:00 | REVISION R005035
     def roof_clip(s):
         # The drawing blank is profiled to the two deck-underface planes before
         # joint cuts; above-roof waste is not shown as a mating cavity.
@@ -158,49 +176,30 @@ def generate():
             cuts[receiver]=cuts[receiver]+original[pid]
             joint=register_joint('open top cross half lap',pid,receiver,overlap,[0,-1,0],{'lap_depth_m':2.75*INCH})
             lo,hi=bounds(receiver);a,b=bounds(pid);c=np.array([(lo[0]+hi[0])/2,(lo[1]+b[1])/2,(a[2]+b[2])/2]);peg_joint(joint,pid,receiver,1,c,.5*INCH,lo[1],b[1])
-    # Full actual 2x6 stock with face-housed ends. An open outside face permits
-    # a single insertion direction into both receivers after the bent is square.
+    # TIMESTAMP START 2026-11-03T13:59:01-05:00 | REVISION R005033
     def brace(pid,post,beam,normal_axis,outside_sign,run_axis,run_sign):
-        plo,phi=bounds(post);blo,bhi=bounds(beam);normal_face=phi[normal_axis] if outside_sign>0 else plo[normal_axis]
+        from center_brace_tenons import oriented_box
+        plo,phi=bounds(post);blo,bhi=bounds(beam)
         post_face=phi[run_axis] if run_sign>0 else plo[run_axis]
-        a=(plo+phi)/2;a[normal_axis]=normal_face-outside_sign*INCH;a[run_axis]=post_face;a[1]=blo[1]-.50
-        b=a.copy();b[run_axis]+=run_sign*.50;b[1]=blo[1]
-        direction=(b-a)/np.linalg.norm(b-a);perp=np.zeros(3);perp[1]=direction[run_axis];perp[run_axis]=-direction[1];normal=np.zeros(3);normal[normal_axis]=1
-        # TIMESTAMP START 2026-11-03T07:32:15-05:00 | REVISION R004924
-        # Allow the full diagonal width, then profile ends to the receiver planes.
-        # A one-inch square-ended extension left an exposed wedge below the beam.
-        start=a-direction*4.5*INCH;end=b+direction*4.5*INCH
-        vertices=[c+normal*x*INCH+perp*y*3*INCH for c in [start,end] for x in [-1,1] for y in [-1,1]]
-        stock=m.Manifold.hull_points(np.asarray(vertices))
-        end_lo=np.full(3,-10.);end_hi=np.full(3,10.)
-        if run_sign>0:end_lo[run_axis]=post_face-INCH
-        else:end_hi[run_axis]=post_face+INCH
-        end_hi[1]=blo[1]+INCH
-        stock=stock^cube(end_lo,end_hi);assert stock.volume()>0
-        # TIMESTAMP END 2026-11-03T07:32:15-05:00 | REVISION R004924
+        a=(plo+phi)/2;a[run_axis]=post_face;a[1]=blo[1]-(.85 if 'FRONT-' in pid else .60)
+        b=a.copy();b[run_axis]+=run_sign*(.60-4*INCH if pid.endswith('-FRONT') else .60);b[1]=blo[1]
+        direction=(b-a)/np.linalg.norm(b-a);normal=np.eye(3)[normal_axis]
+        perp=np.cross(normal,direction)
+        blank=oriented_box((a+b)/2,[direction,normal,perp],[np.linalg.norm(b-a)+16*INCH,2*INCH,6*INCH])
+        stock=blank.trim_by_plane((np.eye(3)[run_axis]*run_sign).tolist(),post_face*run_sign).trim_by_plane([0,-1,0],-blo[1])
         original[pid]=stock;additions[pid]=m.Manifold();cuts[pid]=m.Manifold();part_joint_ids[pid]=[];extra_members.add(pid)
-        mesh=export(stock);center=world((start+end)/2).tolist()
-        records[pid]={'id':pid,'name':'Actual 2 × 6 porch knee brace','schematic':True,'schematicKind':'mudroom','displayRole':'mudroom','mudroomRole':'framing','group':'mudroom','face':'W','material':'timber brace proposal','is_timber':False,'vertices':mesh['vertices'],'triangles':mesh['triangles'],'center':center,'color':[.58,.38,.22],'exploded_offset':(np.eye(3)[normal_axis]*outside_sign*.8@basis+np.array([0,.2,0])).tolist(),'stockWidthM':2*INCH,'stockDepthM':6*INCH,'connectionStatus':'Documented face-housed pegged brace family; chosen dimensions and capacity require review.'}
-        for receiver in [post,beam]:
-            overlap=stock^original[receiver];assert overlap.volume()>0,(pid,receiver)
-            lo=np.array([-10.,-10.,-10.]);hi=-lo
-            if outside_sign>0:lo[normal_axis]=normal_face-INCH
-            else:hi[normal_axis]=normal_face+INCH
-            toe=overlap^cube(lo,hi);assert toe.volume()>0
-            inner_lo=np.array([-10.,-10.,-10.]);inner_hi=-inner_lo
-            if outside_sign>0:inner_hi[normal_axis]=normal_face-INCH
-            else:inner_lo[normal_axis]=normal_face+INCH
-            shoulder_tool=original[receiver]^cube(inner_lo,inner_hi)
-            # Both cutters extend through their open mouths, avoiding shared
-            # stock-boundary membranes while preserving exact occupied cuts.
-            outward=np.eye(3)[normal_axis]*outside_sign*.001
-            housing_tool=(stock+stock.translate(outward.tolist()))^cube(lo,hi)
-            assert abs((shoulder_tool^stock).volume()-(overlap-toe).volume())<1e-12
-            assert abs((housing_tool^original[receiver]).volume()-toe.volume())<1e-12
-            cuts[pid]=cuts[pid]+shoulder_tool;cuts[receiver]=cuts[receiver]+housing_tool
-            vector=np.eye(3)[normal_axis]*-outside_sign
-            joint=register_joint('face-housed pegged knee brace',pid,receiver,toe,vector,{'housing_depth_m':INCH,'brace_stock_m':[2*INCH,6*INCH],'source':'https://www.vermonttimberworks.com/ask-the-timber-framing-experts/can-a-mortise-tenon-brace-be-installed-after-the-post-beam-have-been-assembled/'})
-            v=np.asarray(toe.to_mesh64().vert_properties)[:,:3];c=v.mean(0);rlo,rhi=bounds(receiver);peg_joint(joint,pid,receiver,normal_axis,c,.5*INCH,rlo[normal_axis],rhi[normal_axis])
+        geometry=export(stock);center=world((a+b)/2).tolist()
+        records[pid]={'id':pid,'name':'Centered 2 × 6 porch knee brace','schematic':True,'schematicKind':'mudroom','displayRole':'mudroom','mudroomRole':'framing','group':'mudroom','face':'W','material':'timber brace proposal','is_timber':False,'vertices':geometry['vertices'],'triangles':geometry['triangles'],'center':center,'color':[.58,.38,.22],'exploded_offset':(normal*outside_sign*.8@basis+np.array([0,.2,0])).tolist(),'stockWidthM':2*INCH,'stockDepthM':6*INCH,'connectionStatus':'Centered rectangular 3 inch tenons with matching mortises and transverse pegs.'}
+        for receiver,c,inward,along in [(post,a-[0,.5*INCH,0],-np.eye(3)[run_axis]*run_sign,np.array([0,1,0])),(beam,b,np.array([0,1,0]),np.eye(3)[run_axis])]:
+            tongue=oriented_box(c+inward*1.5*INCH,[inward,normal,along],[3*INCH,INCH,2*INCH])
+            root=oriented_box(c-inward*.05*INCH,[inward,normal,along],[.1*INCH,INCH,2*INCH])
+            assert (tongue-blank).volume()<1e-11,(pid,receiver,'tenon cannot be cut from 2x6 stock')
+            assert (tongue-original[receiver]).volume()<1e-11,(pid,receiver,'tenon leaves receiving timber')
+            assert (root^stock).volume()>1e-10,(pid,receiver,'detached tenon')
+            additions[pid]=additions[pid]+tongue+root;cuts[receiver]=cuts[receiver]+tongue+root
+            joint=register_joint('centered rectangular knee-brace tenon',pid,receiver,tongue,inward.tolist(),{'tenon_projection_m':3*INCH,'tenon_cross_section_m':[INCH,2*INCH],'brace_stock_m':[2*INCH,6*INCH]})
+            rlo,rhi=bounds(receiver);peg_joint(joint,pid,receiver,normal_axis,c+inward*1.5*INCH,.5*INCH,rlo[normal_axis],rhi[normal_axis])
+    # TIMESTAMP END 2026-11-03T13:59:01-05:00 | REVISION R005033
     for side,sign in [('L',-1),('R',1)]:
         for end,run in [('BACK',1),('FRONT',-1)]:brace('MUD-BRACE-SIDE-'+side+'-'+end,'MUD-POST-'+side+'-'+end,'MUD-PLATE-'+side,0,sign,2,run)
         brace('MUD-BRACE-FRONT-'+side,'MUD-POST-'+side+'-FRONT','MUD-HEADER-FRONT',2,1,0,1 if side=='L' else -1)
@@ -226,7 +225,9 @@ def generate():
     fitted={}
     for pid,s in final.items():
         if not part_joint_ids[pid]:continue
-        mesh=export(s);v=np.array(mesh['vertices']);removed=export((original[pid]+additions[pid])-s)
+        # TIMESTAMP START 2026-11-03T17:06:17-05:00 | REVISION R005064
+        mesh=export(s);v=np.array(mesh['vertices']);removed=export((original[pid]+additions[pid])^cuts[pid],normalize=True)
+        # TIMESTAMP END 2026-11-03T17:06:17-05:00 | REVISION R005064
         fitted[pid]={'vertices':mesh['vertices'],'triangles':mesh['triangles'],'center':((v.min(0)+v.max(0))/2).tolist(),'joineryJointIds':part_joint_ids[pid],'joineryStock':export(original[pid]+additions[pid]),'joineryCavity':{'removed':removed,'fit_audit':{'status':'PASS'}},'connectionStatus':'Modeled traditional joint family with matched mating cavities; assembly sequence recorded, structural capacity unverified.'}
     added=[{**records[pid],**fitted[pid]} for pid in sorted(extra_members)]
     for k,(pid,s) in enumerate(pegs.items()):
@@ -234,7 +235,9 @@ def generate():
         joint=next(j for j in joints if j.get('peg_id')==pid)
         roof_only=all(records[joint[key]].get('mudroomRoof',False) for key in ['donor','receiver']) or joint['family']=='open top cross half lap'
         added.append({'id':pid,'name':'Proposed hardwood timber-joint peg','schematic':True,'schematicKind':'mudroom','displayRole':'mudroom','mudroomRole':'framing','group':'mudroom','face':'W','material':'hardwood peg proposal','is_timber':False,'vertices':mesh['vertices'],'triangles':mesh['triangles'],'center':c,'label_position':c,'color':[.72,.51,.28],'exploded_offset':off.tolist(),'mudroomRoof':roof_only,'mudroomScreen':roof_only,'connectionStatus':'Matched bore and peg geometry; diameter, edge distance and capacity require design.'})
-    assembly=[{'stage':1,'action':'Join top guard rails between movable side posts. Seat pickets in side base rails, then lower each post/top-rail subassembly onto the picket and post-foot tenons.','scope':'Nominal subassembly sequence; lifting rig, temporary bracing, tolerances and structural erection plan remain unverified.'},{'stage':2,'action':'Preassemble front guard panels and entry posts, then bring the two side bents together along X around the front panels. Do not fix both bents before engaging the transverse tenons.'},{'stage':3,'action':'Preassemble the two roof beams with the front header, then lower this U-shaped assembly onto all four post-head tenons.'},{'stage':4,'action':'Lower the transverse roof ties into their open top half-laps. Insert each face-housed knee brace normal to its frame plane, then fit its pegs.'},{'stage':5,'action':'Preassemble and peg each rafter pair at its apex half-lap. Lower the paired rafters onto their open birdsmouth seats before installing the deck, cedar and flashing. Rafter uplift restraint remains a design requirement.'}]
+    # TIMESTAMP START 2026-11-03T16:17:49-05:00 | REVISION R005051
+    assembly=[{'stage':1,'action':'Join top guard rails between movable side posts. Seat pickets in side base rails, then lower each post/top-rail subassembly onto the picket and post-foot tenons.','scope':'Nominal subassembly sequence; lifting rig, temporary bracing, tolerances and structural erection plan remain unverified.'},{'stage':2,'action':'Preassemble front guard panels and entry posts, then bring the two side bents together along X around the front panels. Do not fix both bents before engaging the transverse tenons.'},{'stage':3,'action':'Seat the six centered brace post-end tenons. Preassemble the two roof beams with the front header, then lower this U-shaped assembly onto all four post heads and the brace-head tenons; fit their transverse pegs.'},{'stage':4,'action':'Lower the transverse roof ties into their open top half-laps and fit their pegs.'},{'stage':5,'action':'Preassemble and peg each rafter pair at its apex half-lap. Lower the paired rafters onto their open birdsmouth seats before installing the deck, cedar and flashing. Rafter uplift restraint remains a design requirement.'}]
+    # TIMESTAMP END 2026-11-03T16:17:49-05:00 | REVISION R005051
     return {'schema_version':1,'status':'PASS','source_module_sha256':hashlib.sha256(source.read_bytes()).hexdigest(),'source_roof_module_sha256':hashlib.sha256((ROOT/'src/mudroom-roof.js').read_bytes()).hexdigest(),'source_fitter_sha256':hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),'source_model_sha256':hashlib.sha256(model_path.read_bytes()).hexdigest(),'anchors':{pid:next(p for p in model['parts'] if p['id']==pid)['center'] for pid in ['P2','P3']},'parts':fitted,'added_parts':added,'joints':joints,'assembly':assembly,'verification':{'scope':'Nominal housed guard/post/header joints, face-housed 2x6 braces, roof half-laps and birdsmouth seats; capacity and erection engineering unverified.','pair_intersection_checks':checks,'maximum_pair_overlap_m3':maximum_overlap,'discarded_numerical_residual_m3':numerical_residual,'joint_count':len(joints),'peg_count':len(pegs),'capacity_verified':False}}
 
 if __name__=='__main__':

@@ -17,6 +17,9 @@ if(source.split('__CAVITY_JSON__').length!==2)throw Error('Expected one cavity-d
 // TIMESTAMP START 2026-11-02T09:43:39-05:00 | REVISION R004757
 const result=new Function('template','TimberEdgeMeasurements',`
 // TIMESTAMP END 2026-11-02T09:43:39-05:00 | REVISION R004757
+// TIMESTAMP START 2026-11-03T17:20:17-05:00 | REVISION R005073
+const MODEL_CONTEXT={parametric:false};
+// TIMESTAMP END 2026-11-03T17:20:17-05:00 | REVISION R005073
 const passed=[],failed=[],check=(yes,msg)=>{(yes?passed:failed).push(msg)};
 const vadd=(a,b)=>a.map((x,i)=>x+b[i]),vsub=(a,b)=>a.map((x,i)=>x-b[i]),vmul=(a,s)=>a.map(x=>x*s),length=a=>Math.hypot(...a),dot=(a,b)=>a.reduce((s,x,i)=>s+x*b[i],0),unit=a=>vmul(a,1/(length(a)||1)),cross=(a,b)=>[a[1]*b[2]-a[2]*b[1],a[2]*b[0]-a[0]*b[2],a[0]*b[1]-a[1]*b[0]];
 const triangle={vertices:[[0,0,0],[1,0,0],[0,1,0]],triangles:[[0,1,2]],edges:[[0,1],[1,2],[2,0]],volume_m3:.001};

@@ -30,6 +30,9 @@ for(const filename of ['model-data.json','step-lap-proposed-model.json','top-ent
   document:{createElement:node},$:()=>host,num:(v,n)=>v.toFixed(n),addMetric:(p,k,v)=>p.append({textContent:k+': '+v}),
   syncDisplayControls(){},renderList(){},syncFocusButton(){},syncIsolationButton(){},focusSelectedParts(){},requestRender(){},togglePieceFocus(){},togglePieceIsolation(){},cutAngleView:{openPiece(){}},
   clearPieceSelection(){selectedPartIds.clear();context.selected=null;},matrix(){},width:800,height:600,aspect:4/3,basis:{eye:[0,0,20],forward:[0,0,-1],right:[1,0,0],up:[0,1,0]},cutMeshes:[],triangleHit:()=>null};
+ // TIMESTAMP START 2026-11-03T17:21:06-05:00 | REVISION R005074
+ context.motion={shown:()=>true};context.motionMode='disassembly';context.MODEL_CONTEXT={};context.OctagonJoineryDimensions={render(){}};context.DATA=model;context.mudroomLayout={};
+ // TIMESTAMP END 2026-11-03T17:21:06-05:00 | REVISION R005074
  vm.createContext(context);
 // TIMESTAMP START 2026-11-03T07:26:01-05:00 | REVISION R004920
  for(const name of ['logicalPieceId','isColumn','columnSegments','columnBounds','isShown','isSelectedMember','selectionAlpha','selectedSetBounds','selectWallFraming','selectPart','pick'])vm.runInContext(extract(name),context);

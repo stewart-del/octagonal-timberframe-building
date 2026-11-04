@@ -28,7 +28,9 @@ def stock(part,proposed=True):
     # R's extra two-inch blank allowance contains its unchanged projecting
     # tenon and exterior end dressing. Its recess envelope remains the same
     # legacy body used by the independently audited perimeter model.
-    if proposed and not part['id'].startswith('R') and record.get('proposed_stock_planes_inches'):
+    # TIMESTAMP START 2026-11-03T15:46:44-05:00 | REVISION R005039
+    if proposed and (not part['id'].startswith('R') or part.get('new_stock_requirements',{}).get('tenon_projection_in')==3) and record.get('proposed_stock_planes_inches'):
+    # TIMESTAMP END 2026-11-03T15:46:44-05:00 | REVISION R005039
         record['geometry_planes_inches']=record['proposed_stock_planes_inches']
     v,f=reference_stock(record,apply_declared_trim=True)
     return m.Manifold(m.Mesh64(v,f))
@@ -62,7 +64,9 @@ def entry_regions(proposal):
     seed=union(cutters)
     return {f'R{k}':seed.rotate((0,45*k,0)) for k in range(8)}
 
-def generate(model=None,proposal=None):
+# TIMESTAMP START 2026-11-04T20:04:39+00:00 | REVISION R000018
+def generate(model=None,proposal=None,unchanged_seeds=None):
+# TIMESTAMP END 2026-11-04T20:04:39+00:00 | REVISION R000018
     model=model or read(ROOT/'src/top-entry-proposed-model.json')
     proposal=proposal or read(ROOT/'src/top-entry-proposal.json')
     timbers={p['id']:p for p in model['parts'] if p['is_timber']}
@@ -77,32 +81,60 @@ def generate(model=None,proposal=None):
         return result
     def seed(pid):
         if pid in seeds:return seeds[pid]
+        # TIMESTAMP START 2026-11-04T20:04:39+00:00 | REVISION R000018
+        retained=(unchanged_seeds or {}).get(pid)
+        if retained:
+            fingerprint=hashlib.sha256(json.dumps(timbers[pid],sort_keys=True,separators=(',',':')).encode()).hexdigest()
+            if fingerprint==retained['part_sha256']:
+                # This is input mesh geometry, never a reused verification.
+                # audit() below still checks every pocket against current mates.
+                seeds[pid]=copy.deepcopy(retained['record'])
+                print('Retain exact unchanged cavity geometry',pid,flush=True)
+                return seeds[pid]
+        # TIMESTAMP END 2026-11-04T20:04:39+00:00 | REVISION R000018
         if pid=='J0-2':
             diagonal=np.sqrt(.5);reflection=np.array([[diagonal,0,-diagonal],[0,1,0],[-diagonal,0,-diagonal]])
             seeds[pid]=transform_record(seed('J0-0'),reflection)
             return seeds[pid]
-        p=timbers[pid]
-        blank=stock(p);legacy=stock(p,False);own=physical[pid]
-        removed=blank-own
-        mate_shapes=[s for key,s in physical.items() if key!=pid and close_bounds(blank,s)]
-        mates=union(mate_shapes)
-        pocket_envelope=blank-declared_offcuts(p)
-        clips=[pocket_envelope^s for s in mate_shapes]
-        # A brace shoulder is cut away to fit around the receiver. That
-        # declared exterior offcut may therefore contain receiver wood in the
-        # assembled frame; it is not an internal recess in the finished brace.
-        filled=union([clip for clip in clips if volume(clip)>ROUND_OFF])
-        access=entries.get(pid,m.Manifold())
-        # Additional replacement-blank allowance is explicitly different from
-        # an interior pocket. Keep its offcuts in the audit, out of the overlay.
-        exterior=declared_offcuts(p)+((removed-filled-access)^(blank-legacy))
+        # TIMESTAMP START 2026-11-03T15:58:36-05:00 | REVISION R005044
+        if model.get('three_inch_joinery_revision'):print('audit cavity',pid,flush=True)
+        # TIMESTAMP END 2026-11-03T15:58:36-05:00 | REVISION R005044
+        # TIMESTAMP START 2026-11-03T16:12:39-05:00 | REVISION R005050
+        p=timbers[pid];blank=stock(p);legacy=stock(p,False);own=physical[pid]
+        mate_shapes=[shape for key,shape in physical.items() if key!=pid and close_bounds(blank,shape)]
+        origin=np.array(blank.bounding_box()).reshape(2,3).mean(0) if model.get('three_inch_joinery_revision') and pid.startswith('P') else np.zeros(3)
+        local=lambda shape:shape.translate((-origin).tolist())
+        world=lambda shape:shape.translate(origin.tolist())
+        blank=local(blank);legacy=local(legacy);own=local(own);mate_shapes=[local(shape) for shape in mate_shapes]
+        declared=local(declared_offcuts(p));removed=blank-own;envelope=blank-declared
+        if model.get('three_inch_joinery_revision') and not pid.startswith(('B','J')):
+            from fit_wall_joinery import clip_to_convex
+            joints=[j for j in model['tenon_schedule'] if j['receiver']==pid];donors={j['donor'] for j in joints}
+            shapes=[local(shape) for key,shape in physical.items() if key!=pid and key not in donors and close_bounds(stock(p),shape)]
+            shapes.extend(local(solid(j.get('cutting_tool',j['connector']))) for j in joints)
+            clips=[]
+            for shape in shapes:
+                clip=clip_to_convex(shape,legacy if pid.startswith('R') else blank)
+                if volume(clip)>ROUND_OFF and volume(clip^declared)>ROUND_OFF:clip=clip-declared
+                if volume(clip)>ROUND_OFF:clips.append(unpack(packed(clip)))
+        # TIMESTAMP START 2026-11-03T16:49:21-05:00 | REVISION R005060
+        else:clips=[envelope^shape for shape in mate_shapes]
+        clip_budget=TOL/max(100,len(clips)*100)
+        omitted=sum(volume(clip) for clip in clips if volume(clip)<=clip_budget)
+        assert omitted<=TOL/100
+        filled=union([clip for clip in clips if volume(clip)>clip_budget])
+        # TIMESTAMP END 2026-11-03T16:49:21-05:00 | REVISION R005060
+        access=(local(entries.get(pid,m.Manifold()))^removed)-filled-declared
+        # TIMESTAMP START 2026-11-03T16:49:21-05:00 | REVISION R005060
+        exterior=declared if model.get('three_inch_joinery_revision') else declared+((removed-filled-access)^(blank-legacy))
+        # TIMESTAMP END 2026-11-03T16:49:21-05:00 | REVISION R005060
         unexplained=removed-filled-access-exterior
         assert volume(unexplained)<=TOL,(pid,'unclassified removed stock',volume(unexplained)/I**3)
-        if pid.startswith('R'):filled=removed-access-exterior
-        seeds[pid]={'removed':packed(removed-exterior) if pid.startswith('R') else packed(filled+access),'mating_pocket':packed(filled),
-            'entry_clearance':packed(access),'blank_offcuts':packed(exterior),
-            'stock_basis':('Recorded legacy principal-rafter body envelope; the projecting cupola-end tongue remains outside this recess envelope.' if pid.startswith('R') else 'Recorded proposed raw-stock halfspaces where present; otherwise recorded reference halfspaces. Explicit face-brace shoulder offcuts are audited separately from mating pockets.'),
-            'roundoff_omission_limit_m3':ROUND_OFF}
+        seeds[pid]={'removed':packed(world(filled+access)),'mating_pocket':packed(world(filled)),
+            'entry_clearance':packed(world(access)),'blank_offcuts':packed(world(exterior)),
+            'stock_basis':'Recorded stock halfspaces with separate declared exterior shoulder offcuts and open assembly-entry regions.',
+            'roundoff_omission_limit_m3':ROUND_OFF,'mating_clip_roundoff_omitted_m3':omitted}
+        # TIMESTAMP END 2026-11-03T16:12:39-05:00 | REVISION R005050
         return seeds[pid]
     for pid,p in timbers.items():
         match=re.fullmatch(r'([A-Z]+)([0-7])(.*)',pid)

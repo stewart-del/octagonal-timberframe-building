@@ -51,7 +51,9 @@ for(const filename of ['model-data.json','step-lap-proposed-model.json','top-ent
  for(const side of ['L','R']){
   const bench=byId['MUD-BENCH-'+side],guard=byId['MUD-GUARD-TOP-'+side],pickets=r.components.filter(p=>p.id.startsWith('MUD-GUARD-PICKET-'+side+'-')).sort((a,b)=>a.localBounds[4]-b.localBounds[4]);
   // TIMESTAMP START 2026-11-02T15:00:19-05:00 | REVISION R004797
-  near(guard.localBounds[3]-bench.localBounds[3],20*.0254);near(side==='L'?guard.localBounds[1]:guard.localBounds[0],side==='L'?bench.localBounds[0]:bench.localBounds[1]);
+// TIMESTAMP START 2026-11-03T17:20:17-05:00 | REVISION R005073
+  near(guard.localBounds[3]-bench.localBounds[3],22*.0254);near(side==='L'?guard.localBounds[1]:guard.localBounds[0],side==='L'?bench.localBounds[0]:bench.localBounds[1]);
+// TIMESTAMP END 2026-11-03T17:20:17-05:00 | REVISION R005073
   // TIMESTAMP END 2026-11-02T15:00:19-05:00 | REVISION R004797
   assert(pickets.every(p=>p.localBounds[2]<bench.localBounds[3]&&p.localBounds[3]>bench.localBounds[3]),'Railing must continue below and above bench seat');
   for(let i=1;i<pickets.length;i++)assert(pickets[i].localBounds[4]-pickets[i-1].localBounds[5]<=d.maxGuardPicketGapM+1e-9,'Side railing gap exceeds chosen proposal');

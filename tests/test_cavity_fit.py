@@ -16,6 +16,14 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / 'scripts'))
 import audit_cavity_fit as audit
 
+# TIMESTAMP START 2026-11-03T17:08:46-05:00 | REVISION R005066
+def legacy_report():
+    # Frozen evidence exercises the retained legacy schema comparator; current
+    # cavity occupancy is independently replayed by test_revised_cavities.
+    import gzip
+    return json.loads(gzip.decompress((ROOT/'tests/fixtures/legacy-cavity-report.json.gz').read_bytes()))
+# TIMESTAMP END 2026-11-03T17:08:46-05:00 | REVISION R005066
+
 
 def mesh(manifold):
     result = manifold.to_mesh64()
@@ -267,47 +275,19 @@ class CavityFitFixtures(unittest.TestCase):
         self.assertLess(abs(audit.winding(point, vertices[faces])[0]), .001,
                         'The corrected cavity must exclude this actual-wood point.')
 
+    # TIMESTAMP START 2026-11-03T17:08:46-05:00 | REVISION R005066
     def test_report_matches_current_geometry_and_all_components_pass(self):
-        report = json.loads((ROOT / 'docs/cavity-fit-audit.json').read_text())
-        self.assertEqual(report['model_sha256'], hashlib.sha256((ROOT / 'src/model-data.json').read_bytes()).hexdigest())
-        self.assertEqual(report['cavity_sha256'], hashlib.sha256((ROOT / 'src/cavity-data.json').read_bytes()).hexdigest())
-        self.assertEqual(report['status'], 'PASS')
-        # TIMESTAMP START 2026-11-02T15:15:55-05:00 | REVISION R004802
-        # TIMESTAMP START 2026-11-02T17:32:31-05:00 | REVISION R004820
-        self.assertEqual(report['summary']['components_covered'], 216)
-        self.assertEqual(report['summary']['physical_wood_pieces'],160)
-        self.assertEqual(report['summary']['permanent_wood_fasteners'],48)
-        # TIMESTAMP END 2026-11-02T17:32:31-05:00 | REVISION R004820
-        # TIMESTAMP END 2026-11-02T15:15:55-05:00 | REVISION R004802
-        # TIMESTAMP START 2026-11-02T15:15:55-05:00 | REVISION R004802
-        self.assertEqual(report['summary']['timbers'], 112)
-        # TIMESTAMP END 2026-11-02T15:15:55-05:00 | REVISION R004802
-        # TIMESTAMP START 2026-11-02T15:15:55-05:00 | REVISION R004802
-        # TIMESTAMP START 2026-11-02T17:32:31-05:00 | REVISION R004820
-        self.assertEqual(report['summary']['nonempty_cavity_sets'], 80)
-        # TIMESTAMP END 2026-11-02T17:32:31-05:00 | REVISION R004820
-        # TIMESTAMP END 2026-11-02T15:15:55-05:00 | REVISION R004802
-        self.assertEqual(report['summary']['winding_unoccupied_points'], 0)
-        # TIMESTAMP START 2026-11-02T15:15:55-05:00 | REVISION R004802
-        # TIMESTAMP START 2026-11-02T17:32:31-05:00 | REVISION R004820
-        self.assertEqual(report['summary']['receiver_stock_envelopes_verified'], 80)
-        # TIMESTAMP END 2026-11-02T17:32:31-05:00 | REVISION R004820
-        # TIMESTAMP END 2026-11-02T15:15:55-05:00 | REVISION R004802
-        # TIMESTAMP START 2026-11-02T15:15:55-05:00 | REVISION R004802
-        self.assertEqual(report['summary']['all_timber_stock_envelopes_verified'], 112)
-        # TIMESTAMP END 2026-11-02T15:15:55-05:00 | REVISION R004802
-        # TIMESTAMP START 2026-11-02T15:15:55-05:00 | REVISION R004802
-        self.assertEqual(report['summary']['declared_exterior_brace_trims'], 24)
-        # TIMESTAMP END 2026-11-02T15:15:55-05:00 | REVISION R004802
-        # TIMESTAMP START 2026-11-02T10:34:57-05:00 | REVISION R004764
-        self.assertEqual(report['summary']['timbers_with_raw_surface_overlaps'], 0)
-        self.assertGreater(report['summary']['raw_timber_coplanar_triangle_pairs_tested'], 0)
-        self.assertTrue(all(row['raw_surface_check']['status'] == 'PASS' for row in report['timber_meshes'].values()))
-        # TIMESTAMP END 2026-11-02T10:34:57-05:00 | REVISION R004764
+        from test_revised_cavities import verify_saved
+        report=verify_saved('baseline')
+        self.assertEqual(report['summary']['structural_timbers'],112)
+        self.assertEqual(report['summary']['physical_wooden_pegs'],48)
+        self.assertEqual(report['summary']['uncovered_winding_samples'],0)
+    # TIMESTAMP END 2026-11-03T17:08:46-05:00 | REVISION R005066
 
     # TIMESTAMP START 2026-11-02T11:39:39-05:00 | REVISION R004772
+    # TIMESTAMP START 2026-11-03T17:08:46-05:00 | REVISION R005066
     def test_report_comparison_accepts_different_valid_partition_diagnostics(self):
-        saved = json.loads((ROOT / 'docs/cavity-fit-audit.json').read_text())
+        saved = legacy_report()
         actual = copy.deepcopy(saved)
         partition = next(component for row in actual['cavities'] for component in row['components']
                          if component.get('cells'))
@@ -324,7 +304,7 @@ class CavityFitFixtures(unittest.TestCase):
         audit.assert_equivalent_audit_report(saved, actual)
 
     def test_report_comparison_rejects_stale_provenance_policy_and_inventory(self):
-        actual = json.loads((ROOT / 'docs/cavity-fit-audit.json').read_text())
+        actual = legacy_report()
         for field, changed in [('model_sha256', 'stale-model'), ('cavity_sha256', 'stale-cavity'),
                                ('schema_version', 'stale-schema'), ('methods', {}),
                                ('tolerances', dict(actual['tolerances'], containment_inset_m=1e-7))]:
@@ -339,7 +319,7 @@ class CavityFitFixtures(unittest.TestCase):
             audit.assert_equivalent_audit_report(saved, actual)
 
     def test_report_comparison_rejects_real_failure_even_with_pass_heading(self):
-        saved = json.loads((ROOT / 'docs/cavity-fit-audit.json').read_text())
+        saved = legacy_report()
         for failure in ('top-status', 'nested-status', 'physical-gap', 'unverified-cell', 'missing-proof', 'nan'):
             with self.subTest(failure=failure):
                 actual = copy.deepcopy(saved)
@@ -364,13 +344,13 @@ class CavityFitFixtures(unittest.TestCase):
                     audit.assert_equivalent_audit_report(actual, saved)
 
     def test_report_mismatch_diagnostic_contains_saved_and_actual_values(self):
-        actual = json.loads((ROOT / 'docs/cavity-fit-audit.json').read_text())
+        actual = legacy_report()
         saved = dict(actual, model_sha256='stale-model')
         with self.assertRaisesRegex(AssertionError, "saved='stale-model'; actual="):
             audit.assert_equivalent_audit_report(saved, actual)
 
     def test_report_comparison_requires_complete_saved_proof_fields(self):
-        actual = json.loads((ROOT / 'docs/cavity-fit-audit.json').read_text())
+        actual = legacy_report()
         for missing in ('cross_sections', 'winding_samples', 'centroid_margin_m', 'mesh_status',
                         'raw_surface_status', 'convex_volume_error_m3'):
             with self.subTest(missing=missing):
@@ -388,6 +368,7 @@ class CavityFitFixtures(unittest.TestCase):
                 with self.assertRaisesRegex(AssertionError, 'missing required proof fields'):
                     audit.assert_equivalent_audit_report(saved, actual)
 
+    # TIMESTAMP END 2026-11-03T17:08:46-05:00 | REVISION R005066
     def test_generic_auxiliary_comparator_retains_its_strict_numeric_contract(self):
         current = {'status': 'review only', 'count': 144, 'area': 2e-14}
         audit.assert_equivalent_report(dict(current, area=2.01e-14), current)

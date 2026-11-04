@@ -4,7 +4,11 @@ from pathlib import Path
 import hashlib,itertools,json,subprocess
 import numpy as np
 import manifold3d as m
-from step_lap import solid,mesh,volume_centroid,close_bounds,regular_boundary
+from step_lap import mesh,volume_centroid,close_bounds,regular_boundary
+# TIMESTAMP START 2026-11-03T16:40:59-05:00 | REVISION R005059
+def solid(record):
+    return m.Manifold(m.Mesh64(np.asarray(record['vertices'],float),np.asarray(record['triangles'],np.uint64)))
+# TIMESTAMP END 2026-11-03T16:40:59-05:00 | REVISION R005059
 from revise_main_braces import clean
 from audit_cavity_fit import inspect_mesh
 
@@ -52,16 +56,32 @@ def generate(variant):
     additions={pid:[] for pid in records};cutters={pid:[] for pid in records};part_joints={pid:[] for pid in records};joints=[]
     def joint(donor,receiver,center,qaxis,transverse,outward,engagement,neck,head,depth):
         center=np.asarray(center);q=np.asarray(qaxis);t=np.asarray(transverse);n=np.asarray(outward)
+        # TIMESTAMP START 2026-11-03T15:42:57-05:00 | REVISION R005038
+        engagement=3*I
+        # Opposed three-inch tongues entering a four-inch jamb use separate
+        # depth bands. Both remain inside their existing horizontal rail stock.
+        if records[receiver].get('framingRole')=='jamb' and abs(q[1])<.1:
+            vv=np.asarray(records[donor]['vertices']);lo=min(vv@n);hi=max(vv@n)
+            direction=float(q@np.cross([0,1,0],n))
+            target=lo+.5*I if direction<0 else hi-.5*I
+            center=center+n*(target-center@n)
+        # TIMESTAMP END 2026-11-03T15:42:57-05:00 | REVISION R005038
         root=.75*I
-        points=np.array([center+q*x+t*y+n*z for x,w in [(-root,neck),(0,neck),(engagement,head)] for y in [-w,w] for z in [-depth/2,depth/2]])
-        tool=m.Manifold.hull_points(points)
+        # TIMESTAMP START 2026-11-03T16:40:59-05:00 | REVISION R005059
+        local_points=np.array([[x,y,z] for x,w in [(-root,neck),(0,neck),(engagement,head)] for y in [-w,w] for z in [-depth/2,depth/2]])
+        basis=np.column_stack([q,t,n]);points=local_points@basis.T+center
+        transform=np.column_stack([basis,center]).tolist()
+        tool=m.Manifold.hull_points(local_points).transform(transform)
+        # TIMESTAMP END 2026-11-03T16:40:59-05:00 | REVISION R005059
         # The complete dovetail slides through an exterior-open matching housing.
         receiver_vertices=np.array(records[receiver]['vertices'])
         # TIMESTAMP START 2026-11-02T22:01:35-05:00 | REVISION R004882
         downward=donor in ['SCHEM-W-rail0-0','SCHEM-W-rail0-1'] and receiver in ['P2','P3']
         entry=np.array([0.,-1.,0.]) if downward else n
         distance=float(np.max(receiver_vertices@entry)-np.min(points@entry))+I if downward else max(0.,float(np.max((receiver_vertices-center)@n)))+depth+I
-        sweep=m.Manifold.hull_points(np.vstack([points,points+entry*distance]))
+        # TIMESTAMP START 2026-11-03T16:40:59-05:00 | REVISION R005059
+        sweep=m.Manifold.hull_points(np.vstack([local_points,local_points+(entry@basis)*distance])).transform(transform)
+        # TIMESTAMP END 2026-11-03T16:40:59-05:00 | REVISION R005059
         # TIMESTAMP END 2026-11-02T22:01:35-05:00 | REVISION R004882
         occupied=tool^original[receiver]
         if occupied.volume()<=TOL:raise AssertionError((donor,receiver,'tongue misses receiver'))
@@ -76,7 +96,12 @@ def generate(variant):
             clipped=clip_to_convex(original[receiver],sweep)
             if abs(clipped.volume()-actual_removed.volume())>TOL:
                 clipped=actual_removed
-            removed_record=packed(clipped)
+            # TIMESTAMP START 2026-11-03T16:40:59-05:00 | REVISION R005059
+            try:removed_record=packed(clipped)
+            except AssertionError:
+                Path('/tmp/octagon-wall-cut-debug.json').write_text(json.dumps({'clipped':mesh(clipped),'actual':mesh(actual_removed),'receiver':mesh(original[receiver]),'sweep':mesh(sweep)}))
+                removed_record=packed(actual_removed)
+            # TIMESTAMP END 2026-11-03T16:40:59-05:00 | REVISION R005059
             assert abs(removed_record['volume_m3']-actual_removed.volume())<TOL
         # TIMESTAMP END 2026-11-02T21:12:46-05:00 | REVISION R004878
         except AssertionError as error:raise AssertionError((donor,receiver,center.tolist(),'cut boundary')) from error
@@ -85,6 +110,9 @@ def generate(variant):
           'withdrawal_direction':entry.tolist(),'engagement_m':engagement,'neck_width_m':neck*2,'head_width_m':head*2,
           'tongue':packed(tool),'removed_from_receiver':removed_record,
           'restraint_status':'Interlocking geometry in the wall plane; exterior withdrawal restraint and capacity unresolved.'})
+        # TIMESTAMP START 2026-11-03T15:42:57-05:00 | REVISION R005038
+        joints[-1].update(tenon_projection_m=engagement,tenon_cross_section_m=[depth,neck*2],insertion_direction_world=q.tolist())
+        # TIMESTAMP END 2026-11-03T15:42:57-05:00 | REVISION R005038
         # TIMESTAMP END 2026-11-02T22:01:35-05:00 | REVISION R004882
     for connection in layout['railConnections']:
         rail=records[connection['railId']];direction=-1 if connection['end']=='A' else 1
@@ -146,6 +174,14 @@ def generate(variant):
             'fit_audit':{'status':'PASS','scope':'Saved primary cavities plus exact additional wall sockets and their exterior entry space'}},
           'wallJoineryAdded':packed(added),'wallJoineryRemoved':packed(removed),
           'wallJoineryMass':volume_centroid(s),'connectionStatus':'Actual exterior-entry housed dovetails with matching sockets; capacity and exterior retention unresolved.'}
+    # TIMESTAMP START 2026-11-03T17:15:09-05:00 | REVISION R005070
+    # Quantities describe the exact serialized meshes used by the viewer.
+    published={pid:unpack(patches[pid]) if pid in patches else solid(records[pid]) for pid in final}
+    for pid,patch in patches.items():
+        removed=unpack(patch['wallJoineryRemoved'])
+        mates=union([published[j['donor']] for j in joints if j['receiver']==pid])
+        patch['joineryCavity']['additional_entry_clearance']['volume_m3']=max(0.,(removed-mates).volume())
+    # TIMESTAMP END 2026-11-03T17:15:09-05:00 | REVISION R005070
     sources={f'src/{name}':digest(f'src/{name}') for name in [model_name,enclosure_name,cavity_name,'schematic-walls.js']}
     sources['scripts/fit_wall_joinery.py']=digest('scripts/fit_wall_joinery.py')
     return {'status':'PASS','sources':sources,'source_model_sha256':digest('src/'+model_name),

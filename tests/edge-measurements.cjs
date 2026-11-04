@@ -91,6 +91,11 @@ const summary={components:statistics.length,featureEdges:statistics.reduce((s,x)
   minInteriorAngleDeg:Math.min(...statistics.map(x=>x.minInteriorAngleDeg)),maxInteriorAngleDeg:Math.max(...statistics.map(x=>x.maxInteriorAngleDeg)),
   allModelAnalysisMs:performance.now()-started};
 console.log(JSON.stringify(summary,null,2));
-fs.mkdirSync(path.join(__dirname,'../public/review'),{recursive:true});
-fs.writeFileSync(path.join(__dirname,'../public/review/r01-edge-model-audit.json'),JSON.stringify({source_sha256:crypto.createHash('sha256').update(modelBytes).digest('hex'),summary,parts:statistics},null,2)+'\n');
+// TIMESTAMP START 2026-11-04T13:08:40+00:00 | REVISION R000009
+// Routine verification is read-only; report generation is an explicit tracked operation.
+if(process.argv.includes('--write-report')){
+ fs.mkdirSync(path.join(__dirname,'../public/review'),{recursive:true});
+ fs.writeFileSync(path.join(__dirname,'../public/review/r01-edge-model-audit.json'),JSON.stringify({source_sha256:crypto.createHash('sha256').update(modelBytes).digest('hex'),summary,parts:statistics},null,2)+'\n');
+}
+// TIMESTAMP END 2026-11-04T13:08:40+00:00 | REVISION R000009
 

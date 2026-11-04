@@ -78,7 +78,9 @@ def audit(scene):
     side=[q for r in records if r['id'].endswith(('-A','-B')) for q in r['views']]
     maximum=max(q['wall_occluded_sample_area_fraction'] for q in side)
     sources={**scene.sources,'scripts/audit_brace_visibility.py':hashlib.sha256(Path(__file__).read_bytes()).hexdigest()}
-    return {'revision':'R004835','timestamp':'2026-11-02T18:37:05-05:00',
+    # TIMESTAMP START 2026-11-04T19:54:43+00:00 | REVISION R000017
+    return {'revision':'R000017','timestamp':'2026-11-04T19:54:43+00:00',
+    # TIMESTAMP END 2026-11-04T19:54:43+00:00 | REVISION R000017
         'status':'PASS' if maximum<.005 else 'OCCLUDED','sources':sources,
         'method':'Nearest actual mesh-ray intersections from two interior eye positions; twelve largest front-facing triangle centroids per brace, excluding self-occluded faces. Area-weighted samples are not a whole-surface visibility percentage.',
         'sample_limitations':'A finite mesh-surface sample; end housings and pegs may remain concealed. No drawing-order override, transparency, or omitted wall occluders.',
@@ -117,7 +119,10 @@ def render(scene,destination):
         count=max(2,int(np.linalg.norm((b-a)[:2])*1.5));q=a+np.linspace(0,1,count)[:,None]*(b-a);xy=np.rint(q[:,:2]).astype(int)
         valid=(xy[:,0]>=0)&(xy[:,0]<width)&(xy[:,1]>=0)&(xy[:,1]<height);xy=xy[valid];z=q[valid,2];shown=z>=depth[xy[:,1],xy[:,0]]-.002
         image[xy[shown,1],xy[shown,0]]=[64,62,51]
-    out=Image.fromarray(image);draw=ImageDraw.Draw(out);fontpath='/System/Library/Fonts/Supplemental/Arial.ttf'
+    # TIMESTAMP START 2026-11-04T19:54:43+00:00 | REVISION R000017
+    out=Image.fromarray(image);draw=ImageDraw.Draw(out)
+    fontpath=next(str(p) for p in [Path('/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf'),Path('/System/Library/Fonts/Supplemental/Arial.ttf')] if p.exists())
+    # TIMESTAMP END 2026-11-04T19:54:43+00:00 | REVISION R000017
     draw.rectangle([0,0,width,80],fill='#f8f7f2');draw.text((24,14),'Interior P2: two wall braces and the inward tie brace',fill='#173a40',font=ImageFont.truetype(fontpath,28))
     draw.text((24,49),'Actual occupied meshes; selected corner context; geometric proposal, capacity unverified.',fill='#56676b',font=ImageFont.truetype(fontpath,18))
     destination.parent.mkdir(parents=True,exist_ok=True);out.save(destination)

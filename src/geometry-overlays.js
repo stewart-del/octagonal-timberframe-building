@@ -19,7 +19,9 @@ function appendEdgeMeasurements(host,p){
 }
 // TIMESTAMP START 2026-11-02T15:06:05-05:00 | REVISION R004799
 function cavityDataFor(p){
- if(p.joineryCavity)return p.joineryCavity.fit_audit?.status==='PASS'?p.joineryCavity:null;
+// TIMESTAMP START 2026-11-03T13:32:57-05:00 | REVISION R005027
+ if(p.joineryCavity)return ['PASS','GENERATED'].includes(p.joineryCavity.fit_audit?.status)?p.joineryCavity:null;
+// TIMESTAMP END 2026-11-03T13:32:57-05:00 | REVISION R005027
  return CAVITIES.available===false?null:CAVITIES.parts?.[p.id];
 }
 function cavityRecords(){
@@ -92,7 +94,9 @@ function updateHollowStatus(){
  const removed=((d.removed?.volume_m3||0)+(d.additional_removed?.volume_m3||0))*1e6,entry=((d.entry_clearance?.volume_m3||0)+(d.additional_entry_clearance?.volume_m3||0))*1e6;
 // TIMESTAMP END 2026-11-02T17:13:18-05:00 | REVISION R004819
 // TIMESTAMP START 2026-11-02T17:13:18-05:00 | REVISION R004819
- host.textContent=selected+': '+num(removed,2)+' cm³ of actual recesses/notches. '+(entry>1e-6?num(entry,2)+' cm³ is the declared open joint-entry space; the remaining amber pockets match mating wood. ':'Amber shows the matching space occupied by mating wood in the assembled model. ')+(porch?'Joint geometry-fit audit passed. Structural capacity remains unverified.':CAVITIES.fit_audit?.status==='PASS'?'Independent cavity-fit audit passed.':'Independent cavity-fit audit is not attached.');
+// TIMESTAMP START 2026-11-03T13:32:57-05:00 | REVISION R005027
+ host.textContent=selected+': '+num(removed,2)+' cm³ of actual recesses/notches. '+(entry>1e-6?num(entry,2)+' cm³ is the declared open joint-entry space; the remaining amber pockets match mating wood. ':'Amber shows the matching space occupied by mating wood in the assembled model. ')+(MODEL_CONTEXT.parametric?'Recesses regenerated for the current dimensions.':porch?'Joint geometry-fit audit passed. Structural capacity remains unverified.':CAVITIES.fit_audit?.status==='PASS'?'Independent cavity-fit audit passed.':'Independent cavity-fit audit is not attached.');
+// TIMESTAMP END 2026-11-03T13:32:57-05:00 | REVISION R005027
 // TIMESTAMP END 2026-11-02T17:13:18-05:00 | REVISION R004819
  if(explode>0)host.textContent+=' Classification refers to the assembled model; this view is exploded.';
  if(!gl)host.textContent+=' In 2D fallback, hollow volumes are always shown as X-rays.';

@@ -1,3 +1,4 @@
+# TIMESTAMP START 2026-11-04T20:33:26+00:00 | REVISION R000023
 # TIMESTAMP START 2026-11-01T23:19:38-05:00 | REVISION R004668
 # TIMESTAMP START 2026-11-01T22:44:38-05:00 | REVISION R004653
 #!/usr/bin/env python3
@@ -156,6 +157,13 @@ def assembled_model(model,variant):
 
 # TIMESTAMP END 2026-11-02T20:38:50-05:00 | REVISION R004870
 # TIMESTAMP START 2026-11-02T18:39:35-05:00 | REVISION R004836
+# TIMESTAMP START 2026-11-04T23:17:24+00:00 | REVISION R000029
+sheet_audit=json.loads((ROOT/'docs/underlayment-sheet-audit.json').read_text())
+assert sheet_audit['status']=='PASS' and sheet_audit['sheetCount']==28
+for relative,sha in sheet_audit['sources'].items():
+    assert hashlib.sha256((ROOT/relative).read_bytes()).hexdigest()==sha,'Underlayment proof is stale: '+relative
+assert hashlib.sha256((ROOT/sheet_audit['image']['path']).read_bytes()).hexdigest()==sheet_audit['image']['sha256'],'Underlayment drawing is stale'
+# TIMESTAMP END 2026-11-04T23:17:24+00:00 | REVISION R000029
 brace_visibility=json.loads((ROOT/'docs/brace-visibility-audit.json').read_text())
 assert brace_visibility['status']=='PASS' and brace_visibility['physical_braces_in_complete']==24
 for relative,sha in brace_visibility['sources'].items():
@@ -164,6 +172,15 @@ visibility_image=brace_visibility['image']
 assert visibility_image['path']=='public/review/interior-braces.png'
 assert hashlib.sha256((ROOT/visibility_image['path']).read_bytes()).hexdigest()==visibility_image['sha256'], 'Interior brace image is stale'
 # TIMESTAMP END 2026-11-02T18:39:35-05:00 | REVISION R004836
+# TIMESTAMP START 2026-11-04T19:33:21+00:00 | REVISION R000014
+shoulder_audit=json.loads((ROOT/'docs/brace-shoulder-audit.json').read_text())
+assert shoulder_audit['status']=='PASS'
+assert shoulder_audit['script_sha256']==hashlib.sha256((ROOT/'scripts/audit_brace_shoulders.py').read_bytes()).hexdigest(),'Brace shoulder audit script is stale'
+for result in shoulder_audit['variants']:
+    for relative,sha in result['sources'].items():
+        assert hashlib.sha256((ROOT/relative).read_bytes()).hexdigest()==sha,'Brace shoulder geometry proof is stale: '+relative
+assert hashlib.sha256((ROOT/shoulder_audit['image']['path']).read_bytes()).hexdigest()==shoulder_audit['image']['sha256'],'Brace detail image is stale'
+# TIMESTAMP END 2026-11-04T19:33:21+00:00 | REVISION R000014
 # TIMESTAMP START 2026-11-02T19:03:48-05:00 | REVISION R004848
 brace_sections=json.loads((ROOT/'docs/brace-sections.json').read_text())
 assert brace_sections['status']=='PASS' and brace_sections['primary_brace_count']==24
@@ -228,8 +245,15 @@ template=template.replace('/*__DISASSEMBLY__*/',disassembly_code)
 # TIMESTAMP START 2026-11-02T14:22:13-05:00 | REVISION R004792
 # TIMESTAMP START 2026-11-02T20:38:50-05:00 | REVISION R004870
 template=template.replace('/*__WALL_JOINERY__*/',wall_joinery_code)
+# TIMESTAMP START 2026-11-03T13:30:29-05:00 | REVISION R005026
+# TIMESTAMP START 2026-11-03T13:59:01-05:00 | REVISION R005033
+for marker,name in [('/*__JOINERY_DIMENSIONS__*/','joinery-dimensions.js'),('/*__PARAMETRIC_MODEL__*/','parametric-model.js'),('/*__PARAMETRIC_CONTROLS__*/','parametric-controls.js'),('/*__MOTION_MODES__*/','motion-modes.js')]:
+# TIMESTAMP END 2026-11-03T13:59:01-05:00 | REVISION R005033
+    assert template.count(marker)==1
+    template=template.replace(marker,(ROOT/'src'/name).read_text())
+# TIMESTAMP END 2026-11-03T13:30:29-05:00 | REVISION R005026
 # TIMESTAMP END 2026-11-02T20:38:50-05:00 | REVISION R004870
-for marker, value in [('/*__MUDROOM__*/',mudroom_code), ('/*__ROOF_COVERINGS__*/',(ROOT/'src/roof-coverings.js').read_text()), ('/*__DISPLAY_PRESETS__*/',(ROOT/'src/display-presets.js').read_text()), ('/*__FLOOR_FOUNDATION__*/','const FLOOR_FOUNDATION_DATA='+encode(foundation_data)+';\n'+(ROOT/'src/floor-foundation.js').read_text()),('/*__CUT_FACE_ANALYSIS__*/', (ROOT/'src/cut-face-analysis.js').read_text()), ('/*__CUT_ANGLE_VIEW__*/', (ROOT/'src/cut-angle-view.js').read_text()), ('/*__MODEL_VARIANTS__*/', (ROOT/'src/model-variants.js').read_text()), ('__MODEL_VARIANTS_JSON__',encode(model_variants)), ('/*__STEP_LAP_REVIEW__*/', (ROOT/'src/step-lap-review.js').read_text()), ('__STEP_LAP_PROPOSAL_JSON__',encode(step_lap)), ('/*__SCHEMATIC_WALLS__*/', 'const OCTAGON_ENCLOSURE_FIT=MODEL_CONTEXT.enclosureFit;\n'+(ROOT/'src/schematic-walls.js').read_text()), ('/*__INSPECTION_TOOLS__*/', inspection),
+for marker, value in [('/*__MUDROOM__*/',mudroom_code), ('/*__ROOF_COVERINGS__*/',(ROOT/'src/roof-coverings.js').read_text()), ('/*__DISPLAY_PRESETS__*/',(ROOT/'src/display-presets.js').read_text()), ('/*__FLOOR_FOUNDATION__*/','const FLOOR_FOUNDATION_DATA='+encode(foundation_data)+';\n'+(ROOT/'src/floor-foundation.js').read_text()),('/*__CUT_FACE_ANALYSIS__*/', (ROOT/'src/cut-face-analysis.js').read_text()), ('/*__CUT_ANGLE_VIEW__*/', (ROOT/'src/cut-angle-view.js').read_text()), ('/*__MODEL_VARIANTS__*/', (ROOT/'src/model-variants.js').read_text()), ('__MODEL_VARIANTS_JSON__',encode(model_variants)), ('/*__STEP_LAP_REVIEW__*/', (ROOT/'src/step-lap-review.js').read_text()), ('__STEP_LAP_PROPOSAL_JSON__',encode(step_lap)), ('/*__SCHEMATIC_WALLS__*/', 'const OCTAGON_ENCLOSURE_FIT=SAVED_MODEL_CONTEXT.enclosureFit;\n'+(ROOT/'src/schematic-walls.js').read_text()), ('/*__INSPECTION_TOOLS__*/', inspection),
                       ('/*__ARCHITECTURAL_PLANS__*/', (ROOT/'src/architectural-plans.js').read_text()),
                       ('/*__EDGE_MEASUREMENT_TOOLS__*/', (ROOT/'src/edge-measurements.js').read_text()),
                       ('/*__LOAD_REVIEW__*/', load_review), ('/*__GEOMETRY_OVERLAYS__*/', overlays), ('__PARTS_JSON__', encode(data))]:
@@ -242,13 +266,31 @@ for block in ScriptBlocks(template).blocks:
     if block['attrs'].get('type','').lower()=='application/json':
         json.loads(block['body'])  # Every embedded data script must remain valid JSON.
 scripts=executable_blocks(template)
+# TIMESTAMP START 2026-11-03T13:30:29-05:00 | REVISION R005026
+# Browser bootstrap owns async generation. The offline harness executes the
+# exact viewer body at the saved context, while parameter tests exercise the
+# generator and real-browser QA exercises the asynchronous bootstrap.
+scripts=[s.replace('function startViewer(MODEL_CONTEXT){','const MODEL_CONTEXT=SAVED_MODEL_CONTEXT;') for s in scripts]
+scripts=[re.sub(r'\n}\n/\* PARAMETRIC_VIEWER_BODY_END \*/','\n/* PARAMETRIC_VIEWER_BODY_END */',s) for s in scripts]
+scripts=[re.sub(r'/\* PARAMETRIC_BOOT_START \*/.*?/\* PARAMETRIC_BOOT_END \*/','',s,flags=re.S) for s in scripts]
+# TIMESTAMP END 2026-11-03T13:30:29-05:00 | REVISION R005026
 assert sum('const stepLapReview=OctagonStepLap.createController' in b for b in scripts)==1
 
 dist = ROOT/'dist'
 dist.mkdir(exist_ok=True)
+# TIMESTAMP START 2026-11-03T13:30:29-05:00 | REVISION R005026
+shutil.copytree(ROOT/'public/vendor',dist/'vendor',dirs_exist_ok=True)
+shutil.copyfile(ROOT/'src/parametric-source.json',dist/'parametric-source.json')
+# TIMESTAMP END 2026-11-03T13:30:29-05:00 | REVISION R005026
 # TIMESTAMP START 2026-11-02T19:03:48-05:00 | REVISION R004848
 (dist/'review').mkdir(exist_ok=True)
 shutil.copyfile(ROOT/'public/review/brace-sections.svg',dist/'review/brace-sections.svg')
+# TIMESTAMP START 2026-11-04T23:17:24+00:00 | REVISION R000029
+shutil.copyfile(ROOT/'public/review/underlayment-sheets.svg',dist/'review/underlayment-sheets.svg')
+# TIMESTAMP END 2026-11-04T23:17:24+00:00 | REVISION R000029
+# TIMESTAMP START 2026-11-04T19:33:21+00:00 | REVISION R000014
+shutil.copyfile(ROOT/'public/review/brace-shoulders.png',dist/'review/brace-shoulders.png')
+# TIMESTAMP END 2026-11-04T19:33:21+00:00 | REVISION R000014
 # TIMESTAMP END 2026-11-02T19:03:48-05:00 | REVISION R004848
 # Current pages only; historical NAV-05 reports remain available through Git history.
 for name in ['about.html', 'r01.html', 'joinery.html', 'structural-audit.html', 'JOINT-DESIGN-BRIEF.md',
@@ -273,7 +315,10 @@ shutil.copyfile(ROOT/'docs/brace-sections.json',downloads/'brace-section-audit.j
 # TIMESTAMP END 2026-11-02T20:38:50-05:00 | REVISION R004870
 # TIMESTAMP START 2026-11-02T10:05:34-05:00 | REVISION R004758
 # TIMESTAMP START 2026-11-02T17:13:18-05:00 | REVISION R004819
-audit_downloads=['r01-change-register.json','r01-verification.json','joinery-verification.json','structural-audit.json','cavity-fit-audit.json','step-lap-proposed-cavity-fit-audit.json','top-entry-cavity-fit-audit.json']
+# TIMESTAMP START 2026-11-04T23:17:24+00:00 | REVISION R000029
+audit_downloads=['underlayment-sheet-audit.json']
+audit_downloads+=['r01-change-register.json','r01-verification.json','joinery-verification.json','structural-audit.json','cavity-fit-audit.json','step-lap-proposed-cavity-fit-audit.json','top-entry-cavity-fit-audit.json']
+# TIMESTAMP END 2026-11-04T23:17:24+00:00 | REVISION R000029
 # TIMESTAMP START 2026-11-02T18:39:35-05:00 | REVISION R004836
 audit_downloads.append('brace-visibility-audit.json')
 # TIMESTAMP END 2026-11-02T18:39:35-05:00 | REVISION R004836
@@ -322,6 +367,12 @@ tests = ROOT/'tests'
 tests.mkdir(exist_ok=True)
 (tests/'embedded-model.json').write_text(encode(data))
 (tests/'viewer-script-check.js').write_text('\n'.join(scripts))
+# TIMESTAMP START 2026-11-04T19:27:13+00:00 | REVISION R000001
+from build_runtime import write_runtime
+print(json.dumps(write_runtime(template, model=data, variants=model_variants,
+    wall_joinery=wall_joinery, foundation=foundation_data, mudroom=mudroom_fit,
+    disassembly=disassembly_plans, study=step_lap)))
+# TIMESTAMP END 2026-11-04T19:27:13+00:00 | REVISION R000001
 print(json.dumps({'revision':'R01', 'components':len(ids), 'html_bytes':len(template.encode()),
                   'model_sha256':model_sha, 'output':'dist/index.html', 'network_dependencies':False}))
 
@@ -329,3 +380,4 @@ print(json.dumps({'revision':'R01', 'components':len(ids), 'html_bytes':len(temp
 # TIMESTAMP END 2026-11-01T22:44:38-05:00 | REVISION R004653
 
 # TIMESTAMP END 2026-11-01T23:19:38-05:00 | REVISION R004668
+# TIMESTAMP END 2026-11-04T20:33:26+00:00 | REVISION R000023

@@ -38,7 +38,9 @@ const noop=()=>{};
 const gl=new Proxy({COMPILE_STATUS:1,LINK_STATUS:2,ARRAY_BUFFER:3,FLOAT:4,LINES:5,TRIANGLES:6,COLOR_BUFFER_BIT:1,DEPTH_BUFFER_BIT:2,createShader:()=>({}),createProgram:()=>({}),createBuffer:()=>({}),getShaderParameter:()=>true,getProgramParameter:()=>true,getAttribLocation:()=>0,getUniformLocation:()=>({})},{get(t,k){return k in t?t[k]:noop}});
 const els=new Map();
 function get(id){if(!els.has(id)){const escaped=id.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');const match=html.match(new RegExp('<([a-zA-Z0-9-]+)\\b[^>]*\\bid="'+escaped+'"[^>]*>'));const el=new El(match?.[1]||'div');el.id=id;const attrs=match?.[0]||'';for(const a of attrs.matchAll(/\b([\w-]+)="([^"]*)"/g))el.setAttribute(a[1],a[2]);el.checked=/\bchecked\b/.test(attrs);el.value=el.getAttribute('value')||'';els.set(id,el);documentMock?.body?.appendChild(el)}return els.get(id)}
-documentMock=new EventTargetMock();Object.assign(documentMock,{getElementById:get,querySelector:t=>get("document-"+t),createElement:t=>new El(t),body:new El('body'),hidden:false,hasFocus:()=>windowMock.focused});documentMock.activeElement=documentMock.body;
+// TIMESTAMP START 2026-11-04T13:02:38+00:00 | REVISION R000008
+documentMock=new EventTargetMock();Object.assign(documentMock,{getElementById:get,querySelector:t=>get("document-"+t),createElement:t=>new El(t),createElementNS:(ns,t)=>new El(t),body:new El('body'),hidden:false,hasFocus:()=>windowMock.focused});documentMock.activeElement=documentMock.body;
+// TIMESTAMP END 2026-11-04T13:02:38+00:00 | REVISION R000008
 windowMock=new EventTargetMock();Object.assign(windowMock,{devicePixelRatio:1,location:{hash:'',search:'?model=baseline'},focused:true});
 get('model-data').textContent=JSON.stringify(data);get('scene').parentElement=new El();
 function testKey(key,target=documentMock.activeElement,options={}){return documentMock.emit('keydown',{key,target,...options})}
@@ -95,13 +97,18 @@ const row=$('partList').children.find(row=>row.children[1]?.children[0]?.textCon
 if(!row)throw Error('Per-piece checkbox missing');row.children[0].checked=true;row.children[0].listeners.change();
 if(parts.filter(isShown).length!==2)throw Error('Checkbox from isolation must not reveal unrelated pieces');
 if(cuts.filter(f=>f.reference).length!==parts.reduce((n,p)=>n+(p.reference_end_faces||[]).length,0))throw Error('Missing current end references');
-const cut=cuts.find(f=>f.part_id==='J0-0'&&f.mate_part_id==='R0'&&!f.reference);if(!cut)throw Error('Missing short-rafter hip contact plane');
-selectCut(cut);if(selected!==cut.part_id||selectedCut!==cut.id||!showCutFaces)throw Error('Cut selection failed');
-render();if(!cutVisible(cut))throw Error('Selected cut must be visible');
-cutExplode=1;if(length(vsub(cutOffset(cut),offset(partById.get(cut.part_id))))<.55)throw Error('Cut separation failed');
-faceCut(cut);if(isolatedId!==cut.part_id||parts.filter(isShown).length!==1)throw Error('Face cut must isolate owner');render();const cutCenter=project(camera.target);if(Math.abs(cutCenter.x-width/2)>.01||Math.abs(cutCenter.y-height/2)>.01)throw Error('Face cut center wrong');
-if(cut.mate_part_id&&partById.has(cut.mate_part_id)){showMatingPair(cut);if(parts.filter(isShown).length!==2||explode!==0||cutExplode!==0)throw Error('Mating pair must be assembled in isolation');}
-showEndRefs=true;const ref=cuts.find(f=>f.reference&&f.part_id===selected);if(!cutVisible(ref))throw Error('Integrated end reference missing');
+// TIMESTAMP START 2026-11-04T13:02:38+00:00 | REVISION R000008
+selectPart('J0-0');
+const currentAngleButton=descendants($('selection')).find(el=>el.id==='pieceCutAngles');
+assert(currentAngleButton,'Current-mesh angle inspector is available');currentAngleButton.onclick();
+assert($('cutAnglesModal').classList.contains('open')&&navigationBlocked(canvas),'Mesh inspector pauses navigation');
+cutAngleView.renderPiece('J0-0');const currentFaceReport=cutAngleView.getReport();
+assert(currentFaceReport.partId==='J0-0'&&currentFaceReport.faces.length>0,'Inspector reads selected current mesh');
+assert(currentFaceReport.faces.every(f=>f.areaM2>0&&Number.isFinite(f.angles.offSquareDeg)),'Current face areas and stock angles are finite');
+const currentFaceButton=descendants($('cutAnglesContent')).find(el=>el.tagName==='BUTTON');currentFaceButton.onclick();
+assert($('cutFaceSketch').children.length>0,'Selected actual face has a projected sketch');
+cutAngleView.close();assert(!$('cutAnglesModal').classList.contains('open'),'Current face inspection closes cleanly');
+// TIMESTAMP END 2026-11-04T13:02:38+00:00 | REVISION R000008
 $('allPermanent').onclick();fitModel();render();
 window.location={hash:'#part=P0&isolate=1'};applyHash();if(selected!=='P0'||isolatedId!=='P0'||parts.filter(isShown).length!==1)throw Error('Isolated hash link failed');window.location.hash='#R0';applyHash();if(selected!=='R0'||isolatedId!==null)throw Error('Simple hash link failed');
 
@@ -140,7 +147,10 @@ testKey('w');document.hidden=true;document.emit('visibilitychange');assert(navKe
 $('orbitNav').click();const noFly=orbitBasis().eye.slice();const orbitW=testKey('w');advanceFly(.05);assert(!navKeys.size&&closeEnough(orbitBasis().eye,noFly),'WASD must not move Orbit mode');$('freeNav').click();
 // Existing Free mode precision, pan, wheel, drag and reset behavior.
 const focusPiece=parts.find(p=>p.id==='B0');focusPart(focusPiece);assert(navigation==='free','Focus changed Free mode');matrix();const fp=project(fittedCenter(focusPiece));assert(Math.abs(fp.x-width/2)<.01&&Math.abs(fp.y-height/2)<.01,'Free focus failed');
-faceCut(cut);assert(navigation==='free','Cut focus changed Free mode');matrix();const cf=project(vadd(cut.center,cutOffset(cut)));assert(Math.abs(cf.x-width/2)<.01&&Math.abs(cf.y-height/2)<.01,'Free cut focus failed');
+// TIMESTAMP START 2026-11-04T13:02:38+00:00 | REVISION R000008
+const actualFace=OctagonCutFaces.analysePart(partById.get('J0-0')).faces[0];
+focusPoint(actualFace.centroidM.slice(),.6);assert(navigation==='free','Current face focus changed Free mode');matrix();const cf=project(actualFace.centroidM);assert(Math.abs(cf.x-width/2)<.01&&Math.abs(cf.y-height/2)<.01,'Free current-face focus failed');
+// TIMESTAMP END 2026-11-04T13:02:38+00:00 | REVISION R000008
 const wheelBefore=fly.eye.slice();canvas.listeners.wheel({deltaY:-100,preventDefault(){}});assert(length(vsub(fly.eye,wheelBefore))>.01,'Free wheel must move camera');
 const yawBefore=fly.yaw;canvas.listeners.pointerdown({pointerId:1,clientX:100,clientY:100});canvas.listeners.pointermove({pointerId:1,clientX:120,clientY:105});canvas.listeners.pointerup({pointerId:1,clientX:120,clientY:105});assert(fly.yaw!==yawBefore,'Free drag must look');
 const panBefore=fly.eye.slice();canvas.listeners.pointerdown({pointerId:2,clientX:100,clientY:100});canvas.listeners.pointermove({pointerId:2,clientX:120,clientY:105,shiftKey:true});canvas.listeners.pointerup({pointerId:2,clientX:120,clientY:105});assert(length(vsub(fly.eye,panBefore))>.01,'Free shift-pan failed');

@@ -44,7 +44,13 @@ for model in models:
             assert abs((s-raw).volume())/I**3<1e-6,(name,'brace outside declared stock')
             assert abs((exterior^s).volume())/I**3<1e-6,(name,'exterior cut crosses wood')
             # TIMESTAMP END 2026-11-02T17:32:31-05:00 | REVISION R004820
-            assert abs(np.linalg.norm(np.asarray(p['axis_end'])-p['axis_start'])/I-np.sqrt(2)*28)<1e-9
+            # TIMESTAMP START 2026-11-03T17:00:04-05:00 | REVISION R005063
+            # TIMESTAMP START 2026-11-04T20:17:46+00:00 | REVISION R000020
+            expected_length=np.hypot(24,41) if side=='C' else np.sqrt(2)*(89.03615129287599-62)
+            assert abs(p['axis_start'][1]/I-(44 if side=='C' else 62))<1e-8
+            # TIMESTAMP END 2026-11-04T20:17:46+00:00 | REVISION R000020
+            assert abs(np.linalg.norm(np.asarray(p['axis_end'])-p['axis_start'])/I-expected_length)<1e-8
+            # TIMESTAMP END 2026-11-03T17:00:04-05:00 | REVISION R005063
             assert np.linalg.norm(p['exploded_offset'])>1 and len(s.decompose())==1
             # Independently measure a true section through the body, rather than
             # merely trusting the section labels or an axis-aligned bounding box.
@@ -59,7 +65,7 @@ for model in models:
                 assert abs((s^timbers[receiver]).volume())/I**3<1e-6,(name,receiver,'overlap')
                 assert sum(f['area_in2'] for f in contacts(s,timbers[receiver]))>2,(name,receiver,'missing bearing')
             if side=='C':
-                assert abs(max(v[1] for v in p['vertices'])/I-87)<1e-8
+                assert abs(max(v[1] for v in p['vertices'])/I-88)<1e-8
                 assert abs(min(v[1] for v in parts[f'T{k}']['vertices'])/I-85)<1e-8
                 assert len({tuple(parts[f'K{k}-{side}']['exploded_offset']) for side in ['A','B','C']})==3
     for a,b in itertools.combinations(timbers,2):
