@@ -51,7 +51,16 @@ async function check(search,expected){
   const current=new Float32Array(TimberEdgeMeasurements.featureEdges(part.vertices,part.triangles));
   assert.deepEqual(Array.from(cached),Array.from(current),'Cached GPU edges match the current algorithm exactly: '+id);
  }
- assert.equal(data.meshCache.size,expected==='top-entry'?1252:1244);
+ // TIMESTAMP START 2026-11-04T23:37:08+00:00 | REVISION R000031
+ const sheets=data.foundation.parts.filter(p=>p.floorRole==='underlayment_sheet');
+ assert.equal(sheets.length,28,'The runtime must load every installed cut sheet');
+ assert(!data.meshCache.has('FLOOR-SUBFLOOR'),'The obsolete single floor slab must be absent');
+ for(const sheet of sheets){
+  const current=new Float32Array(TimberEdgeMeasurements.featureEdges(sheet.vertices,sheet.triangles));
+  assert.deepEqual(Array.from(data.meshCache.get(sheet.id)),Array.from(current),'Exact cached sheet edges: '+sheet.id);
+ }
+ assert.equal(data.meshCache.size,expected==='top-entry'?1279:1271);
+ // TIMESTAMP END 2026-11-04T23:37:08+00:00 | REVISION R000031
  // TIMESTAMP END 2026-11-04T19:29:44+00:00 | REVISION R000002
  failNext=true;
  const retryURL=manifest.study+'?retry-test';
