@@ -11,3 +11,7 @@ __pycache__/
 node_modules/
 public/downloads/Octagon-model-and-review.zip
 public/downloads/Octagon-model-and-review.zip.tmp
+
+# TIMESTAMP START 2026-11-04T12:46:13+00:00 | REVISION R000003
+.codex-runtime/
+# TIMESTAMP END 2026-11-04T12:46:13+00:00 | REVISION R000003

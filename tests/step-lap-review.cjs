@@ -80,7 +80,9 @@ const runtimeChecks=`
 `;
 // Avoid a previously required module masking a missing embed in the real page.
 delete global.OctagonStepLap;
-const runtimeAssertions=require('./viewer-regression.cjs').runViewerTests(initializeDOM+runtimeSource+'\n'+runtimeChecks,embeddedModel,{search:'?model=baseline'});
+// TIMESTAMP START 2026-11-04T12:40:53+00:00 | REVISION R000002
+const runtimeAssertions=require('./viewer-regression.cjs').runViewerTests(initializeDOM+runtimeSource,embeddedModel,{search:'?model=baseline',scopedChecks:runtimeChecks});
+// TIMESTAMP END 2026-11-04T12:40:53+00:00 | REVISION R000002
 assert(runtimeAssertions.some(s=>s==='Actual HTML binds Compare proposed joints button'));
 console.log(`PASS: ${data.variants.length} actual proposal/baseline mesh pairs, section views, repeated controls and labeled exports; script-type-aware executable-HTML binding; ${runtimeAssertions.length} runtime/viewer assertions; canonical geometry and loads preserved`);
 

@@ -439,7 +439,9 @@ def generate_complete_certificate(candidate_directory=None):
     # TIMESTAMP START 2026-11-02T21:01:13-05:00 | REVISION R004875
     files=['scripts/plan_architectural_disassembly.py','scripts/plan_porch_disassembly.py',
         # TIMESTAMP START 2026-11-03T06:36:08-05:00 | REVISION R004891
-        'scripts/plan_main_disassembly.py','scripts/plan_compact_disassembly.py','scripts/compact-disassembly-route.json','docs/cupola-foot-prototype.json']
+        # TIMESTAMP START 2026-11-04T12:48:28+00:00 | REVISION R000004
+        'scripts/plan_main_disassembly.py','scripts/plan_compact_disassembly.py','scripts/plan_revised_disassembly.py','scripts/revised-disassembly-seed.json','scripts/compact-disassembly-route.json','docs/cupola-foot-prototype.json']
+        # TIMESTAMP END 2026-11-04T12:48:28+00:00 | REVISION R000004
         # TIMESTAMP END 2026-11-03T06:36:08-05:00 | REVISION R004891
     # TIMESTAMP END 2026-11-02T21:01:13-05:00 | REVISION R004875
     script_hashes={name:hashlib.sha256((ROOT/name).read_bytes()).hexdigest() for name in files}
@@ -518,7 +520,10 @@ def generate_complete_certificate(candidate_directory=None):
         'variants':variants,'coordinate_system':'World model X/Y/Z in metres; stage deltas accumulate; all parked pieces remain obstacles',
         'scope':'Nominal geometric disassembly visualization; structural dismantling, access and lifting require separate planning'}
     # TIMESTAMP START 2026-11-02T21:01:13-05:00 | REVISION R004875
-    history={'revision':'R004875','timestamp_start':'2026-11-02T21:01:13-05:00','timestamp_end':'2026-11-02T21:01:13-05:00'}
+    # TIMESTAMP START 2026-11-04T12:48:28+00:00 | REVISION R000004
+    from datetime import datetime,timezone
+    history={'revision':'R000004','timestamp_start':'2026-11-04T12:48:28+00:00','timestamp_end':datetime.now(timezone.utc).isoformat(),'ledger_origin':'cloud; authoritative Mac ledger requires reconciliation'}
+    # TIMESTAMP END 2026-11-04T12:48:28+00:00 | REVISION R000004
     architectural={**common,'_change_history':history}
     primary={**common,'variants':primary_variants,'_change_history':history}
     combined={**common,'_change_history':history}

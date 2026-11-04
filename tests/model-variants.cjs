@@ -91,7 +91,9 @@ for(const [id,search] of [['top-entry',''],['proposed','?model=proposed'],['base
  $('modelVariant').value=MODEL_CONTEXT.isProposed?'baseline':'proposed';$('modelVariant').onchange();
  check(window.location.assigned.includes('model='+(MODEL_CONTEXT.isProposed?'baseline':'proposed')),'Actual selector navigates to reversible chosen revision');
  `;
- const results=runViewerTests(dom+source+'\n'+checks,baseline,{search,skipLegacy:true});assert(results.length>=12);
+// TIMESTAMP START 2026-11-04T12:40:20+00:00 | REVISION R000001
+ const results=runViewerTests(dom+source,baseline,{search,skipLegacy:true,scopedChecks:checks});assert(results.length>=12);
+// TIMESTAMP END 2026-11-04T12:40:20+00:00 | REVISION R000001
 }
 // Proposed GLB must advertise the same source and not inherit baseline R01 status.
 for(const [modelFile,prefix] of [['step-lap-proposed-model.json','Octagon-PROPOSED-step-lap-'],['top-entry-proposed-model.json','Octagon-TOP-ENTRY-']]){

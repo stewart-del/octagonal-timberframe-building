@@ -1,14 +1,21 @@
 # TIMESTAMP START 2026-11-03T16:08:22-05:00 | REVISION R005049
 """Replan the saved compact sequence against the revised physical members."""
 from pathlib import Path
-import argparse,json
+# TIMESTAMP START 2026-11-04T12:46:13+00:00 | REVISION R000003
+import argparse,json,os
+# TIMESTAMP END 2026-11-04T12:46:13+00:00 | REVISION R000003
 import numpy as np
 from plan_architectural_disassembly import (ROOT,load_scene,check_stage,check_multi_stage,
     apply_stage,apply_multi_stage,audit_initial_scene,audit_final_joinery,clone_scene,attempt_path)
 from plan_compact_disassembly import route,move,radial,loose_walls,settle_primary,wall_target
 from plan_porch_disassembly import apply_porch_phases
 
-CHECKPOINT=Path('/tmp/octagon-revised-route-checkpoint.json')
+# TIMESTAMP START 2026-11-04T12:46:13+00:00 | REVISION R000003
+CHECKPOINT_DIRECTORY=Path(os.environ.get('OCTAGON_CHECKPOINT_DIR',ROOT/'.codex-runtime/disassembly'))
+CHECKPOINT_DIRECTORY.mkdir(parents=True,exist_ok=True)
+CHECKPOINT=CHECKPOINT_DIRECTORY/'route-checkpoint.json'
+FAILURE=CHECKPOINT_DIRECTORY/'route-failure.json'
+# TIMESTAMP END 2026-11-04T12:46:13+00:00 | REVISION R000003
 UP=np.array([0.,1.,0.])
 # TIMESTAMP START 2026-11-03T16:49:21-05:00 | REVISION R005060
 precleared=set()
@@ -110,11 +117,60 @@ def lower_frame(scene):
         # TIMESTAMP START 2026-11-03T17:12:03-05:00 | REVISION R005068
         require(settle_primary(scene,pid))
         # TIMESTAMP END 2026-11-03T17:12:03-05:00 | REVISION R005068
+    # TIMESTAMP START 2026-11-04T12:46:13+00:00 | REVISION R000003
+    loose_walls(scene)
+    save(scene,'walls-final')
+    finish_walls(scene)
+
+def finish_walls(scene):
+    """Finish released walls without reapplying a blocked joint withdrawal."""
+    def finish_one(trial,pid):
+        target,n=wall_target(trial.parts[pid]);tangent=np.array([-n[2],0,n[0]])
+        result=route(trial,[pid],target,'Finish released wall '+pid,[n,tangent])
+        if result is True or result.get('reason')=='Target endpoint is occupied':return result
+        delta=target-trial.offsets[pid]
+        for direction in [UP,tangent,n]:
+            for amount in [.3,-.3,.6,-.6,.9,-.9,1.2,-1.2]:
+                shift=direction*amount
+                ok,proof=attempt_path(trial,'Detour released wall around parked post '+pid,[pid],[shift,delta,-shift])
+                if ok:return True
+        return result
+    pending=[pid for pid,p in scene.parts.items()
+        if p.get('schematicKind') in ['wall','rail','shelf']
+        and np.linalg.norm(scene.offsets[pid]-wall_target(p)[0])>1e-8]
+    # The two downward-entry west rails must separate from their carried posts.
+    pending.sort(key=lambda pid:0 if '-rail0-' in pid else 1)
+    occupied={}
+    for pid in pending:
+        result=finish_one(scene,pid)
+        if result is True:
+            save(scene,'walls-final')
+            continue
+        obstacle=result['collisions'][0]['obstacle_id']
+        assert result.get('reason')=='Target endpoint is occupied' and obstacle in ['MUD-POST-L-BACK','MUD-POST-R-BACK'],(pid,result)
+        occupied.setdefault(obstacle,[]).append(pid)
+    for post,ids in occupied.items():
+        normal=wall_target(scene.parts[ids[0]])[1]
+        for distance in [.15,.3,.45,.6,.9]:
+            trial=clone_scene(scene)
+            result=move(trial,[post],normal*distance,'Move parked porch post farther outward to clear wall destinations '+post)
+            if result is not True:continue
+            for pid in ids:
+                result=finish_one(trial,pid)
+                if result is not True:break
+            if result is True:
+                scene.offsets=trial.offsets;scene.stages=trial.stages;scene.version=trial.version
+                save(scene,'walls-final')
+                break
+        require(result)
     assert not loose_walls(scene),'Wall members remain held after frame release'
+    # TIMESTAMP END 2026-11-04T12:46:13+00:00 | REVISION R000003
 
 def main():
     parser=argparse.ArgumentParser();parser.add_argument('--resume',action='store_true');parser.add_argument('--stop-after',choices=['roof','porch','floor','walls','lower']);args=parser.parse_args()
-    old=json.loads((ROOT/'scripts/compact-disassembly-route.json').read_text());scene=load_scene('top-entry');phase='roof';index=0
+    # TIMESTAMP START 2026-11-04T12:46:13+00:00 | REVISION R000003
+    old=json.loads((ROOT/'scripts/revised-disassembly-seed.json').read_text());scene=load_scene('top-entry');phase='roof';index=0
+    # TIMESTAMP END 2026-11-04T12:46:13+00:00 | REVISION R000003
     if args.resume and CHECKPOINT.exists():
         saved=json.loads(CHECKPOINT.read_text());precleared.update(saved.get('precleared',[]));assert saved['sources']==scene.sources,'Checkpoint geometry changed'
         scene.stages=saved['stages'];scene.version=len(scene.stages);phase=saved['phase'];index=saved['index']
@@ -151,15 +207,21 @@ def main():
                 save(scene,'walls',i+1)
             phase='lower';save(scene,phase)
             if args.stop_after=='walls':return
+        # TIMESTAMP START 2026-11-04T12:46:13+00:00 | REVISION R000003
         if phase=='lower':
-            lower_frame(scene);save(scene,'complete')
+            lower_frame(scene);phase='complete';save(scene,phase)
+        if phase=='walls-final':
+            finish_walls(scene);phase='complete';save(scene,phase)
+        # TIMESTAMP END 2026-11-04T12:46:13+00:00 | REVISION R000003
         separation=audit_final_joinery(scene);assert separation['status']=='PASS',separation
         moved={pid for s in scene.stages for q in s.get('motions',[s]) for pid in q['member_ids']}
         fixed={'FLOOR-CENTRAL-HUB','PIER-C','PIER-C-BELOW'}
         assert set(scene.parts)-moved==fixed,sorted(set(scene.parts)-moved-fixed)
         print('PASS',len(scene.stages),'stages; all physical pieces accounted for',flush=True)
     except BaseException:
-        Path('/tmp/octagon-revised-route-failure.json').write_text(json.dumps({'phase':phase,'sources':scene.sources,'stages':scene.stages,'precleared':sorted(precleared)},separators=(',',':'))+'\n')
+        # TIMESTAMP START 2026-11-04T12:46:13+00:00 | REVISION R000003
+        FAILURE.write_text(json.dumps({'phase':phase,'sources':scene.sources,'stages':scene.stages,'precleared':sorted(precleared)},separators=(',',':'))+'\n')
+        # TIMESTAMP END 2026-11-04T12:46:13+00:00 | REVISION R000003
         raise
 
 if __name__=='__main__':main()

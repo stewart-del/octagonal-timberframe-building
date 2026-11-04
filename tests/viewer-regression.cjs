@@ -3,7 +3,9 @@
 // TIMESTAMP START 2026-11-01T23:01:05-05:00 | REVISION R004657
 // Browserless regression harness. Uses the actual viewer script with a small DOM stub.
 // Node: node viewer-regression.js [index.html]; exports runViewerTests for other JS runtimes.
-function runViewerTests(source,model,{search='?model=baseline',skipLegacy=false}={}){
+// TIMESTAMP START 2026-11-04T12:40:20+00:00 | REVISION R000001
+function runViewerTests(source,model,{search='?model=baseline',skipLegacy=false,scopedChecks=''}={}){
+// TIMESTAMP END 2026-11-04T12:40:20+00:00 | REVISION R000001
   let document;
   const listeners={},windowListeners={};
   class Element{
@@ -214,11 +216,16 @@ check(isShown(partById.get('M-TMP'))&&parts.filter(p=>(p.temporary&&p.id!=='M-TM
     const scheduleButtons=$('scheduleModal').querySelectorAll('button');check(scheduleButtons.length===parts.length+1,'Schedule has one inspection button per component');
     scheduleButtons.at(-1).focus();const tab={key:'Tab',shiftKey:false,preventDefault(){this.prevented=true;}};for(const f of listeners.keydown||[])f(tab);check(tab.prevented&&document.activeElement===$('closeSchedule'),'Tab wraps at end of schedule');
     const escape={key:'Escape',preventDefault(){}};for(const f of listeners.keydown||[])f(escape);check(!document.querySelector('main').inert&&document.activeElement===trigger,'Escape restores schedule focus and background');
-    const joint=cuts.find(f=>f.part_id==='J0-0'&&!f.reference&&f.mate_part_id==='R0');check(!!joint,'R01 short rafter has hip contact face');
+    // TIMESTAMP START 2026-11-04T13:02:38+00:00 | REVISION R000008
+    const joint=DATA.tenon_schedule.find(j=>j.donor==='J0-0'&&j.receiver==='R0');
+    check(joint&&Math.abs(joint.projection_m/.0254-3)<1e-8,'Short rafter has a current three-inch hip tenon');
+    // TIMESTAMP END 2026-11-04T13:02:38+00:00 | REVISION R000008
     for(const part of parts.filter(isTimber)){const sf=stockFrame(part),source=part.stock_frame;check(!!sf&&!!source&&['axis','width','depth'].every(k=>length(vsub(sf[k],unit(source[k])))<1e-9),'Explicit stock axes retained for '+part.id);}
-    const alpha=Math.PI/8,pn=(1/3)/Math.cos(alpha),expectedOffSquare=Math.acos(Math.sin(alpha)/Math.sqrt(1+pn*pn))*180/Math.PI;
-    check(Math.abs(surfaceAngles(partById.get('J0-0'),joint).offSquare-expectedOffSquare)<1e-7,'J0-0 hip-side compound contact angle agrees with independent octagon slope geometry');
-    selectCut(joint);faceCut(joint);check(inspectionPartId==='J0-0'&&inspectionCutId===joint.id&&length(vsub(inspectionPivot,vadd(joint.center,cutOffset(joint))))<1e-9,'Cut inspection uses actual contact plane center');
+    // TIMESTAMP START 2026-11-04T13:02:38+00:00 | REVISION R000008
+    const currentFaces=OctagonCutFaces.analysePart(partById.get('J0-0')).faces;
+    check(currentFaces.length>0&&currentFaces.every(f=>f.areaM2>0&&Math.abs(length(f.normal)-1)<1e-8),'Current cut inspection derives nondegenerate unit-normal faces from the actual mesh');
+    check(currentFaces.every(f=>Math.abs(f.angles.offSquareDeg-Math.acos(Math.min(1,Math.abs(dot(unit(partById.get('J0-0').stock_frame.axis),f.normal))))*180/Math.PI)<1e-6),'Current face angles agree with independently projected stock axes');
+    // TIMESTAMP END 2026-11-04T13:02:38+00:00 | REVISION R000008
     setNavigation('free');inspectEnd(partById.get('P0'),'A');check(inspectionCutId===null&&inspectionPartId==='P0'&&Number.isFinite(fly.yaw)&&Number.isFinite(fly.pitch),'End A resets cut pivot and handles vertical member');inspectEnd(partById.get('R0'),'B');check(flySpeed===.02&&inspectionPartId==='R0','End B uses fine travel speed');
     const verticalAngles=recordedAngles(partById.get('P0'));
     check(verticalAngles.find(r=>r[0]==='Plan direction in model X/Z')[1].includes('Not applicable'),'Vertical plan direction is not invented as zero');
@@ -248,11 +255,17 @@ check(isShown(partById.get('M-TMP'))&&parts.filter(p=>(p.temporary&&p.id!=='M-TM
 // TIMESTAMP END 2026-11-02T15:57:59-05:00 | REVISION R004811
     togglePieceIsolation(jamb);check(isolatedId===jamb.id&&isShown(jamb),'Framing can be isolated while exploded');showAllAndUncenter();
     // TIMESTAMP END 2026-11-02T13:49:06-05:00 | REVISION R004787
-    showMatingPair(joint);check(selectedPartIds.size===2&&selectedPartIds.has('J0-0')&&selectedPartIds.has('R0')&&parts.filter(isShown).length===2,'Contact pair view isolates rafter and receiving hip');
-    faceCut(joint);check(selectedPartIds.size===1&&selectedPartIds.has('J0-0'),'Contact-face inspection selects only its owner');
+    // TIMESTAMP START 2026-11-04T13:02:38+00:00 | REVISION R000008
+    showReviewMembers([joint.donor,joint.receiver]);selectPart(joint.donor);selectPart(joint.receiver,true);
+    check(selectedPartIds.size===2&&selectedPartIds.has('J0-0')&&selectedPartIds.has('R0')&&parts.filter(isShown).length===2,'Current tenon pair inspection isolates rafter and receiving hip');
+    selectPart(joint.donor);cutAngleView.renderPiece(joint.donor);
+    check(selectedPartIds.size===1&&selectedPartIds.has('J0-0')&&cutAngleView.getReport().partId==='J0-0','Current-mesh face inspection selects its owner');
+    // TIMESTAMP END 2026-11-04T13:02:38+00:00 | REVISION R000008
     $('reviewCorner').onclick();check(parts.filter(isShown).map(p=>p.id).sort().join(',')===['R0','J0-0','J7-2'].sort().join(','),'Rafter-joint shortcut shows both rafters at R0');
     check(selected==='J0-0'&&navigation==='orbit'&&showCutFaces,'Rafter-joint shortcut activates contact inspection');
-    check(length(vsub(camera.target,joint.center))<1e-9,'Rafter-joint shortcut centers actual contact plane');
+    // TIMESTAMP START 2026-11-04T13:02:38+00:00 | REVISION R000008
+    check(length(vsub(camera.target,joint.face_center))<1e-9,'Rafter-joint shortcut centers the current tenon shoulder');
+    // TIMESTAMP END 2026-11-04T13:02:38+00:00 | REVISION R000008
     $('roofPlan').onclick();check(camera.phi>1.5&&parts.filter(isShown).filter(p=>p.group==='secondary_approx').length===16,'Roof-plan shortcut shows all sixteen short rafters from above');
     check(!parts.some(p=>p.temporary&&isShown(p)),'Roof-plan shortcut excludes temporary fixture');
     $('restoreFrame').onclick();check(selected===null&&selectedCut===null&&selectedPartIds.size===0&&inspectionPivot===null,'Restore frame clears selection and inspection pivots');
@@ -318,7 +331,16 @@ check(isShown(partById.get('M-TMP'))&&parts.filter(p=>(p.temporary&&p.id!=='M-TM
     openPlans();closePlans();check(!$('plansModal').classList.contains('open'),'Repeated plans opening and dismissal is reversible');
     return assertions;
   `;
-  const run=new Function('document','window','requestAnimationFrame','setTimeout','ResizeObserver','assertions','windowListeners','listeners',source+'\n'+(skipLegacy?'return assertions;':tests));
+  // TIMESTAMP START 2026-11-04T12:40:20+00:00 | REVISION R000001
+  const checks=scopedChecks+'\n'+(skipLegacy?'':tests);
+  source='let viewerTestFailure;\n'+source;
+  const marker='}\n/* PARAMETRIC_VIEWER_BODY_END */';
+  if(source.includes('function startViewer(MODEL_CONTEXT)')){
+    if(!source.includes(marker))throw Error('Missing viewer assertion injection boundary');
+    source=source.replace(marker,'try {\n'+checks+'\n} catch(error) { viewerTestFailure=error; }\n'+marker);
+  }else source+='\n'+checks;
+  const run=new Function('document','window','requestAnimationFrame','setTimeout','ResizeObserver','assertions','windowListeners','listeners',source+'\nif(viewerTestFailure)throw viewerTestFailure;return assertions;');
+  // TIMESTAMP END 2026-11-04T12:40:20+00:00 | REVISION R000001
   return run(document,window,requestAnimationFrame,()=>{},undefined,assertions,windowListeners,listeners);
 }
 if(typeof module!=='undefined'){

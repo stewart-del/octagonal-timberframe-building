@@ -147,7 +147,11 @@ for model_name,fit_name in VARIANTS:
   assert abs((reconstructed-exact_remainder).volume())<1e-10 and abs((exact_remainder-reconstructed).volume())<1e-10,p['id']+' connected shelf middle or offcuts changed'
   # TIMESTAMP START 2026-11-02T17:45:34-05:00 | REVISION R004824
   # TIMESTAMP START 2026-11-02T18:40:43-05:00 | REVISION R004837
-  assert len(offcuts)==(1 if p['id'].endswith('shelf5') else 0)
+  # TIMESTAMP START 2026-11-04T13:00:51+00:00 | REVISION R000007
+  # Lowered centered braces leave connected shelf stock; no detached end is discarded.
+  # Exact boolean reconstruction above still accounts for every removed fragment.
+  assert len(offcuts)==0,p['id']+' unexpected detached shelf stock'
+  # TIMESTAMP END 2026-11-04T13:00:51+00:00 | REVISION R000007
   # TIMESTAMP END 2026-11-02T18:40:43-05:00 | REVISION R004837
   # TIMESTAMP END 2026-11-02T17:45:34-05:00 | REVISION R004824
 
