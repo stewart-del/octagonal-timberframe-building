@@ -60,16 +60,21 @@ function createController(data,{document,save,release=()=>{},onOpen=()=>{},onClo
  const $=id=>document.getElementById(id),state={open:false,variantId:data.variants?.[0]?.id||'',view:'iso',explode:true,removed:false,normals:false};let returnFocus=null;
  const selected=()=>data.variants.find(v=>v.id===state.variantId)||data.variants[0];
  const writeList=(id,items)=>{const host=$(id);host.replaceChildren();for(const text of items){const li=document.createElement('li');li.textContent=text;host.appendChild(li);}};
+// TIMESTAMP START 2026-11-03T17:17:55-05:00 | REVISION R005072
  function render(){const v=selected();if(!v)return;const options={view:state.view,explode:state.explode,removed:state.removed,normals:state.normals,standalone:false};$('stepLapCurrent').innerHTML=drawing(v,{...options,proposed:false}).svg;$('stepLapProposed').innerHTML=drawing(v,{...options,proposed:true}).svg;
-  $('stepLapState').textContent=(v.geometry_status==='REJECTED'?'Candidate interference / geometry issue — do not replicate. ':'')+tradeoff(v);
+  $('stepLapState').textContent='Archived perimeter study: these comparison meshes predate the current three-inch tenons and centered braces. Current dimensions are in the main model inspector. '+(v.geometry_status==='REJECTED'?'Candidate interference / geometry issue — do not replicate. ':'')+tradeoff(v);
   $('stepLapState').className='step-lap-state'+(v.geometry_status==='REJECTED'?' warning':'');
   const rows=$('stepLapMetrics');rows.replaceChildren();for(const [label,value] of summaryRows(v)){const tr=document.createElement('tr'),a=document.createElement('td'),b=document.createElement('td');a.textContent=label;b.textContent=value;tr.append(a,b);rows.appendChild(tr);}
   writeList('stepLapLimitations',[...(v.findings||[]),...(data.limitations||[])]);$('stepLapView').value=state.view;$('stepLapPair').value=v.id;$('stepLapExplode').checked=state.explode;$('stepLapRemoved').checked=state.removed;$('stepLapNormals').checked=state.normals;
  }
+// TIMESTAMP END 2026-11-03T17:17:55-05:00 | REVISION R005072
  function open(){if(state.open)return;release();returnFocus=document.activeElement;state.open=true;$('stepLapModal').classList.add('open');$('stepLapModal').setAttribute('aria-hidden','false');onOpen();render();$('closeStepLap').focus();}
  function close(){if(!state.open)return;state.open=false;$('stepLapModal').classList.remove('open');$('stepLapModal').setAttribute('aria-hidden','true');onClose();returnFocus?.focus?.();}
  function set(key,value){if(!Object.prototype.hasOwnProperty.call(state,key)||key==='open')return;if(key==='variantId'&&!data.variants.some(v=>v.id===value))return;if(key==='view'&&!['iso','top','section'].includes(value))return;state[key]=value;if(state.open)render();}
  const pairs=$('stepLapPair');pairs.replaceChildren();for(const v of data.variants||[]){const option=document.createElement('option');option.value=v.id;option.textContent=v.title||v.id;pairs.appendChild(option);}
+ // TIMESTAMP START 2026-11-03T17:17:55-05:00 | REVISION R005072
+ $('openStepLap').textContent='Earlier joint study';
+ // TIMESTAMP END 2026-11-03T17:17:55-05:00 | REVISION R005072
  $('openStepLap').onclick=open;$('closeStepLap').onclick=close;$('stepLapPair').onchange=()=>set('variantId',$('stepLapPair').value);$('stepLapView').onchange=()=>set('view',$('stepLapView').value);
  for(const [id,key] of [['stepLapExplode','explode'],['stepLapRemoved','removed'],['stepLapNormals','normals']])$(id).onchange=()=>set(key,$(id).checked);
  $('stepLapReset').onclick=()=>{Object.assign(state,{view:'iso',explode:false,removed:false,normals:false});render();};

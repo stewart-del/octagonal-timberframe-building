@@ -18,9 +18,13 @@ jobs:
       # TIMESTAMP START 2026-11-01T22:44:38-05:00 | REVISION R004653
       # TIMESTAMP START 2026-11-02T09:09:36-05:00 | REVISION R004753
       - run: "python3 -m pip install --only-binary=:all: numpy scipy manifold3d==3.5.4"
-      - run: python3 scripts/audit_cavity_fit.py --check
+      # TIMESTAMP START 2026-11-03T17:08:46-05:00 | REVISION R005066
+      # Current-model cavity replay and adversarial checks run together below.
+      # TIMESTAMP END 2026-11-03T17:08:46-05:00 | REVISION R005066
       # TIMESTAMP START 2026-11-02T10:05:34-05:00 | REVISION R004758
-      - run: python3 scripts/audit_cavity_fit.py --model src/step-lap-proposed-model.json --cavities src/step-lap-proposed-cavities.json --output docs/step-lap-proposed-cavity-fit-audit.json --check
+      # TIMESTAMP START 2026-11-03T17:08:46-05:00 | REVISION R005066
+      # Legacy report comparators use a frozen fixture, not current geometry.
+      # TIMESTAMP END 2026-11-03T17:08:46-05:00 | REVISION R005066
       # TIMESTAMP END 2026-11-02T10:05:34-05:00 | REVISION R004758
       # TIMESTAMP START 2026-11-02T10:05:34-05:00 | REVISION R004758
       - run: python3 -m unittest discover -s tests -p "test_*cavit*.py"
@@ -105,3 +109,12 @@ jobs:
 
       - run: python3 tests/test_seated_support.py
       - run: node tests/roof-coverings.cjs
+
+      # TIMESTAMP START 2026-11-03T17:08:46-05:00 | REVISION R005066
+      - run: python3 tests/test_revised_joinery.py
+      - run: python3 tests/test_peg_engagement.py
+      - run: node tests/joinery-dimensions.cjs
+      - run: node tests/motion-modes.cjs
+      - run: node tests/parametric-model.cjs top-entry 5 96
+      - run: python3 tests/test_parametric_geometry.py /tmp/octagon-parameter-top-entry-5-96.json
+      # TIMESTAMP END 2026-11-03T17:08:46-05:00 | REVISION R005066

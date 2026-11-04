@@ -3,13 +3,13 @@
   "timestamp": "2026-11-02T18:37:05-05:00",
   "status": "PASS",
   "sources": {
-    "src/top-entry-proposed-model.json": "5862387fddeed73b3be3a31856c3ce834ad8f6b402f8769c214f26fb3a75bc49",
-    "src/top-entry-proposed-enclosure-fit.json": "7cdcbe331e85a3c54d322082ffff564d5e1d68d1c24628af6999059cba7c1f32",
-    "src/wall-joinery-fit.json": "36d5029ad3b85a1e8025f5e5d2180d8decb3ea7644bb72de81c24e1aef0fbd6e",
+    "src/top-entry-proposed-model.json": "de9c5696d73043ad594f3578c4a6069427cc425207508c63a6349436bcf63fa4",
+    "src/top-entry-proposed-enclosure-fit.json": "e44373ab5d510a3ec9905524080a65578ee6501e4846fa8902a666f635713899",
+    "src/wall-joinery-fit.json": "68c12736ed1902926e8707408a35184c94009606e51be12983eec97111556bfc",
     "src/wall-joinery.js": "1822e828eb5108c055b6cda3751ed80f88364ccdbcd99db3edf3ba5148ed3886",
-    "src/floor-foundation-solids.json": "737ce02f5ab237d969864750d5294f5fcfaac97556da078cc4ccaf08b5188964",
-    "src/mudroom-joinery-fit.json": "eae308c7d156b680db9241fb503d7ba98e84b80ca1307b2ebfd65d06f734ac49",
-    "src/mudroom.js": "b6c696b05747fc2436690524cbc4d0cbe8a1e6046d2257bf829b4c91c351b9e4",
+    "src/floor-foundation-solids.json": "44691b889a05995681a9e40504e6d206facfdb8449317078ba9f72d9c851b82c",
+    "src/mudroom-joinery-fit.json": "2bcb9208b1b4ccb580b39528e9471483432f016773f8ee766f679ffd588e851b",
+    "src/mudroom.js": "c24c846803d1500474a3e06c387cd2856cc67ea291d144d42a5efa9bb6242c51",
     "src/mudroom-roof.js": "480fc669689b8a23439d0579383883dfe8c2f602bf9f14c70133d0c69ff3bcec",
     "src/roof-coverings.js": "a956b8626e061e054f1c0c1a70e1643361b1fd16767e7f58223ef723dcb31fb9",
     "src/floor-foundation.js": "df013f9ceff53aa0593228bda5482e49a69013bad01d33ea360f2985bf772012",
@@ -22,7 +22,7 @@
   "physical_braces_in_complete": 24,
   "inward_braces": 8,
   "maximum_side_brace_wall_occlusion": 0.0,
-  "maximum_side_brace_furniture_occlusion": 0.13293472557921904,
+  "maximum_side_brace_furniture_occlusion": 0.538735185360826,
   "parts": [
     {
       "id": "K0-A",
@@ -35,9 +35,9 @@
             1.6,
             0.0
           ],
-          "visible_samples": 12,
+          "visible_samples": 11,
           "occluded_samples": 0,
-          "sampled_front_area_m2": 0.2036144585974686,
+          "sampled_front_area_m2": 0.21323988980873892,
           "wall_occluded_sample_area_fraction": 0.0,
           "furniture_occluded_sample_area_fraction": 0.0,
           "occluders": []
@@ -49,9 +49,9 @@
             1.6,
             0.0
           ],
-          "visible_samples": 12,
+          "visible_samples": 11,
           "occluded_samples": 0,
-          "sampled_front_area_m2": 0.2036144585974686,
+          "sampled_front_area_m2": 0.21323988980873892,
           "wall_occluded_sample_area_fraction": 0.0,
           "furniture_occluded_sample_area_fraction": 0.0,
           "occluders": []
@@ -69,12 +69,14 @@
             1.6,
             0.0
           ],
-          "visible_samples": 12,
-          "occluded_samples": 0,
-          "sampled_front_area_m2": 0.20768798233008004,
+          "visible_samples": 10,
+          "occluded_samples": 1,
+          "sampled_front_area_m2": 0.21294567500769013,
           "wall_occluded_sample_area_fraction": 0.0,
-          "furniture_occluded_sample_area_fraction": 0.0,
-          "occluders": []
+          "furniture_occluded_sample_area_fraction": 0.006956479671608538,
+          "occluders": [
+            "SCHEM-N-shelf4"
+          ]
         },
         {
           "view": "near_post",
@@ -83,12 +85,13 @@
             1.6,
             0.0
           ],
-          "visible_samples": 10,
+          "visible_samples": 9,
           "occluded_samples": 2,
-          "sampled_front_area_m2": 0.20768798233008,
+          "sampled_front_area_m2": 0.21294567500769016,
           "wall_occluded_sample_area_fraction": 0.0,
-          "furniture_occluded_sample_area_fraction": 0.13032642581611967,
+          "furniture_occluded_sample_area_fraction": 0.13919986444899204,
           "occluders": [
+            "SCHEM-N-shelf4",
             "SCHEM-N-shelf5"
           ]
         }
@@ -105,14 +108,12 @@
             1.6,
             0.0
           ],
-          "visible_samples": 10,
-          "occluded_samples": 1,
-          "sampled_front_area_m2": 0.1702574873210903,
+          "visible_samples": 4,
+          "occluded_samples": 0,
+          "sampled_front_area_m2": 0.06499384834106109,
           "wall_occluded_sample_area_fraction": 0.0,
-          "furniture_occluded_sample_area_fraction": 0.007220536872707591,
-          "occluders": [
-            "SCHEM-N-shelf4"
-          ]
+          "furniture_occluded_sample_area_fraction": 0.0,
+          "occluders": []
         },
         {
           "view": "near_post",
@@ -121,14 +122,12 @@
             1.6,
             0.0
           ],
-          "visible_samples": 9,
-          "occluded_samples": 1,
-          "sampled_front_area_m2": 0.16836336329043383,
+          "visible_samples": 3,
+          "occluded_samples": 0,
+          "sampled_front_area_m2": 0.0640261083410611,
           "wall_occluded_sample_area_fraction": 0.0,
-          "furniture_occluded_sample_area_fraction": 0.007301769464748674,
-          "occluders": [
-            "SCHEM-N-shelf4"
-          ]
+          "furniture_occluded_sample_area_fraction": 0.0,
+          "occluders": []
         }
       ]
     },
@@ -143,12 +142,14 @@
             1.6,
             0.0
           ],
-          "visible_samples": 12,
-          "occluded_samples": 0,
-          "sampled_front_area_m2": 0.20807902224362462,
+          "visible_samples": 10,
+          "occluded_samples": 1,
+          "sampled_front_area_m2": 0.21323988980873895,
           "wall_occluded_sample_area_fraction": 0.0,
-          "furniture_occluded_sample_area_fraction": 0.0,
-          "occluders": []
+          "furniture_occluded_sample_area_fraction": 0.006946881564592186,
+          "occluders": [
+            "SCHEM-N-shelf4"
+          ]
         },
         {
           "view": "near_post",
@@ -157,12 +158,13 @@
             1.6,
             -1.9091883092036783
           ],
-          "visible_samples": 10,
-          "occluded_samples": 2,
-          "sampled_front_area_m2": 0.20807902224362462,
+          "visible_samples": 8,
+          "occluded_samples": 3,
+          "sampled_front_area_m2": 0.213239889808739,
           "wall_occluded_sample_area_fraction": 0.0,
-          "furniture_occluded_sample_area_fraction": 0.1300815052386664,
+          "furniture_occluded_sample_area_fraction": 0.538735185360826,
           "occluders": [
+            "SCHEM-N-shelf4",
             "SCHEM-N-shelf5"
           ]
         }
@@ -179,9 +181,9 @@
             1.6,
             0.0
           ],
-          "visible_samples": 12,
+          "visible_samples": 11,
           "occluded_samples": 0,
-          "sampled_front_area_m2": 0.20819294373715802,
+          "sampled_front_area_m2": 0.2129456750076903,
           "wall_occluded_sample_area_fraction": 0.0,
           "furniture_occluded_sample_area_fraction": 0.0,
           "occluders": []
@@ -193,9 +195,9 @@
             1.6,
             -1.9091883092036783
           ],
-          "visible_samples": 12,
+          "visible_samples": 11,
           "occluded_samples": 0,
-          "sampled_front_area_m2": 0.20819294373715802,
+          "sampled_front_area_m2": 0.21294567500769035,
           "wall_occluded_sample_area_fraction": 0.0,
           "furniture_occluded_sample_area_fraction": 0.0,
           "occluders": []
@@ -213,9 +215,9 @@
             1.6,
             0.0
           ],
-          "visible_samples": 11,
+          "visible_samples": 4,
           "occluded_samples": 0,
-          "sampled_front_area_m2": 0.1707055567878154,
+          "sampled_front_area_m2": 0.06499384834106162,
           "wall_occluded_sample_area_fraction": 0.0,
           "furniture_occluded_sample_area_fraction": 0.0,
           "occluders": []
@@ -227,9 +229,9 @@
             1.6,
             -1.9091883092036783
           ],
-          "visible_samples": 10,
+          "visible_samples": 3,
           "occluded_samples": 0,
-          "sampled_front_area_m2": 0.1686423617173677,
+          "sampled_front_area_m2": 0.06402610834106164,
           "wall_occluded_sample_area_fraction": 0.0,
           "furniture_occluded_sample_area_fraction": 0.0,
           "occluders": []
@@ -247,9 +249,9 @@
             1.6,
             0.0
           ],
-          "visible_samples": 12,
+          "visible_samples": 11,
           "occluded_samples": 0,
-          "sampled_front_area_m2": 0.20811672527266775,
+          "sampled_front_area_m2": 0.21323988980873892,
           "wall_occluded_sample_area_fraction": 0.0,
           "furniture_occluded_sample_area_fraction": 0.0,
           "occluders": []
@@ -261,9 +263,9 @@
             1.6,
             -2.7
           ],
-          "visible_samples": 12,
+          "visible_samples": 11,
           "occluded_samples": 0,
-          "sampled_front_area_m2": 0.20811672527266775,
+          "sampled_front_area_m2": 0.21323988980873892,
           "wall_occluded_sample_area_fraction": 0.0,
           "furniture_occluded_sample_area_fraction": 0.0,
           "occluders": []
@@ -281,9 +283,9 @@
             1.6,
             0.0
           ],
-          "visible_samples": 12,
+          "visible_samples": 11,
           "occluded_samples": 0,
-          "sampled_front_area_m2": 0.20819294373720373,
+          "sampled_front_area_m2": 0.21294567500769013,
           "wall_occluded_sample_area_fraction": 0.0,
           "furniture_occluded_sample_area_fraction": 0.0,
           "occluders": []
@@ -295,9 +297,9 @@
             1.6,
             -2.7
           ],
-          "visible_samples": 12,
+          "visible_samples": 11,
           "occluded_samples": 0,
-          "sampled_front_area_m2": 0.20819294373720373,
+          "sampled_front_area_m2": 0.21294567500769013,
           "wall_occluded_sample_area_fraction": 0.0,
           "furniture_occluded_sample_area_fraction": 0.0,
           "occluders": []
@@ -315,9 +317,9 @@
             1.6,
             0.0
           ],
-          "visible_samples": 11,
+          "visible_samples": 4,
           "occluded_samples": 0,
-          "sampled_front_area_m2": 0.1707055567878141,
+          "sampled_front_area_m2": 0.06499384834106109,
           "wall_occluded_sample_area_fraction": 0.0,
           "furniture_occluded_sample_area_fraction": 0.0,
           "occluders": []
@@ -329,9 +331,9 @@
             1.6,
             -2.7
           ],
-          "visible_samples": 10,
+          "visible_samples": 3,
           "occluded_samples": 0,
-          "sampled_front_area_m2": 0.1686423617173664,
+          "sampled_front_area_m2": 0.0640261083410611,
           "wall_occluded_sample_area_fraction": 0.0,
           "furniture_occluded_sample_area_fraction": 0.0,
           "occluders": []
@@ -349,9 +351,9 @@
             1.6,
             0.0
           ],
-          "visible_samples": 12,
+          "visible_samples": 11,
           "occluded_samples": 0,
-          "sampled_front_area_m2": 0.20361295593836662,
+          "sampled_front_area_m2": 0.21323988980873895,
           "wall_occluded_sample_area_fraction": 0.0,
           "furniture_occluded_sample_area_fraction": 0.0,
           "occluders": []
@@ -363,9 +365,9 @@
             1.6,
             -1.9091883092036788
           ],
-          "visible_samples": 12,
+          "visible_samples": 11,
           "occluded_samples": 0,
-          "sampled_front_area_m2": 0.20361295593836662,
+          "sampled_front_area_m2": 0.213239889808739,
           "wall_occluded_sample_area_fraction": 0.0,
           "furniture_occluded_sample_area_fraction": 0.0,
           "occluders": []
@@ -383,9 +385,9 @@
             1.6,
             0.0
           ],
-          "visible_samples": 12,
+          "visible_samples": 11,
           "occluded_samples": 0,
-          "sampled_front_area_m2": 0.2077642007946144,
+          "sampled_front_area_m2": 0.2129456750076903,
           "wall_occluded_sample_area_fraction": 0.0,
           "furniture_occluded_sample_area_fraction": 0.0,
           "occluders": []
@@ -397,9 +399,9 @@
             1.6,
             -1.9091883092036788
           ],
-          "visible_samples": 12,
+          "visible_samples": 11,
           "occluded_samples": 0,
-          "sampled_front_area_m2": 0.2077642007946144,
+          "sampled_front_area_m2": 0.21294567500769035,
           "wall_occluded_sample_area_fraction": 0.0,
           "furniture_occluded_sample_area_fraction": 0.0,
           "occluders": []
@@ -417,9 +419,9 @@
             1.6,
             0.0
           ],
-          "visible_samples": 12,
+          "visible_samples": 4,
           "occluded_samples": 0,
-          "sampled_front_area_m2": 0.17272661725664457,
+          "sampled_front_area_m2": 0.06499384834106162,
           "wall_occluded_sample_area_fraction": 0.0,
           "furniture_occluded_sample_area_fraction": 0.0,
           "occluders": []
@@ -431,9 +433,9 @@
             1.6,
             -1.9091883092036788
           ],
-          "visible_samples": 11,
+          "visible_samples": 3,
           "occluded_samples": 0,
-          "sampled_front_area_m2": 0.16961878610083586,
+          "sampled_front_area_m2": 0.06402610834106164,
           "wall_occluded_sample_area_fraction": 0.0,
           "furniture_occluded_sample_area_fraction": 0.0,
           "occluders": []
@@ -451,9 +453,9 @@
             1.6,
             0.0
           ],
-          "visible_samples": 12,
+          "visible_samples": 11,
           "occluded_samples": 0,
-          "sampled_front_area_m2": 0.20361295593837367,
+          "sampled_front_area_m2": 0.21323988980873892,
           "wall_occluded_sample_area_fraction": 0.0,
           "furniture_occluded_sample_area_fraction": 0.0,
           "occluders": []
@@ -465,9 +467,9 @@
             1.6,
             -3.3065463576978547e-16
           ],
-          "visible_samples": 12,
+          "visible_samples": 11,
           "occluded_samples": 0,
-          "sampled_front_area_m2": 0.20361295593837367,
+          "sampled_front_area_m2": 0.21323988980873892,
           "wall_occluded_sample_area_fraction": 0.0,
           "furniture_occluded_sample_area_fraction": 0.0,
           "occluders": []
@@ -485,12 +487,14 @@
             1.6,
             0.0
           ],
-          "visible_samples": 12,
-          "occluded_samples": 0,
-          "sampled_front_area_m2": 0.20791732327411352,
+          "visible_samples": 10,
+          "occluded_samples": 1,
+          "sampled_front_area_m2": 0.21294567500769013,
           "wall_occluded_sample_area_fraction": 0.0,
-          "furniture_occluded_sample_area_fraction": 0.0,
-          "occluders": []
+          "furniture_occluded_sample_area_fraction": 0.006956479671608538,
+          "occluders": [
+            "SCHEM-S-shelf4"
+          ]
         },
         {
           "view": "near_post",
@@ -499,12 +503,13 @@
             1.6,
             -3.3065463576978547e-16
           ],
-          "visible_samples": 10,
+          "visible_samples": 9,
           "occluded_samples": 2,
-          "sampled_front_area_m2": 0.20791732327411352,
+          "sampled_front_area_m2": 0.21294567500769016,
           "wall_occluded_sample_area_fraction": 0.0,
-          "furniture_occluded_sample_area_fraction": 0.13018267066835895,
+          "furniture_occluded_sample_area_fraction": 0.13919986444899204,
           "occluders": [
+            "SCHEM-S-shelf4",
             "SCHEM-S-shelf5"
           ]
         }
@@ -521,9 +526,9 @@
             1.6,
             0.0
           ],
-          "visible_samples": 11,
+          "visible_samples": 4,
           "occluded_samples": 0,
-          "sampled_front_area_m2": 0.17066880082478034,
+          "sampled_front_area_m2": 0.06499384834106109,
           "wall_occluded_sample_area_fraction": 0.0,
           "furniture_occluded_sample_area_fraction": 0.0,
           "occluders": []
@@ -535,9 +540,9 @@
             1.6,
             -3.3065463576978547e-16
           ],
-          "visible_samples": 10,
+          "visible_samples": 3,
           "occluded_samples": 0,
-          "sampled_front_area_m2": 0.16860560575433267,
+          "sampled_front_area_m2": 0.0640261083410611,
           "wall_occluded_sample_area_fraction": 0.0,
           "furniture_occluded_sample_area_fraction": 0.0,
           "occluders": []
@@ -555,12 +560,14 @@
             1.6,
             0.0
           ],
-          "visible_samples": 12,
-          "occluded_samples": 0,
-          "sampled_front_area_m2": 0.20361295593837006,
+          "visible_samples": 10,
+          "occluded_samples": 1,
+          "sampled_front_area_m2": 0.21323988980873895,
           "wall_occluded_sample_area_fraction": 0.0,
-          "furniture_occluded_sample_area_fraction": 0.0,
-          "occluders": []
+          "furniture_occluded_sample_area_fraction": 0.006946881564592186,
+          "occluders": [
+            "SCHEM-S-shelf4"
+          ]
         },
         {
           "view": "near_post",
@@ -569,12 +576,13 @@
             1.6,
             1.9091883092036783
           ],
-          "visible_samples": 10,
-          "occluded_samples": 2,
-          "sampled_front_area_m2": 0.20361295593837006,
+          "visible_samples": 8,
+          "occluded_samples": 3,
+          "sampled_front_area_m2": 0.213239889808739,
           "wall_occluded_sample_area_fraction": 0.0,
-          "furniture_occluded_sample_area_fraction": 0.13293472557921904,
+          "furniture_occluded_sample_area_fraction": 0.538735185360826,
           "occluders": [
+            "SCHEM-S-shelf4",
             "SCHEM-S-shelf5"
           ]
         }
@@ -591,9 +599,9 @@
             1.6,
             0.0
           ],
-          "visible_samples": 12,
+          "visible_samples": 11,
           "occluded_samples": 0,
-          "sampled_front_area_m2": 0.2081167252726702,
+          "sampled_front_area_m2": 0.2129456750076903,
           "wall_occluded_sample_area_fraction": 0.0,
           "furniture_occluded_sample_area_fraction": 0.0,
           "occluders": []
@@ -605,9 +613,9 @@
             1.6,
             1.9091883092036783
           ],
-          "visible_samples": 12,
+          "visible_samples": 11,
           "occluded_samples": 0,
-          "sampled_front_area_m2": 0.2081167252726702,
+          "sampled_front_area_m2": 0.21294567500769035,
           "wall_occluded_sample_area_fraction": 0.0,
           "furniture_occluded_sample_area_fraction": 0.0,
           "occluders": []
@@ -625,9 +633,9 @@
             1.6,
             0.0
           ],
-          "visible_samples": 11,
+          "visible_samples": 4,
           "occluded_samples": 0,
-          "sampled_front_area_m2": 0.1704737960594359,
+          "sampled_front_area_m2": 0.06499384834106162,
           "wall_occluded_sample_area_fraction": 0.0,
           "furniture_occluded_sample_area_fraction": 0.0,
           "occluders": []
@@ -639,9 +647,9 @@
             1.6,
             1.9091883092036783
           ],
-          "visible_samples": 10,
+          "visible_samples": 3,
           "occluded_samples": 0,
-          "sampled_front_area_m2": 0.1684160968124663,
+          "sampled_front_area_m2": 0.06402610834106164,
           "wall_occluded_sample_area_fraction": 0.0,
           "furniture_occluded_sample_area_fraction": 0.0,
           "occluders": []
@@ -659,9 +667,9 @@
             1.6,
             0.0
           ],
-          "visible_samples": 12,
+          "visible_samples": 11,
           "occluded_samples": 0,
-          "sampled_front_area_m2": 0.20819294373720437,
+          "sampled_front_area_m2": 0.21323988980873892,
           "wall_occluded_sample_area_fraction": 0.0,
           "furniture_occluded_sample_area_fraction": 0.0,
           "occluders": []
@@ -673,9 +681,9 @@
             1.6,
             2.7
           ],
-          "visible_samples": 12,
+          "visible_samples": 11,
           "occluded_samples": 0,
-          "sampled_front_area_m2": 0.20819294373720437,
+          "sampled_front_area_m2": 0.21323988980873892,
           "wall_occluded_sample_area_fraction": 0.0,
           "furniture_occluded_sample_area_fraction": 0.0,
           "occluders": []
@@ -693,9 +701,9 @@
             1.6,
             0.0
           ],
-          "visible_samples": 12,
+          "visible_samples": 11,
           "occluded_samples": 0,
-          "sampled_front_area_m2": 0.20811672527266695,
+          "sampled_front_area_m2": 0.21294567500769013,
           "wall_occluded_sample_area_fraction": 0.0,
           "furniture_occluded_sample_area_fraction": 0.0,
           "occluders": []
@@ -707,9 +715,9 @@
             1.6,
             2.7
           ],
-          "visible_samples": 12,
+          "visible_samples": 11,
           "occluded_samples": 0,
-          "sampled_front_area_m2": 0.20811672527266695,
+          "sampled_front_area_m2": 0.21294567500769013,
           "wall_occluded_sample_area_fraction": 0.0,
           "furniture_occluded_sample_area_fraction": 0.0,
           "occluders": []
@@ -727,9 +735,9 @@
             1.6,
             0.0
           ],
-          "visible_samples": 11,
+          "visible_samples": 4,
           "occluded_samples": 0,
-          "sampled_front_area_m2": 0.1706227003394888,
+          "sampled_front_area_m2": 0.06499384834106109,
           "wall_occluded_sample_area_fraction": 0.0,
           "furniture_occluded_sample_area_fraction": 0.0,
           "occluders": []
@@ -741,9 +749,9 @@
             1.6,
             2.7
           ],
-          "visible_samples": 10,
+          "visible_samples": 3,
           "occluded_samples": 0,
-          "sampled_front_area_m2": 0.16856500109251907,
+          "sampled_front_area_m2": 0.0640261083410611,
           "wall_occluded_sample_area_fraction": 0.0,
           "furniture_occluded_sample_area_fraction": 0.0,
           "occluders": []
@@ -761,9 +769,9 @@
             1.6,
             0.0
           ],
-          "visible_samples": 12,
+          "visible_samples": 11,
           "occluded_samples": 0,
-          "sampled_front_area_m2": 0.2036891744028967,
+          "sampled_front_area_m2": 0.21323988980873895,
           "wall_occluded_sample_area_fraction": 0.0,
           "furniture_occluded_sample_area_fraction": 0.0,
           "occluders": []
@@ -775,9 +783,9 @@
             1.6,
             1.9091883092036788
           ],
-          "visible_samples": 12,
+          "visible_samples": 11,
           "occluded_samples": 0,
-          "sampled_front_area_m2": 0.2036891744028967,
+          "sampled_front_area_m2": 0.213239889808739,
           "wall_occluded_sample_area_fraction": 0.0,
           "furniture_occluded_sample_area_fraction": 0.0,
           "occluders": []
@@ -795,9 +803,9 @@
             1.6,
             0.0
           ],
-          "visible_samples": 12,
+          "visible_samples": 11,
           "occluded_samples": 0,
-          "sampled_front_area_m2": 0.20799284561420958,
+          "sampled_front_area_m2": 0.2129456750076903,
           "wall_occluded_sample_area_fraction": 0.0,
           "furniture_occluded_sample_area_fraction": 0.0,
           "occluders": []
@@ -809,9 +817,9 @@
             1.6,
             1.9091883092036788
           ],
-          "visible_samples": 12,
+          "visible_samples": 11,
           "occluded_samples": 0,
-          "sampled_front_area_m2": 0.20799284561420958,
+          "sampled_front_area_m2": 0.21294567500769035,
           "wall_occluded_sample_area_fraction": 0.0,
           "furniture_occluded_sample_area_fraction": 0.0,
           "occluders": []
@@ -829,9 +837,9 @@
             1.6,
             0.0
           ],
-          "visible_samples": 11,
+          "visible_samples": 4,
           "occluded_samples": 0,
-          "sampled_front_area_m2": 0.1707619510054891,
+          "sampled_front_area_m2": 0.06499384834106162,
           "wall_occluded_sample_area_fraction": 0.0,
           "furniture_occluded_sample_area_fraction": 0.0,
           "occluders": []
@@ -843,9 +851,9 @@
             1.6,
             1.9091883092036788
           ],
-          "visible_samples": 10,
+          "visible_samples": 3,
           "occluded_samples": 0,
-          "sampled_front_area_m2": 0.16862360675851945,
+          "sampled_front_area_m2": 0.06402610834106164,
           "wall_occluded_sample_area_fraction": 0.0,
           "furniture_occluded_sample_area_fraction": 0.0,
           "occluders": []
@@ -855,6 +863,6 @@
   ],
   "image": {
     "path": "public/review/interior-braces.png",
-    "sha256": "084a25917b27bc8befd7c3d955dd2d799dbbe0eef20f1a9921d8a2a1f07469f7"
+    "sha256": "f5337eff245a1d4a75ae3cdce78b904265eeffbd8597025ea12eca5b5bc62581"
   }
 }

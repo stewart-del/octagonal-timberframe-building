@@ -58,7 +58,11 @@ def regular_boundary(shape):
    axis=np.eye(3)[np.argmin(np.abs(normal))];u=np.cross(normal,axis);u/=np.linalg.norm(u)
    group={'n':normal,'origin':points[0],'basis':np.column_stack([u,np.cross(normal,u)]),'contours':[]};groups.append(group)
   group['contours'].append((points-group['origin'])@group['basis']*scale)
- pool=[v.copy() for v in vertices];regions=[]
+ # TIMESTAMP START 2026-11-03T16:18:36-05:00 | REVISION R005052
+ pool=[];regions=[]
+ for point in vertices:
+  if not any(np.linalg.norm(point-v)<=tol for v in pool):pool.append(point.copy())
+ # TIMESTAMP END 2026-11-03T16:18:36-05:00 | REVISION R005052
  def weld(point):
   distances=np.linalg.norm(np.asarray(pool)-point,axis=1);nearest=int(np.argmin(distances))
   if distances[nearest]<=tol:return nearest

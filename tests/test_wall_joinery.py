@@ -33,7 +33,9 @@ for variant,fit in fits['variants'].items():
         tongue=unpack(j['tongue']);removed=unpack(j['removed_from_receiver'])
         assert (donor^receiver).volume()<TOL,j['id']
         assert (donor^tongue^removed).volume()>TOL,j['id']
-        assert j['head_width_m']>j['neck_width_m'] and j['engagement_m']==.0254,j['id']
+        # TIMESTAMP START 2026-11-03T16:40:59-05:00 | REVISION R005059
+        assert j['head_width_m']>j['neck_width_m'] and abs(j['engagement_m']-3*.0254)<1e-12,j['id']
+        # TIMESTAMP END 2026-11-03T16:40:59-05:00 | REVISION R005059
     audit=audit_initial_scene(scene)
     assert audit['status']=='PASS',audit['collisions']
     print('PASS',variant,'134 complementary wall joints; connected stock, entry volumes, source binding and',audit['pair_checks'],'complete-scene intersection checks',flush=True)

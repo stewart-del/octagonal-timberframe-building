@@ -15,17 +15,11 @@ for m in data['members']:
  volume=sv.sum();centroid=o+(sv[:,None]*(q[t[:,0]]+q[t[:,1]]+q[t[:,2]])/4).sum(axis=0)/volume
  assert abs(volume-m['volume_m3'])<1e-10,m['id']
  assert np.linalg.norm(centroid-m['centroid_m'])<1e-10,m['id']
-assert len(data['issues'])==128 and len({i['id'] for i in data['issues']})==128
-for i in data['issues']:
- assert i['owner'] in parts and (i['mate'] is None or i['mate'] in parts)
- assert i['classification'] in ['missing_restraint','capacity_unknown']
- point=np.array(i['point_m']);assert np.all(np.isfinite(point))
- for name in [i['owner'],i['mate']]:
-  if name is None:continue
-  v=np.array(parts[name]['vertices']);assert np.all(point>=v.min(axis=0)-1e-7) and np.all(point<=v.max(axis=0)+1e-7),(i['id'],name)
-# TIMESTAMP START 2026-11-02T15:15:55-05:00 | REVISION R004802
-print('PASS: all112 net volumes and gravity centroids independently match model;128 unique known-interface/base markers; no load capacity asserted')
-# TIMESTAMP END 2026-11-02T15:15:55-05:00 | REVISION R004802
+# TIMESTAMP START 2026-11-03T17:00:04-05:00 | REVISION R005063
+assert data['issues']==[] and data['baseline_pressure_disabled']
+assert 'not calculated' in data['status']
+print('PASS: all 112 volumes and gravity centroids match the current solids; obsolete interface pressure shortcuts are disabled')
+# TIMESTAMP END 2026-11-03T17:00:04-05:00 | REVISION R005063
 
 # Standing engineering-reference instructions must remain visible, not a safety claim.
 html=(R/'src/viewer.template.html').read_text()

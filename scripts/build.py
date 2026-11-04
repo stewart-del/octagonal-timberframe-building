@@ -228,8 +228,15 @@ template=template.replace('/*__DISASSEMBLY__*/',disassembly_code)
 # TIMESTAMP START 2026-11-02T14:22:13-05:00 | REVISION R004792
 # TIMESTAMP START 2026-11-02T20:38:50-05:00 | REVISION R004870
 template=template.replace('/*__WALL_JOINERY__*/',wall_joinery_code)
+# TIMESTAMP START 2026-11-03T13:30:29-05:00 | REVISION R005026
+# TIMESTAMP START 2026-11-03T13:59:01-05:00 | REVISION R005033
+for marker,name in [('/*__JOINERY_DIMENSIONS__*/','joinery-dimensions.js'),('/*__PARAMETRIC_MODEL__*/','parametric-model.js'),('/*__PARAMETRIC_CONTROLS__*/','parametric-controls.js'),('/*__MOTION_MODES__*/','motion-modes.js')]:
+# TIMESTAMP END 2026-11-03T13:59:01-05:00 | REVISION R005033
+    assert template.count(marker)==1
+    template=template.replace(marker,(ROOT/'src'/name).read_text())
+# TIMESTAMP END 2026-11-03T13:30:29-05:00 | REVISION R005026
 # TIMESTAMP END 2026-11-02T20:38:50-05:00 | REVISION R004870
-for marker, value in [('/*__MUDROOM__*/',mudroom_code), ('/*__ROOF_COVERINGS__*/',(ROOT/'src/roof-coverings.js').read_text()), ('/*__DISPLAY_PRESETS__*/',(ROOT/'src/display-presets.js').read_text()), ('/*__FLOOR_FOUNDATION__*/','const FLOOR_FOUNDATION_DATA='+encode(foundation_data)+';\n'+(ROOT/'src/floor-foundation.js').read_text()),('/*__CUT_FACE_ANALYSIS__*/', (ROOT/'src/cut-face-analysis.js').read_text()), ('/*__CUT_ANGLE_VIEW__*/', (ROOT/'src/cut-angle-view.js').read_text()), ('/*__MODEL_VARIANTS__*/', (ROOT/'src/model-variants.js').read_text()), ('__MODEL_VARIANTS_JSON__',encode(model_variants)), ('/*__STEP_LAP_REVIEW__*/', (ROOT/'src/step-lap-review.js').read_text()), ('__STEP_LAP_PROPOSAL_JSON__',encode(step_lap)), ('/*__SCHEMATIC_WALLS__*/', 'const OCTAGON_ENCLOSURE_FIT=MODEL_CONTEXT.enclosureFit;\n'+(ROOT/'src/schematic-walls.js').read_text()), ('/*__INSPECTION_TOOLS__*/', inspection),
+for marker, value in [('/*__MUDROOM__*/',mudroom_code), ('/*__ROOF_COVERINGS__*/',(ROOT/'src/roof-coverings.js').read_text()), ('/*__DISPLAY_PRESETS__*/',(ROOT/'src/display-presets.js').read_text()), ('/*__FLOOR_FOUNDATION__*/','const FLOOR_FOUNDATION_DATA='+encode(foundation_data)+';\n'+(ROOT/'src/floor-foundation.js').read_text()),('/*__CUT_FACE_ANALYSIS__*/', (ROOT/'src/cut-face-analysis.js').read_text()), ('/*__CUT_ANGLE_VIEW__*/', (ROOT/'src/cut-angle-view.js').read_text()), ('/*__MODEL_VARIANTS__*/', (ROOT/'src/model-variants.js').read_text()), ('__MODEL_VARIANTS_JSON__',encode(model_variants)), ('/*__STEP_LAP_REVIEW__*/', (ROOT/'src/step-lap-review.js').read_text()), ('__STEP_LAP_PROPOSAL_JSON__',encode(step_lap)), ('/*__SCHEMATIC_WALLS__*/', 'const OCTAGON_ENCLOSURE_FIT=SAVED_MODEL_CONTEXT.enclosureFit;\n'+(ROOT/'src/schematic-walls.js').read_text()), ('/*__INSPECTION_TOOLS__*/', inspection),
                       ('/*__ARCHITECTURAL_PLANS__*/', (ROOT/'src/architectural-plans.js').read_text()),
                       ('/*__EDGE_MEASUREMENT_TOOLS__*/', (ROOT/'src/edge-measurements.js').read_text()),
                       ('/*__LOAD_REVIEW__*/', load_review), ('/*__GEOMETRY_OVERLAYS__*/', overlays), ('__PARTS_JSON__', encode(data))]:
@@ -242,10 +249,22 @@ for block in ScriptBlocks(template).blocks:
     if block['attrs'].get('type','').lower()=='application/json':
         json.loads(block['body'])  # Every embedded data script must remain valid JSON.
 scripts=executable_blocks(template)
+# TIMESTAMP START 2026-11-03T13:30:29-05:00 | REVISION R005026
+# Browser bootstrap owns async generation. The offline harness executes the
+# exact viewer body at the saved context, while parameter tests exercise the
+# generator and real-browser QA exercises the asynchronous bootstrap.
+scripts=[s.replace('function startViewer(MODEL_CONTEXT){','const MODEL_CONTEXT=SAVED_MODEL_CONTEXT;') for s in scripts]
+scripts=[re.sub(r'\n}\n/\* PARAMETRIC_VIEWER_BODY_END \*/','\n/* PARAMETRIC_VIEWER_BODY_END */',s) for s in scripts]
+scripts=[re.sub(r'/\* PARAMETRIC_BOOT_START \*/.*?/\* PARAMETRIC_BOOT_END \*/','',s,flags=re.S) for s in scripts]
+# TIMESTAMP END 2026-11-03T13:30:29-05:00 | REVISION R005026
 assert sum('const stepLapReview=OctagonStepLap.createController' in b for b in scripts)==1
 
 dist = ROOT/'dist'
 dist.mkdir(exist_ok=True)
+# TIMESTAMP START 2026-11-03T13:30:29-05:00 | REVISION R005026
+shutil.copytree(ROOT/'public/vendor',dist/'vendor',dirs_exist_ok=True)
+shutil.copyfile(ROOT/'src/parametric-source.json',dist/'parametric-source.json')
+# TIMESTAMP END 2026-11-03T13:30:29-05:00 | REVISION R005026
 # TIMESTAMP START 2026-11-02T19:03:48-05:00 | REVISION R004848
 (dist/'review').mkdir(exist_ok=True)
 shutil.copyfile(ROOT/'public/review/brace-sections.svg',dist/'review/brace-sections.svg')

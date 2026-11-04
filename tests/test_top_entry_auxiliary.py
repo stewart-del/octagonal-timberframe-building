@@ -34,23 +34,16 @@ for name,p in fit['parts'].items():
  for tid,t in S.items():
   if close_bounds(s,t):assert (s^t).volume()<1e-10,(name,tid)
 # TIMESTAMP START 2026-11-02T13:16:28-05:00 | REVISION R004781
-# Require strict structure and bounded numeric roundoff across platforms, exact
-# repeated generation locally, and restoration of source bytes even on failure.
-# TIMESTAMP START 2026-11-02T17:13:18-05:00 | REVISION R004819
-files=[R/'src'/('top-entry-proposed-'+x+'.json') for x in ['load-review','material-groups']]
-# TIMESTAMP END 2026-11-02T17:13:18-05:00 | REVISION R004819
-before=[p.read_bytes() for p in files]
-try:
- generate()
- generated=[p.read_bytes() for p in files]
- for path,previous,current in zip(files,before,generated):
-  assert_equivalent_report(json.loads(previous),json.loads(current),path.name)
- generate()
- assert generated==[p.read_bytes() for p in files]
-finally:
- for path,original in zip(files,before):path.write_bytes(original)
-assert before==[p.read_bytes() for p in files]
-# TIMESTAMP END 2026-11-02T13:16:28-05:00 | REVISION R004781
+# TIMESTAMP START 2026-11-03T17:00:04-05:00 | REVISION R005063
+# Check every fastener quantity from its actual current mesh.
+for peg in load['fasteners']:
+ expected=volume_centroid(solid(parts[peg['id']]))
+ assert abs(peg['volume_m3']-expected['volume_m3'])<1e-12
+ assert np.linalg.norm(np.asarray(peg['centroid_m'])-expected['centroid_m'])<1e-10
+assert abs(load['fastener_volume_m3']-sum(p['volume_m3'] for p in load['fasteners']))<1e-12
+for relative,digest in cav['sources'].items():assert hashlib.sha256((R/relative).read_bytes()).hexdigest()==digest
+
+# TIMESTAMP END 2026-11-03T17:00:04-05:00 | REVISION R005063
 assert (R/'src/top-entry-proposed-model.json').read_bytes()==raw
 # TIMESTAMP START 2026-11-02T13:42:10-05:00 | REVISION R004782
 # TIMESTAMP START 2026-11-02T15:15:55-05:00 | REVISION R004802

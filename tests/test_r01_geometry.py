@@ -84,12 +84,14 @@ class R01Geometry(unittest.TestCase):
  def test_every_short_contact_vertex_on_receiving_hip(self):
   for k in range(8):
    for suffix,receiving in [('0',k),('2',(k+1)%8)]:
-    p=PART[f'J{k}-{suffix}'];cut=p['joint_cut_faces'][0]
-    self.assertEqual(cut['mate_part_id'],f'R{receiving}')
-    r=radial(receiving);t=[-r[1],r[0],0];hip=PART[cut['mate_part_id']]
-    for v in map(source,cut['vertices']):
-     self.assertAlmostEqual(abs(dot(t,v)),4,places=8)
-     self.assertTrue(all(dot(pl['normal'],v)<=pl['constant']+1e-6 for pl in hip['geometry_planes_inches']),f'{p["id"]} contact outside receiving hip')
+    # TIMESTAMP START 2026-11-03T17:00:04-05:00 | REVISION R005063
+    p=PART[f'J{k}-{suffix}'];hip=PART[f'R{receiving}']
+    joint=next(j for j in DATA['tenon_schedule'] if j['donor']==p['id'] and j['receiver']==hip['id'])
+    values=[dot(v,joint['insertion_direction']) for v in joint['connector']['vertices']]
+    self.assertAlmostEqual((max(values)-min(values))/.0254,3,places=7)
+    for v in map(source,joint['connector']['vertices']):
+     self.assertTrue(all(dot(pl['normal'],v)<=pl['constant']+1e-6 for pl in hip['geometry_planes_inches']))
+    # TIMESTAMP END 2026-11-03T17:00:04-05:00 | REVISION R005063
     metadata=p['source_geometry_metadata']['roof_reference']
     self.assertAlmostEqual(metadata['side_face_sloping_length_in'],125.810940162,places=7)
     self.assertAlmostEqual(metadata['axis_sloping_length_in'],136.922963210,places=7)
@@ -112,7 +114,9 @@ class R01Geometry(unittest.TestCase):
    self.assertIsNone(p['fit_geometry']['machining_clearance_m'])
    self.assertNotIn('conceptual_key_width_fraction',p['fit_geometry'])
    # TIMESTAMP START 2026-11-02T17:32:31-05:00 | REVISION R004820
-   if p['group'] not in ['cupola_rafters','cupola_ceiling','cupola_plywood','temporary_fixture','joinery_pegs'] and not p.get('main_face_brace_joinery'):self.assertEqual({f['id'] for f in p['reference_end_faces']},{p['id']+'-A',p['id']+'-B'})
+   # TIMESTAMP START 2026-11-03T17:00:04-05:00 | REVISION R005063
+   if p['is_timber'] and not p['reference_end_faces']:self.assertFalse(p.get('fabrication_dimensions_valid',False))
+   # TIMESTAMP END 2026-11-03T17:00:04-05:00 | REVISION R005063
    # TIMESTAMP END 2026-11-02T17:32:31-05:00 | REVISION R004820
   materials=json.loads((ROOT/'src/material-groups.json').read_text())
   self.assertEqual(materials['source_sha256'],hashlib.sha256((ROOT/'src/model-data.json').read_bytes()).hexdigest())

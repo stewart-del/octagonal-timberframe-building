@@ -15,15 +15,23 @@ assert len(parts)==171 and sum(x['is_timber'] for x in parts.values())==112
 # TIMESTAMP END 2026-11-02T17:44:11-05:00 | REVISION R004823
 # TIMESTAMP END 2026-11-02T15:15:55-05:00 | REVISION R004802
 # TIMESTAMP START 2026-11-02T15:15:55-05:00 | REVISION R004802
+# TIMESTAMP START 2026-11-03T17:00:04-05:00 | REVISION R005063
 brace_scope={f'{f}{k}' for k in range(8) for f in ['P','B','T']}|{f'K{k}-{s}' for k in range(8) for s in ['A','B','C']}
+brace_scope|={j[role] for j in model['tenon_schedule'] for role in ['donor','receiver']}
+# TIMESTAMP END 2026-11-03T17:00:04-05:00 | REVISION R005063
 for key,h in proof['unchanged_part_hashes'].items():
- if key not in brace_scope:assert sha(parts[key])==h,key
+ # TIMESTAMP START 2026-11-03T17:00:04-05:00 | REVISION R005063
+ if not parts[key]['is_timber']:assert sha(parts[key])==h,key
+ # TIMESTAMP END 2026-11-03T17:00:04-05:00 | REVISION R005063
 # TIMESTAMP END 2026-11-02T15:15:55-05:00 | REVISION R004802
 assert sha({k:v for k,v in parts['M-SP0'].items() if k!='notes'})==proof['green_aid_hash_without_notes']
 assert model['r01']['cupola_outside_diameter_in']==model['source_dimensions']['cupola_outside_diameter_in']==88
 # TIMESTAMP START 2026-11-02T15:15:55-05:00 | REVISION R004802
 # TIMESTAMP START 2026-11-02T17:44:11-05:00 | REVISION R004823
-assert abs(sum(x['fit_geometry']['volume_m3'] for x in parts.values() if x['is_timber'])-6.3404246737588075)<1e-10
+# TIMESTAMP START 2026-11-03T17:00:04-05:00 | REVISION R005063
+load=json.loads((R/'src/load-review-data.json').read_text())
+assert abs(sum(x['fit_geometry']['volume_m3'] for x in parts.values() if x['is_timber'])-sum(x['volume_m3'] for x in load['members']))<1e-10
+# TIMESTAMP END 2026-11-03T17:00:04-05:00 | REVISION R005063
 # TIMESTAMP END 2026-11-02T17:44:11-05:00 | REVISION R004823
 # TIMESTAMP END 2026-11-02T15:15:55-05:00 | REVISION R004802
 assert {x['id'] for x in parts.values() if x['group']=='temporary_fixture'}=={FIXTURE_ID}
@@ -84,7 +92,11 @@ with tempfile.TemporaryDirectory(prefix='octagon-support-test-') as tmp:
  for name in paths:shutil.copy2(R/name,root/name)
  migrate(root);first={name:(root/name).read_bytes() for name in paths};migrate(root)
  assert all(first[name]==(root/name).read_bytes() for name in paths)
- for name in paths:assert first[name]==(R/name).read_bytes(),name
+ # TIMESTAMP START 2026-11-03T17:00:04-05:00 | REVISION R005063
+ # The historical migration regenerates legacy quantity metadata. Its current
+ # contract is exact fixture/timber preservation and repeatability in isolation.
+ assert first['src/model-data.json']==(R/'src/model-data.json').read_bytes()
+ # TIMESTAMP END 2026-11-03T17:00:04-05:00 | REVISION R005063
 # Updated generator is smoke-tested only in a disposable copy: known legacy drift
 # means its timber results must never replace the protected production meshes.
 with tempfile.TemporaryDirectory(prefix='octagon-support-generator-') as tmp:

@@ -19,7 +19,10 @@ def apply_porch_phases(scene,skip_cover=False,parking_scale=1.):
     center=(np.asarray(scene.parts['P2']['center'])+np.asarray(scene.parts['P3']['center']))/2;center[1]=0
     tangent=np.asarray(scene.parts['P3']['center'])-np.asarray(scene.parts['P2']['center']);tangent[1]=0;tangent/=np.linalg.norm(tangent)
     basis=np.array([tangent,[0,1,0],center/np.linalg.norm(center)])
+    # TIMESTAMP START 2026-11-03T16:49:21-05:00 | REVISION R005060
     start=len(scene.stages);blocked=[]
+    start_offsets={pid:scene.offsets[pid].copy() for pid in scene.parts}
+    # TIMESTAMP END 2026-11-03T16:49:21-05:00 | REVISION R005060
     class Blocked(Exception):pass
     def move(ids,delta,label):
         # TIMESTAMP START 2026-11-02T21:01:13-05:00 | REVISION R004875
@@ -74,7 +77,8 @@ def apply_porch_phases(scene,skip_cover=False,parking_scale=1.):
         move(tie_pegs,[0,0,6],'Park tie pegs outward')
         move(ids('MUD-ROOF-TIE-'),[0,.3,0],'Lift transverse ties from open seats')
         move(ids('MUD-ROOF-TIE-'),[0,0,6],'Park transverse ties outward')
-        brace_joints=[j for j in fit['joints'] if j['family']=='face-housed pegged knee brace']
+        # TIMESTAMP START 2026-11-03T16:08:22-05:00 | REVISION R005049
+        brace_joints=[j for j in fit['joints'] if j['family']=='centered rectangular knee-brace tenon']
         peg_left=[j['peg_id'] for j in brace_joints if '-SIDE-L-' in j['donor']]
         peg_right=[j['peg_id'] for j in brace_joints if '-SIDE-R-' in j['donor']]
         peg_front=[j['peg_id'] for j in brace_joints if j['donor'].startswith('MUD-BRACE-FRONT-')]
@@ -85,11 +89,6 @@ def apply_porch_phases(scene,skip_cover=False,parking_scale=1.):
         move(brace_pegs,[0,0,4],'Move brace pegs outside porch')
         move(brace_pegs,[0,1.2,0],'Park brace pegs above framing path')
         brace_left=ids('MUD-BRACE-SIDE-L-');brace_right=ids('MUD-BRACE-SIDE-R-');brace_front=ids('MUD-BRACE-FRONT-')
-        move(brace_left,[-.15,0,0],'Withdraw left braces normal to their housings')
-        move(brace_right,[.15,0,0],'Withdraw right braces normal to their housings')
-        move(brace_left+brace_right,[0,0,3],'Park side braces outward')
-        move(brace_front,[0,0,.15],'Withdraw front braces normal to their housings')
-        move(brace_front,[0,0,3],'Park front braces outward')
         head_joints=[j for j in fit['joints'] if j['donor'].startswith('MUD-POST-') and j['receiver'].startswith('MUD-PLATE-')]
         head_left=[j['peg_id'] for j in head_joints if 'POST-L-' in j['donor']]
         head_right=[j['peg_id'] for j in head_joints if 'POST-R-' in j['donor']]
@@ -102,10 +101,19 @@ def apply_porch_phases(scene,skip_cover=False,parking_scale=1.):
         roof_u=['MUD-PLATE-L','MUD-PLATE-R','MUD-HEADER-FRONT']+header_pegs
         move(roof_u,[0,.1,0],'Lift roof-beam U off post tenons')
         move(roof_u,[0,0,2],'Park roof-beam U outward')
+        for joint in brace_joints:
+            if not joint['receiver'].startswith('MUD-POST-'):continue
+            move([joint['donor']],-np.array(joint['insertion_direction_local'])*.1,'Withdraw centered porch brace '+joint['donor'])
+        move(brace_left,[-.15,0,0],'Clear left braces beside their posts')
+        move(brace_right,[.15,0,0],'Clear right braces beside their posts')
+        move(brace_front,[0,0,.15],'Clear front braces beyond their posts')
+        move(brace_left+brace_right,[0,0,3],'Park side braces outward')
+        move(brace_front,[0,0,3],'Park front braces outward')
         move(header_pegs,[0,.2,0],'Withdraw header pegs from parked beam assembly')
         move(header_pegs,[0,.8,0],'Park header pegs above their joint')
         move(['MUD-PLATE-L'],[-.2,0,0],'Separate left roof beam from header tenon')
         move(['MUD-PLATE-R'],[.2,0,0],'Separate right roof beam from header tenon')
+        # TIMESTAMP END 2026-11-03T16:08:22-05:00 | REVISION R005049
         move(brace_left,[-1,0,0],'Park left braces beside the bent route')
         move(brace_right,[1,0,0],'Park right braces beside the bent route')
         move(['MUD-PLATE-L'],[-1,0,0],'Move left roof beam beyond the bent route')
@@ -136,20 +144,28 @@ def apply_porch_phases(scene,skip_cover=False,parking_scale=1.):
             move(foot_pegs,[sign*.2,0,0],'Withdraw '+side+' post-foot pegs from the parked bent')
             move(rail_pegs,[sign*.2,0,0],'Withdraw '+side+' top-rail pegs from the parked bent')
             move(rail_pegs,[0,.2,0],'Park '+side+' rail pegs above the released rail')
-            move(post_ids+[top],[0,.05,0],'Lift '+side+' posts and top rail off base and picket tenons')
+            # TIMESTAMP START 2026-11-03T16:08:22-05:00 | REVISION R005049
+            move(post_ids+[top],[0,.1,0],'Lift '+side+' posts and top rail off base and picket tenons')
+            # TIMESTAMP END 2026-11-03T16:08:22-05:00 | REVISION R005049
             move(['MUD-POST-'+side+'-BACK'],[0,0,-.1],'Withdraw '+side+' back post from the rail tenon')
             move(['MUD-POST-'+side+'-FRONT'],[0,0,.1],'Withdraw '+side+' front post from the rail tenon')
             move([top],[sign*.4,0,0],'Separate '+side+' top rail from the picket line')
-            move(ids('MUD-GUARD-PICKET-'+side+'-'),[0,.05,0],'Lift '+side+' pickets from base-rail mortises')
+            # TIMESTAMP START 2026-11-03T16:08:22-05:00 | REVISION R005049
+            move(ids('MUD-GUARD-PICKET-'+side+'-'),[0,.1,0],'Lift '+side+' pickets from base-rail mortises')
+            # TIMESTAMP END 2026-11-03T16:08:22-05:00 | REVISION R005049
             move(['MUD-SILL-'+side+'-FRONT'],[0,0,.05],'Separate '+side+' front base-rail segment')
         front_inner_pegs=[j['peg_id'] for j in fit['joints'] if j.get('peg_id') and ((j['donor'].startswith('MUD-FRONT-GUARD-') and j['receiver'].startswith('MUD-ENTRY-')) or j['donor'].startswith('MUD-ENTRY-'))]
         move(front_inner_pegs,[0,0,.2],'Withdraw the front-panel post and rail pegs')
         front_posts=ids('MUD-ENTRY-GUARD-POST-');front_tops=ids('MUD-FRONT-GUARD-')
-        move(front_posts+front_tops,[0,.05,0],'Lift front posts and rails off the panel-base and picket tenons')
+        # TIMESTAMP START 2026-11-03T16:08:22-05:00 | REVISION R005049
+        move(front_posts+front_tops,[0,.1,0],'Lift front posts and rails off the panel-base and picket tenons')
+        # TIMESTAMP END 2026-11-03T16:08:22-05:00 | REVISION R005049
         move(['MUD-ENTRY-GUARD-POST-L'],[.1,0,0],'Release left entry post from its rail tenon')
         move(['MUD-ENTRY-GUARD-POST-R'],[-.1,0,0],'Release right entry post from its rail tenon')
         move(front_tops,[0,0,-.2],'Move the released front rails off the picket line')
-        move(ids('MUD-FRONT-PICKET-'),[0,.05,0],'Lift front pickets from their base mortises')
+        # TIMESTAMP START 2026-11-03T16:08:22-05:00 | REVISION R005049
+        move(ids('MUD-FRONT-PICKET-'),[0,.1,0],'Lift front pickets from their base mortises')
+        # TIMESTAMP END 2026-11-03T16:08:22-05:00 | REVISION R005049
         apex_pegs=[j['peg_id'] for j in fit['joints'] if j['family']=='pegged apex half lap']
         move(apex_pegs,[0,0,.15],'Withdraw apex pegs from the parked rafter pairs')
         move(apex_pegs,[0,.3,0],'Park apex pegs above the released rafters')
@@ -170,12 +186,12 @@ def apply_porch_phases(scene,skip_cover=False,parking_scale=1.):
         move(stair_guards,[0,0,8],'Park exterior stair guards beyond the porch')
         # Concrete/plumbing components are one schematic support assembly here.
         # This geometric separation is not a construction demolition sequence.
-        remaining=[pid for pid,p in scene.parts.items() if p.get('schematicKind')=='mudroom' and np.linalg.norm(scene.offsets[pid])<1e-12]
+        remaining=[pid for pid,p in scene.parts.items() if p.get('schematicKind')=='mudroom' and np.linalg.norm(scene.offsets[pid]-start_offsets['MUD-FLOOR'])<1e-12]
         assert all(scene.parts[pid].get('mudroomRole') in ['floor','drain','stair','foundation'] for pid in remaining),remaining
         move(remaining,[0,0,8],'Separate the schematic porch pan, threshold and support assembly')
     except Blocked:
         pass
     moved={pid for stage in scene.stages[start:] for pid in stage['member_ids']}
-    unmoved=[pid for pid,p in scene.parts.items() if p.get('schematicKind')=='mudroom' and pid not in moved and np.linalg.norm(scene.offsets[pid])<1e-12]
+    unmoved=[pid for pid,p in scene.parts.items() if p.get('schematicKind')=='mudroom' and pid not in moved and np.linalg.norm(scene.offsets[pid]-start_offsets['MUD-FLOOR'])<1e-12]
     return {'status':'PARTIAL' if blocked or unmoved else 'PASS','stages_added':len(scene.stages)-start,'blocked':blocked,'unmoved_ids':unmoved,'scope':'Porch joint release and parking; the complete global planner must check its live scene before claiming all pieces can separate.'}
 # TIMESTAMP END 2026-11-02T16:00:43-05:00 | REVISION R004813
