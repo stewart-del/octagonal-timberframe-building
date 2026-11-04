@@ -1,0 +1,165 @@
+{
+  "bytes": 5007975,
+  "sha256": "ae836381cdfe1dad081e05bd017dd3754ba8b84dc344ea382477d527a56ab9a6",
+  "chunkSize": 196608,
+  "sourceCommit": "3ac78a8b4a72ed45b7afb3e8ab9988b1215001b2",
+  "parent": "b1eec82544e64fa255f82ae8c0244e40b4e1e96a",
+  "chunks": [
+    {
+      "path": ".codex-handoff/checkpoint.bundle.part00",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3b56911c2b6d76c8b969965de49b03edb16aa79b"
+    },
+    {
+      "path": ".codex-handoff/checkpoint.bundle.part01",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ffaa1fde467de920851a3ed880043e52bd12533b"
+    },
+    {
+      "path": ".codex-handoff/checkpoint.bundle.part02",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ca1c22cd9bc2fcb8b18b4dfe8368df730b0aead3"
+    },
+    {
+      "path": ".codex-handoff/checkpoint.bundle.part03",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a1cd8ebc10183a8c00aaab291ba8a1845b4d891c"
+    },
+    {
+      "path": ".codex-handoff/checkpoint.bundle.part04",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "48ab69e6fe303d7be45db4db38ee9b84c1ff02b2"
+    },
+    {
+      "path": ".codex-handoff/checkpoint.bundle.part05",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6a12aa13c26288627630770a898c8823a24cbab8"
+    },
+    {
+      "path": ".codex-handoff/checkpoint.bundle.part06",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e8c98908c35e3554e9304c375bf8d535be65c272"
+    },
+    {
+      "path": ".codex-handoff/checkpoint.bundle.part07",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9e40038a900518f2838654265845a30828586261"
+    },
+    {
+      "path": ".codex-handoff/checkpoint.bundle.part08",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8c283b37416d77d7e2bfb98c19b8be3caf396176"
+    },
+    {
+      "path": ".codex-handoff/checkpoint.bundle.part09",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "99d11203b73c8da0f768be39ec38bde5f0791839"
+    },
+    {
+      "path": ".codex-handoff/checkpoint.bundle.part10",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "13ab56910face27f8dd50fbceadd81a23098fa13"
+    },
+    {
+      "path": ".codex-handoff/checkpoint.bundle.part11",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "717f2aef795b3a9fbbab61e8fe4683a4c0ed40cb"
+    },
+    {
+      "path": ".codex-handoff/checkpoint.bundle.part12",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "40b70b8341cb06aeda53da86f571d39b9a1fbee5"
+    },
+    {
+      "path": ".codex-handoff/checkpoint.bundle.part13",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a55463e9ee76a80a161662af695a877933e20eec"
+    },
+    {
+      "path": ".codex-handoff/checkpoint.bundle.part14",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4585b40ead2043a1db946886b5ba73515ad73919"
+    },
+    {
+      "path": ".codex-handoff/checkpoint.bundle.part15",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "86d0075ee9baa7500795c58ccd90f5e1fbb0fce9"
+    },
+    {
+      "path": ".codex-handoff/checkpoint.bundle.part16",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7827ede95615fcd12f8ea6d9ef4ff0823b3fe2be"
+    },
+    {
+      "path": ".codex-handoff/checkpoint.bundle.part17",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8704919ed1eaaaf920ed1298c8d34459e0787940"
+    },
+    {
+      "path": ".codex-handoff/checkpoint.bundle.part18",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "18d426a0b89972ecd35978b231a19b6e55417ad4"
+    },
+    {
+      "path": ".codex-handoff/checkpoint.bundle.part19",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "45d5fe354a4c954f38848a6171d78d97fe906640"
+    },
+    {
+      "path": ".codex-handoff/checkpoint.bundle.part20",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "bb2e7dbcd6db469ddc9292f62f46c77d39dbbf15"
+    },
+    {
+      "path": ".codex-handoff/checkpoint.bundle.part21",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ef464666487ef88f9280d3b57079679825b37d3f"
+    },
+    {
+      "path": ".codex-handoff/checkpoint.bundle.part22",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3c16082d8b96704768adbb0367fb0b7527a81364"
+    },
+    {
+      "path": ".codex-handoff/checkpoint.bundle.part23",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e2923b626cb6b96f03559069073f73a52db70cf2"
+    },
+    {
+      "path": ".codex-handoff/checkpoint.bundle.part24",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f1e43e3c205f1d0fcb52e5b8da61ae460e78796b"
+    },
+    {
+      "path": ".codex-handoff/checkpoint.bundle.part25",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ce4ca8f8e1285bc0c15767c6484291cf191601ce"
+    }
+  ]
+}
