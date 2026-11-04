@@ -29,7 +29,15 @@ def save(scene,phase,index=0):
     # TIMESTAMP END 2026-11-04T20:23:51+00:00 | REVISION R000022
 def require(result):
     assert result is True,result
+# TIMESTAMP START 2026-11-04T23:17:24+00:00 | REVISION R000029
+from plan_architectural_disassembly import expand_underlayment_stage,spread_underlayment
+
 def replay_one(scene,stage):
+    expanded=expand_underlayment_stage(scene,stage)
+    if any(pid=='FLOOR-SUBFLOOR' for q in stage.get('motions',[stage]) for pid in q['member_ids']):
+        for replacement in expanded:replay_one(scene,replacement)
+        return
+# TIMESTAMP END 2026-11-04T23:17:24+00:00 | REVISION R000029
     if all(pid in precleared for motion in stage.get('motions',[stage]) for pid in motion['member_ids']):return
     # TIMESTAMP START 2026-11-04T20:23:51+00:00 | REVISION R000022
     if all(pid in deferred_shelves for motion in stage.get('motions',[stage]) for pid in motion['member_ids']):return
@@ -246,6 +254,9 @@ def main():
         if phase=='walls-final':
             finish_walls(scene);phase='complete';save(scene,phase)
         # TIMESTAMP END 2026-11-04T12:46:13+00:00 | REVISION R000003
+        # TIMESTAMP START 2026-11-04T23:17:24+00:00 | REVISION R000029
+        spread_underlayment(scene);save(scene,'complete')
+        # TIMESTAMP END 2026-11-04T23:17:24+00:00 | REVISION R000029
         separation=audit_final_joinery(scene);assert separation['status']=='PASS',separation
         moved={pid for s in scene.stages for q in s.get('motions',[s]) for pid in q['member_ids']}
         fixed={'FLOOR-CENTRAL-HUB','PIER-C','PIER-C-BELOW'}

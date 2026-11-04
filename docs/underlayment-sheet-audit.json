@@ -1,0 +1,340 @@
+{
+  "status": "PASS",
+  "sheetCount": 28,
+  "stockSizeFt": [
+    8,
+    4
+  ],
+  "thicknessIn": 1.5,
+  "staggerIn": 48,
+  "unchangedComponentCount": 104,
+  "symmetricDifferenceM3": {
+    "missing": 6.18142306942416e-16,
+    "added": 8.238028309018147e-18
+  },
+  "maximumSheetIntersectionM3": 1.9188472628862106e-18,
+  "overlapToleranceM3": 1.6387064e-11,
+  "panels": [
+    {
+      "id": "FLOOR-SUBFLOOR-01",
+      "row": -4,
+      "column": -2,
+      "cutBoundingSizeIn": [
+        61.95508180220376,
+        42.60279767213426,
+        1.5000000000000004
+      ],
+      "volumeM3": 0.04249076394667646
+    },
+    {
+      "id": "FLOOR-SUBFLOOR-02",
+      "row": -4,
+      "column": -1,
+      "cutBoundingSizeIn": [
+        95.99999999999996,
+        42.602797762533655,
+        1.5000000000000004
+      ],
+      "volumeM3": 0.10053140727931266
+    },
+    {
+      "id": "FLOOR-SUBFLOOR-03",
+      "row": -4,
+      "column": 0,
+      "cutBoundingSizeIn": [
+        61.9550818211215,
+        42.6027977747213,
+        1.5000000000000004
+      ],
+      "volumeM3": 0.04192156244600793
+    },
+    {
+      "id": "FLOOR-SUBFLOOR-04",
+      "row": -3,
+      "column": -2,
+      "cutBoundingSizeIn": [
+        61.95508189260314,
+        48.00000000000005,
+        1.5000000000000004
+      ],
+      "volumeM3": 0.044782008593110316
+    },
+    {
+      "id": "FLOOR-SUBFLOOR-05",
+      "row": -3,
+      "column": -1,
+      "cutBoundingSizeIn": [
+        96.00000000000003,
+        48.00000000000006,
+        1.5000000000000004
+      ],
+      "volumeM3": 0.11326738636800018
+    },
+    {
+      "id": "FLOOR-SUBFLOOR-06",
+      "row": -3,
+      "column": 0,
+      "cutBoundingSizeIn": [
+        96.00000000000003,
+        48.00000000000005,
+        1.5000000000000004
+      ],
+      "volumeM3": 0.11326738636800009
+    },
+    {
+      "id": "FLOOR-SUBFLOOR-07",
+      "row": -3,
+      "column": 1,
+      "cutBoundingSizeIn": [
+        61.95508173072199,
+        47.999999999999986,
+        1.5000000000000004
+      ],
+      "volumeM3": 0.044782009501482915
+    },
+    {
+      "id": "FLOOR-SUBFLOOR-08",
+      "row": -2,
+      "column": -3,
+      "cutBoundingSizeIn": [
+        18.602797774721196,
+        47.99999999999993,
+        1.5000000000000004
+      ],
+      "volumeM3": 0.021032309936877238
+    },
+    {
+      "id": "FLOOR-SUBFLOOR-09",
+      "row": -2,
+      "column": -2,
+      "cutBoundingSizeIn": [
+        96.00000000000003,
+        48.000000000000014,
+        1.5000000000000004
+      ],
+      "volumeM3": 0.11326738636800006
+    },
+    {
+      "id": "FLOOR-SUBFLOOR-10",
+      "row": -2,
+      "column": -1,
+      "cutBoundingSizeIn": [
+        95.99999999999991,
+        47.99999999999996,
+        1.5000000000000004
+      ],
+      "volumeM3": 0.11326738636799977
+    },
+    {
+      "id": "FLOOR-SUBFLOOR-11",
+      "row": -2,
+      "column": 0,
+      "cutBoundingSizeIn": [
+        95.99999999999999,
+        47.999999999999986,
+        1.5000000000000004
+      ],
+      "volumeM3": 0.11326738636799993
+    },
+    {
+      "id": "FLOOR-SUBFLOOR-12",
+      "row": -2,
+      "column": 1,
+      "cutBoundingSizeIn": [
+        18.602797694733997,
+        47.999999999999986,
+        1.5000000000000004
+      ],
+      "volumeM3": 0.02160151048917546
+    },
+    {
+      "id": "FLOOR-SUBFLOOR-13",
+      "row": -1,
+      "column": -2,
+      "cutBoundingSizeIn": [
+        66.60279773993375,
+        48.00000000000001,
+        1.5000000000000004
+      ],
+      "volumeM3": 0.07858255023165632
+    },
+    {
+      "id": "FLOOR-SUBFLOOR-14",
+      "row": -1,
+      "column": -1,
+      "cutBoundingSizeIn": [
+        96.00000000000003,
+        47.99999999999996,
+        1.5000000000000004
+      ],
+      "volumeM3": 0.11326738636799992
+    },
+    {
+      "id": "FLOOR-SUBFLOOR-15",
+      "row": -1,
+      "column": 0,
+      "cutBoundingSizeIn": [
+        96.00000000000001,
+        48.000000000000064,
+        1.5000000000000004
+      ],
+      "volumeM3": 0.11326738636800018
+    },
+    {
+      "id": "FLOOR-SUBFLOOR-16",
+      "row": -1,
+      "column": 1,
+      "cutBoundingSizeIn": [
+        66.60279773993378,
+        47.99999999999996,
+        1.5000000000000004
+      ],
+      "volumeM3": 0.07858255023165628
+    },
+    {
+      "id": "FLOOR-SUBFLOOR-17",
+      "row": 0,
+      "column": -3,
+      "cutBoundingSizeIn": [
+        18.602797694734033,
+        48.00000000000003,
+        1.5000000000000004
+      ],
+      "volumeM3": 0.021601510489175486
+    },
+    {
+      "id": "FLOOR-SUBFLOOR-18",
+      "row": 0,
+      "column": -2,
+      "cutBoundingSizeIn": [
+        96.00000000000003,
+        47.99999999999999,
+        1.5000000000000004
+      ],
+      "volumeM3": 0.11326738636799998
+    },
+    {
+      "id": "FLOOR-SUBFLOOR-19",
+      "row": 0,
+      "column": -1,
+      "cutBoundingSizeIn": [
+        95.99999999999994,
+        47.99999999999998,
+        1.5000000000000004
+      ],
+      "volumeM3": 0.11326738636799986
+    },
+    {
+      "id": "FLOOR-SUBFLOOR-20",
+      "row": 0,
+      "column": 0,
+      "cutBoundingSizeIn": [
+        95.99999999999999,
+        47.99999999999996,
+        1.5000000000000004
+      ],
+      "volumeM3": 0.11326738636799985
+    },
+    {
+      "id": "FLOOR-SUBFLOOR-21",
+      "row": 0,
+      "column": 1,
+      "cutBoundingSizeIn": [
+        18.60279777472118,
+        48.00000000000002,
+        1.5000000000000004
+      ],
+      "volumeM3": 0.021032309936876995
+    },
+    {
+      "id": "FLOOR-SUBFLOOR-22",
+      "row": 1,
+      "column": -2,
+      "cutBoundingSizeIn": [
+        61.955081730722014,
+        48.00000000000001,
+        1.5000000000000004
+      ],
+      "volumeM3": 0.044782009501482936
+    },
+    {
+      "id": "FLOOR-SUBFLOOR-23",
+      "row": 1,
+      "column": -1,
+      "cutBoundingSizeIn": [
+        96.00000000000003,
+        48.00000000000001,
+        1.5000000000000004
+      ],
+      "volumeM3": 0.11326738636800004
+    },
+    {
+      "id": "FLOOR-SUBFLOOR-24",
+      "row": 1,
+      "column": 0,
+      "cutBoundingSizeIn": [
+        95.99999999999999,
+        48.00000000000003,
+        1.5000000000000004
+      ],
+      "volumeM3": 0.113267386368
+    },
+    {
+      "id": "FLOOR-SUBFLOOR-25",
+      "row": 1,
+      "column": 1,
+      "cutBoundingSizeIn": [
+        61.955081892603104,
+        48.00000000000004,
+        1.5000000000000004
+      ],
+      "volumeM3": 0.04478200859311025
+    },
+    {
+      "id": "FLOOR-SUBFLOOR-26",
+      "row": 2,
+      "column": -2,
+      "cutBoundingSizeIn": [
+        61.955081821121496,
+        42.602797774721246,
+        1.5000000000000004
+      ],
+      "volumeM3": 0.0419215624460079
+    },
+    {
+      "id": "FLOOR-SUBFLOOR-27",
+      "row": 2,
+      "column": -1,
+      "cutBoundingSizeIn": [
+        95.99999999999996,
+        42.60279776253364,
+        1.5000000000000004
+      ],
+      "volumeM3": 0.10053140727931265
+    },
+    {
+      "id": "FLOOR-SUBFLOOR-28",
+      "row": 2,
+      "column": 0,
+      "cutBoundingSizeIn": [
+        61.95508180220357,
+        42.60279767213417,
+        1.5000000000000004
+      ],
+      "volumeM3": 0.042490763946676245
+    }
+  ],
+  "scope": "Geometric cut layout; 28 installed cut pieces, not an optimized sheet purchase count. Existing thickness and elevations retained.",
+  "sources": {
+    "src/floor-foundation-solids.json": "0db479e2b6fd37505e06f03b1b10d270df3c1c17dccf66b3c7fb89b096dd24ea",
+    "src/floor-foundation.js": "bb18e3d8146493cd40bc369138291d923a8a019a4dce370eebc08a63877b1cd2",
+    "scripts/floor_sheet_panels.py": "b8ad1449d471db5612467d2a2db1ced36db941dc96a2a028d4290ef7990b6cae",
+    "scripts/build_floor_solids.py": "acb3959c088092abefa66d30636d3e2b584435f5b27397b50fbe82b4b5a0da13",
+    "scripts/audit_underlayment.py": "874295fa2e87d8587a958f0d9eef6c03242c8896318e48df1bb1cbed6681005c",
+    "scripts/fixtures/underlayment-footprint.json": "94c12b09cd85863d6ba7dfb1f0bc51fa83cbada3cb0f0d999b17f9fc41d6e615"
+  },
+  "image": {
+    "path": "public/review/underlayment-sheets.svg",
+    "sha256": "b17452c738be96462e3b9b8b7de8cc235efc740ecfe8a981fee2ab910e42516d"
+  }
+}

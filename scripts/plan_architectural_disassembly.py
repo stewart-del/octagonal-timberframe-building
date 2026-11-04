@@ -280,8 +280,11 @@ def apply_floor_phases(scene):
         if pid.startswith('FLOOR-BAMBOO-CENTER-') and not release(pid,.2,16):return blocked
     for pid in ids:
         if pid.startswith('POST-BEARING-STAND-') and pid.endswith('-HEAD') and not release(pid,3,22):return blocked
-    if not attempt_move(scene,'Lift the subfloor free',["FLOOR-SUBFLOOR"],[0,.6,0],blocked):return blocked
-    if not attempt_move(scene,'Park the subfloor beside the assembly',["FLOOR-SUBFLOOR"],[22,0,0],blocked):return blocked
+# TIMESTAMP START 2026-11-04T23:17:24+00:00 | REVISION R000029
+    for pid in underlayment_ids(scene):
+        if not attempt_move(scene,'Lift cut sheet '+pid,[pid],[0,.6,0],blocked):return blocked
+    if not attempt_move(scene,'Park the cut underlayment beside the assembly',underlayment_ids(scene),[22,0,0],blocked):return blocked
+# TIMESTAMP END 2026-11-04T23:17:24+00:00 | REVISION R000029
     # TIMESTAMP START 2026-11-02T21:01:13-05:00 | REVISION R004875
     east=np.array([np.sin(np.pi/8),0,np.cos(np.pi/8)])
     joists=sorted([pid for pid in ids if pid.startswith('FLOOR-JOIST-')],key=lambda pid:-abs(np.asarray(scene.parts[pid]['center'])@east))
@@ -337,6 +340,37 @@ def apply_wall_phases(scene):
         if not progress:break
     return list(blocked.values())
 
+# TIMESTAMP START 2026-11-04T23:17:24+00:00 | REVISION R000029
+def underlayment_ids(scene):
+    return sorted(pid for pid,p in scene.parts.items() if p.get('floorRole')=='underlayment_sheet')
+
+def expand_underlayment_stage(scene,stage):
+    """Translate legacy motion proposals into the actual individual sheet inventory."""
+    import copy
+    result=copy.deepcopy(stage);panels=underlayment_ids(scene)
+    for motion in result.get('motions',[result]):
+        motion['member_ids']=[q for pid in motion['member_ids'] for q in (panels if pid=='FLOOR-SUBFLOOR' else [pid])]
+    if 'motions' not in stage and stage['member_ids']==['FLOOR-SUBFLOOR'] and abs(stage['delta_m'][0])+abs(stage['delta_m'][2])<1e-12:
+        return [{**result,'id':stage['id']+'-sheet-'+str(k+1).zfill(2),'member_ids':[pid],
+                 'label':stage['label']+' · '+pid} for k,pid in enumerate(panels)]
+    return [result]
+
+def spread_underlayment(scene):
+    """Open sheet seams by a checked half-inch expansion of their stock-cell grid."""
+    label='Separate cut underlayment sheets on their stock grid'
+    if any(stage['label']==label for stage in scene.stages):return
+    east=np.array([np.sin(np.pi/8),0,np.cos(np.pi/8)])
+    north=np.array([np.cos(np.pi/8),0,-np.sin(np.pi/8)])
+    motions=[]
+    for pid in underlayment_ids(scene):
+        stock=scene.parts[pid]['sheet_stock'];u=np.mean(stock['eastBoundsM']);v=np.mean(stock['northBoundsM'])
+        delta=east*(u/stock['lengthM'])*.0127+north*(v/stock['widthM'])*.0127
+        motions.append({'member_ids':[pid],'delta_m':delta.tolist()})
+    proof=check_multi_stage(scene,motions)
+    assert proof['status']=='PASS',proof['collisions']
+    apply_multi_stage(scene,motions,proof,label)
+# TIMESTAMP END 2026-11-04T23:17:24+00:00 | REVISION R000029
+
 def prepare_scene(variant='baseline'):
     """Build the common prerequisite sequence with all prior parking retained."""
     from plan_porch_disassembly import apply_porch_phases
@@ -351,6 +385,9 @@ def prepare_scene(variant='baseline'):
     blocked.extend(apply_floor_phases(scene))
     blocked.extend(apply_shelf_phases(scene))
     blocked.extend(apply_wall_phases(scene))
+    # TIMESTAMP START 2026-11-04T23:17:24+00:00 | REVISION R000029
+    spread_underlayment(scene)
+    # TIMESTAMP END 2026-11-04T23:17:24+00:00 | REVISION R000029
     return scene,blocked
 
 # TIMESTAMP START 2026-11-03T06:54:15-05:00 | REVISION R004896
@@ -523,7 +560,9 @@ def generate_complete_certificate(candidate_directory=None):
     # TIMESTAMP START 2026-11-04T12:48:28+00:00 | REVISION R000004
     from datetime import datetime,timezone
     # TIMESTAMP START 2026-11-04T20:18:09+00:00 | REVISION R000021
-    history={'revision':'R000021','timestamp_start':'2026-11-04T20:18:09+00:00','timestamp_end':datetime.now(timezone.utc).isoformat(),'ledger_origin':'cloud; authoritative Mac ledger requires reconciliation'}
+    # TIMESTAMP START 2026-11-04T23:17:24+00:00 | REVISION R000029
+    history={'revision':'R000029','timestamp_start':'2026-11-04T23:17:24+00:00','timestamp_end':datetime.now(timezone.utc).isoformat(),'ledger_origin':'cloud; authoritative Mac ledger requires reconciliation'}
+    # TIMESTAMP END 2026-11-04T23:17:24+00:00 | REVISION R000029
     # TIMESTAMP END 2026-11-04T20:18:09+00:00 | REVISION R000021
     # TIMESTAMP END 2026-11-04T12:48:28+00:00 | REVISION R000004
     architectural={**common,'_change_history':history}

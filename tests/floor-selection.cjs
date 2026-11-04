@@ -7,7 +7,9 @@ const checks=`
 function check(value,message){if(!value)throw Error(message)}
 window.location.search='';
 const floorMembers=schematicParts.filter(p=>['floor','floorAssembly'].includes(p.schematicKind));
-check(floorMembers.length===113,'All 105 structural/foundation zones and eight bamboo sectors must exist');
+// TIMESTAMP START 2026-11-04T23:17:24+00:00 | REVISION R000029
+check(floorMembers.length===140,'All 132 structural/foundation pieces and eight bamboo sectors must exist');
+// TIMESTAMP END 2026-11-04T23:17:24+00:00 | REVISION R000029
 for(const p of floorMembers){
  isolatedId=null;selectPart(p.id);
  check(selected===logicalPieceId(p.id),'Selection failed for '+p.id);
@@ -16,7 +18,9 @@ for(const p of floorMembers){
  const text=node=>node.textContent+' '+node.children.map(text).join(' ');
  check(!/undefined|NaN/.test(text($('selection'))),'Invalid floor inspector for '+p.id);
 }
-for(const id of ['SCHEM-FLOOR-SECTOR-0','FLOOR-BAMBOO-CENTER-0','FLOOR-SUBFLOOR','FLOOR-JOIST-NS-E0','FLOOR-BEAM-0','FLOOR-CENTRAL-HUB','PIER-MID-0','PIER-MID-0-BELOW']){
+// TIMESTAMP START 2026-11-04T23:17:24+00:00 | REVISION R000029
+for(const id of ['SCHEM-FLOOR-SECTOR-0','FLOOR-BAMBOO-CENTER-0','FLOOR-SUBFLOOR-01','FLOOR-SUBFLOOR-28','FLOOR-JOIST-NS-E0','FLOOR-BEAM-0','FLOOR-CENTRAL-HUB','PIER-MID-0','PIER-MID-0-BELOW']){
+// TIMESTAMP END 2026-11-04T23:17:24+00:00 | REVISION R000029
  const p=partById.get(id);isolateAndCenter(p);matrix();
  const triangle=p.triangles[0].map(i=>vadd(p.vertices[i],offset(p))),center=triangle.reduce((a,b)=>vadd(a,vmul(b,1/3)),[0,0,0]),point=project(center);
  check(point,'Projected floor surface missing '+id);selected=null;selectedPartIds.clear();pick(point.x,point.y);

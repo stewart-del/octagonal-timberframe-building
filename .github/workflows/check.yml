@@ -103,6 +103,9 @@ jobs:
       - run: node tests/cut-face-analysis.cjs
       - run: node tests/floor-foundation.cjs
       - run: python3 tests/test_floor_solids.py
+      # TIMESTAMP START 2026-11-04T23:17:24+00:00 | REVISION R000029
+      - run: python3 scripts/audit_underlayment.py --check --self-test
+      # TIMESTAMP END 2026-11-04T23:17:24+00:00 | REVISION R000029
       - run: node tests/foundation-integration.cjs
       # TIMESTAMP START 2026-11-03T12:04:27-05:00 | REVISION R005002
       - run: node tests/floor-selection.cjs

@@ -89,7 +89,13 @@ sub=m.CrossSection([poly]).extrude(.0381).rotate([90,0,0]).translate([0,-.01905,
 for key,other in solids.items():
  if key.startswith('POST-BEARING-STAND'):
   b=other.bounding_box();lo=np.array(b[:3]);hi=np.array(b[3:]);cut=m.Manifold.cube((hi-lo+2e-5).tolist(),True).translate(((hi+lo)/2).tolist());sub=subtract(sub,cut)
-add('FLOOR-SUBFLOOR',sub,'subfloor proposal')
+# TIMESTAMP START 2026-11-04T23:17:24+00:00 | REVISION R000029
+from floor_sheet_panels import cut_sheets,sheet_metadata
+sheet_info={}
+for identifier,shape,stock in cut_sheets(sub):
+ add(identifier,shape,'cut 4 × 8-foot sheet underlayment')
+ sheet_info[identifier]=sheet_metadata(identifier,stock)
+# TIMESTAMP END 2026-11-04T23:17:24+00:00 | REVISION R000029
 for k in range(8):
  a=k*math.pi/4;b=(k+1)*math.pi/4;poly=[[0,0],[.45*math.cos(a),.45*math.sin(a)],[.45*math.cos(b),.45*math.sin(b)]]
  s=m.CrossSection([poly]).extrude(.01905).rotate([90,0,0]);add('FLOOR-BAMBOO-CENTER-'+str(k),s,'strand-woven bamboo')
@@ -98,5 +104,8 @@ for id,s in solids.items():
 # TIMESTAMP START 2026-11-02T20:27:45-05:00 | REVISION R004866
  mesh=s.to_mesh64();v=np.array(mesh.vert_properties)[:,:3];parts.append({'id':id,'name':id,'schematic':True,'schematicKind':'floorAssembly','group':'floor_foundation_proposal','color':([.73,.72,.68] if materials[id]=='concrete' else [.29,.32,.34] if 'steel' in materials[id] else [.63,.45,.26]),'material':materials[id],'is_timber':False,'vertices':v.tolist(),'triangles':mesh.tri_verts.tolist(),'center':((v.min(0)+v.max(0))/2).tolist(),'exploded_offset':[0,0,0],'volumeM3':s.volume(),'underground':id.endswith('-BELOW'),'displayOpacity':.28 if id.endswith('-BELOW') else 1,'status':'Proposed layout/clearance only, capacity and connections undesigned'})
 # TIMESTAMP END 2026-11-02T20:27:45-05:00 | REVISION R004866
+# TIMESTAMP START 2026-11-04T23:17:24+00:00 | REVISION R000029
+for part in parts:part.update(sheet_info.get(part['id'],{}))
 (R/'src/floor-foundation-solids.json').write_text(json.dumps({'source_model_sha256':hashlib.sha256(raw).hexdigest(),'source_module_sha256':hashlib.sha256((R/'src/floor-foundation.js').read_bytes()).hexdigest(),'layout':layout,'parts':parts},separators=(',',':'))+'\n')
+# TIMESTAMP END 2026-11-04T23:17:24+00:00 | REVISION R000029
 print(len(parts),'proposed solids')

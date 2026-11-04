@@ -24,3 +24,10 @@ for(const pier of r.piers){const below=solids.find(p=>p.id===pier.id+'-BELOW');a
 for(let k=0;k<8;k++){const q=r.piers.find(p=>p.id==='PIER-MID-'+k),outer=r.piers[k];assert(q);assert.equal(q.beamId,'FLOOR-BEAM-'+k);for(const axis of [0,2])assert(Math.abs(q.centerM[axis]-(outer.centerM[axis]+r.originM[axis])/2)<1e-12);}
 assert(A.settingOutSVG(r).includes('PIER-MID-7'));
 // TIMESTAMP END 2026-11-03T12:04:27-05:00 | REVISION R005002
+
+// TIMESTAMP START 2026-11-04T23:17:24+00:00 | REVISION R000029
+const sheets=r.layers.find(p=>p.id==='SUBFLOOR').specification;
+assert.equal(sheets.stockLengthM,8*.3048);assert.equal(sheets.stockWidthM,4*.3048);assert.equal(sheets.staggerM,4*.3048);
+assert.equal(solids.filter(p=>p.floorRole==='underlayment_sheet').length,28);
+const D=require('../src/joinery-dimensions.js');for(const panel of solids.filter(p=>p.floorRole==='underlayment_sheet')){const blank=D.blank(panel);assert(blank.minimumLengthIn<=96+1e-6&&blank.widthIn<=48+1e-6&&Math.abs(blank.depthIn-1.5)<1e-6);}
+// TIMESTAMP END 2026-11-04T23:17:24+00:00 | REVISION R000029

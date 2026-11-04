@@ -2,7 +2,9 @@
 """Compact checked translations toward the original radial exploded layout."""
 import json
 import numpy as np
-from plan_architectural_disassembly import check_stage,apply_stage,attempt_path,clone_scene
+# TIMESTAMP START 2026-11-04T23:17:24+00:00 | REVISION R000029
+from plan_architectural_disassembly import check_stage,apply_stage,attempt_path,clone_scene,underlayment_ids,spread_underlayment
+# TIMESTAMP END 2026-11-04T23:17:24+00:00 | REVISION R000029
 
 UP=np.array([0.,1.,0.])
 def radial(point):
@@ -136,7 +138,10 @@ def floor_frame(scene):
         if pid.startswith('POST-BEARING-STAND-') and pid.endswith('-HEAD'):
             if not check(move(scene,[pid],UP*.3,'Lift bearing head '+pid)):return failures
             if not slide(pid,radial(scene.parts[pid]['center'])*3-UP*.7):return failures
-    if not check(move(scene,['FLOOR-SUBFLOOR'],UP*.25,'Lift subfloor off the joists')):return failures
+# TIMESTAMP START 2026-11-04T23:17:24+00:00 | REVISION R000029
+    for pid in underlayment_ids(scene):
+        if not check(move(scene,[pid],UP*.25,'Lift cut sheet off the joists '+pid)):return failures
+# TIMESTAMP END 2026-11-04T23:17:24+00:00 | REVISION R000029
     east=np.array([np.sin(np.pi/8),0,np.cos(np.pi/8)])
     joists=sorted([pid for pid in ids if pid.startswith('FLOOR-JOIST-')],key=lambda pid:-abs(np.asarray(scene.parts[pid]['center'])@east))
     for pid in joists:
@@ -161,7 +166,10 @@ def floor_frame(scene):
     beams=[pid for pid in ids if pid.startswith('FLOOR-BEAM-')]
     if not check(move(scene,beams,-UP*.5,'Separate radial beams beneath the floor layers')):return failures
     if not slide('FLOOR-CENTRAL-HUB',-UP*1.8):return failures
-    if not slide('FLOOR-SUBFLOOR',-UP*1.2):return failures
+# TIMESTAMP START 2026-11-04T23:17:24+00:00 | REVISION R000029
+    if not check(route(scene,underlayment_ids(scene),-UP*1.2,'Lower cut underlayment sheets')):return failures
+    spread_underlayment(scene)
+# TIMESTAMP END 2026-11-04T23:17:24+00:00 | REVISION R000029
     return failures
 
 def wall_prefix(scene):

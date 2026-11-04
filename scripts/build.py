@@ -157,6 +157,13 @@ def assembled_model(model,variant):
 
 # TIMESTAMP END 2026-11-02T20:38:50-05:00 | REVISION R004870
 # TIMESTAMP START 2026-11-02T18:39:35-05:00 | REVISION R004836
+# TIMESTAMP START 2026-11-04T23:17:24+00:00 | REVISION R000029
+sheet_audit=json.loads((ROOT/'docs/underlayment-sheet-audit.json').read_text())
+assert sheet_audit['status']=='PASS' and sheet_audit['sheetCount']==28
+for relative,sha in sheet_audit['sources'].items():
+    assert hashlib.sha256((ROOT/relative).read_bytes()).hexdigest()==sha,'Underlayment proof is stale: '+relative
+assert hashlib.sha256((ROOT/sheet_audit['image']['path']).read_bytes()).hexdigest()==sheet_audit['image']['sha256'],'Underlayment drawing is stale'
+# TIMESTAMP END 2026-11-04T23:17:24+00:00 | REVISION R000029
 brace_visibility=json.loads((ROOT/'docs/brace-visibility-audit.json').read_text())
 assert brace_visibility['status']=='PASS' and brace_visibility['physical_braces_in_complete']==24
 for relative,sha in brace_visibility['sources'].items():
@@ -278,6 +285,9 @@ shutil.copyfile(ROOT/'src/parametric-source.json',dist/'parametric-source.json')
 # TIMESTAMP START 2026-11-02T19:03:48-05:00 | REVISION R004848
 (dist/'review').mkdir(exist_ok=True)
 shutil.copyfile(ROOT/'public/review/brace-sections.svg',dist/'review/brace-sections.svg')
+# TIMESTAMP START 2026-11-04T23:17:24+00:00 | REVISION R000029
+shutil.copyfile(ROOT/'public/review/underlayment-sheets.svg',dist/'review/underlayment-sheets.svg')
+# TIMESTAMP END 2026-11-04T23:17:24+00:00 | REVISION R000029
 # TIMESTAMP START 2026-11-04T19:33:21+00:00 | REVISION R000014
 shutil.copyfile(ROOT/'public/review/brace-shoulders.png',dist/'review/brace-shoulders.png')
 # TIMESTAMP END 2026-11-04T19:33:21+00:00 | REVISION R000014
@@ -305,7 +315,10 @@ shutil.copyfile(ROOT/'docs/brace-sections.json',downloads/'brace-section-audit.j
 # TIMESTAMP END 2026-11-02T20:38:50-05:00 | REVISION R004870
 # TIMESTAMP START 2026-11-02T10:05:34-05:00 | REVISION R004758
 # TIMESTAMP START 2026-11-02T17:13:18-05:00 | REVISION R004819
-audit_downloads=['r01-change-register.json','r01-verification.json','joinery-verification.json','structural-audit.json','cavity-fit-audit.json','step-lap-proposed-cavity-fit-audit.json','top-entry-cavity-fit-audit.json']
+# TIMESTAMP START 2026-11-04T23:17:24+00:00 | REVISION R000029
+audit_downloads=['underlayment-sheet-audit.json']
+audit_downloads+=['r01-change-register.json','r01-verification.json','joinery-verification.json','structural-audit.json','cavity-fit-audit.json','step-lap-proposed-cavity-fit-audit.json','top-entry-cavity-fit-audit.json']
+# TIMESTAMP END 2026-11-04T23:17:24+00:00 | REVISION R000029
 # TIMESTAMP START 2026-11-02T18:39:35-05:00 | REVISION R004836
 audit_downloads.append('brace-visibility-audit.json')
 # TIMESTAMP END 2026-11-02T18:39:35-05:00 | REVISION R004836
