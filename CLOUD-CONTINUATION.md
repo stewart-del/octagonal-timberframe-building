@@ -21,7 +21,9 @@ Ordered disassembly and assembly remain available only at the saved dimensions. 
 
 The viewer harness now injects assertions inside `startViewer(MODEL_CONTEXT)` while retaining actual default boot. Assertion failures are captured separately from the application's bootstrap fallback. Model-variant and step-lap callers use that scope. Legacy overlay tests now check current tenon records and actual mesh-face inspection. Exact shelf stock reconstruction remains required. Edge-analysis verification is read-only; `--write-report` explicitly regenerates its report.
 
-The rafter connection shortcut focuses the current tenon shoulder and directs visitors to the current mesh-face inspector. The generated viewer and exports were rebuilt only after current source-bound motion certificates existed. All 60 workflow commands are covered by passing checks; the twelve-scene parameter matrix also passes. Detailed results are retained in `/workspace/cloud-recovery`, including final retry logs for corrected legacy expectations.
+<!-- TIMESTAMP START 2026-11-04T13:23:44+00:00 | REVISION R000012 -->
+The rafter connection shortcut focuses the current tenon shoulder and directs visitors to the current mesh-face inspector. The generated viewer and exports were rebuilt only after current source-bound motion certificates existed. All 62 workflow commands are covered by passing checks; the twelve-scene parameter matrix also passes. Detailed results are retained in `/workspace/cloud-recovery`, including final retry logs for corrected legacy expectations.
+<!-- TIMESTAMP END 2026-11-04T13:23:44+00:00 | REVISION R000012 -->
 
 Desktop/mobile browser QA is unavailable in this environment: no `cua_repl.js` tool is exposed. The Sites skill explicitly says to skip browser QA in that condition and forbids a substitute server/browser path. The owner's required passing browser checks remain a release prerequisite. The next browser-capable worker must check controls, all three motion modes, dimension changes, selection, plans, compass, complete-building framing, mobile overflow and console errors before production deployment.
 
