@@ -1028,13 +1028,29 @@ for(const [id,direction] of [['disassemblyPrevious',-1],['disassemblyNext',1]])$
  // TIMESTAMP START 2026-11-03T13:30:29-05:00 | REVISION R005026
 const next=motion.next(explode,direction,motionMode,id=>{const p=disassemblyScene.get(id);return p&&(motionMode==='assembly'||isShown(p));});
 // TIMESTAMP END 2026-11-03T13:30:29-05:00 | REVISION R005026
- $('explode').value=String(next*100);$('explode').oninput({target:$('explode')});
+ // TIMESTAMP START 2026-11-05T02:50:53+00:00 | REVISION R000017
+ setExplodeProgress(next);
+ // TIMESTAMP END 2026-11-05T02:50:53+00:00 | REVISION R000017
 };
 
 // TIMESTAMP END 2026-11-02T15:57:59-05:00 | REVISION R004811
 // TIMESTAMP START 2026-11-02T15:57:59-05:00 | REVISION R004811
 // TIMESTAMP START 2026-11-02T21:01:13-05:00 | REVISION R004875
-$('explode').oninput=e=>{const pivotPart=partById.get(inspectionPartId),before=pivotPart?offset(pivotPart):null;explode=Number(e.target.value)/100;if(pivotPart){const delta=vsub(offset(pivotPart),before);inspectionPivot=vadd(inspectionPivot,delta);if(navigation==='orbit')camera.target=vadd(camera.target,delta);}else if(selectedPartIds.size>1&&inspectionPivot){const next=selectedSetBounds().center,delta=vsub(next,inspectionPivot);inspectionPivot=next;if(navigation==='orbit')camera.target=vadd(camera.target,delta);}$('explodeValue').textContent=Number(e.target.value).toFixed(2).replace(/\.?0+$/,'')+'%';updateDisassemblyStatus();syncDisplayPreset();requestRender();};$('showLabels').onchange=e=>{labelsOn=e.target.checked;requestRender();};$('autoDetails').onchange=e=>{detailOn=e.target.checked;requestRender();};$('wireframe').onchange=e=>{edgesOn=e.target.checked;requestRender();};$('surfaceContrast').onchange=e=>{highContrast=e.target.checked;requestRender();};$('search').oninput=e=>{search=e.target.value.toLowerCase().trim();renderList();};
+// TIMESTAMP START 2026-11-05T02:50:53+00:00 | REVISION R000017
+function setExplodeProgress(progress){
+ const pivotPart=partById.get(inspectionPartId),before=pivotPart?offset(pivotPart):null;
+ // Keep exact stage boundaries in playback; the native range rounds its value.
+ const value=Math.max(0,Math.min(1,Number.isFinite(progress)?progress:0));
+ explode=value<1e-12?0:value>1-1e-12?1:value;
+ if(pivotPart){const delta=vsub(offset(pivotPart),before);inspectionPivot=vadd(inspectionPivot,delta);if(navigation==='orbit')camera.target=vadd(camera.target,delta);}
+ else if(selectedPartIds.size>1&&inspectionPivot){const next=selectedSetBounds().center,delta=vsub(next,inspectionPivot);inspectionPivot=next;if(navigation==='orbit')camera.target=vadd(camera.target,delta);}
+ $('explode').value=String(explode*100);
+ $('explodeValue').textContent=(explode*100).toFixed(2).replace(/\.?0+$/,'')+'%';
+ updateDisassemblyStatus();syncDisplayPreset();requestRender();
+}
+$('explode').oninput=e=>setExplodeProgress(Number(e.target.value)/100);
+// TIMESTAMP END 2026-11-05T02:50:53+00:00 | REVISION R000017
+$('showLabels').onchange=e=>{labelsOn=e.target.checked;requestRender();};$('autoDetails').onchange=e=>{detailOn=e.target.checked;requestRender();};$('wireframe').onchange=e=>{edgesOn=e.target.checked;requestRender();};$('surfaceContrast').onchange=e=>{highContrast=e.target.checked;requestRender();};$('search').oninput=e=>{search=e.target.value.toLowerCase().trim();renderList();};
 // TIMESTAMP END 2026-11-02T21:01:13-05:00 | REVISION R004875
 // TIMESTAMP END 2026-11-02T15:57:59-05:00 | REVISION R004811
 // TIMESTAMP END 2026-11-02T13:42:47-05:00 | REVISION R004783
