@@ -1,0 +1,156 @@
+{
+  "status": "PASS",
+  "revision": "R000061",
+  "timestamp": "2026-11-05T19:06:47+00:00",
+  "scope": "Default cupola roof composition, strict exported boundaries, real nail identities/receivers, actual copper holes and every cupola-contact candidate against the current top-entry staging scene only. Full-building routes, roof/wall transitions, dynamic retiling and structural capacities remain separate.",
+  "sources": {
+    "scripts/cupola_roof_parts.py": "a10c79f5aa92350b50b81134a35014880fb811b2b27fb2915c6758378bd1adb5",
+    "scripts/fixtures/cupola-roof-inputs.json.gz": "dd0e15c3e846a384aefada8d69b9a520d301271cab2c720788b918355b8c87b1",
+    "scripts/prepare_architecture.py": "09b34762d0d49aa3da50d371ea4ebf46000beb48a39c718c01fd0e1c68714cc3",
+    "tests/test_cupola_roof_parts.py": "c77ab254a1ad8d39c26a345bbb4e15c1fd20e80b296751461f9c2730d6b8ccbb",
+    "scripts/physical_contacts.py": "683e6bf0d228a01851aa81ce121b8aa23a0c15daefad10e096d9ed69b1abbaea",
+    "scripts/audit_cavity_fit.py": "310058c9db5fe75836ae6613c25dc8d22ac58b3d907a7d63255757911ccee2fe",
+    "scripts/audit_revised_joinery.py": "4970b31fd5c47c49364c369ebbfa56992b80c598654daf3badf870be9bdb57e4"
+  },
+  "composition": {
+    "status": "PASS",
+    "scope": "Frozen authored physical roof composition and fresh real drip metal holes. Full assembled interference, stock, source-bound construction motion and parameter retiling remain independent checks.",
+    "fixture_sha256": "dd0e15c3e846a384aefada8d69b9a520d301271cab2c720788b918355b8c87b1",
+    "generator_sha256": "a10c79f5aa92350b50b81134a35014880fb811b2b27fb2915c6758378bd1adb5",
+    "manifest_sha256": "1a311ff4b405e8312c74229672bb1f2d15608f8986a1c12aa2870401d1f3b880",
+    "model_sha256": "f97d7c5807b89a123d05bdac17253c657fd631fcdb954e7525af3d3974cd296b",
+    "parts": 385,
+    "physical_copper": 65,
+    "roof_deck_nails": 128,
+    "aux_batten_cleat_apex_nails": 104,
+    "drip_nails": 40,
+    "roof_deck_panels": 8,
+    "ceiling_WSV_untouched": 128,
+    "drip_hole_composition": [
+      {
+        "id": "CU-DRIP-CUP-EAVE-0-S0",
+        "actual_hole_tools": 5,
+        "removed_volume_m3": 2.0320904329424252e-07,
+        "boundary_normalization": null
+      },
+      {
+        "id": "CU-DRIP-CUP-EAVE-1-S0",
+        "actual_hole_tools": 5,
+        "removed_volume_m3": 2.0320904324744898e-07,
+        "boundary_normalization": null
+      },
+      {
+        "id": "CU-DRIP-CUP-EAVE-2-S0",
+        "actual_hole_tools": 5,
+        "removed_volume_m3": 2.032090431949974e-07,
+        "boundary_normalization": null
+      },
+      {
+        "id": "CU-DRIP-CUP-EAVE-3-S0",
+        "actual_hole_tools": 5,
+        "removed_volume_m3": 2.0320904335449986e-07,
+        "boundary_normalization": null
+      },
+      {
+        "id": "CU-DRIP-CUP-EAVE-4-S0",
+        "actual_hole_tools": 5,
+        "removed_volume_m3": 2.032090433555868e-07,
+        "boundary_normalization": null
+      },
+      {
+        "id": "CU-DRIP-CUP-EAVE-5-S0",
+        "actual_hole_tools": 5,
+        "removed_volume_m3": 2.0320904320336713e-07,
+        "boundary_normalization": null
+      },
+      {
+        "id": "CU-DRIP-CUP-EAVE-6-S0",
+        "actual_hole_tools": 5,
+        "removed_volume_m3": 2.0320904333171674e-07,
+        "boundary_normalization": null
+      },
+      {
+        "id": "CU-DRIP-CUP-EAVE-7-S0",
+        "actual_hole_tools": 5,
+        "removed_volume_m3": 2.0320904330362182e-07,
+        "boundary_normalization": null
+      }
+    ]
+  },
+  "verification": {
+    "strict_raw_physical_records": 385,
+    "physical_wood": 16,
+    "copper_pieces": 65,
+    "self_adhered_membrane_pieces": 32,
+    "individual_nails": 272,
+    "roof_sheathing_nails": 128,
+    "batten_cleat_apex_nails": 104,
+    "drip_nails": 40,
+    "distinct_unchanged_ceiling_WSV": 128,
+    "actual_later_copper_cover_prerequisites": 120,
+    "new_source_guard_negative": "PASS",
+    "scoped_all_contacts_against_current_stage": "PASS",
+    "architecture_unique_ids_and_prototype_usage": "PASS",
+    "geometry_identity_receipt": {
+      "status": "PASS",
+      "old_stage_header_sha256": "9ce568a83d8775f8973138b5d682ee4b0f0e9edc85f35f1e2a2b3d6482067ffe",
+      "current_stage_header_sha256": "1742eee79afe9c3992255db01d06ddc4d49f43d32b1de1bba4c6205119a1220d",
+      "geometry_and_instance_count": 26618,
+      "all_indexed_vertices_triangles_and_rigid_transforms_exact": true,
+      "all_shared_prototypes_exact": true,
+      "metadata_only_changed_ids": [
+        "CUP-COPPER-BATTEN-0",
+        "CUP-COPPER-BATTEN-1",
+        "CUP-COPPER-BATTEN-2",
+        "CUP-COPPER-BATTEN-3",
+        "CUP-COPPER-BATTEN-4",
+        "CUP-COPPER-BATTEN-5",
+        "CUP-COPPER-BATTEN-6",
+        "CUP-COPPER-BATTEN-7",
+        "VDSA-CUP0-FIELD-00",
+        "VDSA-CUP1-FIELD-00",
+        "VDSA-CUP2-FIELD-00",
+        "VDSA-CUP3-FIELD-00",
+        "VDSA-CUP4-FIELD-00",
+        "VDSA-CUP5-FIELD-00",
+        "VDSA-CUP6-FIELD-00",
+        "VDSA-CUP7-FIELD-00",
+        "VDSA-CUP-HIP-0",
+        "VDSA-CUP-HIP-1",
+        "VDSA-CUP-HIP-2",
+        "VDSA-CUP-HIP-3",
+        "VDSA-CUP-HIP-4",
+        "VDSA-CUP-HIP-5",
+        "VDSA-CUP-HIP-6",
+        "VDSA-CUP-HIP-7",
+        "VDSA-EAVE-STARTER-CUP0",
+        "VDSA-EAVE-STARTER-CUP1",
+        "VDSA-EAVE-STARTER-CUP2",
+        "VDSA-EAVE-STARTER-CUP3",
+        "VDSA-EAVE-STARTER-CUP4",
+        "VDSA-EAVE-STARTER-CUP5",
+        "VDSA-EAVE-STARTER-CUP6",
+        "VDSA-EAVE-STARTER-CUP7",
+        "VDSA-EAVE-CORNER-CUP-0",
+        "VDSA-EAVE-CORNER-CUP-1",
+        "VDSA-EAVE-CORNER-CUP-2",
+        "VDSA-EAVE-CORNER-CUP-3",
+        "VDSA-EAVE-CORNER-CUP-4",
+        "VDSA-EAVE-CORNER-CUP-5",
+        "VDSA-EAVE-CORNER-CUP-6",
+        "VDSA-EAVE-CORNER-CUP-7"
+      ],
+      "changes": "8battenstockaxis records corrected and32actualicebarrierproductlabels explicitly name membrane material. No occupied geometry, hardware recipients, tools or paths changed."
+    },
+    "raw_verification_lineage": "Initial raw/purchase-count and causal tests passed. Every26618geometry/instance and32prototypes is exactly equal to corrected stage; only8stock-axis and32material-label records changed. Causal and scoped full-scene contact tests reran on corrected stage.",
+    "prior_material_classification_failure": "Actual ice-barrier products now explicitly name their membrane material. Intended nail contacts use the original strict contact rule; no geometry or tolerance changed."
+  },
+  "stage_header_sha256": "1742eee79afe9c3992255db01d06ddc4d49f43d32b1de1bba4c6205119a1220d",
+  "actual_scoped_scene_sha256": "75dbbb29b84535871d235944b6fba08739861e8e40a5f280d17d5bd2a1ec4770",
+  "limits": [
+    "Authored field-form, nominal nail profile and supplier stock/procurement assumptions remain explicit.",
+    "Main/porch roof, airtightness closures and complete construction route require their separate gates."
+  ],
+  "overlap_tolerance_m3": 1.6387064e-11,
+  "capacity_verified": false
+}

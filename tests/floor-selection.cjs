@@ -9,7 +9,9 @@ function check(value,message){if(!value)throw Error(message)}
 window.location.search='';
 const floorMembers=schematicParts.filter(p=>['floor','floorAssembly'].includes(p.schematicKind));
 // TIMESTAMP START 2026-11-04T19:48:56+00:00 | REVISION R000004
-check(floorMembers.length===FLOOR_FOUNDATION_DATA.parts.length+8,'Every structural/foundation zone, underlayment sheet and bamboo sector must exist');
+// TIMESTAMP START 2026-11-05T14:08:26+00:00 | REVISION R000045
+check(floorMembers.length===FLOOR_FOUNDATION_DATA.parts.filter(p=>['floor','floorAssembly'].includes(p.schematicKind)).length,'Every actual structural/foundation zone, underlayment sheet and floating board must exist');
+// TIMESTAMP END 2026-11-05T14:08:26+00:00 | REVISION R000045
 const firstSheet=floorMembers.find(p=>p.floorRole==='underlayment_sheet');check(!!firstSheet,'Underlayment sheets exist');
 // TIMESTAMP END 2026-11-04T19:48:56+00:00 | REVISION R000004
 for(const p of floorMembers){
@@ -21,8 +23,10 @@ for(const p of floorMembers){
  check(!/undefined|NaN/.test(text($('selection'))),'Invalid floor inspector for '+p.id);
 }
 // TIMESTAMP START 2026-11-04T19:48:56+00:00 | REVISION R000004
-for(const id of ['SCHEM-FLOOR-SECTOR-0','FLOOR-BAMBOO-CENTER-0',firstSheet.id,'FLOOR-JOIST-NS-E0','FLOOR-BEAM-0','FLOOR-CENTRAL-HUB','PIER-MID-0','PIER-MID-0-BELOW']){
+// TIMESTAMP START 2026-11-05T14:08:26+00:00 | REVISION R000045
+for(const id of [floorMembers.find(p=>p.floorRole==='finish_plank').id,firstSheet.id,'FLOOR-JOIST-NS-E0','FLOOR-BEAM-0','FLOOR-CENTRAL-HUB','PIER-MID-0','PIER-MID-0-BELOW']){
 // TIMESTAMP END 2026-11-04T19:48:56+00:00 | REVISION R000004
+// TIMESTAMP END 2026-11-05T14:08:26+00:00 | REVISION R000045
  const p=partById.get(id);isolateAndCenter(p);matrix();
  const triangle=p.triangles[0].map(i=>vadd(p.vertices[i],offset(p))),center=triangle.reduce((a,b)=>vadd(a,vmul(b,1/3)),[0,0,0]),point=project(center);
  check(point,'Projected floor surface missing '+id);selected=null;selectedPartIds.clear();pick(point.x,point.y);

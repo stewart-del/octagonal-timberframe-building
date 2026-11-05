@@ -1,7 +1,12 @@
 """Horizontal contact geometry, not allowable bearing or connection capacity."""
 from pathlib import Path
 import json,numpy as np,manifold3d as m
-R=Path(__file__).resolve().parents[1];d=json.loads((R/'src/floor-foundation-solids.json').read_text());P={p['id']:p for p in d['parts']}
+# TIMESTAMP START 2026-11-05T12:32:16+00:00 | REVISION R000040
+import sys
+R=Path(__file__).resolve().parents[1];sys.path.insert(0,str(R/'scripts'))
+from physical_data import read_physical_json
+d=read_physical_json(R/'src/floor-foundation-solids.json');P={p['id']:p for p in d['parts']}
+# TIMESTAMP END 2026-11-05T12:32:16+00:00 | REVISION R000040
 def surface(p,y,up):
  v=np.array(p['vertices']);result=m.CrossSection()
  for t in p['triangles']:

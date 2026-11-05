@@ -1,340 +1,483 @@
 {
+  "revision": "R000040",
+  "timestamp": "2026-11-05T12:32:16+00:00",
   "status": "PASS",
   "sheetCount": 28,
   "stockSizeFt": [
     8,
     4
   ],
-  "thicknessIn": 1.5,
-  "staggerIn": 48,
-  "unchangedComponentCount": 104,
-  "symmetricDifferenceM3": {
-    "missing": 6.18142306942416e-16,
-    "added": 8.238028309018147e-18
-  },
-  "maximumSheetIntersectionM3": 1.9188472628862106e-18,
-  "overlapToleranceM3": 1.6387064e-11,
-  "panels": [
-    {
-      "id": "FLOOR-SUBFLOOR-01",
-      "row": -4,
-      "column": -2,
-      "cutBoundingSizeIn": [
-        61.95508180220376,
-        42.60279767213426,
-        1.5000000000000004
-      ],
-      "volumeM3": 0.04249076394667646
-    },
-    {
-      "id": "FLOOR-SUBFLOOR-02",
-      "row": -4,
-      "column": -1,
-      "cutBoundingSizeIn": [
-        95.99999999999996,
-        42.602797762533655,
-        1.5000000000000004
-      ],
-      "volumeM3": 0.10053140727931266
-    },
-    {
-      "id": "FLOOR-SUBFLOOR-03",
-      "row": -4,
-      "column": 0,
-      "cutBoundingSizeIn": [
-        61.9550818211215,
-        42.6027977747213,
-        1.5000000000000004
-      ],
-      "volumeM3": 0.04192156244600793
-    },
-    {
-      "id": "FLOOR-SUBFLOOR-04",
-      "row": -3,
-      "column": -2,
-      "cutBoundingSizeIn": [
-        61.95508189260314,
-        48.00000000000005,
-        1.5000000000000004
-      ],
-      "volumeM3": 0.044782008593110316
-    },
-    {
-      "id": "FLOOR-SUBFLOOR-05",
-      "row": -3,
-      "column": -1,
-      "cutBoundingSizeIn": [
-        96.00000000000003,
-        48.00000000000006,
-        1.5000000000000004
-      ],
-      "volumeM3": 0.11326738636800018
-    },
-    {
-      "id": "FLOOR-SUBFLOOR-06",
-      "row": -3,
-      "column": 0,
-      "cutBoundingSizeIn": [
-        96.00000000000003,
-        48.00000000000005,
-        1.5000000000000004
-      ],
-      "volumeM3": 0.11326738636800009
-    },
-    {
-      "id": "FLOOR-SUBFLOOR-07",
-      "row": -3,
-      "column": 1,
-      "cutBoundingSizeIn": [
-        61.95508173072199,
-        47.999999999999986,
-        1.5000000000000004
-      ],
-      "volumeM3": 0.044782009501482915
-    },
-    {
-      "id": "FLOOR-SUBFLOOR-08",
-      "row": -2,
-      "column": -3,
-      "cutBoundingSizeIn": [
-        18.602797774721196,
-        47.99999999999993,
-        1.5000000000000004
-      ],
-      "volumeM3": 0.021032309936877238
-    },
-    {
-      "id": "FLOOR-SUBFLOOR-09",
-      "row": -2,
-      "column": -2,
-      "cutBoundingSizeIn": [
-        96.00000000000003,
-        48.000000000000014,
-        1.5000000000000004
-      ],
-      "volumeM3": 0.11326738636800006
-    },
-    {
-      "id": "FLOOR-SUBFLOOR-10",
-      "row": -2,
-      "column": -1,
-      "cutBoundingSizeIn": [
-        95.99999999999991,
-        47.99999999999996,
-        1.5000000000000004
-      ],
-      "volumeM3": 0.11326738636799977
-    },
-    {
-      "id": "FLOOR-SUBFLOOR-11",
-      "row": -2,
-      "column": 0,
-      "cutBoundingSizeIn": [
-        95.99999999999999,
-        47.999999999999986,
-        1.5000000000000004
-      ],
-      "volumeM3": 0.11326738636799993
-    },
-    {
-      "id": "FLOOR-SUBFLOOR-12",
-      "row": -2,
-      "column": 1,
-      "cutBoundingSizeIn": [
-        18.602797694733997,
-        47.999999999999986,
-        1.5000000000000004
-      ],
-      "volumeM3": 0.02160151048917546
-    },
-    {
-      "id": "FLOOR-SUBFLOOR-13",
-      "row": -1,
-      "column": -2,
-      "cutBoundingSizeIn": [
-        66.60279773993375,
-        48.00000000000001,
-        1.5000000000000004
-      ],
-      "volumeM3": 0.07858255023165632
-    },
-    {
-      "id": "FLOOR-SUBFLOOR-14",
-      "row": -1,
-      "column": -1,
-      "cutBoundingSizeIn": [
-        96.00000000000003,
-        47.99999999999996,
-        1.5000000000000004
-      ],
-      "volumeM3": 0.11326738636799992
-    },
-    {
-      "id": "FLOOR-SUBFLOOR-15",
-      "row": -1,
-      "column": 0,
-      "cutBoundingSizeIn": [
-        96.00000000000001,
-        48.000000000000064,
-        1.5000000000000004
-      ],
-      "volumeM3": 0.11326738636800018
-    },
-    {
-      "id": "FLOOR-SUBFLOOR-16",
-      "row": -1,
-      "column": 1,
-      "cutBoundingSizeIn": [
-        66.60279773993378,
-        47.99999999999996,
-        1.5000000000000004
-      ],
-      "volumeM3": 0.07858255023165628
-    },
-    {
-      "id": "FLOOR-SUBFLOOR-17",
-      "row": 0,
-      "column": -3,
-      "cutBoundingSizeIn": [
-        18.602797694734033,
-        48.00000000000003,
-        1.5000000000000004
-      ],
-      "volumeM3": 0.021601510489175486
-    },
-    {
-      "id": "FLOOR-SUBFLOOR-18",
-      "row": 0,
-      "column": -2,
-      "cutBoundingSizeIn": [
-        96.00000000000003,
-        47.99999999999999,
-        1.5000000000000004
-      ],
-      "volumeM3": 0.11326738636799998
-    },
-    {
-      "id": "FLOOR-SUBFLOOR-19",
-      "row": 0,
-      "column": -1,
-      "cutBoundingSizeIn": [
-        95.99999999999994,
-        47.99999999999998,
-        1.5000000000000004
-      ],
-      "volumeM3": 0.11326738636799986
-    },
-    {
-      "id": "FLOOR-SUBFLOOR-20",
-      "row": 0,
-      "column": 0,
-      "cutBoundingSizeIn": [
-        95.99999999999999,
-        47.99999999999996,
-        1.5000000000000004
-      ],
-      "volumeM3": 0.11326738636799985
-    },
-    {
-      "id": "FLOOR-SUBFLOOR-21",
-      "row": 0,
-      "column": 1,
-      "cutBoundingSizeIn": [
-        18.60279777472118,
-        48.00000000000002,
-        1.5000000000000004
-      ],
-      "volumeM3": 0.021032309936876995
-    },
-    {
-      "id": "FLOOR-SUBFLOOR-22",
-      "row": 1,
-      "column": -2,
-      "cutBoundingSizeIn": [
-        61.955081730722014,
-        48.00000000000001,
-        1.5000000000000004
-      ],
-      "volumeM3": 0.044782009501482936
-    },
-    {
-      "id": "FLOOR-SUBFLOOR-23",
-      "row": 1,
-      "column": -1,
-      "cutBoundingSizeIn": [
-        96.00000000000003,
-        48.00000000000001,
-        1.5000000000000004
-      ],
-      "volumeM3": 0.11326738636800004
-    },
-    {
-      "id": "FLOOR-SUBFLOOR-24",
-      "row": 1,
-      "column": 0,
-      "cutBoundingSizeIn": [
-        95.99999999999999,
-        48.00000000000003,
-        1.5000000000000004
-      ],
-      "volumeM3": 0.113267386368
-    },
-    {
-      "id": "FLOOR-SUBFLOOR-25",
-      "row": 1,
-      "column": 1,
-      "cutBoundingSizeIn": [
-        61.955081892603104,
-        48.00000000000004,
-        1.5000000000000004
-      ],
-      "volumeM3": 0.04478200859311025
-    },
-    {
-      "id": "FLOOR-SUBFLOOR-26",
-      "row": 2,
-      "column": -2,
-      "cutBoundingSizeIn": [
-        61.955081821121496,
-        42.602797774721246,
-        1.5000000000000004
-      ],
-      "volumeM3": 0.0419215624460079
-    },
-    {
-      "id": "FLOOR-SUBFLOOR-27",
-      "row": 2,
-      "column": -1,
-      "cutBoundingSizeIn": [
-        95.99999999999996,
-        42.60279776253364,
-        1.5000000000000004
-      ],
-      "volumeM3": 0.10053140727931265
-    },
-    {
-      "id": "FLOOR-SUBFLOOR-28",
-      "row": 2,
-      "column": 0,
-      "cutBoundingSizeIn": [
-        61.95508180220357,
-        42.60279767213417,
-        1.5000000000000004
-      ],
-      "volumeM3": 0.042490763946676245
-    }
+  "actualStockSizeIn": [
+    95.875,
+    47.875,
+    0.703
   ],
-  "scope": "Geometric cut layout; 28 installed cut pieces, not an optimized sheet purchase count. Existing thickness and elevations retained.",
+  "thicknessIn": 0.703,
+  "jointGapIn": 0.125,
   "sources": {
-    "src/floor-foundation-solids.json": "4b990584305eb421348afb3f2bedc02d371277bd6197974a2bebc97bf1d7be47",
-    "src/floor-foundation.js": "e4fa0d8152ad90a210ce1f278697e02ff4bc8cd3f2125e712e000154eefe037d",
-    "scripts/floor_sheet_panels.py": "cf02cebcc70639489426dbe1c14e56418e9c6d661b3848f420bcec4ba330ebee",
-    "scripts/build_floor_solids.py": "f9d4c208c63e5f42967fb1492472a91945df16937f386ed020e86a3c644d2068",
-    "scripts/audit_underlayment.py": "4b0b7511eff80e690f15b28b25310acda37d02b5ff0507cea81f3aed36e37fd1",
-    "scripts/fixtures/underlayment-footprint.json": "94c12b09cd85863d6ba7dfb1f0bc51fa83cbada3cb0f0d999b17f9fc41d6e615"
+    "scripts/audit_underlayment.py": "ea3e99563cbc79f893e80dbc891c393bd7fee732897d778b68b35bd62a63dd60",
+    "scripts/floor_bearing_audit.py": "08e1784058c45ccf1c26bc0e0ee59dcab699ae61c138e5313d953236741b8300",
+    "scripts/physical_data.py": "0516504fa283a10e2721afae5b558b15bb2ce0d450433deb9714b00a756d990c",
+    "scripts/build_floor_solids.py": "413d3ce77b6b420ced85f39ef1fedf696c0e2d34f52e1d6daf0a747238e82985",
+    "scripts/floor_edge_supports.py": "4a7ce5b9e1f5390e5618f4bc021db65a732ea6672e44ae64e82e1ce5011abf3d",
+    "scripts/fixtures/floor-supports.json.gz": "ac1517764685a89af08bd05100650e229538ed4439788f082c4f5681c2898437",
+    "scripts/floor_sheet_panels.py": "8ab1206eb5196bbc5587eebd65224d4319d56792034d6e3a00b904144728f7b1",
+    "scripts/floor_surface_normalization.py": "10d62b65d0ec78799d82b73c5ba65b2cd4023f9e23b6265e1f4bc03bbd75b306",
+    "src/floor-foundation.js": "9e8af25edfd0fb0165c2c0dc730e783e41c82cc6db4652673435698faf536027",
+    "src/floor-foundation-solids.json": "e840f43b7e05ee9c1b407add96f8a0893baf1875954b5b622e88e776782bfde2",
+    "src/floor-foundation-geometries.json.gz": "3e646249e9e5c8819cbecd019cdb3a98d04f256ad834ae18f2e7539dd944b184"
   },
   "image": {
     "path": "public/review/underlayment-sheets.svg",
-    "sha256": "b17452c738be96462e3b9b8b7de8cc235efc740ecfe8a981fee2ab910e42516d"
-  }
+    "sha256": "95679add07e98fea78d929e8449ef83b77297778d1506792c1b0a06df9c3aecf"
+  },
+  "counts": {
+    "physical_parts": 3056,
+    "sheets": 28,
+    "support_members": 161,
+    "contact_members": 161,
+    "new_backers": 24,
+    "installed_deck_screws": 1646,
+    "valid_deck_screws": 1646
+  },
+  "maximumEdgeIntervalIn": 5.501002585000009,
+  "maximumFieldIntervalIn": 11.5625,
+  "minimumPanelSetbackIn": 0.38201496099002086,
+  "minimumReceivingPenetrationIn": 1.7969999999999868,
+  "adversaries": {
+    "status": "PASS",
+    "basis": "Each case changes installed physical support/hardware while retaining the same measured source wood and its existing drilled holes; no source files are written. Required screws are selected by a real failing interval after removal, not by rejected candidate lists.",
+    "tests": [
+      {
+        "name": "remove_required_backer",
+        "removed_part": "FLOOR-EDGE-LEDGER-E-1-N-1",
+        "expected_failure": "bearing_failures",
+        "status": "PASS",
+        "detected_status": "FAIL",
+        "evidence": [
+          {
+            "edge": "FLOOR-SUBFLOOR-08/upper/0/0/e1",
+            "kind": "sheet_seam",
+            "start_east_north_in": [
+              -144.0625,
+              -24.0625
+            ],
+            "end_east_north_in": [
+              -162.6027976796031,
+              -24.0625
+            ],
+            "length_in": 18.5402976796031,
+            "unsupported_ranges_in": [
+              [
+                16.937500099999994,
+                17.540297624306586
+              ]
+            ],
+            "unsupported_length_in": 0.6027975243065953,
+            "unbacked_3_8in_band_area_in2": 0.22604907161497323,
+            "bearing_band_area_in2": 6.952611629851162,
+            "receiver_ids": [
+              "FLOOR-JOIST-NS-W10",
+              "FLOOR-JOIST-NS-W9",
+              "FLOOR-RIM-2",
+              "FLOOR-BLOCKING-09-00"
+            ],
+            "screw_stations": [
+              {
+                "screw": "FLOOR-SUBFLOOR-08-SCREW-010",
+                "station_on_segment_in": 0.4375
+              },
+              {
+                "screw": "FLOOR-SUBFLOOR-08-SCREW-011",
+                "station_on_segment_in": 4.853824409448833
+              },
+              {
+                "screw": "FLOOR-SUBFLOOR-08-SCREW-012",
+                "station_on_segment_in": 9.270148818897638
+              },
+              {
+                "screw": "FLOOR-SUBFLOOR-08-SCREW-013",
+                "station_on_segment_in": 13.686473228346443
+              },
+              {
+                "screw": "FLOOR-SUBFLOOR-08-SCREW-014",
+                "station_on_segment_in": 18.102797637795277
+              }
+            ]
+          },
+          {
+            "edge": "FLOOR-SUBFLOOR-08/lower/0/0/e1",
+            "kind": "sheet_seam",
+            "start_east_north_in": [
+              -144.0625,
+              -24.0625
+            ],
+            "end_east_north_in": [
+              -162.6027976796031,
+              -24.0625
+            ],
+            "length_in": 18.5402976796031,
+            "unsupported_ranges_in": [
+              [
+                16.937500099999994,
+                17.540297624306586
+              ]
+            ],
+            "unsupported_length_in": 0.6027975243065953,
+            "unbacked_3_8in_band_area_in2": 0.22604907161497323,
+            "bearing_band_area_in2": 6.952611629851162,
+            "receiver_ids": [
+              "FLOOR-JOIST-NS-W10",
+              "FLOOR-JOIST-NS-W9",
+              "FLOOR-RIM-2",
+              "FLOOR-BLOCKING-09-00"
+            ],
+            "screw_stations": [
+              {
+                "screw": "FLOOR-SUBFLOOR-08-SCREW-010",
+                "station_on_segment_in": 0.4375
+              },
+              {
+                "screw": "FLOOR-SUBFLOOR-08-SCREW-011",
+                "station_on_segment_in": 4.853824409448833
+              },
+              {
+                "screw": "FLOOR-SUBFLOOR-08-SCREW-012",
+                "station_on_segment_in": 9.270148818897638
+              },
+              {
+                "screw": "FLOOR-SUBFLOOR-08-SCREW-013",
+                "station_on_segment_in": 13.686473228346443
+              },
+              {
+                "screw": "FLOOR-SUBFLOOR-08-SCREW-014",
+                "station_on_segment_in": 18.102797637795277
+              }
+            ]
+          },
+          {
+            "edge": "FLOOR-SUBFLOOR-13/upper/0/0/e3",
+            "kind": "sheet_seam",
+            "start_east_north_in": [
+              -162.6027976796031,
+              -23.9375
+            ],
+            "end_east_north_in": [
+              -96.0625,
+              -23.9375
+            ],
+            "length_in": 66.5402976796031,
+            "unsupported_ranges_in": [
+              [
+                1.0000000552965105,
+                1.6027975796031058
+              ]
+            ],
+            "unsupported_length_in": 0.6027975243065953,
+            "unbacked_3_8in_band_area_in2": 0.22604907161497323,
+            "bearing_band_area_in2": 24.952611629851162,
+            "receiver_ids": [
+              "FLOOR-JOIST-NS-W10",
+              "FLOOR-JOIST-NS-W9",
+              "FLOOR-JOIST-NS-W8",
+              "FLOOR-JOIST-NS-W7",
+              "FLOOR-JOIST-NS-W6",
+              "FLOOR-RIM-2",
+              "FLOOR-BLOCKING-09-00",
+              "FLOOR-BLOCKING-09-01",
+              "FLOOR-BLOCKING-09-02",
+              "FLOOR-BLOCKING-09-03"
+            ],
+            "screw_stations": [
+              {
+                "screw": "FLOOR-SUBFLOOR-13-SCREW-001",
+                "station_on_segment_in": 66.1027976796031
+              },
+              {
+                "screw": "FLOOR-SUBFLOOR-13-SCREW-031",
+                "station_on_segment_in": 0.437500041807823
+              },
+              {
+                "screw": "FLOOR-SUBFLOOR-13-SCREW-032",
+                "station_on_segment_in": 5.9096081782907675
+              },
+              {
+                "screw": "FLOOR-SUBFLOOR-13-SCREW-033",
+                "station_on_segment_in": 11.381716314773712
+              },
+              {
+                "screw": "FLOOR-SUBFLOOR-13-SCREW-034",
+                "station_on_segment_in": 16.853824451256656
+              },
+              {
+                "screw": "FLOOR-SUBFLOOR-13-SCREW-035",
+                "station_on_segment_in": 22.3259325877396
+              },
+              {
+                "screw": "FLOOR-SUBFLOOR-13-SCREW-036",
+                "station_on_segment_in": 27.798040724222545
+              },
+              {
+                "screw": "FLOOR-SUBFLOOR-13-SCREW-037",
+                "station_on_segment_in": 33.27014886070546
+              },
+              {
+                "screw": "FLOOR-SUBFLOOR-13-SCREW-038",
+                "station_on_segment_in": 38.742256997188406
+              },
+              {
+                "screw": "FLOOR-SUBFLOOR-13-SCREW-039",
+                "station_on_segment_in": 44.21436513367132
+              },
+              {
+                "screw": "FLOOR-SUBFLOOR-13-SCREW-040",
+                "station_on_segment_in": 49.686473270154295
+              },
+              {
+                "screw": "FLOOR-SUBFLOOR-13-SCREW-041",
+                "station_on_segment_in": 55.15858140663721
+              },
+              {
+                "screw": "FLOOR-SUBFLOOR-13-SCREW-042",
+                "station_on_segment_in": 60.630689543120155
+              },
+              {
+                "screw": "FLOOR-SUBFLOOR-13-SCREW-043",
+                "station_on_segment_in": 2.6027976796031
+              },
+              {
+                "screw": "FLOOR-SUBFLOOR-13-SCREW-048",
+                "station_on_segment_in": 18.6027976796031
+              },
+              {
+                "screw": "FLOOR-SUBFLOOR-13-SCREW-053",
+                "station_on_segment_in": 34.6027976796031
+              },
+              {
+                "screw": "FLOOR-SUBFLOOR-13-SCREW-058",
+                "station_on_segment_in": 50.6027976796031
+              }
+            ]
+          },
+          {
+            "edge": "FLOOR-SUBFLOOR-13/lower/0/0/e3",
+            "kind": "sheet_seam",
+            "start_east_north_in": [
+              -162.6027976796031,
+              -23.9375
+            ],
+            "end_east_north_in": [
+              -96.0625,
+              -23.9375
+            ],
+            "length_in": 66.5402976796031,
+            "unsupported_ranges_in": [
+              [
+                1.0000000552965105,
+                1.6027975796031058
+              ]
+            ],
+            "unsupported_length_in": 0.6027975243065953,
+            "unbacked_3_8in_band_area_in2": 0.22604907161497323,
+            "bearing_band_area_in2": 24.952611629851162,
+            "receiver_ids": [
+              "FLOOR-JOIST-NS-W10",
+              "FLOOR-JOIST-NS-W9",
+              "FLOOR-JOIST-NS-W8",
+              "FLOOR-JOIST-NS-W7",
+              "FLOOR-JOIST-NS-W6",
+              "FLOOR-RIM-2",
+              "FLOOR-BLOCKING-09-00",
+              "FLOOR-BLOCKING-09-01",
+              "FLOOR-BLOCKING-09-02",
+              "FLOOR-BLOCKING-09-03"
+            ],
+            "screw_stations": [
+              {
+                "screw": "FLOOR-SUBFLOOR-13-SCREW-001",
+                "station_on_segment_in": 66.1027976796031
+              },
+              {
+                "screw": "FLOOR-SUBFLOOR-13-SCREW-031",
+                "station_on_segment_in": 0.437500041807823
+              },
+              {
+                "screw": "FLOOR-SUBFLOOR-13-SCREW-032",
+                "station_on_segment_in": 5.9096081782907675
+              },
+              {
+                "screw": "FLOOR-SUBFLOOR-13-SCREW-033",
+                "station_on_segment_in": 11.381716314773712
+              },
+              {
+                "screw": "FLOOR-SUBFLOOR-13-SCREW-034",
+                "station_on_segment_in": 16.853824451256656
+              },
+              {
+                "screw": "FLOOR-SUBFLOOR-13-SCREW-035",
+                "station_on_segment_in": 22.3259325877396
+              },
+              {
+                "screw": "FLOOR-SUBFLOOR-13-SCREW-036",
+                "station_on_segment_in": 27.798040724222545
+              },
+              {
+                "screw": "FLOOR-SUBFLOOR-13-SCREW-037",
+                "station_on_segment_in": 33.27014886070546
+              },
+              {
+                "screw": "FLOOR-SUBFLOOR-13-SCREW-038",
+                "station_on_segment_in": 38.742256997188406
+              },
+              {
+                "screw": "FLOOR-SUBFLOOR-13-SCREW-039",
+                "station_on_segment_in": 44.21436513367132
+              },
+              {
+                "screw": "FLOOR-SUBFLOOR-13-SCREW-040",
+                "station_on_segment_in": 49.686473270154295
+              },
+              {
+                "screw": "FLOOR-SUBFLOOR-13-SCREW-041",
+                "station_on_segment_in": 55.15858140663721
+              },
+              {
+                "screw": "FLOOR-SUBFLOOR-13-SCREW-042",
+                "station_on_segment_in": 60.630689543120155
+              },
+              {
+                "screw": "FLOOR-SUBFLOOR-13-SCREW-043",
+                "station_on_segment_in": 2.6027976796031
+              },
+              {
+                "screw": "FLOOR-SUBFLOOR-13-SCREW-048",
+                "station_on_segment_in": 18.6027976796031
+              },
+              {
+                "screw": "FLOOR-SUBFLOOR-13-SCREW-053",
+                "station_on_segment_in": 34.6027976796031
+              },
+              {
+                "screw": "FLOOR-SUBFLOOR-13-SCREW-058",
+                "station_on_segment_in": 50.6027976796031
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "remove_required_edge_screw",
+        "removed_screw": "FLOOR-SUBFLOOR-01-SCREW-001",
+        "expected_failure": "edge_spacing_failures",
+        "status": "PASS",
+        "detected_status": "FAIL",
+        "evidence": [
+          {
+            "ring": "FLOOR-SUBFLOOR-01/upper/0/0",
+            "gaps": [
+              {
+                "start_in": 183.779463925,
+                "end_in": 194.22376908544757,
+                "length_in": 10.444305160447584,
+                "terminal": false
+              }
+            ]
+          },
+          {
+            "ring": "FLOOR-SUBFLOOR-01/lower/0/0",
+            "gaps": [
+              {
+                "start_in": 183.779463925,
+                "end_in": 194.22376908544743,
+                "length_in": 10.444305160447442,
+                "terminal": false
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "remove_required_field_screw",
+        "removed_screw": "FLOOR-SUBFLOOR-01-EDGE-FILL-006",
+        "expected_failure": "field_spacing_failures",
+        "status": "PASS",
+        "detected_status": "FAIL",
+        "evidence": [
+          {
+            "sheet": "FLOOR-SUBFLOOR-01",
+            "joist": "FLOOR-JOIST-NS-W6",
+            "component": 0,
+            "east_in": -95.99999999999999,
+            "north_interval_in": [
+              -133.95508180558681,
+              -120.0625
+            ],
+            "screws": [
+              {
+                "screw": "FLOOR-SUBFLOOR-01-SCREW-034",
+                "station_in": 12.517581805586858
+              }
+            ],
+            "maximum_interval_in": 12.517581806,
+            "intervals_over_12in": [
+              {
+                "start_in": 0.0,
+                "end_in": 12.517581806,
+                "length_in": 12.517581806,
+                "terminal": true
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "move_screw_outside_actual_receivers",
+        "moved_screw": "FLOOR-SUBFLOOR-01-SCREW-035",
+        "translation_floor_in": [
+          4,
+          0,
+          0
+        ],
+        "declared_receiver_ids_unchanged": [
+          "FLOOR-SUBFLOOR-01",
+          "FLOOR-JOIST-NS-W5"
+        ],
+        "expected_failure": "INSUFFICIENT_ACTUAL_RECEIVING_WOOD",
+        "status": "PASS",
+        "detected_status": "FAIL",
+        "evidence": {
+          "screw": "FLOOR-SUBFLOOR-01-SCREW-035",
+          "sheet": "FLOOR-SUBFLOOR-01",
+          "east_north_in": [
+            -75.99999999999999,
+            -144.43749999999997
+          ],
+          "head_height_in": -0.4931102362204724,
+          "setback_in": 6.729946635228174,
+          "actual_axial_screw_length_in": 2.5,
+          "actual_ray_receivers_in": {},
+          "actual_ray_intervals_in": {},
+          "minimum_required_penetration_in": 1.375,
+          "maximum_receiving_length_in": 0.0,
+          "declared_receiver_ids": [
+            "FLOOR-SUBFLOOR-01",
+            "FLOOR-JOIST-NS-W5"
+          ],
+          "actual_occupied_receiving_ids": [],
+          "receiver_stock_engagement_in3": 0.0,
+          "maximum_actual_wood_overlap_in3": 0.0,
+          "actual_panel_overlap_in3": 0.014558238575134691,
+          "steel_conflicts": [],
+          "issues": [
+            "INSUFFICIENT_ACTUAL_RECEIVING_WOOD",
+            "MISSING_MATCHING_PANEL_BORE",
+            "NO_OCCUPIED_RECEIVER_ENGAGEMENT"
+          ],
+          "valid": false
+        }
+      }
+    ]
+  },
+  "capacity_verified": false,
+  "scope": "Actual occupied sheet/receiver geometry, mapped bores, gross edge contact and chosen6in edge/12in intermediate support screw pattern. No capacity or raw-triangle certificate."
 }

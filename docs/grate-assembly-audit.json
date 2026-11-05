@@ -1,0 +1,465 @@
+{
+  "status": "PASS",
+  "revision": "R000054",
+  "timestamp": "2026-11-05T16:48:19+00:00",
+  "scope": "Fresh actual-input derivation, native raw stock, saved solid boundaries and scoped assembled interference checks only. Structural capacities, complete scene and motion require their separate checks.",
+  "sources": {
+    "scripts/drain_grate_parts.py": "cfa4187833c4781e7acacfb35f398e714e50fc00f8e78770138c8d182ec1ad37",
+    "scripts/fixtures/drain-grate-inputs.json.gz": "8b81c236772e457f3e9b37c4d0907f545a0fae8f66d3baa694c17583abc1572b",
+    "tests/test_drain_grate_parts.py": "9ab0af40b65cdd1a4d057960569edcc19ad478f63a7cac94188482dcfcc7b218",
+    "scripts/floor_surface_normalization.py": "10d62b65d0ec78799d82b73c5ba65b2cd4023f9e23b6265e1f4bc03bbd75b306",
+    "scripts/audit_revised_joinery.py": "4970b31fd5c47c49364c369ebbfa56992b80c598654daf3badf870be9bdb57e4",
+    "scripts/audit_cavity_fit.py": "310058c9db5fe75836ae6613c25dc8d22ac58b3d907a7d63255757911ccee2fe"
+  },
+  "composition": {
+    "status": "PASS",
+    "scope": "Exact cast-input compatibility, fresh declared post-cure concrete holes and real grate identity only; final whole-building static and construction routes remain separately required.",
+    "fixture_sha256": "8b81c236772e457f3e9b37c4d0907f545a0fae8f66d3baa694c17583abc1572b",
+    "generator_sha256": "cfa4187833c4781e7acacfb35f398e714e50fc00f8e78770138c8d182ec1ad37",
+    "host_composition": [
+      {
+        "id": "MUD-FLOOR",
+        "input_difference_m3": 0.0,
+        "readback_difference_m3": 8.657328998878166e-14,
+        "cast_volume_m3": 1.0090539686486326,
+        "post_cure_removed_m3": 0.0001154306157286908,
+        "boundary_normalization": {
+          "id": "MUD-FLOOR",
+          "status": "PASS",
+          "method": "stock-local inch simplify",
+          "epsilon_in": 3.937007874015748e-09,
+          "frame_kind": "world-axis local frame",
+          "origin_m": [
+            -2.0628879767185566,
+            -0.254,
+            -4.980252131050335
+          ],
+          "basis_columns": [
+            [
+              1.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              1.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "input_triangles": 1434,
+          "output_triangles": 1380,
+          "input_failure": {
+            "status": "FAIL",
+            "failures": [
+              "degenerate or numerically tiny triangle",
+              "zero-volume or inverted connected surface",
+              "timber is not one connected solid"
+            ],
+            "vertices": 721,
+            "triangles": 1434,
+            "connected_surfaces": 2,
+            "minimum_triangle_area_m2": 1.833640376315362e-21,
+            "signed_volume_m3": 1.0089385380350004,
+            "raw_surface_check": {
+              "status": "PASS",
+              "coplanar_pairs_tested": 3335,
+              "overlap_pairs": [],
+              "opposed_overlap_pair_count": 0,
+              "max_overlap_area_m2": 0.0,
+              "sum_pair_overlap_area_m2": 0,
+              "plane_tolerance_m": 1e-09,
+              "positive_area_tolerance_m2": 1e-12
+            }
+          },
+          "raw_readback": {
+            "status": "PASS",
+            "failures": [],
+            "vertices": 692,
+            "triangles": 1380,
+            "connected_surfaces": 1,
+            "minimum_triangle_area_m2": 4.3683659292671333e-08,
+            "signed_volume_m3": 1.008938538032904,
+            "raw_surface_check": {
+              "status": "PASS",
+              "coplanar_pairs_tested": 3306,
+              "overlap_pairs": [],
+              "opposed_overlap_pair_count": 0,
+              "max_overlap_area_m2": 0.0,
+              "sum_pair_overlap_area_m2": 0,
+              "plane_tolerance_m": 1e-09,
+              "positive_area_tolerance_m2": 1e-12
+            }
+          },
+          "world_symmetric_difference_m3": 2.0963404933753357e-12,
+          "local_symmetric_difference_m3": 2.0963432218827616e-12,
+          "absolute_volume_delta_m3": 2.0963231150972206e-12,
+          "attempts": [
+            {
+              "method": "stock-local inch native roundtrip",
+              "epsilon_in": 0.0,
+              "status": "QUICK_REJECT"
+            },
+            {
+              "method": "stock-local inch simplify",
+              "epsilon_in": 3.937007874015748e-09,
+              "status": "PASS",
+              "world_symmetric_difference_m3": 2.0963404933753357e-12,
+              "local_symmetric_difference_m3": 2.0963432218827616e-12,
+              "absolute_volume_delta_m3": 2.0963231150972206e-12
+            }
+          ],
+          "elapsed_seconds": 0.47347748999891337
+        }
+      },
+      {
+        "id": "MUD-PAN-L-BACK",
+        "input_difference_m3": 0.0,
+        "readback_difference_m3": 8.896231140853496e-18,
+        "cast_volume_m3": 0.06051116453318603,
+        "post_cure_removed_m3": 2.274431800112915e-05,
+        "boundary_normalization": null
+      },
+      {
+        "id": "MUD-PAN-L-FRONT",
+        "input_difference_m3": 0.0,
+        "readback_difference_m3": 2.0057293513451053e-18,
+        "cast_volume_m3": 0.0029720699914345837,
+        "post_cure_removed_m3": 7.216759215527884e-06,
+        "boundary_normalization": null
+      },
+      {
+        "id": "MUD-PAN-R-BACK",
+        "input_difference_m3": 0.0,
+        "readback_difference_m3": 0.0,
+        "cast_volume_m3": 0.06051116453318562,
+        "post_cure_removed_m3": 2.2744318001125433e-05,
+        "boundary_normalization": null
+      },
+      {
+        "id": "MUD-PAN-R-FRONT",
+        "input_difference_m3": 0.0,
+        "readback_difference_m3": 2.6808592780598606e-19,
+        "cast_volume_m3": 0.002972069991434579,
+        "post_cure_removed_m3": 7.216759215646559e-06,
+        "boundary_normalization": null
+      },
+      {
+        "id": "MUD-PAN-FRONT",
+        "input_difference_m3": 0.0,
+        "readback_difference_m3": 3.909372773184784e-13,
+        "cast_volume_m3": 0.05124387008550215,
+        "post_cure_removed_m3": 0.0005750278183471578,
+        "boundary_normalization": {
+          "id": "MUD-PAN-FRONT",
+          "status": "PASS",
+          "method": "stock-local signed planar boundary then simplify",
+          "epsilon_in": 0.0,
+          "frame_kind": "world-axis local frame",
+          "origin_m": [
+            -2.5695512740841266,
+            -0.2794,
+            -6.203445535106966
+          ],
+          "basis_columns": [
+            [
+              1.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              1.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "input_triangles": 5230,
+          "output_triangles": 5174,
+          "input_failure": {
+            "status": "FAIL",
+            "failures": [
+              "degenerate or numerically tiny triangle",
+              "positive-area coplanar raw triangle overlap"
+            ],
+            "vertices": 2617,
+            "triangles": 5230,
+            "connected_surfaces": 1,
+            "minimum_triangle_area_m2": 1.833640376315362e-21,
+            "signed_volume_m3": 0.0506688422676815,
+            "raw_surface_check": {
+              "status": "FAIL",
+              "coplanar_pairs_tested": 14004,
+              "overlap_pairs": [
+                {
+                  "triangles": [
+                    375,
+                    479
+                  ],
+                  "orientation": "opposed",
+                  "area_m2": 0.0002769565766305908,
+                  "area_in2": 0.4292835523445204
+                },
+                {
+                  "triangles": [
+                    379,
+                    479
+                  ],
+                  "orientation": "opposed",
+                  "area_m2": 1.2898506435279032e-05,
+                  "area_in2": 0.01999272496013242
+                },
+                {
+                  "triangles": [
+                    379,
+                    480
+                  ],
+                  "orientation": "opposed",
+                  "area_m2": 0.00018925784324813727,
+                  "area_in2": 0.29335024373510027
+                },
+                {
+                  "triangles": [
+                    493,
+                    597
+                  ],
+                  "orientation": "opposed",
+                  "area_m2": 0.0002714504498686119,
+                  "area_in2": 0.42074903879442604
+                },
+                {
+                  "triangles": [
+                    495,
+                    597
+                  ],
+                  "orientation": "opposed",
+                  "area_m2": 1.8404633197304636e-05,
+                  "area_in2": 0.02852723851029921
+                },
+                {
+                  "triangles": [
+                    495,
+                    601
+                  ],
+                  "orientation": "opposed",
+                  "area_m2": 0.0002547342035622975,
+                  "area_in2": 0.3948388051991715
+                },
+                {
+                  "triangles": [
+                    716,
+                    4139
+                  ],
+                  "orientation": "opposed",
+                  "area_m2": 1.6401981061261146e-06,
+                  "area_in2": 0.002542312149119776
+                },
+                {
+                  "triangles": [
+                    716,
+                    4140
+                  ],
+                  "orientation": "opposed",
+                  "area_m2": 0.00028544271308473173,
+                  "area_in2": 0.4424370901555145
+                }
+              ],
+              "opposed_overlap_pair_count": 8,
+              "max_overlap_area_m2": 0.00028544271308473173,
+              "sum_pair_overlap_area_m2": 0.0013107851241330789,
+              "plane_tolerance_m": 1e-09,
+              "positive_area_tolerance_m2": 1e-12
+            }
+          },
+          "raw_readback": {
+            "status": "PASS",
+            "failures": [],
+            "vertices": 2589,
+            "triangles": 5174,
+            "connected_surfaces": 1,
+            "minimum_triangle_area_m2": 1.4223780903334396e-09,
+            "signed_volume_m3": 0.050668842267154936,
+            "raw_surface_check": {
+              "status": "PASS",
+              "coplanar_pairs_tested": 15268,
+              "overlap_pairs": [],
+              "opposed_overlap_pair_count": 0,
+              "max_overlap_area_m2": 0.0,
+              "sum_pair_overlap_area_m2": 0,
+              "plane_tolerance_m": 1e-09,
+              "positive_area_tolerance_m2": 1e-12
+            }
+          },
+          "world_symmetric_difference_m3": 5.265512374502444e-13,
+          "local_symmetric_difference_m3": 5.264582844512212e-13,
+          "absolute_volume_delta_m3": 5.265926583675196e-13,
+          "attempts": [
+            {
+              "method": "stock-local inch native roundtrip",
+              "epsilon_in": 0.0,
+              "status": "QUICK_REJECT"
+            },
+            {
+              "method": "stock-local inch simplify",
+              "epsilon_in": 3.937007874015748e-09,
+              "status": "QUICK_REJECT"
+            },
+            {
+              "method": "stock-local inch simplify",
+              "epsilon_in": 3.9370078740157486e-08,
+              "status": "QUICK_REJECT"
+            },
+            {
+              "method": "stock-local inch simplify",
+              "epsilon_in": 3.937007874015748e-07,
+              "status": "QUICK_REJECT"
+            },
+            {
+              "method": "stock-local inch simplify",
+              "epsilon_in": 3.937007874015748e-06,
+              "status": "QUICK_REJECT"
+            },
+            {
+              "method": "stock-local signed planar boundary then simplify",
+              "epsilon_in": 0.0,
+              "status": "PASS",
+              "world_symmetric_difference_m3": 5.265512374502444e-13,
+              "local_symmetric_difference_m3": 5.264582844512212e-13,
+              "absolute_volume_delta_m3": 5.265926583675196e-13
+            }
+          ],
+          "elapsed_seconds": 15.755719359993236,
+          "plane_weld_tolerance_m": 1e-10
+        }
+      },
+      {
+        "id": "MUD-CHANNEL-L",
+        "input_difference_m3": 0.0,
+        "readback_difference_m3": 0.0,
+        "cast_volume_m3": 0.008273795952374928,
+        "post_cure_removed_m3": 0.0,
+        "boundary_normalization": null
+      },
+      {
+        "id": "MUD-CHANNEL-R",
+        "input_difference_m3": 0.0,
+        "readback_difference_m3": 0.0,
+        "cast_volume_m3": 0.008273795952375066,
+        "post_cure_removed_m3": 0.0,
+        "boundary_normalization": null
+      },
+      {
+        "id": "MUD-CHANNEL-BACK-L",
+        "input_difference_m3": 0.0,
+        "readback_difference_m3": 0.0,
+        "cast_volume_m3": 3.028950595312601e-05,
+        "post_cure_removed_m3": 0.0,
+        "boundary_normalization": null
+      },
+      {
+        "id": "MUD-CHANNEL-BACK-R",
+        "input_difference_m3": 0.0,
+        "readback_difference_m3": 0.0,
+        "cast_volume_m3": 3.0289505953125415e-05,
+        "post_cure_removed_m3": 0.0,
+        "boundary_normalization": null
+      },
+      {
+        "id": "MUD-CHANNEL-FRONT-L",
+        "input_difference_m3": 0.0,
+        "readback_difference_m3": 0.0,
+        "cast_volume_m3": 3.028950595312308e-05,
+        "post_cure_removed_m3": 0.0,
+        "boundary_normalization": null
+      },
+      {
+        "id": "MUD-CHANNEL-FRONT-R",
+        "input_difference_m3": 0.0,
+        "readback_difference_m3": 0.0,
+        "cast_volume_m3": 3.0289505953125026e-05,
+        "post_cure_removed_m3": 0.0,
+        "boundary_normalization": null
+      },
+      {
+        "id": "MUD-GRATE-SEAT-BACK-L",
+        "input_difference_m3": 0.0,
+        "readback_difference_m3": 0.0,
+        "cast_volume_m3": 0.0007366212313625178,
+        "post_cure_removed_m3": 0.0,
+        "boundary_normalization": null
+      },
+      {
+        "id": "MUD-GRATE-SEAT-BACK-R",
+        "input_difference_m3": 0.0,
+        "readback_difference_m3": 0.0,
+        "cast_volume_m3": 0.0007366212313625094,
+        "post_cure_removed_m3": 0.0,
+        "boundary_normalization": null
+      },
+      {
+        "id": "MUD-GRATE-SEAT-FRONT-L",
+        "input_difference_m3": 0.0,
+        "readback_difference_m3": 0.0,
+        "cast_volume_m3": 0.0008754168213108123,
+        "post_cure_removed_m3": 0.0,
+        "boundary_normalization": null
+      },
+      {
+        "id": "MUD-GRATE-SEAT-FRONT-R",
+        "input_difference_m3": 0.0,
+        "readback_difference_m3": 0.0,
+        "cast_volume_m3": 0.0008754168213108842,
+        "post_cure_removed_m3": 0.0,
+        "boundary_normalization": null
+      },
+      {
+        "id": "MUD-PAN-BACK-L",
+        "input_difference_m3": 0.0,
+        "readback_difference_m3": 0.0,
+        "cast_volume_m3": 0.013443586015999952,
+        "post_cure_removed_m3": 0.0,
+        "boundary_normalization": null
+      },
+      {
+        "id": "MUD-PAN-BACK-R",
+        "input_difference_m3": 0.0,
+        "readback_difference_m3": 0.0,
+        "cast_volume_m3": 0.013443586015999992,
+        "post_cure_removed_m3": 0.0,
+        "boundary_normalization": null
+      }
+    ],
+    "purchased_grates": 4,
+    "published_grate_weight_lb_each": 7.5,
+    "cast_pan_m3": 1.2340443058492847,
+    "cast_pan_yd3": 1.6140690140969711,
+    "existing_sill_anchor_count": 12,
+    "all_post_cure_removed_m3": 0.0007503805885092776,
+    "added_parts_and_hardware": 88,
+    "capacities_qualified": false
+  },
+  "verification": {
+    "tests": 3,
+    "strict_new_and_pan_records": 106,
+    "purchased_units": 4,
+    "existing_sill_anchor_count": 12,
+    "positive_controls": [
+      "Every displayed solid has a strict valid boundary.",
+      "All assembled new grate/hardware/pan contacts retain1e-6in\u00b3 limit with no material exemptions."
+    ],
+    "negative_controls": [
+      "Filled concrete anchor hole produces interference.",
+      "Newer cast input is refused."
+    ],
+    "motion_scope": "Manufacturer geometry references and conditional maintenance paths remain distinct; full construction route is not certified by this report."
+  },
+  "overlap_tolerance_m3": 1.6387064e-11
+}

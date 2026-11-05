@@ -1,3 +1,4 @@
+# TIMESTAMP START 2026-11-05T04:18:09+00:00 | REVISION R000020
 # TIMESTAMP START 2026-11-02T15:00:19-05:00 | REVISION R004797
 """Generate nominal complementary porch joinery; never edits the original frame.
 The same occupied connector solid is added to its donor and removed from its
@@ -45,9 +46,9 @@ def generate():
         # TIMESTAMP END 2026-11-03T17:06:17-05:00 | REVISION R005064
         mesh=s.to_mesh64();v=world(np.asarray(mesh.vert_properties)[:,:3]);ts=np.asarray(mesh.tri_verts)
         return {'vertices':v.tolist(),'triangles':ts.tolist(),'volume_m3':s.volume()}
-    def pair(donor,receiver,axis,direction,widths,housing,tenon_length,peg_diameter=0,peg_offset=None):
+    def pair(donor,receiver,axis,direction,widths,housing,tenon_length,peg_diameter=0,peg_offset=None,tenon_center_y=None):
         # TIMESTAMP START 2026-11-03T13:59:01-05:00 | REVISION R005033
-        housing=0.;tenon_length=3*INCH
+        housing=0.;tenon_length=(1 if donor.startswith(('MUD-GUARD-PICKET-','MUD-FRONT-PICKET-')) else 3)*INCH
         # TIMESTAMP END 2026-11-03T13:59:01-05:00 | REVISION R005033
         lo,hi=bounds(donor);rlo,rhi=bounds(receiver);cross=[k for k in range(3) if k!=axis]
         face=hi[axis] if direction>0 else lo[axis];center=(lo+hi)/2
@@ -56,6 +57,7 @@ def generate():
         # Keep the header mortise above the post-head mortise in the same plate.
         if donor=='MUD-HEADER-FRONT':center[1]=hi[1]-1.25*INCH
         # TIMESTAMP END 2026-11-03T13:59:01-05:00 | REVISION R005033
+        if tenon_center_y is not None:center[1]=tenon_center_y
         center[axis]=face
         cross_lo=lo.copy()-1;cross_hi=hi.copy()+1
         for k,w in zip(cross,widths):cross_lo[k]=center[k]-w/2;cross_hi[k]=center[k]+w/2
@@ -99,9 +101,9 @@ def generate():
     # Rails use deep shoulders and centered tenons; perpendicular corner joints
     # are vertically staggered in the architectural module before fitting.
     for side in ['L','R']:
-        for end,direction in [('BACK',-1),('FRONT',1)]:pair('MUD-GUARD-TOP-'+side,'MUD-POST-'+side+'-'+end,2,direction,[1.5*INCH,1.5*INCH],.25*INCH,INCH,.375*INCH)
+        for end,direction in [('BACK',-1),('FRONT',1)]:pair('MUD-GUARD-TOP-'+side,'MUD-POST-'+side+'-'+end,2,direction,[1.5*INCH,1.5*INCH],.25*INCH,INCH,.375*INCH,tenon_center_y=bounds('MUD-GUARD-TOP-'+side)[0][1]+3.375*INCH)
         outer='MUD-POST-'+side+'-FRONT';inner='MUD-ENTRY-GUARD-POST-'+side
-        for receiver,direction in [(outer,-1 if side=='L' else 1),(inner,1 if side=='L' else -1)]:pair('MUD-FRONT-GUARD-'+side,receiver,0,direction,[1.5*INCH,1.5*INCH],.25*INCH,INCH,.375*INCH)
+        for receiver,direction in [(outer,-1 if side=='L' else 1),(inner,1 if side=='L' else -1)]:pair('MUD-FRONT-GUARD-'+side,receiver,0,direction,[1.5*INCH,1.5*INCH],.25*INCH,INCH,.375*INCH,tenon_center_y=bounds('MUD-FRONT-GUARD-'+side)[0][1]+1.125*INCH)
     for pid in records:
         if pid.startswith('MUD-GUARD-PICKET-'):
             side=pid.split('-')[3];lo,hi=bounds(pid);z=(lo[2]+hi[2])/2
@@ -240,8 +242,20 @@ def generate():
     # TIMESTAMP END 2026-11-03T16:17:49-05:00 | REVISION R005051
     return {'schema_version':1,'status':'PASS','source_module_sha256':hashlib.sha256(source.read_bytes()).hexdigest(),'source_roof_module_sha256':hashlib.sha256((ROOT/'src/mudroom-roof.js').read_bytes()).hexdigest(),'source_fitter_sha256':hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),'source_model_sha256':hashlib.sha256(model_path.read_bytes()).hexdigest(),'anchors':{pid:next(p for p in model['parts'] if p['id']==pid)['center'] for pid in ['P2','P3']},'parts':fitted,'added_parts':added,'joints':joints,'assembly':assembly,'verification':{'scope':'Nominal housed guard/post/header joints, face-housed 2x6 braces, roof half-laps and birdsmouth seats; capacity and erection engineering unverified.','pair_intersection_checks':checks,'maximum_pair_overlap_m3':maximum_overlap,'discarded_numerical_residual_m3':numerical_residual,'joint_count':len(joints),'peg_count':len(pegs),'capacity_verified':False}}
 
+def readable_json(value,level=0):
+    """Readable bounded source lines without expanding each vector component."""
+    pad='  '*level;child='  '*(level+1)
+    if isinstance(value,dict):
+        return '{\n'+',\n'.join(child+json.dumps(k)+': '+readable_json(v,level+1) for k,v in value.items())+'\n'+pad+'}' if value else '{}'
+    if isinstance(value,list):
+        if not value or all(not isinstance(v,(dict,list)) for v in value):return json.dumps(value,separators=(',',':'))
+        return '[\n'+',\n'.join(child+readable_json(v,level+1) for v in value)+'\n'+pad+']'
+    return json.dumps(value)
+
 if __name__=='__main__':
     parser=argparse.ArgumentParser();parser.add_argument('--output',default='src/mudroom-joinery-fit.json');args=parser.parse_args()
-    data=generate();(ROOT/args.output).write_text(json.dumps(data,separators=(',',':'))+'\n')
+    data=generate();data.update(revision='R000020',timestamp='2026-11-05T04:18:09+00:00');(ROOT/args.output).write_text(readable_json(data)+'\n')
     print('PASS:',len(data['joints']),'porch joints,',len(data['parts']),'fitted members,',data['verification']['peg_count'],'pegs; source SHA',data['source_module_sha256'])
 # TIMESTAMP END 2026-11-02T15:00:19-05:00 | REVISION R004797
+
+# TIMESTAMP END 2026-11-05T04:18:09+00:00 | REVISION R000020

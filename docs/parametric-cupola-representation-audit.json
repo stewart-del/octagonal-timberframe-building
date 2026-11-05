@@ -1,0 +1,227 @@
+{
+  "status": "PASS",
+  "revision": "R000062",
+  "timestamp": "2026-11-05T19:36:48+00:00",
+  "scope": "Actual primary core only: stable local cupola-post/head construction, strict timber boundaries, native assembly/joints, lower-post preservation and conditional cupola release prefix for three owner-generated parameter cases.",
+  "source_sha256": {
+    "src/cupola-parametric.js": "6ff984ddf0e7443b92bbe4ef35b4698967c60c377ef17d0caff0f75f1bf1b4ca",
+    "src/parametric-model.js": "e58d3cb9ade12b816f4f925eb117cd6ffc87189fe429eb811c3ee8cf212240d5",
+    "src/parametric-source.json": "73872190d76b94aaaae556dc68fe37565d3764bad7836539928558ece2b8e469",
+    "tests/parametric-model.cjs": "1e279613c89864776f2fc3f3ddb4bd0045bf93bd6d99b7d349c1fa7da469a72b",
+    "tests/test_parametric_geometry.py": "8660efae836d6a3305489a454b24cbebad99f399c9e2249d3e79ae7c8e4e7065",
+    "tests/test_parametric_cupola_preservation.py": "cfa6da8a5cbe76df2f6faf527ca66b342930c83c16c4ef4788bd2b33ce20cb4b",
+    "tests/test_bounded_local_sweep.py": "35ac25275f9a7bf691ff7ac90c69889e41ce3b5c31aee8390896ffe62e4377bc",
+    "scripts/bounded_local_sweep.py": "a4eb7baeb45df29f0a086e925ab2e3bf9e1ead3a01822f03bc8c18235663d721",
+    "scripts/plan_architectural_disassembly.py": "32cf8a371afc150ef8dcfdd5753522e3e8076abdc164c040d767c5a5f0fd3f35",
+    "scripts/physical_contacts.py": "683e6bf0d228a01851aa81ce121b8aa23a0c15daefad10e096d9ed69b1abbaea"
+  },
+  "cases": [
+    {
+      "parameters": {
+        "wallHeightIn": 89.03615129287599,
+        "pitch": 4,
+        "cupolaLiftIn": 18,
+        "cupolaPitch": 4,
+        "changed": true
+      },
+      "generated_core_sha256": "6eba3bfed8593b9d936c93456b1d9672d51df50689cf0335e857a312980a8ad8",
+      "generation_sources": {
+        "src/parametric-model.js": "e58d3cb9ade12b816f4f925eb117cd6ffc87189fe429eb811c3ee8cf212240d5",
+        "src/cupola-parametric.js": "6ff984ddf0e7443b92bbe4ef35b4698967c60c377ef17d0caff0f75f1bf1b4ca",
+        "src/parametric-source.json": "73872190d76b94aaaae556dc68fe37565d3764bad7836539928558ece2b8e469",
+        "public/vendor/manifold.js": "5db5701e1e185feb5d8f039b3b08b8bef8c5dcfb1f680cf52f409b02aef1eeca",
+        "public/vendor/manifold.wasm": "73e3b419ad31294f6b1cc478173944e50efc4a34bfdeeff0107bdfc12975f11c",
+        "src/top-entry-proposed-model.json": "99cb11c9832f87f49333d0caa94517bda37af401c1000787c8af6f10bf30ed6f"
+      },
+      "strict_raw_timber_count": 129,
+      "native_assembly_and_joints": {
+        "parameters": {
+          "wallHeightIn": 89.03615129287599,
+          "pitch": 4,
+          "cupolaLiftIn": 18,
+          "cupolaPitch": 4,
+          "changed": true
+        },
+        "invalid": [],
+        "overlaps": [],
+        "checks": 1120
+      },
+      "ordered_prefix": {
+        "status": "PASS_PREFIX",
+        "scope": "129-timber primary core only; replaced historical PLY retained for this bounded recipe. Real ceiling, weather, architectural products and compact parking need their own full route.",
+        "stage_count": 75,
+        "moving_actors": 50,
+        "receipt_sha256": "98ec92504ec4abd6ad3db56b070ad2cac27ae11a7f52e438764015243dcdf96e",
+        "tools": {
+          "scripts/plan_architectural_disassembly.py": "32cf8a371afc150ef8dcfdd5753522e3e8076abdc164c040d767c5a5f0fd3f35",
+          "scripts/bounded_local_sweep.py": "a4eb7baeb45df29f0a086e925ab2e3bf9e1ead3a01822f03bc8c18235663d721",
+          "scripts/physical_contacts.py": "683e6bf0d228a01851aa81ce121b8aa23a0c15daefad10e096d9ed69b1abbaea",
+          "tests/test_bounded_local_sweep.py": "35ac25275f9a7bf691ff7ac90c69889e41ce3b5c31aee8390896ffe62e4377bc"
+        },
+        "maximum_stage_numerical_error_bound_m3": 4.851746458300765e-14,
+        "parked_pieces_retained": true
+      }
+    },
+    {
+      "parameters": {
+        "wallHeightIn": 144,
+        "pitch": 8,
+        "cupolaLiftIn": 36,
+        "cupolaPitch": 8,
+        "changed": true
+      },
+      "generated_core_sha256": "37a83a84858ce54ac7d3719583be84c3d7b658c1ab0fc21b2ae0d0b70cfbd5e0",
+      "generation_sources": {
+        "src/parametric-model.js": "e58d3cb9ade12b816f4f925eb117cd6ffc87189fe429eb811c3ee8cf212240d5",
+        "src/cupola-parametric.js": "6ff984ddf0e7443b92bbe4ef35b4698967c60c377ef17d0caff0f75f1bf1b4ca",
+        "src/parametric-source.json": "73872190d76b94aaaae556dc68fe37565d3764bad7836539928558ece2b8e469",
+        "public/vendor/manifold.js": "5db5701e1e185feb5d8f039b3b08b8bef8c5dcfb1f680cf52f409b02aef1eeca",
+        "public/vendor/manifold.wasm": "73e3b419ad31294f6b1cc478173944e50efc4a34bfdeeff0107bdfc12975f11c",
+        "src/top-entry-proposed-model.json": "99cb11c9832f87f49333d0caa94517bda37af401c1000787c8af6f10bf30ed6f"
+      },
+      "strict_raw_timber_count": 129,
+      "native_assembly_and_joints": {
+        "parameters": {
+          "wallHeightIn": 144,
+          "pitch": 8,
+          "cupolaLiftIn": 36,
+          "cupolaPitch": 8,
+          "changed": true
+        },
+        "invalid": [],
+        "overlaps": [],
+        "checks": 1152
+      },
+      "ordered_prefix": {
+        "status": "PASS_PREFIX",
+        "scope": "129-timber primary core only; replaced historical PLY retained for this bounded recipe. Real ceiling, weather, architectural products and compact parking need their own full route.",
+        "stage_count": 75,
+        "moving_actors": 50,
+        "receipt_sha256": "5090066e5ee19f73644eccaef74fc95fb55e028d296df63c80d724d003c56080",
+        "tools": {
+          "scripts/plan_architectural_disassembly.py": "32cf8a371afc150ef8dcfdd5753522e3e8076abdc164c040d767c5a5f0fd3f35",
+          "scripts/bounded_local_sweep.py": "a4eb7baeb45df29f0a086e925ab2e3bf9e1ead3a01822f03bc8c18235663d721",
+          "scripts/physical_contacts.py": "683e6bf0d228a01851aa81ce121b8aa23a0c15daefad10e096d9ed69b1abbaea",
+          "tests/test_bounded_local_sweep.py": "35ac25275f9a7bf691ff7ac90c69889e41ce3b5c31aee8390896ffe62e4377bc"
+        },
+        "maximum_stage_numerical_error_bound_m3": 5.496155123711678e-13,
+        "parked_pieces_retained": true
+      }
+    },
+    {
+      "parameters": {
+        "wallHeightIn": 89.03615129287599,
+        "pitch": 3,
+        "cupolaLiftIn": 9,
+        "cupolaPitch": 3,
+        "changed": true
+      },
+      "generated_core_sha256": "8cf15f4d0822b73d6c71986f32373b9e95eb60dcd2b2cd493134a53eed98dbdd",
+      "generation_sources": {
+        "src/parametric-model.js": "e58d3cb9ade12b816f4f925eb117cd6ffc87189fe429eb811c3ee8cf212240d5",
+        "src/cupola-parametric.js": "6ff984ddf0e7443b92bbe4ef35b4698967c60c377ef17d0caff0f75f1bf1b4ca",
+        "src/parametric-source.json": "73872190d76b94aaaae556dc68fe37565d3764bad7836539928558ece2b8e469",
+        "public/vendor/manifold.js": "5db5701e1e185feb5d8f039b3b08b8bef8c5dcfb1f680cf52f409b02aef1eeca",
+        "public/vendor/manifold.wasm": "73e3b419ad31294f6b1cc478173944e50efc4a34bfdeeff0107bdfc12975f11c",
+        "src/top-entry-proposed-model.json": "99cb11c9832f87f49333d0caa94517bda37af401c1000787c8af6f10bf30ed6f"
+      },
+      "strict_raw_timber_count": 129,
+      "native_assembly_and_joints": {
+        "parameters": {
+          "wallHeightIn": 89.03615129287599,
+          "pitch": 3,
+          "cupolaLiftIn": 9,
+          "cupolaPitch": 3,
+          "changed": true
+        },
+        "invalid": [],
+        "overlaps": [],
+        "checks": 1052
+      },
+      "ordered_prefix": {
+        "status": "PASS_PREFIX",
+        "scope": "129-timber primary core only; replaced historical PLY retained for this bounded recipe. Real ceiling, weather, architectural products and compact parking need their own full route.",
+        "stage_count": 75,
+        "moving_actors": 50,
+        "receipt_sha256": "e5aa9a4f1be6eebbe10912f1824c44d8c7c0329966cd47c53f00842f3e304793",
+        "tools": {
+          "scripts/plan_architectural_disassembly.py": "32cf8a371afc150ef8dcfdd5753522e3e8076abdc164c040d767c5a5f0fd3f35",
+          "scripts/bounded_local_sweep.py": "a4eb7baeb45df29f0a086e925ab2e3bf9e1ead3a01822f03bc8c18235663d721",
+          "scripts/physical_contacts.py": "683e6bf0d228a01851aa81ce121b8aa23a0c15daefad10e096d9ed69b1abbaea",
+          "tests/test_bounded_local_sweep.py": "35ac25275f9a7bf691ff7ac90c69889e41ce3b5c31aee8390896ffe62e4377bc"
+        },
+        "maximum_stage_numerical_error_bound_m3": 3.773610125904225e-14,
+        "parked_pieces_retained": true
+      }
+    }
+  ],
+  "lower_post_stock_axis_preservation": {
+    "status": "PASS",
+    "source_geometry_sha256": "6eba3bfed8593b9d936c93456b1d9672d51df50689cf0335e857a312980a8ad8",
+    "generation_sources": {
+      "src/parametric-model.js": "e58d3cb9ade12b816f4f925eb117cd6ffc87189fe429eb811c3ee8cf212240d5",
+      "src/cupola-parametric.js": "6ff984ddf0e7443b92bbe4ef35b4698967c60c377ef17d0caff0f75f1bf1b4ca",
+      "src/parametric-source.json": "73872190d76b94aaaae556dc68fe37565d3764bad7836539928558ece2b8e469",
+      "public/vendor/manifold.js": "5db5701e1e185feb5d8f039b3b08b8bef8c5dcfb1f680cf52f409b02aef1eeca",
+      "public/vendor/manifold.wasm": "73e3b419ad31294f6b1cc478173944e50efc4a34bfdeeff0107bdfc12975f11c",
+      "src/top-entry-proposed-model.json": "99cb11c9832f87f49333d0caa94517bda37af401c1000787c8af6f10bf30ed6f"
+    },
+    "lower_C": [
+      {
+        "id": "C0",
+        "native_lower_difference_m3": 8.712680135598492e-18,
+        "transform_cover_bound_m3": 0.0
+      },
+      {
+        "id": "C1",
+        "native_lower_difference_m3": 6.932972805992512e-17,
+        "transform_cover_bound_m3": 0.0
+      },
+      {
+        "id": "C2",
+        "native_lower_difference_m3": 3.94088109479424e-17,
+        "transform_cover_bound_m3": 0.0
+      },
+      {
+        "id": "C3",
+        "native_lower_difference_m3": 6.609910848288814e-17,
+        "transform_cover_bound_m3": 0.0
+      },
+      {
+        "id": "C4",
+        "native_lower_difference_m3": 4.092474951469101e-17,
+        "transform_cover_bound_m3": 0.0
+      },
+      {
+        "id": "C5",
+        "native_lower_difference_m3": 1.3288701828353592e-16,
+        "transform_cover_bound_m3": 0.0
+      },
+      {
+        "id": "C6",
+        "native_lower_difference_m3": 4.725976002000388e-17,
+        "transform_cover_bound_m3": 0.0
+      },
+      {
+        "id": "C7",
+        "native_lower_difference_m3": 1.308283602364572e-16,
+        "transform_cover_bound_m3": 0.0
+      }
+    ],
+    "stock_count": 25,
+    "upper_axes_checked": 24,
+    "maximum_axis_component_roundoff": 1.1102230246251565e-16,
+    "axis_roundoff_limit": 1.7763568394002505e-15,
+    "overlap_tolerance_m3": 1.6387064e-11
+  },
+  "repair": "Construct the upper C stock, shared head tool and peg bores in the same analytic local frame as the rafter, splice retained lower C, then serialize before rigid world placement. No stock section, joint projection, deliberate clearance or peg-axis design changes.",
+  "axis_serialization_note": "Python canonical metadata and JS math differ by at most1.1102230246251565e-16 per direction component. The separate8IEEE-epsilon direction bound does not change the1e-6in3 solid-overlap threshold.",
+  "open_blockers": [
+    "Legacy K.layouts generates an invalid tiny P4 triangle in full architectural parameter runs. The canonical cached P4 meshes independently pass raw checks; this is a dynamic wall-cut/export issue.",
+    "Fixed-size architecture still needs proper retile/reseat generation and a whole-building source-bound construction route before ordered controls can stay enabled after dimension changes."
+  ],
+  "prior_failed_case": "Old canonical-bypass cupola-only CR2 sweep returned a numerical mesh representation obstruction; the unchanged bounded checker now clears the repaired actual C export. The failed source/check and immutable external repair manifest remain archived.",
+  "immutable_external_manifest_sha256": "f567c2d90d117c8124a90a47fb01ccccbc9f3cc8c90b9fb77f070c6e9c8243b8",
+  "full_building_route_verified": false,
+  "overlap_tolerance_m3": 1.6387064e-11
+}

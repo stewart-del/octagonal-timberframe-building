@@ -1,0 +1,43 @@
+{
+  "status": "PASS",
+  "revision": "R000057",
+  "timestamp": "2026-11-05T17:09:28+00:00",
+  "scope": "Published bought-unit and screen dimensions, honest reference geometry, independent illustrative top-hung poses and purchased quantities only. Browser integration and complete installed construction motion are separate checks.",
+  "sources": {
+    "scripts/window_assemblies.py": "d8da5fb225ac20fa0a53fb4fd18d69548234da144019a22fea101b6281e64eb7",
+    "scripts/fixtures/window-assembly-inputs.json.gz": "36ef12d92a295b5f7dcc057e2ab94162db84a9a366aeb38737ab5371e7791fde",
+    "src/window-assemblies.js": "5b1d005c06b106478e7efc7783596d3e9f408c2a24faf43addea66a87d7f7c27",
+    "src/component-inventory.js": "4806ed071f001b733b34aaccf3f7de5effa0dca22eada005cebb20b851ef2540",
+    "tests/window-assemblies.cjs": "af9c921845bf8672599387f6c531f4130f6a4d47b757da829f8ea9c9d484ec2e",
+    "tests/test_window_assemblies.py": "7fd2e091b60852f10ba1a5ed9a5459067e2cf2676ecd8fff64b83e8ad5cfff5f"
+  },
+  "composition": {
+    "status": "PASS",
+    "scope": "Published purchased-unit/screen dimensions and explicitly illustrative planar appearance/opening data. No factory machining, maximum-angle or installed airtighness certification.",
+    "fixture_sha256": "36ef12d92a295b5f7dcc057e2ab94162db84a9a366aeb38737ab5371e7791fde",
+    "generator_sha256": "d8da5fb225ac20fa0a53fb4fd18d69548234da144019a22fea101b6281e64eb7",
+    "purchased_windows": 14,
+    "purchased_screens": 14,
+    "whole_unit_collision_envelopes": 14,
+    "illustrative_display_surfaces": 56,
+    "service_part_references": 182,
+    "factory_profiles_available": false
+  },
+  "verification": {
+    "python_tests": 2,
+    "node_pose_and_inventory_checks": true,
+    "fourteen_independent_sashes": true,
+    "top_edge_fixed": true,
+    "bottom_opens_outward": true,
+    "screens_stay_fixed": true,
+    "purchased_units": 14,
+    "purchased_screens": 14,
+    "service_references_not_purchased_again": 182,
+    "viewer_inline_script_syntax": "PASS"
+  },
+  "limits": [
+    "Manufacturer rail sections, glass thickness and four-bar hinge trajectory are unavailable; appearance is explicitly planar illustration, not factory machining CAD.",
+    "The maximum illustrative opening is not a manufacturer operating limit.",
+    "Whole-unit collision envelopes are conservative purchased-assembly proxies. Final installation, envelope and full construction route have separate gates."
+  ]
+}

@@ -5,7 +5,12 @@ for(const name of ['model-data.json','step-lap-proposed-model.json','top-entry-p
  const model=require('../src/'+name),base=W.build(model.parts),room=F.roomLayout(model,base,solid);
 // TIMESTAMP START 2026-11-03T12:04:27-05:00 | REVISION R005002
  // TIMESTAMP START 2026-11-04T19:48:56+00:00 | REVISION R000004
- assert.equal(room.components.filter(p=>p.schematicKind==='floorAssembly').length,solid.parts.length);assert.equal(room.components.filter(p=>p.id.startsWith('PIER-')).length,34);assert(!room.components.some(p=>['grate','footer'].includes(p.schematicKind)));
+ // TIMESTAMP START 2026-11-05T14:08:26+00:00 | REVISION R000045
+ assert.equal(room.components.filter(p=>p.schematicKind==='floorAssembly').length,solid.parts.filter(p=>p.schematicKind==='floorAssembly').length);
+ for(const p of solid.parts)assert(room.components.some(q=>q.id===p.id),'Every floor and fitted furniture piece remains included: '+p.id);
+ assert(!(solid.replacedSchematicIds||[]).some(id=>room.components.some(p=>p.id===id)),'Retired shelves cannot clash with articulated furniture');
+// TIMESTAMP END 2026-11-05T14:08:26+00:00 | REVISION R000045
+ assert.equal(room.components.filter(p=>p.id.startsWith('PIER-')).length,34);assert(!room.components.some(p=>['grate','footer'].includes(p.schematicKind)));
  assert.equal(room.components.filter(p=>p.floorRole==='underlayment_sheet').length,28);
  // TIMESTAMP END 2026-11-04T19:48:56+00:00 | REVISION R000004
 // TIMESTAMP END 2026-11-03T12:04:27-05:00 | REVISION R005002

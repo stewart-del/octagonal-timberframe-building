@@ -16,7 +16,9 @@ for(const j of r.members.filter(p=>p.kind==='joist')){
  assert.equal(j.widthM,2*.0254);assert.equal(j.depthM,6*.0254);
  const dx=j.endM[0]-j.startM[0],dz=j.endM[2]-j.startM[2];assert(Math.abs(dx*r.joistDirectionM[2]-dz*r.joistDirectionM[0])<1e-9);
 }
-const solids=require('../src/floor-foundation-solids.json').parts;
+// TIMESTAMP START 2026-11-05T14:08:26+00:00 | REVISION R000045
+const solids=require('../src/physical-parts.js').resolveSourceData(require('../src/floor-foundation-solids.json'),__dirname+'/../src').parts;
+// TIMESTAMP END 2026-11-05T14:08:26+00:00 | REVISION R000045
 for(const pier of r.piers){const below=solids.find(p=>p.id===pier.id+'-BELOW');assert(below.underground&&below.displayOpacity>0&&below.displayOpacity<1);const ys=below.vertices.map(v=>v[1]);assert(Math.abs(Math.max(...ys)-pier.gradeY_M)<1e-9);assert(Math.abs(Math.max(...ys)-Math.min(...ys)-6*.3048)<1e-9);}
 // TIMESTAMP END 2026-11-02T20:27:45-05:00 | REVISION R004866
 // TIMESTAMP END 2026-11-02T20:27:45-05:00 | REVISION R004866
@@ -28,9 +30,13 @@ assert(A.settingOutSVG(r).includes('PIER-MID-7'));
 
 // TIMESTAMP START 2026-11-04T23:17:24+00:00 | REVISION R000029
 const sheets=r.layers.find(p=>p.id==='SUBFLOOR').specification;
-assert.equal(sheets.stockLengthM,8*.3048);assert.equal(sheets.stockWidthM,4*.3048);assert.equal(sheets.staggerM,4*.3048);
+// TIMESTAMP START 2026-11-05T14:08:26+00:00 | REVISION R000045
+assert.equal(sheets.stockLengthM,95.875*.0254);assert.equal(sheets.stockWidthM,47.875*.0254);assert.equal(sheets.staggerM,4*.3048);assert.equal(sheets.gapM,.125*.0254);
+// TIMESTAMP END 2026-11-05T14:08:26+00:00 | REVISION R000045
 assert.equal(solids.filter(p=>p.floorRole==='underlayment_sheet').length,28);
-const D=require('../src/joinery-dimensions.js');for(const panel of solids.filter(p=>p.floorRole==='underlayment_sheet')){const blank=D.blank(panel);assert(blank.minimumLengthIn<=96+1e-6&&blank.widthIn<=48+1e-6&&Math.abs(blank.depthIn-1.5)<1e-6);}
+// TIMESTAMP START 2026-11-05T14:08:26+00:00 | REVISION R000045
+for(const panel of solids.filter(p=>p.floorRole==='underlayment_sheet')){const stock=panel.sheet_stock;assert(Math.abs(stock.lengthM/.0254-95.875)<1e-9&&Math.abs(stock.widthM/.0254-47.875)<1e-9&&Math.abs(stock.thicknessM/.0254-.703)<1e-9);}
+// TIMESTAMP END 2026-11-05T14:08:26+00:00 | REVISION R000045
 // TIMESTAMP END 2026-11-04T23:17:24+00:00 | REVISION R000029
 
 // TIMESTAMP END 2026-11-04T23:48:03+00:00 | REVISION R000012

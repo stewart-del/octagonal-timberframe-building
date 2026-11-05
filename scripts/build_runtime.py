@@ -16,6 +16,9 @@ import os
 import subprocess
 import tempfile
 import gzip
+# TIMESTAMP START 2026-11-05T06:13:38+00:00 | REVISION R000027
+import struct
+# TIMESTAMP END 2026-11-05T06:13:38+00:00 | REVISION R000027
 # TIMESTAMP END 2026-11-04T19:29:44+00:00 | REVISION R000002
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -44,8 +47,46 @@ def write_runtime(html, *, model, variants, wall_joinery, foundation, mudroom, d
     # TIMESTAMP START 2026-11-04T19:29:44+00:00 | REVISION R000002
     manifest = {'variants': {}, 'meshBuffers': {}}
     # TIMESTAMP END 2026-11-04T19:29:44+00:00 | REVISION R000002
-    manifest['common'] = asset('shared-data', encode({'foundation': foundation, 'mudroom': mudroom,
+    # TIMESTAMP START 2026-11-05T06:13:38+00:00 | REVISION R000027
+    # Startup renders exact outer envelopes with concealed bores omitted. The
+    # physical source, offline export and every geometry audit retain all bores.
+    initial_parts=[];detail_parts={}
+    for part in foundation['parts']:
+        initial={key:value for key,value in part.items() if key!='display_mesh'}
+        if part.get('display_mesh'):
+            detail_parts[part['id']]={key:part[key] for key in ['vertices','triangles']}
+            initial.update({key:part['display_mesh'][key] for key in ['vertices','triangles']})
+            initial.update(detail_ref=part['id'],renderGeometry='Assembled outer rendering envelope; concealed physical bores load once for inspection or motion.')
+        initial_parts.append(initial)
+    initial_foundation={**foundation,'parts':initial_parts}
+    if detail_parts:
+        with tempfile.TemporaryDirectory(prefix='octagon-detail-build-') as directory:
+            base=Path(directory)/'occupied-detail'
+            selected={**variants['top-entry'],'model':variants['top-entry']['model']}
+            payload={'variants':{'top-entry':selected},'wallJoinery':{'variants':{'top-entry':wall_joinery['variants']['top-entry']}},
+                'foundation':foundation,'onlyIds':list(detail_parts)}
+            base.with_suffix('.input').write_text(encode(payload))
+            subprocess.run([os.environ.get('NODE','node'),str(ROOT/'scripts/build_mesh_cache.cjs'),str(base.with_suffix('.input')),str(base)],check=True)
+            header=encode({'schema':'octagon-occupied-detail-1','parts':detail_parts,'meshRanges':json.loads(base.with_suffix('.json').read_text())}).encode()
+            header+=b' '*((-len(header))%4)
+            content=struct.pack('<I',len(header))+header+base.with_suffix('.bin').read_bytes()
+            manifest['detail']=asset('occupied-detail',content,'bin',compress=True)
+# TIMESTAMP START 2026-11-05T13:07:26+00:00 | REVISION R000043
+    shared_ids=[p['id'] for p in [*initial_foundation['parts'],*initial_foundation.get('architecture',{}).get('parts',[])] if not p.get('mesh_instance')]
+    with tempfile.TemporaryDirectory(prefix='octagon-shared-edges-') as directory:
+        base=Path(directory)/'common'
+        payload={'variants':{'top-entry':variants['top-entry']},'wallJoinery':{'variants':{'top-entry':wall_joinery['variants']['top-entry']}},'foundation':initial_foundation,'onlyIds':shared_ids}
+        base.with_suffix('.input').write_text(encode(payload))
+        subprocess.run([os.environ.get('NODE','node'),str(ROOT/'scripts/build_mesh_cache.cjs'),str(base.with_suffix('.input')),str(base)],check=True)
+        common_mesh_ranges=json.loads(base.with_suffix('.json').read_text())
+        manifest['commonMesh']=asset('shared-edges',base.with_suffix('.bin').read_bytes(),'bin',compress=True)
+# TIMESTAMP END 2026-11-05T13:07:26+00:00 | REVISION R000043
+# TIMESTAMP START 2026-11-05T13:07:26+00:00 | REVISION R000043
+    manifest['common'] = asset('shared-data', encode({'foundation': initial_foundation, 'mudroom': mudroom,
+        'commonMeshRanges':common_mesh_ranges,
         'baselineAudit': {'sha256': variants['baseline']['sha256'], 'verification': model['joinery_verification']}}), 'json', compress=True)
+# TIMESTAMP END 2026-11-05T13:07:26+00:00 | REVISION R000043
+    # TIMESTAMP END 2026-11-05T06:13:38+00:00 | REVISION R000027
     manifest['study'] = asset('earlier-joint-study', encode(study), 'json', compress=True)
     for identifier, value in variants.items():
         selected = {**value, 'model': model if identifier == 'baseline' else value['model']}
@@ -54,7 +95,11 @@ def write_runtime(html, *, model, variants, wall_joinery, foundation, mudroom, d
         # TIMESTAMP START 2026-11-04T19:29:44+00:00 | REVISION R000002
         with tempfile.TemporaryDirectory(prefix='octagon-mesh-build-') as directory:
             base = Path(directory) / identifier
-            base.with_suffix('.input').write_text(encode(payload))
+            # TIMESTAMP START 2026-11-05T06:13:38+00:00 | REVISION R000027
+# TIMESTAMP START 2026-11-05T13:07:26+00:00 | REVISION R000043
+            base.with_suffix('.input').write_text(encode({**payload,'foundation':initial_foundation,'excludeIds':shared_ids}))
+# TIMESTAMP END 2026-11-05T13:07:26+00:00 | REVISION R000043
+            # TIMESTAMP END 2026-11-05T06:13:38+00:00 | REVISION R000027
             subprocess.run([os.environ.get('NODE', 'node'), str(ROOT / 'scripts/build_mesh_cache.cjs'),
                             str(base.with_suffix('.input')), str(base)], check=True)
             payload['meshRanges'] = json.loads(base.with_suffix('.json').read_text())

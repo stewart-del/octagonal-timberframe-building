@@ -1,3 +1,4 @@
+# TIMESTAMP START 2026-11-05T05:14:11+00:00 | REVISION R000024
 # TIMESTAMP START 2026-11-04T23:48:03+00:00 | REVISION R000012
 # TIMESTAMP START 2026-11-04T23:23:25+00:00 | REVISION R000011
 # TIMESTAMP START 2026-11-04T20:45:07+00:00 | REVISION R000009
@@ -22,16 +23,21 @@ VOLUME_TOLERANCE_M3=1e-6*.0254**3
 PRISM_DISCARD_M3=1e-14
 BOX_TOLERANCE_M=0.
 # TIMESTAMP START 2026-11-02T20:38:50-05:00 | REVISION R004870
+# TIMESTAMP START 2026-11-05T12:40:59+00:00 | REVISION R000041
 NODE_SCENE="""const base=require('./src/'+process.argv[1]);
 const variant=process.argv[1].startsWith('top-entry')?'top-entry':process.argv[1].startsWith('step-lap')?'proposed':'baseline';
-const W=require('./src/wall-joinery.js'),fit=require('./src/wall-joinery-fit.json').variants[variant],model=W.applyModel(base,fit);
+const W=require('./src/wall-joinery.js'),A=require('./src/architecture.js'),P=require('./src/physical-parts.js');
+const fit=require('./src/wall-joinery-fit.json').variants[variant],architecture=A.resolve(require('./src/architectural-solids.json'));
+const model=A.applyModel(W.applyModel(base,fit),architecture);
 global.OCTAGON_ENCLOSURE_FIT=require('./src/'+process.argv[2]);
-const parts=[...model.parts,...require('./src/roof-coverings.js').build(model).components,
+const legacy=[...require('./src/roof-coverings.js').build(model).components,
  ...require('./src/floor-foundation.js').roomLayout(model,W.applyLayout(require('./src/schematic-walls.js').build(model.parts),fit),require('./src/floor-foundation-solids.json')).components,
  ...require('./src/mudroom.js').build(model).components];
-const roles=require('./src/display-presets.js');
-process.stdout.write(JSON.stringify({parts:parts.filter(p=>roles.included(p,'complete')),
+const composed=A.compose(model,legacy,architecture),parts=[...composed.model.parts,...composed.components];
+const roles=require('./src/display-presets.js'),serialized=A.serializeScene(parts.filter(p=>roles.included(p,'complete')));
+process.stdout.write(JSON.stringify({...serialized,
  excluded:parts.filter(p=>!roles.included(p,'complete')).map(p=>({id:p.id,reason:roles.role(p),physical:false}))}));"""
+# TIMESTAMP END 2026-11-05T12:40:59+00:00 | REVISION R000041
 # TIMESTAMP END 2026-11-02T20:38:50-05:00 | REVISION R004870
 
 @dataclass
@@ -54,27 +60,66 @@ def load_scene(variant='baseline'):
     for key,source in [('source_model_sha256',model),('source_module_sha256','schematic-walls.js'),('source_foundation_sha256','floor-foundation-solids.json')]:
         assert fitted[key]==hashlib.sha256((ROOT/'src'/source).read_bytes()).hexdigest(),enclosure+' is stale for '+source
     raw=json.loads(subprocess.check_output([NODE,'-e',NODE_SCENE,model,enclosure],cwd=ROOT))
+    # TIMESTAMP START 2026-11-05T12:40:59+00:00 | REVISION R000041
+    files=[model,enclosure,'wall-joinery-fit.json','wall-joinery.js','floor-foundation-solids.json','mudroom-joinery-fit.json','mudroom.js','mudroom-roof.js','roof-coverings.js','floor-foundation.js','schematic-walls.js','display-presets.js','physical-parts.js','architecture.js','architectural-solids.json']
+    for name in ['floor-foundation-solids.json','architectural-solids.json']:
+        metadata=json.loads((ROOT/'src'/name).read_text())
+        # TIMESTAMP START 2026-11-05T14:38:03+00:00 | REVISION R000047
+        files.extend(a['path'] for a in metadata.get('geometryArchives',[])+metadata.get('partArchives',[]))
+        # TIMESTAMP END 2026-11-05T14:38:03+00:00 | REVISION R000047
+        if metadata.get('geometryArchive'):files.append(metadata['geometryArchive'])
+    sources={'src/'+name:hashlib.sha256((ROOT/'src'/name).read_bytes()).hexdigest() for name in files}
+    return scene_from_payload(variant,raw,sources)
+    # TIMESTAMP END 2026-11-05T12:40:59+00:00 | REVISION R000041
+
+# TIMESTAMP START 2026-11-05T12:40:59+00:00 | REVISION R000041
+def scene_from_payload(variant,raw,sources=None):
+    """Read exact occupied geometry while constructing repeated metal once."""
     parts={p['id']:p for p in raw['parts']}
     assert len(parts)==len(raw['parts']),'Physical scene has duplicate identifiers'
+    prototypes={}
+    for name,p in raw.get('prototypes',{}).items():
+        value=m.Manifold(m.Mesh64(np.asarray(p['vertices'],float),np.asarray(p['triangles'],np.uint64)))
+        assert str(value.status())=='Error.NoError' and value.volume()>0,('Invalid physical prototype',name)
+        prototypes[name]=value
     solids={}
     for pid,p in parts.items():
-        s=m.Manifold(m.Mesh64(np.asarray(p['vertices'],dtype=float),np.asarray(p['triangles'],dtype=np.uint64)))
+        instance=p.get('mesh_instance')
+        if instance:
+            matrix=np.asarray(instance['transform'],float)
+            assert matrix.shape==(3,4) and np.isfinite(matrix).all(),('Invalid product transform',pid)
+            assert np.max(abs(matrix[:,:3].T@matrix[:,:3]-np.eye(3)))<1e-10 and abs(np.linalg.det(matrix[:,:3])-1)<1e-10,('Non-rigid product transform',pid)
+            s=prototypes[instance['prototype']].transform(matrix.tolist())
+        else:s=m.Manifold(m.Mesh64(np.asarray(p['vertices'],dtype=float),np.asarray(p['triangles'],dtype=np.uint64)))
         assert str(s.status())=='Error.NoError' and s.volume()>0,(pid,str(s.status()),s.volume())
         solids[pid]=s
-    files=[model,enclosure,'wall-joinery-fit.json','wall-joinery.js','floor-foundation-solids.json','mudroom-joinery-fit.json','mudroom.js','mudroom-roof.js','roof-coverings.js','floor-foundation.js','schematic-walls.js','display-presets.js']
-    sources={'src/'+name:hashlib.sha256((ROOT/'src'/name).read_bytes()).hexdigest() for name in files}
-    return Scene(variant,parts,solids,{pid:np.zeros(3) for pid in parts},sources,raw['excluded'])
+    return Scene(variant,parts,solids,{pid:np.zeros(3) for pid in parts},sources or {},raw.get('excluded',[]))
+# TIMESTAMP END 2026-11-05T12:40:59+00:00 | REVISION R000041
 
 def boxes_overlap(a,b):
     return all(a[i+3]>b[i]+BOX_TOLERANCE_M and b[i+3]>a[i]+BOX_TOLERANCE_M for i in range(3))
 
+# TIMESTAMP START 2026-11-05T13:19:15+00:00 | REVISION R000044
+from physical_contacts import contact_kind,permitted_withdrawal
+
 def audit_initial_scene(scene):
-    boxes={pid:s.bounding_box() for pid,s in scene.solids.items()};collisions=[];checks=0;maximum=0.
-    for a,b in itertools.combinations(scene.parts,2):
-        if not boxes_overlap(boxes[a],boxes[b]):continue
-        volume=(scene.solids[a]^scene.solids[b]).volume();checks+=1;maximum=max(maximum,volume)
-        if volume>VOLUME_TOLERANCE_M3:collisions.append({'a':a,'b':b,'overlap_m3':volume})
-    return {'status':'BLOCKED' if collisions else 'PASS','physical_piece_count':len(scene.parts),'pair_checks':checks,'maximum_intersection_m3':maximum,'collisions':collisions,'overlap_tolerance_m3':VOLUME_TOLERANCE_M3}
+    ids=list(scene.parts);boxes=np.asarray([scene.solids[pid].bounding_box() for pid in ids],float)
+    collisions=[];receiving_contacts=[];checks=0;maximum=0.;maximum_unpermitted=0.
+    # Enumerate exactly the same strict positive-box candidates with array
+    # comparisons; no material, small piece or parked obstacle is omitted.
+    for index,a in enumerate(ids):
+        candidates=np.flatnonzero(np.all(boxes[index,:3]+BOX_TOLERANCE_M<boxes[index+1:,3:],axis=1)&np.all(boxes[index,3:]>boxes[index+1:,:3]+BOX_TOLERANCE_M,axis=1))+index+1
+        for other in candidates:
+            b=ids[int(other)];volume=float((scene.solids[a]^scene.solids[b]).volume());checks+=1;maximum=max(maximum,volume)
+            assert np.isfinite(volume),(a,b,'Nonfinite occupied intersection')
+            kind=contact_kind(scene.parts[a],scene.parts[b])
+            if kind:
+                if volume>0:receiving_contacts.append({'a':a,'b':b,'overlap_m3':volume,'kind':kind})
+                continue
+            maximum_unpermitted=max(maximum_unpermitted,volume)
+            if volume>VOLUME_TOLERANCE_M3:collisions.append({'a':a,'b':b,'overlap_m3':volume})
+    return {'status':'BLOCKED' if collisions else 'PASS','physical_piece_count':len(scene.parts),'all_pair_box_tests':len(ids)*(len(ids)-1)//2,'pair_checks':checks,'maximum_intersection_m3':maximum,'maximum_unpermitted_intersection_m3':maximum_unpermitted,'intentional_fastener_contacts':receiving_contacts,'collisions':collisions,'overlap_tolerance_m3':VOLUME_TOLERANCE_M3,'contact_policy':'Only authored nails/screws in their declared wood or flexible weather layers. Metal/metal, hardwood peg and all other solid contacts retain the original tolerance.'}
+# TIMESTAMP END 2026-11-05T13:19:15+00:00 | REVISION R000044
 
 def triangle_prism(triangle,delta):
     """Affine image of a unit prism, without an ill-conditioned world hull.
@@ -139,15 +184,34 @@ def check_stage(scene,member_ids,delta,stop_first=False):
     ids=list(member_ids);delta=np.asarray(delta,dtype=float)
     assert ids and len(ids)==len(set(ids)) and all(pid in scene.parts for pid in ids)
     assert delta.shape==(3,) and np.isfinite(delta).all() and np.linalg.norm(delta)>0
+    # TIMESTAMP START 2026-11-05T19:01:25+00:00 | REVISION R000060
+    if len(ids)==1:
+        # Each accepted frame preserves all triangles and charges its exact
+        # coordinate-transform cover to both pair and aggregate error bounds.
+        # Multiple-member rigid groups retain their separate unchanged checker.
+        from bounded_local_sweep import check_stage as bounded_check_stage
+        return bounded_check_stage(scene,ids,delta,stop_first)
+    # TIMESTAMP END 2026-11-05T19:01:25+00:00 | REVISION R000060
     moving=set(ids);obstacles={pid:scene.current(pid) for pid in scene.parts if pid not in moving}
     bounds={pid:s.bounding_box() for pid,s in obstacles.items()}
-    collisions=[];checks=0;discarded=0.;prisms=0;methods=set();maximum=0.
+# TIMESTAMP START 2026-11-05T13:19:15+00:00 | REVISION R000044
+    collisions=[];checks=0;discarded=0.;prisms=0;methods=set();maximum=0.;intentional=[]
+# TIMESTAMP END 2026-11-05T13:19:15+00:00 | REVISION R000044
     for pid in ids:
         shape=scene.current(pid);a=np.array(shape.bounding_box());b=a+np.r_[delta,delta]
         broad=np.r_[np.minimum(a[:3],b[:3]),np.maximum(a[3:],b[3:])]
         candidates=[other for other,box in bounds.items() if boxes_overlap(broad,box)]
+# TIMESTAMP START 2026-11-05T13:19:15+00:00 | REVISION R000044
+        constrained=[]
+        for other in candidates:
+            if permitted_withdrawal(scene.parts[pid],scene.parts[other],delta):
+                intentional.append({'moving_id':pid,'receiver_id':other,'kind':'Declared axial nail/screw withdrawal from stationary receiving material'});checks+=1
+            else:constrained.append(other)
+        candidates=constrained
         if not candidates:continue
-        sweep,account=sweep_cover(shape,delta);discarded+=account['discarded_prism_volume_m3'];prisms+=account['triangle_prism_count'];methods.add(account['method'])
+        sweep,account=sweep_cover(shape,delta);
+        discarded+=account['discarded_prism_volume_m3'];prisms+=account['triangle_prism_count'];methods.add(account['method'])
+# TIMESTAMP END 2026-11-05T13:19:15+00:00 | REVISION R000044
         for other in candidates:
             volume=(sweep^obstacles[other]).volume();checks+=1;maximum=max(maximum,volume)
             error_bound=account['discarded_prism_volume_m3']
@@ -156,7 +220,9 @@ def check_stage(scene,member_ids,delta,stop_first=False):
                 if stop_first:break
         if collisions and stop_first:break
     assert discarded<VOLUME_TOLERANCE_M3,'Accumulated omitted sweep volume exceeds the collision tolerance'
-    return {'status':'BLOCKED' if collisions else 'PASS','scene_version':scene.version,'member_ids':ids,'delta_m':delta.tolist(),'collisions':collisions,'continuous_pair_checks':checks,'maximum_intersection_m3':maximum,'overlap_tolerance_m3':VOLUME_TOLERANCE_M3,'discarded_sweep_prism_volume_m3':discarded,'triangle_prism_count':prisms,'methods':sorted(methods),'parked_pieces_checked':True}
+# TIMESTAMP START 2026-11-05T13:19:15+00:00 | REVISION R000044
+    return {'status':'BLOCKED' if collisions else 'PASS','scene_version':scene.version,'member_ids':ids,'delta_m':delta.tolist(),'collisions':collisions,'continuous_pair_checks':checks,'maximum_intersection_m3':maximum,'overlap_tolerance_m3':VOLUME_TOLERANCE_M3,'discarded_sweep_prism_volume_m3':discarded,'triangle_prism_count':prisms,'methods':sorted(methods),'intentional_fastener_withdrawals':intentional,'parked_pieces_checked':True}
+# TIMESTAMP END 2026-11-05T13:19:15+00:00 | REVISION R000044
 
 def apply_stage(scene,member_ids,delta,proof=None,label=None,stage_id=None):
     ids=list(member_ids);delta=np.asarray(delta,dtype=float)
@@ -181,6 +247,10 @@ def check_multi_stage(scene,motions,stop_first=False):
         shape=current[pid];delta=np.asarray(delta);a=np.array(shape.bounding_box());b=a+np.r_[delta,delta]
         broad=np.r_[np.minimum(a[:3],b[:3]),np.maximum(a[3:],b[3:])]
         if not boxes_overlap(broad,target.bounding_box()):return
+# TIMESTAMP START 2026-11-05T13:19:15+00:00 | REVISION R000044
+        if not relative and permitted_withdrawal(scene.parts[pid],scene.parts[other],delta):
+            checks+=1;return
+# TIMESTAMP END 2026-11-05T13:19:15+00:00 | REVISION R000044
         key=(pid,*delta.tolist())
         if key not in cache:cache[key]=sweep_cover(shape,delta)
         volume=(cache[key][0]^target).volume();checks+=1;maximum=max(maximum,volume)
@@ -437,7 +507,9 @@ def replay_stages(variant,stages):
     """Recompute all proofs in a fresh full scene; never trust saved pair proofs."""
     scene=load_scene(variant);initial=audit_initial_scene(scene)
     assert initial['status']=='PASS',initial['collisions']
-    checks=0;maximum=initial['maximum_intersection_m3'];discarded=0.
+    # TIMESTAMP START 2026-11-05T19:01:25+00:00 | REVISION R000060
+    checks=0;maximum=initial['maximum_intersection_m3'];discarded=0.;transform_cover=0.;maximum_stage_error=0.
+    # TIMESTAMP END 2026-11-05T19:01:25+00:00 | REVISION R000060
     for stage in stages:
 # TIMESTAMP START 2026-11-03T07:02:34-05:00 | REVISION R004905
         assert_rigid_columns(scene,stage)
@@ -450,8 +522,14 @@ def replay_stages(variant,stages):
             proof=check_stage(scene,stage['member_ids'],stage['delta_m'])
             assert proof['status']=='PASS',(stage['id'],proof['collisions'])
             apply_stage(scene,stage['member_ids'],stage['delta_m'],proof,stage['label'],stage['id'])
+        # TIMESTAMP START 2026-11-05T19:01:25+00:00 | REVISION R000060
         checks+=proof['continuous_pair_checks'];maximum=max(maximum,proof['maximum_intersection_m3']);discarded+=proof['discarded_sweep_prism_volume_m3']
-    return scene,{'status':'PASS','independent_full_scene_replay':True,'initial_assembly':initial,'stage_count':len(stages),'continuous_pair_checks':checks,'maximum_intersection_m3':maximum,'discarded_sweep_prism_volume_m3':discarded,'parked_pieces_retained':True,'moving_group_pairs_checked':True,'overlap_tolerance_m3':VOLUME_TOLERANCE_M3}
+        transform_cover+=proof.get('coordinate_transform_cover_bound_m3',0.)
+        maximum_stage_error=max(maximum_stage_error,proof.get('aggregate_numerical_error_bound_m3',proof['discarded_sweep_prism_volume_m3']))
+        # TIMESTAMP END 2026-11-05T19:01:25+00:00 | REVISION R000060
+    # TIMESTAMP START 2026-11-05T19:01:25+00:00 | REVISION R000060
+    return scene,{'status':'PASS','independent_full_scene_replay':True,'initial_assembly':initial,'stage_count':len(stages),'continuous_pair_checks':checks,'maximum_intersection_m3':maximum,'discarded_sweep_prism_volume_m3':discarded,'coordinate_transform_cover_bound_m3':transform_cover,'maximum_stage_numerical_error_bound_m3':maximum_stage_error,'parked_pieces_retained':True,'moving_group_pairs_checked':True,'overlap_tolerance_m3':VOLUME_TOLERANCE_M3}
+    # TIMESTAMP END 2026-11-05T19:01:25+00:00 | REVISION R000060
 
 def audit_final_joinery(scene):
     """Require the initially mating timber/peg surfaces to be separated."""
@@ -613,3 +691,5 @@ if __name__=='__main__':
 # TIMESTAMP END 2026-11-04T23:23:25+00:00 | REVISION R000011
 
 # TIMESTAMP END 2026-11-04T23:48:03+00:00 | REVISION R000012
+
+# TIMESTAMP END 2026-11-05T05:14:11+00:00 | REVISION R000024

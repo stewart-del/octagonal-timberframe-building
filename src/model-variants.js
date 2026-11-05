@@ -8,7 +8,10 @@ function context(variants,search=''){
  const isProposed=id!=='baseline',sha=v.sha256;
  if(v.loadReview?.source_model_sha256!==sha)throw new Error('Selected model self-weight data is stale: '+id);
  if(v.materials?.source_sha256!==sha)throw new Error('Selected model inventory is stale: '+id);
- if(v.enclosureFit?.source_model_sha256!==sha)throw new Error('Selected model enclosure clearance data is stale: '+id);
+// TIMESTAMP START 2026-11-05T20:08:59+00:00 | REVISION R000063
+ const enclosureMatches=typeof OctagonCurrentCacheBindings!=='undefined'?OctagonCurrentCacheBindings.matches(v.enclosureFit,{...v,id},'enclosure-'+id):v.enclosureFit?.source_model_sha256===sha;
+ if(!enclosureMatches)throw new Error('Selected model enclosure clearance data is stale: '+id);
+// TIMESTAMP END 2026-11-05T20:08:59+00:00 | REVISION R000063
  if(v.cavities&&v.cavities.source_model_sha256!==sha)throw new Error('Selected model cavity data is stale: '+id);
  const loadReview=isProposed?{...v.loadReview,issues:[]}:v.loadReview;
  const cavityAuditPassed=v.cavities?.fit_audit?.status==='PASS';

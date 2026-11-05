@@ -17,10 +17,15 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
+      # TIMESTAMP START 2026-11-05T08:15:49+00:00 | REVISION R000034
+      - run: python3 -m pip install --only-binary=:all: -r requirements-geometry.txt
+      # TIMESTAMP END 2026-11-05T08:15:49+00:00 | REVISION R000034
       - run: python3 scripts/build.py
       # TIMESTAMP START 2026-11-01T22:44:38-05:00 | REVISION R004653
       # TIMESTAMP START 2026-11-02T09:09:36-05:00 | REVISION R004753
-      - run: "python3 -m pip install --only-binary=:all: numpy scipy manifold3d==3.5.4"
+      # TIMESTAMP START 2026-11-05T08:15:49+00:00 | REVISION R000034
+      # Geometry dependencies are installed once before the build above.
+      # TIMESTAMP END 2026-11-05T08:15:49+00:00 | REVISION R000034
       # TIMESTAMP START 2026-11-03T17:08:46-05:00 | REVISION R005066
       # Current-model cavity replay and adversarial checks run together below.
       # TIMESTAMP END 2026-11-03T17:08:46-05:00 | REVISION R005066

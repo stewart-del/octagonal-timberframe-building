@@ -1,3 +1,4 @@
+# TIMESTAMP START 2026-11-05T05:14:11+00:00 | REVISION R000024
 # TIMESTAMP START 2026-11-02T13:44:32-05:00 | REVISION R004784
 """Fit display wall framing/infill/floor around unchanged timber and footing solids.
 Not a proposed structural joint or connection-capacity analysis.
@@ -44,8 +45,15 @@ timbers={p['id']:solid(p) for p in model['parts'] if p['is_timber'] or p.get('gr
 # TIMESTAMP END 2026-11-02T18:45:37-05:00 | REVISION R004840
 # TIMESTAMP START 2026-11-02T16:10:36-05:00 | REVISION R004814
 foundation_path=R/'src/floor-foundation-solids.json'
-foundation_raw=foundation_path.read_bytes();foundation=json.loads(foundation_raw)
-floor_obstacles={**footers,**{p['id']:solid(p) for p in foundation['parts']}}
+from physical_data import read_physical_json
+# TIMESTAMP START 2026-11-05T06:36:54+00:00 | REVISION R000029
+from physical_data import occupied_part
+# TIMESTAMP END 2026-11-05T06:36:54+00:00 | REVISION R000029
+foundation_raw=foundation_path.read_bytes();foundation=read_physical_json(foundation_path)
+# TIMESTAMP START 2026-11-05T06:36:54+00:00 | REVISION R000029
+floor_obstacles={**footers,**{p['id']:solid(occupied_part(p,foundation.get('prototypes',{}))) for p in foundation['parts']}}
+components=[p for p in components if p['id'] not in foundation.get('replacedSchematicIds',[])]
+# TIMESTAMP END 2026-11-05T06:36:54+00:00 | REVISION R000029
 # TIMESTAMP END 2026-11-02T16:10:36-05:00 | REVISION R004814
 # TIMESTAMP START 2026-11-02T13:44:32-05:00 | REVISION R004784
 data={'source_model_sha256':hashlib.sha256(raw).hexdigest(),'source_module_sha256':hashlib.sha256((R/'src/schematic-walls.js').read_bytes()).hexdigest(),'status':'Visualization clearance fit only; wall framing joints, foundations and floor support undesigned.','parts':{}}
@@ -147,3 +155,5 @@ print('Fitted',len(data['parts']),'wall framing/infill/floor/shelf components; s
       ,'model SHA',data['source_model_sha256'])
 
 # TIMESTAMP END 2026-11-02T13:44:32-05:00 | REVISION R004784
+
+# TIMESTAMP END 2026-11-05T05:14:11+00:00 | REVISION R000024

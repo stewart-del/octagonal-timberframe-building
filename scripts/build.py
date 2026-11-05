@@ -32,6 +32,10 @@ def executable_blocks(html):
             if b['attrs'].get('type','').lower() in ('','text/javascript','application/javascript')]
 
 ROOT = Path(__file__).resolve().parents[1]
+# TIMESTAMP START 2026-11-05T21:31:46+00:00 | REVISION R000067
+from restore_large_sources import restore as restore_large_sources
+restore_large_sources(ROOT)
+# TIMESTAMP END 2026-11-05T21:31:46+00:00 | REVISION R000067
 model_path = ROOT / 'src/model-data.json'
 data = json.loads(model_path.read_text())
 ids = [p['id'] for p in data['parts']]
@@ -71,17 +75,17 @@ load_review=(ROOT/'src/load-review.js').read_text().replace('__LOAD_REVIEW_JSON_
 load_review=load_review.replace('function updateHypotheticalPressure(){', "function updateHypotheticalPressure(){if(!MODEL_CONTEXT.pressureAvailable){$('hypotheticalPressure').textContent='Unavailable for proposed joints: baseline 64/12 in² pressure shortcuts are disabled. Reactions and capacities remain unsolved.';return;}")
 overlays = (ROOT/'src/geometry-overlays.js').read_text().replace('__CAVITY_JSON__', 'MODEL_CONTEXT.cavities').replace('let showHollows=true', 'let showHollows=MODEL_CONTEXT.cavities.available!==false')
 step_lap=json.loads((ROOT/'src/step-lap-proposal.json').read_text())
-assert step_lap['baseline_model_sha256']==model_sha, 'Proposed step-lap comparison must match its unchanged baseline'
+# TIMESTAMP START 2026-11-05T16:50:20+00:00 | REVISION R000055
+# Retain the old explanatory comparison with its original source hashes.
+# Current geometry is bound by a separate fresh actual-member audit.
+from validate_primary_auxiliary import validate as validate_primary_auxiliary
+current_primary=validate_primary_auxiliary(ROOT)
 assert step_lap['canonical_model_unchanged'] is True
-proposed_model=json.loads((ROOT/'src/step-lap-proposed-model.json').read_text())
-assert proposed_model['proposed_review']['baseline_model_sha256']==model_sha, 'Proposed model export is stale'
+proposed_model=current_primary['proposed']['model']
 assert 'NOT FABRICATION' in proposed_model['status'], 'Proposed export must retain its explicit status'
-expected_changes=set(step_lap['combined_geometry_audit']['changed_member_ids'])
-assert set(proposed_model['proposed_review']['changed_member_ids'])==expected_changes
 baseline_by_id={p['id']:p for p in data['parts']}
-assert [p['id'] for p in proposed_model['parts']]==ids, 'Proposed export must preserve inventory and ordering'
-actual_changes={p['id'] for p in proposed_model['parts'] if p!=baseline_by_id[p['id']]}
-assert actual_changes==expected_changes, 'Proposed export changed members do not match its reviewed scope'
+assert [p['id'] for p in proposed_model['parts']]==ids, 'Current proposed export must preserve inventory and ordering'
+# TIMESTAMP END 2026-11-05T16:50:20+00:00 | REVISION R000055
 proposed_sha=hashlib.sha256((ROOT/'src/step-lap-proposed-model.json').read_bytes()).hexdigest()
 proposed_load=json.loads((ROOT/'src/step-lap-proposed-load-review.json').read_text())
 proposed_cavities=json.loads((ROOT/'src/step-lap-proposed-cavities.json').read_text())
@@ -100,18 +104,34 @@ assert proposed_materials['source_sha256']==proposed_sha, 'Proposed inventory is
 assert proposed_load['issues']==[] and proposed_load['baseline_pressure_disabled'] is True, 'Baseline markers/area shortcuts must not be reused for proposed joints'
 assert sorted(m['id'] for m in proposed_load['members'])==sorted(m['id'] for m in load_data['members'])
 # TIMESTAMP START 2026-11-02T15:07:59-05:00 | REVISION R004800
-assert len(proposed_load['members'])==len(load_data['members'])==112 and all(math.isfinite(m['volume_m3']) and m['volume_m3']>0 and len(m['centroid_m'])==3 and all(math.isfinite(x) for x in m['centroid_m']) for m in proposed_load['members'])
+# TIMESTAMP START 2026-11-05T16:50:20+00:00 | REVISION R000055
+assert len(proposed_load['members'])==len(load_data['members'])==129 and all(math.isfinite(m['volume_m3']) and m['volume_m3']>0 and len(m['centroid_m'])==3 and all(math.isfinite(x) for x in m['centroid_m']) for m in proposed_load['members'])
+# TIMESTAMP END 2026-11-05T16:50:20+00:00 | REVISION R000055
 # TIMESTAMP END 2026-11-02T15:07:59-05:00 | REVISION R004800
 assert sorted(pid for g in proposed_materials['groups'] for pid in g['member_ids'])==sorted(ids)
-enclosure_fit=json.loads((ROOT/'src/enclosure-fit.json').read_text())
-proposed_enclosure_fit=json.loads((ROOT/'src/step-lap-proposed-enclosure-fit.json').read_text())
-module_sha=hashlib.sha256((ROOT/'src/schematic-walls.js').read_bytes()).hexdigest()
-assert enclosure_fit['source_model_sha256']==model_sha
-assert proposed_enclosure_fit['source_model_sha256']==proposed_sha
-assert enclosure_fit['source_module_sha256']==proposed_enclosure_fit['source_module_sha256']==module_sha
-foundation_data=json.loads((ROOT/'src/floor-foundation-solids.json').read_text())
-assert foundation_data['source_model_sha256']==model_sha
-assert foundation_data['source_module_sha256']==hashlib.sha256((ROOT/'src/floor-foundation.js').read_bytes()).hexdigest()
+# TIMESTAMP START 2026-11-05T20:08:59+00:00 | REVISION R000063
+from current_cache_bindings import verify as verify_cache_ownership,load_cache,assert_applies,runtime_descriptor
+cache_ownership=verify_cache_ownership()
+assert json.loads((ROOT/'src/current-cache-bindings.json').read_text())==cache_ownership,'Current cache descriptor differs from its immutable native proof'
+enclosure_fit=load_cache('enclosure-baseline','baseline',cache_ownership)
+proposed_enclosure_fit=load_cache('enclosure-proposed','proposed',cache_ownership)
+assert_applies(enclosure_fit,'enclosure-baseline','baseline',cache_ownership)
+assert_applies(proposed_enclosure_fit,'enclosure-proposed','proposed',cache_ownership)
+# TIMESTAMP END 2026-11-05T20:08:59+00:00 | REVISION R000063
+# TIMESTAMP START 2026-11-05T05:14:11+00:00 | REVISION R000024
+from physical_data import read_physical_json
+# TIMESTAMP START 2026-11-05T20:08:59+00:00 | REVISION R000063
+foundation_data=load_cache('floor','baseline',cache_ownership,physical=True)
+# TIMESTAMP END 2026-11-05T20:08:59+00:00 | REVISION R000063
+# TIMESTAMP START 2026-11-05T12:40:59+00:00 | REVISION R000041
+architecture_data=read_physical_json(ROOT/'src/architectural-solids.json')
+assert architecture_data['status']=='PASS','The detailed architectural assembly is not ready for publication'
+foundation_data={**foundation_data,'architecture':architecture_data}
+# TIMESTAMP END 2026-11-05T12:40:59+00:00 | REVISION R000041
+# TIMESTAMP END 2026-11-05T05:14:11+00:00 | REVISION R000024
+# TIMESTAMP START 2026-11-05T20:08:59+00:00 | REVISION R000063
+assert_applies(foundation_data,'floor','baseline',cache_ownership)
+# TIMESTAMP END 2026-11-05T20:08:59+00:00 | REVISION R000063
 # Foundation layout is valid for either selected model only when actual post centers match.
 for selected_model in [data,proposed_model]:
  assert [next(p for p in selected_model['parts'] if p['id']=='P'+str(k))['center'][::2] for k in range(8)]==[[p[0],p[2]] for p in foundation_data['layout']['sourcePostCenters']]
@@ -125,11 +145,16 @@ top_path=ROOT/'src/top-entry-proposed-model.json'
 top_model=json.loads(top_path.read_text())
 top_sha=hashlib.sha256(top_path.read_bytes()).hexdigest()
 top_aux={key:json.loads((ROOT/('src/top-entry-proposed-'+suffix+'.json')).read_text()) for key,suffix in [('loadReview','load-review'),('materials','material-groups'),('enclosureFit','enclosure-fit'),('cavities','cavities')]}
+# TIMESTAMP START 2026-11-05T20:08:59+00:00 | REVISION R000063
+top_aux['enclosureFit']=load_cache('enclosure-top-entry','top-entry',cache_ownership)
 for key,value in top_aux.items():
-    assert value.get('source_model_sha256',value.get('source_sha256'))==top_sha, 'Top-entry auxiliary hash mismatch: '+key
-assert top_aux['enclosureFit']['source_module_sha256']==module_sha
+    if key=='enclosureFit':assert_applies(value,'enclosure-top-entry','top-entry',cache_ownership)
+    else:assert value.get('source_model_sha256',value.get('source_sha256'))==top_sha,'Top-entry auxiliary hash mismatch: '+key
+# TIMESTAMP END 2026-11-05T20:08:59+00:00 | REVISION R000063
 # TIMESTAMP START 2026-11-02T15:07:59-05:00 | REVISION R004800
-assert len(top_aux['loadReview']['members'])==len(load_data['members'])==112
+# TIMESTAMP START 2026-11-05T16:50:20+00:00 | REVISION R000055
+assert len(top_aux['loadReview']['members'])==len(load_data['members'])==129
+# TIMESTAMP END 2026-11-05T16:50:20+00:00 | REVISION R000055
 # TIMESTAMP END 2026-11-02T15:07:59-05:00 | REVISION R004800
 # TIMESTAMP START 2026-11-02T17:13:18-05:00 | REVISION R004819
 assert {p['id'] for p in top_model['parts'] if p['is_timber']}=={p['id'] for p in data['parts'] if p['is_timber']}
@@ -143,12 +168,19 @@ for relative,sha in top_cavity_audit['sources'].items():
 top_aux['cavities']['fit_audit']={key:top_cavity_audit[key] for key in ['status','summary']}
 # TIMESTAMP END 2026-11-02T17:13:18-05:00 | REVISION R004819
 model_variants['top-entry']={'model':top_model,'sha256':top_sha,**top_aux}
+# TIMESTAMP START 2026-11-05T20:08:59+00:00 | REVISION R000063
+for selected_variant in model_variants.values():selected_variant['cacheOwnership']=runtime_descriptor(cache_ownership)
+# TIMESTAMP END 2026-11-05T20:08:59+00:00 | REVISION R000063
 # TIMESTAMP START 2026-11-02T20:38:50-05:00 | REVISION R004870
-wall_joinery=json.loads((ROOT/'src/wall-joinery-fit.json').read_text())
+# TIMESTAMP START 2026-11-05T20:08:59+00:00 | REVISION R000063
+wall_joinery=load_cache('wall','baseline',cache_ownership)
+# TIMESTAMP END 2026-11-05T20:08:59+00:00 | REVISION R000063
 wall_joinery_sha=hashlib.sha256((ROOT/'src/wall-joinery-fit.json').read_bytes()).hexdigest()
 for variant,fit in wall_joinery['variants'].items():
     assert fit['status']=='PASS'
-    for relative,expected in fit['sources'].items():assert hashlib.sha256((ROOT/relative).read_bytes()).hexdigest()==expected, 'Stale wall joinery: '+relative
+    # TIMESTAMP START 2026-11-05T20:08:59+00:00 | REVISION R000063
+    assert_applies(fit,'wall',variant,cache_ownership)
+    # TIMESTAMP END 2026-11-05T20:08:59+00:00 | REVISION R000063
 wall_joinery_code='const WALL_JOINERY_DATA='+encode(wall_joinery)+';\n'+(ROOT/'src/wall-joinery.js').read_text()
 def assembled_model(model,variant):
     fit=wall_joinery['variants'][variant]
@@ -196,12 +228,11 @@ assert hashlib.sha256((ROOT/brace_sections['image']['path']).read_bytes()).hexdi
 # TIMESTAMP START 2026-11-02T15:07:59-05:00 | REVISION R004800
 mudroom_source=(ROOT/'src/mudroom.js').read_text()
 mudroom_roof_source=(ROOT/'src/mudroom-roof.js').read_text()
-mudroom_fit=json.loads((ROOT/'src/mudroom-joinery-fit.json').read_text())
-assert mudroom_fit['status']=='PASS', 'Porch joinery must pass before publishing'
-assert mudroom_fit['source_model_sha256']==model_sha, 'Porch fit model is stale'
-assert mudroom_fit['source_module_sha256']==hashlib.sha256(mudroom_source.encode()).hexdigest(), 'Porch joint source is stale'
-assert mudroom_fit['source_roof_module_sha256']==hashlib.sha256(mudroom_roof_source.encode()).hexdigest(), 'Porch roof source is stale'
-assert mudroom_fit['source_fitter_sha256']==hashlib.sha256((ROOT/'scripts/fit_mudroom_joinery.py').read_bytes()).hexdigest(), 'Porch joint generator is stale'
+# TIMESTAMP START 2026-11-05T20:08:59+00:00 | REVISION R000063
+mudroom_fit=load_cache('porch','baseline',cache_ownership)
+assert mudroom_fit['status']=='PASS','Porch joinery must pass before publishing'
+assert_applies(mudroom_fit,'porch','baseline',cache_ownership)
+# TIMESTAMP END 2026-11-05T20:08:59+00:00 | REVISION R000063
 for selected_model in [data,proposed_model,top_model]:
     for pid,anchor in mudroom_fit['anchors'].items():
         assert next(p for p in selected_model['parts'] if p['id']==pid)['center']==anchor, 'Porch anchor differs between models'
@@ -247,9 +278,29 @@ template=template.replace('/*__DISASSEMBLY__*/',disassembly_code)
 # TIMESTAMP START 2026-11-02T14:22:13-05:00 | REVISION R004792
 # TIMESTAMP START 2026-11-02T20:38:50-05:00 | REVISION R004870
 template=template.replace('/*__WALL_JOINERY__*/',wall_joinery_code)
+# TIMESTAMP START 2026-11-05T04:09:58+00:00 | REVISION R000018
+# TIMESTAMP START 2026-11-05T04:29:18+00:00 | REVISION R000022
+assert template.count('/*__PHYSICAL_PARTS__*/')==1
+template=template.replace('/*__PHYSICAL_PARTS__*/',(ROOT/'src/physical-parts.js').read_text())
+# TIMESTAMP END 2026-11-05T04:29:18+00:00 | REVISION R000022
+assert template.count('/*__FOUNDATION_TAKEOFF__*/')==1
+template=template.replace('/*__FOUNDATION_TAKEOFF__*/',(ROOT/'src/foundation-takeoff.js').read_text())
+# TIMESTAMP START 2026-11-05T06:53:24+00:00 | REVISION R000030
+assert template.count('/*__COMPONENT_INVENTORY__*/')==1
+template=template.replace('/*__COMPONENT_INVENTORY__*/',(ROOT/'src/component-inventory.js').read_text())
+# TIMESTAMP END 2026-11-05T06:53:24+00:00 | REVISION R000030
+# TIMESTAMP END 2026-11-05T04:09:58+00:00 | REVISION R000018
 # TIMESTAMP START 2026-11-03T13:30:29-05:00 | REVISION R005026
 # TIMESTAMP START 2026-11-03T13:59:01-05:00 | REVISION R005033
-for marker,name in [('/*__JOINERY_DIMENSIONS__*/','joinery-dimensions.js'),('/*__PARAMETRIC_MODEL__*/','parametric-model.js'),('/*__PARAMETRIC_CONTROLS__*/','parametric-controls.js'),('/*__MOTION_MODES__*/','motion-modes.js')]:
+# TIMESTAMP START 2026-11-05T12:40:59+00:00 | REVISION R000041
+# TIMESTAMP START 2026-11-05T17:09:28+00:00 | REVISION R000057
+# TIMESTAMP START 2026-11-05T17:19:58+00:00 | REVISION R000058
+# TIMESTAMP START 2026-11-05T20:08:59+00:00 | REVISION R000063
+for marker,name in [('/*__CURRENT_CACHE_BINDINGS__*/','current-cache-bindings.js'),('/*__CUPOLA_PARAMETRIC__*/','cupola-parametric.js'),('/*__WINDOW_ASSEMBLIES__*/','window-assemblies.js'),('/*__ARCHITECTURE__*/','architecture.js'),('/*__JOINERY_DIMENSIONS__*/','joinery-dimensions.js'),('/*__PARAMETRIC_MODEL__*/','parametric-model.js'),('/*__PARAMETRIC_CONTROLS__*/','parametric-controls.js'),('/*__MOTION_MODES__*/','motion-modes.js')]:
+# TIMESTAMP END 2026-11-05T20:08:59+00:00 | REVISION R000063
+# TIMESTAMP END 2026-11-05T17:19:58+00:00 | REVISION R000058
+# TIMESTAMP END 2026-11-05T17:09:28+00:00 | REVISION R000057
+# TIMESTAMP END 2026-11-05T12:40:59+00:00 | REVISION R000041
 # TIMESTAMP END 2026-11-03T13:59:01-05:00 | REVISION R005033
     assert template.count(marker)==1
     template=template.replace(marker,(ROOT/'src'/name).read_text())
