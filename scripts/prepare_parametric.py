@@ -5,6 +5,9 @@ Only the original roof-occupied pocket material is restored. All brace, tie,
 cupola-band and peg cuts remain intact. Runtime recipes then recut these blanks.
 """
 import hashlib,json
+# TIMESTAMP START 2026-11-04T19:57:30+00:00 | REVISION R000005
+import numpy as np
+# TIMESTAMP END 2026-11-04T19:57:30+00:00 | REVISION R000005
 from pathlib import Path
 from step_lap import mesh,original_stock
 # TIMESTAMP START 2026-11-03T16:40:59-05:00 | REVISION R005059
@@ -38,6 +41,16 @@ for variant,name in VARIANTS.items():
                 if key.startswith(('T','L','CP')) and (q.get('is_timber') or q.get('is_fastener')):
                     mate=solid(q)
                     if (after^mate).volume()>1e-12:after=after-mate
+            # TIMESTAMP START 2026-11-04T19:57:30+00:00 | REVISION R000005
+            # Preserve the approved local erection opening while restoring the
+            # seated roof pocket for a changed pitch.
+            entry=model.get('joinery_entry_regions',{}).get(pid)
+            if model.get('independent_hip_entry_revision') and entry and entry['triangles']:
+                joint=next(j for j in model['tenon_schedule'] if j['donor']=='R0' and j['receiver']==pid)
+                depth=np.asarray(parts['R0']['stock_frame']['depth'])
+                top=float(np.max(np.asarray(joint['connector']['vertices'])@depth))
+                after=after-solid(entry).trim_by_plane(depth.tolist(),top)
+            # TIMESTAMP END 2026-11-04T19:57:30+00:00 | REVISION R000005
             # TIMESTAMP START 2026-11-03T15:42:57-05:00 | REVISION R005038
             after=normalized(after)
             # TIMESTAMP END 2026-11-03T15:42:57-05:00 | REVISION R005038

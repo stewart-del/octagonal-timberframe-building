@@ -36,6 +36,31 @@ crossing=[{'member_ids':['moving'],'delta_m':[2,0,0]},{'member_ids':['blocker'],
 relative=check_multi_stage(scene,crossing);assert relative['status']=='BLOCKED' and any(q['other_moving'] for q in relative['collisions'])
 parallel=[{'member_ids':['moving'],'delta_m':[0,2,0]},{'member_ids':['blocker'],'delta_m':[0,2,0]}]
 relative=check_multi_stage(scene,parallel);assert relative['status']=='PASS';apply_multi_stage(scene,parallel,relative)
+# TIMESTAMP START 2026-11-04T22:33:09+00:00 | REVISION R000010
+from unittest.mock import patch
+from plan_architectural_disassembly import attempt_path
+before_offsets={pid:q.copy() for pid,q in scene.offsets.items()};before_stages=list(scene.stages);before_version=scene.version
+first_proof=check_stage(scene,['moving'],[0,1,0]);assert first_proof['status']=='PASS'
+for numerical_failure in [('Swept prism volume mismatch',.37,.3700000000002),('Explicit swept prism failed',1.1e-14,-8e-15)]:
+    with patch('plan_architectural_disassembly.check_stage',side_effect=[first_proof,AssertionError(numerical_failure)]):
+        accepted,rejection=attempt_path(scene,'Uncertifiable candidate',['moving'],[[0,1,0],[0,1,0]])
+    assert not accepted and rejection['status']=='UNRESOLVED'
+    assert all(np.array_equal(scene.offsets[pid],before_offsets[pid]) for pid in scene.parts)
+    assert scene.stages==before_stages and scene.version==before_version,'Rejected numerical candidates cannot leave partially applied motion'
+# Validate the same real prism at large world coordinates; translating it back
+# must recover its analytic volume without relaxing the physical error bound.
+for origin in [[0,0,0],[50,-30,70],[-70,40,-50]]:
+    origin=np.asarray(origin,float)
+    tri=np.array([[0,0,0],[1,0,0],[.2,1e-9,0]])+origin
+    delta=np.array([3.,-2.,20.]);expected=abs(np.dot(np.cross(tri[1]-tri[0],tri[2]-tri[0]),delta))/2
+    actual=triangle_prism(tri,delta).translate((-origin).tolist()).volume()
+    assert abs(actual-expected)<=VOLUME_TOLERANCE_M3/100
+# Other failed invariants must still surface rather than being suppressed.
+with patch('plan_architectural_disassembly.check_stage',side_effect=AssertionError('Invalid physical scene')):
+    try:attempt_path(scene,'Invalid candidate',['moving'],[[0,1,0]])
+    except AssertionError as error:assert str(error)=='Invalid physical scene'
+    else:raise AssertionError('Unexpected audit failures must surface')
+# TIMESTAMP END 2026-11-04T22:33:09+00:00 | REVISION R000010
 print('PASS: continuous concave-slot sweep, parked obstacles, rigid groups and relative moving-to-moving collisions')
 if '--replay-plan' in sys.argv:
     root=Path(__file__).resolve().parents[1];plan=json.loads((root/'src/disassembly-plan.json').read_text())

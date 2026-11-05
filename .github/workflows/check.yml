@@ -1,3 +1,5 @@
+# TIMESTAMP START 2026-11-04T23:48:03+00:00 | REVISION R000012
+# TIMESTAMP START 2026-11-04T23:23:25+00:00 | REVISION R000011
 # TIMESTAMP START 2026-11-04T20:33:26+00:00 | REVISION R000023
 name: Check R01 geometry and viewer
 on: [push, pull_request]
@@ -69,6 +71,9 @@ jobs:
       - run: node tests/disassembly.cjs
 # TIMESTAMP START 2026-11-02T17:13:18-05:00 | REVISION R004819
       - run: python3 tests/test_cupola_foot.py
+      # TIMESTAMP START 2026-11-04T19:57:30+00:00 | REVISION R000005
+      - run: python3 tests/test_cupola_entry.py
+      # TIMESTAMP END 2026-11-04T19:57:30+00:00 | REVISION R000005
       - run: python3 tests/test_architectural_disassembly.py --replay-plan
       - run: python3 tests/test_main_disassembly.py
 # TIMESTAMP END 2026-11-02T17:13:18-05:00 | REVISION R004819
@@ -92,6 +97,9 @@ jobs:
       - run: python3 tests/test_enclosure_fit.py
 # TIMESTAMP START 2026-11-02T17:13:18-05:00 | REVISION R004819
       - run: python3 tests/test_enclosure_seams.py
+      # TIMESTAMP START 2026-11-04T20:06:20+00:00 | REVISION R000007
+      - run: python3 tests/test_wall_panel_entry.py
+      # TIMESTAMP END 2026-11-04T20:06:20+00:00 | REVISION R000007
 # TIMESTAMP END 2026-11-02T17:13:18-05:00 | REVISION R004819
 # TIMESTAMP START 2026-11-02T18:39:35-05:00 | REVISION R004836
       - run: python3 tests/test_brace_visibility.py
@@ -103,6 +111,9 @@ jobs:
       - run: node tests/cut-face-analysis.cjs
       - run: node tests/floor-foundation.cjs
       - run: python3 tests/test_floor_solids.py
+      # TIMESTAMP START 2026-11-04T19:48:56+00:00 | REVISION R000004
+      - run: python3 tests/test_subfloor_panels.py
+      # TIMESTAMP END 2026-11-04T19:48:56+00:00 | REVISION R000004
       # TIMESTAMP START 2026-11-04T23:17:24+00:00 | REVISION R000029
       - run: python3 scripts/audit_underlayment.py --check --self-test
       # TIMESTAMP END 2026-11-04T23:17:24+00:00 | REVISION R000029
@@ -125,7 +136,14 @@ jobs:
       # TIMESTAMP END 2026-11-04T19:39:10+00:00 | REVISION R000015
       - run: node tests/joinery-dimensions.cjs
       - run: node tests/motion-modes.cjs
+      # TIMESTAMP START 2026-11-04T20:00:49+00:00 | REVISION R000006
+      - run: python3 tests/test_construction_order.py
+      # TIMESTAMP END 2026-11-04T20:00:49+00:00 | REVISION R000006
       - run: node tests/parametric-model.cjs top-entry 5 96
       - run: python3 tests/test_parametric_geometry.py /tmp/octagon-parameter-top-entry-5-96.json
       # TIMESTAMP END 2026-11-03T17:08:46-05:00 | REVISION R005066
 # TIMESTAMP END 2026-11-04T20:33:26+00:00 | REVISION R000023
+
+# TIMESTAMP END 2026-11-04T23:23:25+00:00 | REVISION R000011
+
+# TIMESTAMP END 2026-11-04T23:48:03+00:00 | REVISION R000012

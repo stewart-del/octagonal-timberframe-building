@@ -1,3 +1,4 @@
+// TIMESTAMP START 2026-11-04T23:48:03+00:00 | REVISION R000012
 /* Proposed layout only: sizes, supports and elevations require engineering. */
 (function(root){
 const I=.0254,ft=.3048;
@@ -56,3 +57,5 @@ function assembly(model,solidData){const report=build(model);if(JSON.stringify(r
 function roomLayout(model,base,solidData){const a=assembly(model,solidData);return {...base,foundation:a,components:[...base.components.filter(p=>!['grate','footer'].includes(p.schematicKind)),...a.components]};}
 const api={build,assembly,roomLayout,settingOutSVG,measure};root.OctagonFloorFoundation=api;if(typeof module!=='undefined'&&module.exports)module.exports=api;
 })(typeof globalThis!=='undefined'?globalThis:this);
+
+// TIMESTAMP END 2026-11-04T23:48:03+00:00 | REVISION R000012

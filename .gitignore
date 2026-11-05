@@ -1,3 +1,4 @@
+# TIMESTAMP START 2026-11-04T23:23:25+00:00 | REVISION R000011
 .DS_Store
 dist/
 tests/embedded-model.json
@@ -20,3 +21,5 @@ public/downloads/Octagon-model-and-review.zip.tmp
 # The build generates the complete offline export; Sites source blobs cap at 32 MiB.
 /index.html
 # TIMESTAMP END 2026-11-04T21:11:41+00:00 | REVISION R000027
+
+# TIMESTAMP END 2026-11-04T23:23:25+00:00 | REVISION R000011

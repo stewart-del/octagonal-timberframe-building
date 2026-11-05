@@ -1,3 +1,4 @@
+# TIMESTAMP START 2026-11-04T23:48:03+00:00 | REVISION R000012
 """Display-only proposed assembly solids; no engineered capacities."""
 from pathlib import Path
 import subprocess,json,math,hashlib
@@ -109,3 +110,5 @@ for part in parts:part.update(sheet_info.get(part['id'],{}))
 (R/'src/floor-foundation-solids.json').write_text(json.dumps({'source_model_sha256':hashlib.sha256(raw).hexdigest(),'source_module_sha256':hashlib.sha256((R/'src/floor-foundation.js').read_bytes()).hexdigest(),'layout':layout,'parts':parts},separators=(',',':'))+'\n')
 # TIMESTAMP END 2026-11-04T23:17:24+00:00 | REVISION R000029
 print(len(parts),'proposed solids')
+
+# TIMESTAMP END 2026-11-04T23:48:03+00:00 | REVISION R000012

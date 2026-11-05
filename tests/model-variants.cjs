@@ -1,3 +1,4 @@
+// TIMESTAMP START 2026-11-04T23:23:25+00:00 | REVISION R000011
 // TIMESTAMP START 2026-11-04T20:33:26+00:00 | REVISION R000023
 'use strict';
 const assert=require('node:assert');
@@ -135,3 +136,5 @@ for(const view of ['assembled','exploded']){
 console.log('PASS: actual default top-entry, perimeter proposal and baseline runtime meshes, 112 weights/centroids, hash-bound inventory/cavities/plans, reversible selector, no stale pressures/markers and source-matched JSON/GLB exports');
 // TIMESTAMP END 2026-11-02T15:19:38-05:00 | REVISION R004803
 // TIMESTAMP END 2026-11-04T20:33:26+00:00 | REVISION R000023
+
+// TIMESTAMP END 2026-11-04T23:23:25+00:00 | REVISION R000011

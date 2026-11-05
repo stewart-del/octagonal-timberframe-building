@@ -124,10 +124,16 @@ for p in unsplit:
  expected,_=normalize_boundary(expected)
  ids=[q['id'] for q in components if q.get('panelAssemblyId')==p['id']]
  children=[solid(dict(data['parts'][pid],id=pid)) for pid in ids]
- assembled=m.Manifold.batch_boolean(children,m.OpType.Add)
+ # TIMESTAMP START 2026-11-04T20:06:20+00:00 | REVISION R000007
+ lower=m.Manifold.batch_boolean([shape for pid,shape in zip(ids,children) if next(p for p in components if p['id']==pid)['panelSeamPart']=='lower'],m.OpType.Add)
+ upper=m.Manifold.batch_boolean([shape for pid,shape in zip(ids,children) if next(p for p in components if p['id']==pid)['panelSeamPart']=='upper'],m.OpType.Add)
+ assembled=lower+upper
+ # TIMESTAMP END 2026-11-04T20:06:20+00:00 | REVISION R000007
  error=abs((expected-assembled).volume())+abs((assembled-expected).volume())
- intersection=abs((children[0]^children[1]).volume())
- assert len(children)==2 and error<FIT_TOLERANCE_M3 and intersection<FIT_TOLERANCE_M3,p['id']
+ # TIMESTAMP START 2026-11-04T20:06:20+00:00 | REVISION R000007
+ intersection=abs((lower^upper).volume())
+ assert len(children)>=2 and error<FIT_TOLERANCE_M3 and intersection<FIT_TOLERANCE_M3,p['id']
+ # TIMESTAMP END 2026-11-04T20:06:20+00:00 | REVISION R000007
  data['panel_seams'][p['id']]={'status':'PASS','child_ids':ids,'plane_y_m':64*.0254,
   'original_fitted_volume_m3':expected.volume(),'reassembled_volume_m3':assembled.volume(),
   'symmetric_volume_difference_m3':error,'child_overlap_m3':intersection,

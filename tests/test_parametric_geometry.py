@@ -1,3 +1,4 @@
+# TIMESTAMP START 2026-11-04T23:23:25+00:00 | REVISION R000011
 # TIMESTAMP START 2026-11-03T13:09:36-05:00 | REVISION R005024
 """Independent solid-kernel readback of browser-generated parametric geometry."""
 import itertools,json,sys
@@ -35,3 +36,5 @@ for joint in model['tenon_schedule']:
 print(json.dumps({'parameters':data['config'],'invalid':invalid,'overlaps':overlaps,'checks':checks},indent=2))
 assert not invalid and not overlaps,'Parametric physical solids fail independent readback'
 # TIMESTAMP END 2026-11-03T13:09:36-05:00 | REVISION R005024
+
+# TIMESTAMP END 2026-11-04T23:23:25+00:00 | REVISION R000011

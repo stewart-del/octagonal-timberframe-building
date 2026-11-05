@@ -1,3 +1,4 @@
+# TIMESTAMP START 2026-11-04T23:23:25+00:00 | REVISION R000011
 # TIMESTAMP START 2026-11-04T19:33:21+00:00 | REVISION R000014
 """Read actual brace meshes: lower inward feet, square bearing and 3 in tips."""
 from pathlib import Path
@@ -155,3 +156,5 @@ def main():
 
 if __name__=='__main__':main()
 # TIMESTAMP END 2026-11-04T19:33:21+00:00 | REVISION R000014
+
+# TIMESTAMP END 2026-11-04T23:23:25+00:00 | REVISION R000011

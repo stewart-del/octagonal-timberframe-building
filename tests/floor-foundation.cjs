@@ -1,3 +1,4 @@
+// TIMESTAMP START 2026-11-04T23:48:03+00:00 | REVISION R000012
 // TIMESTAMP START 2026-11-02T20:27:45-05:00 | REVISION R004866
 const assert=require('node:assert/strict'),A=require('../src/floor-foundation.js'),m=require('../src/model-data.json'),snapshot=JSON.stringify(m),r=A.build(m);
 // TIMESTAMP START 2026-11-03T12:04:27-05:00 | REVISION R005002
@@ -31,3 +32,5 @@ assert.equal(sheets.stockLengthM,8*.3048);assert.equal(sheets.stockWidthM,4*.304
 assert.equal(solids.filter(p=>p.floorRole==='underlayment_sheet').length,28);
 const D=require('../src/joinery-dimensions.js');for(const panel of solids.filter(p=>p.floorRole==='underlayment_sheet')){const blank=D.blank(panel);assert(blank.minimumLengthIn<=96+1e-6&&blank.widthIn<=48+1e-6&&Math.abs(blank.depthIn-1.5)<1e-6);}
 // TIMESTAMP END 2026-11-04T23:17:24+00:00 | REVISION R000029
+
+// TIMESTAMP END 2026-11-04T23:48:03+00:00 | REVISION R000012

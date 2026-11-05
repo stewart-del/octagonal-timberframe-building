@@ -326,11 +326,11 @@
   ],
   "scope": "Geometric cut layout; 28 installed cut pieces, not an optimized sheet purchase count. Existing thickness and elevations retained.",
   "sources": {
-    "src/floor-foundation-solids.json": "0db479e2b6fd37505e06f03b1b10d270df3c1c17dccf66b3c7fb89b096dd24ea",
-    "src/floor-foundation.js": "bb18e3d8146493cd40bc369138291d923a8a019a4dce370eebc08a63877b1cd2",
-    "scripts/floor_sheet_panels.py": "b8ad1449d471db5612467d2a2db1ced36db941dc96a2a028d4290ef7990b6cae",
-    "scripts/build_floor_solids.py": "acb3959c088092abefa66d30636d3e2b584435f5b27397b50fbe82b4b5a0da13",
-    "scripts/audit_underlayment.py": "874295fa2e87d8587a958f0d9eef6c03242c8896318e48df1bb1cbed6681005c",
+    "src/floor-foundation-solids.json": "4b990584305eb421348afb3f2bedc02d371277bd6197974a2bebc97bf1d7be47",
+    "src/floor-foundation.js": "e4fa0d8152ad90a210ce1f278697e02ff4bc8cd3f2125e712e000154eefe037d",
+    "scripts/floor_sheet_panels.py": "cf02cebcc70639489426dbe1c14e56418e9c6d661b3848f420bcec4ba330ebee",
+    "scripts/build_floor_solids.py": "f9d4c208c63e5f42967fb1492472a91945df16937f386ed020e86a3c644d2068",
+    "scripts/audit_underlayment.py": "4b0b7511eff80e690f15b28b25310acda37d02b5ff0507cea81f3aed36e37fd1",
     "scripts/fixtures/underlayment-footprint.json": "94c12b09cd85863d6ba7dfb1f0bc51fa83cbada3cb0f0d999b17f9fc41d6e615"
   },
   "image": {

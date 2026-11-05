@@ -1,0 +1,223 @@
+{
+  "status": "PASS",
+  "revision": "R000012",
+  "timestamp": "2026-11-05T01:20:35.892464+00:00",
+  "sources": {
+    "src/top-entry-proposed-model.json": "60d28d017da04b6c002ca4f1931d92d219c3863009813a4576152387c5164692",
+    "src/top-entry-proposed-enclosure-fit.json": "57331e58b0106160ac2d2fbb84b5bda566ce97b65cdcdebd0d90b4c890dffaac",
+    "src/wall-joinery-fit.json": "4cf1c9dad53de6aa3b5781381909f52ed6c916267ceeccae0ef86a5954664699",
+    "src/wall-joinery.js": "1822e828eb5108c055b6cda3751ed80f88364ccdbcd99db3edf3ba5148ed3886",
+    "src/floor-foundation-solids.json": "4b990584305eb421348afb3f2bedc02d371277bd6197974a2bebc97bf1d7be47",
+    "src/mudroom-joinery-fit.json": "da19fd084006eea06f184eb3961c718f683d28ea6198542582f814b649682b3d",
+    "src/mudroom.js": "c24c846803d1500474a3e06c387cd2856cc67ea291d144d42a5efa9bb6242c51",
+    "src/mudroom-roof.js": "480fc669689b8a23439d0579383883dfe8c2f602bf9f14c70133d0c69ff3bcec",
+    "src/roof-coverings.js": "a956b8626e061e054f1c0c1a70e1643361b1fd16767e7f58223ef723dcb31fb9",
+    "src/floor-foundation.js": "e4fa0d8152ad90a210ce1f278697e02ff4bc8cd3f2125e712e000154eefe037d",
+    "src/schematic-walls.js": "c36bbd6d14757739ae71c2b20b7d8e1291a0d7ca287a61c8397b9c7f9e8e27e7",
+    "src/display-presets.js": "e0dbf59c673711306db1edb131b9b6661d8e92ebde5f08d99d605c29c9c9b42a",
+    "scripts/plan_architectural_disassembly.py": "4818e38e14434fe11e274ae8bad8b3a8608fd293c193fa61904f014be60f33cd",
+    "scripts/plan_porch_disassembly.py": "e077fca8031b7196adb9108068bce7bfd67a1a657abf1c9abf590a6788f3638b",
+    "scripts/plan_main_disassembly.py": "f1ba3879f596ea70c4947cd0739b0df7f2b2db0e3725e4e3af22ae37d147f8f6",
+    "scripts/plan_compact_disassembly.py": "f91326145b5ccca707f0d36e62b9f9e673428e1c136fe65d1affb52bc7510621",
+    "scripts/plan_revised_disassembly.py": "308325c8b95f06103847693dec4812a49fcd4f133b09b7fd50efe390b35d31c7",
+    "scripts/revised-disassembly-seed.json": "8b3a3a9236da78a13d5c96385b329eada948c0aa8c9e288894c91bb8161fac75",
+    "scripts/compact-disassembly-route.json": "b4641f7adb96379b7d4be3be26a2ddc92c453b5fa089b41fcf60b115d42c59a9",
+    "docs/cupola-foot-prototype.json": "0b9f2c73432b0e5d3d2405f45bd7fe26858236684a6c7b5b9552385f2e8bf40c",
+    "scripts/plan_construction_order.py": "74489bb7c07835a2dfc3a3104e6fa5b61913af0297a38bdb1dfe3f9908817aa5",
+    "scripts/construction-disassembly-route.json": "d23b551982beaff226e6db23754d70f634208f377a4f26f57c2efa6ddc17517f",
+    "scripts/cupola_independent_entry.py": "0e34fbcb003f76ecba2c45077459b6f2a1b45c9de6b23f4638d52b0fed6eef61",
+    "scripts/compact-construction-endpoints.json": "d2cbdae5f87a4950dc17bc2720eb972bd590887617f6f8d2920b8c7b0ff20626"
+  },
+  "physical_piece_count": 1286,
+  "stage_count": 2181,
+  "verification": {
+    "status": "PASS",
+    "independent_full_scene_replay": true,
+    "initial_assembly": {
+      "status": "PASS",
+      "physical_piece_count": 1286,
+      "pair_checks": 6897,
+      "maximum_intersection_m3": 1.1796119636642288e-16,
+      "collisions": [],
+      "overlap_tolerance_m3": 1.6387064e-11
+    },
+    "stage_count": 2181,
+    "continuous_pair_checks": 29795,
+    "maximum_intersection_m3": 2.8813990916426814e-16,
+    "discarded_sweep_prism_volume_m3": 8.934860679844565e-11,
+    "parked_pieces_retained": true,
+    "moving_group_pairs_checked": true,
+    "overlap_tolerance_m3": 1.6387064e-11,
+    "exact_physical_mesh_equality_after_rebuild": true,
+    "source_metadata_rebindings": {},
+    "final_mating_separation": {
+      "status": "PASS",
+      "initial_mating_pair_count": 1746,
+      "remaining_mating_pairs": [],
+      "intentionally_anchored_mating_pairs": [
+        [
+          "FLOOR-CENTRAL-HUB",
+          "PIER-C"
+        ]
+      ],
+      "continuous_column_display_seams": [
+        [
+          "PIER-0",
+          "PIER-0-BELOW"
+        ],
+        [
+          "PIER-1",
+          "PIER-1-BELOW"
+        ],
+        [
+          "PIER-2",
+          "PIER-2-BELOW"
+        ],
+        [
+          "PIER-3",
+          "PIER-3-BELOW"
+        ],
+        [
+          "PIER-4",
+          "PIER-4-BELOW"
+        ],
+        [
+          "PIER-5",
+          "PIER-5-BELOW"
+        ],
+        [
+          "PIER-6",
+          "PIER-6-BELOW"
+        ],
+        [
+          "PIER-7",
+          "PIER-7-BELOW"
+        ],
+        [
+          "PIER-C",
+          "PIER-C-BELOW"
+        ],
+        [
+          "PIER-MID-0",
+          "PIER-MID-0-BELOW"
+        ],
+        [
+          "PIER-MID-1",
+          "PIER-MID-1-BELOW"
+        ],
+        [
+          "PIER-MID-2",
+          "PIER-MID-2-BELOW"
+        ],
+        [
+          "PIER-MID-3",
+          "PIER-MID-3-BELOW"
+        ],
+        [
+          "PIER-MID-4",
+          "PIER-MID-4-BELOW"
+        ],
+        [
+          "PIER-MID-5",
+          "PIER-MID-5-BELOW"
+        ],
+        [
+          "PIER-MID-6",
+          "PIER-MID-6-BELOW"
+        ],
+        [
+          "PIER-MID-7",
+          "PIER-MID-7-BELOW"
+        ]
+      ],
+      "minimum_required_final_gap_m": 1e-05,
+      "scope": "All initially contacting canonical timber/pegs, fitted porch stock/pegs, floor/support members and individual wall rails/infill/shelves; non-interlocking roof covering and window assemblies may remain grouped."
+    }
+  },
+  "reverse_phases": {
+    "finish": [
+      0,
+      1
+    ],
+    "windows": [
+      1,
+      25
+    ],
+    "walls": [
+      25,
+      266
+    ],
+    "porch": [
+      266,
+      388
+    ],
+    "roof": [
+      388,
+      496
+    ],
+    "trusses": [
+      496,
+      520
+    ],
+    "cupola": [
+      520,
+      562
+    ],
+    "ties": [
+      562,
+      760
+    ],
+    "posts": [
+      760,
+      1074
+    ],
+    "post-caps": [
+      1074,
+      1090
+    ],
+    "underlayment": [
+      1090,
+      1286
+    ],
+    "floor-supports": [
+      1286,
+      1476
+    ],
+    "foundations": [
+      1476,
+      1508
+    ],
+    "compact": [
+      1508,
+      2181
+    ]
+  },
+  "construction_sequence": [
+    "Main continuous concrete columns",
+    "Floor supports and joists",
+    "28 individual staggered4 by8 underlayment sheets, cut at the perimeter",
+    "Post-bearing caps and vertical posts with bare framing",
+    "Opposite cross-beams and the original welded eight-L connector",
+    "Central cupola frame",
+    "Each truss independently, sliding four inches and seating one inch",
+    "Main roof",
+    "Complete porch, from concrete through posts and roof",
+    "Main wall panels",
+    "Windows",
+    "Bamboo finish flooring"
+  ],
+  "underlayment_sheet_count": 28,
+  "continuous_concrete_columns": 21,
+  "independent_truss_entry": {
+    "up_inches": 1,
+    "out_inches": 4,
+    "cupola_modified": true
+  },
+  "anchors": [
+    "FLOOR-CENTRAL-HUB",
+    "PIER-C",
+    "PIER-C-BELOW"
+  ],
+  "compact_endpoints": "Accepted existing compact positions retained, including the28-sheet layout; new wall-strip children have small seam-clearance spreads.",
+  "scope": "Nominal geometric visualization; structural capacity, temporary bracing and lifting are outside this geometric proof."
+}

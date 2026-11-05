@@ -1,3 +1,6 @@
+# TIMESTAMP START 2026-11-04T23:48:03+00:00 | REVISION R000012
+# TIMESTAMP START 2026-11-04T23:23:25+00:00 | REVISION R000011
+# TIMESTAMP START 2026-11-04T20:45:07+00:00 | REVISION R000009
 # TIMESTAMP START 2026-11-02T15:51:57-05:00 | REVISION R004809
 """Exact translational collision checks for the complete physical assembly.
 
@@ -85,14 +88,20 @@ def triangle_prism(triangle,delta):
     matrix=np.column_stack([triangle[1]-triangle[0],triangle[2]-triangle[0],delta,triangle[0]])
     vertices=np.array([[0,0,0],[1,0,0],[0,1,0],[0,0,1],[1,0,1],[0,1,1]],float)
     faces=np.array([[0,2,1],[3,4,5],[0,1,4],[0,4,3],[1,2,5],[1,5,4],[2,0,3],[2,3,5]],np.uint64)
-    prism=m.Manifold(m.Mesh64(vertices,faces)).transform(matrix.tolist())
+    # TIMESTAMP START 2026-11-04T22:33:09+00:00 | REVISION R000010
+    # Volume is translation invariant. Validate near the origin so cancellation
+    # in the kernel's world-coordinate volume sum cannot invalidate good mesh.
+    local_matrix=matrix.copy();local_matrix[:,3]=0
+    local=m.Manifold(m.Mesh64(vertices,faces)).transform(local_matrix.tolist())
     expected=abs(float(np.linalg.det(matrix[:,:3])))/2
-    assert str(prism.status())=='Error.NoError' and prism.volume()>0,('Explicit swept prism failed',expected,prism.volume())
-    # World-coordinate summation can lose relative accuracy for a prism only
-    # a few femtolitres large. Its absolute residual is accounted against the
-    # unchanged physical overlap tolerance by sweep_cover, never ignored.
-    assert abs(prism.volume()-expected)<=VOLUME_TOLERANCE_M3/100,('Swept prism volume mismatch',expected,prism.volume())
+    assert str(local.status())=='Error.NoError' and local.volume()>0,('Explicit swept prism failed',expected,local.volume())
+    assert abs(local.volume()-expected)<=VOLUME_TOLERANCE_M3/100,('Swept prism volume mismatch',expected,local.volume())
+    prism=local.translate(triangle[0].tolist())
+    assert str(prism.status())=='Error.NoError','World sweep translation failed'
+    # sweep_cover still charges the full world-coordinate volume residual to
+    # the unchanged physical error budget; none of that residual is discarded.
     return prism
+    # TIMESTAMP END 2026-11-04T22:33:09+00:00 | REVISION R000010
 
 def sweep_cover(shape,delta):
     """Return an occupied sweep and numerical accounting for one translation."""
@@ -228,7 +237,17 @@ def clone_scene(scene):
 def attempt_path(scene,label,ids,segments):
     trial=clone_scene(scene);pending=[]
     for index,delta in enumerate(segments):
-        proof=check_stage(trial,ids,delta,stop_first=True)
+        # TIMESTAMP START 2026-11-04T22:33:09+00:00 | REVISION R000010
+        try:proof=check_stage(trial,ids,delta,stop_first=True)
+        except AssertionError as error:
+            detail=error.args[0] if error.args else None
+            if not isinstance(detail,tuple) or not detail or detail[0] not in ['Swept prism volume mismatch','Explicit swept prism failed']:raise
+            # A numerical assertion never authorizes a movement. This candidate
+            # is rejected with its original state intact; try another route.
+            return False,{'status':'UNRESOLVED','scene_version':trial.version,'member_ids':list(ids),
+                'delta_m':np.asarray(delta).tolist(),'collisions':[],
+                'reason':'Numerical sweep validation rejected this candidate','numeric_detail':list(detail)}
+        # TIMESTAMP END 2026-11-04T22:33:09+00:00 | REVISION R000010
         if proof['status']!='PASS':return False,proof
         stage=apply_stage(trial,ids,delta,proof,label+' · '+str(index+1));pending.append(stage)
     for stage in pending:apply_stage(scene,stage['member_ids'],stage['delta_m'],stage['proof'],stage['label'],stage['id'])
@@ -482,6 +501,13 @@ def generate_complete_certificate(candidate_directory=None):
         # TIMESTAMP END 2026-11-03T06:36:08-05:00 | REVISION R004891
     # TIMESTAMP END 2026-11-02T21:01:13-05:00 | REVISION R004875
     script_hashes={name:hashlib.sha256((ROOT/name).read_bytes()).hexdigest() for name in files}
+    # TIMESTAMP START 2026-11-04T20:00:49+00:00 | REVISION R000006
+    for name in ['scripts/plan_construction_order.py','scripts/construction-disassembly-route.json','scripts/cupola_independent_entry.py',
+                 # TIMESTAMP START 2026-11-04T20:45:07+00:00 | REVISION R000009
+                 'scripts/compact-construction-endpoints.json']:
+        # TIMESTAMP END 2026-11-04T20:45:07+00:00 | REVISION R000009
+        if (ROOT/name).exists():script_hashes[name]=hashlib.sha256((ROOT/name).read_bytes()).hexdigest()
+    # TIMESTAMP END 2026-11-04T20:00:49+00:00 | REVISION R000006
     variants={};primary_variants={}
     for variant in ['top-entry','baseline','proposed']:
         # TIMESTAMP START 2026-11-02T21:01:13-05:00 | REVISION R004875
@@ -534,6 +560,9 @@ def generate_complete_certificate(candidate_directory=None):
         if separation['remaining_mating_pairs']:
             blocked.append({'member_ids':sorted({pid for pair in separation['remaining_mating_pairs'] for pid in [pair['a'],pair['b']]}),'reason':'These initially mating physical surfaces remain in contact after the available sequence.'})
         result=output_snapshot(replayed,blocked);result['sources'].update(script_hashes)
+        # TIMESTAMP START 2026-11-04T20:00:49+00:00 | REVISION R000006
+        if candidate_directory and candidate.get('construction'):result['construction']=candidate['construction']
+        # TIMESTAMP END 2026-11-04T20:00:49+00:00 | REVISION R000006
         result.update(verification=verification,physical_ids=sorted(replayed.parts),unmoved_ids=sorted(unmoved),
             # TIMESTAMP START 2026-11-03T06:54:15-05:00 | REVISION R004896
             coverage={'physical_piece_count':len(replayed.parts),'moved_piece_count':len(moved),'unmoved_piece_count':len(unmoved),'anchored_piece_count':len(fixed)},
@@ -559,11 +588,7 @@ def generate_complete_certificate(candidate_directory=None):
     # TIMESTAMP START 2026-11-02T21:01:13-05:00 | REVISION R004875
     # TIMESTAMP START 2026-11-04T12:48:28+00:00 | REVISION R000004
     from datetime import datetime,timezone
-    # TIMESTAMP START 2026-11-04T20:18:09+00:00 | REVISION R000021
-    # TIMESTAMP START 2026-11-04T23:17:24+00:00 | REVISION R000029
-    history={'revision':'R000029','timestamp_start':'2026-11-04T23:17:24+00:00','timestamp_end':datetime.now(timezone.utc).isoformat(),'ledger_origin':'cloud; authoritative Mac ledger requires reconciliation'}
-    # TIMESTAMP END 2026-11-04T23:17:24+00:00 | REVISION R000029
-    # TIMESTAMP END 2026-11-04T20:18:09+00:00 | REVISION R000021
+    history={'revision':'R000012','timestamp_start':'2026-11-04T23:48:03+00:00','timestamp_end':datetime.now(timezone.utc).isoformat(),'ledger_origin':'cloud; authoritative Mac ledger requires reconciliation'}
     # TIMESTAMP END 2026-11-04T12:48:28+00:00 | REVISION R000004
     architectural={**common,'_change_history':history}
     primary={**common,'variants':primary_variants,'_change_history':history}
@@ -582,3 +607,9 @@ if __name__=='__main__':
         scene=load_scene(args.variant)
         print(json.dumps({'variant':args.variant,'physical_piece_count':len(scene.parts),'architectural_piece_count':len(architectural_ids(scene)),'sources':scene.sources,'excluded':scene.excluded},indent=2))
 # TIMESTAMP END 2026-11-02T15:51:57-05:00 | REVISION R004809
+
+# TIMESTAMP END 2026-11-04T20:45:07+00:00 | REVISION R000009
+
+# TIMESTAMP END 2026-11-04T23:23:25+00:00 | REVISION R000011
+
+# TIMESTAMP END 2026-11-04T23:48:03+00:00 | REVISION R000012

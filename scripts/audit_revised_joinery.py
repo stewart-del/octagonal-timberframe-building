@@ -1,3 +1,4 @@
+# TIMESTAMP START 2026-11-04T23:23:25+00:00 | REVISION R000011
 # TIMESTAMP START 2026-11-03T15:46:44-05:00 | REVISION R005039
 """Source-bound stock, mating-pocket and explicit assembly-entry audits."""
 from pathlib import Path
@@ -97,3 +98,5 @@ if __name__=='__main__':
     parser=argparse.ArgumentParser();parser.add_argument('--source-dir',type=Path,default=ROOT/'src');parser.add_argument('--output-dir',type=Path,default=Path('/tmp/octagon-joinery-audits'));parser.add_argument('--variant',choices=FILES);args=parser.parse_args()
     for variant in ([args.variant] if args.variant else FILES):generate(variant,args.source_dir,args.output_dir)
 # TIMESTAMP END 2026-11-03T15:46:44-05:00 | REVISION R005039
+
+# TIMESTAMP END 2026-11-04T23:23:25+00:00 | REVISION R000011

@@ -1,3 +1,4 @@
+# TIMESTAMP START 2026-11-04T23:23:25+00:00 | REVISION R000011
 # TIMESTAMP START 2026-11-02T20:42:47-05:00 | REVISION R004871
 # Restore the original six-inch cupola and remove the R004869 four-inch trial.
 # TIMESTAMP START 2026-11-02T17:13:18-05:00 | REVISION R004819
@@ -130,7 +131,20 @@ def generate(model=None,proposal=None,unchanged_seeds=None):
         # TIMESTAMP END 2026-11-03T16:49:21-05:00 | REVISION R005060
         unexplained=removed-filled-access-exterior
         assert volume(unexplained)<=TOL,(pid,'unclassified removed stock',volume(unexplained)/I**3)
-        seeds[pid]={'removed':packed(world(filled+access)),'mating_pocket':packed(world(filled)),
+        # TIMESTAMP START 2026-11-04T20:18:13+00:00 | REVISION R000008
+        if model.get('independent_hip_entry_revision') and re.fullmatch(r'C[0-7]',pid):
+            joint=next(j for j in model['tenon_schedule'] if j['donor']=='R'+pid[1:] and j['receiver']==pid)
+            depth=np.asarray(timbers[joint['donor']]['stock_frame']['depth'])
+            top=float(np.max(np.asarray(joint['connector']['vertices'])@depth)-origin@depth)
+            clean_access=local(entries[pid]).trim_by_plane(depth.tolist(),top)
+            error=volume(access-clean_access)+volume(clean_access-access)
+            assert error<=TOL,(pid,'support-plane entry differs from occupied-stock partition',error)
+            access=clean_access
+        # Direct stock complement avoids zero-thickness coplanar flaps from
+        # re-unioning independently computed pocket and access boundaries.
+        overlay=(removed-exterior) if model.get('independent_hip_entry_revision') and re.fullmatch(r'C[0-7]',pid) else filled+access
+        seeds[pid]={'removed':packed(world(overlay)),'mating_pocket':packed(world(filled)),
+        # TIMESTAMP END 2026-11-04T20:18:13+00:00 | REVISION R000008
             'entry_clearance':packed(world(access)),'blank_offcuts':packed(world(exterior)),
             'stock_basis':'Recorded stock halfspaces with separate declared exterior shoulder offcuts and open assembly-entry regions.',
             'roundoff_omission_limit_m3':ROUND_OFF,'mating_clip_roundoff_omitted_m3':omitted}
@@ -229,3 +243,5 @@ if __name__=='__main__':export()
 # TIMESTAMP END 2026-11-02T17:13:18-05:00 | REVISION R004819
 
 # TIMESTAMP END 2026-11-02T20:42:47-05:00 | REVISION R004871
+
+# TIMESTAMP END 2026-11-04T23:23:25+00:00 | REVISION R000011

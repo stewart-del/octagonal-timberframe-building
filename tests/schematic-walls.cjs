@@ -96,9 +96,22 @@ console.log('PASS: all three variants retain a visible upper wall band on seven 
 
 // TIMESTAMP START 2026-11-02T18:13:09-05:00 | REVISION R004829
 const unsplit=lib.build(model.parts,{applyFit:false,splitInfill:false});
-const splitBoards=rawLayout.components.filter(p=>p.panelAssemblyId),parents=[...new Set(splitBoards.map(p=>p.panelAssemblyId))];
+// TIMESTAMP START 2026-11-05T01:25:02+00:00 | REVISION R000014
+const courseLayout=lib.build(model.parts,{applyFit:false,splitErection:false});
+const splitBoards=courseLayout.components.filter(p=>p.panelAssemblyId),parents=[...new Set(splitBoards.map(p=>p.panelAssemblyId))];
 assert.equal(parents.length,14);assert.equal(splitBoards.length,28);
-assert.equal(rawLayout.components.length,unsplit.components.length+14);
+assert.equal(courseLayout.components.length,unsplit.components.length+14);
+assert.equal(rawLayout.components.filter(p=>p.panelAssemblyId).length,36);
+for(const parent of splitBoards){
+ const children=rawLayout.components.filter(p=>(p.erectionParentId||p.id)===parent.id);
+ assert(children.length>0,parent.id+' retains its course');
+ assert(children.every(p=>p.panelAssemblyId===parent.panelAssemblyId&&p.panelSeamPart===parent.panelSeamPart));
+ for(let axis=0;axis<3;axis++){
+  assert.equal(Math.min(...children.map(p=>p.localBounds[axis*2])),parent.localBounds[axis*2]);
+  assert.equal(Math.max(...children.map(p=>p.localBounds[axis*2+1])),parent.localBounds[axis*2+1]);
+ }
+}
+// TIMESTAMP END 2026-11-05T01:25:02+00:00 | REVISION R000014
 for(const parent of parents){
  const original=unsplit.components.find(p=>p.id===parent),children=splitBoards.filter(p=>p.panelAssemblyId===parent);
  const low=children.find(p=>p.panelSeamPart==='lower'),high=children.find(p=>p.panelSeamPart==='upper');
@@ -107,7 +120,9 @@ for(const parent of parents){
  assert.equal(low.localBounds[3],high.localBounds[2]);
  assert.equal(low.panelSeamY_M,64*.0254);assert.equal(high.panelSeamY_M,64*.0254);
 }
-console.log('PASS:14 real horizontal panel seams,28 separately selectable boards, unchanged complete panel envelopes');
+// TIMESTAMP START 2026-11-05T01:25:02+00:00 | REVISION R000014
+console.log('PASS:14 original horizontal panel seams and36 course pieces retain complete panel envelopes after west-wall erection cuts');
+// TIMESTAMP END 2026-11-05T01:25:02+00:00 | REVISION R000014
 // TIMESTAMP END 2026-11-02T18:13:09-05:00 | REVISION R004829
 
 // TIMESTAMP START 2026-11-02T18:40:43-05:00 | REVISION R004837

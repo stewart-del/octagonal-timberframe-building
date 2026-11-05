@@ -5,7 +5,9 @@ const TimberSchematicWalls=(()=>{
  const usage={N:'Solid wall + bookshelves',NW:'Small window',W:'Door',SW:'Small window',S:'Solid wall + bookshelves',SE:'Small window',E:'Large window',NE:'Small window'};
  const triangles=[[0,2,1],[0,3,2],[4,5,6],[4,6,7],[0,1,5],[0,5,4],[1,2,6],[1,6,5],[2,3,7],[2,7,6],[3,0,4],[3,4,7]];
  // TIMESTAMP START 2026-11-02T18:13:09-05:00 | REVISION R004829
- function build(parts,{applyFit=true,splitInfill=true}={}){
+ // TIMESTAMP START 2026-11-04T20:06:20+00:00 | REVISION R000007
+ function build(parts,{applyFit=true,splitInfill=true,splitErection=true}={}){
+ // TIMESTAMP END 2026-11-04T20:06:20+00:00 | REVISION R000007
  // TIMESTAMP END 2026-11-02T18:13:09-05:00 | REVISION R004829
   const components=[],walls=[],railConnections=[];
   for(let k=0;k<8;k++){
@@ -103,18 +105,44 @@ const TimberSchematicWalls=(()=>{
     }
    }
    // Infill fills only the complement of the aperture and modeled wood framing.
+   // TIMESTAMP START 2026-11-04T20:06:20+00:00 | REVISION R000007
+   function panel(label,rect,metadata={}){
+    const [x0,x1,y0,y1]=rect,side=Math.sign(x0+x1)||1;
+    const bottom=/^infill-(0|1|4|5)$/.test(label),upper=/^infill-(2-upper|6-upper|3|7)$/.test(label),lower=/^infill-(2-lower|6-lower)$/.test(label);
+    const split=splitErection&&splitInfill&&dir==='W'&&(bottom||upper||lower);
+    if(!split){const piece=box(label,...rect);Object.assign(piece,metadata);return;}
+    const seams=bottom?[side*1.47]:[side*1.37,side*1.20];
+    const xs=[x0,...seams.filter(x=>x>x0&&x<x1).sort((a,b)=>a-b),x1];
+    for(let i=0;i<xs.length-1;i++){
+     const postEdge=side<0?i===0:i===xs.length-2,doorEdge=side<0?i===xs.length-2:i===0;
+     const role=postEdge?'post-edge':bottom?'inner':doorEdge?'door-edge':'porch-band';
+     const piece=box(label+'-'+role,xs[i],xs[i+1],y0,y1);
+     let steps;
+     if(bottom)steps=[out.map(v=>v*(postEdge?.12:-.12))];
+     else if(postEdge)steps=[out.map(v=>v*(upper?.6:.3))];
+     else if(doorEdge)steps=upper?[out.map(v=>v*.6)]:[[0,.06,0],out.map(v=>v*.3)];
+     else steps=[u.map(v=>v*side*(upper?.2:-.2)),...(lower?[[0,.06,0]]:[]),out.map(v=>v*.12)];
+     Object.assign(piece,metadata,{erectionParentId:'SCHEM-'+dir+'-'+label,erectionStripRole:role,
+      erectionOrder:upper?0:lower?1:2,erectionReleaseSteps:steps,
+      panelConstruction:'Separate fitted infill strips with exact shared vertical seams; installed after the porch, without changing the assembled wall envelope.'});
+    }
+   }
+   // TIMESTAMP END 2026-11-04T20:06:20+00:00 | REVISION R000007
    // TIMESTAMP START 2026-11-02T18:13:09-05:00 | REVISION R004829
    subtractAll([-width/2,width/2,base,height],[...openingRects,...framingRects]).forEach((rect,i)=>{
     const seam=64*.0254,[x0,x1,y0,y1]=rect,parent='SCHEM-'+dir+'-infill-'+i;
     if(splitInfill&&y0<seam&&y1>seam){
      for(const [side,bottom,top] of [['lower',y0,seam],['upper',seam,y1]]){
-      const piece=box('infill-'+i+'-'+side,x0,x1,bottom,top);
-      Object.assign(piece,{panelAssemblyId:parent,panelSeamY_M:seam,panelSeamPart:side,
+      // TIMESTAMP START 2026-11-04T20:06:20+00:00 | REVISION R000007
+      panel('infill-'+i+'-'+side,[x0,x1,bottom,top],{panelAssemblyId:parent,panelSeamY_M:seam,panelSeamPart:side,
+      // TIMESTAMP END 2026-11-04T20:06:20+00:00 | REVISION R000007
        // TIMESTAMP START 2026-11-02T18:40:43-05:00 | REVISION R004837
        unsplitLocalBounds:[...rect,infillInner,infillOuter],panelConstruction:'Separate three-quarter-inch infill boards behind the interior braces, with an exact shared horizontal seam; attachment and weather sealing unresolved.'});
        // TIMESTAMP END 2026-11-02T18:40:43-05:00 | REVISION R004837
      }
-    }else box('infill-'+i,...rect);
+    // TIMESTAMP START 2026-11-04T20:06:20+00:00 | REVISION R000007
+    }else panel('infill-'+i,rect);
+    // TIMESTAMP END 2026-11-04T20:06:20+00:00 | REVISION R000007
    });
    // TIMESTAMP END 2026-11-02T18:13:09-05:00 | REVISION R004829
    // TIMESTAMP END 2026-11-02T13:42:10-05:00 | REVISION R004782

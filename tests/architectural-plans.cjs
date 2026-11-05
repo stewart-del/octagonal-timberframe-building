@@ -1,3 +1,4 @@
+// TIMESTAMP START 2026-11-04T23:48:03+00:00 | REVISION R000012
 // TIMESTAMP START 2026-11-02T21:09:01-05:00 | REVISION R004877
 const fs=require('fs'),assert=require('node:assert/strict');
 require('../src/edge-measurements.js');require('../src/schematic-walls.js');require('../src/architectural-plans.js');
@@ -15,9 +16,10 @@ for(const view of ['top','side']){
  assert(main.svg.includes('Model SHA-256: '+hash));assert(main.svg.includes('NOT CONSTRUCTION APPROVED'));
  assert(!/<polygon|<rect/.test(main.svg),'Sheets use hidden-line geometry');
 // TIMESTAMP START 2026-11-03T12:04:27-05:00 | REVISION R005002
-// TIMESTAMP START 2026-11-04T23:17:24+00:00 | REVISION R000029
- assert(main.parts.filter(p=>p.schematicKind==='floorAssembly').length===132);
-// TIMESTAMP END 2026-11-04T23:17:24+00:00 | REVISION R000029
+ // TIMESTAMP START 2026-11-04T19:48:56+00:00 | REVISION R000004
+ assert.equal(main.parts.filter(p=>p.schematicKind==='floorAssembly').length,require('../src/floor-foundation-solids.json').parts.length);
+ assert(main.parts.some(p=>p.floorRole==='underlayment_sheet'),'Plans include the separate underlayment sheets');
+ // TIMESTAMP END 2026-11-04T19:48:56+00:00 | REVISION R000004
 // TIMESTAMP END 2026-11-03T12:04:27-05:00 | REVISION R005002
  assert(main.measurements.rows.some(([k,v])=>k.includes('Underground')&&Math.abs(v-1.8288)<1e-9));
  fs.writeFileSync('/tmp/octagon-main-'+view+'.svg',main.svg);fs.writeFileSync('/tmp/octagon-porch-'+view+'.svg',porch.svg);
@@ -54,3 +56,5 @@ for(const porch of [false,true]){const m=api.measurements(model,porch),r=m.roofS
 assert(measurements['Main hip R0 inclination'].endsWith('°'));assert(measurements['Radial tie T0 overall axial length']>0);assert.equal(measurements['Main post / cupola post sections'],'8 × 8 in / 6 × 6 in');
 
 // TIMESTAMP END 2026-11-03T07:17:50-05:00 | REVISION R004916
+
+// TIMESTAMP END 2026-11-04T23:48:03+00:00 | REVISION R000012

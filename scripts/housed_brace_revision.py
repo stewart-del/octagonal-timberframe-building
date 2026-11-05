@@ -1,3 +1,4 @@
+# TIMESTAMP START 2026-11-04T23:23:25+00:00 | REVISION R000011
 # TIMESTAMP START 2026-11-04T19:42:40+00:00 | REVISION R000016
 """Stage the supplied housed-brace profile without changing unrelated joinery."""
 from pathlib import Path
@@ -52,3 +53,5 @@ if __name__=='__main__':
         revised,audit=candidate(json.loads((args.source_dir/filename).read_text()));(args.output/filename).write_text(json.dumps(revised,separators=(',',':'))+'\n');reports[filename]=audit;print(filename,'PASS',flush=True)
     (args.output/'three-inch-tenon-audit.json').write_text(json.dumps({'revision':REV,'timestamp':STAMP,'variants':reports},separators=(',',':'))+'\n')
 # TIMESTAMP END 2026-11-04T19:42:40+00:00 | REVISION R000016
+
+# TIMESTAMP END 2026-11-04T23:23:25+00:00 | REVISION R000011

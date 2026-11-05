@@ -1,3 +1,4 @@
+// TIMESTAMP START 2026-11-04T23:23:25+00:00 | REVISION R000011
 // TIMESTAMP START 2026-11-04T20:33:26+00:00 | REVISION R000023
 // TIMESTAMP START 2026-11-04T19:41:08+00:00 | REVISION R000003
 'use strict';
@@ -25,6 +26,13 @@ const resources=()=>performance.getEntriesByType('resource').filter(r=>r.name.in
   assert.equal(requests.length,new Set(requests).size,'Startup requests each asset once');
   await page.locator('[data-focus-key="select:P0"]').click();
   assert((await page.locator('#selection').innerText()).includes('P0'));
+  // TIMESTAMP START 2026-11-05T01:24:05+00:00 | REVISION R000013
+  const sheets=await page.evaluate(()=>octagonViewer.schematicParts.filter(p=>p.floorRole==='underlayment_sheet').map(p=>p.id));
+  assert.equal(sheets.length,28);
+  await page.locator('[data-focus-key="select:'+sheets[0]+'"]').click();
+  assert((await page.locator('#selection').innerText()).includes(sheets[0]));
+  assert.equal(await page.locator('a[href="review/underlayment-sheets.svg"]').count(),1);
+  // TIMESTAMP END 2026-11-05T01:24:05+00:00 | REVISION R000013
   for(const mode of ['sphere','assembly','disassembly']){
    await page.selectOption('#motionMode',mode);
    await page.evaluate(()=>{const slider=document.getElementById('explode');slider.value='35';slider.dispatchEvent(new Event('input',{bubbles:true}));});
@@ -74,3 +82,5 @@ const resources=()=>performance.getEntriesByType('resource').filter(r=>r.name.in
 })().catch(error=>{console.error(error);process.exitCode=1;});
 // TIMESTAMP END 2026-11-04T19:41:08+00:00 | REVISION R000003
 // TIMESTAMP END 2026-11-04T20:33:26+00:00 | REVISION R000023
+
+// TIMESTAMP END 2026-11-04T23:23:25+00:00 | REVISION R000011

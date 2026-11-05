@@ -1,3 +1,5 @@
+// TIMESTAMP START 2026-11-04T23:48:03+00:00 | REVISION R000012
+// TIMESTAMP START 2026-11-04T23:23:25+00:00 | REVISION R000011
 // TIMESTAMP START 2026-11-04T20:33:26+00:00 | REVISION R000023
 // TIMESTAMP START 2026-11-04T19:27:13+00:00 | REVISION R000001
 'use strict';
@@ -51,6 +53,9 @@ async function check(search,expected){
   const current=new Float32Array(TimberEdgeMeasurements.featureEdges(part.vertices,part.triangles));
   assert.deepEqual(Array.from(cached),Array.from(current),'Cached GPU edges match the current algorithm exactly: '+id);
  }
+ // TIMESTAMP START 2026-11-04T19:48:56+00:00 | REVISION R000004
+ assert(data.disassembly.variants[expected].physical_ids.every(id=>data.meshCache.has(id)),'Every physical piece has its matching drawing-edge cache');
+ // TIMESTAMP END 2026-11-04T19:48:56+00:00 | REVISION R000004
  // TIMESTAMP START 2026-11-04T23:37:08+00:00 | REVISION R000031
  const sheets=data.foundation.parts.filter(p=>p.floorRole==='underlayment_sheet');
  assert.equal(sheets.length,28,'The runtime must load every installed cut sheet');
@@ -59,7 +64,7 @@ async function check(search,expected){
   const current=new Float32Array(TimberEdgeMeasurements.featureEdges(sheet.vertices,sheet.triangles));
   assert.deepEqual(Array.from(data.meshCache.get(sheet.id)),Array.from(current),'Exact cached sheet edges: '+sheet.id);
  }
- assert.equal(data.meshCache.size,expected==='top-entry'?1279:1271);
+ assert.equal(data.meshCache.size,expected==='top-entry'?1295:1287);
  // TIMESTAMP END 2026-11-04T23:37:08+00:00 | REVISION R000031
  // TIMESTAMP END 2026-11-04T19:29:44+00:00 | REVISION R000002
  failNext=true;
@@ -79,3 +84,7 @@ async function check(search,expected){
 })().catch(error=>{console.error(error);process.exitCode=1;});
 // TIMESTAMP END 2026-11-04T19:27:13+00:00 | REVISION R000001
 // TIMESTAMP END 2026-11-04T20:33:26+00:00 | REVISION R000023
+
+// TIMESTAMP END 2026-11-04T23:23:25+00:00 | REVISION R000011
+
+// TIMESTAMP END 2026-11-04T23:48:03+00:00 | REVISION R000012
