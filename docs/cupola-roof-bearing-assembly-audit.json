@@ -1,0 +1,53 @@
+{
+  "schema": "octagon-cupola-roof-head-bearing-audit-1",
+  "revision": "R000071",
+  "timestamp": "2026-11-05T23:02:22+00:00",
+  "status": "SCOPED_CURRENT_CUPOLA_RAW_CONTACTS_AND_CAUSAL_COVERS_PASS",
+  "sourceBindings": {
+    "scripts/cupola_roof_bearing_parts.py": "cec19dda736c4cfc6085674906eeff86e55a09627efab32521212ff4f29b4e4b",
+    "scripts/fixtures/cupola-roof-bearing-inputs.json.gz": "496d5d0f928074d457cc3cfed7fe4ddd9ae6d6dcd93a1b7b3fb091134b2718ed",
+    "scripts/cupola_roof_parts.py": "bf17ba6f24f3a81223399813d60984f40b27c8e78f94eb0577ae08cd24f64865",
+    "tests/test_cupola_roof_bearing_parts.py": "8b3bf7dfd3709bce652e49f3f36a77db44e0d23b60fed4ec8da98b84867c03a3"
+  },
+  "scope": "17 physical Cu replacements and48 corrected nail poses within the unchanged385actor cupola roof. The other320 roof records are preserved. Separate128ceiling WSV screws are outside this composer. This is not a full-building motion or dynamic-parameter certificate.",
+  "ownerTests": {
+    "tests": 3,
+    "status": "PASS",
+    "elapsedSeconds": 20.683,
+    "log": "cupola-bearing-owner-tests.log",
+    "checks": [
+      "All17 corrected Cu bodies strict RAW; actual5shank holes in each of8drips",
+      "48 actual retained heads, real product dimensions, earlier receiving materials and later Cu cover prerequisites",
+      "Corrected65 bodies checked against every generated roof part and all current primary timbers/fasteners; only explicit nail/wood or nail/flexible receiving contact is allowed",
+      "Idempotence, object identity for unaffected records, and refusal to overwrite changed Cu or changed nail poses"
+    ]
+  },
+  "partCount": 385,
+  "changedCu": 17,
+  "changedNailPoses": 48,
+  "dripNails": 40,
+  "apexHoldNails": 8,
+  "localPanPads": 8,
+  "localPanRaiseIn": 0.012,
+  "headHeightAssumptionsIn": {
+    "T311ARN1": 0.035,
+    "T20SNDB": 0.04
+  },
+  "unchangedGeometry": {
+    "otherAuxNails": 96,
+    "roof8dNails": 128,
+    "separateCeilingWSV": 128
+  },
+  "pythonCompilation": "PASS",
+  "nodeArchitectureSyntax": "PASS",
+  "currentArchitectureRuntimeAssertions": "NOT_RUN_PENDING_COMPLETE_STAGE",
+  "sourcePolicy": "Current source Cu and nail poses must match their actual captured original or the corrected output. A later changed cavity or pose is rejected rather than overwritten. Later unknown contact/prerequisite additions are retained conservatively. Historical source reports are preserved with original hashes.",
+  "remaining": [
+    "Full architecture integration, stock readback and all parked continuous motion still required.",
+    "Default4:12 linked main/cupola pitch and10in cupola lift only; changed dimensions require regenerated actual products and new checks.",
+    "Final mat/tacks/felt/metal/cedar layers and updated main/porch drip heads remain separate.",
+    "T20SNDB is a verified historical product; current procurement remains unconfirmed.",
+    "Custom Cu forming, load, wind, thermal, solder and weather capacity are not established by geometric head retention.",
+    "No new publication."
+  ]
+}

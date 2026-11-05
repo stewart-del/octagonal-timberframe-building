@@ -1,0 +1,14 @@
+{
+  "schema": "octagon-frozen-main-roof-membrane-1",
+  "archive": "main-roof-membrane-inputs.tar.gz",
+  "bytes": 8799711,
+  "sha256": "0e24b13c46182b9465e72dfea808b4d0207202709cc169dd19216af4c9a4dd9d",
+  "v1ManifestSha256": "7a335e4641f739c8ae7d2c29ce97237b8ab30c8914b120fbd701b3cfcc958559",
+  "v2ManifestSha256": "15821ddaca1e9f576932bae4e15a5130d3aee1c166b35160776a105af25156db",
+  "scope": "Immutable authored85sheet geometry, source producers, original references and exact five-roll cutting plan. Complete building motion and parameter regeneration are separate.",
+  "ownerEvidence": {
+    "reproduce_main_SA_terminal_v1_corrected.py": "9db6888d5e837e0b5c52e714b989a71a313dca22eb1148e9160ca360c10c3124",
+    "main-SA-terminal-v1-reproduction-erratum.md": "087eedba8a3714e9d30f095b4bf5e4fa3f319d714c3a9ace1f9a4495f37a1e64",
+    "immutable-v1-equivalence.json": "f50d836492871ddb1e77e0ab26e1fd4c01466b20b42070fdc9c0ec60ed391a35"
+  }
+}

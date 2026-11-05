@@ -25,6 +25,10 @@ def load_inputs():
 
 def prepare(output):
  inputs,sources=load_inputs();parts=[];prototypes={};allids=set()
+ # TIMESTAMP START 2026-11-05T22:52:56+00:00 | REVISION R000070
+ from main_roof_membrane_parts import build as roof_membranes,compose_gp as roof_barrier_gp_seats
+ membranes=roof_membranes()
+ # TIMESTAMP END 2026-11-05T22:52:56+00:00 | REVISION R000070
  # TIMESTAMP START 2026-11-05T21:51:55+00:00 | REVISION R000068
  from closure_core_parts import inputs as closure_inputs,compose_wood as compose_closure_wood,hardware as closure_hardware,compose_stock as closure_stock
  closure_source=closure_inputs()
@@ -41,6 +45,10 @@ def prepare(output):
   return name
  def add(raw,*,phase,role,kind,material=None,color=None):
   p=copy.deepcopy(raw);pid=p['id'];assert pid not in allids,('Duplicate architectural piece',pid);allids.add(pid)
+  # TIMESTAMP START 2026-11-05T22:52:56+00:00 | REVISION R000070
+  if pid in membranes['plywoodMetadata']:
+   p.update(copy.deepcopy(membranes['plywoodMetadata'][pid]));material=p['material']
+  # TIMESTAMP END 2026-11-05T22:52:56+00:00 | REVISION R000070
   if p.get('mesh_instance'):
    instance=p['mesh_instance'];mesh=prototypes[instance['prototype']];matrix=np.asarray(instance['transform'],float)
    assert matrix.shape==(3,4) and np.max(abs(matrix[:,:3].T@matrix[:,:3]-np.eye(3)))<1e-10 and abs(np.linalg.det(matrix[:,:3])-1)<1e-10,('Non-rigid product transform',pid)
@@ -146,6 +154,11 @@ def prepare(output):
  for p in cupola_roof['parts']:
   add(p,phase='Cupola roof',role='roofCover',kind='roofCover',material=p['material'])
  # TIMESTAMP END 2026-11-05T19:06:47+00:00 | REVISION R000061
+ # TIMESTAMP START 2026-11-05T22:52:56+00:00 | REVISION R000070
+ for p in membranes['parts']:
+  phase='Porch roof ice and water shield' if 'PORCH' in p['id'] else 'Main roof ice and water shield'
+  add(p,phase=phase,role='roofCover',kind='roofCover',material=p['material'])
+ # TIMESTAMP END 2026-11-05T22:52:56+00:00 | REVISION R000070
  for p in inputs['valley_copper']['parts']:add(p,phase='Porch roof flashing',role='roofCover',kind='roofCover',material='20oz ASTM B370 copper',color=[.64,.34,.17])
  for p in inputs['ceiling_wood']['parts']:add(p,phase='Cupola ceiling',role='ceilingPanel' if p['id'].startswith('PLY') else 'roofStructure',kind='roofCover',material=p.get('material','wood'))
  add_hardware('cedar_nails','cedar_prototypes','ARCH-CEDAR-','Main and porch roofing')
@@ -160,6 +173,10 @@ def prepare(output):
   expected=closure_source['receivers']['parts'][pid];actual=raw_wall[pid]
   assert all(actual[key]==expected[key] for key in ['vertices','triangles']),('Closure production raw recipient differs from its exact fixture',pid)
  closure=compose_closure_wood({'parts':raw_wall},closure_source);wall_parts=closure['parts']
+ # TIMESTAMP START 2026-11-05T22:52:56+00:00 | REVISION R000070
+ gp_seats=roof_barrier_gp_seats(wall_parts);wall_parts=gp_seats['parts']
+ membranes['report']['currentGPSeatComposition']=gp_seats['receipts']
+ # TIMESTAMP END 2026-11-05T22:52:56+00:00 | REVISION R000070
  def wall_properties(p):
   # TIMESTAMP START 2026-11-05T22:31:25+00:00 | REVISION R000069
   pid=p['id'];lap=pid.startswith('LAP-');ply=pid.startswith('ENV-') and 'PLY' in pid;cladding=lap or p.get('material','').startswith('LP SmartSide')
@@ -230,6 +247,9 @@ def prepare(output):
   structure=not p['id'].startswith('PORCHR')
   add(p,phase='Porch roof structure' if structure else 'Porch roof sheathing',role='roofStructure' if structure else 'roofCover',kind='roofCover',material=p.get('material','wood'))
  retired=[]
+ # TIMESTAMP START 2026-11-05T22:52:56+00:00 | REVISION R000070
+ retired.extend(pid for pid in membranes['retireIds'] if pid not in {p['id'] for p in membranes['parts']})
+ # TIMESTAMP END 2026-11-05T22:52:56+00:00 | REVISION R000070
 # TIMESTAMP END 2026-11-05T16:27:06+00:00 | REVISION R000053
  for key in ['porch_benches','porch_coats']:
   package=inputs[key];retired.extend(package['remove_ids'])
@@ -278,6 +298,9 @@ def prepare(output):
  # TIMESTAMP START 2026-11-05T21:51:55+00:00 | REVISION R000068
  payload.update(closureCoreComposition=closure['closureCoreComposition'],closureCoreStock=closure_stock(wall_parts,closure_source),closureCoreReleaseGroups=closure_source['groups'])
  # TIMESTAMP END 2026-11-05T21:51:55+00:00 | REVISION R000068
+ # TIMESTAMP START 2026-11-05T22:52:56+00:00 | REVISION R000070
+ payload.update(mainRoofBarrierComposition=membranes['report'],mainRoofBarrierStock=membranes['stock'])
+ # TIMESTAMP END 2026-11-05T22:52:56+00:00 | REVISION R000070
  output.parent.mkdir(parents=True,exist_ok=True);write_physical_json(output,payload,inline_vertex_limit=0,part_archive_limit=8*1024*1024);metadata=json.loads(output.read_text());output.write_text(json.dumps(metadata,separators=(',',':'))+'\n');print('Prepared',len(parts),'individual pieces;',len(prototypes),'shared hardware prototypes;',output,flush=True)
 # TIMESTAMP END 2026-11-05T14:38:03+00:00 | REVISION R000047
  return payload

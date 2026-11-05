@@ -14,6 +14,10 @@ const closureFasteners=pieces.filter(p=>p.causalMetadataStatus==='SOURCE_BOUND_E
 for(const p of closureFasteners){assert(p.causalSourcePoseSha256&&p.assemblyPrerequisiteWoodIds.length);assert(p.withdrawalReceiverIds.every(id=>!p.removalPrerequisites.includes(id)));}
 const sidingNails=closureFasteners.filter(p=>/^LAP-[A-Z]+-\d+-/.test(p.parentId));assert.equal(sidingNails.length,2849);assert.equal(sidingNails.filter(p=>p.removalPrerequisites.some(id=>{const a=/^LAP-([A-Z]+)-(\d+)-/.exec(p.parentId),b=/^LAP-([A-Z]+)-(\d+)-/.exec(id);return b&&a[1]===b[1]&&Number(b[2])>Number(a[2]);})).length,2302);
 // TIMESTAMP END 2026-11-05T22:31:25+00:00 | REVISION R000069
+// TIMESTAMP START 2026-11-05T22:52:56+00:00 | REVISION R000070
+assert.equal(data.mainRoofBarrierComposition.parts,85);assert.equal(data.mainRoofBarrierStock.roll_count,5);assert.equal(data.mainRoofBarrierStock.cuts.length,73);assert.equal(data.mainRoofBarrierComposition.currentGPSeatComposition.length,8);
+assert.equal(pieces.filter(p=>p.parentRollId&&p.id.startsWith('VDSA-')&&!p.id.startsWith('VDSA-CUP-')).length,85);
+// TIMESTAMP END 2026-11-05T22:52:56+00:00 | REVISION R000070
 const model={parts:[{id:'P0'},{id:'PLY'}]},legacy=[{id:'OLD-WALL',schematicKind:'wall'},{id:'OLD-ROOF',schematicKind:'roofCover'},{id:'KEEP-RAIL',schematicKind:'rail'},{id:'OLD-PORCH-ROOF',mudroomRoof:true}];
 const overlays=pieces.filter(p=>p.replaceExisting),overlayLegacy=overlays.map(p=>({id:p.id,schematicKind:p.schematicKind,material:p.material,oldGeometry:true}));
 // TIMESTAMP START 2026-11-05T16:27:06+00:00 | REVISION R000053
@@ -23,6 +27,10 @@ assert.equal(overlays.length,86,'Floor, porch-roof, stair and cast-pan hosts are
 // TIMESTAMP START 2026-11-05T19:06:47+00:00 | REVISION R000061
 assert.equal(data.hostOverlayProofs.length,50);assert.equal(data.porchRoofComposition.host_composition.length,14);assert.equal(data.drainGrateComposition.host_composition.length,18);
 assert.equal(data.cupolaRoofComposition.parts,385);assert.equal(pieces.filter(p=>p.id.startsWith('CUP-ROOF-DECK-8D-')).length,128);assert(!pieces.some(p=>p.id.startsWith('CUP-DECK-SCREW-')));assert.equal(pieces.filter(p=>p.id.startsWith('CU-DRIP-CUP-EAVE-')&&!p.is_fastener).length,8);
+// TIMESTAMP START 2026-11-05T23:02:22+00:00 | REVISION R000071
+assert.equal(data.cupolaRoofComposition.bearingCorrection.correctedNailPoses,48);assert.equal(data.cupolaRoofComposition.bearingCorrection.replacementCu,17);
+for(const p of pieces.filter(p=>p.id.startsWith('CU-DRIP-CUP-EAVE-')&&!p.is_fastener))assert.equal(p.freshNailHoleCount,5);
+// TIMESTAMP END 2026-11-05T23:02:22+00:00 | REVISION R000071
 for(const p of pieces.filter(p=>p.mesh_instance))assert(data.prototypes[p.mesh_instance.prototype]);
 assert.equal(new Set(pieces.filter(p=>p.mesh_instance).map(p=>p.mesh_instance.prototype)).size,Object.keys(data.prototypes).length,'Every shared prototype is used');
 // TIMESTAMP END 2026-11-05T19:06:47+00:00 | REVISION R000061

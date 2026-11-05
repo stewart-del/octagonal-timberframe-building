@@ -1,0 +1,59 @@
+{
+  "schema": "octagon-main-roof-barrier-audit-1",
+  "revision": "R000070",
+  "timestamp": "2026-11-05T22:52:56+00:00",
+  "status": "SCOPED_AUTHORED_SHEETS_STOCK_AND_GP_SEATS_PASS",
+  "scope": "85 authored main/porch sheets and eight negative-only current cupola GP seats; not a complete installed roof or continuous assembly certificate.",
+  "sourceBindings": {
+    "scripts/main_roof_membrane_parts.py": "6f0102303d4f5c214c869926cdab49927f29826fa719cb3b27196b2a9738bdd4",
+    "scripts/fixtures/main-roof-membrane-inputs.json": "dad30db48bfb2a66f4f7ac4d0fce70ac909ff548f6dd2fb696e18e4342852bfc",
+    "scripts/fixtures/main-roof-membrane-inputs.tar.gz": "0e24b13c46182b9465e72dfea808b4d0207202709cc169dd19216af4c9a4dd9d",
+    "tests/test_main_roof_membrane_parts.py": "2a9c7e87a0bbd1fa0450fe906f4e0e31e956733198646e4fe8c08fa3f018a1e7"
+  },
+  "nativeOwnerChecks": {
+    "tests": 4,
+    "status": "PASS",
+    "elapsedSeconds": 50.081,
+    "log": "main-roof-membrane-owner-tests.log",
+    "covers": [
+      "All85 actual sheet RAW boundaries and unchanged authored geometry",
+      "Independent73blank rectangle placement inside five57x960in rolls",
+      "Eight actual GP cut seats, idempotence, missing recipient rejection and preservation of a later void",
+      "Changed default primary source rejection"
+    ]
+  },
+  "finalMetadataAndInventoryChecks": {
+    "tests": 3,
+    "status": "PASS",
+    "elapsedSeconds": 0.77,
+    "log": "main-roof-membrane-final-metadata-tests.log",
+    "scope": "After adding only stock metadata and corrected-reproduction provenance, the existing inventory consumer reports85pieces,73distinct cut parents and all length/width/gauge dimensions; stock rectangles and changed-default refusal remain valid. Actual sheet geometry and GP-cut implementation did not change."
+  },
+  "pythonCompilation": "PASS",
+  "nodeArchitectureSyntax": "PASS",
+  "currentArchitectureRuntimeAssertions": "NOT_RUN_PENDING_COMPLETE_STAGE",
+  "pieceCount": 85,
+  "cutBlankCount": 73,
+  "rollCount": 5,
+  "product": {
+    "manufacturer": "Benjamin Obdyke",
+    "name": "VaporDry SA",
+    "nominalGaugeIn": 0.025,
+    "rollDimensionsIn": [
+      57,
+      960
+    ],
+    "minimumHorizontalLapIn": 4,
+    "minimumEndLapIn": 6,
+    "minimumCornerLapIn": 12,
+    "iceBarrierScope": "Retains manufacturer AC48 ice-barrier bulletin and ASTM D1970 nail-seal test scope; no full bituminous ASTM D1970 certification is invented."
+  },
+  "provenance": "Immutable v1 and v2 inputs, producers, original dependency manifests, corrected v1 reproduction wrapper/erratum and85piece equivalence receipt are transported together. The historical v1 full wrapper is preserved as evidence and is not executed.",
+  "remaining": [
+    "Enclosure bootV2 must be integrated once; it is not silently duplicated in this module.",
+    "Closure stock readback after all actual negative cuts remains pending.",
+    "Corrected drip heads, ventilation mat/tacks, felt/valley/headwall metal and final cedar/nail seating still require joint integration.",
+    "Full-scene continuous motion, parameter-dependent physical layer regeneration, current build/CI/browser/performance checks and completed model image remain required.",
+    "No new publication."
+  ]
+}
