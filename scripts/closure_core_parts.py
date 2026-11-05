@@ -135,35 +135,35 @@ def hardware(data=None):
   # TIMESTAMP END 2026-11-05T22:31:25+00:00 | REVISION R000069
  assert len(parts)==9415 and len({p['id'] for p in parts})==9415
  return {'parts':parts,'prototypes':prototypes,'retainedIds':{p['id'] for p in data['retained']['instances']},'newIds':{p['id'] for p in data['hardware']['instances']}}
+# TIMESTAMP START 2026-11-05T23:39:11+00:00 | REVISION R000073
 def compose_stock(parts,data=None):
- """Derive and independently re-import waste from actual blank/installed wood.
-
- Frozen waste boundaries are evidence, not a replacement for material lost
- during a bad serialized import. No installed part or blank is modified.
- """
+ """Prove each actual current blank/children against serialized positive waste."""
+ from itertools import combinations
+ from closure_stock_waste import candidate as repaired_candidate,ALLOWED
  data=data or inputs();records={**data['wood']['stock'],**data['wood']['sourceStockRecordOverrides']};solids={};results={};receipts=[]
  for sid,row in records.items():
   blank=shape(row['blank']);audit=inspect_mesh(np.asarray(row['blank']['vertices']),np.asarray(row['blank']['triangles'],np.uint64),True);assert audit['status']=='PASS',('Invalid purchased stock blank',sid,audit)
   for pid in row['children']:
    if pid not in solids:solids[pid]=shape(parts[pid])
   installed=union([solids[pid] for pid in row['children']]);assert amount(installed-blank)<=TOL,('Installed closure exceeds purchased stock',sid);assert abs(sum(solids[pid].volume() for pid in row['children'])-installed.volume())<=TOL,('Installed stock children overlap',sid)
-  intended=blank-installed;attempts=[];record=None;method=None
-  candidates=[('current blank minus installed, native serialization',lambda:native_record(intended,single=False)),('net signed blank-minus-current-children contours in stock frame',lambda:repaired_stock_waste(signed_stock_difference(row['blank'],[parts[pid] for pid in row['children']]),sid,row['blank'],data)),('signed current CSG contours in stock frame',lambda:repaired_stock_waste(mesh(intended),sid,row['blank'],data)),('signed archived waste contours, independently checked against current stock',lambda:repaired_stock_waste(row['declared_exterior_offcut'],sid,row['blank'],data))]
-  candidates.append(('net signed current stock contours with1e-11m plane grouping',lambda:repaired_stock_waste(signed_stock_difference(row['blank'],[parts[pid] for pid in row['children']]),sid,row['blank'],data,1e-11)))
-  for candidate_method,build in candidates:
+  intended=blank-installed;attempts=[];chosen=None;patch=repaired_candidate(sid,row,parts,require_exact=False);basis=stock_frame(sid,row['blank'],data);origin=np.asarray(row['blank']['vertices']).mean(0);toLocal=np.column_stack([basis.T/I,-basis.T@origin/I]);blankLocal=affine(blank,toLocal);installedLocal=union([affine(solids[pid],toLocal) for pid in row['children']])
+  candidates=[]
+  if patch:candidates.append(('Repaired serialized waste candidate; fresh actual-current proof required',lambda:copy.deepcopy(patch['fields'])))
+  candidates.extend([('Original serialized waste; fresh actual-current proof required',lambda:{'declared_exterior_offcut':copy.deepcopy(row['declared_exterior_offcut'])}),('Current blank minus installed, native serialization',lambda:{'declared_exterior_offcut':native_record(intended,single=False)}),('Net signed blank-minus-current-children contours in stock frame',lambda:{'declared_exterior_offcut':repaired_stock_waste(signed_stock_difference(row['blank'],[parts[pid] for pid in row['children']]),sid,row['blank'],data)}),('Signed current CSG contours in stock frame',lambda:{'declared_exterior_offcut':repaired_stock_waste(mesh(intended),sid,row['blank'],data)}),('Signed archived waste contours, independently compared with current stock',lambda:{'declared_exterior_offcut':repaired_stock_waste(row['declared_exterior_offcut'],sid,row['blank'],data)}),('Net signed current stock contours with1e-11m plane grouping',lambda:{'declared_exterior_offcut':repaired_stock_waste(signed_stock_difference(row['blank'],[parts[pid] for pid in row['children']]),sid,row['blank'],data,1e-11)})])
+  for method,build in candidates:
    try:
-    candidate=build();readback=native_solid(candidate) if candidate['triangles'] else union([])
-    if candidate['triangles']:
-     audit=inspect_mesh(np.asarray(candidate['vertices']),np.asarray(candidate['triangles'],np.uint64),False);assert audit['status']=='PASS',('Invalid serialized stock waste',sid,audit['failures'])
-    partition=diff(blank,installed+readback);balance=abs(float(blank.volume()-installed.volume()-readback.volume()));overlap=amount(installed^readback);outside=amount(readback-blank)
-    assert np.isfinite([partition,balance,overlap,outside]).all() and max(partition,balance,overlap,outside)<=TOL,('Serialized current stock partition fails',sid,partition/I**3,balance/I**3,overlap/I**3,outside/I**3)
-    record=candidate;method=candidate_method;attempts.append({'method':candidate_method,'status':'PASS'});break
-   except (AssertionError,RuntimeError,ValueError) as error:attempts.append({'method':candidate_method,'status':'BLOCKED','reason':str(error)[:1200]})
-  assert record is not None,('No strict current-stock waste serialization passed',sid,attempts)
-  old=row['declared_exterior_offcut'];old_audit=inspect_mesh(np.asarray(old['vertices']),np.asarray(old['triangles'],np.uint64),False) if old['triangles'] else {'status':'EMPTY','failures':[]}
-  results[sid]={**copy.deepcopy(row),'declared_exterior_offcut':record,'wasteReadbackStatus':'PASS','wasteSource':method,'sourceOffcutRawStatus':old_audit['status'],'sourceOffcutRawFailures':old_audit.get('failures',[]),'currentStockPartitionDifferenceM3':partition,'currentStockVolumeBalanceM3':balance}
-  receipts.append({'stockId':sid,'sourceOffcutRawStatus':old_audit['status'],'partitionDifferenceM3':partition,'volumeBalanceM3':balance,'wasteInstalledOverlapM3':overlap,'wasteOutsideBlankM3':outside,'serializationAttempts':attempts,'installedGeometryChanged':False,'purchasedDimensionsChanged':False})
+    fields=build();assert set(fields)<=ALLOWED;separate='declared_exterior_offcut_pieces' in fields;assert separate!=('declared_exterior_offcut' in fields);meshes=fields['declared_exterior_offcut_pieces'] if separate else [fields['declared_exterior_offcut']];assert meshes;pieces=[]
+    for record in meshes:
+     if record['triangles']:
+      proof=inspect_mesh(np.asarray(record['vertices']),np.asarray(record['triangles'],np.uint64),separate);assert proof['status']=='PASS',('Invalid serialized stock waste',sid,proof['failures']);piece=native_solid(record);assert piece.volume()>0;pieces.append(piece)
+     else:assert not separate,'Every separate waste piece must contain real positive material'
+    waste=union(pieces);wasteLocalPieces=[affine(piece,toLocal) for piece in pieces];wasteLocal=union(wasteLocalPieces)
+    errors={'partitionDifferenceM3':diff(blank,installed+waste),'volumeBalanceM3':abs(float(blank.volume()-installed.volume()-waste.volume())),'wasteInstalledOverlapM3':amount(installed^waste),'wasteOutsideBlankM3':amount(waste-blank),'betweenWastePiecesOverlapM3':sum(amount(a^b) for a,b in combinations(pieces,2)),'localPartitionDifferenceM3':diff(blankLocal,installedLocal+wasteLocal)*I**3,'localVolumeBalanceM3':abs(float(blankLocal.volume()-installedLocal.volume()-wasteLocal.volume()))*I**3,'localWasteInstalledOverlapM3':amount(installedLocal^wasteLocal)*I**3,'localWasteOutsideBlankM3':amount(wasteLocal-blankLocal)*I**3,'localBetweenWastePiecesOverlapM3':sum(amount(a^b) for a,b in combinations(wasteLocalPieces,2))*I**3};assert np.isfinite(list(errors.values())).all() and max(errors.values())<=TOL,('Serialized current stock partition fails',sid,{key:value/I**3 for key,value in errors.items()});chosen=fields;attempts.append({'method':method,'status':'PASS'});break
+   except (AssertionError,RuntimeError,ValueError) as error:attempts.append({'method':method,'status':'BLOCKED','reason':str(error)[:1600]})
+  assert chosen is not None,('No strict current-stock waste serialization passed',sid,attempts)
+  clean={key:copy.deepcopy(value) for key,value in row.items() if key not in ALLOWED};clean.update(chosen);clean.update(wasteReadbackStatus='PASS',wasteSource=method,currentStockPartitionDifferenceM3=errors['partitionDifferenceM3'],currentStockVolumeBalanceM3=errors['volumeBalanceM3']);results[sid]=clean;receipts.append({'stockId':sid,**errors,'serializedPositiveWastePieceCount':len(pieces),'separateWastePieces':separate,'repairedSourceGeometryBindingsMatched':patch['originalGeometryBindingsMatched'] if patch else None,'historicalProofInherited':False,'freshCurrentBlankAndChildrenReadback':True,'serializationAttempts':attempts,'installedGeometryChanged':False,'purchasedDimensionsChanged':False})
  return {'newStock':{sid:results[sid] for sid in data['wood']['stock']},'sourceStockRecordOverrides':{sid:results[sid] for sid in data['wood']['sourceStockRecordOverrides']},'serializedWasteComposition':{'status':'PASS','stockCount':len(results),'receipts':receipts,'overlapToleranceM3':TOL,'sourceArchiveUnchanged':True}}
+# TIMESTAMP END 2026-11-05T23:39:11+00:00 | REVISION R000073
 # TIMESTAMP START 2026-11-05T22:31:25+00:00 | REVISION R000069
 @lru_cache(maxsize=1)
 def causal_inputs():

@@ -1,0 +1,9 @@
+{
+  "schema": "octagon-frozen-floor-closure-1",
+  "archive": "floor-closure-inputs.tar.gz",
+  "archiveBytes": 1824019,
+  "archiveSha256": "7e65f8f7a5eb3b11a041899d78b0e9e10eb1e656a5171a4ebbf57f916fa49bcb",
+  "manifestSha256": "3b25e360c7f87528e52c4ec9547fd8a8e62b6ef9ff7de453cb9a0e5607aaff7c",
+  "requiredCoreManifestSha256": "841d073466a0d998f0f54d3998771c54a7889606d385710c8ab5c311096aeded",
+  "sourceReadiness": false
+}

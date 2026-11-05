@@ -1,0 +1,46 @@
+{
+  "schema": "octagon-current-stock-waste-audit-1",
+  "revision": "R000073",
+  "timestamp": "2026-11-05T23:39:11+00:00",
+  "status": "FRESH_CURRENT_CORE290_STOCK_READBACK_PASS",
+  "sourceBindings": {
+    "scripts/closure_stock_waste.py": "b8e6229e1c8b8d2a43fb5bce6735d686f58cd92d4db11b1550f9fee40a1fc470",
+    "scripts/fixtures/stock-waste-inputs.json": "91e8d061506074d4b9e387aecdcf66b55a98cc97db8b30a564b0bc6d70bfd317",
+    "scripts/fixtures/stock-waste-inputs.tar.gz": "826c556492b308eb55c3eeec299d4e5d5bf4911db78c2d7717bcac38e8183d8c",
+    "tests/test_closure_stock_waste.py": "72719a951306714bf00b886128a15e730b00b1cf6d8d44ac32112ffeb9fb6e78"
+  },
+  "currentStockImplementationAstSha256": "a6a0da6a19677010cf9ad39c58ff9e33e3f2a7a390413fc6cb92e92c5d94a9d4",
+  "ownerNativeProof": {
+    "status": "PASS",
+    "testSuite": "tests/test_closure_core_parts.py",
+    "stockRows": 290,
+    "elapsedSecondsForThreeTests": 40.948,
+    "scope": "Actual current315core closure geometry; each serialized waste aggregate or positive chunk strictRAW, native reimport, world/local blank reconstruction, volume balance, installed overlap, outside and inter-chunk overlap checked at original tolerance."
+  },
+  "sourceOwnershipTests": {
+    "status": "PASS",
+    "tests": 3,
+    "elapsedSeconds": 1.038,
+    "checks": [
+      "Only waste fields exposed and immutable source/caller separation",
+      "Changed blank or child cannot inherit an original proof",
+      "Corrupt transport refused"
+    ]
+  },
+  "toleranceIn3": 1e-06,
+  "sourceProducer": {
+    "manifestSha256": "718ccd89a0cd7c29e8d7057cc91a7bf4493704edb40d14c9825a48b30779577f",
+    "checkedRows": 290,
+    "wasteCorrections": 188,
+    "unchangedRows": 102,
+    "worstOriginalProducerMetricIn3Approx": 8.142e-07,
+    "qualification": "Original frozen producer metrics are historical; root independently validates each actual current row rather than relabelling those receipts."
+  },
+  "numericalRibbonQualification": "Two W-FUR rows use three positive waste chunks including an explicitly approximate1.01nm-thick/45inch numerical ribbon representation. The quantified error remains below the original physical limit. No installed part, blank or purchased dimension changes; no exact factory-cut CAD claim.",
+  "sourcePolicy": "Exact blank/child fingerprints are required to match an original candidate. A nonmatching archived candidate has no inherited proof or override authority and is usable only after a new actual-current readback passes every strict metric. Later holes that invalidate a candidate require fresh waste from the actual current children.",
+  "remaining": [
+    "Later roof/floor negative cuts need new actual-current stock checks.",
+    "The separate floor43 stock package does not resolve its cork/fastener import prerequisites.",
+    "Complete architecture, whole-scene contacts, master motion and changed-dimension verification remain pending."
+  ]
+}

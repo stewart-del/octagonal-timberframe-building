@@ -1,0 +1,7 @@
+{
+  "schema": "octagon-frozen-stock-waste-1",
+  "archive": "stock-waste-inputs.tar.gz",
+  "archiveBytes": 469432,
+  "archiveSha256": "826c556492b308eb55c3eeec299d4e5d5bf4911db78c2d7717bcac38e8183d8c",
+  "manifestSha256": "718ccd89a0cd7c29e8d7057cc91a7bf4493704edb40d14c9825a48b30779577f"
+}

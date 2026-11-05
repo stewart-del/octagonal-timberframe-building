@@ -1,0 +1,57 @@
+{
+  "schema": "octagon-closure-core-assembly-audit-1",
+  "revision": "R000068",
+  "timestamp": "2026-11-05T21:51:55+00:00",
+  "status": "SCOPED_CURRENT_CORE_AND_STOCK_OWNER_CHECKS_PASS",
+  "scope": "315 default closure wood bodies and all9415 wall/closure fasteners; fresh current290stock readback. This is not a full architecture or continuous construction certificate.",
+  "implementationBindings": {
+    "module": "scripts/closure_core_parts.py",
+    "sha256AtVerification": "ad2aadc94c72299f317e0d9a43fe60caa4e4166e47c6801211e8f1801dc27178",
+    "functionAstSha256": {
+      "inputs": "42096f213839a9a2ac427dcf9a71eec88ada2a68771a3b894b46994b5184eacb",
+      "verify_default": "9dd3a9851757e318df00eb09645a7f5677a1ab148b8e555132d7f54631efe7b7",
+      "compose_wood": "1b718200c0c87c176735d7f57b41796780146df1c5a402b462a9e3daf567e37a",
+      "hardware": "8b0833c58acee855cf793274435cb4ef29199b60a6c4e07b16f2e0281dac0dbc",
+      "compose_stock": "a6a0da6a19677010cf9ad39c58ff9e33e3f2a7a390413fc6cb92e92c5d94a9d4"
+    },
+    "testsSha256": "833d7bf87f0e0f760b9f532421fbde39a6b60025929b468f4abe3caaf278ee15"
+  },
+  "frozenCoreManifestSha256": "841d073466a0d998f0f54d3998771c54a7889606d385710c8ab5c311096aeded",
+  "counts": {
+    "woodBodies": 315,
+    "newWood": 240,
+    "currentExistingNegativeRecipients": 75,
+    "retainedWallHardware": 7434,
+    "newClosureHardware": 1981,
+    "hardwarePrototypes": 12,
+    "newStockRows": 222,
+    "existingStockOverrides": 68
+  },
+  "ownerTests": {
+    "tests": 3,
+    "status": "PASS",
+    "elapsedSeconds": 40.948,
+    "log": "closure-core-stock-current-owner-tests.log",
+    "checks": [
+      "315 strictRAW/default occupied-equivalence checks and preservation of106 protected current records",
+      "290 actual current purchased blank/child partitions after independent serialized waste reimport in world and stock-local coordinates",
+      "Negative-cut idempotence, missing physical split child rejection and preservation of a later current cavity",
+      "All9415 fastener identities/rigid transforms and actual causal recipient constraints; changed default source rejected"
+    ]
+  },
+  "separateRevisions": {
+    "R000069": "Exact causal pose/recipient/cover metadata and focused4owner tests",
+    "R000070": "Roof barrier and subsequent eight negative current cupola GP seats; not included in this core-only stock run",
+    "R000073": "Positive waste representation and fresh actual-current stock readback; installed bodies and purchased blanks unchanged"
+  },
+  "historicalLocalWoodRoutes": {
+    "logicalGroups": 224,
+    "scope": "Frozen qualified local source context, with simultaneous split groups and partial body coverage retained. Not a new individual315piece route or current full-building replay."
+  },
+  "remaining": [
+    "Compose all subsequent roof/floor tools and recheck their actual current stock; this core-only result does not certify those later cuts.",
+    "Full final architectural stage, global contacts, actual material births/formwork, parked obstacles and full continuous master remain required.",
+    "All changed-dimension products and ordered controls remain separate unfinished work.",
+    "No new publication."
+  ]
+}

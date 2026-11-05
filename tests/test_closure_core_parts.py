@@ -25,8 +25,11 @@ class ClosureCore(unittest.TestCase):
   for sid,row in records.items():
    for pid in row['children']:
     if pid not in self.solids:self.solids[pid]=shape(self.parts[pid])
-   blank=shape(row['blank']);installed=union([self.solids[pid] for pid in row['children']]);offcut=native_solid(row['declared_exterior_offcut']) if row['declared_exterior_offcut']['triangles'] else m.Manifold();self.assertLessEqual(amount(installed-blank),TOL,(sid,'outside actual stock'));self.assertLessEqual(diff(blank,installed+offcut),TOL,(sid,'stock partition'));self.assertFalse(row['nailScrewBoresApplied'])
-   if row['declared_exterior_offcut']['triangles']:self.assertEqual(inspect_mesh(np.asarray(row['declared_exterior_offcut']['vertices']),np.asarray(row['declared_exterior_offcut']['triangles'],np.uint64),False)['status'],'PASS',sid)
+   # TIMESTAMP START 2026-11-05T23:39:11+00:00 | REVISION R000073
+   blank=shape(row['blank']);installed=union([self.solids[pid] for pid in row['children']]);separate='declared_exterior_offcut_pieces' in row;meshes=row['declared_exterior_offcut_pieces'] if separate else [row['declared_exterior_offcut']];pieces=[native_solid(q) for q in meshes if q['triangles']];offcut=union(pieces);self.assertLessEqual(amount(installed-blank),TOL,(sid,'outside actual stock'));self.assertLessEqual(diff(blank,installed+offcut),TOL,(sid,'stock partition'));self.assertFalse(row['nailScrewBoresApplied'])
+   for q in meshes:
+    if q['triangles']:self.assertEqual(inspect_mesh(np.asarray(q['vertices']),np.asarray(q['triangles'],np.uint64),separate)['status'],'PASS',sid)
+   # TIMESTAMP END 2026-11-05T23:39:11+00:00 | REVISION R000073
  def test_idempotence_protected_hosts_extra_void_and_missing_child(self):
   second=compose_wood(self.current,self.data)
   for pid in self.templates:self.assertLessEqual(diff(shape(second['parts'][pid]),self.solids[pid]),TOL,pid)
