@@ -1,0 +1,60 @@
+{
+  "schema": "octagon-closure-core-causal-audit-1",
+  "revision": "R000069",
+  "timestamp": "2026-11-05T22:31:25+00:00",
+  "status": "SCOPED_METADATA_AND_OWNER_TESTS_PASS",
+  "scope": "Exact default poses, earlier receiving wood and later physical covers for 9415 wall and closure fasteners. This is not a whole-building continuous assembly certificate.",
+  "coreManifestSha256": "841d073466a0d998f0f54d3998771c54a7889606d385710c8ab5c311096aeded",
+  "deltaSha256": "bfca97e399a7c2bb6fe9d0cb0e5b5b019734a19909f57c1f704a9ebf2dcdea5b",
+  "originalCheckSha256": "a7463dedc874843e30b98fa7c7028c6331cbe95b15e5b7566366460d7d2a6425",
+  "fixtureSha256": "121ba933d0c4b9a752b73f2fcba3bd8c1f8bd899b0290e0d045d5a1550648317",
+  "implementationBindings": {
+    "source": "scripts/closure_core_parts.py",
+    "functionAstSha256": {
+      "hardware": "8b0833c58acee855cf793274435cb4ef29199b60a6c4e07b16f2e0281dac0dbc",
+      "causal_inputs": "36076921a63a6d4d6b28bdfb89555505c1f0ea716bb843da9c1e3dfa8d578c13",
+      "source_pose": "b6e2f34e3fb43bf77af8c5bb6fa3d460eb94c8dd3c3abb2e82a86b26c96f6328",
+      "apply_causal_metadata": "c76cf543a01e6b8d8982abbb8511bf399dce8be32b4455c2b34739523e9da864"
+    },
+    "rationale": "Function ASTs bind this scoped metadata implementation while independent stock-waste serialization remains unfinished in the same module."
+  },
+  "ownerTests": {
+    "path": "tests/test_closure_core_causal.py",
+    "sha256": "bc7fff42e88ef0ee52051692337a7ccfdb74e140e04657e75b62675ce86e4c76",
+    "tests": 4,
+    "status": "PASS",
+    "covers": [
+      "All 9415 original physical poses and static recipient lists preserved",
+      "Later and uncertain contacts never become axial extraction exemptions",
+      "2849 siding nails with 2302 actual upper-course blockers",
+      "Changed pose rejected and a newly added static recipient retained without an extraction exemption",
+      "Cladding follows the finished-wall visibility and closures follow their actual construction phases"
+    ]
+  },
+  "sourceStats": {
+    "staticReceivers": 25781,
+    "axialWithdrawalReceivers": 25172,
+    "laterStaticContacts": 397,
+    "samePhaseAmbiguities": 212,
+    "provenAxialOutwardRayObstacles": 11617
+  },
+  "sidingStats": {
+    "nails": 2849,
+    "nailsWithActualUpperCourseBlocker": 2302
+  },
+  "sourcePositionsChanged": false,
+  "sourceMeshesChanged": false,
+  "architectureRuntimeAssertions": {
+    "path": "tests/architecture.cjs",
+    "status": "NOT_RUN_PENDING_CURRENT_ARCHITECTURAL_STAGE"
+  },
+  "remainingLimits": [
+    "Ownercontinuousmastermust includealllaterwood/films/Cu/OEMunits; bboxcandidatesarenotcollisionproof",
+    "No arbitraryall-static-receivers axialexemption",
+    "No claimfactorynailhead/threadprofile; realpublishednominalposesunchanged",
+    "Simultaneouswoodsplitlocalproofsremainqualifiedbycoreinventory",
+    "The 290 closure stock rows are not yet all verified after serialized waste readback.",
+    "Floor fasteners, weather films, metals and purchased window units need their own causal relationships and a complete continuous master route.",
+    "No deployment, full-build, dynamic architecture, browser performance or full-image completion claim is made."
+  ]
+}

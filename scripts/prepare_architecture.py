@@ -25,6 +25,10 @@ def load_inputs():
 
 def prepare(output):
  inputs,sources=load_inputs();parts=[];prototypes={};allids=set()
+ # TIMESTAMP START 2026-11-05T21:51:55+00:00 | REVISION R000068
+ from closure_core_parts import inputs as closure_inputs,compose_wood as compose_closure_wood,hardware as closure_hardware,compose_stock as closure_stock
+ closure_source=closure_inputs()
+ # TIMESTAMP END 2026-11-05T21:51:55+00:00 | REVISION R000068
  # TIMESTAMP START 2026-11-05T19:06:47+00:00 | REVISION R000061
  from cupola_roof_parts import build as physical_cupola_roof
  cupola_roof=physical_cupola_roof();superseded_cupola=set(cupola_roof['removeIds']+cupola_roof['replaceIds'])
@@ -65,6 +69,11 @@ def prepare(output):
    # authored fixture. Runtime keeps each identity, actual transform, targets,
    # penetration summary and installation movement, with shared product specs.
    retained=['id','name','parentId','parent_id','receiverIds','primaryReceiverId','mesh_instance','material','color','is_fastener','is_timber','schematic','schematicKind','displayRole','constructionPhase','group','center','label_position','exploded_offset','volumeM3','volume_m3','withdrawal_direction','withdrawal_distance_m','withdrawal_translation_m','outward_axis_world','penetrationCheck','minimum_receiving_wood_in','roofRole','roof','course','role','mudroomRoof','mudroomRole','mudroomScreen','requiresAbsentForAxialInsertion','removalPrerequisites']
+   # TIMESTAMP START 2026-11-05T21:51:55+00:00 | REVISION R000068
+   # TIMESTAMP START 2026-11-05T22:31:25+00:00 | REVISION R000069
+   retained+=['causalMetadataStatus','assemblyPrerequisiteWoodIds','withdrawalObstacleCandidateIds','causalSourcePoseSha256']
+   # TIMESTAMP END 2026-11-05T22:31:25+00:00 | REVISION R000069
+   # TIMESTAMP END 2026-11-05T21:51:55+00:00 | REVISION R000068
 # TIMESTAMP START 2026-11-05T16:27:06+00:00 | REVISION R000053
    retained+=['vertices','triangles','replaceExisting','fastenerSpec','fastener_spec','stock_frame','stockLengthIn','stockSectionIn','actual_length_in','nominal_diameter_in','dimensions','peg_geometry','axis_direction','localBounds'] if not p.get('mesh_instance') else ['replaceExisting']
 # TIMESTAMP END 2026-11-05T16:27:06+00:00 | REVISION R000053
@@ -143,12 +152,34 @@ def prepare(output):
  add_hardware('roof_aux','roof_aux_prototypes','ARCH-AUX-','Cupola roof and flashing')
  add_hardware('ceiling_screws','ceiling_prototype','ARCH-CEILING-','Cupola ceiling')
  add_hardware('roof_nails','roof_nail_prototypes','ARCH-DECK-','Main and porch roof sheathing')
- for p in inputs['wall_wood']['add_parts'].values():
-  lap=p['id'].startswith('LAP-');ply=p['id'].startswith('ENV-') and 'PLY' in p['id']
-  add(p,phase='Main siding' if lap else 'Main wall sheathing' if ply else 'Main wall framing',role='wall' if lap or ply else 'wallStructure',kind='wall' if lap or ply else 'rail',material=p.get('material','wood'),color=[.80,.77,.65] if lap else [.68,.52,.34])
- wall=inputs['wall_hardware']
- for key,value in wall['prototypes'].items():prototype(key,value)
- for p in wall['instances']:add(p,phase='Main siding' if p['parentId'].startswith('LAP-') else 'Main wall sheathing and framing',role='wall',kind='wall',material=p['material'])
+ # TIMESTAMP START 2026-11-05T21:51:55+00:00 | REVISION R000068
+ # Compose only actual negative tools into the production RAW567 envelope.
+ # The reference P/rail/floor bodies never replace current source recipients.
+ raw_wall=inputs['wall_wood']['add_parts'];assert len(raw_wall)==567
+ for pid in closure_source['wood']['requiredAdditionalNewEnvelopeCutTools']:
+  expected=closure_source['receivers']['parts'][pid];actual=raw_wall[pid]
+  assert all(actual[key]==expected[key] for key in ['vertices','triangles']),('Closure production raw recipient differs from its exact fixture',pid)
+ closure=compose_closure_wood({'parts':raw_wall},closure_source);wall_parts=closure['parts']
+ def wall_properties(p):
+  # TIMESTAMP START 2026-11-05T22:31:25+00:00 | REVISION R000069
+  pid=p['id'];lap=pid.startswith('LAP-');ply=pid.startswith('ENV-') and 'PLY' in pid;cladding=lap or p.get('material','').startswith('LP SmartSide')
+  if pid.startswith('BOX-'):
+   roof='Porch eave closures after porch roof' if 'PORCH' in pid else 'Cupola eave closures' if 'CUP' in pid else 'Main wall roof-edge closures after porch';sheet='ply' in p.get('material','').lower();return roof,'roofCover' if sheet else 'roofStructure','roofCover',None
+  return ('Main siding' if cladding else 'Main wall sheathing' if ply else 'Main wall framing','wall' if cladding or ply else 'wallStructure','wall' if cladding or ply else 'rail',[.80,.77,.65] if cladding else [.68,.52,.34])
+  # TIMESTAMP END 2026-11-05T22:31:25+00:00 | REVISION R000069
+ for p in wall_parts.values():
+  phase,role,kind,color=wall_properties(p);add(p,phase=phase,role=role,kind=kind,material=p.get('material','wood'),color=color)
+ wall_hardware=closure_hardware(closure_source)
+ # TIMESTAMP START 2026-11-05T22:31:25+00:00 | REVISION R000069
+ from closure_core_parts import CAUSAL_DELTA_SHA
+ closure['closureCoreComposition'].update(causalHardwareMetadataStatus='SOURCE_BOUND_EARLIER_WOOD_AND_LATER_COVERS_APPLIED',causalMetadataDeltaSha256=CAUSAL_DELTA_SHA)
+ # TIMESTAMP END 2026-11-05T22:31:25+00:00 | REVISION R000069
+ assert wall_hardware['retainedIds']=={p['id'] for p in inputs['wall_hardware']['instances']},'Retained wall hardware must keep all original individual identities'
+ for key,value in wall_hardware['prototypes'].items():prototype(key,value)
+ for p in wall_hardware['parts']:
+  owner=wall_parts.get(p['parentId']);phase,role,kind,_=wall_properties(owner) if owner else ('Main wall framing','wallStructure','rail',None)
+  add(p,phase=phase,role=role,kind=kind,material=p['material'])
+ # TIMESTAMP END 2026-11-05T21:51:55+00:00 | REVISION R000068
  # Compose every declared host tool against the CURRENT exact occupied
  # source, preserving all pre-existing floor holes and normalized boundaries.
  # Saved research readbacks are evidence, never replacement source meshes.
@@ -244,6 +275,9 @@ def prepare(output):
 # TIMESTAMP END 2026-11-05T16:48:19+00:00 | REVISION R000054
 # TIMESTAMP END 2026-11-05T16:27:06+00:00 | REVISION R000053
 # TIMESTAMP START 2026-11-05T14:38:03+00:00 | REVISION R000047
+ # TIMESTAMP START 2026-11-05T21:51:55+00:00 | REVISION R000068
+ payload.update(closureCoreComposition=closure['closureCoreComposition'],closureCoreStock=closure_stock(wall_parts,closure_source),closureCoreReleaseGroups=closure_source['groups'])
+ # TIMESTAMP END 2026-11-05T21:51:55+00:00 | REVISION R000068
  output.parent.mkdir(parents=True,exist_ok=True);write_physical_json(output,payload,inline_vertex_limit=0,part_archive_limit=8*1024*1024);metadata=json.loads(output.read_text());output.write_text(json.dumps(metadata,separators=(',',':'))+'\n');print('Prepared',len(parts),'individual pieces;',len(prototypes),'shared hardware prototypes;',output,flush=True)
 # TIMESTAMP END 2026-11-05T14:38:03+00:00 | REVISION R000047
  return payload

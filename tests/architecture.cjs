@@ -8,6 +8,12 @@ const instance=pieces.find(p=>p.mesh_instance);assert.equal(typeof Object.getOwn
 const compact=A.serializeScene(pieces),compactInstance=compact.parts.find(p=>p.id===instance.id);assert(!Object.hasOwn(compactInstance,'vertices'));assert(!Object.hasOwn(compactInstance,'triangles'));assert.strictEqual(compact.prototypes[instance.mesh_instance.prototype],instance.instancePrototype);assert.deepEqual(compactInstance.mesh_instance,instance.mesh_instance);
 for(const p of pieces.filter(p=>p.is_fastener)){assert(p.withdrawalReceiverIds.length>0);assert(p.withdrawalReceiverIds.every(id=>p.receiverIds.includes(id)));}
 const starter=pieces.find(p=>p.id==='CEDAR-MAIN0-C00-S000-N1');assert(starter.receiverIds.includes('CEDAR-MAIN0-C01-S000'));assert(!starter.withdrawalReceiverIds.includes('CEDAR-MAIN0-C01-S000'),'Later covering must block earlier nail extraction');
+// TIMESTAMP START 2026-11-05T22:31:25+00:00 | REVISION R000069
+assert.equal(data.closureCoreComposition.causalHardwareMetadataStatus,'SOURCE_BOUND_EARLIER_WOOD_AND_LATER_COVERS_APPLIED');
+const closureFasteners=pieces.filter(p=>p.causalMetadataStatus==='SOURCE_BOUND_EARLIER_WOOD_AND_LATER_COVERS_APPLIED');assert.equal(closureFasteners.length,9415);
+for(const p of closureFasteners){assert(p.causalSourcePoseSha256&&p.assemblyPrerequisiteWoodIds.length);assert(p.withdrawalReceiverIds.every(id=>!p.removalPrerequisites.includes(id)));}
+const sidingNails=closureFasteners.filter(p=>/^LAP-[A-Z]+-\d+-/.test(p.parentId));assert.equal(sidingNails.length,2849);assert.equal(sidingNails.filter(p=>p.removalPrerequisites.some(id=>{const a=/^LAP-([A-Z]+)-(\d+)-/.exec(p.parentId),b=/^LAP-([A-Z]+)-(\d+)-/.exec(id);return b&&a[1]===b[1]&&Number(b[2])>Number(a[2]);})).length,2302);
+// TIMESTAMP END 2026-11-05T22:31:25+00:00 | REVISION R000069
 const model={parts:[{id:'P0'},{id:'PLY'}]},legacy=[{id:'OLD-WALL',schematicKind:'wall'},{id:'OLD-ROOF',schematicKind:'roofCover'},{id:'KEEP-RAIL',schematicKind:'rail'},{id:'OLD-PORCH-ROOF',mudroomRoof:true}];
 const overlays=pieces.filter(p=>p.replaceExisting),overlayLegacy=overlays.map(p=>({id:p.id,schematicKind:p.schematicKind,material:p.material,oldGeometry:true}));
 // TIMESTAMP START 2026-11-05T16:27:06+00:00 | REVISION R000053
