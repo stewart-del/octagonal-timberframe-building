@@ -1,0 +1,41 @@
+{
+  "schema": "octagon-current-physical-scene-audit-1",
+  "status": "PASS_CURRENT_ASSEMBLED_SOURCE_LOADING_ONLY",
+  "revision": "R000065",
+  "timestamp": "2026-11-05T21:07:06+00:00",
+  "sources": {
+    "scripts/current_physical_scene.cjs": "b6491e3b9aaa90aa0f54e87779aa4bef828b8e2f202bbb4fae60a0c5cfd251f1",
+    "scripts/current_physical_scene.py": "da505e8637f741e9fb61f9090fb54739bbdffded620dbdf0587d674ae30a0465",
+    "tests/current-physical-scene.cjs": "dd5bb973e7ce8b79b94329b5e48fc0130ccecf3a2c618e5b2eead25d463aa080",
+    "tests/test_current_physical_scene.py": "017830997eb457dc88b64e17d619a8c79f3e076ee078505c0e43fa95ce0c5c99"
+  },
+  "scene_sha256": "32073bbffcc255161c5340340d7e5c635811ca391544cdd8779afdde00db7f3d",
+  "projection": {
+    "schema": "octagon-current-assembled-projection-1",
+    "variant": "top-entry",
+    "currentModelSha256": "99cb11c9832f87f49333d0caa94517bda37af401c1000787c8af6f10bf30ed6f",
+    "bindingSha256": "b1658b1208dd12cffa8860b10ef136e3f294b6bba40937b37cbf428b933d36f5",
+    "architectureStatus": "STAGING_INCOMPLETE_DO_NOT_PUBLISH",
+    "architectureSource": "/workspace/timberframe-next-step/architecture-cupola-corrected/architectural-solids.json",
+    "staging": true,
+    "scope": "Assembled product projection only; all included physical actors retained. Temporary forming stock, material birth and complete construction route require their separate lifecycle composition.",
+    "wholeBuildingReady": false,
+    "physicalActorCount": 30164,
+    "excludedReferenceCount": 65
+  },
+  "source_count": 50,
+  "checks": {
+    "current_stage_readback": "30164 physical actors and 34 prototypes have exactly identical occupied vertices/triangles/rigid instances to the independently exported current stage",
+    "reference_accounting": "14 conservative purchased-window envelopes retained; 56 planar appearance references have explicit retained physical parents",
+    "missing_final_and_implicit_staging": "rejected",
+    "changed_source": "rejected",
+    "parked_actor": "retained and blocks the actual native continuous sweep",
+    "frozen_motion_checker_and_contact_policy": "all three exact hashes preserved",
+    "python_regressions": "3 tests PASS"
+  },
+  "limits": [
+    "This stage is incomplete and remains unpublished.",
+    "The assembled product projection is not the complete construction lifecycle registry. Forms, material births, reuse, adhesive release and all actual offsite/parked poses must be composed separately.",
+    "Loading and matching geometry does not prove global assembled clearance, the full motion route, structural capacity or dynamic retiled geometry."
+  ]
+}

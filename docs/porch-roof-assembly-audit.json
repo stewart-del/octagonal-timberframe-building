@@ -1,0 +1,295 @@
+{
+  "status": "PASS",
+  "revision": "R000053",
+  "timestamp": "2026-11-05T16:27:06+00:00",
+  "scope": "Fresh actual-input derivation, native raw stock, saved solid boundaries and scoped assembled interference checks only. Structural capacities, complete scene and motion require their separate checks.",
+  "sources": {
+    "scripts/porch_roof_parts.py": "0ed619e58cb4f68adf868b57b93ea674c01897823445aa36503cffec0bc23b17",
+    "scripts/fixtures/porch-roof-inputs.json.gz": "738f293c7af4ff87c3dc7c0fdd9900293cfbd1f4e1d662d2147f18d4a85442f0",
+    "tests/test_porch_roof_parts.py": "dc49ec14ea14d3c196f198a2902c90504dedc8dee55fe076eca148982657da92",
+    "src/model-data.json": "f97d7c5807b89a123d05bdac17253c657fd631fcdb954e7525af3d3974cd296b",
+    "src/step-lap-proposed-model.json": "f535b8b613370c45e22403fa9b3da858d8c27464665603599ec66e35d45c80ad",
+    "src/top-entry-proposed-model.json": "99cb11c9832f87f49333d0caa94517bda37af401c1000787c8af6f10bf30ed6f",
+    "src/mudroom.js": "822ef641ec9cbe40957e41cc4b094a70c708fdea37a49cdce41863c5acf676cf",
+    "src/mudroom-joinery-fit.json": "5df769cfeb2d586bf3c73357c555f694c64f84cdf7503f39bfaa2a9d759357d2",
+    "scripts/fixtures/architectural-inputs.json.gz": "355f9bec5732b6669133162f40144039fabbc4cedf31293e1b32d1a9e8a4e237",
+    "scripts/physical_contacts.py": "683e6bf0d228a01851aa81ce121b8aa23a0c15daefad10e096d9ed69b1abbaea",
+    "scripts/audit_revised_joinery.py": "4970b31fd5c47c49364c369ebbfa56992b80c598654daf3badf870be9bdb57e4",
+    "scripts/audit_cavity_fit.py": "310058c9db5fe75836ae6613c25dc8d22ac58b3d907a7d63255757911ccee2fe"
+  },
+  "composition": {
+    "status": "PASS",
+    "scope": "Fresh fitted-host composition, input ownership and independent raw-stock containment only. Complete scene/static, auxiliary cavities and installation paths require their separate final checks.",
+    "fixture_sha256": "738f293c7af4ff87c3dc7c0fdd9900293cfbd1f4e1d662d2147f18d4a85442f0",
+    "generator_sha256": "0ed619e58cb4f68adf868b57b93ea674c01897823445aa36503cffec0bc23b17",
+    "host_composition": [
+      {
+        "id": "MUD-HEADER-FRONT",
+        "input_difference_m3": 0.0,
+        "output_volume_m3": 0.03434365836135517,
+        "reference_difference_m3": 1.4208977690190888e-19,
+        "boundary_normalization": null
+      },
+      {
+        "id": "MUD-PLATE-L",
+        "input_difference_m3": 0.0,
+        "output_volume_m3": 0.11553004998295763,
+        "reference_difference_m3": 0.0,
+        "boundary_normalization": {
+          "method": "Original generating-inch signed planar boundary before world transform",
+          "occupied_difference_in3": 6.894519012371616e-12,
+          "plane_weld_distance_m": 1e-10
+        }
+      },
+      {
+        "id": "MUD-PLATE-R",
+        "input_difference_m3": 0.0,
+        "output_volume_m3": 0.11553004998295759,
+        "reference_difference_m3": 5.402761727830469e-17,
+        "boundary_normalization": {
+          "method": "Original generating-inch signed planar boundary before world transform",
+          "occupied_difference_in3": 1.6226512539792743e-11,
+          "plane_weld_distance_m": 1e-10
+        }
+      },
+      {
+        "id": "MUD-RAFTER-L-0",
+        "input_difference_m3": 0.0,
+        "output_volume_m3": 0.016876135663284532,
+        "reference_difference_m3": 1.5462495462259872e-18,
+        "boundary_normalization": null
+      },
+      {
+        "id": "MUD-RAFTER-R-0",
+        "input_difference_m3": 0.0,
+        "output_volume_m3": 0.016876135663284424,
+        "reference_difference_m3": 1.1320619121496335e-18,
+        "boundary_normalization": null
+      },
+      {
+        "id": "MUD-ROOF-TIE-0",
+        "input_difference_m3": 0.0,
+        "output_volume_m3": 0.033681106064720474,
+        "reference_difference_m3": 0.0,
+        "boundary_normalization": null
+      },
+      {
+        "id": "MUD-PEG-PJ-109",
+        "input_difference_m3": 0.0,
+        "output_volume_m3": 2.3857223942890963e-05
+      },
+      {
+        "id": "MUD-PEG-PJ-111",
+        "input_difference_m3": 0.0,
+        "output_volume_m3": 2.3857223942891533e-05
+      },
+      {
+        "id": "MUD-PEG-PJ-145",
+        "input_difference_m3": 0.0,
+        "output_volume_m3": 2.3857223942893494e-05
+      },
+      {
+        "id": "MUD-PEG-PJ-147",
+        "input_difference_m3": 0.0,
+        "output_volume_m3": 2.3857223942893267e-05
+      },
+      {
+        "id": "MUD-PEG-PJ-115",
+        "input_difference_m3": 0.0,
+        "output_volume_m3": 2.385722394289216e-05
+      },
+      {
+        "id": "MUD-PEG-PJ-117",
+        "input_difference_m3": 0.0,
+        "output_volume_m3": 2.3857223942892356e-05
+      },
+      {
+        "id": "MUD-PEG-PJ-151",
+        "input_difference_m3": 0.0,
+        "output_volume_m3": 2.3857223942890486e-05
+      },
+      {
+        "id": "MUD-PEG-PJ-153",
+        "input_difference_m3": 0.0,
+        "output_volume_m3": 2.3857223942893257e-05
+      }
+    ],
+    "stock_checks": [
+      {
+        "id": "MUD-PLATE-L",
+        "outside_blank_m3": 0.0
+      },
+      {
+        "id": "MUD-PLATE-R",
+        "outside_blank_m3": 1.4596759961355748e-18
+      },
+      {
+        "id": "MUD-ROOF-VALLEY-L",
+        "outside_blank_m3": 3.8163916471489756e-17
+      },
+      {
+        "id": "MUD-ROOF-VALLEY-R",
+        "outside_blank_m3": 0.0
+      },
+      {
+        "id": "MUD-ROOF-TRIMMER-L-REAR",
+        "outside_blank_m3": 0.0
+      },
+      {
+        "id": "MUD-ROOF-TRIMMER-R-REAR",
+        "outside_blank_m3": 0.0
+      },
+      {
+        "id": "MUD-ROOF-TRIMMER-L-96",
+        "outside_blank_m3": 1.5308934675495323e-16
+      },
+      {
+        "id": "MUD-ROOF-TRIMMER-R-96",
+        "outside_blank_m3": 2.0159384144652348e-19
+      },
+      {
+        "id": "MUD-ROOF-BACK-RIDGE-00",
+        "outside_blank_m3": 0.0
+      },
+      {
+        "id": "MUD-ROOF-BACK-RIDGE-01",
+        "outside_blank_m3": 0.0
+      },
+      {
+        "id": "MUD-ROOF-BACK-RIDGE-02",
+        "outside_blank_m3": 0.0
+      },
+      {
+        "id": "MUD-ROOF-BACK-RIDGE-03",
+        "outside_blank_m3": 0.0
+      },
+      {
+        "id": "MUD-ROOF-BACK-RIDGE-04",
+        "outside_blank_m3": 0.0
+      },
+      {
+        "id": "MUD-ROOF-BACK-RIDGE-05",
+        "outside_blank_m3": 0.0
+      },
+      {
+        "id": "MUD-ROOF-BACK-RIDGE-06",
+        "outside_blank_m3": 0.0
+      },
+      {
+        "id": "MUD-ROOF-BACK-SEAM-L-00",
+        "outside_blank_m3": 0.0
+      },
+      {
+        "id": "MUD-ROOF-BACK-SEAM-L-01",
+        "outside_blank_m3": 0.0
+      },
+      {
+        "id": "MUD-ROOF-BACK-SEAM-L-02",
+        "outside_blank_m3": 0.0
+      },
+      {
+        "id": "MUD-ROOF-BACK-SEAM-L-03",
+        "outside_blank_m3": 0.0
+      },
+      {
+        "id": "MUD-ROOF-BACK-SEAM-L-04",
+        "outside_blank_m3": 0.0
+      },
+      {
+        "id": "MUD-ROOF-BACK-SEAM-L-05",
+        "outside_blank_m3": 0.0
+      },
+      {
+        "id": "MUD-ROOF-BACK-SEAM-L-06",
+        "outside_blank_m3": 0.0
+      },
+      {
+        "id": "MUD-ROOF-BACK-SEAM-R-00",
+        "outside_blank_m3": 0.0
+      },
+      {
+        "id": "MUD-ROOF-BACK-SEAM-R-01",
+        "outside_blank_m3": 0.0
+      },
+      {
+        "id": "MUD-ROOF-BACK-SEAM-R-02",
+        "outside_blank_m3": 0.0
+      },
+      {
+        "id": "MUD-ROOF-BACK-SEAM-R-03",
+        "outside_blank_m3": 0.0
+      },
+      {
+        "id": "MUD-ROOF-BACK-SEAM-R-04",
+        "outside_blank_m3": 0.0
+      },
+      {
+        "id": "MUD-ROOF-BACK-SEAM-R-05",
+        "outside_blank_m3": 0.0
+      },
+      {
+        "id": "MUD-ROOF-BACK-SEAM-R-06",
+        "outside_blank_m3": 0.0
+      },
+      {
+        "id": "MUD-ROOF-BACK-EAVE-L-02",
+        "outside_blank_m3": 0.0
+      },
+      {
+        "id": "MUD-ROOF-BACK-EAVE-L-03",
+        "outside_blank_m3": 0.0
+      },
+      {
+        "id": "MUD-ROOF-BACK-EAVE-L-04",
+        "outside_blank_m3": 1.5043305143236374e-18
+      },
+      {
+        "id": "MUD-ROOF-BACK-EAVE-L-05",
+        "outside_blank_m3": 0.0
+      },
+      {
+        "id": "MUD-ROOF-BACK-EAVE-L-06",
+        "outside_blank_m3": 0.0
+      },
+      {
+        "id": "MUD-ROOF-BACK-EAVE-R-02",
+        "outside_blank_m3": 0.0
+      },
+      {
+        "id": "MUD-ROOF-BACK-EAVE-R-03",
+        "outside_blank_m3": 0.0
+      },
+      {
+        "id": "MUD-ROOF-BACK-EAVE-R-04",
+        "outside_blank_m3": 0.0
+      },
+      {
+        "id": "MUD-ROOF-BACK-EAVE-R-05",
+        "outside_blank_m3": 0.0
+      },
+      {
+        "id": "MUD-ROOF-BACK-EAVE-R-06",
+        "outside_blank_m3": 0.0
+      }
+    ],
+    "new_and_replacement_records": 209,
+    "connection_instances": 144
+  },
+  "verification": {
+    "tests": 3,
+    "strict_new_or_replacement_records": 209,
+    "raw_stock_members": 39,
+    "fresh_host_overlays": 14,
+    "combined_static_variants": [
+      "baseline",
+      "proposed",
+      "top-entry"
+    ],
+    "excluded_context": [
+      "Retired PLY is replaced by separate ceiling halves in the architectural model.",
+      "Symbolic M-SP0 construction aid and ENV-CUP reference surfaces follow the established nonphysical exclusion."
+    ],
+    "motion_scope": "Conditional local208release tests remain archived in the fixture; whole-building route is not certified by this report."
+  },
+  "overlap_tolerance_m3": 1.6387064e-11
+}

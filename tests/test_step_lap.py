@@ -1,3 +1,4 @@
+# TIMESTAMP START 2026-11-04T23:23:25+00:00 | REVISION R000011
 # TIMESTAMP START 2026-11-03T17:00:04-05:00 | REVISION R005063
 """Read current perimeter joints from their actual exported occupied material."""
 from pathlib import Path
@@ -54,3 +55,5 @@ for shift,count in [((.1,0,0),1),((.1,.2,0),2)]:
  assert abs((cleaned-original).volume())+abs((original-cleaned).volume())<1e-12
 print('PASS: 24 current complementary perimeter seats, 112 clean timbers, all physical pairs and current mass data; planar repair guard passes')
 # TIMESTAMP END 2026-11-03T17:00:04-05:00 | REVISION R005063
+
+# TIMESTAMP END 2026-11-04T23:23:25+00:00 | REVISION R000011

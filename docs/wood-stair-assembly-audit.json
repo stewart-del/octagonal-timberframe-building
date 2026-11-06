@@ -1,0 +1,1905 @@
+{
+  "status": "PASS",
+  "revision": "R000059",
+  "timestamp": "2026-11-05T17:43:13+00:00",
+  "scope": "Fresh stair attachment-hole composition, strict occupied-solid boundaries, actual stock cuts and stair-contact checks against the current composed staging scene only. Full construction route and structural capacities remain separate.",
+  "sources": {
+    "scripts/wood_stair_parts.py": "a374fd9a824f1e481a2465470c94ac855d160335aa0fb37acae39e55107e6aa2",
+    "scripts/fixtures/wood-stair-inputs.json.gz": "02958d26c190bb21877a5a8c90845cbf3cb9d5edd66acb163e479838e18b09db",
+    "scripts/prepare_parametric.py": "6adad24b9b8b8c5957f7a76460e056eb24245a24273e7dba1b23d6c9e7aa6cef",
+    "tests/test_wood_stair_parts.py": "fd26e0d33923a9d31fbe18be9a47e012e7dbca4100ac345597b435ec7aefe4cd",
+    "scripts/audit_cavity_fit.py": "310058c9db5fe75836ae6613c25dc8d22ac58b3d907a7d63255757911ccee2fe",
+    "scripts/audit_revised_joinery.py": "4970b31fd5c47c49364c369ebbfa56992b80c598654daf3badf870be9bdb57e4",
+    "scripts/physical_contacts.py": "683e6bf0d228a01851aa81ce121b8aa23a0c15daefad10e096d9ed69b1abbaea"
+  },
+  "composition": {
+    "status": "PASS",
+    "scope": "Fresh source-compatible stair/landing attachment holes and strict input guards only. Final scene, individual/global motion and capacities remain separate checks.",
+    "fixture_sha256": "02958d26c190bb21877a5a8c90845cbf3cb9d5edd66acb163e479838e18b09db",
+    "generator_sha256": "a374fd9a824f1e481a2465470c94ac855d160335aa0fb37acae39e55107e6aa2",
+    "parts": 619,
+    "fresh_host_composition": [
+      {
+        "id": "WOOD-LANDING-PAD-L-BACK",
+        "cut_tool_count": 2,
+        "readback_difference_m3": 1.4015748299098603e-20,
+        "boundary_normalization": null,
+        "readback_comparison": {
+          "method": "Fixed common integer-metre origin, every actual oriented triangle retained",
+          "origin_m": [
+            -2.0,
+            -1.0,
+            -7.0
+          ],
+          "world_difference_m3_diagnostic": 7.887994321305672e-21,
+          "local_difference_m3": 1.40157482990985e-20,
+          "transform_cover_m3": 0.0
+        }
+      },
+      {
+        "id": "WOOD-LANDING-PAD-L-FRONT",
+        "cut_tool_count": 2,
+        "readback_difference_m3": 7.485488235237423e-20,
+        "boundary_normalization": null,
+        "readback_comparison": {
+          "method": "Fixed common integer-metre origin, every actual oriented triangle retained",
+          "origin_m": [
+            -2.0,
+            -1.0,
+            -7.0
+          ],
+          "world_difference_m3_diagnostic": 5.849821291975012e-20,
+          "local_difference_m3": 7.485488235237369e-20,
+          "transform_cover_m3": 0.0
+        }
+      },
+      {
+        "id": "WOOD-LANDING-PAD-R-BACK",
+        "cut_tool_count": 2,
+        "readback_difference_m3": 3.6230510829822877e-20,
+        "boundary_normalization": null,
+        "readback_comparison": {
+          "method": "Fixed common integer-metre origin, every actual oriented triangle retained",
+          "origin_m": [
+            -3.0,
+            -1.0,
+            -6.0
+          ],
+          "world_difference_m3_diagnostic": 2.1228763240560902e-20,
+          "local_difference_m3": 3.623051082982261e-20,
+          "transform_cover_m3": 0.0
+        }
+      },
+      {
+        "id": "WOOD-LANDING-PAD-R-FRONT",
+        "cut_tool_count": 2,
+        "readback_difference_m3": 7.18753777859582e-20,
+        "boundary_normalization": null,
+        "readback_comparison": {
+          "method": "Fixed common integer-metre origin, every actual oriented triangle retained",
+          "origin_m": [
+            -3.0,
+            -1.0,
+            -7.0
+          ],
+          "world_difference_m3_diagnostic": 4.480010197587198e-20,
+          "local_difference_m3": 7.187537778595768e-20,
+          "transform_cover_m3": 0.0
+        }
+      },
+      {
+        "id": "WOOD-STAIR-TOE-PAD",
+        "cut_tool_count": 4,
+        "readback_difference_m3": 2.646216954006159e-19,
+        "boundary_normalization": null,
+        "readback_comparison": {
+          "method": "Fixed common integer-metre origin, every actual oriented triangle retained",
+          "origin_m": [
+            -4.0,
+            -1.0,
+            -9.0
+          ],
+          "world_difference_m3_diagnostic": 2.822207901132922e-19,
+          "local_difference_m3": 2.64621695400614e-19,
+          "transform_cover_m3": 0.0
+        }
+      },
+      {
+        "id": "WOOD-LANDING-SHOE-L-BACK",
+        "cut_tool_count": 6,
+        "readback_difference_m3": 1.4896679160361914e-18,
+        "boundary_normalization": null,
+        "readback_comparison": {
+          "method": "Fixed common integer-metre origin, every actual oriented triangle retained",
+          "origin_m": [
+            -2.0,
+            -1.0,
+            -7.0
+          ],
+          "world_difference_m3_diagnostic": 3.110360403418832e-19,
+          "local_difference_m3": 1.4896679160361806e-18,
+          "transform_cover_m3": 0.0
+        }
+      },
+      {
+        "id": "WOOD-LANDING-POST-L-BACK",
+        "cut_tool_count": 4,
+        "readback_difference_m3": 4.922951547409422e-18,
+        "boundary_normalization": null,
+        "readback_comparison": {
+          "method": "Fixed common integer-metre origin, every actual oriented triangle retained",
+          "origin_m": [
+            -2.0,
+            -1.0,
+            -7.0
+          ],
+          "world_difference_m3_diagnostic": 1.2498243279158731e-17,
+          "local_difference_m3": 4.922951547409387e-18,
+          "transform_cover_m3": 0.0
+        }
+      },
+      {
+        "id": "WOOD-LANDING-SHOE-L-FRONT",
+        "cut_tool_count": 6,
+        "readback_difference_m3": 2.381049862238535e-18,
+        "boundary_normalization": null,
+        "readback_comparison": {
+          "method": "Fixed common integer-metre origin, every actual oriented triangle retained",
+          "origin_m": [
+            -2.0,
+            -1.0,
+            -7.0
+          ],
+          "world_difference_m3_diagnostic": 1.468406887501072e-18,
+          "local_difference_m3": 2.3810498622385178e-18,
+          "transform_cover_m3": 0.0
+        }
+      },
+      {
+        "id": "WOOD-LANDING-POST-L-FRONT",
+        "cut_tool_count": 4,
+        "readback_difference_m3": 1.5524585461420503e-17,
+        "boundary_normalization": null,
+        "readback_comparison": {
+          "method": "Fixed common integer-metre origin, every actual oriented triangle retained",
+          "origin_m": [
+            -2.0,
+            -1.0,
+            -7.0
+          ],
+          "world_difference_m3_diagnostic": 1.757054695198021e-17,
+          "local_difference_m3": 1.552458546142039e-17,
+          "transform_cover_m3": 0.0
+        }
+      },
+      {
+        "id": "WOOD-LANDING-SHOE-R-BACK",
+        "cut_tool_count": 6,
+        "readback_difference_m3": 2.319426799806398e-18,
+        "boundary_normalization": null,
+        "readback_comparison": {
+          "method": "Fixed common integer-metre origin, every actual oriented triangle retained",
+          "origin_m": [
+            -3.0,
+            -1.0,
+            -6.0
+          ],
+          "world_difference_m3_diagnostic": 1.5100668050765395e-18,
+          "local_difference_m3": 2.319426799806381e-18,
+          "transform_cover_m3": 0.0
+        }
+      },
+      {
+        "id": "WOOD-LANDING-POST-R-BACK",
+        "cut_tool_count": 4,
+        "readback_difference_m3": 2.191795416493936e-18,
+        "boundary_normalization": null,
+        "readback_comparison": {
+          "method": "Fixed common integer-metre origin, every actual oriented triangle retained",
+          "origin_m": [
+            -3.0,
+            -1.0,
+            -6.0
+          ],
+          "world_difference_m3_diagnostic": 6.480938127367951e-19,
+          "local_difference_m3": 2.1917954164939202e-18,
+          "transform_cover_m3": 0.0
+        }
+      },
+      {
+        "id": "WOOD-LANDING-SHOE-R-FRONT",
+        "cut_tool_count": 6,
+        "readback_difference_m3": 1.8575992786593233e-18,
+        "boundary_normalization": null,
+        "readback_comparison": {
+          "method": "Fixed common integer-metre origin, every actual oriented triangle retained",
+          "origin_m": [
+            -3.0,
+            -1.0,
+            -7.0
+          ],
+          "world_difference_m3_diagnostic": 2.217288918601032e-18,
+          "local_difference_m3": 1.8575992786593098e-18,
+          "transform_cover_m3": 0.0
+        }
+      },
+      {
+        "id": "WOOD-LANDING-POST-R-FRONT",
+        "cut_tool_count": 4,
+        "readback_difference_m3": 8.952564912915944e-19,
+        "boundary_normalization": null,
+        "readback_comparison": {
+          "method": "Fixed common integer-metre origin, every actual oriented triangle retained",
+          "origin_m": [
+            -3.0,
+            -1.0,
+            -7.0
+          ],
+          "world_difference_m3_diagnostic": 4.5993256953598244e-18,
+          "local_difference_m3": 8.952564912915879e-19,
+          "transform_cover_m3": 0.0
+        }
+      },
+      {
+        "id": "WOOD-LANDING-BEAM-L-1",
+        "cut_tool_count": 10,
+        "readback_difference_m3": 1.6144733841672017e-14,
+        "boundary_normalization": null,
+        "readback_comparison": {
+          "method": "Fixed common integer-metre origin, every actual oriented triangle retained",
+          "origin_m": [
+            -2.0,
+            -1.0,
+            -7.0
+          ],
+          "world_difference_m3_diagnostic": 1.2710656232658317e-17,
+          "local_difference_m3": 3.611188570055361e-17,
+          "transform_cover_m3": 1.6108621955971346e-14
+        }
+      },
+      {
+        "id": "WOOD-LANDING-BEAM-L-2",
+        "cut_tool_count": 14,
+        "readback_difference_m3": 1.0608292967532556e-14,
+        "boundary_normalization": null,
+        "readback_comparison": {
+          "method": "Fixed common integer-metre origin, every actual oriented triangle retained",
+          "origin_m": [
+            -2.0,
+            -1.0,
+            -7.0
+          ],
+          "world_difference_m3_diagnostic": 4.348393491745729e-18,
+          "local_difference_m3": 1.9898833511684135e-17,
+          "transform_cover_m3": 1.0588394134020795e-14
+        }
+      },
+      {
+        "id": "WOOD-LANDING-CAP-L-BACK",
+        "cut_tool_count": 4,
+        "readback_difference_m3": 6.0622204128176e-18,
+        "boundary_normalization": null,
+        "readback_comparison": {
+          "method": "Fixed common integer-metre origin, every actual oriented triangle retained",
+          "origin_m": [
+            -2.0,
+            -1.0,
+            -7.0
+          ],
+          "world_difference_m3_diagnostic": 5.835189294119561e-18,
+          "local_difference_m3": 6.0622204128175564e-18,
+          "transform_cover_m3": 0.0
+        }
+      },
+      {
+        "id": "WOOD-LANDING-CAP-L-FRONT",
+        "cut_tool_count": 4,
+        "readback_difference_m3": 5.195457010755402e-18,
+        "boundary_normalization": null,
+        "readback_comparison": {
+          "method": "Fixed common integer-metre origin, every actual oriented triangle retained",
+          "origin_m": [
+            -2.0,
+            -1.0,
+            -7.0
+          ],
+          "world_difference_m3_diagnostic": 3.512079840724597e-18,
+          "local_difference_m3": 5.195457010755364e-18,
+          "transform_cover_m3": 0.0
+        }
+      },
+      {
+        "id": "WOOD-LANDING-BEAM-R-1",
+        "cut_tool_count": 14,
+        "readback_difference_m3": 1.1672125033375219e-14,
+        "boundary_normalization": null,
+        "readback_comparison": {
+          "method": "Fixed common integer-metre origin, every actual oriented triangle retained",
+          "origin_m": [
+            -3.0,
+            -1.0,
+            -7.0
+          ],
+          "world_difference_m3_diagnostic": 1.263042275862242e-17,
+          "local_difference_m3": 3.2710870659126945e-17,
+          "transform_cover_m3": 1.1639414162716007e-14
+        }
+      },
+      {
+        "id": "WOOD-LANDING-BEAM-R-2",
+        "cut_tool_count": 10,
+        "readback_difference_m3": 1.6078305009521212e-14,
+        "boundary_normalization": null,
+        "readback_comparison": {
+          "method": "Fixed common integer-metre origin, every actual oriented triangle retained",
+          "origin_m": [
+            -3.0,
+            -1.0,
+            -6.0
+          ],
+          "world_difference_m3_diagnostic": 6.536232266888242e-18,
+          "local_difference_m3": 1.5157983760698022e-17,
+          "transform_cover_m3": 1.6063147025760396e-14
+        }
+      },
+      {
+        "id": "WOOD-LANDING-CAP-R-BACK",
+        "cut_tool_count": 4,
+        "readback_difference_m3": 6.664681290026593e-18,
+        "boundary_normalization": null,
+        "readback_comparison": {
+          "method": "Fixed common integer-metre origin, every actual oriented triangle retained",
+          "origin_m": [
+            -3.0,
+            -1.0,
+            -6.0
+          ],
+          "world_difference_m3_diagnostic": 6.655548148160864e-18,
+          "local_difference_m3": 6.664681290026545e-18,
+          "transform_cover_m3": 0.0
+        }
+      },
+      {
+        "id": "WOOD-LANDING-CAP-R-FRONT",
+        "cut_tool_count": 4,
+        "readback_difference_m3": 7.3681194618e-18,
+        "boundary_normalization": null,
+        "readback_comparison": {
+          "method": "Fixed common integer-metre origin, every actual oriented triangle retained",
+          "origin_m": [
+            -3.0,
+            -1.0,
+            -7.0
+          ],
+          "world_difference_m3_diagnostic": 6.831552330177447e-19,
+          "local_difference_m3": 7.368119461799946e-18,
+          "transform_cover_m3": 0.0
+        }
+      },
+      {
+        "id": "WOOD-LANDING-JOIST-0",
+        "cut_tool_count": 20,
+        "readback_difference_m3": 1.3005883724672867e-18,
+        "boundary_normalization": null,
+        "readback_comparison": {
+          "method": "Fixed common integer-metre origin, every actual oriented triangle retained",
+          "origin_m": [
+            -3.0,
+            -0.0,
+            -6.0
+          ],
+          "world_difference_m3_diagnostic": 4.042068372623719e-19,
+          "local_difference_m3": 1.3005883724672773e-18,
+          "transform_cover_m3": 0.0
+        }
+      },
+      {
+        "id": "WOOD-LANDING-JOIST-1",
+        "cut_tool_count": 24,
+        "readback_difference_m3": 5.4428839647917367e-17,
+        "boundary_normalization": null,
+        "readback_comparison": {
+          "method": "Fixed common integer-metre origin, every actual oriented triangle retained",
+          "origin_m": [
+            -3.0,
+            -0.0,
+            -7.0
+          ],
+          "world_difference_m3_diagnostic": 3.123752560287407e-17,
+          "local_difference_m3": 5.442883964791697e-17,
+          "transform_cover_m3": 0.0
+        }
+      },
+      {
+        "id": "WOOD-LANDING-JOIST-2",
+        "cut_tool_count": 24,
+        "readback_difference_m3": 4.614943849447771e-17,
+        "boundary_normalization": null,
+        "readback_comparison": {
+          "method": "Fixed common integer-metre origin, every actual oriented triangle retained",
+          "origin_m": [
+            -3.0,
+            -0.0,
+            -7.0
+          ],
+          "world_difference_m3_diagnostic": 4.758640713346358e-18,
+          "local_difference_m3": 4.6149438494477375e-17,
+          "transform_cover_m3": 0.0
+        }
+      },
+      {
+        "id": "WOOD-LANDING-JOIST-3",
+        "cut_tool_count": 44,
+        "readback_difference_m3": 2.6476649973553235e-17,
+        "boundary_normalization": null,
+        "readback_comparison": {
+          "method": "Fixed common integer-metre origin, every actual oriented triangle retained",
+          "origin_m": [
+            -3.0,
+            -0.0,
+            -7.0
+          ],
+          "world_difference_m3_diagnostic": 9.997590006980043e-18,
+          "local_difference_m3": 2.6476649973553044e-17,
+          "transform_cover_m3": 0.0
+        }
+      },
+      {
+        "id": "WOOD-LANDING-RIM-L",
+        "cut_tool_count": 6,
+        "readback_difference_m3": 1.8927977439057935e-17,
+        "boundary_normalization": null,
+        "readback_comparison": {
+          "method": "Fixed common integer-metre origin, every actual oriented triangle retained",
+          "origin_m": [
+            -2.0,
+            -0.0,
+            -7.0
+          ],
+          "world_difference_m3_diagnostic": 2.0432646901239718e-17,
+          "local_difference_m3": 1.8927977439057796e-17,
+          "transform_cover_m3": 0.0
+        }
+      },
+      {
+        "id": "WOOD-LANDING-NEWEL-L",
+        "cut_tool_count": 7,
+        "readback_difference_m3": 9.008386871821072e-18,
+        "boundary_normalization": null,
+        "readback_comparison": {
+          "method": "Fixed common integer-metre origin, every actual oriented triangle retained",
+          "origin_m": [
+            -2.0,
+            0.0,
+            -7.0
+          ],
+          "world_difference_m3_diagnostic": 1.1056527558395488e-18,
+          "local_difference_m3": 9.008386871821006e-18,
+          "transform_cover_m3": 0.0
+        }
+      },
+      {
+        "id": "WOOD-LANDING-RIM-R",
+        "cut_tool_count": 6,
+        "readback_difference_m3": 2.1646023600595888e-16,
+        "boundary_normalization": null,
+        "readback_comparison": {
+          "method": "Fixed common integer-metre origin, every actual oriented triangle retained",
+          "origin_m": [
+            -3.0,
+            -0.0,
+            -6.0
+          ],
+          "world_difference_m3_diagnostic": 2.4659769388243034e-17,
+          "local_difference_m3": 2.1646023600595733e-16,
+          "transform_cover_m3": 0.0
+        }
+      },
+      {
+        "id": "WOOD-LANDING-NEWEL-R",
+        "cut_tool_count": 7,
+        "readback_difference_m3": 1.4087504444383134e-17,
+        "boundary_normalization": null,
+        "readback_comparison": {
+          "method": "Fixed common integer-metre origin, every actual oriented triangle retained",
+          "origin_m": [
+            -3.0,
+            0.0,
+            -7.0
+          ],
+          "world_difference_m3_diagnostic": 9.227089176583916e-18,
+          "local_difference_m3": 1.4087504444383032e-17,
+          "transform_cover_m3": 0.0
+        }
+      },
+      {
+        "id": "WOOD-STAIR-STRINGER-1",
+        "cut_tool_count": 31,
+        "readback_difference_m3": 4.2487399614852986e-15,
+        "boundary_normalization": null,
+        "readback_comparison": {
+          "method": "Fixed common integer-metre origin, every actual oriented triangle retained",
+          "origin_m": [
+            -3.0,
+            -1.0,
+            -8.0
+          ],
+          "world_difference_m3_diagnostic": 4.997787210737216e-18,
+          "local_difference_m3": 5.476787496035608e-18,
+          "transform_cover_m3": 4.243263173989232e-15
+        }
+      },
+      {
+        "id": "WOOD-STAIR-HANGER-1",
+        "cut_tool_count": 5,
+        "readback_difference_m3": 8.985331863424642e-19,
+        "boundary_normalization": null,
+        "readback_comparison": {
+          "method": "Fixed common integer-metre origin, every actual oriented triangle retained",
+          "origin_m": [
+            -3.0,
+            -0.0,
+            -7.0
+          ],
+          "world_difference_m3_diagnostic": 1.7536925885790263e-18,
+          "local_difference_m3": 8.985331863424577e-19,
+          "transform_cover_m3": 0.0
+        }
+      },
+      {
+        "id": "WOOD-STAIR-STRINGER-2",
+        "cut_tool_count": 31,
+        "readback_difference_m3": 4.247965793487277e-15,
+        "boundary_normalization": null,
+        "readback_comparison": {
+          "method": "Fixed common integer-metre origin, every actual oriented triangle retained",
+          "origin_m": [
+            -3.0,
+            -1.0,
+            -8.0
+          ],
+          "world_difference_m3_diagnostic": 1.852182916164184e-18,
+          "local_difference_m3": 5.1169046330843625e-18,
+          "transform_cover_m3": 4.2428488888541615e-15
+        }
+      },
+      {
+        "id": "WOOD-STAIR-HANGER-2",
+        "cut_tool_count": 5,
+        "readback_difference_m3": 3.4514964088782025e-18,
+        "boundary_normalization": null,
+        "readback_comparison": {
+          "method": "Fixed common integer-metre origin, every actual oriented triangle retained",
+          "origin_m": [
+            -3.0,
+            -0.0,
+            -7.0
+          ],
+          "world_difference_m3_diagnostic": 4.0906649686549196e-18,
+          "local_difference_m3": 3.4514964088781775e-18,
+          "transform_cover_m3": 0.0
+        }
+      },
+      {
+        "id": "WOOD-STAIR-STRINGER-3",
+        "cut_tool_count": 31,
+        "readback_difference_m3": 4.24551503407469e-15,
+        "boundary_normalization": null,
+        "readback_comparison": {
+          "method": "Fixed common integer-metre origin, every actual oriented triangle retained",
+          "origin_m": [
+            -3.0,
+            -1.0,
+            -8.0
+          ],
+          "world_difference_m3_diagnostic": 3.4167704361850123e-18,
+          "local_difference_m3": 2.666145220494912e-18,
+          "transform_cover_m3": 4.242848888854165e-15
+        }
+      },
+      {
+        "id": "WOOD-STAIR-HANGER-3",
+        "cut_tool_count": 5,
+        "readback_difference_m3": 1.6259374316400183e-18,
+        "boundary_normalization": null,
+        "readback_comparison": {
+          "method": "Fixed common integer-metre origin, every actual oriented triangle retained",
+          "origin_m": [
+            -3.0,
+            -0.0,
+            -7.0
+          ],
+          "world_difference_m3_diagnostic": 8.2453777049592075e-19,
+          "local_difference_m3": 1.6259374316400065e-18,
+          "transform_cover_m3": 0.0
+        }
+      },
+      {
+        "id": "WOOD-STAIR-STRINGER-4",
+        "cut_tool_count": 31,
+        "readback_difference_m3": 4.26386239775323e-15,
+        "boundary_normalization": null,
+        "readback_comparison": {
+          "method": "Fixed common integer-metre origin, every actual oriented triangle retained",
+          "origin_m": [
+            -4.0,
+            -1.0,
+            -8.0
+          ],
+          "world_difference_m3_diagnostic": 7.118177650257431e-18,
+          "local_difference_m3": 2.1013508899038978e-17,
+          "transform_cover_m3": 4.24284888885416e-15
+        }
+      },
+      {
+        "id": "WOOD-STAIR-HANGER-4",
+        "cut_tool_count": 5,
+        "readback_difference_m3": 2.1976811361320265e-18,
+        "boundary_normalization": null,
+        "readback_comparison": {
+          "method": "Fixed common integer-metre origin, every actual oriented triangle retained",
+          "origin_m": [
+            -3.0,
+            -0.0,
+            -7.0
+          ],
+          "world_difference_m3_diagnostic": 1.8342279269929547e-18,
+          "local_difference_m3": 2.1976811361320103e-18,
+          "transform_cover_m3": 0.0
+        }
+      },
+      {
+        "id": "WOOD-LANDING-DECK-1",
+        "cut_tool_count": 18,
+        "readback_difference_m3": 2.6591979219771736e-18,
+        "boundary_normalization": null,
+        "readback_comparison": {
+          "method": "Fixed common integer-metre origin, every actual oriented triangle retained",
+          "origin_m": [
+            -2.0,
+            -0.0,
+            -7.0
+          ],
+          "world_difference_m3_diagnostic": 2.5948250497288327e-18,
+          "local_difference_m3": 2.6591979219771543e-18,
+          "transform_cover_m3": 0.0
+        }
+      },
+      {
+        "id": "WOOD-LANDING-DECK-2",
+        "cut_tool_count": 10,
+        "readback_difference_m3": 5.538392848136566e-19,
+        "boundary_normalization": null,
+        "readback_comparison": {
+          "method": "Fixed common integer-metre origin, every actual oriented triangle retained",
+          "origin_m": [
+            -2.0,
+            -0.0,
+            -7.0
+          ],
+          "world_difference_m3_diagnostic": 4.563787050026569e-19,
+          "local_difference_m3": 5.538392848136526e-19,
+          "transform_cover_m3": 0.0
+        }
+      },
+      {
+        "id": "WOOD-LANDING-DECK-3",
+        "cut_tool_count": 10,
+        "readback_difference_m3": 6.834350333222942e-19,
+        "boundary_normalization": null,
+        "readback_comparison": {
+          "method": "Fixed common integer-metre origin, every actual oriented triangle retained",
+          "origin_m": [
+            -3.0,
+            -0.0,
+            -7.0
+          ],
+          "world_difference_m3_diagnostic": 6.360688038287762e-19,
+          "local_difference_m3": 6.834350333222893e-19,
+          "transform_cover_m3": 0.0
+        }
+      },
+      {
+        "id": "WOOD-LANDING-DECK-4",
+        "cut_tool_count": 10,
+        "readback_difference_m3": 8.855033727100436e-19,
+        "boundary_normalization": null,
+        "readback_comparison": {
+          "method": "Fixed common integer-metre origin, every actual oriented triangle retained",
+          "origin_m": [
+            -3.0,
+            -0.0,
+            -7.0
+          ],
+          "world_difference_m3_diagnostic": 8.830847870718115e-19,
+          "local_difference_m3": 8.85503372710037e-19,
+          "transform_cover_m3": 0.0
+        }
+      },
+      {
+        "id": "WOOD-LANDING-DECK-5",
+        "cut_tool_count": 10,
+        "readback_difference_m3": 7.777368834081762e-19,
+        "boundary_normalization": null,
+        "readback_comparison": {
+          "method": "Fixed common integer-metre origin, every actual oriented triangle retained",
+          "origin_m": [
+            -3.0,
+            -0.0,
+            -7.0
+          ],
+          "world_difference_m3_diagnostic": 7.084371812598154e-19,
+          "local_difference_m3": 7.777368834081707e-19,
+          "transform_cover_m3": 0.0
+        }
+      },
+      {
+        "id": "WOOD-LANDING-DECK-6",
+        "cut_tool_count": 10,
+        "readback_difference_m3": 5.530651067682052e-19,
+        "boundary_normalization": null,
+        "readback_comparison": {
+          "method": "Fixed common integer-metre origin, every actual oriented triangle retained",
+          "origin_m": [
+            -3.0,
+            -0.0,
+            -7.0
+          ],
+          "world_difference_m3_diagnostic": 4.793627455030553e-19,
+          "local_difference_m3": 5.530651067682012e-19,
+          "transform_cover_m3": 0.0
+        }
+      },
+      {
+        "id": "WOOD-LANDING-DECK-7",
+        "cut_tool_count": 10,
+        "readback_difference_m3": 6.521356902439595e-19,
+        "boundary_normalization": null,
+        "readback_comparison": {
+          "method": "Fixed common integer-metre origin, every actual oriented triangle retained",
+          "origin_m": [
+            -3.0,
+            -0.0,
+            -7.0
+          ],
+          "world_difference_m3_diagnostic": 6.246040805387912e-19,
+          "local_difference_m3": 6.521356902439548e-19,
+          "transform_cover_m3": 0.0
+        }
+      },
+      {
+        "id": "WOOD-LANDING-DECK-8",
+        "cut_tool_count": 18,
+        "readback_difference_m3": 5.286863467941585e-17,
+        "boundary_normalization": null,
+        "readback_comparison": {
+          "method": "Fixed common integer-metre origin, every actual oriented triangle retained",
+          "origin_m": [
+            -3.0,
+            -0.0,
+            -7.0
+          ],
+          "world_difference_m3_diagnostic": 5.226592978231019e-17,
+          "local_difference_m3": 5.2868634679415466e-17,
+          "transform_cover_m3": 0.0
+        }
+      },
+      {
+        "id": "WOOD-STAIR-RISER-1",
+        "cut_tool_count": 8,
+        "readback_difference_m3": 2.7479678052612115e-17,
+        "boundary_normalization": null,
+        "readback_comparison": {
+          "method": "Fixed common integer-metre origin, every actual oriented triangle retained",
+          "origin_m": [
+            -3.0,
+            -0.0,
+            -7.0
+          ],
+          "world_difference_m3_diagnostic": 1.2134944752794223e-17,
+          "local_difference_m3": 2.7479678052611918e-17,
+          "transform_cover_m3": 0.0
+        }
+      },
+      {
+        "id": "WOOD-STAIR-RISER-PACKER-1-1",
+        "cut_tool_count": 2,
+        "readback_difference_m3": 3.6486771383591805e-19,
+        "boundary_normalization": null,
+        "readback_comparison": {
+          "method": "Fixed common integer-metre origin, every actual oriented triangle retained",
+          "origin_m": [
+            -3.0,
+            -0.0,
+            -7.0
+          ],
+          "world_difference_m3_diagnostic": 9.023547866218468e-20,
+          "local_difference_m3": 3.648677138359154e-19,
+          "transform_cover_m3": 0.0
+        }
+      },
+      {
+        "id": "WOOD-STAIR-RISER-PACKER-1-2",
+        "cut_tool_count": 2,
+        "readback_difference_m3": 2.608013617415397e-19,
+        "boundary_normalization": null,
+        "readback_comparison": {
+          "method": "Fixed common integer-metre origin, every actual oriented triangle retained",
+          "origin_m": [
+            -3.0,
+            -0.0,
+            -7.0
+          ],
+          "world_difference_m3_diagnostic": 3.5310685988663645e-20,
+          "local_difference_m3": 2.608013617415378e-19,
+          "transform_cover_m3": 0.0
+        }
+      },
+      {
+        "id": "WOOD-STAIR-RISER-PACKER-1-3",
+        "cut_tool_count": 2,
+        "readback_difference_m3": 3.5679608541862556e-19,
+        "boundary_normalization": null,
+        "readback_comparison": {
+          "method": "Fixed common integer-metre origin, every actual oriented triangle retained",
+          "origin_m": [
+            -3.0,
+            -0.0,
+            -7.0
+          ],
+          "world_difference_m3_diagnostic": 1.052880978591184e-19,
+          "local_difference_m3": 3.5679608541862296e-19,
+          "transform_cover_m3": 0.0
+        }
+      },
+      {
+        "id": "WOOD-STAIR-RISER-PACKER-1-4",
+        "cut_tool_count": 2,
+        "readback_difference_m3": 2.9639039400632772e-19,
+        "boundary_normalization": null,
+        "readback_comparison": {
+          "method": "Fixed common integer-metre origin, every actual oriented triangle retained",
+          "origin_m": [
+            -3.0,
+            -0.0,
+            -7.0
+          ],
+          "world_difference_m3_diagnostic": 4.2457526481121804e-20,
+          "local_difference_m3": 2.9639039400632556e-19,
+          "transform_cover_m3": 0.0
+        }
+      },
+      {
+        "id": "WOOD-STAIR-TREAD-1-1",
+        "cut_tool_count": 12,
+        "readback_difference_m3": 1.995750657056234e-17,
+        "boundary_normalization": null,
+        "readback_comparison": {
+          "method": "Fixed common integer-metre origin, every actual oriented triangle retained",
+          "origin_m": [
+            -3.0,
+            -0.0,
+            -7.0
+          ],
+          "world_difference_m3_diagnostic": 2.0157461776908775e-17,
+          "local_difference_m3": 1.9957506570562196e-17,
+          "transform_cover_m3": 0.0
+        }
+      },
+      {
+        "id": "WOOD-STAIR-TREAD-1-2",
+        "cut_tool_count": 10,
+        "readback_difference_m3": 6.9494744228212325e-19,
+        "boundary_normalization": null,
+        "readback_comparison": {
+          "method": "Fixed common integer-metre origin, every actual oriented triangle retained",
+          "origin_m": [
+            -3.0,
+            -0.0,
+            -7.0
+          ],
+          "world_difference_m3_diagnostic": 6.921983850644807e-19,
+          "local_difference_m3": 6.949474422821182e-19,
+          "transform_cover_m3": 0.0
+        }
+      },
+      {
+        "id": "WOOD-STAIR-RISER-2",
+        "cut_tool_count": 8,
+        "readback_difference_m3": 3.506881015421488e-17,
+        "boundary_normalization": null,
+        "readback_comparison": {
+          "method": "Fixed common integer-metre origin, every actual oriented triangle retained",
+          "origin_m": [
+            -3.0,
+            -0.0,
+            -7.0
+          ],
+          "world_difference_m3_diagnostic": 9.802545208090282e-18,
+          "local_difference_m3": 3.506881015421463e-17,
+          "transform_cover_m3": 0.0
+        }
+      },
+      {
+        "id": "WOOD-STAIR-RISER-PACKER-2-1",
+        "cut_tool_count": 2,
+        "readback_difference_m3": 2.711094797400225e-19,
+        "boundary_normalization": null,
+        "readback_comparison": {
+          "method": "Fixed common integer-metre origin, every actual oriented triangle retained",
+          "origin_m": [
+            -3.0,
+            -0.0,
+            -8.0
+          ],
+          "world_difference_m3_diagnostic": 4.732796592783403e-20,
+          "local_difference_m3": 2.711094797400205e-19,
+          "transform_cover_m3": 0.0
+        }
+      },
+      {
+        "id": "WOOD-STAIR-RISER-PACKER-2-2",
+        "cut_tool_count": 2,
+        "readback_difference_m3": 3.6575321068165607e-19,
+        "boundary_normalization": null,
+        "readback_comparison": {
+          "method": "Fixed common integer-metre origin, every actual oriented triangle retained",
+          "origin_m": [
+            -3.0,
+            -0.0,
+            -7.0
+          ],
+          "world_difference_m3_diagnostic": 1.0695114448065627e-19,
+          "local_difference_m3": 3.657532106816534e-19,
+          "transform_cover_m3": 0.0
+        }
+      },
+      {
+        "id": "WOOD-STAIR-RISER-PACKER-2-3",
+        "cut_tool_count": 2,
+        "readback_difference_m3": 4.0192540527829393e-19,
+        "boundary_normalization": null,
+        "readback_comparison": {
+          "method": "Fixed common integer-metre origin, every actual oriented triangle retained",
+          "origin_m": [
+            -3.0,
+            -0.0,
+            -7.0
+          ],
+          "world_difference_m3_diagnostic": 1.0217334926254998e-19,
+          "local_difference_m3": 4.0192540527829104e-19,
+          "transform_cover_m3": 0.0
+        }
+      },
+      {
+        "id": "WOOD-STAIR-RISER-PACKER-2-4",
+        "cut_tool_count": 2,
+        "readback_difference_m3": 2.219424845153296e-19,
+        "boundary_normalization": null,
+        "readback_comparison": {
+          "method": "Fixed common integer-metre origin, every actual oriented triangle retained",
+          "origin_m": [
+            -3.0,
+            -0.0,
+            -7.0
+          ],
+          "world_difference_m3_diagnostic": 2.189712517550375e-19,
+          "local_difference_m3": 2.2194248451532796e-19,
+          "transform_cover_m3": 0.0
+        }
+      },
+      {
+        "id": "WOOD-STAIR-TREAD-2-1",
+        "cut_tool_count": 12,
+        "readback_difference_m3": 1.8244286571309436e-14,
+        "boundary_normalization": null,
+        "readback_comparison": {
+          "method": "Fixed common integer-metre origin, every actual oriented triangle retained",
+          "origin_m": [
+            -3.0,
+            -1.0,
+            -8.0
+          ],
+          "world_difference_m3_diagnostic": 2.3327623616302434e-17,
+          "local_difference_m3": 2.3136507206386025e-17,
+          "transform_cover_m3": 1.8221150064102917e-14
+        }
+      },
+      {
+        "id": "WOOD-STAIR-TREAD-2-2",
+        "cut_tool_count": 10,
+        "readback_difference_m3": 1.7587672344194992e-14,
+        "boundary_normalization": null,
+        "readback_comparison": {
+          "method": "Fixed common integer-metre origin, every actual oriented triangle retained",
+          "origin_m": [
+            -3.0,
+            -1.0,
+            -8.0
+          ],
+          "world_difference_m3_diagnostic": 1.7404575953806013e-18,
+          "local_difference_m3": 7.608323444677545e-18,
+          "transform_cover_m3": 1.7580064020750185e-14
+        }
+      },
+      {
+        "id": "WOOD-STAIR-RISER-3",
+        "cut_tool_count": 8,
+        "readback_difference_m3": 2.7295636741981255e-17,
+        "boundary_normalization": null,
+        "readback_comparison": {
+          "method": "Fixed common integer-metre origin, every actual oriented triangle retained",
+          "origin_m": [
+            -3.0,
+            -1.0,
+            -8.0
+          ],
+          "world_difference_m3_diagnostic": 3.9319244596126245e-17,
+          "local_difference_m3": 2.7295636741981058e-17,
+          "transform_cover_m3": 0.0
+        }
+      },
+      {
+        "id": "WOOD-STAIR-RISER-PACKER-3-1",
+        "cut_tool_count": 2,
+        "readback_difference_m3": 4.2051463518419827e-19,
+        "boundary_normalization": null,
+        "readback_comparison": {
+          "method": "Fixed common integer-metre origin, every actual oriented triangle retained",
+          "origin_m": [
+            -3.0,
+            -1.0,
+            -8.0
+          ],
+          "world_difference_m3_diagnostic": 2.4532191734852674e-19,
+          "local_difference_m3": 4.2051463518419523e-19,
+          "transform_cover_m3": 0.0
+        }
+      },
+      {
+        "id": "WOOD-STAIR-RISER-PACKER-3-2",
+        "cut_tool_count": 2,
+        "readback_difference_m3": 5.2007492089169395e-19,
+        "boundary_normalization": null,
+        "readback_comparison": {
+          "method": "Fixed common integer-metre origin, every actual oriented triangle retained",
+          "origin_m": [
+            -3.0,
+            -1.0,
+            -8.0
+          ],
+          "world_difference_m3_diagnostic": 4.014539123291358e-19,
+          "local_difference_m3": 5.200749208916902e-19,
+          "transform_cover_m3": 0.0
+        }
+      },
+      {
+        "id": "WOOD-STAIR-RISER-PACKER-3-3",
+        "cut_tool_count": 2,
+        "readback_difference_m3": 3.7076468442280863e-19,
+        "boundary_normalization": null,
+        "readback_comparison": {
+          "method": "Fixed common integer-metre origin, every actual oriented triangle retained",
+          "origin_m": [
+            -3.0,
+            -1.0,
+            -8.0
+          ],
+          "world_difference_m3_diagnostic": 2.558568896300021e-19,
+          "local_difference_m3": 3.7076468442280594e-19,
+          "transform_cover_m3": 0.0
+        }
+      },
+      {
+        "id": "WOOD-STAIR-RISER-PACKER-3-4",
+        "cut_tool_count": 2,
+        "readback_difference_m3": 1.2018628760556817e-18,
+        "boundary_normalization": null,
+        "readback_comparison": {
+          "method": "Fixed common integer-metre origin, every actual oriented triangle retained",
+          "origin_m": [
+            -4.0,
+            -1.0,
+            -8.0
+          ],
+          "world_difference_m3_diagnostic": 1.3552527156068805e-20,
+          "local_difference_m3": 1.201862876055673e-18,
+          "transform_cover_m3": 0.0
+        }
+      },
+      {
+        "id": "WOOD-STAIR-TREAD-3-1",
+        "cut_tool_count": 12,
+        "readback_difference_m3": 2.5127735483826018e-17,
+        "boundary_normalization": null,
+        "readback_comparison": {
+          "method": "Fixed common integer-metre origin, every actual oriented triangle retained",
+          "origin_m": [
+            -3.0,
+            -1.0,
+            -8.0
+          ],
+          "world_difference_m3_diagnostic": 2.592433339705697e-17,
+          "local_difference_m3": 2.5127735483825837e-17,
+          "transform_cover_m3": 0.0
+        }
+      },
+      {
+        "id": "WOOD-STAIR-TREAD-3-2",
+        "cut_tool_count": 10,
+        "readback_difference_m3": 4.5903350356778065e-17,
+        "boundary_normalization": null,
+        "readback_comparison": {
+          "method": "Fixed common integer-metre origin, every actual oriented triangle retained",
+          "origin_m": [
+            -3.0,
+            -1.0,
+            -8.0
+          ],
+          "world_difference_m3_diagnostic": 2.786288244777297e-17,
+          "local_difference_m3": 4.590335035677773e-17,
+          "transform_cover_m3": 0.0
+        }
+      },
+      {
+        "id": "WOOD-STAIR-RISER-4",
+        "cut_tool_count": 8,
+        "readback_difference_m3": 5.085306039446067e-17,
+        "boundary_normalization": null,
+        "readback_comparison": {
+          "method": "Fixed common integer-metre origin, every actual oriented triangle retained",
+          "origin_m": [
+            -3.0,
+            -1.0,
+            -8.0
+          ],
+          "world_difference_m3_diagnostic": 2.8469922700606624e-11,
+          "local_difference_m3": 5.08530603944603e-17,
+          "transform_cover_m3": 0.0
+        }
+      },
+      {
+        "id": "WOOD-STAIR-RISER-PACKER-4-1",
+        "cut_tool_count": 2,
+        "readback_difference_m3": 9.609195374977132e-19,
+        "boundary_normalization": null,
+        "readback_comparison": {
+          "method": "Fixed common integer-metre origin, every actual oriented triangle retained",
+          "origin_m": [
+            -3.0,
+            -1.0,
+            -8.0
+          ],
+          "world_difference_m3_diagnostic": 1.1669996430796123e-18,
+          "local_difference_m3": 9.609195374977063e-19,
+          "transform_cover_m3": 0.0
+        }
+      },
+      {
+        "id": "WOOD-STAIR-RISER-PACKER-4-2",
+        "cut_tool_count": 2,
+        "readback_difference_m3": 4.702356087747545e-19,
+        "boundary_normalization": null,
+        "readback_comparison": {
+          "method": "Fixed common integer-metre origin, every actual oriented triangle retained",
+          "origin_m": [
+            -3.0,
+            -1.0,
+            -8.0
+          ],
+          "world_difference_m3_diagnostic": 2.8249872279911e-19,
+          "local_difference_m3": 4.70235608774751e-19,
+          "transform_cover_m3": 0.0
+        }
+      },
+      {
+        "id": "WOOD-STAIR-RISER-PACKER-4-3",
+        "cut_tool_count": 2,
+        "readback_difference_m3": 3.4384659877850196e-19,
+        "boundary_normalization": null,
+        "readback_comparison": {
+          "method": "Fixed common integer-metre origin, every actual oriented triangle retained",
+          "origin_m": [
+            -3.0,
+            -1.0,
+            -8.0
+          ],
+          "world_difference_m3_diagnostic": 2.743592655715882e-20,
+          "local_difference_m3": 3.4384659877849945e-19,
+          "transform_cover_m3": 0.0
+        }
+      },
+      {
+        "id": "WOOD-STAIR-RISER-PACKER-4-4",
+        "cut_tool_count": 2,
+        "readback_difference_m3": 2.7364558964871593e-19,
+        "boundary_normalization": null,
+        "readback_comparison": {
+          "method": "Fixed common integer-metre origin, every actual oriented triangle retained",
+          "origin_m": [
+            -4.0,
+            -1.0,
+            -8.0
+          ],
+          "world_difference_m3_diagnostic": 1.9901303793535803e-19,
+          "local_difference_m3": 2.7364558964871395e-19,
+          "transform_cover_m3": 0.0
+        }
+      },
+      {
+        "id": "WOOD-STAIR-TREAD-4-1",
+        "cut_tool_count": 12,
+        "readback_difference_m3": 2.1665005370924455e-17,
+        "boundary_normalization": null,
+        "readback_comparison": {
+          "method": "Fixed common integer-metre origin, every actual oriented triangle retained",
+          "origin_m": [
+            -3.0,
+            -1.0,
+            -8.0
+          ],
+          "world_difference_m3_diagnostic": 2.1545133355082834e-17,
+          "local_difference_m3": 2.1665005370924298e-17,
+          "transform_cover_m3": 0.0
+        }
+      },
+      {
+        "id": "WOOD-STAIR-TREAD-4-2",
+        "cut_tool_count": 10,
+        "readback_difference_m3": 1.4539025121434803e-18,
+        "boundary_normalization": null,
+        "readback_comparison": {
+          "method": "Fixed common integer-metre origin, every actual oriented triangle retained",
+          "origin_m": [
+            -3.0,
+            -1.0,
+            -8.0
+          ],
+          "world_difference_m3_diagnostic": 1.2543763855448137e-18,
+          "local_difference_m3": 1.4539025121434697e-18,
+          "transform_cover_m3": 0.0
+        }
+      },
+      {
+        "id": "WOOD-STAIR-RISER-5",
+        "cut_tool_count": 8,
+        "readback_difference_m3": 4.8781389042768645e-17,
+        "boundary_normalization": null,
+        "readback_comparison": {
+          "method": "Fixed common integer-metre origin, every actual oriented triangle retained",
+          "origin_m": [
+            -3.0,
+            -1.0,
+            -8.0
+          ],
+          "world_difference_m3_diagnostic": 4.1838259369895205e-17,
+          "local_difference_m3": 4.8781389042768293e-17,
+          "transform_cover_m3": 0.0
+        }
+      },
+      {
+        "id": "WOOD-STAIR-RISER-PACKER-5-1",
+        "cut_tool_count": 2,
+        "readback_difference_m3": 1.1224474174065273e-18,
+        "boundary_normalization": null,
+        "readback_comparison": {
+          "method": "Fixed common integer-metre origin, every actual oriented triangle retained",
+          "origin_m": [
+            -3.0,
+            -1.0,
+            -8.0
+          ],
+          "world_difference_m3_diagnostic": 6.643385284433884e-19,
+          "local_difference_m3": 1.1224474174065192e-18,
+          "transform_cover_m3": 0.0
+        }
+      },
+      {
+        "id": "WOOD-STAIR-RISER-PACKER-5-2",
+        "cut_tool_count": 2,
+        "readback_difference_m3": 4.067168489765074e-19,
+        "boundary_normalization": null,
+        "readback_comparison": {
+          "method": "Fixed common integer-metre origin, every actual oriented triangle retained",
+          "origin_m": [
+            -3.0,
+            -1.0,
+            -8.0
+          ],
+          "world_difference_m3_diagnostic": 2.070366898771224e-19,
+          "local_difference_m3": 4.0671684897650445e-19,
+          "transform_cover_m3": 0.0
+        }
+      },
+      {
+        "id": "WOOD-STAIR-RISER-PACKER-5-3",
+        "cut_tool_count": 2,
+        "readback_difference_m3": 5.970966937354272e-19,
+        "boundary_normalization": null,
+        "readback_comparison": {
+          "method": "Fixed common integer-metre origin, every actual oriented triangle retained",
+          "origin_m": [
+            -4.0,
+            -1.0,
+            -8.0
+          ],
+          "world_difference_m3_diagnostic": 3.0829352302096363e-19,
+          "local_difference_m3": 5.970966937354228e-19,
+          "transform_cover_m3": 0.0
+        }
+      },
+      {
+        "id": "WOOD-STAIR-RISER-PACKER-5-4",
+        "cut_tool_count": 2,
+        "readback_difference_m3": 1.2063184327264105e-18,
+        "boundary_normalization": null,
+        "readback_comparison": {
+          "method": "Fixed common integer-metre origin, every actual oriented triangle retained",
+          "origin_m": [
+            -4.0,
+            -1.0,
+            -8.0
+          ],
+          "world_difference_m3_diagnostic": 8.223622854849063e-19,
+          "local_difference_m3": 1.2063184327264016e-18,
+          "transform_cover_m3": 0.0
+        }
+      },
+      {
+        "id": "WOOD-STAIR-TREAD-5-1",
+        "cut_tool_count": 12,
+        "readback_difference_m3": 2.9111711184981197e-17,
+        "boundary_normalization": null,
+        "readback_comparison": {
+          "method": "Fixed common integer-metre origin, every actual oriented triangle retained",
+          "origin_m": [
+            -3.0,
+            -1.0,
+            -8.0
+          ],
+          "world_difference_m3_diagnostic": 1.2389974435962278e-18,
+          "local_difference_m3": 2.911171118498098e-17,
+          "transform_cover_m3": 0.0
+        }
+      },
+      {
+        "id": "WOOD-STAIR-TREAD-5-2",
+        "cut_tool_count": 10,
+        "readback_difference_m3": 1.5017930860958535e-18,
+        "boundary_normalization": null,
+        "readback_comparison": {
+          "method": "Fixed common integer-metre origin, every actual oriented triangle retained",
+          "origin_m": [
+            -4.0,
+            -1.0,
+            -9.0
+          ],
+          "world_difference_m3_diagnostic": 1.0164395367051604e-18,
+          "local_difference_m3": 1.5017930860958427e-18,
+          "transform_cover_m3": 0.0
+        }
+      },
+      {
+        "id": "WOOD-STAIR-RISER-6",
+        "cut_tool_count": 8,
+        "readback_difference_m3": 4.0232174964428055e-17,
+        "boundary_normalization": null,
+        "readback_comparison": {
+          "method": "Fixed common integer-metre origin, every actual oriented triangle retained",
+          "origin_m": [
+            -4.0,
+            -1.0,
+            -9.0
+          ],
+          "world_difference_m3_diagnostic": 1.0443122146257472e-17,
+          "local_difference_m3": 4.0232174964427765e-17,
+          "transform_cover_m3": 0.0
+        }
+      },
+      {
+        "id": "WOOD-STAIR-RISER-PACKER-6-1",
+        "cut_tool_count": 2,
+        "readback_difference_m3": 4.748719819575084e-19,
+        "boundary_normalization": null,
+        "readback_comparison": {
+          "method": "Fixed common integer-metre origin, every actual oriented triangle retained",
+          "origin_m": [
+            -3.0,
+            -1.0,
+            -9.0
+          ],
+          "world_difference_m3_diagnostic": 8.181808874884507e-20,
+          "local_difference_m3": 4.748719819575049e-19,
+          "transform_cover_m3": 0.0
+        }
+      },
+      {
+        "id": "WOOD-STAIR-RISER-PACKER-6-2",
+        "cut_tool_count": 2,
+        "readback_difference_m3": 1.3736095077606673e-18,
+        "boundary_normalization": null,
+        "readback_comparison": {
+          "method": "Fixed common integer-metre origin, every actual oriented triangle retained",
+          "origin_m": [
+            -3.0,
+            -1.0,
+            -9.0
+          ],
+          "world_difference_m3_diagnostic": 9.452887691357992e-19,
+          "local_difference_m3": 1.3736095077606573e-18,
+          "transform_cover_m3": 0.0
+        }
+      },
+      {
+        "id": "WOOD-STAIR-RISER-PACKER-6-3",
+        "cut_tool_count": 2,
+        "readback_difference_m3": 3.320042416894923e-19,
+        "boundary_normalization": null,
+        "readback_comparison": {
+          "method": "Fixed common integer-metre origin, every actual oriented triangle retained",
+          "origin_m": [
+            -4.0,
+            -1.0,
+            -8.0
+          ],
+          "world_difference_m3_diagnostic": 1.4962042919859165e-19,
+          "local_difference_m3": 3.320042416894899e-19,
+          "transform_cover_m3": 0.0
+        }
+      },
+      {
+        "id": "WOOD-STAIR-RISER-PACKER-6-4",
+        "cut_tool_count": 2,
+        "readback_difference_m3": 6.37223030976022e-19,
+        "boundary_normalization": null,
+        "readback_comparison": {
+          "method": "Fixed common integer-metre origin, every actual oriented triangle retained",
+          "origin_m": [
+            -4.0,
+            -1.0,
+            -8.0
+          ],
+          "world_difference_m3_diagnostic": 5.264309767185477e-19,
+          "local_difference_m3": 6.372230309760173e-19,
+          "transform_cover_m3": 0.0
+        }
+      },
+      {
+        "id": "WOOD-STAIR-TOE-SHOE-L",
+        "cut_tool_count": 6,
+        "readback_difference_m3": 3.578298035385587e-18,
+        "boundary_normalization": null,
+        "readback_comparison": {
+          "method": "Fixed common integer-metre origin, every actual oriented triangle retained",
+          "origin_m": [
+            -3.0,
+            -1.0,
+            -9.0
+          ],
+          "world_difference_m3_diagnostic": 3.800655710850118e-19,
+          "local_difference_m3": 3.578298035385561e-18,
+          "transform_cover_m3": 0.0
+        }
+      },
+      {
+        "id": "WOOD-STAIR-TOE-NEWEL-L",
+        "cut_tool_count": 4,
+        "readback_difference_m3": 7.977442394276504e-15,
+        "boundary_normalization": null,
+        "readback_comparison": {
+          "method": "Fixed common integer-metre origin, every actual oriented triangle retained",
+          "origin_m": [
+            -3.0,
+            -1.0,
+            -9.0
+          ],
+          "world_difference_m3_diagnostic": 1.0147079891891455e-18,
+          "local_difference_m3": 4.7120017319799183e-17,
+          "transform_cover_m3": 7.930322376956647e-15
+        }
+      },
+      {
+        "id": "WOOD-STAIR-TOE-SHOE-R",
+        "cut_tool_count": 6,
+        "readback_difference_m3": 1.4855648332221545e-18,
+        "boundary_normalization": null,
+        "readback_comparison": {
+          "method": "Fixed common integer-metre origin, every actual oriented triangle retained",
+          "origin_m": [
+            -4.0,
+            -1.0,
+            -8.0
+          ],
+          "world_difference_m3_diagnostic": 1.428288059105579e-18,
+          "local_difference_m3": 1.4855648332221437e-18,
+          "transform_cover_m3": 0.0
+        }
+      },
+      {
+        "id": "WOOD-STAIR-TOE-NEWEL-R",
+        "cut_tool_count": 4,
+        "readback_difference_m3": 8.462583083394675e-15,
+        "boundary_normalization": null,
+        "readback_comparison": {
+          "method": "Fixed common integer-metre origin, every actual oriented triangle retained",
+          "origin_m": [
+            -4.0,
+            -1.0,
+            -8.0
+          ],
+          "world_difference_m3_diagnostic": 0.0,
+          "local_difference_m3": 3.0262372287547718e-18,
+          "transform_cover_m3": 8.459556846165859e-15
+        }
+      },
+      {
+        "id": "MUD-LANDING-RAIL-L",
+        "cut_tool_count": 9,
+        "readback_difference_m3": 5.420895057141804e-19,
+        "boundary_normalization": null,
+        "readback_comparison": {
+          "method": "Fixed common integer-metre origin, every actual oriented triangle retained",
+          "origin_m": [
+            -2.0,
+            1.0,
+            -7.0
+          ],
+          "world_difference_m3_diagnostic": 1.9393414897428244e-19,
+          "local_difference_m3": 5.420895057141765e-19,
+          "transform_cover_m3": 0.0
+        }
+      },
+      {
+        "id": "MUD-STAIR-RAIL-L",
+        "cut_tool_count": 18,
+        "readback_difference_m3": 7.417287193732425e-19,
+        "boundary_normalization": null,
+        "readback_comparison": {
+          "method": "Fixed common integer-metre origin, every actual oriented triangle retained",
+          "origin_m": [
+            -3.0,
+            0.0,
+            -8.0
+          ],
+          "world_difference_m3_diagnostic": 0.0,
+          "local_difference_m3": 7.4172871937323715e-19,
+          "transform_cover_m3": 0.0
+        }
+      },
+      {
+        "id": "MUD-ENTRY-GUARD-POST-L",
+        "cut_tool_count": 2,
+        "readback_difference_m3": 8.378358568955744e-18,
+        "boundary_normalization": null,
+        "readback_comparison": {
+          "method": "Fixed common integer-metre origin, every actual oriented triangle retained",
+          "origin_m": [
+            -2.0,
+            0.0,
+            -6.0
+          ],
+          "world_difference_m3_diagnostic": 6.076349665806334e-18,
+          "local_difference_m3": 8.378358568955682e-18,
+          "transform_cover_m3": 0.0
+        }
+      },
+      {
+        "id": "MUD-LANDING-RAIL-R",
+        "cut_tool_count": 9,
+        "readback_difference_m3": 1.7994518064751665e-19,
+        "boundary_normalization": null,
+        "readback_comparison": {
+          "method": "Fixed common integer-metre origin, every actual oriented triangle retained",
+          "origin_m": [
+            -3.0,
+            1.0,
+            -6.0
+          ],
+          "world_difference_m3_diagnostic": 4.285457317514726e-20,
+          "local_difference_m3": 1.7994518064751535e-19,
+          "transform_cover_m3": 0.0
+        }
+      },
+      {
+        "id": "MUD-STAIR-RAIL-R",
+        "cut_tool_count": 18,
+        "readback_difference_m3": 1.5613865378454127e-18,
+        "boundary_normalization": null,
+        "readback_comparison": {
+          "method": "Fixed common integer-metre origin, every actual oriented triangle retained",
+          "origin_m": [
+            -4.0,
+            0.0,
+            -8.0
+          ],
+          "world_difference_m3_diagnostic": 2.796234429898757e-19,
+          "local_difference_m3": 1.5613865378454013e-18,
+          "transform_cover_m3": 0.0
+        }
+      },
+      {
+        "id": "MUD-ENTRY-GUARD-POST-R",
+        "cut_tool_count": 2,
+        "readback_difference_m3": 5.43398653591759e-18,
+        "boundary_normalization": null,
+        "readback_comparison": {
+          "method": "Fixed common integer-metre origin, every actual oriented triangle retained",
+          "origin_m": [
+            -3.0,
+            0.0,
+            -6.0
+          ],
+          "world_difference_m3_diagnostic": 0.0,
+          "local_difference_m3": 5.4339865359175505e-18,
+          "transform_cover_m3": 0.0
+        }
+      },
+      {
+        "id": "MUD-SIDE-SILL-L",
+        "cut_tool_count": 8,
+        "readback_difference_m3": 1.8880481815171385e-17,
+        "boundary_normalization": null,
+        "readback_comparison": {
+          "method": "Fixed common integer-metre origin, every actual oriented triangle retained",
+          "origin_m": [
+            -1.0,
+            -0.0,
+            -6.0
+          ],
+          "world_difference_m3_diagnostic": 8.648364150318857e-18,
+          "local_difference_m3": 1.8880481815171246e-17,
+          "transform_cover_m3": 0.0
+        }
+      },
+      {
+        "id": "MUD-SIDE-SILL-R",
+        "cut_tool_count": 8,
+        "readback_difference_m3": 0.0,
+        "boundary_normalization": null,
+        "readback_comparison": {
+          "method": "Fixed common integer-metre origin, every actual oriented triangle retained",
+          "origin_m": [
+            -3.0,
+            -0.0,
+            -5.0
+          ],
+          "world_difference_m3_diagnostic": 1.7708076223671173e-17,
+          "local_difference_m3": 0.0,
+          "transform_cover_m3": 0.0
+        }
+      },
+      {
+        "id": "MUD-FRONT-SILL-L",
+        "cut_tool_count": 4,
+        "readback_difference_m3": 0.0,
+        "boundary_normalization": null,
+        "readback_comparison": {
+          "method": "Fixed common integer-metre origin, every actual oriented triangle retained",
+          "origin_m": [
+            -2.0,
+            -0.0,
+            -7.0
+          ],
+          "world_difference_m3_diagnostic": 0.0,
+          "local_difference_m3": 0.0,
+          "transform_cover_m3": 0.0
+        }
+      },
+      {
+        "id": "MUD-FRONT-SILL-R",
+        "cut_tool_count": 4,
+        "readback_difference_m3": 0.0,
+        "boundary_normalization": null,
+        "readback_comparison": {
+          "method": "Fixed common integer-metre origin, every actual oriented triangle retained",
+          "origin_m": [
+            -3.0,
+            -0.0,
+            -6.0
+          ],
+          "world_difference_m3_diagnostic": 0.0,
+          "local_difference_m3": 0.0,
+          "transform_cover_m3": 0.0
+        }
+      }
+    ],
+    "original_wood_overlays": [
+      "MUD-ENTRY-GUARD-POST-L",
+      "MUD-ENTRY-GUARD-POST-R",
+      "MUD-FRONT-SILL-L",
+      "MUD-FRONT-SILL-R"
+    ],
+    "cast_pan_geometry_preserved_by_other_owner": true,
+    "capacity_verified": false
+  },
+  "stage_header_sha256": "4683bab94588a618984eb6ae392921aae103265e2ded6115ca1eff36525e4604",
+  "tested_scene_sha256": "2a69773486522fb81ba13c7a7b1033f4d7c160036ecb35e2ca0919f3ece77dbd",
+  "verification": {
+    "tests": 3,
+    "strict_actual_records": 619,
+    "original_wood_overlays": 4,
+    "actual_linear_stock_parents": 43,
+    "full_2x12_stringers": 4,
+    "individual_fastener_actors": 472,
+    "actual_post_cure_drain_pan_retained": true,
+    "scope": "Only pairs touching at least one actual stair actor were required to pass. Other parts of the scene are not certified by this result.",
+    "negative_control": "An actual translated solid difference stays above the original tolerance under deterministic common-frame conditioning.",
+    "generic_washer_and_nut_dimensions": "Derived from their own occupied meshes; no fictitious manufacturer SKU."
+  },
+  "takeoff": {
+    "assetSha256": "7551a7c96a59df7a7cad9b9c4f2a705f93af63ef7564508aa18de47e2eedc893",
+    "status": "PASS",
+    "linearStockCount": 43,
+    "linearStockQuantities": [
+      {
+        "actualSectionIn": "(4, 8)",
+        "lengthIn": 120,
+        "quantity": 2
+      },
+      {
+        "actualSectionIn": "(1.5, 1.5)",
+        "lengthIn": 120,
+        "quantity": 16
+      },
+      {
+        "actualSectionIn": "(1.5, 11.25)",
+        "lengthIn": 96,
+        "quantity": 4
+      },
+      {
+        "actualSectionIn": "(3.5, 3.5)",
+        "lengthIn": 120,
+        "quantity": 2
+      },
+      {
+        "actualSectionIn": "(1.5, 7.25)",
+        "lengthIn": 96,
+        "quantity": 3
+      },
+      {
+        "actualSectionIn": "(1.5, 5.5)",
+        "lengthIn": 96,
+        "quantity": 4
+      },
+      {
+        "actualSectionIn": "(0.75, 7.25)",
+        "lengthIn": 96,
+        "quantity": 3
+      },
+      {
+        "actualSectionIn": "(1.5, 7.25)",
+        "lengthIn": 120,
+        "quantity": 3
+      },
+      {
+        "actualSectionIn": "(1.5, 1.5)",
+        "lengthIn": 96,
+        "quantity": 2
+      },
+      {
+        "actualSectionIn": "(1.5, 5.5)",
+        "lengthIn": 120,
+        "quantity": 2
+      },
+      {
+        "actualSectionIn": "(3.5, 3.5)",
+        "lengthIn": 96,
+        "quantity": 1
+      },
+      {
+        "actualSectionIn": "(0.75, 3.5)",
+        "lengthIn": 120,
+        "quantity": 1
+      }
+    ],
+    "plySheetCount": 0,
+    "paperForms": {
+      "quantity": 0,
+      "nominalStockLengthIn": 144,
+      "cutLengthIn": 96,
+      "referenceCutKerfIn": 0.125,
+      "remainingUsableOffcutIn": 47.875,
+      "nominalIDIn": 16,
+      "referenceWallIn": 0.125,
+      "supplierWallAndToleranceVerified": false
+    },
+    "hardwareQuantities": {
+      "THD37400HMG": 24,
+      "3/8hexboltL4.5": 24,
+      "3/8USSwasher1ODx7/16IDx.083": 112,
+      "3/8UNChexnut": 56,
+      "3/8hexboltL4": 12,
+      "14221": 16,
+      "S10350WP": 200,
+      "3/8hexboltL2.5": 20,
+      "hardwoodpegD0.25L3.5": 2,
+      "hardwoodpegD0.25L2.5": 6
+    },
+    "missingNewWoodStockRecords": [],
+    "outsideStockFailures": [],
+    "capacity_verified": false,
+    "offcutsAreNotInstalled": true,
+    "sourceCoordinateUnits": "inch-procurementcoordinates; installedToStock maps from porchlocalinches"
+  },
+  "layout": {
+    "widthIn": 44.0,
+    "riseIn": 5.742658792650919,
+    "riserCount": 6,
+    "runIn": 11.999999999999998,
+    "landingFrameDepthIn": 36.0,
+    "deckSurfaceDepthIn": 38.125000000000014,
+    "frontRiserOffsetFromHeaderIn": 1.25,
+    "nosingBeyondClosedRiserFaceIn": 0.875,
+    "treadBoardGapIn": 0.125,
+    "closedRisers": [
+      {
+        "id": "WOOD-STAIR-RISER-1",
+        "lowerYIn": -13.742658792650918,
+        "upperYIn": -9.5,
+        "closedHeightIn": 4.242658792650918,
+        "frontZIn": 141.75
+      },
+      {
+        "id": "WOOD-STAIR-RISER-2",
+        "lowerYIn": -19.485317585301836,
+        "upperYIn": -15.242658792650918,
+        "closedHeightIn": 4.242658792650918,
+        "frontZIn": 153.75
+      },
+      {
+        "id": "WOOD-STAIR-RISER-3",
+        "lowerYIn": -25.227976377952757,
+        "upperYIn": -20.985317585301836,
+        "closedHeightIn": 4.242658792650921,
+        "frontZIn": 165.75
+      },
+      {
+        "id": "WOOD-STAIR-RISER-4",
+        "lowerYIn": -30.970635170603675,
+        "upperYIn": -26.727976377952757,
+        "closedHeightIn": 4.242658792650918,
+        "frontZIn": 177.75
+      },
+      {
+        "id": "WOOD-STAIR-RISER-5",
+        "lowerYIn": -36.71329396325459,
+        "upperYIn": -32.47063517060367,
+        "closedHeightIn": 4.242658792650921,
+        "frontZIn": 189.75
+      },
+      {
+        "id": "WOOD-STAIR-RISER-6",
+        "lowerYIn": -42.455952755905514,
+        "upperYIn": -38.21329396325459,
+        "closedHeightIn": 4.242658792650921,
+        "frontZIn": 201.75
+      }
+    ],
+    "toePadDimensionsIn": [
+      56,
+      8,
+      56
+    ],
+    "groundYIn": -42.455952755905514,
+    "stringerCentersXIn": [
+      -18.5,
+      -6.166666666666667,
+      6.166666666666667,
+      18.5
+    ],
+    "stringerNormalDepthIn": 11.25,
+    "stairGuardHeightAboveNosingIn": 36.167044865485565,
+    "upperNewelHousingRemainingWebIn": 2,
+    "stepsConcreteRemoved": [
+      "MUD-LANDING",
+      "MUD-STEP-0",
+      "MUD-STEP-1",
+      "MUD-STEP-2",
+      "MUD-STEP-3",
+      "MUD-STEP-4",
+      "MUD-GROUND-LANDING"
+    ]
+  },
+  "overlap_tolerance_m3": 1.6387064e-11,
+  "capacity_verified": false
+}

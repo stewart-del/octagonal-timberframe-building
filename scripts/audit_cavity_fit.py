@@ -107,6 +107,8 @@ def mesh_components(vertices, faces):
 
 
 # TIMESTAMP START 2026-11-02T10:34:57-05:00 | REVISION R004764
+# TIMESTAMP START 2026-11-05T07:53:32+00:00 | REVISION R000033
+# Revert R000032: the measured pruning candidate and its transient tests had no performance benefit. Retain the original exact raw-surface clipping.
 def coplanar_surface_overlaps(vertices, faces):
     """Intersect raw coplanar triangles, including hidden opposed surface patches.
 
@@ -160,6 +162,7 @@ def coplanar_surface_overlaps(vertices, faces):
             'max_overlap_area_m2': max((row['area_m2'] for row in overlaps), default=0.0),
             'sum_pair_overlap_area_m2': sum(row['area_m2'] for row in overlaps),
             'plane_tolerance_m': plane_tolerance, 'positive_area_tolerance_m2': AREA_TOLERANCE_M2}
+# TIMESTAMP END 2026-11-05T07:53:32+00:00 | REVISION R000033
 # TIMESTAMP END 2026-11-02T10:34:57-05:00 | REVISION R004764
 
 

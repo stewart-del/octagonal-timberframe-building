@@ -1,3 +1,5 @@
+# TIMESTAMP START 2026-11-05T04:51:00+00:00 | REVISION R000023
+# TIMESTAMP START 2026-11-04T23:23:25+00:00 | REVISION R000011
 # TIMESTAMP START 2026-11-02T20:42:47-05:00 | REVISION R004871
 # Restore the original six-inch cupola and remove the R004869 four-inch trial.
 # TIMESTAMP START 2026-11-02T17:13:18-05:00 | REVISION R004819
@@ -48,8 +50,12 @@ def packed(shape):
     return result
 def unpack(record):return solid(record) if record['triangles'] else m.Manifold()
 def declared_offcuts(part):
+    # TIMESTAMP START 2026-11-05T08:15:49+00:00 | REVISION R000034
     record=part.get('declared_exterior_cut')
-    return unpack(record) if record else m.Manifold()
+    pieces=[unpack(record)] if record else []
+    pieces.extend(unpack(p) for p in part.get('additional_declared_exterior_cuts',{}).get('pieces',[]))
+    return union(pieces)
+    # TIMESTAMP END 2026-11-05T08:15:49+00:00 | REVISION R000034
 
 def sources():
     names=['src/top-entry-proposed-model.json','src/top-entry-proposal.json',
@@ -59,10 +65,69 @@ def sources():
            'scripts/audit_cavity_fit.py','scripts/step_lap.py']
     return {name:digest(ROOT/name) for name in names}
 
-def entry_regions(proposal):
+# TIMESTAMP START 2026-11-05T15:30:01+00:00 | REVISION R000049
+def entry_regions(proposal,model=None):
     cutters=[solid(x['top_open_cutter'])-solid(x['proposed_nose']) for x in proposal['representative']['interfaces']]
-    seed=union(cutters)
-    return {f'R{k}':seed.rotate((0,45*k,0)) for k in range(8)}
+    seed=union(cutters);regions={f'R{k}':seed.rotate((0,45*k,0)) for k in range(8)}
+    # Later source joints explicitly declare post, cupola and outer-rafter
+    # entry cuts. Retain the original inner-rafter proposal too; neither set
+    # may disappear merely because its receiver also has another entry cut.
+    for pid,record in (model or {}).get('joinery_entry_regions',{}).items():
+        declared=unpack(record)
+        assert str(declared.status())=='Error.NoError',('Invalid declared source entry',pid)
+        regions[pid]=union([regions[pid],declared]) if pid in regions else declared
+    if (model or {}).get('three_inch_joinery_revision'):
+        # The hip foot shares its named post's open assembly slot. The source
+        # post entry also classifies the small clearance cut in that hip; it
+        # is not mating wood or an unexplained exterior stock subtraction.
+        for k in range(8):
+            pid='R'+str(k);related=[regions[key] for key in ['P'+str(k),'C'+str(k)] if key in regions]
+            if related:regions[pid]=union([regions.get(pid,m.Manifold()),*related])
+    return regions
+# TIMESTAMP END 2026-11-05T15:30:01+00:00 | REVISION R000049
+
+# TIMESTAMP START 2026-11-05T06:03:29+00:00 | REVISION R000025
+def hub_record(model, physical):
+    """Partition the actual hub using complete tools before clipping once.
+
+    Unioning separately clipped, coplanar mating fragments creates invalid
+    cancellation surfaces. The connector tools are unbored; actual donor wood
+    and its peg jointly fill each tool. audit() checks that equality from the
+    saved physical triangles, independently of this construction.
+    """
+    parts={p['id']:p for p in model['parts']};hub=parts['CUP-KINGPOST']
+    origin=np.asarray(hub['center'],float)
+    local=lambda s:s.translate((-origin).tolist())
+    world=lambda s:s.translate(origin.tolist())
+    bottom=hub['axis_start'][1]-origin[1];top=hub['axis_end'][1]-origin[1]
+    def box(lo,hi):
+        lo=np.asarray(lo,float)
+        return m.Manifold.cube((np.asarray(hi)-lo).tolist()).translate(lo.tolist())
+    envelope=box([-6*I,bottom,-6*I],[6*I,top,6*I])
+    for k in range(8):
+        angle=k*np.pi/4;radial=np.array([np.cos(angle),0,-np.sin(angle)])
+        envelope=envelope.trim_by_plane((-radial).tolist(),-6*I)
+    joints=[j for j in model['tenon_schedule'] if j['receiver']=='CUP-KINGPOST']
+    assert len(joints)==16 and {j['donor'] for j in joints}=={f'{prefix}{k}' for prefix in ['CC','CR'] for k in range(8)}
+    pegs=[local(physical[p['id']]) for p in model['parts'] if p.get('peg_geometry',{}).get('receiver')=='CUP-KINGPOST']
+    assert len(pegs)==16,'Every hub socket must retain its real transverse peg'
+    tools=[local(solid(j['cutting_tool'])) for j in joints]
+    entry=local(solid(model['joinery_entry_regions']['CUP-KINGPOST']))
+    cy=parts['CC0']['center'][1]-origin[1]
+    roofcy=next(j for j in joints if j['donor']=='CR0')['face_center'][1]-origin[1]
+    access=[]
+    for k in range(8):
+        access.append(box([3*I,bottom,-.5*I],[6*I,cy-2*I,.5*I]).rotate((0,45*k,0)))
+        access.append(box([3*I,roofcy+1.5*I,-.5*I],[6*I,top,.5*I]).rotate((0,45*k,0)))
+    expected=envelope-union([entry,*pegs]);own=local(physical['CUP-KINGPOST'])
+    assert volume(expected-own)+volume(own-expected)<=TOL,'Hub no longer matches the recorded socket/peg recipe'
+    return {'removed':packed(world(union([entry,*pegs])^envelope)),
+        'mating_pocket':packed(world(union([*tools,*pegs])^envelope)),
+        'entry_clearance':packed(world(union(access))),
+        'blank_offcuts':packed(declared_offcuts(hub)),
+        'stock_basis':'Actual 12-inch-across-flats octagon in recorded 12x12 stock; complete connector and peg tools clipped once. Explicit shoulder-plane entry prisms; saved physical mates independently audited.',
+        'roundoff_omission_limit_m3':ROUND_OFF,'mating_clip_roundoff_omitted_m3':0.}
+# TIMESTAMP END 2026-11-05T06:03:29+00:00 | REVISION R000025
 
 # TIMESTAMP START 2026-11-04T20:04:39+00:00 | REVISION R000018
 def generate(model=None,proposal=None,unchanged_seeds=None):
@@ -70,8 +135,10 @@ def generate(model=None,proposal=None,unchanged_seeds=None):
     model=model or read(ROOT/'src/top-entry-proposed-model.json')
     proposal=proposal or read(ROOT/'src/top-entry-proposal.json')
     timbers={p['id']:p for p in model['parts'] if p['is_timber']}
-    physical={p['id']:solid(p) for p in model['parts'] if p['is_timber'] or p.get('group')=='joinery_pegs'}
-    entries=entry_regions(proposal);records={};seeds={}
+    physical={p['id']:solid(p) for p in model['parts'] if p['is_timber'] or p.get('is_fastener') or p.get('group')=='joinery_pegs'}
+    # TIMESTAMP START 2026-11-05T15:30:01+00:00 | REVISION R000049
+    entries=entry_regions(proposal,model);records={};seeds={}
+# TIMESTAMP END 2026-11-05T15:30:01+00:00 | REVISION R000049
     def transform_record(record,matrix):
         result=copy.deepcopy(record)
         for key in ['removed','mating_pocket','entry_clearance','blank_offcuts']:
@@ -81,6 +148,11 @@ def generate(model=None,proposal=None,unchanged_seeds=None):
         return result
     def seed(pid):
         if pid in seeds:return seeds[pid]
+        # TIMESTAMP START 2026-11-05T06:03:29+00:00 | REVISION R000025
+        if pid=='CUP-KINGPOST':
+            seeds[pid]=hub_record(model,physical)
+            return seeds[pid]
+        # TIMESTAMP END 2026-11-05T06:03:29+00:00 | REVISION R000025
         # TIMESTAMP START 2026-11-04T20:04:39+00:00 | REVISION R000018
         retained=(unchanged_seeds or {}).get(pid)
         if retained:
@@ -130,13 +202,50 @@ def generate(model=None,proposal=None,unchanged_seeds=None):
         # TIMESTAMP END 2026-11-03T16:49:21-05:00 | REVISION R005060
         unexplained=removed-filled-access-exterior
         assert volume(unexplained)<=TOL,(pid,'unclassified removed stock',volume(unexplained)/I**3)
-        seeds[pid]={'removed':packed(world(filled+access)),'mating_pocket':packed(world(filled)),
+        # TIMESTAMP START 2026-11-04T20:18:13+00:00 | REVISION R000008
+        if model.get('independent_hip_entry_revision') and re.fullmatch(r'C[0-7]',pid):
+            joint=next(j for j in model['tenon_schedule'] if j['donor']=='R'+pid[1:] and j['receiver']==pid)
+            depth=np.asarray(timbers[joint['donor']]['stock_frame']['depth'])
+            top=float(np.max(np.asarray(joint['connector']['vertices'])@depth)-origin@depth)
+            clean_access=local(entries[pid]).trim_by_plane(depth.tolist(),top)
+            error=volume(access-clean_access)+volume(clean_access-access)
+            assert error<=TOL,(pid,'support-plane entry differs from occupied-stock partition',error)
+            access=clean_access
+        # Direct stock complement avoids zero-thickness coplanar flaps from
+        # re-unioning independently computed pocket and access boundaries.
+        overlay=(removed-exterior) if model.get('independent_hip_entry_revision') and re.fullmatch(r'C[0-7]',pid) else filled+access
+        seeds[pid]={'removed':packed(world(overlay)),'mating_pocket':packed(world(filled)),
+        # TIMESTAMP END 2026-11-04T20:18:13+00:00 | REVISION R000008
             'entry_clearance':packed(world(access)),'blank_offcuts':packed(world(exterior)),
             'stock_basis':'Recorded stock halfspaces with separate declared exterior shoulder offcuts and open assembly-entry regions.',
             'roundoff_omission_limit_m3':ROUND_OFF,'mating_clip_roundoff_omitted_m3':omitted}
         # TIMESTAMP END 2026-11-03T16:12:39-05:00 | REVISION R005050
         return seeds[pid]
     for pid,p in timbers.items():
+        # TIMESTAMP START 2026-11-05T06:03:29+00:00 | REVISION R000025
+        # Opposite socket peg elevations alternate around the cupola. Reuse a
+        # rotation only after testing actual wood, stock, offcuts and entries;
+        # every resulting saved pocket is still audited against current mates.
+        if pid=='CUP-KINGPOST' or re.fullmatch(r'(?:C[0-7]|CC[0-7]|CR[0-7]|L[0-7]-[HS])',pid):
+            match=re.fullmatch(r'([A-Z]+)([0-7])(.*)',pid)
+            if match:
+                for previous in list(seeds):
+                    before=re.fullmatch(r'([A-Z]+)([0-7])(.*)',previous)
+                    if not before or (before[1],before[3])!=(match[1],match[3]):continue
+                    degrees=45*(int(match[2])-int(before[2]));angle=degrees*np.pi/180;c,s=np.cos(angle),np.sin(angle)
+                    matrix=np.array([[c,0,s],[0,1,0],[-s,0,c]])
+                    pairs=[(physical[previous],physical[pid]),(stock(timbers[previous]),stock(p)),
+                        (declared_offcuts(timbers[previous]),declared_offcuts(p)),
+                        (entries.get(previous,m.Manifold()),entries.get(pid,m.Manifold()))]
+                    errors=[volume(a.rotate((0,degrees,0))-b)+volume(b-a.rotate((0,degrees,0))) for a,b in pairs]
+                    if max(errors)<=TOL:
+                        records[pid]=transform_record(seeds[previous],matrix)
+                        records[pid]['verified_geometry_isometry']={'seed_id':previous,'rotation_degrees':degrees,'wood_stock_offcut_entry_difference_m3':errors}
+                        break
+                if pid in records:continue
+            records[pid]=copy.deepcopy(seed(pid))
+            continue
+        # TIMESTAMP END 2026-11-05T06:03:29+00:00 | REVISION R000025
         match=re.fullmatch(r'([A-Z]+)([0-7])(.*)',pid)
         assert match,pid
         base=match[1]+'0'+match[3];angle=int(match[2])*np.pi/4;c,s=np.cos(angle),np.sin(angle)
@@ -153,16 +262,26 @@ def generate(model=None,proposal=None,unchanged_seeds=None):
 
 def audit(model,cavities,proposal):
     timbers={p['id']:p for p in model['parts'] if p['is_timber']}
-    physical={p['id']:solid(p) for p in model['parts'] if p['is_timber'] or p.get('group')=='joinery_pegs'}
-    entries=entry_regions(proposal);rows=[];failures=[]
+    physical={p['id']:solid(p) for p in model['parts'] if p['is_timber'] or p.get('is_fastener') or p.get('group')=='joinery_pegs'}
+    # TIMESTAMP START 2026-11-05T15:30:01+00:00 | REVISION R000049
+    entries=entry_regions(proposal,model);rows=[];failures=[]
+# TIMESTAMP END 2026-11-05T15:30:01+00:00 | REVISION R000049
     if set(cavities['parts'])!=set(timbers):failures.append('Cavity IDs do not match structural timber IDs')
     for pid,p in timbers.items():
         data=cavities['parts'].get(pid)
         if data is None:continue
-        shapes={key:unpack(data[key]) for key in ['removed','mating_pocket','entry_clearance','blank_offcuts']}
-        blank=stock(p);legacy=stock(p,False);own=physical[pid];declared=declared_offcuts(p)
+        # TIMESTAMP START 2026-11-05T06:03:29+00:00 | REVISION R000025
+        # Perform occupied-volume Booleans near the receiving stock origin.
+        # This is an isometry, not a mesh cleanup, offset or tolerance change.
+        # Raw JSON boundary/winding checks below continue in world coordinates.
+        blank=stock(p);origin=np.asarray(blank.bounding_box()).reshape(2,3).mean(0)
+        match=re.fullmatch(r'([A-Z]+)([0-7])(.*)',pid);degrees=-45*int(match[2]) if match else 0
+        local=lambda s:s.translate((-origin).tolist()).rotate((0,degrees,0))
         mate_shapes={key:s for key,s in physical.items() if key!=pid and close_bounds(blank,s)}
-        mates=union(list(mate_shapes.values()));all_removed=shapes['removed']+shapes['blank_offcuts']
+        shapes={key:local(unpack(data[key])) for key in ['removed','mating_pocket','entry_clearance','blank_offcuts']}
+        blank=local(blank);legacy=local(stock(p,False));own=local(physical[pid]);declared=local(declared_offcuts(p))
+        mates=union([local(s) for s in mate_shapes.values()]);all_removed=shapes['removed']+shapes['blank_offcuts']
+        # TIMESTAMP END 2026-11-05T06:03:29+00:00 | REVISION R000025
         checks={
             'overlay_partition_difference':volume(shapes['removed']-(shapes['mating_pocket']+shapes['entry_clearance']))+volume((shapes['mating_pocket']+shapes['entry_clearance'])-shapes['removed']),
             'pocket_entry_overlap':volume(shapes['mating_pocket']^shapes['entry_clearance']),
@@ -172,7 +291,9 @@ def audit(model,cavities,proposal):
             'receiver_overlap':volume(all_removed^own),
             'outside_stock':volume(all_removed-blank),
             'unrecorded_removed_stock':volume(blank-(own+all_removed)),
-            'entry_outside_declared_region':volume(shapes['entry_clearance']-entries.get(pid,m.Manifold())),
+            # TIMESTAMP START 2026-11-05T06:03:29+00:00 | REVISION R000025
+            'entry_outside_declared_region':volume(shapes['entry_clearance']-local(entries.get(pid,m.Manifold()))),
+            # TIMESTAMP END 2026-11-05T06:03:29+00:00 | REVISION R000025
             'entry_occupied_by_mate':volume(shapes['entry_clearance']^mates),
             'offcut_inside_legacy_stock_without_declaration':volume((shapes['blank_offcuts']^legacy)-declared),
             'offcut_outside_declared_region':volume(shapes['blank_offcuts']-((blank-legacy)+declared)),
@@ -187,7 +308,9 @@ def audit(model,cavities,proposal):
         # An independent winding test reads the exported triangles, rather than
         # the Boolean result used to produce the overlay.
         samples=0;uncovered=0
-        for component in shapes['mating_pocket'].decompose():
+        # TIMESTAMP START 2026-11-05T06:03:29+00:00 | REVISION R000025
+        for component in unpack(data['mating_pocket']).decompose():
+        # TIMESTAMP END 2026-11-05T06:03:29+00:00 | REVISION R000025
             if component.volume()<=ROUND_OFF:continue
             q=component.to_mesh64();v=np.asarray(q.vert_properties)[:,:3];f=np.asarray(q.tri_verts)
             tri=v[f];normals=np.cross(tri[:,1]-tri[:,0],tri[:,2]-tri[:,0]);length=np.linalg.norm(normals,axis=1)
@@ -229,3 +352,7 @@ if __name__=='__main__':export()
 # TIMESTAMP END 2026-11-02T17:13:18-05:00 | REVISION R004819
 
 # TIMESTAMP END 2026-11-02T20:42:47-05:00 | REVISION R004871
+
+# TIMESTAMP END 2026-11-04T23:23:25+00:00 | REVISION R000011
+
+# TIMESTAMP END 2026-11-05T04:51:00+00:00 | REVISION R000023

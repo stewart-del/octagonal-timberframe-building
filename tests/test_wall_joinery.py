@@ -1,5 +1,6 @@
+# TIMESTAMP START 2026-11-05T04:16:45+00:00 | REVISION R000019
 # TIMESTAMP START 2026-11-02T21:09:01-05:00 | REVISION R004877
-"""Independently verify occupied dovetails, connected stock and matching cavities."""
+"""Independently verify concealed straight tenons, connected stock and finite cavities."""
 from pathlib import Path
 import hashlib,json,sys
 ROOT=Path(__file__).resolve().parents[1]
@@ -25,8 +26,7 @@ for variant,fit in fits['variants'].items():
     doorway=[j for j in fit['joints'] if j['donor'] in ['SCHEM-W-rail0-0','SCHEM-W-rail0-1'] and j['receiver'] in ['P2','P3']]
     assert len(doorway)==2
     for j in doorway:
-        assert j['withdrawal_direction']==[0,-1,0],j['id']
-        assert 'downward' in j['family'],j['id']
+        assert j['blind_socket'] and 'concealed straight' in j['family'],j['id']
     # TIMESTAMP END 2026-11-02T22:01:35-05:00 | REVISION R004882
     for j in fit['joints']:
         donor=scene.solids[j['donor']];receiver=scene.solids[j['receiver']]
@@ -34,9 +34,15 @@ for variant,fit in fits['variants'].items():
         assert (donor^receiver).volume()<TOL,j['id']
         assert (donor^tongue^removed).volume()>TOL,j['id']
         # TIMESTAMP START 2026-11-03T16:40:59-05:00 | REVISION R005059
-        assert j['head_width_m']>j['neck_width_m'] and abs(j['engagement_m']-3*.0254)<1e-12,j['id']
+        assert j['head_width_m']==j['neck_width_m'] and abs(j['engagement_m']-3*.0254)<1e-12,j['id']
+        assert all(abs(a+b)<1e-12 for a,b in zip(j['withdrawal_direction'],j['insertion_direction_world'])),j['id']
+        # The removed socket is confined to the finite tongue/tool. An exterior
+        # entry sweep would leave removed stock outside this exact solid.
+        assert (removed-unpack(j['socket_tool'])).volume()<TOL,j['id']
         # TIMESTAMP END 2026-11-03T16:40:59-05:00 | REVISION R005059
     audit=audit_initial_scene(scene)
     assert audit['status']=='PASS',audit['collisions']
-    print('PASS',variant,'134 complementary wall joints; connected stock, entry volumes, source binding and',audit['pair_checks'],'complete-scene intersection checks',flush=True)
+    print('PASS',variant,'134 concealed blind wall joints; finite sockets, connected stock, source binding and',audit['pair_checks'],'complete-scene intersection checks',flush=True)
 # TIMESTAMP END 2026-11-02T21:09:01-05:00 | REVISION R004877
+
+# TIMESTAMP END 2026-11-05T04:16:45+00:00 | REVISION R000019

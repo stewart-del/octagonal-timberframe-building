@@ -11,3 +11,7 @@ Ordered motion uses the saved-dimension removable-joint model. Changed dimension
 
 Verification covers all three variants at minimum height/pitch, 96-inch walls at 4:12 and 5:12, and maximum height/pitch: twelve complete physical scenes. Tests check manifold meshes, positive-volume interference, actual tenon depth and receiver contact. This is nominal model geometry, not a structural capacity or fabrication clearance calculation.
 <!-- TIMESTAMP END 2026-11-03T17:17:55-05:00 | REVISION R005072 -->
+
+<!-- TIMESTAMP START 2026-11-05T16:01:12+00:00 | REVISION R000052 -->
+The requested pitch control sets both the main roof and cupola roof to the same rise per12. Cupola height remains independently adjustable; the porch roof stays4:12. Legacy independent cupola-pitch query values are normalized to the main pitch. Complete current geometry and matching ordered motion still require the active integration checks before publication.
+<!-- TIMESTAMP END 2026-11-05T16:01:12+00:00 | REVISION R000052 -->

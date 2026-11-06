@@ -1,5 +1,6 @@
+# TIMESTAMP START 2026-11-05T04:16:45+00:00 | REVISION R000019
 # TIMESTAMP START 2026-11-02T20:38:50-05:00 | REVISION R004870
-"""Complementary exterior-entry wall dovetails, separate from saved frame sources."""
+"""Concealed straight wall tenons with finite blind sockets, separate from saved frame sources."""
 from pathlib import Path
 import hashlib,itertools,json,subprocess
 import numpy as np
@@ -66,6 +67,7 @@ def generate(variant):
             target=lo+.5*I if direction<0 else hi-.5*I
             center=center+n*(target-center@n)
         # TIMESTAMP END 2026-11-03T15:42:57-05:00 | REVISION R005038
+        head=neck  # Constant-section tongues withdraw along their insertion axes.
         root=.75*I
         # TIMESTAMP START 2026-11-03T16:40:59-05:00 | REVISION R005059
         local_points=np.array([[x,y,z] for x,w in [(-root,neck),(0,neck),(engagement,head)] for y in [-w,w] for z in [-depth/2,depth/2]])
@@ -73,16 +75,10 @@ def generate(variant):
         transform=np.column_stack([basis,center]).tolist()
         tool=m.Manifold.hull_points(local_points).transform(transform)
         # TIMESTAMP END 2026-11-03T16:40:59-05:00 | REVISION R005059
-        # The complete dovetail slides through an exterior-open matching housing.
-        receiver_vertices=np.array(records[receiver]['vertices'])
-        # TIMESTAMP START 2026-11-02T22:01:35-05:00 | REVISION R004882
-        downward=donor in ['SCHEM-W-rail0-0','SCHEM-W-rail0-1'] and receiver in ['P2','P3']
-        entry=np.array([0.,-1.,0.]) if downward else n
-        distance=float(np.max(receiver_vertices@entry)-np.min(points@entry))+I if downward else max(0.,float(np.max((receiver_vertices-center)@n)))+depth+I
-        # TIMESTAMP START 2026-11-03T16:40:59-05:00 | REVISION R005059
-        sweep=m.Manifold.hull_points(np.vstack([local_points,local_points+(entry@basis)*distance])).transform(transform)
-        # TIMESTAMP END 2026-11-03T16:40:59-05:00 | REVISION R005059
-        # TIMESTAMP END 2026-11-02T22:01:35-05:00 | REVISION R004882
+        # A finite matching tool preserves the outside post skin. Socket mouths
+        # open only at the donor shoulder; no outward sweep cuts the facade.
+        sweep=tool
+        entry=-q
         occupied=tool^original[receiver]
         if occupied.volume()<=TOL:raise AssertionError((donor,receiver,'tongue misses receiver'))
         joined=normalize(original[donor]+tool)
@@ -106,10 +102,11 @@ def generate(variant):
         # TIMESTAMP END 2026-11-02T21:12:46-05:00 | REVISION R004878
         except AssertionError as error:raise AssertionError((donor,receiver,center.tolist(),'cut boundary')) from error
         # TIMESTAMP START 2026-11-02T22:01:35-05:00 | REVISION R004882
-        joints.append({'id':jid,'donor':donor,'receiver':receiver,'family':('downward-entry' if downward else 'exterior-entry')+' housed dovetail',
+        joints.append({'id':jid,'donor':donor,'receiver':receiver,'family':'concealed straight mortise and tenon',
           'withdrawal_direction':entry.tolist(),'engagement_m':engagement,'neck_width_m':neck*2,'head_width_m':head*2,
           'tongue':packed(tool),'removed_from_receiver':removed_record,
-          'restraint_status':'Interlocking geometry in the wall plane; exterior withdrawal restraint and capacity unresolved.'})
+          'blind_socket':True,'socket_tool':packed(tool),
+          'restraint_status':'Finite concealed tongue and shoulder bearing. Positive locking pins and capacity are specified separately.'})
         # TIMESTAMP START 2026-11-03T15:42:57-05:00 | REVISION R005038
         joints[-1].update(tenon_projection_m=engagement,tenon_cross_section_m=[depth,neck*2],insertion_direction_world=q.tolist())
         # TIMESTAMP END 2026-11-03T15:42:57-05:00 | REVISION R005038
@@ -152,6 +149,11 @@ def generate(variant):
     for pid,s in original.items():
         try:final[pid]=normalize((s+union(additions[pid]))-union(cutters[pid]))
         except AssertionError as error:raise AssertionError((pid,'final boundary')) from error
+# TIMESTAMP START 2026-11-05T08:46:05+00:00 | REVISION R000036
+    from wall_locking_pegs import attach as attach_wall_pegs
+    locking_pegs,locking_owners,locking_audit=attach_wall_pegs(variant,final,joints)
+    peg_solids={p['id']:solid(p) for p in locking_pegs}
+# TIMESTAMP END 2026-11-05T08:46:05+00:00 | REVISION R000036
     for pid,s in final.items():
         assert s.volume()>0 and len(s.decompose())==1,(pid,'disconnected receiver')
     checks=0;maximum=0.
@@ -166,32 +168,60 @@ def generate(variant):
         assert (s-original[pid]-added).volume()<TOL,(pid,'unrecorded added material')
         old_cavity=cavities.get('parts',{}).get(pid,{})
         combined=unpack(old_cavity.get('removed',{}))+removed
-        mates=union([final[j['donor']] for j in joints if j['receiver']==pid])
+# TIMESTAMP START 2026-11-05T08:46:05+00:00 | REVISION R000036
+        mates=union([final[j['donor']] for j in joints if j['receiver']==pid]+[peg_solids[x] for x in locking_owners.get(pid,[])])
+# TIMESTAMP END 2026-11-05T08:46:05+00:00 | REVISION R000036
         entry=removed-mates
+# TIMESTAMP START 2026-11-05T08:46:05+00:00 | REVISION R000036
         patches[pid]={**packed(s),'wallJoineryJointIds':part_joints[pid],
           'joineryCavity':{**old_cavity,'removed':old_cavity.get('removed',{'vertices':[],'triangles':[],'volume_m3':0.}),
             'additional_removed':packed(removed),'additional_entry_clearance':{'vertices':[],'triangles':[],'volume_m3':max(0.,entry.volume()),'representation':'Volume classification of actual removed stock minus actual mating wood; full removed and tongue meshes are retained in the joint records.'},
-            'fit_audit':{'status':'PASS','scope':'Saved primary cavities plus exact additional wall sockets and their exterior entry space'}},
+            'fit_audit':{'status':'PASS','scope':'Saved primary cavities plus exact finite blind wall sockets'}},
           'wallJoineryAdded':packed(added),'wallJoineryRemoved':packed(removed),
-          'wallJoineryMass':volume_centroid(s),'connectionStatus':'Actual exterior-entry housed dovetails with matching sockets; capacity and exterior retention unresolved.'}
+          'wallJoineryMass':volume_centroid(s),'lockingPegIds':locking_owners.get(pid,[]),'connectionStatus':'Concealed straight tenons, blind sockets, shoulder bearing and transverse hardwood locking pegs. Structural capacity requires review.'}
+# TIMESTAMP END 2026-11-05T08:46:05+00:00 | REVISION R000036
     # TIMESTAMP START 2026-11-03T17:15:09-05:00 | REVISION R005070
     # Quantities describe the exact serialized meshes used by the viewer.
     published={pid:unpack(patches[pid]) if pid in patches else solid(records[pid]) for pid in final}
     for pid,patch in patches.items():
         removed=unpack(patch['wallJoineryRemoved'])
-        mates=union([published[j['donor']] for j in joints if j['receiver']==pid])
+# TIMESTAMP START 2026-11-05T08:46:05+00:00 | REVISION R000036
+        mates=union([published[j['donor']] for j in joints if j['receiver']==pid]+[peg_solids[x] for x in locking_owners.get(pid,[])])
+# TIMESTAMP END 2026-11-05T08:46:05+00:00 | REVISION R000036
         patch['joineryCavity']['additional_entry_clearance']['volume_m3']=max(0.,(removed-mates).volume())
     # TIMESTAMP END 2026-11-03T17:15:09-05:00 | REVISION R005070
     sources={f'src/{name}':digest(f'src/{name}') for name in [model_name,enclosure_name,cavity_name,'schematic-walls.js']}
     sources['scripts/fit_wall_joinery.py']=digest('scripts/fit_wall_joinery.py')
+# TIMESTAMP START 2026-11-05T08:46:05+00:00 | REVISION R000036
+    for path in ['scripts/wall_locking_pegs.py','scripts/fixtures/wall-locking-pegs.json.gz']:
+        sources[path]=digest(path)
+# TIMESTAMP END 2026-11-05T08:46:05+00:00 | REVISION R000036
+# TIMESTAMP START 2026-11-05T08:46:05+00:00 | REVISION R000036
     return {'status':'PASS','sources':sources,'source_model_sha256':digest('src/'+model_name),
       'primary_parts':{pid:p for pid,p in patches.items() if pid in primary},'wall_parts':{pid:p for pid,p in patches.items() if pid in wall},
-      'joints':joints,'verification':{'pair_checks':checks,'maximum_overlap_m3':maximum,'tolerance_m3':TOL,'capacity_verified':False}}
+      'locking_pegs':locking_pegs,'lockingPegAudit':locking_audit,'joints':joints,'verification':{'pair_checks':checks,'maximum_overlap_m3':maximum,'tolerance_m3':TOL,'capacity_verified':False}}
+# TIMESTAMP END 2026-11-05T08:46:05+00:00 | REVISION R000036
 
+def readable_json(value,level=0):
+    """Readable bounded source lines without expanding each vector component."""
+    pad='  '*level;child='  '*(level+1)
+    if isinstance(value,dict):
+        return '{\n'+',\n'.join(child+json.dumps(k)+': '+readable_json(v,level+1) for k,v in value.items())+'\n'+pad+'}' if value else '{}'
+    if isinstance(value,list):
+        if not value or all(not isinstance(v,(dict,list)) for v in value):return json.dumps(value,separators=(',',':'))
+        return '[\n'+',\n'.join(child+readable_json(v,level+1) for v in value)+'\n'+pad+']'
+    return json.dumps(value)
+
+# TIMESTAMP START 2026-11-05T08:46:05+00:00 | REVISION R000036
 if __name__=='__main__':
-    result={'revision':'R004870','timestamp':'2026-11-02T20:38:50-05:00','variants':{}}
+    import argparse
+    parser=argparse.ArgumentParser();parser.add_argument('--output',type=Path,default=ROOT/'src/wall-joinery-fit.json');args=parser.parse_args()
+    result={'revision':'R000036','timestamp':'2026-11-05T08:46:05+00:00','variants':{}}
     for variant in VARIANTS:
         result['variants'][variant]=generate(variant)
-        print(variant,len(result['variants'][variant]['joints']),'matching wall joints',flush=True)
-    (ROOT/'src/wall-joinery-fit.json').write_text(json.dumps(result,separators=(',',':'))+'\n')
+        print(variant,len(result['variants'][variant]['joints']),'matching wall joints;134 separate locking pegs',flush=True)
+    args.output.parent.mkdir(parents=True,exist_ok=True);args.output.write_text(json.dumps(result,separators=(',',':'))+'\n')
+# TIMESTAMP END 2026-11-05T08:46:05+00:00 | REVISION R000036
 # TIMESTAMP END 2026-11-02T20:38:50-05:00 | REVISION R004870
+
+# TIMESTAMP END 2026-11-05T04:16:45+00:00 | REVISION R000019

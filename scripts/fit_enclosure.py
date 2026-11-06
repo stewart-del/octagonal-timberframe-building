@@ -1,3 +1,4 @@
+# TIMESTAMP START 2026-11-05T05:14:11+00:00 | REVISION R000024
 # TIMESTAMP START 2026-11-02T13:44:32-05:00 | REVISION R004784
 """Fit display wall framing/infill/floor around unchanged timber and footing solids.
 Not a proposed structural joint or connection-capacity analysis.
@@ -44,8 +45,15 @@ timbers={p['id']:solid(p) for p in model['parts'] if p['is_timber'] or p.get('gr
 # TIMESTAMP END 2026-11-02T18:45:37-05:00 | REVISION R004840
 # TIMESTAMP START 2026-11-02T16:10:36-05:00 | REVISION R004814
 foundation_path=R/'src/floor-foundation-solids.json'
-foundation_raw=foundation_path.read_bytes();foundation=json.loads(foundation_raw)
-floor_obstacles={**footers,**{p['id']:solid(p) for p in foundation['parts']}}
+from physical_data import read_physical_json
+# TIMESTAMP START 2026-11-05T06:36:54+00:00 | REVISION R000029
+from physical_data import occupied_part
+# TIMESTAMP END 2026-11-05T06:36:54+00:00 | REVISION R000029
+foundation_raw=foundation_path.read_bytes();foundation=read_physical_json(foundation_path)
+# TIMESTAMP START 2026-11-05T06:36:54+00:00 | REVISION R000029
+floor_obstacles={**footers,**{p['id']:solid(occupied_part(p,foundation.get('prototypes',{}))) for p in foundation['parts']}}
+components=[p for p in components if p['id'] not in foundation.get('replacedSchematicIds',[])]
+# TIMESTAMP END 2026-11-05T06:36:54+00:00 | REVISION R000029
 # TIMESTAMP END 2026-11-02T16:10:36-05:00 | REVISION R004814
 # TIMESTAMP START 2026-11-02T13:44:32-05:00 | REVISION R004784
 data={'source_model_sha256':hashlib.sha256(raw).hexdigest(),'source_module_sha256':hashlib.sha256((R/'src/schematic-walls.js').read_bytes()).hexdigest(),'status':'Visualization clearance fit only; wall framing joints, foundations and floor support undesigned.','parts':{}}
@@ -124,10 +132,16 @@ for p in unsplit:
  expected,_=normalize_boundary(expected)
  ids=[q['id'] for q in components if q.get('panelAssemblyId')==p['id']]
  children=[solid(dict(data['parts'][pid],id=pid)) for pid in ids]
- assembled=m.Manifold.batch_boolean(children,m.OpType.Add)
+ # TIMESTAMP START 2026-11-04T20:06:20+00:00 | REVISION R000007
+ lower=m.Manifold.batch_boolean([shape for pid,shape in zip(ids,children) if next(p for p in components if p['id']==pid)['panelSeamPart']=='lower'],m.OpType.Add)
+ upper=m.Manifold.batch_boolean([shape for pid,shape in zip(ids,children) if next(p for p in components if p['id']==pid)['panelSeamPart']=='upper'],m.OpType.Add)
+ assembled=lower+upper
+ # TIMESTAMP END 2026-11-04T20:06:20+00:00 | REVISION R000007
  error=abs((expected-assembled).volume())+abs((assembled-expected).volume())
- intersection=abs((children[0]^children[1]).volume())
- assert len(children)==2 and error<FIT_TOLERANCE_M3 and intersection<FIT_TOLERANCE_M3,p['id']
+ # TIMESTAMP START 2026-11-04T20:06:20+00:00 | REVISION R000007
+ intersection=abs((lower^upper).volume())
+ assert len(children)>=2 and error<FIT_TOLERANCE_M3 and intersection<FIT_TOLERANCE_M3,p['id']
+ # TIMESTAMP END 2026-11-04T20:06:20+00:00 | REVISION R000007
  data['panel_seams'][p['id']]={'status':'PASS','child_ids':ids,'plane_y_m':64*.0254,
   'original_fitted_volume_m3':expected.volume(),'reassembled_volume_m3':assembled.volume(),
   'symmetric_volume_difference_m3':error,'child_overlap_m3':intersection,
@@ -141,3 +155,5 @@ print('Fitted',len(data['parts']),'wall framing/infill/floor/shelf components; s
       ,'model SHA',data['source_model_sha256'])
 
 # TIMESTAMP END 2026-11-02T13:44:32-05:00 | REVISION R004784
+
+# TIMESTAMP END 2026-11-05T05:14:11+00:00 | REVISION R000024

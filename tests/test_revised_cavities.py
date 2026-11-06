@@ -38,7 +38,9 @@ def audit_current(variant,cavities=None,only=None):
         for p in model['parts']:
             if p.get('is_timber') and p['id'] not in only:p['is_timber']=False;p['group']='joinery_pegs'
         data['parts']={pid:data['parts'][pid] for pid in only}
-    exporter.solid=native_solid;exporter.entry_regions=lambda _:entries
+    # TIMESTAMP START 2026-11-05T15:32:33+00:00 | REVISION R000050
+    exporter.solid=native_solid;exporter.entry_regions=lambda _,model=None:entries
+    # TIMESTAMP END 2026-11-05T15:32:33+00:00 | REVISION R000050
     try:return exporter.audit(model,data,proposal)
     finally:exporter.solid=previous_solid;exporter.entry_regions=previous_entries
 

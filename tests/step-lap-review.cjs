@@ -1,3 +1,4 @@
+// TIMESTAMP START 2026-11-04T23:23:25+00:00 | REVISION R000011
 // TIMESTAMP START 2026-11-04T20:33:26+00:00 | REVISION R000023
 'use strict';
 const fs=require('fs'),path=require('path'),assert=require('assert'),crypto=require('crypto');
@@ -95,3 +96,5 @@ const cssTemplate=require('fs').readFileSync('src/viewer.template.html','utf8');
 const beforeStepStyles=cssTemplate.split('<style>')[1].split('.step-lap-modal')[0];
 assert.equal([...beforeStepStyles].reduce((n,c)=>n+(c==='{'?1:c==='}'?-1:0),0),0,'step-lap screen styles must be outside print media');
 // TIMESTAMP END 2026-11-04T20:33:26+00:00 | REVISION R000023
+
+// TIMESTAMP END 2026-11-04T23:23:25+00:00 | REVISION R000011

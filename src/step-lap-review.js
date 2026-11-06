@@ -1,3 +1,4 @@
+// TIMESTAMP START 2026-11-04T23:23:25+00:00 | REVISION R000011
 // TIMESTAMP START 2026-11-04T20:33:26+00:00 | REVISION R000023
 /* Separate proposed CSG joinery comparison. Never replaces canonical parts or loads. */
 (function(root){
@@ -110,3 +111,5 @@ function createController(data,{document,save,release=()=>{},onOpen=()=>{},onClo
 root.OctagonStepLap={drawing,localPoint,projection,cropPolygon,cropLine,sectionSegments,flatEntries,summaryRows,tradeoff,createController};
 })(typeof globalThis!=='undefined'?globalThis:this);
 // TIMESTAMP END 2026-11-04T20:33:26+00:00 | REVISION R000023
+
+// TIMESTAMP END 2026-11-04T23:23:25+00:00 | REVISION R000011

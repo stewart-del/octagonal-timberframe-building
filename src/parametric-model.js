@@ -1,3 +1,6 @@
+// TIMESTAMP START 2026-11-05T17:19:58+00:00 | REVISION R000058
+// TIMESTAMP START 2026-11-05T04:51:00+00:00 | REVISION R000023
+// TIMESTAMP START 2026-11-04T23:23:25+00:00 | REVISION R000011
 // TIMESTAMP START 2026-11-03T13:09:36-05:00 | REVISION R005024
 /* Parameterized stock and complementary joints. All dimensions are nominal geometry. */
 (function(root){
@@ -5,12 +8,19 @@
 const I=.0254,C=Math.cos(Math.PI/8),BASE_P=1/3,BASE_WALL=89.03615129287599;
 const add=(a,b)=>a.map((v,i)=>v+b[i]),sub=(a,b)=>a.map((v,i)=>v-b[i]),mul=(a,s)=>a.map(v=>v*s),dot=(a,b)=>a.reduce((s,v,i)=>s+v*b[i],0),cross=(a,b)=>[a[1]*b[2]-a[2]*b[1],a[2]*b[0]-a[0]*b[2],a[0]*b[1]-a[1]*b[0]],unit=a=>mul(a,1/Math.hypot(...a));
 const clone=x=>JSON.parse(JSON.stringify(x)),radial=k=>[Math.cos(k*Math.PI/4),0,-Math.sin(k*Math.PI/4)],tangent=k=>[-Math.sin(k*Math.PI/4),0,-Math.cos(k*Math.PI/4)];
+// TIMESTAMP START 2026-11-05T14:18:42+00:00 | REVISION R000046
+// TIMESTAMP START 2026-11-05T16:01:12+00:00 | REVISION R000052
 function parameters(input={}){
- let wallHeightIn=Number(input.wallHeightIn??BASE_WALL);const pitch=Number(input.pitch??4);if(Math.abs(wallHeightIn-BASE_WALL)<.0005)wallHeightIn=BASE_WALL;
+ let wallHeightIn=Number(input.wallHeightIn??BASE_WALL);const pitch=Number(input.pitch??4),cupolaLiftIn=Number(input.cupolaLiftIn??10),cupolaPitch=pitch;
+ if(Math.abs(wallHeightIn-BASE_WALL)<.0005)wallHeightIn=BASE_WALL;
  if(!Number.isFinite(wallHeightIn)||wallHeightIn<BASE_WALL-1e-7||wallHeightIn>144)throw Error('Wall height must be between '+BASE_WALL.toFixed(3)+' and 144 inches.');
  if(!Number.isFinite(pitch)||pitch<3||pitch>8)throw Error('Main roof pitch must be between 3:12 and 8:12.');
- return {wallHeightIn,pitch,changed:Math.abs(wallHeightIn-BASE_WALL)>1e-7||Math.abs(pitch-4)>1e-9};
+ if(!Number.isFinite(cupolaLiftIn)||cupolaLiftIn<9||cupolaLiftIn>36)throw Error('Cupola height extension must be between 9 and 36 inches.');
+ return {wallHeightIn,pitch,cupolaLiftIn,cupolaPitch,changed:Math.abs(wallHeightIn-BASE_WALL)>1e-7||Math.abs(pitch-4)>1e-9||Math.abs(cupolaLiftIn-10)>1e-9||Math.abs(cupolaPitch-4)>1e-9};
 }
+// TIMESTAMP END 2026-11-05T16:01:12+00:00 | REVISION R000052
+// TIMESTAMP END 2026-11-05T14:18:42+00:00 | REVISION R000046
+
 function createKernel(module){
  const {Manifold,Mesh}=module,owned=[];
  const keep=s=>{owned.push(s);return s;};
@@ -23,11 +33,14 @@ function createKernel(module){
  const move=(s,v)=>keep(s.translate(v));
  const union=shapes=>shapes.length?keep(Manifold.union(shapes)):keep(new Manifold(new Mesh({numProp:3,vertProperties:new Float32Array(),triVerts:new Uint32Array()})));
  function raw(s){
-  const exact=new Map();const captured=keep(s.warpBatch((vs,count)=>{for(let i=0;i<count;i++){const v=Array.from(vs.slice(3*i,3*i+3));exact.set(key(v),v);}}));
-  const m=captured.getMesh(),vertices=Array.from({length:m.vertProperties.length/m.numProp},(_,i)=>{const v=Array.from(m.vertProperties.slice(i*m.numProp,i*m.numProp+3));return exact.get(key(v))||v;}),triangles=Array.from({length:m.triVerts.length/3},(_,i)=>Array.from(m.triVerts.slice(i*3,i*3+3)));
+  // Preserve distinct double-precision vertices even when theirFloat32
+  // positions alias. The extra property is an exact integer lookup key.
+  const exact=[],captured=keep(s.setProperties(1,(properties,position)=>{properties[0]=exact.length;exact.push(position.slice());}));
+  const m=captured.getMesh(),vertices=Array.from({length:m.vertProperties.length/m.numProp},(_,i)=>exact[Math.round(m.vertProperties[i*m.numProp+3])].slice()),triangles=Array.from({length:m.triVerts.length/3},(_,i)=>Array.from(m.triVerts.slice(i*3,i*3+3)));
   if(s.status()!=='NoError')throw Error('Invalid parametric solid: '+s.status());
   return {vertices,triangles,faces:triangles,volume_m3:s.volume()};
  }
+
  function pack(s){
   const data=raw(s);if(!data.triangles.length)return data;
   const groups=[],tol=1e-8,scale=1e6;
@@ -41,7 +54,7 @@ function createKernel(module){
   for(const g of groups)for(const [sign,rule]of [[1,'Positive'],[-1,'Negative']]){const cs=new module.CrossSection(g.contours,rule);try{if(cs.isEmpty())continue;const loops=cs.toPolygons().map(poly=>poly.map(p=>weld(add(g.origin,add(mul(g.u,p[0]/scale),mul(g.v,p[1]/scale))))));regions.push({g,sign,loops});}finally{cs.delete();}}
   const triangles=[];
   for(const {g,sign,loops}of regions){const contours=[],ids=[];for(const loop of loops){const split=[];for(let j=0;j<loop.length;j++){const start=loop[j],end=loop[(j+1)%loop.length],a=vertices[start],edge=sub(vertices[end],a),len=dot(edge,edge);if(len<tol*tol)continue;const middle=[];for(let k=0;k<vertices.length;k++){const t=dot(sub(vertices[k],a),edge)/len;if(t>1e-10&&t<1-1e-10&&Math.hypot(...sub(vertices[k],add(a,mul(edge,t))))<tol)middle.push([t,k]);}split.push(start,...middle.sort((a,b)=>a[0]-b[0]).map(q=>q[1]));}ids.push(...split);contours.push(split.map(i=>[dot(sub(vertices[i],g.origin),g.u),dot(sub(vertices[i],g.origin),g.v)]));}
-   for(const tri of module.triangulate(contours,1e-12,false)){const t=tri.map(i=>ids[i]);triangles.push(sign>0?t:t.reverse());}
+   for(const tri of module.triangulate(contours,1e-12,false)){const t=tri.map(i=>ids[i]);if(new Set(t).size===3)triangles.push(sign>0?t:t.reverse());}
   }
   return {vertices,triangles,faces:triangles,volume_m3:data.volume_m3};
  }
@@ -79,6 +92,8 @@ function metrics(p){
 function core(context,input,source,module){
  const config=parameters(input),base=context.model,prepared=source.variants[context.id];
  if(prepared.source_model_sha256!==context.sha256)throw Error('Parametric receiver source does not match this model');
+ // Cupola height alone retains the saved main frame and lower sockets.
+ if(Math.abs(config.wallHeightIn-BASE_WALL)<=1e-7&&Math.abs(config.pitch-4)<=1e-9){const model=clone(base);model.parameters=config;return {model,cavities:clone(context.cavities?.parts||{}),config,cupShift:0,dh:0,diagnostics:[],mainCoreRetained:true};}
  const kernel=createKernel(module),K=kernel,{from,plus,minus,intersect,trim,band,move,union,pack,convex}=K;
  try{
   const dh=(config.wallHeightIn-BASE_WALL)*I,pitch=config.pitch/12,H=90*I+dh,
@@ -87,7 +102,7 @@ function core(context,input,source,module){
   // TIMESTAMP START 2026-11-03T15:42:57-05:00 | REVISION R005038
   const P=Object.fromEntries(base.parts.map(p=>[p.id,p])),parts={},S={},stocks={},cavityBlanks={},cavities={},partMaps={};
   // TIMESTAMP START 2026-11-03T16:50:27-05:00 | REVISION R005061
-  const jointVoids={},roofTongues={};
+  const jointVoids={},roofTongues={},perimeterTongues={},roofCutters={},jointSeeds={};
   // TIMESTAMP END 2026-11-03T16:50:27-05:00 | REVISION R005061
   // TIMESTAMP END 2026-11-03T15:42:57-05:00 | REVISION R005038
   for(const original of base.parts){
@@ -95,7 +110,7 @@ function core(context,input,source,module){
    let map=v=>add(v,[0,dh,0]);
    if(/^P[0-7]$/.test(pid))map=v=>add(v,[0,v[1]>I?dh:0,0]);
    if(/^C[0-7]$/.test(pid))map=v=>add(v,[0,v[1]>120*I?cupShift:dh,0]);
-   if(/^(CR|CC|L|PLY|ENV-CUP)/.test(pid)||pid==='M-SP0')map=v=>add(v,[0,cupShift,0]);
+   if(/^(CR|CC|CUP-|L|PLY|ENV-CUP)/.test(pid)||pid==='M-SP0')map=v=>add(v,[0,cupShift,0]);
    // TIMESTAMP START 2026-11-03T15:42:57-05:00 | REVISION R005038
    partMaps[pid]=map;
    // TIMESTAMP START 2026-11-03T16:50:27-05:00 | REVISION R005061
@@ -104,11 +119,15 @@ function core(context,input,source,module){
    // TIMESTAMP END 2026-11-03T15:42:57-05:00 | REVISION R005038
    const restored=prepared.roof_receivers[pid];parts[pid]=shiftedPart(restored?{...original,...restored}:original,map);
    if(prepared.cavity_blanks[pid])cavityBlanks[pid]=from(shiftedPart(prepared.cavity_blanks[pid],map));
-   if(!/^(R[0-7]|J[0-7]-[02])$/.test(pid))S[pid]=from(parts[pid]);
+// TIMESTAMP START 2026-11-05T08:15:49+00:00 | REVISION R000034
+   if(!/^(R[0-7]|J[0-7]-(?:OUT)?[02])$/.test(pid))S[pid]=from(parts[pid]);
+// TIMESTAMP END 2026-11-05T08:15:49+00:00 | REVISION R000034
   }
   // Roof stock is rebuilt from its planes. Width/depth remain actual stock sizes;
   // no existing notch or facet is stretched to simulate a different pitch.
-  for(const original of base.parts.filter(q=>/^(R[0-7]|J[0-7]-[02])$/.test(q.id))){
+// TIMESTAMP START 2026-11-05T08:15:49+00:00 | REVISION R000034
+  for(const original of base.parts.filter(q=>/^(R[0-7]|J[0-7]-(?:OUT)?[02])$/.test(q.id))){
+// TIMESTAMP END 2026-11-05T08:15:49+00:00 | REVISION R000034
    const pid=original.id,isHip=pid[0]==='R',k=Number(pid[1]),n=radial(isHip?k:k+.5),slope=isHip?pitch:pitch/C,depth=(isHip?10:8)*I;
    const planes=original.geometry_planes_inches.map(q=>({n:[q.normal[0],q.normal[2],-q.normal[1]],k:q.constant*I,end:q.end}));
    for(const q of planes)if(Math.abs(q.n[1])>.9){const sign=Math.sign(q.n[1]);q.n=mul(add(mul(n,slope),[0,1,0]),sign);q.k=sign*(crown-(sign<0?depth*Math.sqrt(1+slope*slope):0));}
@@ -132,7 +151,7 @@ function core(context,input,source,module){
    if(step){const top=Math.max(...parts[receiver].vertices.map(v=>v[1])),center=dot(parts[pid].axis_start,w),width=(isHip?4:2)*I,engage=(isHip?.5:1)*I;
     const tongue=intersect(band(band(stock,[0,1,0],top-engage,top),w,center-width/2,center+width/2),receiverBlanks[receiver]);
     // TIMESTAMP START 2026-11-03T16:50:27-05:00 | REVISION R005061
-    finished=plus(finished,tongue);S[receiver]=minus(S[receiver],tongue);
+    perimeterTongues[pid]=tongue;finished=plus(finished,tongue);S[receiver]=minus(S[receiver],tongue);
     jointVoids[pid]=minus(jointVoids[pid],tongue);jointVoids[receiver]=plus(jointVoids[receiver],tongue);
     // TIMESTAMP END 2026-11-03T16:50:27-05:00 | REVISION R005061
    }
@@ -154,7 +173,9 @@ function core(context,input,source,module){
   // TIMESTAMP END 2026-11-03T15:42:57-05:00 | REVISION R005038
   // Upper short-rafter noses and their receiver void use the same fresh solid.
   for(const pid of roofIds.filter(id=>id[0]==='J')){
-   const k=Number(pid[1]),hip='R'+(pid.endsWith('-0')?k:(k+1)%8),w=parts[hip].stock_frame.width,d=parts[hip].stock_frame.depth;
+// TIMESTAMP START 2026-11-05T08:15:49+00:00 | REVISION R000034
+   const k=Number(pid[1]),hip='R'+(/-(?:OUT)?0$/.test(pid)?k:(k+1)%8),w=parts[hip].stock_frame.width,d=parts[hip].stock_frame.depth;
+// TIMESTAMP END 2026-11-05T08:15:49+00:00 | REVISION R000034
    // TIMESTAMP START 2026-11-03T16:50:27-05:00 | REVISION R005061
    const side=dot(P[pid].axis_end,w)>0?1:-1,normal=mul(w,side);
    const fullPlanes=parts[pid].proposed_stock_planes_inches.map(q=>({n:[q.normal[0],q.normal[2],-q.normal[1]],k:q.constant*I}));
@@ -164,7 +185,7 @@ function core(context,input,source,module){
    if(topEntry){nose=trim(nose,d,dot(parts[hip].axis_end,d)+I);nose=band(nose,normal,2*I,4.01*I);}
    else {const jw=parts[pid].stock_frame.width,jd=parts[pid].stock_frame.depth,end=parts[pid].axis_end;nose=band(band(nose,jw,dot(jw,end)-(4/6)*I,dot(jw,end)+(4/6)*I),jd,dot(jd,end)-3*I,dot(jd,end)+3*I);}
    // TIMESTAMP START 2026-11-03T16:50:27-05:00 | REVISION R005061
-   if(!topEntry)roofTongues[pid]=intersect(nose,stocks[hip]);
+   roofTongues[pid]=intersect(nose,stocks[hip]);
    S[pid]=plus(S[pid],nose);
    // TIMESTAMP END 2026-11-03T16:50:27-05:00 | REVISION R005061
    const inside=intersect(nose,stocks[hip]);let cutter=inside;
@@ -174,19 +195,36 @@ function core(context,input,source,module){
    // TIMESTAMP END 2026-11-03T16:50:27-05:00 | REVISION R005061
   }
 // TIMESTAMP START 2026-11-03T16:17:49-05:00 | REVISION R005051
+// TIMESTAMP START 2026-11-05T08:15:49+00:00 | REVISION R000034
+  // Share the common-rafter support planes outboard of the stopped collar.
+  // The original eight-sided eave remains fixed in plan at every pitch.
+  if(base.roof_structure_revision)for(let k=0;k<8;k++){
+   const pid='R'+k,r=radial(k),w=tangent(k),coefficient=pitch*Math.tan(Math.PI/8);
+   const protectedInner=trim(S[pid],mul(r,-1),-45*I);let outer=trim(S[pid],r,45*I);
+   for(const sign of [-1,1]){const n=add(add([0,1,0],mul(r,pitch)),mul(w,sign*coefficient));outer=trim(outer,mul(n,-1),-crown);}
+   S[pid]=plus(protectedInner,outer);
+   for(const neighbor of [k-.5,k+.5])S[pid]=trim(S[pid],mul(radial(neighbor),-1),-200*I*C);
+  }
+// TIMESTAMP END 2026-11-05T08:15:49+00:00 | REVISION R000034
   const tenonSchedule=(base.tenon_schedule||[]).map(j=>{
    const next=clone(j),map=partMaps[j.donor];
    if(next.face_center)next.face_center=map(next.face_center);
+   if(Number.isFinite(next.flat_seat_y_m))next.flat_seat_y_m=map([0,next.flat_seat_y_m,0])[1];
    // TIMESTAMP START 2026-11-04T20:12:02+00:00 | REVISION R000019
    if(next.bearing_direction&&Number.isFinite(next.bearing_coordinate_m))next.bearing_coordinate_m+=dot(next.bearing_direction,sub(next.face_center,j.face_center));
    // TIMESTAMP END 2026-11-04T20:12:02+00:00 | REVISION R000019
    for(const key of ['connector','cutting_tool'])if(next[key])next[key].vertices=next[key].vertices.map(map);
    // TIMESTAMP START 2026-11-03T16:50:27-05:00 | REVISION R005061
-   if(roofTongues[j.donor]){
-    const id=j.donor,tongue=roofTongues[id],d=parts[id].stock_frame.depth,w=parts[id].stock_frame.width;
-    next.connector=pack(tongue);delete next.cutting_tool;
+   const isPerimeter=/^J/.test(j.donor)&&/^B/.test(j.receiver),isUpper=/^R/.test(j.donor)&&/^C/.test(j.receiver)||/^J/.test(j.donor)&&/^R/.test(j.receiver);
+   if((isPerimeter&&perimeterTongues[j.donor])||(isUpper&&roofTongues[j.donor])){
+    const id=j.donor,tongue=isPerimeter?perimeterTongues[id]:roofTongues[id],d=parts[id].stock_frame.depth,w=parts[id].stock_frame.width;
+    const seed=id[0]+'0'+id.slice(2),cacheKey=seed+(isPerimeter?'-seat':'-upper');
+    if(!jointSeeds[cacheKey])jointSeeds[cacheKey]=pack((isPerimeter?perimeterTongues:roofTongues)[seed]);
+    const seedMesh=jointSeeds[cacheKey],theta=Number(id[1])*Math.PI/4,co=Math.cos(theta),si=Math.sin(theta);
+    next.connector={...seedMesh,vertices:seedMesh.vertices.map(([x,y,z])=>[co*x+si*z,y,-si*x+co*z])};delete next.cutting_tool;
+    if(isPerimeter){const axis=next.projection_direction||next.insertion_direction,coordinates=next.connector.vertices.map(v=>dot(v,axis));next.projection_m=Math.max(...coordinates)-Math.min(...coordinates);next.projection_note='Measured current tapered bearing step; one-inch maximum, not a structural tenon.';}
     const extent=axis=>{const coordinates=next.connector.vertices.map(v=>dot(v,axis));return Math.max(...coordinates)-Math.min(...coordinates);};
-    next.height_m=extent(d);next.width_m=extent(w);next.height_direction=d;next.width_direction=w;next.face_center=parts[id].axis_end.slice();
+    next.height_m=extent(d);next.width_m=extent(w);next.height_direction=d;next.width_direction=w;next.face_center=isPerimeter?next.connector.vertices.reduce((a,v)=>add(a,mul(v,1/next.connector.vertices.length)),[0,0,0]):parts[id].axis_end.slice();
    }
    // TIMESTAMP END 2026-11-03T16:50:27-05:00 | REVISION R005061
    return next;
@@ -202,8 +240,12 @@ function core(context,input,source,module){
    return {...data,vertices:data.vertices.map(([x,y,z])=>[c*x+s*z,y,-s*x+c*z])};
   }
   for(const pid of Object.keys(parts)){
-   const changed=/^([PBCR][0-7]|J[0-7]-[02])$/.test(pid);
+// TIMESTAMP START 2026-11-05T08:15:49+00:00 | REVISION R000034
+   const changed=/^([PBCR][0-7]|J[0-7]-(?:OUT)?[02])$/.test(pid);
+// TIMESTAMP END 2026-11-05T08:15:49+00:00 | REVISION R000034
    parts[pid]=metrics({...parts[pid],...(changed?familyMesh(pid):{})});
+   if(stocks[pid]){const planes=parts[pid].proposed_stock_planes_inches.map(q=>({n:[q.normal[0],q.normal[2],-q.normal[1]],k:q.constant*I})),blank=convex(planes),axis=unit(parts[pid].stock_frame.axis),coordinates=K.raw(blank).vertices.map(v=>dot(v,axis)),length=(Math.max(...coordinates)-Math.min(...coordinates))/I;parts[pid].new_stock_requirements={...parts[pid].new_stock_requirements,minimum_blank_length_in:length,quarter_inch_blank_length_in:Math.ceil((length-1e-8)*4)/4,preserved_section_in:[parts[pid].dimensions.width_in,parts[pid].dimensions.depth_in],status:'Measured current nominal roof blank; add cutting and dressing allowance. Capacity unverified.'};}
+
    // TIMESTAMP START 2026-11-03T15:42:57-05:00 | REVISION R005038
    if(parts[pid].is_timber){const saved=context.cavities?.parts?.[pid]?.removed;cavities[pid]={removed:changed||!saved?familyMesh(pid,true):{...clone(saved),vertices:saved.vertices.map(partMaps[pid])}};}
    // TIMESTAMP END 2026-11-03T15:42:57-05:00 | REVISION R005038
@@ -235,7 +277,10 @@ function layouts(context,result,module,apis){
   // interlocking tongues are reused rigidly; receiver openings are recut.
   for(const joint of context.wallJoinery.joints){
    if(!original[joint.donor]||!original[joint.receiver])throw Error('Missing wall-joint member '+joint.id);
-   const tongue=from(joint.tongue),direction=joint.withdrawal_direction,points=joint.tongue.vertices,sweep=hull([...points,...points.map(v=>add(v,mul(direction,.5)))]);
+   // TIMESTAMP START 2026-11-05T04:16:45+00:00 | REVISION R000019
+   const tongue=from(joint.tongue),direction=joint.withdrawal_direction,points=joint.tongue.vertices;
+   const sweep=joint.blind_socket?from(joint.socket_tool||joint.tongue):hull([...points,...points.map(v=>add(v,mul(direction,.5)))]);
+   // TIMESTAMP END 2026-11-05T04:16:45+00:00 | REVISION R000019
    additions[joint.donor].push(tongue);cutters[joint.receiver].push(sweep);jointIds[joint.donor].push(joint.id);jointIds[joint.receiver].push(joint.id);joints.push(clone(joint));
   }
   const fitted={},patches={};
@@ -269,3 +314,9 @@ function layouts(context,result,module,apis){
 const api={parameters,core,layouts,createKernel,metrics,shiftedPart,BASE_WALL};root.OctagonParametric=api;if(typeof module!=='undefined'&&module.exports)module.exports=api;
 })(typeof globalThis!=='undefined'?globalThis:this);
 // TIMESTAMP END 2026-11-03T13:09:36-05:00 | REVISION R005024
+
+// TIMESTAMP END 2026-11-04T23:23:25+00:00 | REVISION R000011
+
+// TIMESTAMP END 2026-11-05T04:51:00+00:00 | REVISION R000023
+
+// TIMESTAMP END 2026-11-05T17:19:58+00:00 | REVISION R000058

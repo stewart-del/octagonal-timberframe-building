@@ -1,0 +1,222 @@
+{
+  "revision": "R000075",
+  "timestamp": "2026-11-06T00:29:52+00:00",
+  "status": "PASS_SOURCE_GATE_WITH_EXPECTED_STAGED_BLOCKERS",
+  "sources": {
+    "scripts/physical_fastener_axes.py": "020c74de70a3d7b5e1c5181d8cae863c0e3ea21605e7001ef887c222ac3c747c",
+    "scripts/current_physical_scene.py": "912cf1125b85edf5f929e69c4cf9b0f5e42bd6db7ffbf12700e3afdb1b69ebee",
+    "tests/test_physical_fastener_axes.py": "19566c933f632a6e99dd3b13cdd73374cbdf0c3f1dc82a55d3eabfe405b1168a",
+    "tests/test_current_physical_scene.py": "017830997eb457dc88b64e17d619a8c79f3e076ee078505c0e43fa95ce0c5c99"
+  },
+  "gateVerification": "8 owner regressions PASS in6.484s, including all9415 actual core fasteners, unknown/changed cylinder refusal, reversed and rotated directions, bridge source-recipient ownership and retained parked obstacles.",
+  "stagedArchitectureSha256": "7797fd82256f0b2fee3a53c083f0f08e4e2df6efcc09e7ef3a34832b1e0f8e0d",
+  "currentStagedReadback": {
+    "status": "BLOCKED",
+    "checkedHeadedFasteners": 24588,
+    "sharedPrototypeAxes": 34,
+    "instances": 24508,
+    "directMeshes": 80,
+    "sourceBoundNominalShankInstances": 6811,
+    "failures": [
+      {
+        "id": "FLOOR-JOIST-TO-BEARING-0002",
+        "reason": "Declared withdrawal differs from physical head/shaft direction",
+        "angularDifferenceDegrees": 19.999999999999993,
+        "expectedWithdrawalDirection": [
+          -0.2459841687565964,
+          0.766044443118978,
+          -0.5938583163412474
+        ],
+        "declaredWithdrawalDirection": [
+          -0.3314135740355918,
+          0.5,
+          -0.8001031451912656
+        ]
+      },
+      {
+        "id": "FLOOR-JOIST-TO-BEARING-0003",
+        "reason": "Declared withdrawal differs from physical head/shaft direction",
+        "angularDifferenceDegrees": 19.999999999999993,
+        "expectedWithdrawalDirection": [
+          -0.2459841687565964,
+          0.766044443118978,
+          -0.5938583163412474
+        ],
+        "declaredWithdrawalDirection": [
+          -0.3314135740355918,
+          0.5,
+          -0.8001031451912656
+        ]
+      },
+      {
+        "id": "FLOOR-JOIST-TO-BEARING-0005",
+        "reason": "Declared withdrawal differs from physical head/shaft direction",
+        "angularDifferenceDegrees": 19.999999999999993,
+        "expectedWithdrawalDirection": [
+          -0.2459841687565964,
+          0.766044443118978,
+          -0.5938583163412474
+        ],
+        "declaredWithdrawalDirection": [
+          -0.3314135740355918,
+          0.5,
+          -0.8001031451912656
+        ]
+      },
+      {
+        "id": "FLOOR-JOIST-TO-BEARING-0166",
+        "reason": "Declared withdrawal differs from physical head/shaft direction",
+        "angularDifferenceDegrees": 120.00000000000001,
+        "expectedWithdrawalDirection": [
+          0.3314135740355919,
+          0.49999999999999994,
+          0.8001031451912656
+        ],
+        "declaredWithdrawalDirection": [
+          -0.3314135740355918,
+          0.5,
+          -0.8001031451912656
+        ]
+      },
+      {
+        "id": "FLOOR-JOIST-TO-BEARING-0167",
+        "reason": "Declared withdrawal differs from physical head/shaft direction",
+        "angularDifferenceDegrees": 100.00000000000001,
+        "expectedWithdrawalDirection": [
+          0.24598416875659662,
+          0.766044443118978,
+          0.5938583163412474
+        ],
+        "declaredWithdrawalDirection": [
+          -0.3314135740355918,
+          0.5,
+          -0.8001031451912656
+        ]
+      },
+      {
+        "id": "FLOOR-JOIST-TO-BEARING-0168",
+        "reason": "Declared withdrawal differs from physical head/shaft direction",
+        "angularDifferenceDegrees": 100.00000000000001,
+        "expectedWithdrawalDirection": [
+          0.24598416875659662,
+          0.766044443118978,
+          0.5938583163412474
+        ],
+        "declaredWithdrawalDirection": [
+          -0.3314135740355918,
+          0.5,
+          -0.8001031451912656
+        ]
+      },
+      {
+        "id": "FLOOR-JOIST-TO-BEARING-0169",
+        "reason": "Declared withdrawal differs from physical head/shaft direction",
+        "angularDifferenceDegrees": 25.000000000000004,
+        "expectedWithdrawalDirection": [
+          -0.21949819938655468,
+          0.8191520442889918,
+          -0.5299155298754943
+        ],
+        "declaredWithdrawalDirection": [
+          -0.3314135740355918,
+          0.5,
+          -0.8001031451912656
+        ]
+      },
+      {
+        "id": "FLOOR-JOIST-TO-BEARING-0170",
+        "reason": "Declared withdrawal differs from physical head/shaft direction",
+        "angularDifferenceDegrees": 120.00000000000001,
+        "expectedWithdrawalDirection": [
+          0.3314135740355919,
+          0.49999999999999994,
+          0.8001031451912656
+        ],
+        "declaredWithdrawalDirection": [
+          -0.3314135740355918,
+          0.5,
+          -0.8001031451912656
+        ]
+      },
+      {
+        "id": "DRAIN-SEAT-BACK-ANCHOR-TAB-0-ANCHOR",
+        "reason": "Missing finite declared withdrawal direction"
+      },
+      {
+        "id": "DRAIN-SEAT-BACK-ANCHOR-TAB-1-ANCHOR",
+        "reason": "Missing finite declared withdrawal direction"
+      },
+      {
+        "id": "DRAIN-SEAT-BACK-ANCHOR-TAB-2-ANCHOR",
+        "reason": "Missing finite declared withdrawal direction"
+      },
+      {
+        "id": "DRAIN-SEAT-BACK-ANCHOR-TAB-3-ANCHOR",
+        "reason": "Missing finite declared withdrawal direction"
+      },
+      {
+        "id": "DRAIN-SEAT-FRONT-ANCHOR-TAB-0-ANCHOR",
+        "reason": "Missing finite declared withdrawal direction"
+      },
+      {
+        "id": "DRAIN-SEAT-FRONT-ANCHOR-TAB-1-ANCHOR",
+        "reason": "Missing finite declared withdrawal direction"
+      },
+      {
+        "id": "DRAIN-SEAT-FRONT-ANCHOR-TAB-2-ANCHOR",
+        "reason": "Missing finite declared withdrawal direction"
+      },
+      {
+        "id": "DRAIN-SEAT-FRONT-ANCHOR-TAB-3-ANCHOR",
+        "reason": "Missing finite declared withdrawal direction"
+      },
+      {
+        "id": "DRAIN-CLAMP-0-CONCRETE-ANCHOR-0",
+        "reason": "Missing finite declared withdrawal direction"
+      },
+      {
+        "id": "DRAIN-CLAMP-0-CONCRETE-ANCHOR-1",
+        "reason": "Missing finite declared withdrawal direction"
+      },
+      {
+        "id": "DRAIN-CLAMP-1-CONCRETE-ANCHOR-0",
+        "reason": "Missing finite declared withdrawal direction"
+      },
+      {
+        "id": "DRAIN-CLAMP-1-CONCRETE-ANCHOR-1",
+        "reason": "Missing finite declared withdrawal direction"
+      },
+      {
+        "id": "DRAIN-CLAMP-2-CONCRETE-ANCHOR-0",
+        "reason": "Missing finite declared withdrawal direction"
+      },
+      {
+        "id": "DRAIN-CLAMP-2-CONCRETE-ANCHOR-1",
+        "reason": "Missing finite declared withdrawal direction"
+      },
+      {
+        "id": "DRAIN-CLAMP-3-CONCRETE-ANCHOR-0",
+        "reason": "Missing finite declared withdrawal direction"
+      },
+      {
+        "id": "DRAIN-CLAMP-3-CONCRETE-ANCHOR-1",
+        "reason": "Missing finite declared withdrawal direction"
+      }
+    ],
+    "directionSerializationErrorLimit": 1e-08,
+    "solidCollisionToleranceChanged": false,
+    "scope": "Physical shaft direction and modeled-head or exact source-convention polarity only; nominal cylinders do not prove factory head geometry. Current receiving purchase, access, full sweeps and lifetimes require independent checks.",
+    "sourceNamedBridgeScrewMetadataCount": 40
+  },
+  "currentMotionInputsReady": false,
+  "knownBlockers": {
+    "eightStaleFloorNailDirections": "Angles20,25,100,120degrees differ from actual physical prototype/pose. Reject motion loading until separately corrected and freshly checked.",
+    "sixteenDrainScrewDirections": "Physical concrete screw meshes exist but explicit withdrawal vectors are absent; producer metadata correction and independent validation required."
+  },
+  "scope": [
+    "Head polarity is independently inferred from modeled geometry where it exists. Three exact binary geometry hashes bind the nominal cylinder-only products to their immutable head-at-z0/drive+Z source convention. These cylinders do not prove unavailable factory head geometry.",
+    "SHA uses float64 positions and uint64 indices so Python/JavaScript JSON number formatting cannot invalidate identical physical geometry. Unknown nominal cylinders still fail closed.",
+    "Current loader refuses motion scene creation on any failed axis; diagnostic assembled payload remains available.",
+    "No collision kernel or occupied-volume tolerance changed. This gate is not a receiving-purchase, full-building contact or lifecycle motion certificate."
+  ]
+}

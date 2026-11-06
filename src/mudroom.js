@@ -1,3 +1,5 @@
+// TIMESTAMP START 2026-11-05T04:26:16+00:00 | REVISION R000021
+// TIMESTAMP START 2026-11-05T04:18:09+00:00 | REVISION R000020
 // TIMESTAMP START 2026-11-02T14:21:43-05:00 | REVISION R004791
 /* Architectural proposal: dimensions and occupied volumes, not structural or plumbing approval. */
 (function(root){
@@ -14,7 +16,8 @@ function build(model,{applyJoinery=true}={}){
  const local=v=>[(v[0]-origin[0])*u[0]+(v[2]-origin[2])*u[2],v[1],(v[0]-origin[0])*n[0]+(v[2]-origin[2])*n[2]];
 // TIMESTAMP START 2026-11-02T20:27:45-05:00 | REVISION R004866
 // TIMESTAMP START 2026-11-02T20:31:01-05:00 | REVISION R004867
- const width=8*F,depth=8*F,h=width/2,t=5.5*I,stud=3.5*I,post=4*I,rear=3*I,front=rear+depth,backFloor=-6*I,frontFloor=backFloor-depth/48,grade=-(.01905+.0381+6*I+.286+2*F),slabBottom=backFloor-8*I;
+ const floorSpec=(typeof OctagonFloorFoundation!=='undefined'?OctagonFloorFoundation:require('./floor-foundation.js')).build({parts});
+ const width=8*F,depth=8*F,h=width/2,t=5.5*I,stud=3.5*I,post=4*I,rear=3*I,front=rear+depth,backFloor=-6*I,frontFloor=backFloor-depth/48,grade=floorSpec.piers[0].gradeY_M,slabBottom=backFloor-8*I;
 // TIMESTAMP END 2026-11-02T20:31:01-05:00 | REVISION R004867
 // TIMESTAMP END 2026-11-02T20:27:45-05:00 | REVISION R004866
  const floorHeight=z=>backFloor-(Math.min(front,Math.max(rear,z))-rear)/48;
@@ -39,7 +42,9 @@ function build(model,{applyJoinery=true}={}){
   const vertices=v.map(q=>world(...q)),center=vertices.reduce((c,v)=>c.map((x,i)=>x+v[i]/8),[0,0,0]),k=components.length;
   const displacement=[(x0+x1)*.2,.3+(k%13)*.017,.7+(z0+z1-rear*2)*.14+k*.001];
   const exploded_offset=[u[0]*displacement[0]+n[0]*displacement[2],displacement[1],u[2]*displacement[0]+n[2]*displacement[2]];
-  const piece={id:'MUD-'+id,name,schematic:true,schematicKind:'mudroom',displayRole:'mudroom',mudroomRole:role,group:'mudroom',face:'W',material:role==='framing'||role==='furniture'?'proposed timber':role==='floor'?'sealed washdown floor proposal':role==='drain'?'stainless steel drain proposal':'mudroom proposal',is_timber:false,vertices,triangles:triangles.map(q=>q.slice()),localVertices:v,center,label_position:center,color:color||colors.wood,localBounds:[x0,x1,Math.min(...v.map(q=>q[1])),Math.max(...v.map(q=>q[1])),z0,z1],exploded_offset,connectionStatus:'Proposed geometry; support sizing, connections, waterproofing and drainage routing require design.',...extra};
+// TIMESTAMP START 2026-11-05T08:49:48+00:00 | REVISION R000037
+  const piece={id:'MUD-'+id,name,schematic:true,schematicKind:'mudroom',displayRole:'mudroom',mudroomRole:role,group:'mudroom',face:'W',material:role==='foundation'?'cast-in-place concrete column':(role==='floor'||role==='stair')&&color===colors.floor?'cast-in-place concrete porch pan or stair':role==='framing'||role==='furniture'||(role==='floor'||role==='stair')&&color===colors.wood?'proposed timber':role==='drain'?'stainless steel drain proposal':'mudroom proposal',is_timber:false,vertices,triangles:triangles.map(q=>q.slice()),localVertices:v,center,label_position:center,color:color||colors.wood,localBounds:[x0,x1,Math.min(...v.map(q=>q[1])),Math.max(...v.map(q=>q[1])),z0,z1],exploded_offset,connectionStatus:'Proposed geometry; support sizing, connections, waterproofing and drainage routing require design.',...extra};
+// TIMESTAMP END 2026-11-05T08:49:48+00:00 | REVISION R000037
   components.push(piece);return piece;
  }
  // Concrete pan is partitioned around a real linear channel and outlet void.
@@ -64,20 +69,20 @@ function build(model,{applyJoinery=true}={}){
  }
 // TIMESTAMP END 2026-11-02T20:27:45-05:00 | REVISION R004866
  // A threshold cap bridges the existing floor edge; its under-step meets the pan.
- prism('THRESHOLD-CAP','Level doorway threshold bridge','floor',-.475,.475,-.05,rear,-.01905,0,colors.wood);
+ prism('THRESHOLD-CAP','Level doorway threshold bridge','floor',-.475,.475,-.05,rear,floorSpec.layers.find(p=>p.id==='SUBFLOOR').topY_M,0,colors.wood);
  // TIMESTAMP START 2026-11-02T21:06:57-05:00 | REVISION R004876
- prism('THRESHOLD-RISER','Single step up to the main room','floor',-.475,.475,I,rear,slabBottom,-.01905,colors.wood);
+ prism('THRESHOLD-RISER','Single step up to the main room','floor',-.475,.475,I,rear,slabBottom,floorSpec.layers.find(p=>p.id==='SUBFLOOR').topY_M,colors.wood);
  for(const [side,x0,x1] of [['L',-h,-.475],['R',.475,h]])prism('PAN-BACK-'+side,'Washdown pan rear upstand','floor',x0,x1,I,rear,slabBottom,0,colors.floor);
  // TIMESTAMP END 2026-11-02T21:06:57-05:00 | REVISION R004876
  // Open sides: corner posts carry the roof; level guards sit directly behind the benches.
  // TIMESTAMP START 2026-11-02T15:00:19-05:00 | REVISION R004797
 // TIMESTAMP START 2026-11-03T13:59:01-05:00 | REVISION R005033
- const porchGuardTop=backFloor+40*I,guardRail=4.5*I,baseRail=4.5*I,picketWidth=1.5*I,maxPicketGap=3.5*I;
+ const porchGuardTop=backFloor+36*I,guardRail=4.5*I,baseRail=4.5*I,picketWidth=1.5*I,maxPicketGap=3.5*I;
 // TIMESTAMP END 2026-11-03T13:59:01-05:00 | REVISION R005033
  // TIMESTAMP END 2026-11-02T15:00:19-05:00 | REVISION R004797
  for(const [side,x0,x1] of [['L',-h-t,-h],['R',h,h+t]]){
 // TIMESTAMP START 2026-11-03T13:59:01-05:00 | REVISION R005033
-  prism('SILL-'+side,'Porch '+side+' guard base','framing',x0,x1,rear,front+t,(x,z)=>floorHeight(z),(x,z)=>floorHeight(z)+baseRail,colors.wood);
+  prism('SILL-'+side,'Porch '+side+' guard base','framing',x0+(t-post)/2,x1-(t-post)/2,rear+(t-post)/2,front+(t+post)/2,(x,z)=>floorHeight(z),(x,z)=>floorHeight(z)+baseRail,colors.wood);
 // TIMESTAMP END 2026-11-03T13:59:01-05:00 | REVISION R005033
   // TIMESTAMP START 2026-11-02T15:00:19-05:00 | REVISION R004797
   prism('PLATE-'+side,'Continuous porch roof beam','framing',x0,x1,rear,front+t,beamTop-beamDepth,beamTop,colors.wood);
@@ -93,11 +98,11 @@ function build(model,{applyJoinery=true}={}){
 // TIMESTAMP END 2026-11-02T20:31:01-05:00 | REVISION R004867
 // TIMESTAMP START 2026-11-02T20:31:01-05:00 | REVISION R004867
 // TIMESTAMP START 2026-11-03T13:59:01-05:00 | REVISION R005033
-  const z0=rear+(t+post)/2,z1=front+(t-post)/2,length=z1-z0,count=Math.ceil(length/(picketWidth+maxPicketGap)),gap=(length-count*picketWidth)/(count+1),px0=side==='L'?-h-1.5*I:h,px1=side==='L'?-h:h+1.5*I;
+  const z0=rear+(t+post)/2,z1=front+(t-post)/2,length=z1-z0,count=Math.ceil(length/(picketWidth+maxPicketGap)),gap=(length-count*picketWidth)/(count+1),px0=(x0+x1-picketWidth)/2,px1=(x0+x1+picketWidth)/2;
 // TIMESTAMP END 2026-11-03T13:59:01-05:00 | REVISION R005033
 // TIMESTAMP END 2026-11-02T20:31:01-05:00 | REVISION R004867
   // TIMESTAMP END 2026-11-02T15:00:19-05:00 | REVISION R004797
-  prism('GUARD-TOP-'+side,'Level railing behind side bench','framing',x0,x1,z0,z1,porchGuardTop-guardRail,porchGuardTop,colors.wood);
+  prism('GUARD-TOP-'+side,'Level railing behind side bench','framing',postX0,postX1,z0,z1,porchGuardTop-guardRail,porchGuardTop,colors.wood);
 // TIMESTAMP START 2026-11-03T13:59:01-05:00 | REVISION R005033
   for(let k=0;k<count;k++){const z=z0+gap+k*(picketWidth+gap);prism('GUARD-PICKET-'+side+'-'+k,'Porch side railing vertical','framing',px0,px1,z,z+picketWidth,(x,z)=>floorHeight(z)+baseRail,porchGuardTop-guardRail,colors.wood);}
 // TIMESTAMP END 2026-11-03T13:59:01-05:00 | REVISION R005033
@@ -112,7 +117,7 @@ function build(model,{applyJoinery=true}={}){
  // Back remains open to the existing doorway; its original header is preserved.
  // TIMESTAMP END 2026-11-02T15:00:19-05:00 | REVISION R004797
  // TIMESTAMP START 2026-11-02T15:00:19-05:00 | REVISION R004797
- const entryHalf=.475,frontGuardTop=frontFloor+36*I;
+ const entryHalf=.475,frontGuardTop=porchGuardTop;
  // TIMESTAMP END 2026-11-02T15:00:19-05:00 | REVISION R004797
 // TIMESTAMP START 2026-11-02T20:31:01-05:00 | REVISION R004867
 // TIMESTAMP START 2026-11-03T13:59:01-05:00 | REVISION R005033
@@ -122,17 +127,17 @@ function build(model,{applyJoinery=true}={}){
   // TIMESTAMP START 2026-11-02T15:00:19-05:00 | REVISION R004797
 // TIMESTAMP START 2026-11-02T20:31:01-05:00 | REVISION R004867
 // TIMESTAMP START 2026-11-03T13:59:01-05:00 | REVISION R005033
-  prism('FRONT-SILL-'+side,'Porch front guard base','framing',side==='L'?-h:entryHalf,side==='L'?-entryHalf:h,front,front+t,frontFloor,frontFloor+baseRail,colors.wood);
+  prism('FRONT-SILL-'+side,'Porch front guard base','framing',side==='L'?-h-(t-post)/2:entryHalf,side==='L'?-entryHalf:h+(t-post)/2,front+(t-post)/2,front+(t+post)/2,frontFloor,frontFloor+baseRail,colors.wood);
 // TIMESTAMP END 2026-11-03T13:59:01-05:00 | REVISION R005033
 // TIMESTAMP END 2026-11-02T20:31:01-05:00 | REVISION R004867
   // TIMESTAMP END 2026-11-02T15:00:19-05:00 | REVISION R004797
   // TIMESTAMP START 2026-11-02T15:00:19-05:00 | REVISION R004797
-  prism('FRONT-GUARD-'+side,'Porch front guard rail','framing',x0,x1,front,front+t,frontGuardTop-guardRail,frontGuardTop,colors.wood);
+  prism('FRONT-GUARD-'+side,'Porch front guard rail','framing',x0,x1,front+(t-post)/2,front+(t+post)/2,frontGuardTop-guardRail,frontGuardTop,colors.wood);
   // TIMESTAMP END 2026-11-02T15:00:19-05:00 | REVISION R004797
   const length=x1-x0,count=Math.ceil(length/(picketWidth+maxPicketGap)),gap=(length-count*picketWidth)/(count+1);
   // TIMESTAMP START 2026-11-02T15:00:19-05:00 | REVISION R004797
 // TIMESTAMP START 2026-11-03T13:59:01-05:00 | REVISION R005033
-  for(let k=0;k<count;k++){const x=x0+gap+k*(picketWidth+gap);prism('FRONT-PICKET-'+side+'-'+k,'Porch front railing vertical','framing',x,x+picketWidth,front,front+guardRail,frontFloor+baseRail,frontGuardTop-guardRail,colors.wood);}
+  for(let k=0;k<count;k++){const x=x0+gap+k*(picketWidth+gap);prism('FRONT-PICKET-'+side+'-'+k,'Porch front railing vertical','framing',x,x+picketWidth,front+(t-picketWidth)/2,front+(t+picketWidth)/2,frontFloor+baseRail,frontGuardTop-guardRail,colors.wood);}
 // TIMESTAMP END 2026-11-03T13:59:01-05:00 | REVISION R005033
   // TIMESTAMP END 2026-11-02T15:00:19-05:00 | REVISION R004797
  }
@@ -165,7 +170,7 @@ function build(model,{applyJoinery=true}={}){
   for(let k=0;k<3;k++){const x=bx0+(k+.5)*(bx1-bx0)/3,hook=I/4,z0=rear+I,z1=z0+2*I;prism('HOOK-'+side+'-'+k,'Coat hook','furniture',x-hook/2,x+hook/2,z0,z1,1.40,1.40+hook,colors.metal);prism('HOOK-LIP-'+side+'-'+k,'Coat hook upturn','furniture',x-hook/2,x+hook/2,z1-hook,z1,1.40+hook,1.43,colors.metal);}
  }
  // Supported outside landing and equal stair risers connect the lowered entry to reference grade.
- const landingZ0=front+t,landingZ1=landingZ0+3*F,landingHalf=22*I,riserCount=6,rise=(frontFloor-grade)/riserCount,tread=F,railThickness=1.5*I,guardTop=frontFloor+36*I;
+ const landingZ0=front+t,landingZ1=landingZ0+3*F,landingHalf=22*I,riserCount=6,rise=(frontFloor-grade)/riserCount,tread=F,railThickness=1.5*I,guardTop=porchGuardTop;
  prism('LANDING','Exterior entry landing','stair',-landingHalf,landingHalf,landingZ0,landingZ1,grade,frontFloor,colors.floor);
  for(let k=0;k<riserCount-1;k++)prism('STEP-'+k,'Exterior step '+(k+1),'stair',-landingHalf,landingHalf,landingZ1+k*tread,landingZ1+(k+1)*tread,grade,frontFloor-(k+1)*rise,colors.floor);
  const stairEnd=landingZ1+(riserCount-1)*tread;
@@ -199,3 +204,7 @@ function build(model,{applyJoinery=true}={}){
 const api={build};root.OctagonMudroom=api;if(typeof module!=='undefined'&&module.exports)module.exports=api;
 })(typeof globalThis!=='undefined'?globalThis:this);
 // TIMESTAMP END 2026-11-02T14:21:43-05:00 | REVISION R004791
+
+// TIMESTAMP END 2026-11-05T04:18:09+00:00 | REVISION R000020
+
+// TIMESTAMP END 2026-11-05T04:26:16+00:00 | REVISION R000021

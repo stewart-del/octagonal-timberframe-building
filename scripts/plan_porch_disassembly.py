@@ -13,7 +13,9 @@ from plan_architectural_disassembly import check_stage, apply_stage
 ROOT=Path(__file__).resolve().parents[1]
 
 # TIMESTAMP START 2026-11-02T21:01:13-05:00 | REVISION R004875
-def apply_porch_phases(scene,skip_cover=False,parking_scale=1.):
+# TIMESTAMP START 2026-11-04T20:00:49+00:00 | REVISION R000006
+def apply_porch_phases(scene,skip_cover=False,parking_scale=1.,construction_order=False):
+# TIMESTAMP END 2026-11-04T20:00:49+00:00 | REVISION R000006
 # TIMESTAMP END 2026-11-02T21:01:13-05:00 | REVISION R004875
     fit=json.loads((ROOT/'src/mudroom-joinery-fit.json').read_text())
     center=(np.asarray(scene.parts['P2']['center'])+np.asarray(scene.parts['P3']['center']))/2;center[1]=0
@@ -41,6 +43,18 @@ def apply_porch_phases(scene,skip_cover=False,parking_scale=1.):
             blocked.append({'label':label,'member_ids':ids,'proof':proof});raise Blocked(label)
         # TIMESTAMP END 2026-11-02T21:01:13-05:00 | REVISION R004875
         proof=check_stage(scene,ids,world,stop_first=True)
+        # TIMESTAMP START 2026-11-04T20:00:49+00:00 | REVISION R000006
+        if proof['status']!='PASS' and construction_order and label=='Lift complete rafter pairs off birdsmouths':
+            from plan_architectural_disassembly import clone_scene,attempt_path
+            for lift in [.0254,.0381,.0508,.0762]:
+                for outward in [.15,.3,.6]:
+                    trial=clone_scene(scene)
+                    ok,retry=attempt_path(trial,'Clear porch rafters below the completed main roof',ids,
+                        [basis[1]*lift,basis[2]*outward,world-basis[1]*lift])
+                    if ok:
+                        scene.offsets=trial.offsets;scene.stages=trial.stages;scene.version=trial.version
+                        return
+        # TIMESTAMP END 2026-11-04T20:00:49+00:00 | REVISION R000006
         # TIMESTAMP START 2026-11-02T21:01:13-05:00 | REVISION R004875
         if proof['status']!='PASS' and parking_scale<1:
             from plan_architectural_disassembly import clone_scene
@@ -99,7 +113,9 @@ def apply_porch_phases(scene,skip_cover=False,parking_scale=1.):
         move(head_left+head_right,[0,.5,0],'Park post-head pegs above beam route')
         header_pegs=[j['peg_id'] for j in fit['joints'] if j['donor']=='MUD-HEADER-FRONT']
         roof_u=['MUD-PLATE-L','MUD-PLATE-R','MUD-HEADER-FRONT']+header_pegs
-        move(roof_u,[0,.1,0],'Lift roof-beam U off post tenons')
+        # TIMESTAMP START 2026-11-04T20:00:49+00:00 | REVISION R000006
+        move(roof_u,[0,.08 if construction_order else .1,0],'Lift roof-beam U off post tenons')
+        # TIMESTAMP END 2026-11-04T20:00:49+00:00 | REVISION R000006
         move(roof_u,[0,0,2],'Park roof-beam U outward')
         for joint in brace_joints:
             if not joint['receiver'].startswith('MUD-POST-'):continue
@@ -188,7 +204,18 @@ def apply_porch_phases(scene,skip_cover=False,parking_scale=1.):
         # This geometric separation is not a construction demolition sequence.
         remaining=[pid for pid,p in scene.parts.items() if p.get('schematicKind')=='mudroom' and np.linalg.norm(scene.offsets[pid]-start_offsets['MUD-FLOOR'])<1e-12]
         assert all(scene.parts[pid].get('mudroomRole') in ['floor','drain','stair','foundation'] for pid in remaining),remaining
-        move(remaining,[0,0,8],'Separate the schematic porch pan, threshold and support assembly')
+        # TIMESTAMP START 2026-11-04T20:00:49+00:00 | REVISION R000006
+        if construction_order:
+            floor=[pid for pid in remaining if scene.parts[pid].get('mudroomRole')!='foundation']
+            supports=[pid for pid in remaining if scene.parts[pid].get('mudroomRole')=='foundation']
+            move(floor,[0,0,.15],'Slide porch floor clear of the main doorway jambs')
+            move(floor,[0,.15,0],'Lift porch floor, threshold and stairs off the concrete')
+            move(floor,[0,0,8],'Park porch floor and stairs')
+            move(supports,[0,-.15,0],'Release continuous porch concrete columns last')
+            move(supports,[0,0,8],'Park porch concrete columns')
+        else:
+            move(remaining,[0,0,8],'Separate the schematic porch pan, threshold and support assembly')
+        # TIMESTAMP END 2026-11-04T20:00:49+00:00 | REVISION R000006
     except Blocked:
         pass
     moved={pid for stage in scene.stages[start:] for pid in stage['member_ids']}

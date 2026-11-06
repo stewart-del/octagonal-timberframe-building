@@ -1,3 +1,4 @@
+// TIMESTAMP START 2026-11-04T23:23:25+00:00 | REVISION R000011
 // Measured model angles and inventory. Does not modify the saved model.
 const MATERIALS=__MATERIALS_JSON__;
 const materialByPart=new Map();
@@ -99,3 +100,5 @@ function openMaterials(){
 // TIMESTAMP END 2026-11-04T19:33:21+00:00 | REVISION R000014
 $('materialsButton').onclick=openMaterials;
 
+
+// TIMESTAMP END 2026-11-04T23:23:25+00:00 | REVISION R000011

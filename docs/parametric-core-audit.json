@@ -1,0 +1,2717 @@
+{
+  "status": "PASS",
+  "revision": "R000058",
+  "timestamp": "2026-11-05T17:19:58+00:00",
+  "scope": "Fresh source-bound browser core regeneration, shared main/cupola pitch, 129 strict timber boundaries, native assembled interference and current structural joint dimensions for three owner-generated cases. This does not certify architectural retiling or construction routes.",
+  "sources": {
+    "scripts/prepare_parametric.py": "6adad24b9b8b8c5957f7a76460e056eb24245a24273e7dba1b23d6c9e7aa6cef",
+    "src/parametric-model.js": "e58d3cb9ade12b816f4f925eb117cd6ffc87189fe429eb811c3ee8cf212240d5",
+    "src/cupola-parametric.js": "e77e4ea226bc0bf11292a9d6b49ab5d07c2b46dc35f284044b97c917dcaf0a46",
+    "src/parametric-source.json": "73872190d76b94aaaae556dc68fe37565d3764bad7836539928558ece2b8e469",
+    "src/parametric-controls.js": "4fc47e0c64ef88405b2adc1a7d096690a905c65de0e83cd09269640ab7c12677",
+    "tests/parametric-model.cjs": "1e279613c89864776f2fc3f3ddb4bd0045bf93bd6d99b7d349c1fa7da469a72b",
+    "tests/test_parametric_geometry.py": "8660efae836d6a3305489a454b24cbebad99f399c9e2249d3e79ae7c8e4e7065",
+    "tests/parametric-controls.cjs": "d03ad30e900b01be9ae29758f6be359f3c6663a98a551dd497cc45dd4fcc6f3b"
+  },
+  "independent_cases": [
+    {
+      "parameters": {
+        "wallHeightIn": 89.03615129287599,
+        "pitch": 4,
+        "cupolaLiftIn": 18,
+        "cupolaPitch": 4,
+        "changed": true
+      },
+      "generated_geometry_sha256": "0cd750c4a0646e7f2c4603c5759936f8f55e73c41053bbea49ebc59291955d46",
+      "generation_sources": {
+        "src/parametric-model.js": "e58d3cb9ade12b816f4f925eb117cd6ffc87189fe429eb811c3ee8cf212240d5",
+        "src/cupola-parametric.js": "e77e4ea226bc0bf11292a9d6b49ab5d07c2b46dc35f284044b97c917dcaf0a46",
+        "src/parametric-source.json": "73872190d76b94aaaae556dc68fe37565d3764bad7836539928558ece2b8e469",
+        "public/vendor/manifold.js": "5db5701e1e185feb5d8f039b3b08b8bef8c5dcfb1f680cf52f409b02aef1eeca",
+        "public/vendor/manifold.wasm": "73e3b419ad31294f6b1cc478173944e50efc4a34bfdeeff0107bdfc12975f11c",
+        "src/top-entry-proposed-model.json": "99cb11c9832f87f49333d0caa94517bda37af401c1000787c8af6f10bf30ed6f"
+      },
+      "native_report": {
+        "parameters": {
+          "wallHeightIn": 89.03615129287599,
+          "pitch": 4,
+          "cupolaLiftIn": 18,
+          "cupolaPitch": 4,
+          "changed": true
+        },
+        "invalid": [],
+        "overlaps": [],
+        "checks": 1120
+      },
+      "strict_raw_timber_count": 129,
+      "main_core_retained": true
+    },
+    {
+      "parameters": {
+        "wallHeightIn": 144,
+        "pitch": 8,
+        "cupolaLiftIn": 36,
+        "cupolaPitch": 8,
+        "changed": true
+      },
+      "generated_geometry_sha256": "63a0b3aa4f598406b1085bdcf82bc1a5ad41be2544a7a974c77e0426dd2608d4",
+      "generation_sources": {
+        "src/parametric-model.js": "e58d3cb9ade12b816f4f925eb117cd6ffc87189fe429eb811c3ee8cf212240d5",
+        "src/cupola-parametric.js": "e77e4ea226bc0bf11292a9d6b49ab5d07c2b46dc35f284044b97c917dcaf0a46",
+        "src/parametric-source.json": "73872190d76b94aaaae556dc68fe37565d3764bad7836539928558ece2b8e469",
+        "public/vendor/manifold.js": "5db5701e1e185feb5d8f039b3b08b8bef8c5dcfb1f680cf52f409b02aef1eeca",
+        "public/vendor/manifold.wasm": "73e3b419ad31294f6b1cc478173944e50efc4a34bfdeeff0107bdfc12975f11c",
+        "src/top-entry-proposed-model.json": "99cb11c9832f87f49333d0caa94517bda37af401c1000787c8af6f10bf30ed6f"
+      },
+      "native_report": {
+        "parameters": {
+          "wallHeightIn": 144,
+          "pitch": 8,
+          "cupolaLiftIn": 36,
+          "cupolaPitch": 8,
+          "changed": true
+        },
+        "invalid": [],
+        "overlaps": [],
+        "checks": 1152
+      },
+      "strict_raw_timber_count": 129,
+      "main_core_retained": false
+    },
+    {
+      "parameters": {
+        "wallHeightIn": 89.03615129287599,
+        "pitch": 3,
+        "cupolaLiftIn": 9,
+        "cupolaPitch": 3,
+        "changed": true
+      },
+      "generated_geometry_sha256": "a70ec8dc8486708d994368b804956dd36814d2285e6a86b3bb97d206baa89fd3",
+      "generation_sources": {
+        "src/parametric-model.js": "e58d3cb9ade12b816f4f925eb117cd6ffc87189fe429eb811c3ee8cf212240d5",
+        "src/cupola-parametric.js": "e77e4ea226bc0bf11292a9d6b49ab5d07c2b46dc35f284044b97c917dcaf0a46",
+        "src/parametric-source.json": "73872190d76b94aaaae556dc68fe37565d3764bad7836539928558ece2b8e469",
+        "public/vendor/manifold.js": "5db5701e1e185feb5d8f039b3b08b8bef8c5dcfb1f680cf52f409b02aef1eeca",
+        "public/vendor/manifold.wasm": "73e3b419ad31294f6b1cc478173944e50efc4a34bfdeeff0107bdfc12975f11c",
+        "src/top-entry-proposed-model.json": "99cb11c9832f87f49333d0caa94517bda37af401c1000787c8af6f10bf30ed6f"
+      },
+      "native_report": {
+        "parameters": {
+          "wallHeightIn": 89.03615129287599,
+          "pitch": 3,
+          "cupolaLiftIn": 9,
+          "cupolaPitch": 3,
+          "changed": true
+        },
+        "invalid": [],
+        "overlaps": [],
+        "checks": 1052
+      },
+      "strict_raw_timber_count": 129,
+      "main_core_retained": false
+    }
+  ],
+  "fresh_source_preparation": {
+    "status": "PASS",
+    "scope": "Fresh external source-tool restoration research, no reused certificates",
+    "source_dir": "/workspace/sites/octagonal-timberframe-building/src",
+    "models": {
+      "model-data.json": "f97d7c5807b89a123d05bdac17253c657fd631fcdb954e7525af3d3974cd296b",
+      "step-lap-proposed-model.json": "f535b8b613370c45e22403fa9b3da858d8c27464665603599ec66e35d45c80ad",
+      "top-entry-proposed-model.json": "99cb11c9832f87f49333d0caa94517bda37af401c1000787c8af6f10bf30ed6f"
+    },
+    "generator_sha256": "6adad24b9b8b8c5957f7a76460e056eb24245a24273e7dba1b23d6c9e7aa6cef",
+    "helper_sha256": {
+      "/workspace/sites/octagonal-timberframe-building/scripts/prepare_parametric.py": "6adad24b9b8b8c5957f7a76460e056eb24245a24273e7dba1b23d6c9e7aa6cef",
+      "/workspace/sites/octagonal-timberframe-building/scripts/audit_revised_joinery.py": "4970b31fd5c47c49364c369ebbfa56992b80c598654daf3badf870be9bdb57e4",
+      "/workspace/sites/octagonal-timberframe-building/scripts/export_top_entry_cavities.py": "ed336362fe9ef1e5921c513c6fb6e41220df742697a5a6353f8d0b98eac95f07",
+      "/workspace/sites/octagonal-timberframe-building/scripts/audit_cavity_fit.py": "310058c9db5fe75836ae6613c25dc8d22ac58b3d907a7d63255757911ccee2fe",
+      "/workspace/sites/octagonal-timberframe-building/scripts/step_lap.py": "6667f0734efd9b0158cd64a23cd9034fb7d010931fdceff2dd5a7952f008ecfd"
+    },
+    "current_roof_ids_count": 40,
+    "ordering_policy": "Roof IDs and roof joints sorted explicitly; nonroof tools retain guarded source JSON order. No set iteration in geometry or proofs.",
+    "ownership_policy": "Actual output, input and relevant exact tools transformed into common local Mesh64 before Boolean ownership checks; every imported oriented triangle retained. Exact subtraction/round-trip triangle-tube covers charged to original per-check and aggregate tolerance.",
+    "receiver_restorations": [
+      {
+        "variant": "baseline",
+        "id": "P0",
+        "added_current_roof_owned_in3": 0.0,
+        "lost_source_wood_in3": 0.0,
+        "protected_refill_in3": 0.0,
+        "ownership": {
+          "status": "PASS",
+          "common_local_origin_m": [
+            0.0,
+            1.0,
+            0.0
+          ],
+          "aabb_selection": "Inclusive exact native bounds; omitted tools have no positive-volume envelope intersection. No distance tolerance used.",
+          "ordered_relevant_roof_tool_ids": [
+            "roof-part:J0-0",
+            "roof-part:J0-OUT0",
+            "roof-part:J7-2",
+            "roof-part:J7-OUT2",
+            "roof-part:R0"
+          ],
+          "ordered_relevant_protected_tool_ids": [
+            "protected-part:B0",
+            "protected-part:T0",
+            "protected-part:K0-A",
+            "protected-part:K0-B",
+            "protected-part:K0-C",
+            "protected-part:B7",
+            "protected-part:MAIN-PEG-K0-A-P0",
+            "protected-part:MAIN-PEG-K0-B-P0",
+            "protected-part:MAIN-PEG-K0-C-P0",
+            "protected-joint:TJ-T0-P0",
+            "protected-joint:TJ-B0-P0",
+            "protected-joint:TJ-B7-P0",
+            "protected-joint:BJ-K0-A-P0",
+            "protected-joint:BJ-K0-B-P0",
+            "protected-joint:BJ-K0-C-P0",
+            "protected-entry:P0"
+          ],
+          "selected_roof_tool_count": 5,
+          "selected_protected_tool_count": 16,
+          "source_roof_tool_count": 40,
+          "source_protected_tool_count": 248,
+          "proofs": {
+            "unexplained_restoration": {
+              "local_volume_m3": 0.0,
+              "transform_cover_bound_m3": 0.0,
+              "upper_bound_m3": 0.0,
+              "status": "PASS"
+            },
+            "lost_source_wood": {
+              "local_volume_m3": 0.0,
+              "transform_cover_bound_m3": 0.0,
+              "upper_bound_m3": 0.0,
+              "status": "PASS"
+            },
+            "protected_refill": {
+              "local_volume_m3": 0.0,
+              "transform_cover_bound_m3": 0.0,
+              "upper_bound_m3": 0.0,
+              "status": "PASS"
+            },
+            "outside_independent_stock": {
+              "local_volume_m3": 0.0,
+              "transform_cover_bound_m3": 0.0,
+              "upper_bound_m3": 0.0,
+              "status": "PASS"
+            }
+          },
+          "aggregate_transform_cover_bound_m3": 0.0,
+          "added_roof_owned_volume_m3": 0.0,
+          "before_after_difference_upper_m3": 0.0,
+          "coincident_fragment_readback_m3_diagnostic_only": 0.0,
+          "input_transform_facts": {
+            "envelope": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 12,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "before": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 1154,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "after": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 1154,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "roof-part:J0-0": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 46,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "roof-part:J0-OUT0": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 40,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "roof-part:J7-2": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 46,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "roof-part:J7-OUT2": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 46,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "roof-part:R0": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 186,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "protected-part:B0": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 914,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "protected-part:T0": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 902,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "protected-part:K0-A": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 308,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "protected-part:K0-B": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 308,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "protected-part:K0-C": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 308,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "protected-part:B7": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 914,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "protected-part:MAIN-PEG-K0-A-P0": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 124,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "protected-part:MAIN-PEG-K0-B-P0": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 124,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "protected-part:MAIN-PEG-K0-C-P0": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 124,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "protected-joint:TJ-T0-P0": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 14,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "protected-joint:TJ-B0-P0": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 16,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "protected-joint:TJ-B7-P0": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 16,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "protected-joint:BJ-K0-A-P0": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 12,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "protected-joint:BJ-K0-B-P0": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 12,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "protected-joint:BJ-K0-C-P0": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 12,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "protected-entry:P0": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 38,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            }
+          }
+        }
+      },
+      {
+        "variant": "baseline",
+        "id": "B0",
+        "added_current_roof_owned_in3": 0.0,
+        "lost_source_wood_in3": 0.0,
+        "protected_refill_in3": 0.0,
+        "ownership": {
+          "status": "PASS",
+          "common_local_origin_m": [
+            0.0,
+            2.0,
+            0.0
+          ],
+          "aabb_selection": "Inclusive exact native bounds; omitted tools have no positive-volume envelope intersection. No distance tolerance used.",
+          "ordered_relevant_roof_tool_ids": [
+            "roof-part:J0-0",
+            "roof-part:J0-2",
+            "roof-part:J0-OUT0",
+            "roof-part:J0-OUT2",
+            "roof-part:R0",
+            "roof-part:R1"
+          ],
+          "ordered_relevant_protected_tool_ids": [
+            "protected-part:P0",
+            "protected-part:T0",
+            "protected-part:K0-B",
+            "protected-part:P1",
+            "protected-part:B1",
+            "protected-part:T1",
+            "protected-part:K1-A",
+            "protected-part:K1-B",
+            "protected-part:MAIN-PEG-K0-B-B0",
+            "protected-part:MAIN-PEG-K1-A-B0",
+            "protected-joint:BJ-K1-A-B0",
+            "protected-joint:BJ-K0-B-B0"
+          ],
+          "selected_roof_tool_count": 6,
+          "selected_protected_tool_count": 12,
+          "source_roof_tool_count": 40,
+          "source_protected_tool_count": 243,
+          "proofs": {
+            "unexplained_restoration": {
+              "local_volume_m3": 0.0,
+              "transform_cover_bound_m3": 0.0,
+              "upper_bound_m3": 0.0,
+              "status": "PASS"
+            },
+            "lost_source_wood": {
+              "local_volume_m3": 0.0,
+              "transform_cover_bound_m3": 0.0,
+              "upper_bound_m3": 0.0,
+              "status": "PASS"
+            },
+            "protected_refill": {
+              "local_volume_m3": 0.0,
+              "transform_cover_bound_m3": 0.0,
+              "upper_bound_m3": 0.0,
+              "status": "PASS"
+            },
+            "outside_independent_stock": {
+              "local_volume_m3": 1.74603440765657e-15,
+              "transform_cover_bound_m3": 0.0,
+              "upper_bound_m3": 1.7460344076565827e-15,
+              "status": "PASS"
+            }
+          },
+          "aggregate_transform_cover_bound_m3": 0.0,
+          "added_roof_owned_volume_m3": 0.0,
+          "before_after_difference_upper_m3": 0.0,
+          "coincident_fragment_readback_m3_diagnostic_only": 0.0,
+          "input_transform_facts": {
+            "envelope": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 76,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "before": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 914,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "after": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 914,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "roof-part:J0-0": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 46,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "roof-part:J0-2": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 46,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "roof-part:J0-OUT0": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 40,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "roof-part:J0-OUT2": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 46,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "roof-part:R0": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 186,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "roof-part:R1": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 170,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "protected-part:P0": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 1154,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "protected-part:T0": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 902,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "protected-part:K0-B": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 308,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "protected-part:P1": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 1154,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "protected-part:B1": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 914,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "protected-part:T1": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 902,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "protected-part:K1-A": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 308,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "protected-part:K1-B": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 308,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "protected-part:MAIN-PEG-K0-B-B0": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 124,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "protected-part:MAIN-PEG-K1-A-B0": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 124,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "protected-joint:BJ-K1-A-B0": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 12,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "protected-joint:BJ-K0-B-B0": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 12,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            }
+          }
+        }
+      },
+      {
+        "variant": "baseline",
+        "id": "C0",
+        "added_current_roof_owned_in3": 50.59644256236442,
+        "lost_source_wood_in3": 1.4285807038036335e-12,
+        "protected_refill_in3": 0.0,
+        "ownership": {
+          "status": "PASS",
+          "common_local_origin_m": [
+            0.0,
+            4.0,
+            0.0
+          ],
+          "aabb_selection": "Inclusive exact native bounds; omitted tools have no positive-volume envelope intersection. No distance tolerance used.",
+          "ordered_relevant_roof_tool_ids": [
+            "roof-part:R0",
+            "roof-joint:TJ-R0-C0"
+          ],
+          "ordered_relevant_protected_tool_ids": [
+            "protected-part:T0",
+            "protected-part:L0-S",
+            "protected-part:L0-H",
+            "protected-part:L7-S",
+            "protected-part:L7-H",
+            "protected-part:M-TMP",
+            "protected-part:CR0",
+            "protected-part:CR1",
+            "protected-part:CR7",
+            "protected-part:CC0",
+            "protected-part:CUP-PEG-CJ-C0-CR0",
+            "protected-part:CUP-PEG-CJ-CC0-C0",
+            "protected-part:CUP-PEG-TJ-L0-H-C0",
+            "protected-part:CUP-PEG-TJ-L0-S-C0",
+            "protected-part:CUP-PEG-TJ-L7-H-C0",
+            "protected-part:CUP-PEG-TJ-L7-S-C0",
+            "protected-part:M-TMP-SCREW-0-1",
+            "protected-part:M-TMP-SCREW-0-2",
+            "protected-part:M-TMP-SCREW-0-3",
+            "protected-joint:TJ-T0-C0",
+            "protected-joint:TJ-L0-S-C0",
+            "protected-joint:TJ-L0-H-C0",
+            "protected-joint:TJ-L7-S-C0",
+            "protected-joint:TJ-L7-H-C0",
+            "protected-joint:CJ-CC0-C0"
+          ],
+          "selected_roof_tool_count": 2,
+          "selected_protected_tool_count": 25,
+          "source_roof_tool_count": 41,
+          "source_protected_tool_count": 247,
+          "proofs": {
+            "unexplained_restoration": {
+              "local_volume_m3": 1.9756814311735567e-15,
+              "transform_cover_bound_m3": 0.0,
+              "upper_bound_m3": 1.9756814311735713e-15,
+              "status": "PASS"
+            },
+            "lost_source_wood": {
+              "local_volume_m3": 2.3410243422395015e-17,
+              "transform_cover_bound_m3": 0.0,
+              "upper_bound_m3": 2.3410243422395184e-17,
+              "status": "PASS"
+            },
+            "protected_refill": {
+              "local_volume_m3": 0.0,
+              "transform_cover_bound_m3": 0.0,
+              "upper_bound_m3": 0.0,
+              "status": "PASS"
+            },
+            "outside_independent_stock": {
+              "local_volume_m3": 0.0,
+              "transform_cover_bound_m3": 0.0,
+              "upper_bound_m3": 0.0,
+              "status": "PASS"
+            }
+          },
+          "aggregate_transform_cover_bound_m3": 0.0,
+          "added_roof_owned_volume_m3": 0.0008291271424417897,
+          "before_after_difference_upper_m3": 0.0008291271424418191,
+          "coincident_fragment_readback_m3_diagnostic_only": 1.999166007901346e-15,
+          "input_transform_facts": {
+            "envelope": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 44,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "before": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 2398,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "after": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 2750,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "roof-part:R0": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 186,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "roof-joint:TJ-R0-C0": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 16,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "protected-part:T0": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 902,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "protected-part:L0-S": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 308,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "protected-part:L0-H": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 308,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "protected-part:L7-S": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 308,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "protected-part:L7-H": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 308,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "protected-part:M-TMP": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 5988,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "protected-part:CR0": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 468,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "protected-part:CR1": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 496,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "protected-part:CR7": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 496,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "protected-part:CC0": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 492,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "protected-part:CUP-PEG-CJ-C0-CR0": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 124,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "protected-part:CUP-PEG-CJ-CC0-C0": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 124,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "protected-part:CUP-PEG-TJ-L0-H-C0": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 124,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "protected-part:CUP-PEG-TJ-L0-S-C0": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 124,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "protected-part:CUP-PEG-TJ-L7-H-C0": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 124,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "protected-part:CUP-PEG-TJ-L7-S-C0": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 124,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "protected-part:M-TMP-SCREW-0-1": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 380,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "protected-part:M-TMP-SCREW-0-2": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 380,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "protected-part:M-TMP-SCREW-0-3": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 380,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "protected-joint:TJ-T0-C0": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 12,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "protected-joint:TJ-L0-S-C0": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 16,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "protected-joint:TJ-L0-H-C0": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 16,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "protected-joint:TJ-L7-S-C0": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 16,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "protected-joint:TJ-L7-H-C0": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 16,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "protected-joint:CJ-CC0-C0": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 12,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            }
+          }
+        }
+      },
+      {
+        "variant": "proposed",
+        "id": "P0",
+        "added_current_roof_owned_in3": 13.835215599423742,
+        "lost_source_wood_in3": 3.784470742664538e-12,
+        "protected_refill_in3": 4.774198194026065e-12,
+        "ownership": {
+          "status": "PASS",
+          "common_local_origin_m": [
+            0.0,
+            1.0,
+            0.0
+          ],
+          "aabb_selection": "Inclusive exact native bounds; omitted tools have no positive-volume envelope intersection. No distance tolerance used.",
+          "ordered_relevant_roof_tool_ids": [
+            "roof-part:J0-0",
+            "roof-part:J0-OUT0",
+            "roof-part:J7-2",
+            "roof-part:J7-OUT2",
+            "roof-part:R0"
+          ],
+          "ordered_relevant_protected_tool_ids": [
+            "protected-part:B0",
+            "protected-part:T0",
+            "protected-part:K0-A",
+            "protected-part:K0-B",
+            "protected-part:K0-C",
+            "protected-part:B7",
+            "protected-part:MAIN-PEG-K0-A-P0",
+            "protected-part:MAIN-PEG-K0-B-P0",
+            "protected-part:MAIN-PEG-K0-C-P0",
+            "protected-joint:TJ-T0-P0",
+            "protected-joint:TJ-B0-P0",
+            "protected-joint:TJ-B7-P0",
+            "protected-joint:BJ-K0-A-P0",
+            "protected-joint:BJ-K0-B-P0",
+            "protected-joint:BJ-K0-C-P0",
+            "protected-entry:P0"
+          ],
+          "selected_roof_tool_count": 5,
+          "selected_protected_tool_count": 16,
+          "source_roof_tool_count": 40,
+          "source_protected_tool_count": 248,
+          "proofs": {
+            "unexplained_restoration": {
+              "local_volume_m3": 3.882577918737136e-19,
+              "transform_cover_bound_m3": 0.0,
+              "upper_bound_m3": 3.882577918737164e-19,
+              "status": "PASS"
+            },
+            "lost_source_wood": {
+              "local_volume_m3": 6.201636426617085e-17,
+              "transform_cover_bound_m3": 0.0,
+              "upper_bound_m3": 6.201636426617131e-17,
+              "status": "PASS"
+            },
+            "protected_refill": {
+              "local_volume_m3": 7.823509135418896e-17,
+              "transform_cover_bound_m3": 0.0,
+              "upper_bound_m3": 7.823509135418953e-17,
+              "status": "PASS"
+            },
+            "outside_independent_stock": {
+              "local_volume_m3": 0.0,
+              "transform_cover_bound_m3": 0.0,
+              "upper_bound_m3": 0.0,
+              "status": "PASS"
+            }
+          },
+          "aggregate_transform_cover_bound_m3": 0.0,
+          "added_roof_owned_volume_m3": 0.00022671856348155522,
+          "before_after_difference_upper_m3": 0.00022671856348161886,
+          "coincident_fragment_readback_m3_diagnostic_only": 1.5135748601752862e-16,
+          "input_transform_facts": {
+            "envelope": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 12,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "before": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 1186,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "after": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 1154,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "roof-part:J0-0": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 62,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "roof-part:J0-OUT0": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 56,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "roof-part:J7-2": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 62,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "roof-part:J7-OUT2": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 62,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "roof-part:R0": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 246,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "protected-part:B0": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 746,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "protected-part:T0": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 902,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "protected-part:K0-A": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 308,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "protected-part:K0-B": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 308,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "protected-part:K0-C": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 308,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "protected-part:B7": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 746,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "protected-part:MAIN-PEG-K0-A-P0": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 124,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "protected-part:MAIN-PEG-K0-B-P0": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 124,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "protected-part:MAIN-PEG-K0-C-P0": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 124,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "protected-joint:TJ-T0-P0": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 14,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "protected-joint:TJ-B0-P0": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 16,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "protected-joint:TJ-B7-P0": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 16,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "protected-joint:BJ-K0-A-P0": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 12,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "protected-joint:BJ-K0-B-P0": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 12,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "protected-joint:BJ-K0-C-P0": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 12,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "protected-entry:P0": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 38,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            }
+          }
+        }
+      },
+      {
+        "variant": "proposed",
+        "id": "B0",
+        "added_current_roof_owned_in3": 12.913445609894895,
+        "lost_source_wood_in3": 2.5544614942641843e-10,
+        "protected_refill_in3": 3.985389302909789e-15,
+        "ownership": {
+          "status": "PASS",
+          "common_local_origin_m": [
+            0.0,
+            2.0,
+            0.0
+          ],
+          "aabb_selection": "Inclusive exact native bounds; omitted tools have no positive-volume envelope intersection. No distance tolerance used.",
+          "ordered_relevant_roof_tool_ids": [
+            "roof-part:J0-0",
+            "roof-part:J0-2",
+            "roof-part:J0-OUT0",
+            "roof-part:J0-OUT2",
+            "roof-part:R0",
+            "roof-part:R1",
+            "roof-joint:ROOF-SUPPORT-J0-OUT0-B0",
+            "roof-joint:ROOF-SUPPORT-J0-OUT2-B0"
+          ],
+          "ordered_relevant_protected_tool_ids": [
+            "protected-part:P0",
+            "protected-part:T0",
+            "protected-part:K0-B",
+            "protected-part:P1",
+            "protected-part:B1",
+            "protected-part:T1",
+            "protected-part:K1-A",
+            "protected-part:K1-B",
+            "protected-part:MAIN-PEG-K0-B-B0",
+            "protected-part:MAIN-PEG-K1-A-B0",
+            "protected-joint:BJ-K1-A-B0",
+            "protected-joint:BJ-K0-B-B0"
+          ],
+          "selected_roof_tool_count": 8,
+          "selected_protected_tool_count": 12,
+          "source_roof_tool_count": 42,
+          "source_protected_tool_count": 243,
+          "proofs": {
+            "unexplained_restoration": {
+              "local_volume_m3": 4.970550124679667e-16,
+              "transform_cover_bound_m3": 0.0,
+              "upper_bound_m3": 4.970550124679703e-16,
+              "status": "PASS"
+            },
+            "lost_source_wood": {
+              "local_volume_m3": 4.1860123992042515e-15,
+              "transform_cover_bound_m3": 0.0,
+              "upper_bound_m3": 4.186012399204282e-15,
+              "status": "PASS"
+            },
+            "protected_refill": {
+              "local_volume_m3": 6.530882957169762e-20,
+              "transform_cover_bound_m3": 0.0,
+              "upper_bound_m3": 6.53088295716981e-20,
+              "status": "PASS"
+            },
+            "outside_independent_stock": {
+              "local_volume_m3": 1.74603440765657e-15,
+              "transform_cover_bound_m3": 0.0,
+              "upper_bound_m3": 1.7460344076565827e-15,
+              "status": "PASS"
+            }
+          },
+          "aggregate_transform_cover_bound_m3": 0.0,
+          "added_roof_owned_volume_m3": 0.00021161345966986666,
+          "before_after_difference_upper_m3": 0.0002116134596740542,
+          "coincident_fragment_readback_m3_diagnostic_only": 5.5889077955548184e-15,
+          "input_transform_facts": {
+            "envelope": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 76,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "before": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 746,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "after": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 914,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "roof-part:J0-0": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 62,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "roof-part:J0-2": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 62,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "roof-part:J0-OUT0": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 56,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "roof-part:J0-OUT2": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 62,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "roof-part:R0": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 246,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "roof-part:R1": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 202,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "roof-joint:ROOF-SUPPORT-J0-OUT0-B0": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 20,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "roof-joint:ROOF-SUPPORT-J0-OUT2-B0": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 14,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "protected-part:P0": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 1186,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "protected-part:T0": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 902,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "protected-part:K0-B": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 308,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "protected-part:P1": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 1186,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "protected-part:B1": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 760,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "protected-part:T1": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 902,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "protected-part:K1-A": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 308,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "protected-part:K1-B": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 308,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "protected-part:MAIN-PEG-K0-B-B0": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 124,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "protected-part:MAIN-PEG-K1-A-B0": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 124,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "protected-joint:BJ-K1-A-B0": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 12,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "protected-joint:BJ-K0-B-B0": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 12,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            }
+          }
+        }
+      },
+      {
+        "variant": "proposed",
+        "id": "C0",
+        "added_current_roof_owned_in3": 50.59644256236442,
+        "lost_source_wood_in3": 1.4285807038036335e-12,
+        "protected_refill_in3": 0.0,
+        "ownership": {
+          "status": "PASS",
+          "common_local_origin_m": [
+            0.0,
+            4.0,
+            0.0
+          ],
+          "aabb_selection": "Inclusive exact native bounds; omitted tools have no positive-volume envelope intersection. No distance tolerance used.",
+          "ordered_relevant_roof_tool_ids": [
+            "roof-part:R0",
+            "roof-joint:TJ-R0-C0"
+          ],
+          "ordered_relevant_protected_tool_ids": [
+            "protected-part:T0",
+            "protected-part:L0-S",
+            "protected-part:L0-H",
+            "protected-part:L7-S",
+            "protected-part:L7-H",
+            "protected-part:M-TMP",
+            "protected-part:CR0",
+            "protected-part:CR1",
+            "protected-part:CR7",
+            "protected-part:CC0",
+            "protected-part:CUP-PEG-CJ-C0-CR0",
+            "protected-part:CUP-PEG-CJ-CC0-C0",
+            "protected-part:CUP-PEG-TJ-L0-H-C0",
+            "protected-part:CUP-PEG-TJ-L0-S-C0",
+            "protected-part:CUP-PEG-TJ-L7-H-C0",
+            "protected-part:CUP-PEG-TJ-L7-S-C0",
+            "protected-part:M-TMP-SCREW-0-1",
+            "protected-part:M-TMP-SCREW-0-2",
+            "protected-part:M-TMP-SCREW-0-3",
+            "protected-joint:TJ-T0-C0",
+            "protected-joint:TJ-L0-S-C0",
+            "protected-joint:TJ-L0-H-C0",
+            "protected-joint:TJ-L7-S-C0",
+            "protected-joint:TJ-L7-H-C0",
+            "protected-joint:CJ-CC0-C0"
+          ],
+          "selected_roof_tool_count": 2,
+          "selected_protected_tool_count": 25,
+          "source_roof_tool_count": 41,
+          "source_protected_tool_count": 247,
+          "proofs": {
+            "unexplained_restoration": {
+              "local_volume_m3": 1.9756814311735567e-15,
+              "transform_cover_bound_m3": 0.0,
+              "upper_bound_m3": 1.9756814311735713e-15,
+              "status": "PASS"
+            },
+            "lost_source_wood": {
+              "local_volume_m3": 2.3410243422395015e-17,
+              "transform_cover_bound_m3": 0.0,
+              "upper_bound_m3": 2.3410243422395184e-17,
+              "status": "PASS"
+            },
+            "protected_refill": {
+              "local_volume_m3": 0.0,
+              "transform_cover_bound_m3": 0.0,
+              "upper_bound_m3": 0.0,
+              "status": "PASS"
+            },
+            "outside_independent_stock": {
+              "local_volume_m3": 0.0,
+              "transform_cover_bound_m3": 0.0,
+              "upper_bound_m3": 0.0,
+              "status": "PASS"
+            }
+          },
+          "aggregate_transform_cover_bound_m3": 0.0,
+          "added_roof_owned_volume_m3": 0.0008291271424417897,
+          "before_after_difference_upper_m3": 0.0008291271424418191,
+          "coincident_fragment_readback_m3_diagnostic_only": 1.999166007901346e-15,
+          "input_transform_facts": {
+            "envelope": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 44,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "before": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 2398,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "after": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 2750,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "roof-part:R0": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 246,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "roof-joint:TJ-R0-C0": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 16,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "protected-part:T0": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 902,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "protected-part:L0-S": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 308,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "protected-part:L0-H": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 308,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "protected-part:L7-S": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 308,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "protected-part:L7-H": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 308,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "protected-part:M-TMP": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 5988,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "protected-part:CR0": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 468,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "protected-part:CR1": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 496,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "protected-part:CR7": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 496,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "protected-part:CC0": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 492,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "protected-part:CUP-PEG-CJ-C0-CR0": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 124,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "protected-part:CUP-PEG-CJ-CC0-C0": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 124,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "protected-part:CUP-PEG-TJ-L0-H-C0": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 124,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "protected-part:CUP-PEG-TJ-L0-S-C0": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 124,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "protected-part:CUP-PEG-TJ-L7-H-C0": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 124,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "protected-part:CUP-PEG-TJ-L7-S-C0": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 124,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "protected-part:M-TMP-SCREW-0-1": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 380,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "protected-part:M-TMP-SCREW-0-2": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 380,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "protected-part:M-TMP-SCREW-0-3": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 380,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "protected-joint:TJ-T0-C0": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 12,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "protected-joint:TJ-L0-S-C0": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 16,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "protected-joint:TJ-L0-H-C0": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 16,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "protected-joint:TJ-L7-S-C0": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 16,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "protected-joint:TJ-L7-H-C0": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 16,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "protected-joint:CJ-CC0-C0": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 12,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            }
+          }
+        }
+      },
+      {
+        "variant": "top-entry",
+        "id": "P0",
+        "added_current_roof_owned_in3": 13.835215599423742,
+        "lost_source_wood_in3": 3.784470742664538e-12,
+        "protected_refill_in3": 4.774198194026065e-12,
+        "ownership": {
+          "status": "PASS",
+          "common_local_origin_m": [
+            0.0,
+            1.0,
+            0.0
+          ],
+          "aabb_selection": "Inclusive exact native bounds; omitted tools have no positive-volume envelope intersection. No distance tolerance used.",
+          "ordered_relevant_roof_tool_ids": [
+            "roof-part:J0-0",
+            "roof-part:J0-OUT0",
+            "roof-part:J7-2",
+            "roof-part:J7-OUT2",
+            "roof-part:R0"
+          ],
+          "ordered_relevant_protected_tool_ids": [
+            "protected-part:B0",
+            "protected-part:T0",
+            "protected-part:K0-A",
+            "protected-part:K0-B",
+            "protected-part:K0-C",
+            "protected-part:B7",
+            "protected-part:MAIN-PEG-K0-A-P0",
+            "protected-part:MAIN-PEG-K0-B-P0",
+            "protected-part:MAIN-PEG-K0-C-P0",
+            "protected-joint:TJ-T0-P0",
+            "protected-joint:TJ-B0-P0",
+            "protected-joint:TJ-B7-P0",
+            "protected-joint:BJ-K0-A-P0",
+            "protected-joint:BJ-K0-B-P0",
+            "protected-joint:BJ-K0-C-P0",
+            "protected-entry:P0"
+          ],
+          "selected_roof_tool_count": 5,
+          "selected_protected_tool_count": 16,
+          "source_roof_tool_count": 40,
+          "source_protected_tool_count": 256,
+          "proofs": {
+            "unexplained_restoration": {
+              "local_volume_m3": 1.2468324983583301e-18,
+              "transform_cover_bound_m3": 0.0,
+              "upper_bound_m3": 1.2468324983583392e-18,
+              "status": "PASS"
+            },
+            "lost_source_wood": {
+              "local_volume_m3": 6.201636426617085e-17,
+              "transform_cover_bound_m3": 0.0,
+              "upper_bound_m3": 6.201636426617131e-17,
+              "status": "PASS"
+            },
+            "protected_refill": {
+              "local_volume_m3": 7.823509135418896e-17,
+              "transform_cover_bound_m3": 0.0,
+              "upper_bound_m3": 7.823509135418953e-17,
+              "status": "PASS"
+            },
+            "outside_independent_stock": {
+              "local_volume_m3": 0.0,
+              "transform_cover_bound_m3": 0.0,
+              "upper_bound_m3": 0.0,
+              "status": "PASS"
+            }
+          },
+          "aggregate_transform_cover_bound_m3": 0.0,
+          "added_roof_owned_volume_m3": 0.00022671856348155522,
+          "before_after_difference_upper_m3": 0.00022671856348161886,
+          "coincident_fragment_readback_m3_diagnostic_only": 1.4253239711178294e-16,
+          "input_transform_facts": {
+            "envelope": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 12,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "before": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 1186,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "after": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 1154,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "roof-part:J0-0": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 48,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "roof-part:J0-OUT0": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 56,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "roof-part:J7-2": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 50,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "roof-part:J7-OUT2": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 56,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "roof-part:R0": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 158,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "protected-part:B0": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 750,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "protected-part:T0": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 1034,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "protected-part:K0-A": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 308,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "protected-part:K0-B": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 308,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "protected-part:K0-C": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 308,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "protected-part:B7": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 746,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "protected-part:MAIN-PEG-K0-A-P0": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 124,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "protected-part:MAIN-PEG-K0-B-P0": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 124,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "protected-part:MAIN-PEG-K0-C-P0": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 124,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "protected-joint:TJ-T0-P0": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 14,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "protected-joint:TJ-B0-P0": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 16,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "protected-joint:TJ-B7-P0": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 16,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "protected-joint:BJ-K0-A-P0": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 12,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "protected-joint:BJ-K0-B-P0": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 12,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "protected-joint:BJ-K0-C-P0": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 12,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "protected-entry:P0": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 38,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            }
+          }
+        }
+      },
+      {
+        "variant": "top-entry",
+        "id": "B0",
+        "added_current_roof_owned_in3": 12.913445609897268,
+        "lost_source_wood_in3": 2.556668361319993e-10,
+        "protected_refill_in3": 3.985389302909789e-15,
+        "ownership": {
+          "status": "PASS",
+          "common_local_origin_m": [
+            0.0,
+            2.0,
+            0.0
+          ],
+          "aabb_selection": "Inclusive exact native bounds; omitted tools have no positive-volume envelope intersection. No distance tolerance used.",
+          "ordered_relevant_roof_tool_ids": [
+            "roof-part:J0-0",
+            "roof-part:J0-2",
+            "roof-part:J0-OUT0",
+            "roof-part:J0-OUT2",
+            "roof-part:R0",
+            "roof-part:R1",
+            "roof-joint:ROOF-SUPPORT-J0-OUT0-B0",
+            "roof-joint:ROOF-SUPPORT-J0-OUT2-B0"
+          ],
+          "ordered_relevant_protected_tool_ids": [
+            "protected-part:P0",
+            "protected-part:T0",
+            "protected-part:K0-B",
+            "protected-part:P1",
+            "protected-part:B1",
+            "protected-part:T1",
+            "protected-part:K1-A",
+            "protected-part:K1-B",
+            "protected-part:MAIN-PEG-K0-B-B0",
+            "protected-part:MAIN-PEG-K1-A-B0",
+            "protected-joint:BJ-K1-A-B0",
+            "protected-joint:BJ-K0-B-B0"
+          ],
+          "selected_roof_tool_count": 8,
+          "selected_protected_tool_count": 12,
+          "source_roof_tool_count": 42,
+          "source_protected_tool_count": 251,
+          "proofs": {
+            "unexplained_restoration": {
+              "local_volume_m3": 4.484621911671747e-16,
+              "transform_cover_bound_m3": 0.0,
+              "upper_bound_m3": 4.48462191167178e-16,
+              "status": "PASS"
+            },
+            "lost_source_wood": {
+              "local_volume_m3": 4.189628806372554e-15,
+              "transform_cover_bound_m3": 0.0,
+              "upper_bound_m3": 4.1896288063725845e-15,
+              "status": "PASS"
+            },
+            "protected_refill": {
+              "local_volume_m3": 6.530882957169762e-20,
+              "transform_cover_bound_m3": 0.0,
+              "upper_bound_m3": 6.53088295716981e-20,
+              "status": "PASS"
+            },
+            "outside_independent_stock": {
+              "local_volume_m3": 1.74603440765657e-15,
+              "transform_cover_bound_m3": 0.0,
+              "upper_bound_m3": 1.7460344076565827e-15,
+              "status": "PASS"
+            }
+          },
+          "aggregate_transform_cover_bound_m3": 0.0,
+          "added_roof_owned_volume_m3": 0.00021161345966990555,
+          "before_after_difference_upper_m3": 0.0002116134596740967,
+          "coincident_fragment_readback_m3_diagnostic_only": 5.228944362389364e-15,
+          "input_transform_facts": {
+            "envelope": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 76,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "before": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 750,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "after": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 914,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "roof-part:J0-0": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 48,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "roof-part:J0-2": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 50,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "roof-part:J0-OUT0": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 56,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "roof-part:J0-OUT2": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 64,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "roof-part:R0": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 158,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "roof-part:R1": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 164,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "roof-joint:ROOF-SUPPORT-J0-OUT0-B0": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 20,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "roof-joint:ROOF-SUPPORT-J0-OUT2-B0": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 18,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "protected-part:P0": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 1186,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "protected-part:T0": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 1034,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "protected-part:K0-B": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 308,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "protected-part:P1": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 1186,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "protected-part:B1": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 760,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "protected-part:T1": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 1034,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "protected-part:K1-A": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 308,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "protected-part:K1-B": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 308,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "protected-part:MAIN-PEG-K0-B-B0": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 124,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "protected-part:MAIN-PEG-K1-A-B0": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 124,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "protected-joint:BJ-K1-A-B0": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 12,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "protected-joint:BJ-K0-B-B0": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 12,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            }
+          }
+        }
+      },
+      {
+        "variant": "top-entry",
+        "id": "C0",
+        "added_current_roof_owned_in3": 50.59644256270234,
+        "lost_source_wood_in3": 1.1817959069691586e-12,
+        "protected_refill_in3": 2.269070123589662e-14,
+        "ownership": {
+          "status": "PASS",
+          "common_local_origin_m": [
+            0.0,
+            4.0,
+            0.0
+          ],
+          "aabb_selection": "Inclusive exact native bounds; omitted tools have no positive-volume envelope intersection. No distance tolerance used.",
+          "ordered_relevant_roof_tool_ids": [
+            "roof-part:R0",
+            "roof-joint:TJ-R0-C0"
+          ],
+          "ordered_relevant_protected_tool_ids": [
+            "protected-part:T0",
+            "protected-part:L0-S",
+            "protected-part:L0-H",
+            "protected-part:L7-S",
+            "protected-part:L7-H",
+            "protected-part:M-TMP",
+            "protected-part:CR0",
+            "protected-part:CR1",
+            "protected-part:CR7",
+            "protected-part:CC0",
+            "protected-part:CP0",
+            "protected-part:CUP-PEG-CJ-C0-CR0",
+            "protected-part:CUP-PEG-CJ-CC0-C0",
+            "protected-part:CUP-PEG-TJ-L0-H-C0",
+            "protected-part:CUP-PEG-TJ-L0-S-C0",
+            "protected-part:CUP-PEG-TJ-L7-H-C0",
+            "protected-part:CUP-PEG-TJ-L7-S-C0",
+            "protected-part:M-TMP-SCREW-0-1",
+            "protected-part:M-TMP-SCREW-0-2",
+            "protected-part:M-TMP-SCREW-0-3",
+            "protected-joint:TJ-T0-C0",
+            "protected-joint:TJ-L0-S-C0",
+            "protected-joint:TJ-L0-H-C0",
+            "protected-joint:TJ-L7-S-C0",
+            "protected-joint:TJ-L7-H-C0",
+            "protected-joint:CJ-CC0-C0",
+            "protected-entry:C0"
+          ],
+          "selected_roof_tool_count": 2,
+          "selected_protected_tool_count": 27,
+          "source_roof_tool_count": 41,
+          "source_protected_tool_count": 256,
+          "proofs": {
+            "unexplained_restoration": {
+              "local_volume_m3": 3.8279299466032934e-15,
+              "transform_cover_bound_m3": 0.0,
+              "upper_bound_m3": 3.827929946603321e-15,
+              "status": "PASS"
+            },
+            "lost_source_wood": {
+              "local_volume_m3": 1.9366165162441505e-17,
+              "transform_cover_bound_m3": 0.0,
+              "upper_bound_m3": 1.9366165162441647e-17,
+              "status": "PASS"
+            },
+            "protected_refill": {
+              "local_volume_m3": 3.718339733575143e-19,
+              "transform_cover_bound_m3": 0.0,
+              "upper_bound_m3": 3.71833973357517e-19,
+              "status": "PASS"
+            },
+            "outside_independent_stock": {
+              "local_volume_m3": 0.0,
+              "transform_cover_bound_m3": 0.0,
+              "upper_bound_m3": 0.0,
+              "status": "PASS"
+            }
+          },
+          "aggregate_transform_cover_bound_m3": 0.0,
+          "added_roof_owned_volume_m3": 0.0008291271424473273,
+          "before_after_difference_upper_m3": 0.0008291271424473527,
+          "coincident_fragment_readback_m3_diagnostic_only": 2.0003658383093135e-15,
+          "input_transform_facts": {
+            "envelope": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 44,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "before": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 2724,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "after": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 3032,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "roof-part:R0": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 158,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "roof-joint:TJ-R0-C0": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 16,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "protected-part:T0": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 1034,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "protected-part:L0-S": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 308,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "protected-part:L0-H": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 308,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "protected-part:L7-S": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 308,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "protected-part:L7-H": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 308,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "protected-part:M-TMP": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 5988,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "protected-part:CR0": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 468,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "protected-part:CR1": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 496,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "protected-part:CR7": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 496,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "protected-part:CC0": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 492,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "protected-part:CP0": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 124,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "protected-part:CUP-PEG-CJ-C0-CR0": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 124,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "protected-part:CUP-PEG-CJ-CC0-C0": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 124,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "protected-part:CUP-PEG-TJ-L0-H-C0": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 124,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "protected-part:CUP-PEG-TJ-L0-S-C0": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 124,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "protected-part:CUP-PEG-TJ-L7-H-C0": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 124,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "protected-part:CUP-PEG-TJ-L7-S-C0": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 124,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "protected-part:M-TMP-SCREW-0-1": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 380,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "protected-part:M-TMP-SCREW-0-2": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 380,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "protected-part:M-TMP-SCREW-0-3": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 380,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "protected-joint:TJ-T0-C0": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 12,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "protected-joint:TJ-L0-S-C0": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 16,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "protected-joint:TJ-L0-H-C0": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 16,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "protected-joint:TJ-L7-S-C0": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 16,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "protected-joint:TJ-L7-H-C0": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 16,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "protected-joint:CJ-CC0-C0": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 12,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            },
+            "protected-entry:C0": {
+              "exact_forward_residual_max_l1_m": 0.0,
+              "roundtrip_max_l1_m": 0.0,
+              "displacement_bound_m": 0.0,
+              "triangle_count": 12,
+              "transform_cover_bound_m3": 0.0,
+              "indexed_triangles_preserved": true
+            }
+          }
+        }
+      }
+    ],
+    "overlap_tolerance_m3": 1.6387064e-11,
+    "capacity_verified": false,
+    "payload_sha256": "73872190d76b94aaaae556dc68fe37565d3764bad7836539928558ece2b8e469"
+  },
+  "verification": {
+    "controls_unit": "PASS",
+    "shared_pitch_range": [
+      3,
+      8
+    ],
+    "cupola_extension_range_in": [
+      9,
+      36
+    ],
+    "porch_pitch": 4,
+    "failed_apply_preserves_existing_state": true,
+    "default_main_geometry_retained_for_cupola_only": true,
+    "encoder_fix": "Only repeated-index zero-area faces are omitted. Actual vertices and every nondegenerate indexed triangle remain unchanged."
+  },
+  "limits": [
+    "Fixed-size architectural products still require regeneration at changed dimensions.",
+    "Full ordered assembly/disassembly after applying dimensions remains unavailable until a current complete route is generated.",
+    "The three checked configurations do not constitute a proof of every value in the public parameter interval."
+  ],
+  "overlap_tolerance_m3": 1.6387064e-11
+}

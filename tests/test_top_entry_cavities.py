@@ -20,7 +20,9 @@ class TopEntryCavities(unittest.TestCase):
         report=verify_saved('top-entry')
         self.assertEqual(report['summary']['structural_timbers'],112)
         self.assertEqual(report['summary']['physical_wooden_pegs'],56)
-        self.assertEqual(report['summary']['open_entry_records'],16)
+        # TIMESTAMP START 2026-11-05T01:29:35+00:00 | REVISION R000016
+        self.assertEqual(report['summary']['open_entry_records'],32)
+        # TIMESTAMP END 2026-11-05T01:29:35+00:00 | REVISION R000016
         self.assertEqual(report['summary']['explicit_exterior_offcut_records'],80)
         self.assertEqual(report['summary']['uncovered_winding_samples'],0)
     # TIMESTAMP END 2026-11-03T17:08:46-05:00 | REVISION R005066

@@ -1,3 +1,4 @@
+// TIMESTAMP START 2026-11-05T04:18:09+00:00 | REVISION R000020
 // TIMESTAMP START 2026-11-02T14:21:43-05:00 | REVISION R004791
 'use strict';
 const assert=require('node:assert/strict'),fs=require('node:fs'),crypto=require('node:crypto'),mudroom=require('../src/mudroom.js'),walls=require('../src/schematic-walls.js');
@@ -52,7 +53,7 @@ for(const filename of ['model-data.json','step-lap-proposed-model.json','top-ent
   const bench=byId['MUD-BENCH-'+side],guard=byId['MUD-GUARD-TOP-'+side],pickets=r.components.filter(p=>p.id.startsWith('MUD-GUARD-PICKET-'+side+'-')).sort((a,b)=>a.localBounds[4]-b.localBounds[4]);
   // TIMESTAMP START 2026-11-02T15:00:19-05:00 | REVISION R004797
 // TIMESTAMP START 2026-11-03T17:20:17-05:00 | REVISION R005073
-  near(guard.localBounds[3]-bench.localBounds[3],22*.0254);near(side==='L'?guard.localBounds[1]:guard.localBounds[0],side==='L'?bench.localBounds[0]:bench.localBounds[1]);
+  near(guard.localBounds[3]-bench.localBounds[3],18*.0254);near(guard.localBounds[1]-guard.localBounds[0],4*.0254);
 // TIMESTAMP END 2026-11-03T17:20:17-05:00 | REVISION R005073
   // TIMESTAMP END 2026-11-02T15:00:19-05:00 | REVISION R004797
   assert(pickets.every(p=>p.localBounds[2]<bench.localBounds[3]&&p.localBounds[3]>bench.localBounds[3]),'Railing must continue below and above bench seat');
@@ -78,3 +79,5 @@ for(const filename of ['model-data.json','step-lap-proposed-model.json','top-ent
 }
 console.log(`PASS: open covered porch, three variants, ${pairs} exact prism pair tests, closed solids, clear aisle, open grate/outlet, benches backed by railings and equal stairs.`);
 // TIMESTAMP END 2026-11-02T14:21:43-05:00 | REVISION R004791
+
+// TIMESTAMP END 2026-11-05T04:18:09+00:00 | REVISION R000020

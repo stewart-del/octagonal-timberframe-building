@@ -15,9 +15,15 @@ from audit_cavity_fit import inspect_mesh
 NODE=os.environ.get('NODE') or shutil.which('node')
 assert NODE,'Set NODE to a Node.js executable'
 TOL=1e-10
-fit=json.loads((ROOT/'src/mudroom-joinery-fit.json').read_text())
-for key,path in [('source_module_sha256','src/mudroom.js'),('source_roof_module_sha256','src/mudroom-roof.js'),('source_fitter_sha256','scripts/fit_mudroom_joinery.py'),('source_model_sha256','src/model-data.json')]:
-    assert fit[key]==hashlib.sha256((ROOT/path).read_bytes()).hexdigest(),key+' is stale'
+# TIMESTAMP START 2026-11-05T21:13:11+00:00 | REVISION R000066
+from current_cache_bindings import verify,load_cache,assert_applies
+ownership=verify();fit=load_cache('porch','baseline',ownership)
+assert_applies(fit,'porch','baseline',ownership)
+# Original headers are kept as historical evidence. The immutable current
+# binding verifies all41 actual source inputs plus the fresh native receipts.
+original_fit=json.loads((ROOT/'src/mudroom-joinery-fit.json').read_text())
+for key in ['source_module_sha256','source_roof_module_sha256','source_fitter_sha256','source_model_sha256']:assert fit[key]==original_fit[key]
+# TIMESTAMP END 2026-11-05T21:13:11+00:00 | REVISION R000066
 layout=json.loads(subprocess.check_output([NODE,'-e',"process.stdout.write(JSON.stringify(require('./src/mudroom.js').build(require('./src/model-data.json'))))"],cwd=ROOT))
 records={p['id']:p for p in layout['components']}
 origin=np.asarray(layout['origin']);basis=np.asarray([layout['tangent'],[0,1,0],layout['outward']])

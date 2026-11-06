@@ -1,0 +1,30 @@
+{
+  "revision": "R000079",
+  "timestamp": "2026-11-06T01:13:10+00:00",
+  "status": "PASS_SCOPED_WEATHER_CANDIDATE_CONSTRUCTION",
+  "sources": {
+    "scripts/weather_seal_parts.py": "f458b147486f4d3c8c995319c6c432aa432ad52fe0ae9cb42d067a72189bc8c8",
+    "scripts/fixtures/weather-seal-inputs.json.gz": "5e5916feef91420e3d1b134e57832c1ea3575337155c415890ed5255a9ae8fed",
+    "tests/test_weather_seal_parts.py": "6544c7c417bf622673e8a0f6ae84627b4537d40ba74968784aebf688ff19a4c4"
+  },
+  "verification": "2 owner regressions PASS16.397s:108individual strict-RAW seals,7negative-only old-film trims,4fresh current fascia cuts, preserved current source bodies, idempotence, pairwise weather layers and current fascia nonoverlap at unchanged1e-6in3.",
+  "counts": {
+    "originalEaveFilms": 74,
+    "retiredOldIds": 2,
+    "negativeTrimmedOldFilms": 7,
+    "newPorchBootActors": 20,
+    "apexTransitionFilms": 16,
+    "finalIndividualWeatherActors": 108,
+    "newCurrentFasciaNegativeSeats": 4
+  },
+  "currentWoodWasReplacedByOldSnapshots": false,
+  "referenceStockOverridesAppliedWithoutReadback": false,
+  "wholeBuildingReady": false,
+  "integrationStatus": "SEPARATE_HELPER_NOT_YET_INTEGRATED",
+  "limits": [
+    "Current copper, roof membranes, upper wall wrap, real window interfaces and complete assembled contacts must be checked after integration.",
+    "Four later fascia cuts require fresh current stock partition readback; reference offcuts are not a substitute.",
+    "Source remaining-interface notes remain explicit, including accessible movement sealant at brace penetrations; no airtightness or blower-door result is claimed.",
+    "Default-only source gates remain strict; dynamic retiling and construction lifetimes are separate."
+  ]
+}

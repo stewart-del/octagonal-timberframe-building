@@ -43,7 +43,13 @@ const finishIds=saved.physical_ids.filter(isFinish);
 assert.equal(finishIds.length,16);
 assert.deepEqual(new Set(playback.stages[0].member_ids),new Set(finishIds));
 const trussIds=new Set(Array.from({length:8},(_,k)=>['R'+k,'T'+k,'C'+k]).flat());
-const lastTruss=Math.max(...playback.stages.map((s,i)=>s.member_ids.some(id=>trussIds.has(id))?i:-1));
+// TIMESTAMP START 2026-11-05T01:24:05+00:00 | REVISION R000013
+// A disengaged member can travel again while arranging the compact layout.
+// The fixture stays until every truss has cleared its installed joint.
+const releases=saved.construction.release_stage_by_piece;
+for(const id of trussIds)assert(playback.stages[releases[id]].member_ids.includes(id));
+const lastTruss=Math.max(...[...trussIds].map(id=>releases[id]));
+// TIMESTAMP END 2026-11-05T01:24:05+00:00 | REVISION R000013
 const supportStart=playback.stages.findIndex(s=>s.member_ids.includes('M-TMP'));
 assert.ok(supportStart>lastTruss,'The eight-L support must remain until every truss member is clear');
 for(let i=0;i<=lastTruss;i++)assert.deepEqual(playback.offset('M-TMP',(i+.5)/playback.count),[0,0,0]);

@@ -1,3 +1,4 @@
+// TIMESTAMP START 2026-11-04T23:23:25+00:00 | REVISION R000011
 // TIMESTAMP START 2026-11-03T13:59:01-05:00 | REVISION R005033
 const assert=require('node:assert/strict');
 const api=require('../src/joinery-dimensions.js');
@@ -34,3 +35,5 @@ for(const filename of ['model-data.json','step-lap-proposed-model.json','top-ent
 assert.equal(api.blank({vertices:[[0,0,0]]}),null,'Unknown stock frame must not invent a blank');
 console.log('PASS: all three variants; every timber blank encloses actual mesh; 48.25 in outer and 56.75 in inward 2x6 braces include both three-inch tenons; inspector shows actual stock length');
 // TIMESTAMP END 2026-11-04T19:33:21+00:00 | REVISION R000014
+
+// TIMESTAMP END 2026-11-04T23:23:25+00:00 | REVISION R000011

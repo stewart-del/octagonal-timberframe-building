@@ -1,3 +1,4 @@
+# TIMESTAMP START 2026-11-04T23:23:25+00:00 | REVISION R000011
 # TIMESTAMP START 2026-11-02T13:42:10-05:00 | REVISION R004782
 """Verify modeled opening contacts and clearance in every variant, not capacity."""
 from pathlib import Path
@@ -55,7 +56,10 @@ for model_name,fit_name in VARIANTS:
  frames=[p for p in items if p['schematicKind']=='rail'];infill=[p for p in items if p['schematicKind']=='wall'];floor=[p for p in items if p['schematicKind']=='floor']
  # TIMESTAMP START 2026-11-02T14:35:15-05:00 | REVISION R004794
  # TIMESTAMP START 2026-11-02T18:13:09-05:00 | REVISION R004829
- assert len(frames)==74 and len(infill)==81 and len(floor)==8
+ # TIMESTAMP START 2026-11-04T20:06:20+00:00 | REVISION R000007
+ assert len(frames)==74 and len(infill)==97 and len(floor)==8
+ assert len([p for p in infill if p.get('erectionParentId')])==26
+ # TIMESTAMP END 2026-11-04T20:06:20+00:00 | REVISION R000007
  # TIMESTAMP END 2026-11-02T18:13:09-05:00 | REVISION R004829
  # TIMESTAMP END 2026-11-02T14:35:15-05:00 | REVISION R004794
  assert {role:sum(p['framingRole']==role for p in frames) for role in ['jamb','header','sill']}=={'jamb':12,'header':6,'sill':5}
@@ -124,7 +128,10 @@ for model_name,fit_name in VARIANTS:
 # TIMESTAMP END 2026-11-02T16:10:36-05:00 | REVISION R004814
  raw_shelves={p['id']:p for p in raw_items if p['schematicKind']=='shelf'}
  # TIMESTAMP START 2026-11-02T18:13:09-05:00 | REVISION R004829
- assert len(shelves)==12 and len(fit['parts'])==175
+ # TIMESTAMP START 2026-11-05T01:27:19+00:00 | REVISION R000015
+ assert len(shelves)==12 and len(fit['parts'])==191
+ assert len(fit['parts'])==len(frames)+len(infill)+len(floor)+len(shelves)
+ # TIMESTAMP END 2026-11-05T01:27:19+00:00 | REVISION R000015
  # TIMESTAMP END 2026-11-02T18:13:09-05:00 | REVISION R004829
  changed_shelves=[]
  for p in shelves:
@@ -246,3 +253,5 @@ for model_name,fit_name in VARIANTS:
 print(f'PASS: all three variants; 12 continuous jambs, 6 headers, 5 sills each; {checks} fitted face contacts (minimum {minimum_contact:.9g} m²); no framing/infill/shelf/primary-timber overlaps; clear apertures and threshold preserved')
 # TIMESTAMP END 2026-11-02T15:33:07-05:00 | REVISION R004807
 # TIMESTAMP END 2026-11-02T13:42:10-05:00 | REVISION R004782
+
+# TIMESTAMP END 2026-11-04T23:23:25+00:00 | REVISION R000011

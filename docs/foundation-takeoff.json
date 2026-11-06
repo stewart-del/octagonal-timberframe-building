@@ -1,0 +1,2427 @@
+{
+  "revision": "R000037",
+  "timestamp": "2026-11-05T08:49:48+00:00",
+  "scope": "Geometry-derived actual modeled pours and forms; capacity, mix and enlarged footing details unqualified.",
+  "sources": {
+    "src/foundation-takeoff.js": "a51cd4867182501125553969016458b9442743a262da1b6e1f6ca520ce20ec6a",
+    "src/floor-foundation.js": "9e8af25edfd0fb0165c2c0dc730e783e41c82cc6db4652673435698faf536027",
+    "src/mudroom.js": "822ef641ec9cbe40957e41cc4b094a70c708fdea37a49cdce41863c5acf676cf",
+    "src/model-data.json": "cf5dcd44e0953f0a08b3edd2a580a750b962097de6a8dc4b0990265e3c8f93c7",
+    "src/step-lap-proposed-model.json": "39ed6e6acecd9af4194c621bbd3acf305f2a76ef2a91d11c82ae5f059b4b1a2a",
+    "src/top-entry-proposed-model.json": "9882d3eb219b95e614c1bd45b673ba4405de500a8b164df883e8784e6da3d073"
+  },
+  "variants": {
+    "model-data.json": {
+      "columns": [
+        {
+          "id": "PIER-0",
+          "area": "Main building",
+          "shape": "round",
+          "diameterM": 0.4064,
+          "lengthM": 2.4384,
+          "aboveGradeM": 0.6096,
+          "belowGradeM": 1.8288000000000002,
+          "centerM": [
+            4.4704,
+            -1.0783812,
+            0
+          ],
+          "topY_M": -0.46878119999999995,
+          "bottomY_M": -2.9071812,
+          "netVolumeM3": 0.31630221236002265,
+          "form": "Sonotube round concrete form",
+          "stockLengthM": 3.6575999999999995,
+          "offcutM": 1.2191999999999994,
+          "diameterBasis": "Nominal modeled diameter; confirm actual inside diameter"
+        },
+        {
+          "id": "PIER-1",
+          "area": "Main building",
+          "shape": "round",
+          "diameterM": 0.4064,
+          "lengthM": 2.4384,
+          "aboveGradeM": 0.6096,
+          "belowGradeM": 1.8288000000000002,
+          "centerM": [
+            3.1610501546163423,
+            -1.0783812,
+            -3.1610501546163414
+          ],
+          "topY_M": -0.46878119999999995,
+          "bottomY_M": -2.9071812,
+          "netVolumeM3": 0.31630221236002265,
+          "form": "Sonotube round concrete form",
+          "stockLengthM": 3.6575999999999995,
+          "offcutM": 1.2191999999999994,
+          "diameterBasis": "Nominal modeled diameter; confirm actual inside diameter"
+        },
+        {
+          "id": "PIER-2",
+          "area": "Main building",
+          "shape": "round",
+          "diameterM": 0.4064,
+          "lengthM": 2.4384,
+          "aboveGradeM": 0.6096,
+          "belowGradeM": 1.8288000000000002,
+          "centerM": [
+            2.737330525454164e-16,
+            -1.0783812,
+            -4.4704
+          ],
+          "topY_M": -0.46878119999999995,
+          "bottomY_M": -2.9071812,
+          "netVolumeM3": 0.31630221236002265,
+          "form": "Sonotube round concrete form",
+          "stockLengthM": 3.6575999999999995,
+          "offcutM": 1.2191999999999994,
+          "diameterBasis": "Nominal modeled diameter; confirm actual inside diameter"
+        },
+        {
+          "id": "PIER-3",
+          "area": "Main building",
+          "shape": "round",
+          "diameterM": 0.4064,
+          "lengthM": 2.4384,
+          "aboveGradeM": 0.6096,
+          "belowGradeM": 1.8288000000000002,
+          "centerM": [
+            -3.1610501546163414,
+            -1.0783812,
+            -3.1610501546163423
+          ],
+          "topY_M": -0.46878119999999995,
+          "bottomY_M": -2.9071812,
+          "netVolumeM3": 0.31630221236002265,
+          "form": "Sonotube round concrete form",
+          "stockLengthM": 3.6575999999999995,
+          "offcutM": 1.2191999999999994,
+          "diameterBasis": "Nominal modeled diameter; confirm actual inside diameter"
+        },
+        {
+          "id": "PIER-4",
+          "area": "Main building",
+          "shape": "round",
+          "diameterM": 0.4064,
+          "lengthM": 2.4384,
+          "aboveGradeM": 0.6096,
+          "belowGradeM": 1.8288000000000002,
+          "centerM": [
+            -4.4704,
+            -1.0783812,
+            -5.474661050908328e-16
+          ],
+          "topY_M": -0.46878119999999995,
+          "bottomY_M": -2.9071812,
+          "netVolumeM3": 0.31630221236002265,
+          "form": "Sonotube round concrete form",
+          "stockLengthM": 3.6575999999999995,
+          "offcutM": 1.2191999999999994,
+          "diameterBasis": "Nominal modeled diameter; confirm actual inside diameter"
+        },
+        {
+          "id": "PIER-5",
+          "area": "Main building",
+          "shape": "round",
+          "diameterM": 0.4064,
+          "lengthM": 2.4384,
+          "aboveGradeM": 0.6096,
+          "belowGradeM": 1.8288000000000002,
+          "centerM": [
+            -3.1610501546163428,
+            -1.0783812,
+            3.1610501546163414
+          ],
+          "topY_M": -0.46878119999999995,
+          "bottomY_M": -2.9071812,
+          "netVolumeM3": 0.31630221236002265,
+          "form": "Sonotube round concrete form",
+          "stockLengthM": 3.6575999999999995,
+          "offcutM": 1.2191999999999994,
+          "diameterBasis": "Nominal modeled diameter; confirm actual inside diameter"
+        },
+        {
+          "id": "PIER-6",
+          "area": "Main building",
+          "shape": "round",
+          "diameterM": 0.4064,
+          "lengthM": 2.4384,
+          "aboveGradeM": 0.6096,
+          "belowGradeM": 1.8288000000000002,
+          "centerM": [
+            -8.211991576362491e-16,
+            -1.0783812,
+            4.4704
+          ],
+          "topY_M": -0.46878119999999995,
+          "bottomY_M": -2.9071812,
+          "netVolumeM3": 0.31630221236002265,
+          "form": "Sonotube round concrete form",
+          "stockLengthM": 3.6575999999999995,
+          "offcutM": 1.2191999999999994,
+          "diameterBasis": "Nominal modeled diameter; confirm actual inside diameter"
+        },
+        {
+          "id": "PIER-7",
+          "area": "Main building",
+          "shape": "round",
+          "diameterM": 0.4064,
+          "lengthM": 2.4384,
+          "aboveGradeM": 0.6096,
+          "belowGradeM": 1.8288000000000002,
+          "centerM": [
+            3.161050154616341,
+            -1.0783812,
+            3.1610501546163428
+          ],
+          "topY_M": -0.46878119999999995,
+          "bottomY_M": -2.9071812,
+          "netVolumeM3": 0.31630221236002265,
+          "form": "Sonotube round concrete form",
+          "stockLengthM": 3.6575999999999995,
+          "offcutM": 1.2191999999999994,
+          "diameterBasis": "Nominal modeled diameter; confirm actual inside diameter"
+        },
+        {
+          "id": "PIER-C",
+          "area": "Main building",
+          "shape": "round",
+          "diameterM": 0.4064,
+          "lengthM": 2.4384,
+          "aboveGradeM": 0.6096,
+          "belowGradeM": 1.8288000000000002,
+          "centerM": [
+            -2.220446049250313e-16,
+            -1.0783812,
+            1.6653345369377348e-16
+          ],
+          "topY_M": -0.46878119999999995,
+          "bottomY_M": -2.9071812,
+          "netVolumeM3": 0.31630221236002265,
+          "form": "Sonotube round concrete form",
+          "stockLengthM": 3.6575999999999995,
+          "offcutM": 1.2191999999999994,
+          "diameterBasis": "Nominal modeled diameter; confirm actual inside diameter"
+        },
+        {
+          "id": "PIER-MID-0",
+          "area": "Main building",
+          "shape": "round",
+          "diameterM": 0.4064,
+          "lengthM": 2.4384,
+          "aboveGradeM": 0.6096,
+          "belowGradeM": 1.8288000000000002,
+          "centerM": [
+            2.2352,
+            -1.0783812,
+            8.326672684688674e-17
+          ],
+          "topY_M": -0.46878119999999995,
+          "bottomY_M": -2.9071812,
+          "netVolumeM3": 0.31630221236002265,
+          "form": "Sonotube round concrete form",
+          "stockLengthM": 3.6575999999999995,
+          "offcutM": 1.2191999999999994,
+          "diameterBasis": "Nominal modeled diameter; confirm actual inside diameter"
+        },
+        {
+          "id": "PIER-MID-1",
+          "area": "Main building",
+          "shape": "round",
+          "diameterM": 0.4064,
+          "lengthM": 2.4384,
+          "aboveGradeM": 0.6096,
+          "belowGradeM": 1.8288000000000002,
+          "centerM": [
+            1.5805250773081712,
+            -1.0783812,
+            -1.5805250773081707
+          ],
+          "topY_M": -0.46878119999999995,
+          "bottomY_M": -2.9071812,
+          "netVolumeM3": 0.31630221236002265,
+          "form": "Sonotube round concrete form",
+          "stockLengthM": 3.6575999999999995,
+          "offcutM": 1.2191999999999994,
+          "diameterBasis": "Nominal modeled diameter; confirm actual inside diameter"
+        },
+        {
+          "id": "PIER-MID-2",
+          "area": "Main building",
+          "shape": "round",
+          "diameterM": 0.4064,
+          "lengthM": 2.4384,
+          "aboveGradeM": 0.6096,
+          "belowGradeM": 1.8288000000000002,
+          "centerM": [
+            2.5844223810192548e-17,
+            -1.0783812,
+            -2.2352
+          ],
+          "topY_M": -0.46878119999999995,
+          "bottomY_M": -2.9071812,
+          "netVolumeM3": 0.31630221236002265,
+          "form": "Sonotube round concrete form",
+          "stockLengthM": 3.6575999999999995,
+          "offcutM": 1.2191999999999994,
+          "diameterBasis": "Nominal modeled diameter; confirm actual inside diameter"
+        },
+        {
+          "id": "PIER-MID-3",
+          "area": "Main building",
+          "shape": "round",
+          "diameterM": 0.4064,
+          "lengthM": 2.4384,
+          "aboveGradeM": 0.6096,
+          "belowGradeM": 1.8288000000000002,
+          "centerM": [
+            -1.5805250773081707,
+            -1.0783812,
+            -1.5805250773081712
+          ],
+          "topY_M": -0.46878119999999995,
+          "bottomY_M": -2.9071812,
+          "netVolumeM3": 0.31630221236002265,
+          "form": "Sonotube round concrete form",
+          "stockLengthM": 3.6575999999999995,
+          "offcutM": 1.2191999999999994,
+          "diameterBasis": "Nominal modeled diameter; confirm actual inside diameter"
+        },
+        {
+          "id": "PIER-MID-4",
+          "area": "Main building",
+          "shape": "round",
+          "diameterM": 0.4064,
+          "lengthM": 2.4384,
+          "aboveGradeM": 0.6096,
+          "belowGradeM": 1.8288000000000002,
+          "centerM": [
+            -2.2352,
+            -1.0783812,
+            -1.9046632569852966e-16
+          ],
+          "topY_M": -0.46878119999999995,
+          "bottomY_M": -2.9071812,
+          "netVolumeM3": 0.31630221236002265,
+          "form": "Sonotube round concrete form",
+          "stockLengthM": 3.6575999999999995,
+          "offcutM": 1.2191999999999994,
+          "diameterBasis": "Nominal modeled diameter; confirm actual inside diameter"
+        },
+        {
+          "id": "PIER-MID-5",
+          "area": "Main building",
+          "shape": "round",
+          "diameterM": 0.4064,
+          "lengthM": 2.4384,
+          "aboveGradeM": 0.6096,
+          "belowGradeM": 1.8288000000000002,
+          "centerM": [
+            -1.5805250773081716,
+            -1.0783812,
+            1.5805250773081707
+          ],
+          "topY_M": -0.46878119999999995,
+          "bottomY_M": -2.9071812,
+          "netVolumeM3": 0.31630221236002265,
+          "form": "Sonotube round concrete form",
+          "stockLengthM": 3.6575999999999995,
+          "offcutM": 1.2191999999999994,
+          "diameterBasis": "Nominal modeled diameter; confirm actual inside diameter"
+        },
+        {
+          "id": "PIER-MID-6",
+          "area": "Main building",
+          "shape": "round",
+          "diameterM": 0.4064,
+          "lengthM": 2.4384,
+          "aboveGradeM": 0.6096,
+          "belowGradeM": 1.8288000000000002,
+          "centerM": [
+            -5.216218812806402e-16,
+            -1.0783812,
+            2.2352
+          ],
+          "topY_M": -0.46878119999999995,
+          "bottomY_M": -2.9071812,
+          "netVolumeM3": 0.31630221236002265,
+          "form": "Sonotube round concrete form",
+          "stockLengthM": 3.6575999999999995,
+          "offcutM": 1.2191999999999994,
+          "diameterBasis": "Nominal modeled diameter; confirm actual inside diameter"
+        },
+        {
+          "id": "PIER-MID-7",
+          "area": "Main building",
+          "shape": "round",
+          "diameterM": 0.4064,
+          "lengthM": 2.4384,
+          "aboveGradeM": 0.6096,
+          "belowGradeM": 1.8288000000000002,
+          "centerM": [
+            1.5805250773081703,
+            -1.0783812,
+            1.5805250773081714
+          ],
+          "topY_M": -0.46878119999999995,
+          "bottomY_M": -2.9071812,
+          "netVolumeM3": 0.31630221236002265,
+          "form": "Sonotube round concrete form",
+          "stockLengthM": 3.6575999999999995,
+          "offcutM": 1.2191999999999994,
+          "diameterBasis": "Nominal modeled diameter; confirm actual inside diameter"
+        },
+        {
+          "id": "MUD-SUPPORT-L-BACK",
+          "area": "Porch",
+          "shape": "rectangular",
+          "widthM": 0.254,
+          "depthM": 0.254,
+          "lengthM": 2.5515811999999998,
+          "aboveGradeM": 0.7227812,
+          "belowGradeM": 1.8287999999999998,
+          "centerM": [
+            -0.6076074185930228,
+            -1.0783812,
+            -4.496029648335175
+          ],
+          "topY_M": -0.35559999999999997,
+          "bottomY_M": -2.9071811999999997,
+          "netVolumeM3": 0.1646178126992,
+          "form": "Square forms; not a round Sonotube"
+        },
+        {
+          "id": "MUD-SUPPORT-L-FRONT",
+          "area": "Porch",
+          "shape": "rectangular",
+          "widthM": 0.254,
+          "depthM": 0.25400000000000045,
+          "lengthM": 2.5515811999999998,
+          "aboveGradeM": 0.7227812,
+          "belowGradeM": 1.8287999999999998,
+          "centerM": [
+            -1.402976664420625,
+            -1.0783812,
+            -6.416220868706633
+          ],
+          "topY_M": -0.35559999999999997,
+          "bottomY_M": -2.9071811999999997,
+          "netVolumeM3": 0.16461781269920028,
+          "form": "Square forms; not a round Sonotube"
+        },
+        {
+          "id": "MUD-SUPPORT-R-BACK",
+          "area": "Porch",
+          "shape": "rectangular",
+          "widthM": 0.254,
+          "depthM": 0.254,
+          "lengthM": 2.5515811999999998,
+          "aboveGradeM": 0.7227812,
+          "belowGradeM": 1.8287999999999998,
+          "centerM": [
+            -2.7495297267671903,
+            -1.0783812,
+            -3.608816378739951
+          ],
+          "topY_M": -0.35559999999999997,
+          "bottomY_M": -2.9071811999999997,
+          "netVolumeM3": 0.1646178126992,
+          "form": "Square forms; not a round Sonotube"
+        },
+        {
+          "id": "MUD-SUPPORT-R-FRONT",
+          "area": "Porch",
+          "shape": "rectangular",
+          "widthM": 0.254,
+          "depthM": 0.25400000000000045,
+          "lengthM": 2.5515811999999998,
+          "aboveGradeM": 0.7227812,
+          "belowGradeM": 1.8287999999999998,
+          "centerM": [
+            -3.5448989725947926,
+            -1.0783812,
+            -5.529007599111409
+          ],
+          "topY_M": -0.35559999999999997,
+          "bottomY_M": -2.9071811999999997,
+          "netVolumeM3": 0.16461781269920028,
+          "form": "Square forms; not a round Sonotube"
+        }
+      ],
+      "pours": [
+        {
+          "id": "MUD-FLOOR",
+          "name": "Sloped sealed washdown floor",
+          "area": "Porch pan and drain channel",
+          "shape": "formed mesh",
+          "dimensionsM": [
+            2.4383999999999997,
+            0.2032,
+            2.3367999999999998
+          ],
+          "netVolumeM3": 1.019144284288,
+          "form": "Shared pan/stair formwork; component boundaries partition one pour",
+          "volumeBasis": "Actual closed occupied mesh; slope, drain and outlet voids retained"
+        },
+        {
+          "id": "MUD-PAN-L-BACK",
+          "name": "Washdown pan side curb bearing",
+          "area": "Porch pan and drain channel",
+          "shape": "formed mesh",
+          "dimensionsM": [
+            0.13969999999999994,
+            0.2032,
+            2.4383999999999997
+          ],
+          "netVolumeM3": 0.060566588543999995,
+          "form": "Shared pan/stair formwork; component boundaries partition one pour",
+          "volumeBasis": "Actual closed occupied mesh; slope, drain and outlet voids retained"
+        },
+        {
+          "id": "MUD-PAN-L-FRONT",
+          "name": "Washdown pan side curb bearing",
+          "area": "Porch pan and drain channel",
+          "shape": "formed mesh",
+          "dimensionsM": [
+            0.13969999999999994,
+            0.1524,
+            0.13969999999999994
+          ],
+          "netVolumeM3": 0.002974252116000002,
+          "form": "Shared pan/stair formwork; component boundaries partition one pour",
+          "volumeBasis": "Actual closed occupied mesh; slope, drain and outlet voids retained"
+        },
+        {
+          "id": "MUD-PAN-R-BACK",
+          "name": "Washdown pan side curb bearing",
+          "area": "Porch pan and drain channel",
+          "shape": "formed mesh",
+          "dimensionsM": [
+            0.13969999999999994,
+            0.2032,
+            2.4383999999999997
+          ],
+          "netVolumeM3": 0.06056658854399981,
+          "form": "Shared pan/stair formwork; component boundaries partition one pour",
+          "volumeBasis": "Actual closed occupied mesh; slope, drain and outlet voids retained"
+        },
+        {
+          "id": "MUD-PAN-R-FRONT",
+          "name": "Washdown pan side curb bearing",
+          "area": "Porch pan and drain channel",
+          "shape": "formed mesh",
+          "dimensionsM": [
+            0.13969999999999994,
+            0.1524,
+            0.13969999999999994
+          ],
+          "netVolumeM3": 0.002974252115999987,
+          "form": "Shared pan/stair formwork; component boundaries partition one pour",
+          "volumeBasis": "Actual closed occupied mesh; slope, drain and outlet voids retained"
+        },
+        {
+          "id": "MUD-PAN-FRONT",
+          "name": "Mudroom exterior threshold bearing",
+          "area": "Porch pan and drain channel",
+          "shape": "formed mesh",
+          "dimensionsM": [
+            2.4383999999999997,
+            0.1524,
+            0.13969999999999994
+          ],
+          "netVolumeM3": 0.05191421875199983,
+          "form": "Shared pan/stair formwork; component boundaries partition one pour",
+          "volumeBasis": "Actual closed occupied mesh; slope, drain and outlet voids retained"
+        },
+        {
+          "id": "MUD-CHANNEL-L",
+          "name": "Channel bottom sloping to outlet",
+          "area": "Porch pan and drain channel",
+          "shape": "formed mesh",
+          "dimensionsM": [
+            1.1810999999999998,
+            0.0751,
+            0.10159999999999991
+          ],
+          "netVolumeM3": 0.00827379595237502,
+          "form": "Shared pan/stair formwork; component boundaries partition one pour",
+          "volumeBasis": "Actual closed occupied mesh; slope, drain and outlet voids retained"
+        },
+        {
+          "id": "MUD-CHANNEL-R",
+          "name": "Channel bottom sloping to outlet",
+          "area": "Porch pan and drain channel",
+          "shape": "formed mesh",
+          "dimensionsM": [
+            1.1810999999999998,
+            0.0751,
+            0.10159999999999991
+          ],
+          "netVolumeM3": 0.008273795952375018,
+          "form": "Shared pan/stair formwork; component boundaries partition one pour",
+          "volumeBasis": "Actual closed occupied mesh; slope, drain and outlet voids retained"
+        },
+        {
+          "id": "MUD-CHANNEL-BACK-L",
+          "name": "Channel outlet surround",
+          "area": "Porch pan and drain channel",
+          "shape": "formed mesh",
+          "dimensionsM": [
+            0.038099999999999995,
+            0.06279687500000003,
+            0.012700000000000156
+          ],
+          "netVolumeM3": 0.000030289505953126178,
+          "form": "Shared pan/stair formwork; component boundaries partition one pour",
+          "volumeBasis": "Actual closed occupied mesh; slope, drain and outlet voids retained"
+        },
+        {
+          "id": "MUD-CHANNEL-BACK-R",
+          "name": "Channel outlet surround",
+          "area": "Porch pan and drain channel",
+          "shape": "formed mesh",
+          "dimensionsM": [
+            0.038099999999999995,
+            0.06279687500000003,
+            0.012700000000000156
+          ],
+          "netVolumeM3": 0.000030289505953125063,
+          "form": "Shared pan/stair formwork; component boundaries partition one pour",
+          "volumeBasis": "Actual closed occupied mesh; slope, drain and outlet voids retained"
+        },
+        {
+          "id": "MUD-CHANNEL-FRONT-L",
+          "name": "Channel outlet surround",
+          "area": "Porch pan and drain channel",
+          "shape": "formed mesh",
+          "dimensionsM": [
+            0.038099999999999995,
+            0.06279687500000003,
+            0.012699999999999712
+          ],
+          "netVolumeM3": 0.000030289505953123813,
+          "form": "Shared pan/stair formwork; component boundaries partition one pour",
+          "volumeBasis": "Actual closed occupied mesh; slope, drain and outlet voids retained"
+        },
+        {
+          "id": "MUD-CHANNEL-FRONT-R",
+          "name": "Channel outlet surround",
+          "area": "Porch pan and drain channel",
+          "shape": "formed mesh",
+          "dimensionsM": [
+            0.038099999999999995,
+            0.06279687500000003,
+            0.012699999999999712
+          ],
+          "netVolumeM3": 0.00003028950595312577,
+          "form": "Shared pan/stair formwork; component boundaries partition one pour",
+          "volumeBasis": "Actual closed occupied mesh; slope, drain and outlet voids retained"
+        },
+        {
+          "id": "MUD-GRATE-SEAT-BACK-L",
+          "name": "Drain grate bearing ledge",
+          "area": "Porch pan and drain channel",
+          "shape": "formed mesh",
+          "dimensionsM": [
+            1.2191999999999998,
+            0.06671666666666665,
+            0.012700000000000156
+          ],
+          "netVolumeM3": 0.0009326594250000338,
+          "form": "Shared pan/stair formwork; component boundaries partition one pour",
+          "volumeBasis": "Actual closed occupied mesh; slope, drain and outlet voids retained"
+        },
+        {
+          "id": "MUD-GRATE-SEAT-BACK-R",
+          "name": "Drain grate bearing ledge",
+          "area": "Porch pan and drain channel",
+          "shape": "formed mesh",
+          "dimensionsM": [
+            1.2191999999999998,
+            0.06671666666666665,
+            0.012700000000000156
+          ],
+          "netVolumeM3": 0.0009326594250000042,
+          "form": "Shared pan/stair formwork; component boundaries partition one pour",
+          "volumeBasis": "Actual closed occupied mesh; slope, drain and outlet voids retained"
+        },
+        {
+          "id": "MUD-GRATE-SEAT-FRONT-L",
+          "name": "Drain grate bearing ledge",
+          "area": "Porch pan and drain channel",
+          "shape": "formed mesh",
+          "dimensionsM": [
+            1.2191999999999998,
+            0.06486458333333331,
+            0.012700000000000156
+          ],
+          "netVolumeM3": 0.000903982063000005,
+          "form": "Shared pan/stair formwork; component boundaries partition one pour",
+          "volumeBasis": "Actual closed occupied mesh; slope, drain and outlet voids retained"
+        },
+        {
+          "id": "MUD-GRATE-SEAT-FRONT-R",
+          "name": "Drain grate bearing ledge",
+          "area": "Porch pan and drain channel",
+          "shape": "formed mesh",
+          "dimensionsM": [
+            1.2191999999999998,
+            0.06486458333333331,
+            0.012700000000000156
+          ],
+          "netVolumeM3": 0.0009039820630000331,
+          "form": "Shared pan/stair formwork; component boundaries partition one pour",
+          "volumeBasis": "Actual closed occupied mesh; slope, drain and outlet voids retained"
+        },
+        {
+          "id": "MUD-PAN-BACK-L",
+          "name": "Washdown pan rear upstand",
+          "area": "Porch pan and drain channel",
+          "shape": "formed mesh",
+          "dimensionsM": [
+            0.7441999999999999,
+            0.35559999999999997,
+            0.05079999999999999
+          ],
+          "netVolumeM3": 0.013443586016000025,
+          "form": "Shared pan/stair formwork; component boundaries partition one pour",
+          "volumeBasis": "Actual closed occupied mesh; slope, drain and outlet voids retained"
+        },
+        {
+          "id": "MUD-PAN-BACK-R",
+          "name": "Washdown pan rear upstand",
+          "area": "Porch pan and drain channel",
+          "shape": "formed mesh",
+          "dimensionsM": [
+            0.7441999999999999,
+            0.35559999999999997,
+            0.05079999999999999
+          ],
+          "netVolumeM3": 0.013443586016000028,
+          "form": "Shared pan/stair formwork; component boundaries partition one pour",
+          "volumeBasis": "Actual closed occupied mesh; slope, drain and outlet voids retained"
+        },
+        {
+          "id": "MUD-LANDING",
+          "name": "Exterior entry landing",
+          "area": "Exterior stairs and landings",
+          "shape": "formed mesh",
+          "dimensionsM": [
+            1.1176,
+            0.8751812,
+            0.9144000000000001
+          ],
+          "netVolumeM3": 0.8943769343393286,
+          "form": "Shared pan/stair formwork; component boundaries partition one pour",
+          "volumeBasis": "Actual closed occupied mesh; slope, drain and outlet voids retained"
+        },
+        {
+          "id": "MUD-STEP-0",
+          "name": "Exterior step 1",
+          "area": "Exterior stairs and landings",
+          "shape": "formed mesh",
+          "dimensionsM": [
+            1.1176,
+            0.7293176666666666,
+            0.3048000000000002
+          ],
+          "netVolumeM3": 0.24843803731648062,
+          "form": "Shared pan/stair formwork; component boundaries partition one pour",
+          "volumeBasis": "Actual closed occupied mesh; slope, drain and outlet voids retained"
+        },
+        {
+          "id": "MUD-STEP-1",
+          "name": "Exterior step 2",
+          "area": "Exterior stairs and landings",
+          "shape": "formed mesh",
+          "dimensionsM": [
+            1.1176,
+            0.5834541333333333,
+            0.3048000000000002
+          ],
+          "netVolumeM3": 0.19875042985318406,
+          "form": "Shared pan/stair formwork; component boundaries partition one pour",
+          "volumeBasis": "Actual closed occupied mesh; slope, drain and outlet voids retained"
+        },
+        {
+          "id": "MUD-STEP-2",
+          "name": "Exterior step 3",
+          "area": "Exterior stairs and landings",
+          "shape": "formed mesh",
+          "dimensionsM": [
+            1.1176,
+            0.43759060000000005,
+            0.3047999999999993
+          ],
+          "netVolumeM3": 0.14906282238988774,
+          "form": "Shared pan/stair formwork; component boundaries partition one pour",
+          "volumeBasis": "Actual closed occupied mesh; slope, drain and outlet voids retained"
+        },
+        {
+          "id": "MUD-STEP-3",
+          "name": "Exterior step 4",
+          "area": "Exterior stairs and landings",
+          "shape": "formed mesh",
+          "dimensionsM": [
+            1.1176,
+            0.2917270666666667,
+            0.3048000000000002
+          ],
+          "netVolumeM3": 0.09937521492659218,
+          "form": "Shared pan/stair formwork; component boundaries partition one pour",
+          "volumeBasis": "Actual closed occupied mesh; slope, drain and outlet voids retained"
+        },
+        {
+          "id": "MUD-STEP-4",
+          "name": "Exterior step 5",
+          "area": "Exterior stairs and landings",
+          "shape": "formed mesh",
+          "dimensionsM": [
+            1.1176,
+            0.14586353333333335,
+            0.3048000000000002
+          ],
+          "netVolumeM3": 0.049687607463296035,
+          "form": "Shared pan/stair formwork; component boundaries partition one pour",
+          "volumeBasis": "Actual closed occupied mesh; slope, drain and outlet voids retained"
+        },
+        {
+          "id": "MUD-GROUND-LANDING",
+          "name": "Lower exterior landing",
+          "area": "Exterior stairs and landings",
+          "shape": "formed mesh",
+          "dimensionsM": [
+            1.1176,
+            0.050000000000000044,
+            0.9143999999999997
+          ],
+          "netVolumeM3": 0.05109667200000005,
+          "form": "Shared pan/stair formwork; component boundaries partition one pour",
+          "volumeBasis": "Actual closed occupied mesh; slope, drain and outlet voids retained"
+        }
+      ],
+      "allowance": 0.1,
+      "columnVolumeM3": 6.035608860917185,
+      "panVolumeM3": 1.2453693892965632,
+      "stairVolumeM3": 1.6907877182887694,
+      "netVolumeM3": 8.971765968502519,
+      "orderVolumeM3": 9.868942565352771,
+      "mainVolumeM3": 5.377137610120385,
+      "porchVolumeM3": 0.6584712507968006,
+      "tubeCount": 17,
+      "tubeStockLengthM": 3.6575999999999995,
+      "totalTubeOffcutM": 20.72639999999999,
+      "squareColumnFormSideAreaM2": 10.369625996800004,
+      "basis": "All modeled column, porch-pan, channel, stair and landing concrete. Above/below-grade display zones count once as continuous columns. Round columns use πd²L/4; square columns use width × depth × length. Pan/stair quantities integrate the actual sloped occupied meshes and exclude drain/outlet voids. Adjacent mesh pieces partition the pour; they are not separate forms.",
+      "exclusions": "Enlarged footings or bell bases, grade beams, over-excavation, reinforcement and concrete mix details remain unspecified and are excluded. Pan, stair and support reinforcement/capacity require design.",
+      "designStatus": "Geometry takeoff, not foundation sizing. Verify soils, frost depth, bearing, reinforcement, concrete strength, anchors and bracing before ordering."
+    },
+    "step-lap-proposed-model.json": {
+      "columns": [
+        {
+          "id": "PIER-0",
+          "area": "Main building",
+          "shape": "round",
+          "diameterM": 0.4064,
+          "lengthM": 2.4384,
+          "aboveGradeM": 0.6096,
+          "belowGradeM": 1.8288000000000002,
+          "centerM": [
+            4.4704,
+            -1.0783812,
+            0
+          ],
+          "topY_M": -0.46878119999999995,
+          "bottomY_M": -2.9071812,
+          "netVolumeM3": 0.31630221236002265,
+          "form": "Sonotube round concrete form",
+          "stockLengthM": 3.6575999999999995,
+          "offcutM": 1.2191999999999994,
+          "diameterBasis": "Nominal modeled diameter; confirm actual inside diameter"
+        },
+        {
+          "id": "PIER-1",
+          "area": "Main building",
+          "shape": "round",
+          "diameterM": 0.4064,
+          "lengthM": 2.4384,
+          "aboveGradeM": 0.6096,
+          "belowGradeM": 1.8288000000000002,
+          "centerM": [
+            3.1610501546163423,
+            -1.0783812,
+            -3.1610501546163414
+          ],
+          "topY_M": -0.46878119999999995,
+          "bottomY_M": -2.9071812,
+          "netVolumeM3": 0.31630221236002265,
+          "form": "Sonotube round concrete form",
+          "stockLengthM": 3.6575999999999995,
+          "offcutM": 1.2191999999999994,
+          "diameterBasis": "Nominal modeled diameter; confirm actual inside diameter"
+        },
+        {
+          "id": "PIER-2",
+          "area": "Main building",
+          "shape": "round",
+          "diameterM": 0.4064,
+          "lengthM": 2.4384,
+          "aboveGradeM": 0.6096,
+          "belowGradeM": 1.8288000000000002,
+          "centerM": [
+            2.737330525454164e-16,
+            -1.0783812,
+            -4.4704
+          ],
+          "topY_M": -0.46878119999999995,
+          "bottomY_M": -2.9071812,
+          "netVolumeM3": 0.31630221236002265,
+          "form": "Sonotube round concrete form",
+          "stockLengthM": 3.6575999999999995,
+          "offcutM": 1.2191999999999994,
+          "diameterBasis": "Nominal modeled diameter; confirm actual inside diameter"
+        },
+        {
+          "id": "PIER-3",
+          "area": "Main building",
+          "shape": "round",
+          "diameterM": 0.4064,
+          "lengthM": 2.4384,
+          "aboveGradeM": 0.6096,
+          "belowGradeM": 1.8288000000000002,
+          "centerM": [
+            -3.1610501546163414,
+            -1.0783812,
+            -3.1610501546163423
+          ],
+          "topY_M": -0.46878119999999995,
+          "bottomY_M": -2.9071812,
+          "netVolumeM3": 0.31630221236002265,
+          "form": "Sonotube round concrete form",
+          "stockLengthM": 3.6575999999999995,
+          "offcutM": 1.2191999999999994,
+          "diameterBasis": "Nominal modeled diameter; confirm actual inside diameter"
+        },
+        {
+          "id": "PIER-4",
+          "area": "Main building",
+          "shape": "round",
+          "diameterM": 0.4064,
+          "lengthM": 2.4384,
+          "aboveGradeM": 0.6096,
+          "belowGradeM": 1.8288000000000002,
+          "centerM": [
+            -4.4704,
+            -1.0783812,
+            -5.474661050908328e-16
+          ],
+          "topY_M": -0.46878119999999995,
+          "bottomY_M": -2.9071812,
+          "netVolumeM3": 0.31630221236002265,
+          "form": "Sonotube round concrete form",
+          "stockLengthM": 3.6575999999999995,
+          "offcutM": 1.2191999999999994,
+          "diameterBasis": "Nominal modeled diameter; confirm actual inside diameter"
+        },
+        {
+          "id": "PIER-5",
+          "area": "Main building",
+          "shape": "round",
+          "diameterM": 0.4064,
+          "lengthM": 2.4384,
+          "aboveGradeM": 0.6096,
+          "belowGradeM": 1.8288000000000002,
+          "centerM": [
+            -3.1610501546163428,
+            -1.0783812,
+            3.1610501546163414
+          ],
+          "topY_M": -0.46878119999999995,
+          "bottomY_M": -2.9071812,
+          "netVolumeM3": 0.31630221236002265,
+          "form": "Sonotube round concrete form",
+          "stockLengthM": 3.6575999999999995,
+          "offcutM": 1.2191999999999994,
+          "diameterBasis": "Nominal modeled diameter; confirm actual inside diameter"
+        },
+        {
+          "id": "PIER-6",
+          "area": "Main building",
+          "shape": "round",
+          "diameterM": 0.4064,
+          "lengthM": 2.4384,
+          "aboveGradeM": 0.6096,
+          "belowGradeM": 1.8288000000000002,
+          "centerM": [
+            -8.211991576362491e-16,
+            -1.0783812,
+            4.4704
+          ],
+          "topY_M": -0.46878119999999995,
+          "bottomY_M": -2.9071812,
+          "netVolumeM3": 0.31630221236002265,
+          "form": "Sonotube round concrete form",
+          "stockLengthM": 3.6575999999999995,
+          "offcutM": 1.2191999999999994,
+          "diameterBasis": "Nominal modeled diameter; confirm actual inside diameter"
+        },
+        {
+          "id": "PIER-7",
+          "area": "Main building",
+          "shape": "round",
+          "diameterM": 0.4064,
+          "lengthM": 2.4384,
+          "aboveGradeM": 0.6096,
+          "belowGradeM": 1.8288000000000002,
+          "centerM": [
+            3.161050154616341,
+            -1.0783812,
+            3.1610501546163428
+          ],
+          "topY_M": -0.46878119999999995,
+          "bottomY_M": -2.9071812,
+          "netVolumeM3": 0.31630221236002265,
+          "form": "Sonotube round concrete form",
+          "stockLengthM": 3.6575999999999995,
+          "offcutM": 1.2191999999999994,
+          "diameterBasis": "Nominal modeled diameter; confirm actual inside diameter"
+        },
+        {
+          "id": "PIER-C",
+          "area": "Main building",
+          "shape": "round",
+          "diameterM": 0.4064,
+          "lengthM": 2.4384,
+          "aboveGradeM": 0.6096,
+          "belowGradeM": 1.8288000000000002,
+          "centerM": [
+            -2.220446049250313e-16,
+            -1.0783812,
+            1.6653345369377348e-16
+          ],
+          "topY_M": -0.46878119999999995,
+          "bottomY_M": -2.9071812,
+          "netVolumeM3": 0.31630221236002265,
+          "form": "Sonotube round concrete form",
+          "stockLengthM": 3.6575999999999995,
+          "offcutM": 1.2191999999999994,
+          "diameterBasis": "Nominal modeled diameter; confirm actual inside diameter"
+        },
+        {
+          "id": "PIER-MID-0",
+          "area": "Main building",
+          "shape": "round",
+          "diameterM": 0.4064,
+          "lengthM": 2.4384,
+          "aboveGradeM": 0.6096,
+          "belowGradeM": 1.8288000000000002,
+          "centerM": [
+            2.2352,
+            -1.0783812,
+            8.326672684688674e-17
+          ],
+          "topY_M": -0.46878119999999995,
+          "bottomY_M": -2.9071812,
+          "netVolumeM3": 0.31630221236002265,
+          "form": "Sonotube round concrete form",
+          "stockLengthM": 3.6575999999999995,
+          "offcutM": 1.2191999999999994,
+          "diameterBasis": "Nominal modeled diameter; confirm actual inside diameter"
+        },
+        {
+          "id": "PIER-MID-1",
+          "area": "Main building",
+          "shape": "round",
+          "diameterM": 0.4064,
+          "lengthM": 2.4384,
+          "aboveGradeM": 0.6096,
+          "belowGradeM": 1.8288000000000002,
+          "centerM": [
+            1.5805250773081712,
+            -1.0783812,
+            -1.5805250773081707
+          ],
+          "topY_M": -0.46878119999999995,
+          "bottomY_M": -2.9071812,
+          "netVolumeM3": 0.31630221236002265,
+          "form": "Sonotube round concrete form",
+          "stockLengthM": 3.6575999999999995,
+          "offcutM": 1.2191999999999994,
+          "diameterBasis": "Nominal modeled diameter; confirm actual inside diameter"
+        },
+        {
+          "id": "PIER-MID-2",
+          "area": "Main building",
+          "shape": "round",
+          "diameterM": 0.4064,
+          "lengthM": 2.4384,
+          "aboveGradeM": 0.6096,
+          "belowGradeM": 1.8288000000000002,
+          "centerM": [
+            2.5844223810192548e-17,
+            -1.0783812,
+            -2.2352
+          ],
+          "topY_M": -0.46878119999999995,
+          "bottomY_M": -2.9071812,
+          "netVolumeM3": 0.31630221236002265,
+          "form": "Sonotube round concrete form",
+          "stockLengthM": 3.6575999999999995,
+          "offcutM": 1.2191999999999994,
+          "diameterBasis": "Nominal modeled diameter; confirm actual inside diameter"
+        },
+        {
+          "id": "PIER-MID-3",
+          "area": "Main building",
+          "shape": "round",
+          "diameterM": 0.4064,
+          "lengthM": 2.4384,
+          "aboveGradeM": 0.6096,
+          "belowGradeM": 1.8288000000000002,
+          "centerM": [
+            -1.5805250773081707,
+            -1.0783812,
+            -1.5805250773081712
+          ],
+          "topY_M": -0.46878119999999995,
+          "bottomY_M": -2.9071812,
+          "netVolumeM3": 0.31630221236002265,
+          "form": "Sonotube round concrete form",
+          "stockLengthM": 3.6575999999999995,
+          "offcutM": 1.2191999999999994,
+          "diameterBasis": "Nominal modeled diameter; confirm actual inside diameter"
+        },
+        {
+          "id": "PIER-MID-4",
+          "area": "Main building",
+          "shape": "round",
+          "diameterM": 0.4064,
+          "lengthM": 2.4384,
+          "aboveGradeM": 0.6096,
+          "belowGradeM": 1.8288000000000002,
+          "centerM": [
+            -2.2352,
+            -1.0783812,
+            -1.9046632569852966e-16
+          ],
+          "topY_M": -0.46878119999999995,
+          "bottomY_M": -2.9071812,
+          "netVolumeM3": 0.31630221236002265,
+          "form": "Sonotube round concrete form",
+          "stockLengthM": 3.6575999999999995,
+          "offcutM": 1.2191999999999994,
+          "diameterBasis": "Nominal modeled diameter; confirm actual inside diameter"
+        },
+        {
+          "id": "PIER-MID-5",
+          "area": "Main building",
+          "shape": "round",
+          "diameterM": 0.4064,
+          "lengthM": 2.4384,
+          "aboveGradeM": 0.6096,
+          "belowGradeM": 1.8288000000000002,
+          "centerM": [
+            -1.5805250773081716,
+            -1.0783812,
+            1.5805250773081707
+          ],
+          "topY_M": -0.46878119999999995,
+          "bottomY_M": -2.9071812,
+          "netVolumeM3": 0.31630221236002265,
+          "form": "Sonotube round concrete form",
+          "stockLengthM": 3.6575999999999995,
+          "offcutM": 1.2191999999999994,
+          "diameterBasis": "Nominal modeled diameter; confirm actual inside diameter"
+        },
+        {
+          "id": "PIER-MID-6",
+          "area": "Main building",
+          "shape": "round",
+          "diameterM": 0.4064,
+          "lengthM": 2.4384,
+          "aboveGradeM": 0.6096,
+          "belowGradeM": 1.8288000000000002,
+          "centerM": [
+            -5.216218812806402e-16,
+            -1.0783812,
+            2.2352
+          ],
+          "topY_M": -0.46878119999999995,
+          "bottomY_M": -2.9071812,
+          "netVolumeM3": 0.31630221236002265,
+          "form": "Sonotube round concrete form",
+          "stockLengthM": 3.6575999999999995,
+          "offcutM": 1.2191999999999994,
+          "diameterBasis": "Nominal modeled diameter; confirm actual inside diameter"
+        },
+        {
+          "id": "PIER-MID-7",
+          "area": "Main building",
+          "shape": "round",
+          "diameterM": 0.4064,
+          "lengthM": 2.4384,
+          "aboveGradeM": 0.6096,
+          "belowGradeM": 1.8288000000000002,
+          "centerM": [
+            1.5805250773081703,
+            -1.0783812,
+            1.5805250773081714
+          ],
+          "topY_M": -0.46878119999999995,
+          "bottomY_M": -2.9071812,
+          "netVolumeM3": 0.31630221236002265,
+          "form": "Sonotube round concrete form",
+          "stockLengthM": 3.6575999999999995,
+          "offcutM": 1.2191999999999994,
+          "diameterBasis": "Nominal modeled diameter; confirm actual inside diameter"
+        },
+        {
+          "id": "MUD-SUPPORT-L-BACK",
+          "area": "Porch",
+          "shape": "rectangular",
+          "widthM": 0.254,
+          "depthM": 0.254,
+          "lengthM": 2.5515811999999998,
+          "aboveGradeM": 0.7227812,
+          "belowGradeM": 1.8287999999999998,
+          "centerM": [
+            -0.6076074185930228,
+            -1.0783812,
+            -4.496029648335175
+          ],
+          "topY_M": -0.35559999999999997,
+          "bottomY_M": -2.9071811999999997,
+          "netVolumeM3": 0.1646178126992,
+          "form": "Square forms; not a round Sonotube"
+        },
+        {
+          "id": "MUD-SUPPORT-L-FRONT",
+          "area": "Porch",
+          "shape": "rectangular",
+          "widthM": 0.254,
+          "depthM": 0.25400000000000045,
+          "lengthM": 2.5515811999999998,
+          "aboveGradeM": 0.7227812,
+          "belowGradeM": 1.8287999999999998,
+          "centerM": [
+            -1.402976664420625,
+            -1.0783812,
+            -6.416220868706633
+          ],
+          "topY_M": -0.35559999999999997,
+          "bottomY_M": -2.9071811999999997,
+          "netVolumeM3": 0.16461781269920028,
+          "form": "Square forms; not a round Sonotube"
+        },
+        {
+          "id": "MUD-SUPPORT-R-BACK",
+          "area": "Porch",
+          "shape": "rectangular",
+          "widthM": 0.254,
+          "depthM": 0.254,
+          "lengthM": 2.5515811999999998,
+          "aboveGradeM": 0.7227812,
+          "belowGradeM": 1.8287999999999998,
+          "centerM": [
+            -2.7495297267671903,
+            -1.0783812,
+            -3.608816378739951
+          ],
+          "topY_M": -0.35559999999999997,
+          "bottomY_M": -2.9071811999999997,
+          "netVolumeM3": 0.1646178126992,
+          "form": "Square forms; not a round Sonotube"
+        },
+        {
+          "id": "MUD-SUPPORT-R-FRONT",
+          "area": "Porch",
+          "shape": "rectangular",
+          "widthM": 0.254,
+          "depthM": 0.25400000000000045,
+          "lengthM": 2.5515811999999998,
+          "aboveGradeM": 0.7227812,
+          "belowGradeM": 1.8287999999999998,
+          "centerM": [
+            -3.5448989725947926,
+            -1.0783812,
+            -5.529007599111409
+          ],
+          "topY_M": -0.35559999999999997,
+          "bottomY_M": -2.9071811999999997,
+          "netVolumeM3": 0.16461781269920028,
+          "form": "Square forms; not a round Sonotube"
+        }
+      ],
+      "pours": [
+        {
+          "id": "MUD-FLOOR",
+          "name": "Sloped sealed washdown floor",
+          "area": "Porch pan and drain channel",
+          "shape": "formed mesh",
+          "dimensionsM": [
+            2.4383999999999997,
+            0.2032,
+            2.3367999999999998
+          ],
+          "netVolumeM3": 1.019144284288,
+          "form": "Shared pan/stair formwork; component boundaries partition one pour",
+          "volumeBasis": "Actual closed occupied mesh; slope, drain and outlet voids retained"
+        },
+        {
+          "id": "MUD-PAN-L-BACK",
+          "name": "Washdown pan side curb bearing",
+          "area": "Porch pan and drain channel",
+          "shape": "formed mesh",
+          "dimensionsM": [
+            0.13969999999999994,
+            0.2032,
+            2.4383999999999997
+          ],
+          "netVolumeM3": 0.060566588543999995,
+          "form": "Shared pan/stair formwork; component boundaries partition one pour",
+          "volumeBasis": "Actual closed occupied mesh; slope, drain and outlet voids retained"
+        },
+        {
+          "id": "MUD-PAN-L-FRONT",
+          "name": "Washdown pan side curb bearing",
+          "area": "Porch pan and drain channel",
+          "shape": "formed mesh",
+          "dimensionsM": [
+            0.13969999999999994,
+            0.1524,
+            0.13969999999999994
+          ],
+          "netVolumeM3": 0.002974252116000002,
+          "form": "Shared pan/stair formwork; component boundaries partition one pour",
+          "volumeBasis": "Actual closed occupied mesh; slope, drain and outlet voids retained"
+        },
+        {
+          "id": "MUD-PAN-R-BACK",
+          "name": "Washdown pan side curb bearing",
+          "area": "Porch pan and drain channel",
+          "shape": "formed mesh",
+          "dimensionsM": [
+            0.13969999999999994,
+            0.2032,
+            2.4383999999999997
+          ],
+          "netVolumeM3": 0.06056658854399981,
+          "form": "Shared pan/stair formwork; component boundaries partition one pour",
+          "volumeBasis": "Actual closed occupied mesh; slope, drain and outlet voids retained"
+        },
+        {
+          "id": "MUD-PAN-R-FRONT",
+          "name": "Washdown pan side curb bearing",
+          "area": "Porch pan and drain channel",
+          "shape": "formed mesh",
+          "dimensionsM": [
+            0.13969999999999994,
+            0.1524,
+            0.13969999999999994
+          ],
+          "netVolumeM3": 0.002974252115999987,
+          "form": "Shared pan/stair formwork; component boundaries partition one pour",
+          "volumeBasis": "Actual closed occupied mesh; slope, drain and outlet voids retained"
+        },
+        {
+          "id": "MUD-PAN-FRONT",
+          "name": "Mudroom exterior threshold bearing",
+          "area": "Porch pan and drain channel",
+          "shape": "formed mesh",
+          "dimensionsM": [
+            2.4383999999999997,
+            0.1524,
+            0.13969999999999994
+          ],
+          "netVolumeM3": 0.05191421875199983,
+          "form": "Shared pan/stair formwork; component boundaries partition one pour",
+          "volumeBasis": "Actual closed occupied mesh; slope, drain and outlet voids retained"
+        },
+        {
+          "id": "MUD-CHANNEL-L",
+          "name": "Channel bottom sloping to outlet",
+          "area": "Porch pan and drain channel",
+          "shape": "formed mesh",
+          "dimensionsM": [
+            1.1810999999999998,
+            0.0751,
+            0.10159999999999991
+          ],
+          "netVolumeM3": 0.00827379595237502,
+          "form": "Shared pan/stair formwork; component boundaries partition one pour",
+          "volumeBasis": "Actual closed occupied mesh; slope, drain and outlet voids retained"
+        },
+        {
+          "id": "MUD-CHANNEL-R",
+          "name": "Channel bottom sloping to outlet",
+          "area": "Porch pan and drain channel",
+          "shape": "formed mesh",
+          "dimensionsM": [
+            1.1810999999999998,
+            0.0751,
+            0.10159999999999991
+          ],
+          "netVolumeM3": 0.008273795952375018,
+          "form": "Shared pan/stair formwork; component boundaries partition one pour",
+          "volumeBasis": "Actual closed occupied mesh; slope, drain and outlet voids retained"
+        },
+        {
+          "id": "MUD-CHANNEL-BACK-L",
+          "name": "Channel outlet surround",
+          "area": "Porch pan and drain channel",
+          "shape": "formed mesh",
+          "dimensionsM": [
+            0.038099999999999995,
+            0.06279687500000003,
+            0.012700000000000156
+          ],
+          "netVolumeM3": 0.000030289505953126178,
+          "form": "Shared pan/stair formwork; component boundaries partition one pour",
+          "volumeBasis": "Actual closed occupied mesh; slope, drain and outlet voids retained"
+        },
+        {
+          "id": "MUD-CHANNEL-BACK-R",
+          "name": "Channel outlet surround",
+          "area": "Porch pan and drain channel",
+          "shape": "formed mesh",
+          "dimensionsM": [
+            0.038099999999999995,
+            0.06279687500000003,
+            0.012700000000000156
+          ],
+          "netVolumeM3": 0.000030289505953125063,
+          "form": "Shared pan/stair formwork; component boundaries partition one pour",
+          "volumeBasis": "Actual closed occupied mesh; slope, drain and outlet voids retained"
+        },
+        {
+          "id": "MUD-CHANNEL-FRONT-L",
+          "name": "Channel outlet surround",
+          "area": "Porch pan and drain channel",
+          "shape": "formed mesh",
+          "dimensionsM": [
+            0.038099999999999995,
+            0.06279687500000003,
+            0.012699999999999712
+          ],
+          "netVolumeM3": 0.000030289505953123813,
+          "form": "Shared pan/stair formwork; component boundaries partition one pour",
+          "volumeBasis": "Actual closed occupied mesh; slope, drain and outlet voids retained"
+        },
+        {
+          "id": "MUD-CHANNEL-FRONT-R",
+          "name": "Channel outlet surround",
+          "area": "Porch pan and drain channel",
+          "shape": "formed mesh",
+          "dimensionsM": [
+            0.038099999999999995,
+            0.06279687500000003,
+            0.012699999999999712
+          ],
+          "netVolumeM3": 0.00003028950595312577,
+          "form": "Shared pan/stair formwork; component boundaries partition one pour",
+          "volumeBasis": "Actual closed occupied mesh; slope, drain and outlet voids retained"
+        },
+        {
+          "id": "MUD-GRATE-SEAT-BACK-L",
+          "name": "Drain grate bearing ledge",
+          "area": "Porch pan and drain channel",
+          "shape": "formed mesh",
+          "dimensionsM": [
+            1.2191999999999998,
+            0.06671666666666665,
+            0.012700000000000156
+          ],
+          "netVolumeM3": 0.0009326594250000338,
+          "form": "Shared pan/stair formwork; component boundaries partition one pour",
+          "volumeBasis": "Actual closed occupied mesh; slope, drain and outlet voids retained"
+        },
+        {
+          "id": "MUD-GRATE-SEAT-BACK-R",
+          "name": "Drain grate bearing ledge",
+          "area": "Porch pan and drain channel",
+          "shape": "formed mesh",
+          "dimensionsM": [
+            1.2191999999999998,
+            0.06671666666666665,
+            0.012700000000000156
+          ],
+          "netVolumeM3": 0.0009326594250000042,
+          "form": "Shared pan/stair formwork; component boundaries partition one pour",
+          "volumeBasis": "Actual closed occupied mesh; slope, drain and outlet voids retained"
+        },
+        {
+          "id": "MUD-GRATE-SEAT-FRONT-L",
+          "name": "Drain grate bearing ledge",
+          "area": "Porch pan and drain channel",
+          "shape": "formed mesh",
+          "dimensionsM": [
+            1.2191999999999998,
+            0.06486458333333331,
+            0.012700000000000156
+          ],
+          "netVolumeM3": 0.000903982063000005,
+          "form": "Shared pan/stair formwork; component boundaries partition one pour",
+          "volumeBasis": "Actual closed occupied mesh; slope, drain and outlet voids retained"
+        },
+        {
+          "id": "MUD-GRATE-SEAT-FRONT-R",
+          "name": "Drain grate bearing ledge",
+          "area": "Porch pan and drain channel",
+          "shape": "formed mesh",
+          "dimensionsM": [
+            1.2191999999999998,
+            0.06486458333333331,
+            0.012700000000000156
+          ],
+          "netVolumeM3": 0.0009039820630000331,
+          "form": "Shared pan/stair formwork; component boundaries partition one pour",
+          "volumeBasis": "Actual closed occupied mesh; slope, drain and outlet voids retained"
+        },
+        {
+          "id": "MUD-PAN-BACK-L",
+          "name": "Washdown pan rear upstand",
+          "area": "Porch pan and drain channel",
+          "shape": "formed mesh",
+          "dimensionsM": [
+            0.7441999999999999,
+            0.35559999999999997,
+            0.05079999999999999
+          ],
+          "netVolumeM3": 0.013443586016000025,
+          "form": "Shared pan/stair formwork; component boundaries partition one pour",
+          "volumeBasis": "Actual closed occupied mesh; slope, drain and outlet voids retained"
+        },
+        {
+          "id": "MUD-PAN-BACK-R",
+          "name": "Washdown pan rear upstand",
+          "area": "Porch pan and drain channel",
+          "shape": "formed mesh",
+          "dimensionsM": [
+            0.7441999999999999,
+            0.35559999999999997,
+            0.05079999999999999
+          ],
+          "netVolumeM3": 0.013443586016000028,
+          "form": "Shared pan/stair formwork; component boundaries partition one pour",
+          "volumeBasis": "Actual closed occupied mesh; slope, drain and outlet voids retained"
+        },
+        {
+          "id": "MUD-LANDING",
+          "name": "Exterior entry landing",
+          "area": "Exterior stairs and landings",
+          "shape": "formed mesh",
+          "dimensionsM": [
+            1.1176,
+            0.8751812,
+            0.9144000000000001
+          ],
+          "netVolumeM3": 0.8943769343393286,
+          "form": "Shared pan/stair formwork; component boundaries partition one pour",
+          "volumeBasis": "Actual closed occupied mesh; slope, drain and outlet voids retained"
+        },
+        {
+          "id": "MUD-STEP-0",
+          "name": "Exterior step 1",
+          "area": "Exterior stairs and landings",
+          "shape": "formed mesh",
+          "dimensionsM": [
+            1.1176,
+            0.7293176666666666,
+            0.3048000000000002
+          ],
+          "netVolumeM3": 0.24843803731648062,
+          "form": "Shared pan/stair formwork; component boundaries partition one pour",
+          "volumeBasis": "Actual closed occupied mesh; slope, drain and outlet voids retained"
+        },
+        {
+          "id": "MUD-STEP-1",
+          "name": "Exterior step 2",
+          "area": "Exterior stairs and landings",
+          "shape": "formed mesh",
+          "dimensionsM": [
+            1.1176,
+            0.5834541333333333,
+            0.3048000000000002
+          ],
+          "netVolumeM3": 0.19875042985318406,
+          "form": "Shared pan/stair formwork; component boundaries partition one pour",
+          "volumeBasis": "Actual closed occupied mesh; slope, drain and outlet voids retained"
+        },
+        {
+          "id": "MUD-STEP-2",
+          "name": "Exterior step 3",
+          "area": "Exterior stairs and landings",
+          "shape": "formed mesh",
+          "dimensionsM": [
+            1.1176,
+            0.43759060000000005,
+            0.3047999999999993
+          ],
+          "netVolumeM3": 0.14906282238988774,
+          "form": "Shared pan/stair formwork; component boundaries partition one pour",
+          "volumeBasis": "Actual closed occupied mesh; slope, drain and outlet voids retained"
+        },
+        {
+          "id": "MUD-STEP-3",
+          "name": "Exterior step 4",
+          "area": "Exterior stairs and landings",
+          "shape": "formed mesh",
+          "dimensionsM": [
+            1.1176,
+            0.2917270666666667,
+            0.3048000000000002
+          ],
+          "netVolumeM3": 0.09937521492659218,
+          "form": "Shared pan/stair formwork; component boundaries partition one pour",
+          "volumeBasis": "Actual closed occupied mesh; slope, drain and outlet voids retained"
+        },
+        {
+          "id": "MUD-STEP-4",
+          "name": "Exterior step 5",
+          "area": "Exterior stairs and landings",
+          "shape": "formed mesh",
+          "dimensionsM": [
+            1.1176,
+            0.14586353333333335,
+            0.3048000000000002
+          ],
+          "netVolumeM3": 0.049687607463296035,
+          "form": "Shared pan/stair formwork; component boundaries partition one pour",
+          "volumeBasis": "Actual closed occupied mesh; slope, drain and outlet voids retained"
+        },
+        {
+          "id": "MUD-GROUND-LANDING",
+          "name": "Lower exterior landing",
+          "area": "Exterior stairs and landings",
+          "shape": "formed mesh",
+          "dimensionsM": [
+            1.1176,
+            0.050000000000000044,
+            0.9143999999999997
+          ],
+          "netVolumeM3": 0.05109667200000005,
+          "form": "Shared pan/stair formwork; component boundaries partition one pour",
+          "volumeBasis": "Actual closed occupied mesh; slope, drain and outlet voids retained"
+        }
+      ],
+      "allowance": 0.1,
+      "columnVolumeM3": 6.035608860917185,
+      "panVolumeM3": 1.2453693892965632,
+      "stairVolumeM3": 1.6907877182887694,
+      "netVolumeM3": 8.971765968502519,
+      "orderVolumeM3": 9.868942565352771,
+      "mainVolumeM3": 5.377137610120385,
+      "porchVolumeM3": 0.6584712507968006,
+      "tubeCount": 17,
+      "tubeStockLengthM": 3.6575999999999995,
+      "totalTubeOffcutM": 20.72639999999999,
+      "squareColumnFormSideAreaM2": 10.369625996800004,
+      "basis": "All modeled column, porch-pan, channel, stair and landing concrete. Above/below-grade display zones count once as continuous columns. Round columns use πd²L/4; square columns use width × depth × length. Pan/stair quantities integrate the actual sloped occupied meshes and exclude drain/outlet voids. Adjacent mesh pieces partition the pour; they are not separate forms.",
+      "exclusions": "Enlarged footings or bell bases, grade beams, over-excavation, reinforcement and concrete mix details remain unspecified and are excluded. Pan, stair and support reinforcement/capacity require design.",
+      "designStatus": "Geometry takeoff, not foundation sizing. Verify soils, frost depth, bearing, reinforcement, concrete strength, anchors and bracing before ordering."
+    },
+    "top-entry-proposed-model.json": {
+      "columns": [
+        {
+          "id": "PIER-0",
+          "area": "Main building",
+          "shape": "round",
+          "diameterM": 0.4064,
+          "lengthM": 2.4384,
+          "aboveGradeM": 0.6096,
+          "belowGradeM": 1.8288000000000002,
+          "centerM": [
+            4.4704,
+            -1.0783812,
+            0
+          ],
+          "topY_M": -0.46878119999999995,
+          "bottomY_M": -2.9071812,
+          "netVolumeM3": 0.31630221236002265,
+          "form": "Sonotube round concrete form",
+          "stockLengthM": 3.6575999999999995,
+          "offcutM": 1.2191999999999994,
+          "diameterBasis": "Nominal modeled diameter; confirm actual inside diameter"
+        },
+        {
+          "id": "PIER-1",
+          "area": "Main building",
+          "shape": "round",
+          "diameterM": 0.4064,
+          "lengthM": 2.4384,
+          "aboveGradeM": 0.6096,
+          "belowGradeM": 1.8288000000000002,
+          "centerM": [
+            3.1610501546163423,
+            -1.0783812,
+            -3.1610501546163414
+          ],
+          "topY_M": -0.46878119999999995,
+          "bottomY_M": -2.9071812,
+          "netVolumeM3": 0.31630221236002265,
+          "form": "Sonotube round concrete form",
+          "stockLengthM": 3.6575999999999995,
+          "offcutM": 1.2191999999999994,
+          "diameterBasis": "Nominal modeled diameter; confirm actual inside diameter"
+        },
+        {
+          "id": "PIER-2",
+          "area": "Main building",
+          "shape": "round",
+          "diameterM": 0.4064,
+          "lengthM": 2.4384,
+          "aboveGradeM": 0.6096,
+          "belowGradeM": 1.8288000000000002,
+          "centerM": [
+            2.737330525454164e-16,
+            -1.0783812,
+            -4.4704
+          ],
+          "topY_M": -0.46878119999999995,
+          "bottomY_M": -2.9071812,
+          "netVolumeM3": 0.31630221236002265,
+          "form": "Sonotube round concrete form",
+          "stockLengthM": 3.6575999999999995,
+          "offcutM": 1.2191999999999994,
+          "diameterBasis": "Nominal modeled diameter; confirm actual inside diameter"
+        },
+        {
+          "id": "PIER-3",
+          "area": "Main building",
+          "shape": "round",
+          "diameterM": 0.4064,
+          "lengthM": 2.4384,
+          "aboveGradeM": 0.6096,
+          "belowGradeM": 1.8288000000000002,
+          "centerM": [
+            -3.1610501546163414,
+            -1.0783812,
+            -3.1610501546163423
+          ],
+          "topY_M": -0.46878119999999995,
+          "bottomY_M": -2.9071812,
+          "netVolumeM3": 0.31630221236002265,
+          "form": "Sonotube round concrete form",
+          "stockLengthM": 3.6575999999999995,
+          "offcutM": 1.2191999999999994,
+          "diameterBasis": "Nominal modeled diameter; confirm actual inside diameter"
+        },
+        {
+          "id": "PIER-4",
+          "area": "Main building",
+          "shape": "round",
+          "diameterM": 0.4064,
+          "lengthM": 2.4384,
+          "aboveGradeM": 0.6096,
+          "belowGradeM": 1.8288000000000002,
+          "centerM": [
+            -4.4704,
+            -1.0783812,
+            -5.474661050908328e-16
+          ],
+          "topY_M": -0.46878119999999995,
+          "bottomY_M": -2.9071812,
+          "netVolumeM3": 0.31630221236002265,
+          "form": "Sonotube round concrete form",
+          "stockLengthM": 3.6575999999999995,
+          "offcutM": 1.2191999999999994,
+          "diameterBasis": "Nominal modeled diameter; confirm actual inside diameter"
+        },
+        {
+          "id": "PIER-5",
+          "area": "Main building",
+          "shape": "round",
+          "diameterM": 0.4064,
+          "lengthM": 2.4384,
+          "aboveGradeM": 0.6096,
+          "belowGradeM": 1.8288000000000002,
+          "centerM": [
+            -3.1610501546163428,
+            -1.0783812,
+            3.1610501546163414
+          ],
+          "topY_M": -0.46878119999999995,
+          "bottomY_M": -2.9071812,
+          "netVolumeM3": 0.31630221236002265,
+          "form": "Sonotube round concrete form",
+          "stockLengthM": 3.6575999999999995,
+          "offcutM": 1.2191999999999994,
+          "diameterBasis": "Nominal modeled diameter; confirm actual inside diameter"
+        },
+        {
+          "id": "PIER-6",
+          "area": "Main building",
+          "shape": "round",
+          "diameterM": 0.4064,
+          "lengthM": 2.4384,
+          "aboveGradeM": 0.6096,
+          "belowGradeM": 1.8288000000000002,
+          "centerM": [
+            -8.211991576362491e-16,
+            -1.0783812,
+            4.4704
+          ],
+          "topY_M": -0.46878119999999995,
+          "bottomY_M": -2.9071812,
+          "netVolumeM3": 0.31630221236002265,
+          "form": "Sonotube round concrete form",
+          "stockLengthM": 3.6575999999999995,
+          "offcutM": 1.2191999999999994,
+          "diameterBasis": "Nominal modeled diameter; confirm actual inside diameter"
+        },
+        {
+          "id": "PIER-7",
+          "area": "Main building",
+          "shape": "round",
+          "diameterM": 0.4064,
+          "lengthM": 2.4384,
+          "aboveGradeM": 0.6096,
+          "belowGradeM": 1.8288000000000002,
+          "centerM": [
+            3.161050154616341,
+            -1.0783812,
+            3.1610501546163428
+          ],
+          "topY_M": -0.46878119999999995,
+          "bottomY_M": -2.9071812,
+          "netVolumeM3": 0.31630221236002265,
+          "form": "Sonotube round concrete form",
+          "stockLengthM": 3.6575999999999995,
+          "offcutM": 1.2191999999999994,
+          "diameterBasis": "Nominal modeled diameter; confirm actual inside diameter"
+        },
+        {
+          "id": "PIER-C",
+          "area": "Main building",
+          "shape": "round",
+          "diameterM": 0.4064,
+          "lengthM": 2.4384,
+          "aboveGradeM": 0.6096,
+          "belowGradeM": 1.8288000000000002,
+          "centerM": [
+            -2.220446049250313e-16,
+            -1.0783812,
+            1.6653345369377348e-16
+          ],
+          "topY_M": -0.46878119999999995,
+          "bottomY_M": -2.9071812,
+          "netVolumeM3": 0.31630221236002265,
+          "form": "Sonotube round concrete form",
+          "stockLengthM": 3.6575999999999995,
+          "offcutM": 1.2191999999999994,
+          "diameterBasis": "Nominal modeled diameter; confirm actual inside diameter"
+        },
+        {
+          "id": "PIER-MID-0",
+          "area": "Main building",
+          "shape": "round",
+          "diameterM": 0.4064,
+          "lengthM": 2.4384,
+          "aboveGradeM": 0.6096,
+          "belowGradeM": 1.8288000000000002,
+          "centerM": [
+            2.2352,
+            -1.0783812,
+            8.326672684688674e-17
+          ],
+          "topY_M": -0.46878119999999995,
+          "bottomY_M": -2.9071812,
+          "netVolumeM3": 0.31630221236002265,
+          "form": "Sonotube round concrete form",
+          "stockLengthM": 3.6575999999999995,
+          "offcutM": 1.2191999999999994,
+          "diameterBasis": "Nominal modeled diameter; confirm actual inside diameter"
+        },
+        {
+          "id": "PIER-MID-1",
+          "area": "Main building",
+          "shape": "round",
+          "diameterM": 0.4064,
+          "lengthM": 2.4384,
+          "aboveGradeM": 0.6096,
+          "belowGradeM": 1.8288000000000002,
+          "centerM": [
+            1.5805250773081712,
+            -1.0783812,
+            -1.5805250773081707
+          ],
+          "topY_M": -0.46878119999999995,
+          "bottomY_M": -2.9071812,
+          "netVolumeM3": 0.31630221236002265,
+          "form": "Sonotube round concrete form",
+          "stockLengthM": 3.6575999999999995,
+          "offcutM": 1.2191999999999994,
+          "diameterBasis": "Nominal modeled diameter; confirm actual inside diameter"
+        },
+        {
+          "id": "PIER-MID-2",
+          "area": "Main building",
+          "shape": "round",
+          "diameterM": 0.4064,
+          "lengthM": 2.4384,
+          "aboveGradeM": 0.6096,
+          "belowGradeM": 1.8288000000000002,
+          "centerM": [
+            2.5844223810192548e-17,
+            -1.0783812,
+            -2.2352
+          ],
+          "topY_M": -0.46878119999999995,
+          "bottomY_M": -2.9071812,
+          "netVolumeM3": 0.31630221236002265,
+          "form": "Sonotube round concrete form",
+          "stockLengthM": 3.6575999999999995,
+          "offcutM": 1.2191999999999994,
+          "diameterBasis": "Nominal modeled diameter; confirm actual inside diameter"
+        },
+        {
+          "id": "PIER-MID-3",
+          "area": "Main building",
+          "shape": "round",
+          "diameterM": 0.4064,
+          "lengthM": 2.4384,
+          "aboveGradeM": 0.6096,
+          "belowGradeM": 1.8288000000000002,
+          "centerM": [
+            -1.5805250773081707,
+            -1.0783812,
+            -1.5805250773081712
+          ],
+          "topY_M": -0.46878119999999995,
+          "bottomY_M": -2.9071812,
+          "netVolumeM3": 0.31630221236002265,
+          "form": "Sonotube round concrete form",
+          "stockLengthM": 3.6575999999999995,
+          "offcutM": 1.2191999999999994,
+          "diameterBasis": "Nominal modeled diameter; confirm actual inside diameter"
+        },
+        {
+          "id": "PIER-MID-4",
+          "area": "Main building",
+          "shape": "round",
+          "diameterM": 0.4064,
+          "lengthM": 2.4384,
+          "aboveGradeM": 0.6096,
+          "belowGradeM": 1.8288000000000002,
+          "centerM": [
+            -2.2352,
+            -1.0783812,
+            -1.9046632569852966e-16
+          ],
+          "topY_M": -0.46878119999999995,
+          "bottomY_M": -2.9071812,
+          "netVolumeM3": 0.31630221236002265,
+          "form": "Sonotube round concrete form",
+          "stockLengthM": 3.6575999999999995,
+          "offcutM": 1.2191999999999994,
+          "diameterBasis": "Nominal modeled diameter; confirm actual inside diameter"
+        },
+        {
+          "id": "PIER-MID-5",
+          "area": "Main building",
+          "shape": "round",
+          "diameterM": 0.4064,
+          "lengthM": 2.4384,
+          "aboveGradeM": 0.6096,
+          "belowGradeM": 1.8288000000000002,
+          "centerM": [
+            -1.5805250773081716,
+            -1.0783812,
+            1.5805250773081707
+          ],
+          "topY_M": -0.46878119999999995,
+          "bottomY_M": -2.9071812,
+          "netVolumeM3": 0.31630221236002265,
+          "form": "Sonotube round concrete form",
+          "stockLengthM": 3.6575999999999995,
+          "offcutM": 1.2191999999999994,
+          "diameterBasis": "Nominal modeled diameter; confirm actual inside diameter"
+        },
+        {
+          "id": "PIER-MID-6",
+          "area": "Main building",
+          "shape": "round",
+          "diameterM": 0.4064,
+          "lengthM": 2.4384,
+          "aboveGradeM": 0.6096,
+          "belowGradeM": 1.8288000000000002,
+          "centerM": [
+            -5.216218812806402e-16,
+            -1.0783812,
+            2.2352
+          ],
+          "topY_M": -0.46878119999999995,
+          "bottomY_M": -2.9071812,
+          "netVolumeM3": 0.31630221236002265,
+          "form": "Sonotube round concrete form",
+          "stockLengthM": 3.6575999999999995,
+          "offcutM": 1.2191999999999994,
+          "diameterBasis": "Nominal modeled diameter; confirm actual inside diameter"
+        },
+        {
+          "id": "PIER-MID-7",
+          "area": "Main building",
+          "shape": "round",
+          "diameterM": 0.4064,
+          "lengthM": 2.4384,
+          "aboveGradeM": 0.6096,
+          "belowGradeM": 1.8288000000000002,
+          "centerM": [
+            1.5805250773081703,
+            -1.0783812,
+            1.5805250773081714
+          ],
+          "topY_M": -0.46878119999999995,
+          "bottomY_M": -2.9071812,
+          "netVolumeM3": 0.31630221236002265,
+          "form": "Sonotube round concrete form",
+          "stockLengthM": 3.6575999999999995,
+          "offcutM": 1.2191999999999994,
+          "diameterBasis": "Nominal modeled diameter; confirm actual inside diameter"
+        },
+        {
+          "id": "MUD-SUPPORT-L-BACK",
+          "area": "Porch",
+          "shape": "rectangular",
+          "widthM": 0.254,
+          "depthM": 0.254,
+          "lengthM": 2.5515811999999998,
+          "aboveGradeM": 0.7227812,
+          "belowGradeM": 1.8287999999999998,
+          "centerM": [
+            -0.6076074185930228,
+            -1.0783812,
+            -4.496029648335175
+          ],
+          "topY_M": -0.35559999999999997,
+          "bottomY_M": -2.9071811999999997,
+          "netVolumeM3": 0.1646178126992,
+          "form": "Square forms; not a round Sonotube"
+        },
+        {
+          "id": "MUD-SUPPORT-L-FRONT",
+          "area": "Porch",
+          "shape": "rectangular",
+          "widthM": 0.254,
+          "depthM": 0.25400000000000045,
+          "lengthM": 2.5515811999999998,
+          "aboveGradeM": 0.7227812,
+          "belowGradeM": 1.8287999999999998,
+          "centerM": [
+            -1.402976664420625,
+            -1.0783812,
+            -6.416220868706633
+          ],
+          "topY_M": -0.35559999999999997,
+          "bottomY_M": -2.9071811999999997,
+          "netVolumeM3": 0.16461781269920028,
+          "form": "Square forms; not a round Sonotube"
+        },
+        {
+          "id": "MUD-SUPPORT-R-BACK",
+          "area": "Porch",
+          "shape": "rectangular",
+          "widthM": 0.254,
+          "depthM": 0.254,
+          "lengthM": 2.5515811999999998,
+          "aboveGradeM": 0.7227812,
+          "belowGradeM": 1.8287999999999998,
+          "centerM": [
+            -2.7495297267671903,
+            -1.0783812,
+            -3.608816378739951
+          ],
+          "topY_M": -0.35559999999999997,
+          "bottomY_M": -2.9071811999999997,
+          "netVolumeM3": 0.1646178126992,
+          "form": "Square forms; not a round Sonotube"
+        },
+        {
+          "id": "MUD-SUPPORT-R-FRONT",
+          "area": "Porch",
+          "shape": "rectangular",
+          "widthM": 0.254,
+          "depthM": 0.25400000000000045,
+          "lengthM": 2.5515811999999998,
+          "aboveGradeM": 0.7227812,
+          "belowGradeM": 1.8287999999999998,
+          "centerM": [
+            -3.5448989725947926,
+            -1.0783812,
+            -5.529007599111409
+          ],
+          "topY_M": -0.35559999999999997,
+          "bottomY_M": -2.9071811999999997,
+          "netVolumeM3": 0.16461781269920028,
+          "form": "Square forms; not a round Sonotube"
+        }
+      ],
+      "pours": [
+        {
+          "id": "MUD-FLOOR",
+          "name": "Sloped sealed washdown floor",
+          "area": "Porch pan and drain channel",
+          "shape": "formed mesh",
+          "dimensionsM": [
+            2.4383999999999997,
+            0.2032,
+            2.3367999999999998
+          ],
+          "netVolumeM3": 1.019144284288,
+          "form": "Shared pan/stair formwork; component boundaries partition one pour",
+          "volumeBasis": "Actual closed occupied mesh; slope, drain and outlet voids retained"
+        },
+        {
+          "id": "MUD-PAN-L-BACK",
+          "name": "Washdown pan side curb bearing",
+          "area": "Porch pan and drain channel",
+          "shape": "formed mesh",
+          "dimensionsM": [
+            0.13969999999999994,
+            0.2032,
+            2.4383999999999997
+          ],
+          "netVolumeM3": 0.060566588543999995,
+          "form": "Shared pan/stair formwork; component boundaries partition one pour",
+          "volumeBasis": "Actual closed occupied mesh; slope, drain and outlet voids retained"
+        },
+        {
+          "id": "MUD-PAN-L-FRONT",
+          "name": "Washdown pan side curb bearing",
+          "area": "Porch pan and drain channel",
+          "shape": "formed mesh",
+          "dimensionsM": [
+            0.13969999999999994,
+            0.1524,
+            0.13969999999999994
+          ],
+          "netVolumeM3": 0.002974252116000002,
+          "form": "Shared pan/stair formwork; component boundaries partition one pour",
+          "volumeBasis": "Actual closed occupied mesh; slope, drain and outlet voids retained"
+        },
+        {
+          "id": "MUD-PAN-R-BACK",
+          "name": "Washdown pan side curb bearing",
+          "area": "Porch pan and drain channel",
+          "shape": "formed mesh",
+          "dimensionsM": [
+            0.13969999999999994,
+            0.2032,
+            2.4383999999999997
+          ],
+          "netVolumeM3": 0.06056658854399981,
+          "form": "Shared pan/stair formwork; component boundaries partition one pour",
+          "volumeBasis": "Actual closed occupied mesh; slope, drain and outlet voids retained"
+        },
+        {
+          "id": "MUD-PAN-R-FRONT",
+          "name": "Washdown pan side curb bearing",
+          "area": "Porch pan and drain channel",
+          "shape": "formed mesh",
+          "dimensionsM": [
+            0.13969999999999994,
+            0.1524,
+            0.13969999999999994
+          ],
+          "netVolumeM3": 0.002974252115999987,
+          "form": "Shared pan/stair formwork; component boundaries partition one pour",
+          "volumeBasis": "Actual closed occupied mesh; slope, drain and outlet voids retained"
+        },
+        {
+          "id": "MUD-PAN-FRONT",
+          "name": "Mudroom exterior threshold bearing",
+          "area": "Porch pan and drain channel",
+          "shape": "formed mesh",
+          "dimensionsM": [
+            2.4383999999999997,
+            0.1524,
+            0.13969999999999994
+          ],
+          "netVolumeM3": 0.05191421875199983,
+          "form": "Shared pan/stair formwork; component boundaries partition one pour",
+          "volumeBasis": "Actual closed occupied mesh; slope, drain and outlet voids retained"
+        },
+        {
+          "id": "MUD-CHANNEL-L",
+          "name": "Channel bottom sloping to outlet",
+          "area": "Porch pan and drain channel",
+          "shape": "formed mesh",
+          "dimensionsM": [
+            1.1810999999999998,
+            0.0751,
+            0.10159999999999991
+          ],
+          "netVolumeM3": 0.00827379595237502,
+          "form": "Shared pan/stair formwork; component boundaries partition one pour",
+          "volumeBasis": "Actual closed occupied mesh; slope, drain and outlet voids retained"
+        },
+        {
+          "id": "MUD-CHANNEL-R",
+          "name": "Channel bottom sloping to outlet",
+          "area": "Porch pan and drain channel",
+          "shape": "formed mesh",
+          "dimensionsM": [
+            1.1810999999999998,
+            0.0751,
+            0.10159999999999991
+          ],
+          "netVolumeM3": 0.008273795952375018,
+          "form": "Shared pan/stair formwork; component boundaries partition one pour",
+          "volumeBasis": "Actual closed occupied mesh; slope, drain and outlet voids retained"
+        },
+        {
+          "id": "MUD-CHANNEL-BACK-L",
+          "name": "Channel outlet surround",
+          "area": "Porch pan and drain channel",
+          "shape": "formed mesh",
+          "dimensionsM": [
+            0.038099999999999995,
+            0.06279687500000003,
+            0.012700000000000156
+          ],
+          "netVolumeM3": 0.000030289505953126178,
+          "form": "Shared pan/stair formwork; component boundaries partition one pour",
+          "volumeBasis": "Actual closed occupied mesh; slope, drain and outlet voids retained"
+        },
+        {
+          "id": "MUD-CHANNEL-BACK-R",
+          "name": "Channel outlet surround",
+          "area": "Porch pan and drain channel",
+          "shape": "formed mesh",
+          "dimensionsM": [
+            0.038099999999999995,
+            0.06279687500000003,
+            0.012700000000000156
+          ],
+          "netVolumeM3": 0.000030289505953125063,
+          "form": "Shared pan/stair formwork; component boundaries partition one pour",
+          "volumeBasis": "Actual closed occupied mesh; slope, drain and outlet voids retained"
+        },
+        {
+          "id": "MUD-CHANNEL-FRONT-L",
+          "name": "Channel outlet surround",
+          "area": "Porch pan and drain channel",
+          "shape": "formed mesh",
+          "dimensionsM": [
+            0.038099999999999995,
+            0.06279687500000003,
+            0.012699999999999712
+          ],
+          "netVolumeM3": 0.000030289505953123813,
+          "form": "Shared pan/stair formwork; component boundaries partition one pour",
+          "volumeBasis": "Actual closed occupied mesh; slope, drain and outlet voids retained"
+        },
+        {
+          "id": "MUD-CHANNEL-FRONT-R",
+          "name": "Channel outlet surround",
+          "area": "Porch pan and drain channel",
+          "shape": "formed mesh",
+          "dimensionsM": [
+            0.038099999999999995,
+            0.06279687500000003,
+            0.012699999999999712
+          ],
+          "netVolumeM3": 0.00003028950595312577,
+          "form": "Shared pan/stair formwork; component boundaries partition one pour",
+          "volumeBasis": "Actual closed occupied mesh; slope, drain and outlet voids retained"
+        },
+        {
+          "id": "MUD-GRATE-SEAT-BACK-L",
+          "name": "Drain grate bearing ledge",
+          "area": "Porch pan and drain channel",
+          "shape": "formed mesh",
+          "dimensionsM": [
+            1.2191999999999998,
+            0.06671666666666665,
+            0.012700000000000156
+          ],
+          "netVolumeM3": 0.0009326594250000338,
+          "form": "Shared pan/stair formwork; component boundaries partition one pour",
+          "volumeBasis": "Actual closed occupied mesh; slope, drain and outlet voids retained"
+        },
+        {
+          "id": "MUD-GRATE-SEAT-BACK-R",
+          "name": "Drain grate bearing ledge",
+          "area": "Porch pan and drain channel",
+          "shape": "formed mesh",
+          "dimensionsM": [
+            1.2191999999999998,
+            0.06671666666666665,
+            0.012700000000000156
+          ],
+          "netVolumeM3": 0.0009326594250000042,
+          "form": "Shared pan/stair formwork; component boundaries partition one pour",
+          "volumeBasis": "Actual closed occupied mesh; slope, drain and outlet voids retained"
+        },
+        {
+          "id": "MUD-GRATE-SEAT-FRONT-L",
+          "name": "Drain grate bearing ledge",
+          "area": "Porch pan and drain channel",
+          "shape": "formed mesh",
+          "dimensionsM": [
+            1.2191999999999998,
+            0.06486458333333331,
+            0.012700000000000156
+          ],
+          "netVolumeM3": 0.000903982063000005,
+          "form": "Shared pan/stair formwork; component boundaries partition one pour",
+          "volumeBasis": "Actual closed occupied mesh; slope, drain and outlet voids retained"
+        },
+        {
+          "id": "MUD-GRATE-SEAT-FRONT-R",
+          "name": "Drain grate bearing ledge",
+          "area": "Porch pan and drain channel",
+          "shape": "formed mesh",
+          "dimensionsM": [
+            1.2191999999999998,
+            0.06486458333333331,
+            0.012700000000000156
+          ],
+          "netVolumeM3": 0.0009039820630000331,
+          "form": "Shared pan/stair formwork; component boundaries partition one pour",
+          "volumeBasis": "Actual closed occupied mesh; slope, drain and outlet voids retained"
+        },
+        {
+          "id": "MUD-PAN-BACK-L",
+          "name": "Washdown pan rear upstand",
+          "area": "Porch pan and drain channel",
+          "shape": "formed mesh",
+          "dimensionsM": [
+            0.7441999999999999,
+            0.35559999999999997,
+            0.05079999999999999
+          ],
+          "netVolumeM3": 0.013443586016000025,
+          "form": "Shared pan/stair formwork; component boundaries partition one pour",
+          "volumeBasis": "Actual closed occupied mesh; slope, drain and outlet voids retained"
+        },
+        {
+          "id": "MUD-PAN-BACK-R",
+          "name": "Washdown pan rear upstand",
+          "area": "Porch pan and drain channel",
+          "shape": "formed mesh",
+          "dimensionsM": [
+            0.7441999999999999,
+            0.35559999999999997,
+            0.05079999999999999
+          ],
+          "netVolumeM3": 0.013443586016000028,
+          "form": "Shared pan/stair formwork; component boundaries partition one pour",
+          "volumeBasis": "Actual closed occupied mesh; slope, drain and outlet voids retained"
+        },
+        {
+          "id": "MUD-LANDING",
+          "name": "Exterior entry landing",
+          "area": "Exterior stairs and landings",
+          "shape": "formed mesh",
+          "dimensionsM": [
+            1.1176,
+            0.8751812,
+            0.9144000000000001
+          ],
+          "netVolumeM3": 0.8943769343393286,
+          "form": "Shared pan/stair formwork; component boundaries partition one pour",
+          "volumeBasis": "Actual closed occupied mesh; slope, drain and outlet voids retained"
+        },
+        {
+          "id": "MUD-STEP-0",
+          "name": "Exterior step 1",
+          "area": "Exterior stairs and landings",
+          "shape": "formed mesh",
+          "dimensionsM": [
+            1.1176,
+            0.7293176666666666,
+            0.3048000000000002
+          ],
+          "netVolumeM3": 0.24843803731648062,
+          "form": "Shared pan/stair formwork; component boundaries partition one pour",
+          "volumeBasis": "Actual closed occupied mesh; slope, drain and outlet voids retained"
+        },
+        {
+          "id": "MUD-STEP-1",
+          "name": "Exterior step 2",
+          "area": "Exterior stairs and landings",
+          "shape": "formed mesh",
+          "dimensionsM": [
+            1.1176,
+            0.5834541333333333,
+            0.3048000000000002
+          ],
+          "netVolumeM3": 0.19875042985318406,
+          "form": "Shared pan/stair formwork; component boundaries partition one pour",
+          "volumeBasis": "Actual closed occupied mesh; slope, drain and outlet voids retained"
+        },
+        {
+          "id": "MUD-STEP-2",
+          "name": "Exterior step 3",
+          "area": "Exterior stairs and landings",
+          "shape": "formed mesh",
+          "dimensionsM": [
+            1.1176,
+            0.43759060000000005,
+            0.3047999999999993
+          ],
+          "netVolumeM3": 0.14906282238988774,
+          "form": "Shared pan/stair formwork; component boundaries partition one pour",
+          "volumeBasis": "Actual closed occupied mesh; slope, drain and outlet voids retained"
+        },
+        {
+          "id": "MUD-STEP-3",
+          "name": "Exterior step 4",
+          "area": "Exterior stairs and landings",
+          "shape": "formed mesh",
+          "dimensionsM": [
+            1.1176,
+            0.2917270666666667,
+            0.3048000000000002
+          ],
+          "netVolumeM3": 0.09937521492659218,
+          "form": "Shared pan/stair formwork; component boundaries partition one pour",
+          "volumeBasis": "Actual closed occupied mesh; slope, drain and outlet voids retained"
+        },
+        {
+          "id": "MUD-STEP-4",
+          "name": "Exterior step 5",
+          "area": "Exterior stairs and landings",
+          "shape": "formed mesh",
+          "dimensionsM": [
+            1.1176,
+            0.14586353333333335,
+            0.3048000000000002
+          ],
+          "netVolumeM3": 0.049687607463296035,
+          "form": "Shared pan/stair formwork; component boundaries partition one pour",
+          "volumeBasis": "Actual closed occupied mesh; slope, drain and outlet voids retained"
+        },
+        {
+          "id": "MUD-GROUND-LANDING",
+          "name": "Lower exterior landing",
+          "area": "Exterior stairs and landings",
+          "shape": "formed mesh",
+          "dimensionsM": [
+            1.1176,
+            0.050000000000000044,
+            0.9143999999999997
+          ],
+          "netVolumeM3": 0.05109667200000005,
+          "form": "Shared pan/stair formwork; component boundaries partition one pour",
+          "volumeBasis": "Actual closed occupied mesh; slope, drain and outlet voids retained"
+        }
+      ],
+      "allowance": 0.1,
+      "columnVolumeM3": 6.035608860917185,
+      "panVolumeM3": 1.2453693892965632,
+      "stairVolumeM3": 1.6907877182887694,
+      "netVolumeM3": 8.971765968502519,
+      "orderVolumeM3": 9.868942565352771,
+      "mainVolumeM3": 5.377137610120385,
+      "porchVolumeM3": 0.6584712507968006,
+      "tubeCount": 17,
+      "tubeStockLengthM": 3.6575999999999995,
+      "totalTubeOffcutM": 20.72639999999999,
+      "squareColumnFormSideAreaM2": 10.369625996800004,
+      "basis": "All modeled column, porch-pan, channel, stair and landing concrete. Above/below-grade display zones count once as continuous columns. Round columns use πd²L/4; square columns use width × depth × length. Pan/stair quantities integrate the actual sloped occupied meshes and exclude drain/outlet voids. Adjacent mesh pieces partition the pour; they are not separate forms.",
+      "exclusions": "Enlarged footings or bell bases, grade beams, over-excavation, reinforcement and concrete mix details remain unspecified and are excluded. Pan, stair and support reinforcement/capacity require design.",
+      "designStatus": "Geometry takeoff, not foundation sizing. Verify soils, frost depth, bearing, reinforcement, concrete strength, anchors and bracing before ordering."
+    }
+  }
+}

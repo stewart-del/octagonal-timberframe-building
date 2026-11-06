@@ -5,7 +5,7 @@
   "sources": {
     "src/model-data.json": "d4978e388ad82eff7e39671dc069348bca6e8f89c4d7fbcffe0e7a435263afee",
     "src/step-lap-proposed-model.json": "43c540f947e5e5130928a14a14600ca64f01bafc317e8276201c0190db2f2333",
-    "src/top-entry-proposed-model.json": "06ded23bdc3c40814331f7ff0aa73afb364c90f4b0bcb3c39659f7cab6508cde",
+    "src/top-entry-proposed-model.json": "60d28d017da04b6c002ca4f1931d92d219c3863009813a4576152387c5164692",
     "scripts/audit_brace_sections.py": "eaa667bf0817dca750d186fd085dc25d3452cb1313edaea6d24dc84e48673fc4"
   },
   "primary_brace_count": 24,

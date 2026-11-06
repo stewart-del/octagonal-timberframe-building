@@ -1,0 +1,60 @@
+{
+  "schema": "octagon-current-cache-integration-audit-1",
+  "status": "PASS_BOUNDED_CURRENT_INPUT_BINDING_AND_CONSUMER_TESTS_ONLY",
+  "revision": "R000063",
+  "timestamp": "2026-11-05T20:08:59+00:00",
+  "binding": {
+    "schema": "octagon-current-cache-ownership-1",
+    "status": "PASS_BOUNDED_CURRENT_INPUT_BINDING_ONLY",
+    "bindingSha256": "b1658b1208dd12cffa8860b10ef136e3f294b6bba40937b37cbf428b933d36f5",
+    "fixtureSha256": "807b6eaf5e525ebf90bbd89f4ebfe444092982d250fd9ce6313075b4cffdb8fb",
+    "models": {
+      "baseline": "f97d7c5807b89a123d05bdac17253c657fd631fcdb954e7525af3d3974cd296b",
+      "proposed": "f535b8b613370c45e22403fa9b3da858d8c27464665603599ec66e35d45c80ad",
+      "top-entry": "99cb11c9832f87f49333d0caa94517bda37af401c1000787c8af6f10bf30ed6f"
+    },
+    "caches": {
+      "floor": "e840f43b7e05ee9c1b407add96f8a0893baf1875954b5b622e88e776782bfde2",
+      "wall": "cad0e5ba74497cf4b31d1471e5f213f642621b80a5fcac7db5472e752c002c11",
+      "porch": "5df769cfeb2d586bf3c73357c555f694c64f84cdf7503f39bfaa2a9d759357d2",
+      "enclosure-baseline": "5b82ade9a17822d30421e42c5d22a72d0d6d2e7bf933593118e3405c042da3c8",
+      "enclosure-proposed": "8621b16ca2e34ad75787ebb3ada5bea0bc217a71755bc1c8b98dc3dc6567f78d",
+      "enclosure-top-entry": "57331e58b0106160ac2d2fbb84b5bda566ce97b65cdcdebd0d90b4c890dffaac"
+    },
+    "scopes": [
+      "canonical-floor3056",
+      "wall-fit8P74wall134pins-all3variants",
+      "original-fitted-porch-base729"
+    ],
+    "wholeBuildingReady": false,
+    "preserveHistoricalHeaders": true
+  },
+  "source_sha256": {
+    "scripts/current_cache_bindings.py": "86a5b9487cbb0d5e76ca81f6e80a6d9db2e930e51c45d7800dbabc7b2a85bc69",
+    "scripts/fixtures/current-cache-binding.tar.gz": "807b6eaf5e525ebf90bbd89f4ebfe444092982d250fd9ce6313075b4cffdb8fb",
+    "src/current-cache-bindings.js": "329c0555decf3587e0c407941d0c67a2aa93f205cfbcdf93cb97a5e52ab6308f",
+    "src/current-cache-bindings.json": "f0d14f7226ffd306b01a4bc935896bde6bc17be5c66a4f83f1fea622fb67f6bf",
+    "src/model-variants.js": "55d5975adabcf83a0183081cbe67e33098abcf304f670f93089ab2b4d8e31ffa",
+    "src/wall-joinery.js": "eaaa5bc1167b6fa4565a265ae049a380b64c5e9d6fe711c40f7a714974b5a241",
+    "src/viewer.template.html": "ff7da6cf8f1ba3fe61bb659043975d4d7769e9036f176141281d94b75d2562b5",
+    "scripts/build.py": "2cc6dd6ca3930365983e2c6fc75c3bae28e5d18273cfa2c9a4099a1e2b161f18",
+    "tests/test_current_cache_bindings.py": "4bd26833f69d89ebab8771eb688481a8cfecf159f2b372b32d456a0ca2ae8930",
+    "tests/current-cache-bindings.cjs": "c53184d6ba2f36becdcccca486ace7e5f667825cb3183517088da873ae6a0d10"
+  },
+  "verified_repository_inputs": 41,
+  "native_evidence_artifacts": 8,
+  "producer_inputs": 4,
+  "checks": {
+    "python_identity_and_changed_foot_cache_evidence_controls": "PASS, three tests",
+    "node_all_three_real_model_contexts_and_wall_applications": "PASS",
+    "original_cache_headers_and_physical_arrays": "preserved; independent current applicability metadata added only",
+    "build_prefix": "current ownership checks and cache loading pass; full build deliberately stops at missing src/architectural-solids.json",
+    "viewer_inline_javascript": "syntax checked; full browser execution pending"
+  },
+  "limits": [
+    "The archived native receipts cover only their listed floor, wall and porch scopes.",
+    "The current descriptor is not a whole-building, motion, dynamic dimension or structural capacity certificate.",
+    "Full build, legacy integration test adaptation, global collision checks, complete material lifetimes and construction route, full browser and deployment checks remain outstanding."
+  ],
+  "published": false
+}

@@ -1,0 +1,35 @@
+{
+  "schema": "octagon-lossless-large-source-1",
+  "revision": "R000067",
+  "timestamp": "2026-11-05T21:31:46+00:00",
+  "purpose": "Lossless source transport below connector request limits; the build reconstructs the unchanged original cache before all source and physical validation.",
+  "files": [
+    {
+      "path": "src/wall-joinery-fit.json",
+      "bytes": 31392052,
+      "sha256": "cad0e5ba74497cf4b31d1471e5f213f642621b80a5fcac7db5472e752c002c11",
+      "parts": [
+        {
+          "path": "source-assets/wall-joinery-fit.json.part01",
+          "bytes": 8388608,
+          "sha256": "cc6057fb20e97e5d358070704d18fb352e1a0aa49a245b7b791073888c368f57"
+        },
+        {
+          "path": "source-assets/wall-joinery-fit.json.part02",
+          "bytes": 8388608,
+          "sha256": "6b3936cdb791995b9a106fdc7b573b6b308009f203da6ad9ebd59b8d801c8a7f"
+        },
+        {
+          "path": "source-assets/wall-joinery-fit.json.part03",
+          "bytes": 8388608,
+          "sha256": "c454e7f72b1002186205be4ec95f8d74ad1ef1d681562693bb5d85f069a38de3"
+        },
+        {
+          "path": "source-assets/wall-joinery-fit.json.part04",
+          "bytes": 6226228,
+          "sha256": "1589254eba73d2297a55935999ff219ecd03b1ff094ee7ed5b9b810114184526"
+        }
+      ]
+    }
+  ]
+}

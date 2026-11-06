@@ -1,0 +1,120 @@
+{
+  "revision": "R000082",
+  "timestamp": "2026-11-06T02:53:16+00:00",
+  "status": "SCOPED_METADATA_VERIFIED_WHOLE_BUILDING_BLOCKED",
+  "sourceSha256": {
+    "scripts/floor_contact_metadata.py": "d751beecbdcbfb09fd55b4e14677b002f4ab5b9fbaaa8c5e9966d037fa0fc3d4",
+    "scripts/fixtures/floor-contact-metadata.json.gz": "ade7b983bc517ff0bf310342acfeb013d4aa88a67aa7224bc61e5a14bd3e0dc5",
+    "scripts/prepare_architecture.py": "0ae48ec54d5233690539baf9013bac11ede597a1a34f949862503ebcb5180a3a",
+    "tests/test_floor_contact_metadata.py": "5fbcf0025a4014125822fb7a2061ecf7512563984dc9b603c30fe87bd81bea5d"
+  },
+  "sourceBoundRecipients": {
+    "fasteners": 446,
+    "uniqueReceivingActors": 59,
+    "nativePositivePairs": 688,
+    "woodPairs": 69,
+    "flexibleFilmPairs": 619,
+    "sourceBindings": [
+      "Exact source transform, complete product record, parent and withdrawal direction",
+      "Exact LEfloat64 vertices and LEuint64 triangles of each prototype and receiving body",
+      "Immutable source floor/core manifests and core causal delta",
+      "Actual floor assembly order placing films and fixed bearing strips before ENV wall fasteners"
+    ],
+    "existingStaticReceiversPreserved": true,
+    "existingLaterCoverPrerequisitesPreserved": true,
+    "productsPosesOrGeometryChanged": false,
+    "kernelPolicyChanged": false,
+    "numericToleranceChanged": false
+  },
+  "scopedRegressionChecks": {
+    "all688EarlierRecipientRules": "PASS, including reverse/nonaxial/receiver-motion rejection and idempotence",
+    "newSourceRequiredAfterPoseProductTargetOrPrototypeChange": "PASS",
+    "retainedLaterCoversStillBlockAxialExtraction": "PASS",
+    "all688NativeActualContacts": "Fresh independent source readback included in4regression suite; see external floor-contact-metadata-tests.log"
+  },
+  "fullFloorContactDiagnostic": {
+    "status": "BLOCKED",
+    "scope": "Contacts involving955 current floor closure actors against the complete assembled projection only; no whole-building route certificate",
+    "sceneSha256": "90481cccc578535e10820ca1449967123aea0a190cd0af7e109e962452c84ba6",
+    "physicalContextActors": 33411,
+    "selectedActors": 955,
+    "nativeNonexemptPairs": 11018,
+    "sourceDeclaredFastenerPairs": 2819,
+    "maximumNonexemptOverlapIn3": 112.16780333025034,
+    "unchangedToleranceIn3": 1e-06
+  },
+  "remainingThresholdFailures": [
+    {
+      "a": "AIR-RETURN-W-INNER-SEAM",
+      "b": "MUD-THRESHOLD-CAP",
+      "overlapIn3": 1.2174237430896873
+    },
+    {
+      "a": "AIR-RETURN-W-RECESSED-LINER-SEG0",
+      "b": "MUD-THRESHOLD-RISER",
+      "overlapIn3": 1.1776147331326257
+    },
+    {
+      "a": "AIR-W-FLOOR-RETURN-0",
+      "b": "MUD-THRESHOLD-RISER",
+      "overlapIn3": 51.391695761224305
+    },
+    {
+      "a": "AIR-W-FLOOR-RETURN-BACKER",
+      "b": "MUD-THRESHOLD-RISER",
+      "overlapIn3": 112.16780333025034
+    },
+    {
+      "a": "AIR-W-PAN-BRIDGE-L-END-R",
+      "b": "MUD-THRESHOLD-CAP",
+      "overlapIn3": 0.012307024613964095
+    },
+    {
+      "a": "AIR-W-PAN-BRIDGE-L-END-R",
+      "b": "MUD-THRESHOLD-RISER",
+      "overlapIn3": 0.029071711743868738
+    },
+    {
+      "a": "AIR-W-PAN-BRIDGE-R-END-L",
+      "b": "MUD-THRESHOLD-CAP",
+      "overlapIn3": 0.01230702461404937
+    },
+    {
+      "a": "AIR-W-PAN-BRIDGE-R-END-L",
+      "b": "MUD-THRESHOLD-RISER",
+      "overlapIn3": 0.029071711744921905
+    },
+    {
+      "a": "FLOORBOXFIX-W-RIM-3",
+      "b": "MUD-THRESHOLD-RISER",
+      "overlapIn3": 0.122085707010967
+    },
+    {
+      "a": "FLOORBOXFIX-W-RIM-4",
+      "b": "MUD-THRESHOLD-RISER",
+      "overlapIn3": 0.12208570701096604
+    },
+    {
+      "a": "FLOORBOXFIX-W-RIM-5",
+      "b": "MUD-THRESHOLD-RISER",
+      "overlapIn3": 0.12208570701096473
+    }
+  ],
+  "diagnosticLineage": {
+    "kind": "Metadata-only successor of the real assembled v3 projection. Actual transforms, products, occupied geometry and old receipts remain untouched.",
+    "priorSceneSha256": "0509a99fff253ce552e95a116b4c1e9952f14a20936462c55ee6893de089673c",
+    "currentSceneSha256": "90481cccc578535e10820ca1449967123aea0a190cd0af7e109e962452c84ba6",
+    "freshReportSha256": "80a64a40cae8625f9554efd9915bfdfa3fbe367f639e11c3f4cdc14f0c46a578",
+    "historicalProofRelabelled": false,
+    "fullArchitectureRegenerated": false
+  },
+  "remaining": [
+    "The2obsolete threshold prisms still produce11real floor-area clashes.",
+    "Floor fasteners installed before films keep conservative later-cover metadata pending the separately source-bound phase successor.",
+    "New air-barrier piercings require actual physical head seals; this metadata change does not certify an airtight envelope.",
+    "The8old lower-fixing vectors and conditional lower stock/route corrections still need integration.",
+    "Final trueExterior plywood/solidcedar wall geometry, actual individual construction lifetimes/routes, complete parameter regeneration/usable slider, fullCI/browser/performance/modelimage and final deployment remain unfinished."
+  ],
+  "wholeBuildingReady": false,
+  "deployed": false
+}

@@ -36,7 +36,9 @@ for model_name,fit_name in VARIANTS:
     primary_solids={pid:solid(p) for pid,p in primary.items()}
     for parent in sorted(parents):
         rows=[p for p in current.values() if p.get('panelAssemblyId')==parent]
-        rows.sort(key=lambda p:p['panelSeamPart']);assert len(rows)==2
+        # TIMESTAMP START 2026-11-04T20:06:20+00:00 | REVISION R000007
+        rows.sort(key=lambda p:p['panelSeamPart']);assert len(rows)>=2
+        # TIMESTAMP END 2026-11-04T20:06:20+00:00 | REVISION R000007
         children=[solid(p) for p in rows]
         for p,shape in zip(rows,children):
             assert len(shape.decompose())==1,p['id']
@@ -44,16 +46,24 @@ for model_name,fit_name in VARIANTS:
         expected=solid(original[parent])
         for obstacle in primary_solids.values():
             if close_bounds(expected,obstacle):expected=expected-obstacle
-        reunited=children[0]+children[1];error=difference(expected,reunited);maximum_error=max(maximum_error,error)
+        # TIMESTAMP START 2026-11-04T20:06:20+00:00 | REVISION R000007
+        low=m.Manifold.batch_boolean([shape for row,shape in zip(rows,children) if row['panelSeamPart']=='lower'],m.OpType.Add)
+        high=m.Manifold.batch_boolean([shape for row,shape in zip(rows,children) if row['panelSeamPart']=='upper'],m.OpType.Add)
+        reunited=low+high;error=difference(expected,reunited);maximum_error=max(maximum_error,error)
+        # TIMESTAMP END 2026-11-04T20:06:20+00:00 | REVISION R000007
         assert error<TOL,(parent,'panel material changed',error)
-        assert abs((children[0]^children[1]).volume())<TOL,(parent,'board overlap')
-        area=sum(face['area_in2']*.0254**2 for face in contacts(children[0],children[1]))
+        # TIMESTAMP START 2026-11-04T20:06:20+00:00 | REVISION R000007
+        assert abs((low^high).volume())<TOL,(parent,'board overlap')
+        area=sum(face['area_in2']*.0254**2 for face in contacts(low,high))
+        # TIMESTAMP END 2026-11-04T20:06:20+00:00 | REVISION R000007
         assert area>1e-5,(parent,'missing actual shared seam face')
         minimum_contact=min(minimum_contact,area);seams+=1
         assert fit['panel_seams'][parent]['status']=='PASS'
         # An actual0.1mm gap must be detected by the same material-union audit.
-        low=children[0].trim_by_plane([0,-1,0],-(64*.0254-.0001))
-        assert difference(expected,low+children[1])>TOL,(parent,'gap rejection is ineffective')
+        # TIMESTAMP START 2026-11-04T20:06:20+00:00 | REVISION R000007
+        trimmed=low.trim_by_plane([0,-1,0],-(64*.0254-.0001))
+        assert difference(expected,trimmed+high)>TOL,(parent,'gap rejection is ineffective')
+        # TIMESTAMP END 2026-11-04T20:06:20+00:00 | REVISION R000007
     boards={p['id']:p for p in current.values() if p.get('panelAssemblyId')}
     parts={**primary,**boards};solids={**primary_solids,**{pid:solid(p) for pid,p in boards.items()}}
     scene=Scene('conditional-board-release',parts,solids,{pid:np.zeros(3) for pid in parts})

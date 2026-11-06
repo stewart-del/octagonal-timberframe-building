@@ -1,3 +1,4 @@
+# TIMESTAMP START 2026-11-04T23:23:25+00:00 | REVISION R000011
 # TIMESTAMP START 2026-11-03T15:46:44-05:00 | REVISION R005039
 """Source-bound stock, mating-pocket and explicit assembly-entry audits."""
 from pathlib import Path
@@ -63,13 +64,12 @@ def generate(variant,source_dir,output_dir):
     assert model.get('three_inch_joinery_revision'),'Expected revised model'
     proposal=json.loads((ROOT/'src/top-entry-proposal.json').read_text())
     original_entries=audit.entry_regions
-    entries={pid:solid(record) for pid,record in model['joinery_entry_regions'].items()}
-    # TIMESTAMP START 2026-11-03T15:58:36-05:00 | REVISION R005044
-    post_entries=m.Manifold.batch_boolean(list(entries.values()),m.OpType.Add)
-    for k in range(8):entries[f'R{k}']=post_entries
-    if variant=='top-entry':
-        for pid,shape in original_entries(proposal).items():entries[pid]=entries.get(pid,m.Manifold())+shape
-    # TIMESTAMP END 2026-11-03T15:58:36-05:00 | REVISION R005044
+    # TIMESTAMP START 2026-11-05T15:30:01+00:00 | REVISION R000049
+    # Use only the receiver's explicitly associated source slots. A hip may
+    # share its own P/C entry, never every post's entry elsewhere in the model.
+    entry_proposal=proposal if variant=='top-entry' else {'representative':{'interfaces':[]}}
+    entries=original_entries(entry_proposal,model)
+    # TIMESTAMP END 2026-11-05T15:30:01+00:00 | REVISION R000049
     names=['scripts/audit_revised_joinery.py','scripts/export_top_entry_cavities.py','scripts/audit_cavity_fit.py','scripts/step_lap.py','scripts/apply_joinery_revision.py','scripts/three_inch_tenons.py','scripts/center_brace_tenons.py']
     # TIMESTAMP START 2026-11-04T20:04:39+00:00 | REVISION R000018
     names.append('src/unchanged-roof-cavity-seeds.json')
@@ -77,19 +77,30 @@ def generate(variant,source_dir,output_dir):
     sources={name:sha(ROOT/name) for name in names};sources['src/'+model_name]=sha(path)
     if variant=='top-entry':sources['src/top-entry-proposal.json']=sha(ROOT/'src/top-entry-proposal.json')
     previous_sources=audit.sources;previous_packed=audit.packed;previous_solid=audit.solid
-    audit.entry_regions=lambda _:entries;audit.sources=lambda:sources;audit.packed=packed;audit.solid=native_solid
+    # TIMESTAMP START 2026-11-05T15:32:33+00:00 | REVISION R000050
+    audit.entry_regions=lambda _,model=None:entries;audit.sources=lambda:sources;audit.packed=packed;audit.solid=native_solid
+    # TIMESTAMP END 2026-11-05T15:32:33+00:00 | REVISION R000050
     try:
         # TIMESTAMP START 2026-11-04T20:04:39+00:00 | REVISION R000018
         retained=json.loads((ROOT/'src/unchanged-roof-cavity-seeds.json').read_text())['variants'][variant]
         cavities=audit.generate(model,proposal,unchanged_seeds=retained);cavities['source_model_sha256']=sha(path)
         cavities['retained_input_geometry']={'file':'src/unchanged-roof-cavity-seeds.json','members':sorted(retained),'verification':'All records independently audited below against current physical stock and mating solids.'}
         # TIMESTAMP END 2026-11-04T20:04:39+00:00 | REVISION R000018
+        # TIMESTAMP START 2026-11-05T06:03:29+00:00 | REVISION R000025
+        output_dir.mkdir(parents=True,exist_ok=True)
+        save(output_dir/('.candidate-'+cavity_name),cavities)
         report=audit.audit(model,cavities,proposal);report['model_sha256']=sha(path)
+        # TIMESTAMP END 2026-11-05T06:03:29+00:00 | REVISION R000025
     finally:audit.entry_regions=original_entries;audit.sources=previous_sources;audit.packed=previous_packed;audit.solid=previous_solid
     if report['status']!='PASS':save(Path('/tmp/octagon-'+variant+'-cavity-failure-report.json'),report)
     assert report['status']=='PASS',report['failures']
     report['schema_version']='revised-joinery-cavity-audit-1';cavities['schema_version']='revised-joinery-cavities-1'
-    report['summary'].update(timbers=112,all_timber_stock_envelopes_verified=112,permanent_wood_fasteners=sum(p.get('is_fastener',False) for p in model['parts']))
+    # TIMESTAMP START 2026-11-05T06:03:29+00:00 | REVISION R000025
+    timber_count=sum(bool(p.get('is_timber')) for p in model['parts'])
+    report['summary'].update(timbers=timber_count,all_timber_stock_envelopes_verified=timber_count,
+        permanent_wood_fasteners=sum(bool(p.get('is_fastener')) and p.get('group')=='joinery_pegs' for p in model['parts']),
+        temporary_metal_fasteners=sum(bool(p.get('is_fastener')) and p.get('temporary',False) for p in model['parts']))
+    # TIMESTAMP END 2026-11-05T06:03:29+00:00 | REVISION R000025
     output_dir.mkdir(parents=True,exist_ok=True);save(output_dir/cavity_name,cavities);report['cavity_sha256']=sha(output_dir/cavity_name);save(output_dir/report_name,report)
     print(variant,'PASS',report['summary'],flush=True)
 
@@ -97,3 +108,5 @@ if __name__=='__main__':
     parser=argparse.ArgumentParser();parser.add_argument('--source-dir',type=Path,default=ROOT/'src');parser.add_argument('--output-dir',type=Path,default=Path('/tmp/octagon-joinery-audits'));parser.add_argument('--variant',choices=FILES);args=parser.parse_args()
     for variant in ([args.variant] if args.variant else FILES):generate(variant,args.source_dir,args.output_dir)
 # TIMESTAMP END 2026-11-03T15:46:44-05:00 | REVISION R005039
+
+# TIMESTAMP END 2026-11-04T23:23:25+00:00 | REVISION R000011

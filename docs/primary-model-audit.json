@@ -1,0 +1,826 @@
+{
+  "revision": "R000051",
+  "timestamp": "2026-11-05T15:44:02+00:00",
+  "status": "PASS",
+  "scope": "Actual current primary inventories, native positive volumes/centroids and occupied variant comparisons only. Cavity, architecture, movement and capacity checks remain separate.",
+  "generator_sha256": "e1f27c5c7b8d5975c66122435459e7d1a6df81b443051a65df7cff05f02ceff5",
+  "variants": {
+    "baseline": {
+      "source_model_sha256": "f97d7c5807b89a123d05bdac17253c657fd631fcdb954e7525af3d3974cd296b",
+      "timber_count": 129,
+      "primary_item_count": 292,
+      "primary_fastener_count": 152,
+      "total_primary_timber_volume_m3": 6.868922810822077,
+      "materials_sha256": "f1d9f70f26999c3cf4f620263f0684ac2d87a75356394a25edf921b1388ac1c9",
+      "loads_sha256": "1d08e17d1ebf87c82194d8b2cea35d48cfe01dee1bbdad63ed74b6f45235196b"
+    },
+    "proposed": {
+      "source_model_sha256": "f535b8b613370c45e22403fa9b3da858d8c27464665603599ec66e35d45c80ad",
+      "timber_count": 129,
+      "primary_item_count": 292,
+      "primary_fastener_count": 152,
+      "total_primary_timber_volume_m3": 6.868922810821533,
+      "materials_sha256": "5255b637e16e314d4a5d96c87d2f81e33b00e2426eb6ca48d8f7feb372f36512",
+      "loads_sha256": "0bb77bb2861f78ed6c0dde0f7fc841aaf09970dafd02cde7485ddd6aeba619d3"
+    },
+    "top-entry": {
+      "source_model_sha256": "99cb11c9832f87f49333d0caa94517bda37af401c1000787c8af6f10bf30ed6f",
+      "timber_count": 129,
+      "primary_item_count": 300,
+      "primary_fastener_count": 160,
+      "total_primary_timber_volume_m3": 6.8655854028372,
+      "materials_sha256": "859e0c1316713eff3589580cf9e091773ac6e4ed17e21c9eb5ea48fc3cb26ca5",
+      "loads_sha256": "a5c1a5926189f4df6d3af030a64839bcb734be9c8c5d6074c496dc66f4bdb7c1"
+    }
+  },
+  "comparisons": {
+    "proposed": {
+      "native_changed_timber_ids": [
+        "B0",
+        "B1",
+        "B2",
+        "B3",
+        "B4",
+        "B5",
+        "B6",
+        "B7",
+        "J0-0",
+        "J0-2",
+        "J0-OUT0",
+        "J0-OUT2",
+        "J1-0",
+        "J1-2",
+        "J1-OUT0",
+        "J1-OUT2",
+        "J2-0",
+        "J2-2",
+        "J2-OUT0",
+        "J2-OUT2",
+        "J3-0",
+        "J3-2",
+        "J3-OUT0",
+        "J3-OUT2",
+        "J4-0",
+        "J4-2",
+        "J4-OUT0",
+        "J4-OUT2",
+        "J5-0",
+        "J5-2",
+        "J5-OUT0",
+        "J5-OUT2",
+        "J6-0",
+        "J6-2",
+        "J6-OUT0",
+        "J6-OUT2",
+        "J7-0",
+        "J7-2",
+        "J7-OUT0",
+        "J7-OUT2",
+        "P0",
+        "P1",
+        "P2",
+        "P3",
+        "P4",
+        "P5",
+        "P6",
+        "P7",
+        "R0",
+        "R1",
+        "R2",
+        "R3",
+        "R4",
+        "R5",
+        "R6",
+        "R7"
+      ],
+      "changes": [
+        {
+          "id": "B0",
+          "added_material_m3": 4.170208570453956e-15,
+          "removed_material_m3": 0.00021161345966984354
+        },
+        {
+          "id": "B1",
+          "added_material_m3": 4.579350134931308e-15,
+          "removed_material_m3": 0.0002116134596701786
+        },
+        {
+          "id": "B2",
+          "added_material_m3": 3.9204803877138126e-15,
+          "removed_material_m3": 0.0002116134596700316
+        },
+        {
+          "id": "B3",
+          "added_material_m3": 4.935508901120334e-15,
+          "removed_material_m3": 0.00021161345966990976
+        },
+        {
+          "id": "B4",
+          "added_material_m3": 4.240442574832868e-15,
+          "removed_material_m3": 0.0002116134596699807
+        },
+        {
+          "id": "B5",
+          "added_material_m3": 4.272667541776363e-15,
+          "removed_material_m3": 0.00021161345966983272
+        },
+        {
+          "id": "B6",
+          "added_material_m3": 3.9761570444602796e-15,
+          "removed_material_m3": 0.00021161345966966305
+        },
+        {
+          "id": "B7",
+          "added_material_m3": 4.9871298933324264e-15,
+          "removed_material_m3": 0.0002116134596704128
+        },
+        {
+          "id": "J0-0",
+          "added_material_m3": 5.290336491743838e-05,
+          "removed_material_m3": 8.239936510889834e-17
+        },
+        {
+          "id": "J0-2",
+          "added_material_m3": 5.2903364917464307e-05,
+          "removed_material_m3": 1.0234868508263162e-16
+        },
+        {
+          "id": "J0-OUT0",
+          "added_material_m3": 5.290336491736012e-05,
+          "removed_material_m3": 1.6263032587282567e-19
+        },
+        {
+          "id": "J0-OUT2",
+          "added_material_m3": 5.290336491733866e-05,
+          "removed_material_m3": 0.0
+        },
+        {
+          "id": "J1-0",
+          "added_material_m3": 5.290336491744036e-05,
+          "removed_material_m3": 8.326672684688674e-17
+        },
+        {
+          "id": "J1-2",
+          "added_material_m3": 5.2903364917248266e-05,
+          "removed_material_m3": 1.8214596497756474e-17
+        },
+        {
+          "id": "J1-OUT0",
+          "added_material_m3": 5.2903364917315954e-05,
+          "removed_material_m3": 0.0
+        },
+        {
+          "id": "J1-OUT2",
+          "added_material_m3": 5.290336491734212e-05,
+          "removed_material_m3": 0.0
+        },
+        {
+          "id": "J2-0",
+          "added_material_m3": 5.2903364917546706e-05,
+          "removed_material_m3": 0.0
+        },
+        {
+          "id": "J2-2",
+          "added_material_m3": 5.290336491722421e-05,
+          "removed_material_m3": 0.0
+        },
+        {
+          "id": "J2-OUT0",
+          "added_material_m3": 5.2903364917341677e-05,
+          "removed_material_m3": 0.0
+        },
+        {
+          "id": "J2-OUT2",
+          "added_material_m3": 5.29033649173789e-05,
+          "removed_material_m3": 0.0
+        },
+        {
+          "id": "J3-0",
+          "added_material_m3": 5.2903364917322784e-05,
+          "removed_material_m3": 0.0
+        },
+        {
+          "id": "J3-2",
+          "added_material_m3": 5.2903364917426156e-05,
+          "removed_material_m3": 2.7755575615628914e-17
+        },
+        {
+          "id": "J3-OUT0",
+          "added_material_m3": 5.290336491734293e-05,
+          "removed_material_m3": 0.0
+        },
+        {
+          "id": "J3-OUT2",
+          "added_material_m3": 5.290336491734249e-05,
+          "removed_material_m3": 0.0
+        },
+        {
+          "id": "J4-0",
+          "added_material_m3": 5.29033649173577e-05,
+          "removed_material_m3": 0.0
+        },
+        {
+          "id": "J4-2",
+          "added_material_m3": 5.290336491742376e-05,
+          "removed_material_m3": 0.0
+        },
+        {
+          "id": "J4-OUT0",
+          "added_material_m3": 5.290336491734212e-05,
+          "removed_material_m3": 0.0
+        },
+        {
+          "id": "J4-OUT2",
+          "added_material_m3": 5.2903364917345295e-05,
+          "removed_material_m3": 0.0
+        },
+        {
+          "id": "J5-0",
+          "added_material_m3": 5.290336491736087e-05,
+          "removed_material_m3": 0.0
+        },
+        {
+          "id": "J5-2",
+          "added_material_m3": 5.290336491735469e-05,
+          "removed_material_m3": 0.0
+        },
+        {
+          "id": "J5-OUT0",
+          "added_material_m3": 5.290336491733972e-05,
+          "removed_material_m3": 0.0
+        },
+        {
+          "id": "J5-OUT2",
+          "added_material_m3": 5.290336491734128e-05,
+          "removed_material_m3": 0.0
+        },
+        {
+          "id": "J6-0",
+          "added_material_m3": 5.290336491725514e-05,
+          "removed_material_m3": 1.8214596497756474e-17
+        },
+        {
+          "id": "J6-2",
+          "added_material_m3": 5.290336491738378e-05,
+          "removed_material_m3": 0.0
+        },
+        {
+          "id": "J6-OUT0",
+          "added_material_m3": 5.290336491735641e-05,
+          "removed_material_m3": 0.0
+        },
+        {
+          "id": "J6-OUT2",
+          "added_material_m3": 5.2903364917343554e-05,
+          "removed_material_m3": 0.0
+        },
+        {
+          "id": "J7-0",
+          "added_material_m3": 5.290336491747411e-05,
+          "removed_material_m3": 1.9081958235744878e-17
+        },
+        {
+          "id": "J7-2",
+          "added_material_m3": 5.290336491737588e-05,
+          "removed_material_m3": 3.5670251474773096e-17
+        },
+        {
+          "id": "J7-OUT0",
+          "added_material_m3": 5.2903364917330774e-05,
+          "removed_material_m3": 0.0
+        },
+        {
+          "id": "J7-OUT2",
+          "added_material_m3": 5.2903364917342686e-05,
+          "removed_material_m3": 0.0
+        },
+        {
+          "id": "P0",
+          "added_material_m3": 6.312322456999541e-17,
+          "removed_material_m3": 0.0002267185634815541
+        },
+        {
+          "id": "P1",
+          "added_material_m3": 5.860472731286735e-17,
+          "removed_material_m3": 0.00022671856348155237
+        },
+        {
+          "id": "P2",
+          "added_material_m3": 1.8090929687457347e-17,
+          "removed_material_m3": 0.0002267185634815759
+        },
+        {
+          "id": "P3",
+          "added_material_m3": 5.898102169968507e-17,
+          "removed_material_m3": 0.0002267185634815782
+        },
+        {
+          "id": "P4",
+          "added_material_m3": 6.020837244025655e-17,
+          "removed_material_m3": 0.00022671856348157704
+        },
+        {
+          "id": "P5",
+          "added_material_m3": 5.89550813156754e-17,
+          "removed_material_m3": 0.00022671856348157636
+        },
+        {
+          "id": "P6",
+          "added_material_m3": 1.807631836911721e-17,
+          "removed_material_m3": 0.00022671856348155237
+        },
+        {
+          "id": "P7",
+          "added_material_m3": 6.095439670855077e-17,
+          "removed_material_m3": 0.0002267185634815526
+        },
+        {
+          "id": "R0",
+          "added_material_m3": 0.000226718563481877,
+          "removed_material_m3": 6.73997310984506e-14
+        },
+        {
+          "id": "R1",
+          "added_material_m3": 0.00022671856348203042,
+          "removed_material_m3": 6.732351018356487e-14
+        },
+        {
+          "id": "R2",
+          "added_material_m3": 0.0002267185634820439,
+          "removed_material_m3": 6.744164067665699e-14
+        },
+        {
+          "id": "R3",
+          "added_material_m3": 0.00022671856348374433,
+          "removed_material_m3": 6.871243691563285e-14
+        },
+        {
+          "id": "R4",
+          "added_material_m3": 0.00022671856348187696,
+          "removed_material_m3": 6.733749652607121e-14
+        },
+        {
+          "id": "R5",
+          "added_material_m3": 0.00022671856348186213,
+          "removed_material_m3": 6.83737558738709e-14
+        },
+        {
+          "id": "R6",
+          "added_material_m3": 0.0002267185634820491,
+          "removed_material_m3": 6.739190842701989e-14
+        },
+        {
+          "id": "R7",
+          "added_material_m3": 0.00022671856348366727,
+          "removed_material_m3": 1.361163365603278e-13
+        }
+      ],
+      "added_timber_ids": [],
+      "removed_timber_ids": [],
+      "overlap_tolerance_m3": 1.6387064e-11,
+      "scope": "Actual current occupied-material comparison against the current baseline; no old comparison is relabeled."
+    },
+    "top-entry": {
+      "native_changed_timber_ids": [
+        "B0",
+        "B1",
+        "B2",
+        "B3",
+        "B4",
+        "B5",
+        "B6",
+        "B7",
+        "C0",
+        "C1",
+        "C2",
+        "C3",
+        "C4",
+        "C5",
+        "C6",
+        "C7",
+        "J0-0",
+        "J0-2",
+        "J0-OUT0",
+        "J0-OUT2",
+        "J1-0",
+        "J1-2",
+        "J1-OUT0",
+        "J1-OUT2",
+        "J2-0",
+        "J2-2",
+        "J2-OUT0",
+        "J2-OUT2",
+        "J3-0",
+        "J3-2",
+        "J3-OUT0",
+        "J3-OUT2",
+        "J4-0",
+        "J4-2",
+        "J4-OUT0",
+        "J4-OUT2",
+        "J5-0",
+        "J5-2",
+        "J5-OUT0",
+        "J5-OUT2",
+        "J6-0",
+        "J6-2",
+        "J6-OUT0",
+        "J6-OUT2",
+        "J7-0",
+        "J7-2",
+        "J7-OUT0",
+        "J7-OUT2",
+        "P0",
+        "P1",
+        "P2",
+        "P3",
+        "P4",
+        "P5",
+        "P6",
+        "P7",
+        "R0",
+        "R1",
+        "R2",
+        "R3",
+        "R4",
+        "R5",
+        "R6",
+        "R7",
+        "T0",
+        "T1",
+        "T2",
+        "T3",
+        "T4",
+        "T5",
+        "T6",
+        "T7"
+      ],
+      "changes": [
+        {
+          "id": "B0",
+          "added_material_m3": 4.177171498917742e-15,
+          "removed_material_m3": 0.00021161345966992472
+        },
+        {
+          "id": "B1",
+          "added_material_m3": 4.5794949775652886e-15,
+          "removed_material_m3": 0.00021161345967013722
+        },
+        {
+          "id": "B2",
+          "added_material_m3": 3.925113763814412e-15,
+          "removed_material_m3": 0.00021161345967008884
+        },
+        {
+          "id": "B3",
+          "added_material_m3": 4.904227650123432e-15,
+          "removed_material_m3": 0.00021161345966984327
+        },
+        {
+          "id": "B4",
+          "added_material_m3": 4.241731064146875e-15,
+          "removed_material_m3": 0.00021161345966996494
+        },
+        {
+          "id": "B5",
+          "added_material_m3": 4.2764745313577975e-15,
+          "removed_material_m3": 0.0002116134596698423
+        },
+        {
+          "id": "B6",
+          "added_material_m3": 3.979284078343306e-15,
+          "removed_material_m3": 0.0002116134596696695
+        },
+        {
+          "id": "B7",
+          "added_material_m3": 4.966078368840946e-15,
+          "removed_material_m3": 0.00021161345967035916
+        },
+        {
+          "id": "C0",
+          "added_material_m3": 9.832238400000062e-05,
+          "removed_material_m3": 0.0008546222947847532
+        },
+        {
+          "id": "C1",
+          "added_material_m3": 9.832238399999971e-05,
+          "removed_material_m3": 0.0008546222947847536
+        },
+        {
+          "id": "C2",
+          "added_material_m3": 9.832238400000071e-05,
+          "removed_material_m3": 0.00085462229478474
+        },
+        {
+          "id": "C3",
+          "added_material_m3": 9.832238400000028e-05,
+          "removed_material_m3": 0.0008546222947847522
+        },
+        {
+          "id": "C4",
+          "added_material_m3": 9.832238400000056e-05,
+          "removed_material_m3": 0.0008546222947847533
+        },
+        {
+          "id": "C5",
+          "added_material_m3": 9.832238400000039e-05,
+          "removed_material_m3": 0.0008546222947847528
+        },
+        {
+          "id": "C6",
+          "added_material_m3": 9.832238400000088e-05,
+          "removed_material_m3": 0.0008546222947847412
+        },
+        {
+          "id": "C7",
+          "added_material_m3": 9.832238399999985e-05,
+          "removed_material_m3": 0.0008546222947847549
+        },
+        {
+          "id": "J0-0",
+          "added_material_m3": 0.0010426398187682066,
+          "removed_material_m3": 0.0007797858030260381
+        },
+        {
+          "id": "J0-2",
+          "added_material_m3": 0.00104263981876815,
+          "removed_material_m3": 0.0007797858030265804
+        },
+        {
+          "id": "J0-OUT0",
+          "added_material_m3": 0.0010426398187680028,
+          "removed_material_m3": 0.0007797858030251553
+        },
+        {
+          "id": "J0-OUT2",
+          "added_material_m3": 0.0010426398187692583,
+          "removed_material_m3": 0.0007797858030587709
+        },
+        {
+          "id": "J1-0",
+          "added_material_m3": 0.0010426398187683124,
+          "removed_material_m3": 0.0007797858030268437
+        },
+        {
+          "id": "J1-2",
+          "added_material_m3": 0.0010426398187679793,
+          "removed_material_m3": 0.0007797858030266585
+        },
+        {
+          "id": "J1-OUT0",
+          "added_material_m3": 0.0010426398187680789,
+          "removed_material_m3": 0.0007797858030255686
+        },
+        {
+          "id": "J1-OUT2",
+          "added_material_m3": 0.001042639818768747,
+          "removed_material_m3": 0.0007797858030575526
+        },
+        {
+          "id": "J2-0",
+          "added_material_m3": 0.0010426398187682786,
+          "removed_material_m3": 0.0007797858030258827
+        },
+        {
+          "id": "J2-2",
+          "added_material_m3": 0.0010426398187682064,
+          "removed_material_m3": 0.0007797858030266549
+        },
+        {
+          "id": "J2-OUT0",
+          "added_material_m3": 0.0010426398187691258,
+          "removed_material_m3": 0.000779785803057849
+        },
+        {
+          "id": "J2-OUT2",
+          "added_material_m3": 0.0010426398187559555,
+          "removed_material_m3": 0.0007797858030266292
+        },
+        {
+          "id": "J3-0",
+          "added_material_m3": 0.0010426398187681023,
+          "removed_material_m3": 0.0007797858030266033
+        },
+        {
+          "id": "J3-2",
+          "added_material_m3": 0.001042639818767908,
+          "removed_material_m3": 0.0007797858030265122
+        },
+        {
+          "id": "J3-OUT0",
+          "added_material_m3": 0.0010426398187694892,
+          "removed_material_m3": 0.0007797858030578632
+        },
+        {
+          "id": "J3-OUT2",
+          "added_material_m3": 0.001042639818768605,
+          "removed_material_m3": 0.0007797858030579027
+        },
+        {
+          "id": "J4-0",
+          "added_material_m3": 0.0010426398187682135,
+          "removed_material_m3": 0.0007797858030258384
+        },
+        {
+          "id": "J4-2",
+          "added_material_m3": 0.0010426398187681019,
+          "removed_material_m3": 0.0007797858030267501
+        },
+        {
+          "id": "J4-OUT0",
+          "added_material_m3": 0.0010426398187691182,
+          "removed_material_m3": 0.0007797858030585757
+        },
+        {
+          "id": "J4-OUT2",
+          "added_material_m3": 0.0010426398187651806,
+          "removed_material_m3": 0.0007797858030524409
+        },
+        {
+          "id": "J5-0",
+          "added_material_m3": 0.0010426398187681715,
+          "removed_material_m3": 0.0007797858030267409
+        },
+        {
+          "id": "J5-2",
+          "added_material_m3": 0.0010426398187681242,
+          "removed_material_m3": 0.0007797858030268433
+        },
+        {
+          "id": "J5-OUT0",
+          "added_material_m3": 0.0010426398187694736,
+          "removed_material_m3": 0.00077978580305788
+        },
+        {
+          "id": "J5-OUT2",
+          "added_material_m3": 0.001042639818769306,
+          "removed_material_m3": 0.0007797858030549678
+        },
+        {
+          "id": "J6-0",
+          "added_material_m3": 0.0010426398187682083,
+          "removed_material_m3": 0.0007797858030259575
+        },
+        {
+          "id": "J6-2",
+          "added_material_m3": 0.001042639818768048,
+          "removed_material_m3": 0.0007797858030265213
+        },
+        {
+          "id": "J6-OUT0",
+          "added_material_m3": 0.0010426398187670328,
+          "removed_material_m3": 0.0007797858030260949
+        },
+        {
+          "id": "J6-OUT2",
+          "added_material_m3": 0.001042639818768527,
+          "removed_material_m3": 0.0007797858030515595
+        },
+        {
+          "id": "J7-0",
+          "added_material_m3": 0.0010426398187680895,
+          "removed_material_m3": 0.0007797858030267213
+        },
+        {
+          "id": "J7-2",
+          "added_material_m3": 0.0010426398187681307,
+          "removed_material_m3": 0.000779785803026738
+        },
+        {
+          "id": "J7-OUT0",
+          "added_material_m3": 0.0010426398187680574,
+          "removed_material_m3": 0.0007797858030256369
+        },
+        {
+          "id": "J7-OUT2",
+          "added_material_m3": 0.0010426398187685078,
+          "removed_material_m3": 0.0007797858030587677
+        },
+        {
+          "id": "P0",
+          "added_material_m3": 6.312322456999541e-17,
+          "removed_material_m3": 0.0002267185634815541
+        },
+        {
+          "id": "P1",
+          "added_material_m3": 5.860472731286735e-17,
+          "removed_material_m3": 0.00022671856348155237
+        },
+        {
+          "id": "P2",
+          "added_material_m3": 1.8090929687457347e-17,
+          "removed_material_m3": 0.0002267185634815759
+        },
+        {
+          "id": "P3",
+          "added_material_m3": 5.898102169968507e-17,
+          "removed_material_m3": 0.0002267185634815782
+        },
+        {
+          "id": "P4",
+          "added_material_m3": 6.020837244025655e-17,
+          "removed_material_m3": 0.00022671856348157704
+        },
+        {
+          "id": "P5",
+          "added_material_m3": 5.89550813156754e-17,
+          "removed_material_m3": 0.00022671856348157636
+        },
+        {
+          "id": "P6",
+          "added_material_m3": 1.807631836911721e-17,
+          "removed_material_m3": 0.00022671856348155237
+        },
+        {
+          "id": "P7",
+          "added_material_m3": 6.095439670855077e-17,
+          "removed_material_m3": 0.0002267185634815526
+        },
+        {
+          "id": "R0",
+          "added_material_m3": 0.003345861775649284,
+          "removed_material_m3": 0.004136318117996813
+        },
+        {
+          "id": "R1",
+          "added_material_m3": 0.00334586177558261,
+          "removed_material_m3": 0.004136318117995151
+        },
+        {
+          "id": "R2",
+          "added_material_m3": 0.0033458617756492804,
+          "removed_material_m3": 0.004136318117996763
+        },
+        {
+          "id": "R3",
+          "added_material_m3": 0.003345861775588967,
+          "removed_material_m3": 0.004136318117980257
+        },
+        {
+          "id": "R4",
+          "added_material_m3": 0.0033458617756500428,
+          "removed_material_m3": 0.004136318118008405
+        },
+        {
+          "id": "R5",
+          "added_material_m3": 0.003345861775586338,
+          "removed_material_m3": 0.0041363181179841545
+        },
+        {
+          "id": "R6",
+          "added_material_m3": 0.003345861775649903,
+          "removed_material_m3": 0.004136318117995235
+        },
+        {
+          "id": "R7",
+          "added_material_m3": 0.0033458617755847877,
+          "removed_material_m3": 0.004136318117994265
+        },
+        {
+          "id": "T0",
+          "added_material_m3": 0.0006292049084475668,
+          "removed_material_m3": 0.0001127086931669627
+        },
+        {
+          "id": "T1",
+          "added_material_m3": 0.0006292049084475659,
+          "removed_material_m3": 0.000112708693166963
+        },
+        {
+          "id": "T2",
+          "added_material_m3": 0.0006292049084475668,
+          "removed_material_m3": 0.00011270869316696256
+        },
+        {
+          "id": "T3",
+          "added_material_m3": 0.000629204908447566,
+          "removed_material_m3": 0.00011270869316696283
+        },
+        {
+          "id": "T4",
+          "added_material_m3": 0.0006292049084475677,
+          "removed_material_m3": 0.00011270869316696265
+        },
+        {
+          "id": "T5",
+          "added_material_m3": 0.0006292049084475658,
+          "removed_material_m3": 0.00011270869316696307
+        },
+        {
+          "id": "T6",
+          "added_material_m3": 0.0006292049084475679,
+          "removed_material_m3": 0.00011270869316696257
+        },
+        {
+          "id": "T7",
+          "added_material_m3": 0.0006292049084475659,
+          "removed_material_m3": 0.00011270869316696284
+        }
+      ],
+      "added_timber_ids": [],
+      "removed_timber_ids": [],
+      "overlap_tolerance_m3": 1.6387064e-11,
+      "scope": "Actual current occupied-material comparison against the current baseline; no old comparison is relabeled."
+    }
+  }
+}

@@ -1,0 +1,177 @@
+{
+  "revision": "R000076",
+  "timestamp": "2026-11-06T00:50:22+00:00",
+  "status": "BLOCKED_INTEGRATION_CHECKPOINT_DO_NOT_PUBLISH",
+  "logicalRevisionFinished": true,
+  "sources": {
+    "scripts/floor_closure_parts.py": "309c80af7f1b62c7886b6dc2d0b6b137c23531fa7bf5da97314d253f172e04ac",
+    "scripts/prepare_architecture.py": "b5a8109a2205921b0a60f16ce9a64afe3474c573d4859c5e96c2b5acde7ebc97",
+    "scripts/fixtures/floor-three-station-inputs.json": "3e4e8cddb76b67dd1a98ff30eb1eec22bc709af4ecda32152eca5a7ce6c32efc",
+    "scripts/fixtures/floor-three-station-inputs.tar.gz": "3a3325941ea458a2972dd82b3c071ec33d9df85493867a6619a4a9ed116caa16",
+    "tests/test_floor_closure_parts.py": "e995f4580ff26733b74d05a279512b7887a0898a98383c3072ccd2f7fcd95c99",
+    "tests/architecture.cjs": "afb240bbf48944300b66e20a363b2e4e342be2a9f94483a2d08e596ba28abe2b"
+  },
+  "sourceTransport": {
+    "originalThreeStationArchivePreservedByteExact": true,
+    "originalArchiveSha256": "670d726872d83294069d4bb1fb7ec156e0f853ec3dbb61fab125a27901cc48e1",
+    "ownerTransportSha256": "3a3325941ea458a2972dd82b3c071ec33d9df85493867a6619a4a9ed116caa16",
+    "extraMissingSourceClosureInputs": [
+      "Exact original three-floor-centered-stations.json",
+      "Exact original wall-joinery-fit.json used by three-station producer"
+    ],
+    "existingCoreAndArchitecturalFixtureReferencesRevalidated": true
+  },
+  "constructed": {
+    "newReturnWood": 79,
+    "physicalFilms": 253,
+    "individualFasteners": 611,
+    "sameProductReposedRSS": 3,
+    "currentNegativeEnvelopeRecipients": 177,
+    "corkAndFootOverlays": 12,
+    "canonicalFloorChanged": false,
+    "purchasedBlankAndDimensionsChanged": false
+  },
+  "passingScopedChecks": {
+    "actual886EnvelopeBodiesAnd488StockRows": "3 regressions PASS195.144s; every positive-waste row independently checked in world and actual stock-local coordinates",
+    "cork8": "Prior3 regressions PASS56.268s with existing-extra-void/idempotence/split controls; actual stage now contains8current negative-seat overlays",
+    "actualRuntimeConsumers": {
+      "pass": true,
+      "individualArchitecturalActors": 29877,
+      "sharedPrototypes": 43,
+      "physicalWindowUnits": 14,
+      "strictContactPolicy": true,
+      "stageSha256": "ee074dce92f08b37b157791c8a48f0154f78b0bf594f142d195f4478e4145a03"
+    },
+    "staticPhysicalFilmRecipients": {
+      "test": "FloorHardwareMetadata.test_all_films_and_source_bound_hardware_with_three_station_delta",
+      "status": "PASS",
+      "seconds": 4.8,
+      "sameProductsAndPoses": true,
+      "fastenersChanged": 522,
+      "sourceDeclaredFilmRelationsAppended": 600,
+      "withdrawalExemptionsAdded": false,
+      "laterFilmMotionClassification": "Conservative unchanged pending exact source phase successor"
+    }
+  },
+  "fullCurrentFloorContactCheck": {
+    "status": "BLOCKED",
+    "scope": "Contacts involving955 current floor closure actors against the complete assembled projection only; no whole-building route certificate",
+    "sceneSha256": "0509a99fff253ce552e95a116b4c1e9952f14a20936462c55ee6893de089673c",
+    "physicalContextActors": 33411,
+    "selectedActors": 955,
+    "nativeNonexemptPairs": 11706,
+    "sourceDeclaredFastenerPairs": 2131,
+    "maximumNonexemptOverlapIn3": 112.16780333025034,
+    "unchangedToleranceIn3": 1e-06,
+    "sceneKind": "Metadata-only diagnostic successor of actual v2 assembled projection; not a newly regenerated architecture or route proof.",
+    "reportSha256": "7403b2abd4313ccb2cb1c08a044e4138fb89179395ea8574148257de2efb8f45"
+  },
+  "knownContactFailures": {
+    "total": 699,
+    "missingDeclaredFastenerReceivers": 688,
+    "existingFloorCausalRowsAlreadyDescribe": 0,
+    "additionalRetainedENVContacts": 688,
+    "realThresholdClashes": 11,
+    "realThresholdRows": [
+      {
+        "a": "AIR-RETURN-W-INNER-SEAM",
+        "b": "MUD-THRESHOLD-CAP",
+        "overlapIn3": 1.2174237430896873
+      },
+      {
+        "a": "AIR-RETURN-W-RECESSED-LINER-SEG0",
+        "b": "MUD-THRESHOLD-RISER",
+        "overlapIn3": 1.1776147331326257
+      },
+      {
+        "a": "AIR-W-FLOOR-RETURN-0",
+        "b": "MUD-THRESHOLD-RISER",
+        "overlapIn3": 51.391695761224305
+      },
+      {
+        "a": "AIR-W-FLOOR-RETURN-BACKER",
+        "b": "MUD-THRESHOLD-RISER",
+        "overlapIn3": 112.16780333025034
+      },
+      {
+        "a": "AIR-W-PAN-BRIDGE-L-END-R",
+        "b": "MUD-THRESHOLD-CAP",
+        "overlapIn3": 0.012307024613964095
+      },
+      {
+        "a": "AIR-W-PAN-BRIDGE-L-END-R",
+        "b": "MUD-THRESHOLD-RISER",
+        "overlapIn3": 0.029071711743868738
+      },
+      {
+        "a": "AIR-W-PAN-BRIDGE-R-END-L",
+        "b": "MUD-THRESHOLD-CAP",
+        "overlapIn3": 0.01230702461404937
+      },
+      {
+        "a": "AIR-W-PAN-BRIDGE-R-END-L",
+        "b": "MUD-THRESHOLD-RISER",
+        "overlapIn3": 0.029071711744921905
+      },
+      {
+        "a": "FLOORBOXFIX-W-RIM-3",
+        "b": "MUD-THRESHOLD-RISER",
+        "overlapIn3": 0.122085707010967
+      },
+      {
+        "a": "FLOORBOXFIX-W-RIM-4",
+        "b": "MUD-THRESHOLD-RISER",
+        "overlapIn3": 0.12208570701096604
+      },
+      {
+        "a": "FLOORBOXFIX-W-RIM-5",
+        "b": "MUD-THRESHOLD-RISER",
+        "overlapIn3": 0.12208570701096473
+      }
+    ],
+    "originalReportSha256": "05fe4018349e2148b123515421a5de261decabbfceb3d89bc5cbd770dd57a766",
+    "originalTotal": 1299,
+    "originalMissingDeclaredFastenerReceivers": 1288,
+    "resolvedByAppendingExistingStaticFilmReceivers": 600
+  },
+  "actualAxisCheck": {
+    "checked": 25199,
+    "status": "BLOCKED",
+    "remainingStaleFloorNailIds": [
+      "FLOOR-JOIST-TO-BEARING-0002",
+      "FLOOR-JOIST-TO-BEARING-0003",
+      "FLOOR-JOIST-TO-BEARING-0005",
+      "FLOOR-JOIST-TO-BEARING-0166",
+      "FLOOR-JOIST-TO-BEARING-0167",
+      "FLOOR-JOIST-TO-BEARING-0168",
+      "FLOOR-JOIST-TO-BEARING-0169",
+      "FLOOR-JOIST-TO-BEARING-0170"
+    ],
+    "sixteenDrainDirectionsNowPass": true
+  },
+  "latestUserConstraints": [
+    "Vertical primary posts first, later wallgirts individually; no completed whole-wall appearance. Existing opposed3in girt sockets need actual entry/joint resolution.",
+    "Individual solid-wood dimensional siding boards, bottom-to-top, over continuous trueExterior-grade plywood outside the framing; legacyLP/rectangular infill is not the final exterior."
+  ],
+  "remaining": [
+    "Correct source-bound actual receiving-material/causal metadata; earlier pierced flexible material is supported by the unchanged kernel and must be distinguished from later head covers.",
+    "Replace two unstocked/unfastened legacy threshold prisms with an actual supported and fastened detail; actual porch walking rise is about6in, not the old14in prism height.",
+    "Import separately frozen lower30fixing/secondarywood/SIDE overlays and complete conditional route; current8bad axes are not waived.",
+    "Integrate actual final roof/weather/upper-wall layers; complete all native contacts, lifetimes, full source-bound sequence, dynamic regeneration, browser checks and model image."
+  ],
+  "historicalReceiptsRelabelled": false,
+  "wholeBuildingReady": false,
+  "deployed": false,
+  "logicalChangeScope": "Construct source-bound floor closure and current-only negative overlays; report actual downstream integration blockers without qualifying a release.",
+  "originalFullCurrentFloorContactCheck": {
+    "status": "BLOCKED",
+    "scope": "Contacts involving955 current floor closure actors against the complete assembled projection only; no whole-building route certificate",
+    "sceneSha256": "146713aaf77471eb697dc26a61e589ec062233dfe670efb6e502426a9ded8dd0",
+    "physicalContextActors": 33411,
+    "selectedActors": 955,
+    "nativeNonexemptPairs": 12306,
+    "sourceDeclaredFastenerPairs": 1531,
+    "maximumNonexemptOverlapIn3": 112.16780333025034,
+    "unchangedToleranceIn3": 1e-06
+  }
+}
