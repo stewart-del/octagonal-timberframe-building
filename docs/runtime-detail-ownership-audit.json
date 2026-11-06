@@ -1,0 +1,32 @@
+{
+  "revision": "R000080",
+  "timestamp": "2026-11-06T01:19:41+00:00",
+  "status": "PASS_SCOPED_RUNTIME_OWNERSHIP",
+  "problem": "Loading canonical occupied-mesh detail previously replaced newer architectural overlays and their drawing buffers with old geometry.",
+  "result": "The runtime producer excludes architectural replacement IDs from canonical detail. Viewer detail application updates only pending canonical owners and preserves corrected overlay geometry/buffers. Shared downloads/decodes remain coalesced.",
+  "sources": {
+    "scripts/build_runtime.py": "fbcee3b16038feb2c81c643004ecba1cc3987a18a0e423aedd833b4945a415b3",
+    "src/viewer.template.html": "7a84c2db196dba6dd249b80573eac82b01b6789e0c2e00a746ea277f6a0dfbc4",
+    "tests/test_runtime_detail_ownership.py": "9dbc10e412da16586fc254d08ad54f0e328a60de266c7ee37b365284814511de",
+    "tests/runtime-detail-ownership.cjs": "9da63c5ca71dcddb96a88de22d78e861daef474fb5dbae6ba07b49aa4dbc1a19",
+    "tests/shared-runtime-loading.cjs": "6053f4a53a945f68da2a7ef8cf4f7248507c2cfad86ebc47e2833cb4104c8813"
+  },
+  "verification": {
+    "producerTests": "3PASS",
+    "actualViewerFunctionRegression": "Fails against prior committed viewer (old99 overwrites current30); PASS with current source. Three concurrent calls and a later repeated call fetch detail once.",
+    "sharedLoaderRegression": {
+      "pass": true,
+      "initialRequests": 4,
+      "sharedDataDownloads": 1,
+      "sharedEdgeDownloads": 1,
+      "detailDownloadsAndDecodes": 1,
+      "returnToPriorModelAdditionalRequests": 0
+    }
+  },
+  "geometryOrThresholdChanged": false,
+  "fullBuildOrBrowserVerificationClaimed": false,
+  "limits": [
+    "Full current build, live viewer/browser performance and dynamic complete architecture remain separate unfinished checks.",
+    "The correction preserves existing source ownership; it does not make partial motion/geometry datasets release-ready."
+  ]
+}

@@ -26,6 +26,25 @@ ROOT = Path(__file__).resolve().parents[1]
 def encode(value):
     return json.dumps(value, separators=(',', ':'), ensure_ascii=True).replace('</', '<\\/')
 
+# TIMESTAMP START 2026-11-06T01:19:41+00:00 | REVISION R000080
+def split_foundation_detail(foundation):
+    """Canonical lazy detail never owns an architectural replacement's ID."""
+    architecture=foundation.get('architecture',{})
+    if architecture.get('partArchives') and 'parts' not in architecture:
+        raise ValueError('Resolve architectural owners before building runtime detail')
+    owned={part['id'] for part in architecture.get('parts',[]) if part.get('replaceExisting')}
+    initial_parts=[];detail_parts={}
+    for part in foundation['parts']:
+        initial={key:value for key,value in part.items() if key not in ['display_mesh','detail_ref','renderGeometry']}
+        if part.get('display_mesh'):
+            initial.update({key:part['display_mesh'][key] for key in ['vertices','triangles']})
+            if part['id'] not in owned:
+                detail_parts[part['id']]={key:part[key] for key in ['vertices','triangles']}
+                initial.update(detail_ref=part['id'],renderGeometry='Assembled outer rendering envelope; concealed physical bores load once for inspection or motion.')
+        initial_parts.append(initial)
+    return {**foundation,'parts':initial_parts},detail_parts
+# TIMESTAMP END 2026-11-06T01:19:41+00:00 | REVISION R000080
+
 def write_runtime(html, *, model, variants, wall_joinery, foundation, mudroom, disassembly, study):
     dist = ROOT / 'dist'
     assets = dist / 'assets'
@@ -50,15 +69,9 @@ def write_runtime(html, *, model, variants, wall_joinery, foundation, mudroom, d
     # TIMESTAMP START 2026-11-05T06:13:38+00:00 | REVISION R000027
     # Startup renders exact outer envelopes with concealed bores omitted. The
     # physical source, offline export and every geometry audit retain all bores.
-    initial_parts=[];detail_parts={}
-    for part in foundation['parts']:
-        initial={key:value for key,value in part.items() if key!='display_mesh'}
-        if part.get('display_mesh'):
-            detail_parts[part['id']]={key:part[key] for key in ['vertices','triangles']}
-            initial.update({key:part['display_mesh'][key] for key in ['vertices','triangles']})
-            initial.update(detail_ref=part['id'],renderGeometry='Assembled outer rendering envelope; concealed physical bores load once for inspection or motion.')
-        initial_parts.append(initial)
-    initial_foundation={**foundation,'parts':initial_parts}
+    # TIMESTAMP START 2026-11-06T01:19:41+00:00 | REVISION R000080
+    initial_foundation,detail_parts=split_foundation_detail(foundation)
+    # TIMESTAMP END 2026-11-06T01:19:41+00:00 | REVISION R000080
     if detail_parts:
         with tempfile.TemporaryDirectory(prefix='octagon-detail-build-') as directory:
             base=Path(directory)/'occupied-detail'

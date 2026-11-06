@@ -11,6 +11,12 @@ const starter=pieces.find(p=>p.id==='CEDAR-MAIN0-C00-S000-N1');assert(starter.re
 // TIMESTAMP START 2026-11-05T22:31:25+00:00 | REVISION R000069
 assert.equal(data.closureCoreComposition.causalHardwareMetadataStatus,'SOURCE_BOUND_EARLIER_WOOD_AND_LATER_COVERS_APPLIED');
 const closureFasteners=pieces.filter(p=>p.causalMetadataStatus==='SOURCE_BOUND_EARLIER_WOOD_AND_LATER_COVERS_APPLIED');assert.equal(closureFasteners.length,9415);
+// TIMESTAMP START 2026-11-06T00:50:22+00:00 | REVISION R000076
+const floorClosure=data.floorClosureComposition;assert.equal(floorClosure.newReturnWoodCount,79);assert.equal(floorClosure.physicalFilms,253);assert.equal(floorClosure.individualFasteners,611);assert.equal(floorClosure.lowerSeatReceipts.length,12);assert(!floorClosure.canonicalFloorChanged);
+const floorClosureFasteners=pieces.filter(p=>p.causalMetadataStatus==='FLOOR_SOURCE_BOUND_EARLIER_WOOD_AND_LATER_FILMS_APPLIED');assert.equal(floorClosureFasteners.length,611);for(const p of floorClosureFasteners){assert(p.causalSourcePoseSha256);assert(p.withdrawalReceiverIds.every(id=>!p.removalPrerequisites.includes(id)));}
+assert.equal(new Set(floorClosure.physicalFilmIds).size,253);for(const id of floorClosure.physicalFilmIds)assert.equal(pieces.filter(p=>p.id===id).length,1);
+assert.equal(pieces.filter(p=>p.replaceExisting&&p.id.startsWith('FLOOR-CORK-')).length,8);assert(!pieces.some(p=>p.replaceExisting&&/^FLOOR-GP-/.test(p.id)));assert.equal(data.closureCoreStock.serializedWasteComposition.stockCount,488);
+// TIMESTAMP END 2026-11-06T00:50:22+00:00 | REVISION R000076
 for(const p of closureFasteners){assert(p.causalSourcePoseSha256&&p.assemblyPrerequisiteWoodIds.length);assert(p.withdrawalReceiverIds.every(id=>!p.removalPrerequisites.includes(id)));}
 const sidingNails=closureFasteners.filter(p=>/^LAP-[A-Z]+-\d+-/.test(p.parentId));assert.equal(sidingNails.length,2849);assert.equal(sidingNails.filter(p=>p.removalPrerequisites.some(id=>{const a=/^LAP-([A-Z]+)-(\d+)-/.exec(p.parentId),b=/^LAP-([A-Z]+)-(\d+)-/.exec(id);return b&&a[1]===b[1]&&Number(b[2])>Number(a[2]);})).length,2302);
 // TIMESTAMP END 2026-11-05T22:31:25+00:00 | REVISION R000069
@@ -22,7 +28,9 @@ const model={parts:[{id:'P0'},{id:'PLY'}]},legacy=[{id:'OLD-WALL',schematicKind:
 const overlays=pieces.filter(p=>p.replaceExisting),overlayLegacy=overlays.map(p=>({id:p.id,schematicKind:p.schematicKind,material:p.material,oldGeometry:true}));
 // TIMESTAMP START 2026-11-05T16:27:06+00:00 | REVISION R000053
 // TIMESTAMP START 2026-11-05T17:43:13+00:00 | REVISION R000059
-assert.equal(overlays.length,86,'Floor, porch-roof, stair and cast-pan hosts are composed exactly once');assert.equal(data.woodStairComposition.original_wood_overlays.length,4);assert.equal(data.woodStairTakeoff.linearStockCount,43);assert.equal(pieces.filter(p=>/^WOOD-STAIR-STRINGER-[1-4]$/.test(p.id)&&p.stockSectionIn?.[0]===1.5&&p.stockSectionIn?.[1]===11.25).length,4);
+// TIMESTAMP START 2026-11-06T00:50:22+00:00 | REVISION R000076
+assert.equal(overlays.length,98,'Attachment, lower-seat, porch-roof, stair and cast-pan hosts are composed exactly once');assert.equal(data.woodStairComposition.original_wood_overlays.length,4);assert.equal(data.woodStairTakeoff.linearStockCount,43);assert.equal(pieces.filter(p=>/^WOOD-STAIR-STRINGER-[1-4]$/.test(p.id)&&p.stockSectionIn?.[0]===1.5&&p.stockSectionIn?.[1]===11.25).length,4);
+// TIMESTAMP END 2026-11-06T00:50:22+00:00 | REVISION R000076
 // TIMESTAMP END 2026-11-05T17:43:13+00:00 | REVISION R000059
 // TIMESTAMP START 2026-11-05T19:06:47+00:00 | REVISION R000061
 assert.equal(data.hostOverlayProofs.length,50);assert.equal(data.porchRoofComposition.host_composition.length,14);assert.equal(data.drainGrateComposition.host_composition.length,18);

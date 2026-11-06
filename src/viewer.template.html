@@ -212,8 +212,11 @@ const SAVED_MODEL_CONTEXT=OctagonWallJoinery.applyContext(initialModelContext,WA
 // TIMESTAMP START 2026-11-05T06:13:38+00:00 | REVISION R000027
 async function loadFoundationDetail(){
  const detail=await globalThis.OctagonSiteLoader?.ensureDetail();if(!detail)return null;
- for(const [id,edges] of detail.meshCache)SAVED_MODEL_CONTEXT.meshCache?.set(id,edges);
- for(const p of FLOOR_FOUNDATION_DATA.parts){const value=detail.parts[p.id];if(value){Object.assign(p,value);delete p.detail_ref;delete p.renderGeometry;}}
+ // TIMESTAMP START 2026-11-06T01:19:41+00:00 | REVISION R000080
+ const owned=new Set((FLOOR_FOUNDATION_DATA.architecture?.parts||[]).filter(p=>p.replaceExisting).map(p=>p.id)),pending=new Set(FLOOR_FOUNDATION_DATA.parts.filter(p=>p.detail_ref&&!owned.has(p.id)).map(p=>p.id));
+ for(const [id,edges] of detail.meshCache)if(pending.has(id))SAVED_MODEL_CONTEXT.meshCache?.set(id,edges);
+ for(const p of FLOOR_FOUNDATION_DATA.parts){const value=pending.has(p.id)&&detail.parts[p.id];if(value){Object.assign(p,value);delete p.detail_ref;delete p.renderGeometry;}}
+ // TIMESTAMP END 2026-11-06T01:19:41+00:00 | REVISION R000080
  return detail;
 }
 // TIMESTAMP END 2026-11-05T06:13:38+00:00 | REVISION R000027
@@ -422,9 +425,14 @@ if(gl){const grid=[];for(let i=-12;i<=12;i++){grid.push(-12,-.015,i,0,1,0,12,-.0
 let physicalDetailPromise=null;
 function ensurePhysicalDetail(){
  if(MODEL_CONTEXT.parametric||!schematicParts.some(p=>p.detail_ref))return Promise.resolve();
+ // TIMESTAMP START 2026-11-06T01:19:41+00:00 | REVISION R000080
+ const pending=new Set(schematicParts.filter(p=>p.detail_ref&&!p.replaceExisting).map(p=>p.id));
+ // TIMESTAMP END 2026-11-06T01:19:41+00:00 | REVISION R000080
  if(!physicalDetailPromise)physicalDetailPromise=loadFoundationDetail().then(detail=>{
   if(!detail)return;
-  for(const p of schematicParts){const value=detail.parts[p.id];if(!value)continue;
+  // TIMESTAMP START 2026-11-06T01:19:41+00:00 | REVISION R000080
+  for(const p of schematicParts){const value=pending.has(p.id)&&detail.parts[p.id];if(!value)continue;
+  // TIMESTAMP END 2026-11-06T01:19:41+00:00 | REVISION R000080
    Object.assign(p,value);delete p.detail_ref;delete p.renderGeometry;
    const edgeRaw=detail.meshCache.get(p.id);if(!edgeRaw)throw Error('Missing occupied-mesh drawing edges: '+p.id);
    MODEL_CONTEXT.meshCache?.set(p.id,edgeRaw);

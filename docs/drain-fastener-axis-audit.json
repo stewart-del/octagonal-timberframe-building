@@ -1,0 +1,36 @@
+{
+  "revision": "R000077",
+  "timestamp": "2026-11-06T01:00:34+00:00",
+  "status": "PASS_SCOPED_DRAIN_MOTION_METADATA",
+  "sources": {
+    "scripts/drain_grate_parts.py": "67f595199edeaf69c2d60610a03160a00f0a04c028754ea4701f2a7dc924b024",
+    "scripts/physical_fastener_axes.py": "5efd16699349625eda8bc9576262560e88fed7419c9d1811f8eab3c55cad3575",
+    "scripts/fixtures/drain-grate-inputs.json.gz": "8b81c236772e457f3e9b37c4d0907f545a0fae8f66d3baa694c17583abc1572b",
+    "scripts/fixtures/floor-closure-inputs.json": "93c4b8c923816abe0097e6e43c74a6ea135277a517402cc93a4e8db1155efff6",
+    "scripts/fixtures/floor-closure-inputs.tar.gz": "7e65f8f7a5eb3b11a041899d78b0e9e10eb1e656a5171a4ebbf57f916fa49bcb",
+    "tests/test_drain_fastener_axes.py": "4d932daf759c7ba7a6947f9cc2aa9ff19a93b0f15e702ee8b3c2ee6eb300b17b",
+    "tests/test_drain_grate_parts.py": "9ab0af40b65cdd1a4d057960569edcc19ad478f63a7cac94188482dcfcc7b218"
+  },
+  "verification": "6 owner regressions PASS82.007s; sixteen actual concrete screws retain every original field/product/pose/static recipient and now pass the independent physical-axis gate. All existing drain RAW/contact/mass/quantity/source-refusal checks pass. Reversed direction and nonrigid pose are rejected.",
+  "concreteScrews": {
+    "THD37300CS6SS": 8,
+    "THD37300HMG": 8,
+    "withdrawalDirectionSource": "Actual modeled head/shaft and rigid product transform",
+    "withdrawalDistance": "Actual modeled axial extent plus.000254m outward clearance",
+    "geometryChanged": false,
+    "staticReceiverIdsChanged": false,
+    "newPenetrationExemptions": false
+  },
+  "separateFloorNominalNailBinding": {
+    "geometrySha256Float64Uint64LE": "cfb98604ccce99d35da5e5a37f88ce8c1d6e18cb6d3fd0363ea00e66dafc960f",
+    "partNumber": "T8PCS10",
+    "sourceConvention": "Frozen floor return source head at localZ0; shank into+Z",
+    "changedBoundaryRejected": true,
+    "unpublishedFactoryHeadProfileProven": false
+  },
+  "limits": [
+    "The declared screw directions must be checked in the complete current model by continuous axial movement; scoped static checks do not prove global access.",
+    "The eight previously identified floor end-toe pose/direction errors remain a separate in-progress negative-only source and motion correction.",
+    "Whole-building contact, form lifetimes, dynamic architecture and final deployment remain unfinished."
+  ]
+}

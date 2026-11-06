@@ -149,6 +149,10 @@ def compose_stock(parts,data=None):
   intended=blank-installed;attempts=[];chosen=None;patch=repaired_candidate(sid,row,parts,require_exact=False);basis=stock_frame(sid,row['blank'],data);origin=np.asarray(row['blank']['vertices']).mean(0);toLocal=np.column_stack([basis.T/I,-basis.T@origin/I]);blankLocal=affine(blank,toLocal);installedLocal=union([affine(solids[pid],toLocal) for pid in row['children']])
   candidates=[]
   if patch:candidates.append(('Repaired serialized waste candidate; fresh actual-current proof required',lambda:copy.deepcopy(patch['fields'])))
+  # TIMESTAMP START 2026-11-06T01:05:01+00:00 | REVISION R000078
+  from positive_stock_waste import candidate as positive_current_waste
+  candidates.append(('Current local stock difference partitioned into positive physical offcuts; fresh world/local proof required',lambda:positive_current_waste(row['blank'],[parts[pid]for pid in row['children']],basis,origin)))
+  # TIMESTAMP END 2026-11-06T01:05:01+00:00 | REVISION R000078
   candidates.extend([('Original serialized waste; fresh actual-current proof required',lambda:{'declared_exterior_offcut':copy.deepcopy(row['declared_exterior_offcut'])}),('Current blank minus installed, native serialization',lambda:{'declared_exterior_offcut':native_record(intended,single=False)}),('Net signed blank-minus-current-children contours in stock frame',lambda:{'declared_exterior_offcut':repaired_stock_waste(signed_stock_difference(row['blank'],[parts[pid] for pid in row['children']]),sid,row['blank'],data)}),('Signed current CSG contours in stock frame',lambda:{'declared_exterior_offcut':repaired_stock_waste(mesh(intended),sid,row['blank'],data)}),('Signed archived waste contours, independently compared with current stock',lambda:{'declared_exterior_offcut':repaired_stock_waste(row['declared_exterior_offcut'],sid,row['blank'],data)}),('Net signed current stock contours with1e-11m plane grouping',lambda:{'declared_exterior_offcut':repaired_stock_waste(signed_stock_difference(row['blank'],[parts[pid] for pid in row['children']]),sid,row['blank'],data,1e-11)})])
   for method,build in candidates:
    try:

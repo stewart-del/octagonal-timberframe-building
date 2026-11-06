@@ -1,0 +1,35 @@
+{
+  "revision": "R000078",
+  "timestamp": "2026-11-06T01:05:01+00:00",
+  "status": "PASS_CURRENT_POSITIVE_STOCK_CONSTRUCTION",
+  "sources": {
+    "scripts/positive_stock_waste.py": "24fb4343fd6a5e15286c09f5d069571ff84a92c3e41a3aa1e7c0ebe554aaafef",
+    "scripts/closure_core_parts.py": "b37bbf5bcc7e3bb614518f8893c9ee5c78c3d9409120e30244c5ec021788a448",
+    "tests/test_positive_stock_waste.py": "3d50133c42115d520ea04abbc81d707010803077ea3122208a2a0867b2aeff7d"
+  },
+  "verification": {
+    "syntheticPhysicalCavityAndNonrigidTests": "2PASS.101s",
+    "existing315Body290StockCoreRegressions": "3PASS107.188s",
+    "expandedCurrent886Body488StockIntegration": "3PASS195.144s",
+    "freshStockReadbackReportSHA256": "32bbbd5983c443d627ef47c26a586c89e3b35b957c0278b7cc03e804b6698d49",
+    "actualReadbackMethods": {
+      "Current local stock difference partitioned into positive physical offcuts; fresh world/local proof required": 275,
+      "Repaired serialized waste candidate; fresh actual-current proof required": 174,
+      "Net signed blank-minus-current-children contours in stock frame": 34,
+      "Original serialized waste; fresh actual-current proof required": 3,
+      "Signed current CSG contours in stock frame": 1,
+      "Current blank minus installed, native serialization": 1
+    },
+    "maximumWorldOrLocalStockErrorM3": 1.3112733999144982e-11,
+    "unchangedLimitM3": 1.6387064e-11
+  },
+  "scope": "New waste candidate only. Every candidate is independently re-imported and checked by the unchanged owner partition/containment/volume/pairwise-overlap tests in both world and actual stock-local coordinates.",
+  "installedGeometryChanged": false,
+  "purchasedBlankOrDimensionsChanged": false,
+  "historicalProofsInherited": false,
+  "numericCollisionKernelsChanged": false,
+  "method": "Expose enclosed negative waste boundaries by actual plane cuts; serialize each connected positive physical offcut. Never discard a real negative inner boundary. Only total numerical residue below the existing occupied-volume limit is permitted, and fresh whole-partition checks still apply.",
+  "limits": [
+    "Final integrated actor contacts, dynamic regeneration, stock lifetimes and whole-building motion require separate verification."
+  ]
+}

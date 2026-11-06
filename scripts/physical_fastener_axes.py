@@ -17,6 +17,11 @@ NOMINAL_SHANK_CONVENTIONS={
  'd62ca23e0f71c4a5333e989b96266b779e2c2623435111678e618f42294aa5a7':('T8PCS10',[0,0,-1]),
  'cbd07b5fe3453b64522345b2727885ad7cfffce438a653b07968f888b205919a':('T8PCS10',[0,0,-1]),
  'e4ce706ef92672fc8149a5d7d854749615d9be5869654a47bbc323708abb486c':('T10A325CNJ',[0,0,-1])}
+# TIMESTAMP START 2026-11-06T01:00:34+00:00 | REVISION R000077
+# The separately frozen floor-return source uses the same source construction
+# convention, but its actual vertices differ and require their own exact hash.
+NOMINAL_SHANK_CONVENTIONS['cfb98604ccce99d35da5e5a37f88ce8c1d6e18cb6d3fd0363ea00e66dafc960f']=('T8PCS10',[0,0,-1])
+# TIMESTAMP END 2026-11-06T01:00:34+00:00 | REVISION R000077
 def geometry_hash(record):return hashlib.sha256(np.asarray(record['vertices'],dtype='<f8').tobytes()+np.asarray(record['triangles'],dtype='<u8').tobytes()).hexdigest()
 def shaft_axis(record):
  vertices=np.asarray(record['vertices'],float);assert vertices.ndim==2 and vertices.shape[1]==3 and len(vertices)>=8 and np.isfinite(vertices).all(),'Missing finite physical fastener vertices';centred=vertices-vertices.mean(0);values,vectors=np.linalg.eigh(centred.T@centred);assert values[-1]>1.2*max(values[-2],1e-30),'Physical headed fastener has no unambiguous shaft axis';return centred,vectors[:,-1]

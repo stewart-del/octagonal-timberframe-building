@@ -177,7 +177,14 @@ def prepare(output):
  gp_seats=roof_barrier_gp_seats(wall_parts);wall_parts=gp_seats['parts']
  membranes['report']['currentGPSeatComposition']=gp_seats['receipts']
  # TIMESTAMP END 2026-11-05T22:52:56+00:00 | REVISION R000070
+ # TIMESTAMP START 2026-11-06T00:50:22+00:00 | REVISION R000076
+ from floor_closure_parts import inputs as floor_air_inputs,compose_envelope as floor_air_envelope,compose_lower as floor_air_lower,hardware as floor_air_hardware,films as floor_air_films,stock_input_data as floor_air_stock_data
+ floor_air_source=floor_air_inputs();floor_air=floor_air_envelope(wall_parts,floor_air_source);wall_parts=floor_air['parts'];floor_air_return_ids=set(floor_air_source['woodAndFirstNegativeTools']['add_parts']);floor_air_stock_source=floor_air_stock_data(closure_source,floor_air_source)
+ # TIMESTAMP END 2026-11-06T00:50:22+00:00 | REVISION R000076
  def wall_properties(p):
+  # TIMESTAMP START 2026-11-06T00:50:22+00:00 | REVISION R000076
+  if p['id']in floor_air_return_ids:return 'Floor air-barrier return backers and plywood','floorStructure','floorAssembly',[.70,.54,.35]
+  # TIMESTAMP END 2026-11-06T00:50:22+00:00 | REVISION R000076
   # TIMESTAMP START 2026-11-05T22:31:25+00:00 | REVISION R000069
   pid=p['id'];lap=pid.startswith('LAP-');ply=pid.startswith('ENV-') and 'PLY' in pid;cladding=lap or p.get('material','').startswith('LP SmartSide')
   if pid.startswith('BOX-'):
@@ -185,6 +192,10 @@ def prepare(output):
   return ('Main siding' if cladding else 'Main wall sheathing' if ply else 'Main wall framing','wall' if cladding or ply else 'wallStructure','wall' if cladding or ply else 'rail',[.80,.77,.65] if cladding else [.68,.52,.34])
   # TIMESTAMP END 2026-11-05T22:31:25+00:00 | REVISION R000069
  for p in wall_parts.values():
+  # TIMESTAMP START 2026-11-06T00:50:22+00:00 | REVISION R000076
+  if p['id']in floor_air_return_ids:
+   stock=floor_air_stock_source['wood']['stock'][p['stockId']];p={**p,'stock_parent_id':p['stockId'],'minimum_blank_dimensions_in':stock['purchased_stock_dimensions_in']}
+  # TIMESTAMP END 2026-11-06T00:50:22+00:00 | REVISION R000076
   phase,role,kind,color=wall_properties(p);add(p,phase=phase,role=role,kind=kind,material=p.get('material','wood'),color=color)
  wall_hardware=closure_hardware(closure_source)
  # TIMESTAMP START 2026-11-05T22:31:25+00:00 | REVISION R000069
@@ -199,6 +210,19 @@ def prepare(output):
  for p in wall_hardware['parts']:
   owner=wall_parts.get(p['parentId']);phase,role,kind,_=wall_properties(owner) if owner else ('Main wall framing','wallStructure','rail',None)
   add(p,phase=phase,role=role,kind=kind,material=p['material'])
+ # TIMESTAMP START 2026-11-06T00:50:22+00:00 | REVISION R000076
+ floor_air_fixings=floor_air_hardware(floor_air_source);floor_air_prototypes={key:prototype('FLOOR-AIR-'+key,value)for key,value in floor_air_fixings['prototypes'].items()}
+ for original in floor_air_fixings['parts']:
+  p={**original,'mesh_instance':{**original['mesh_instance'],'prototype':floor_air_prototypes[original['mesh_instance']['prototype']]}}
+  add(p,phase='Floor air-barrier return attachments',role='floorStructure',kind='floorAssembly',material=p['material'])
+ floor_air_tapes=floor_air_films(floor_air_source)
+ for original in floor_air_tapes.values():
+  p=copy.deepcopy(original);product=p.get('product');code=re.search(r'#([^\s,]+)',product)if isinstance(product,str)else None
+  if isinstance(product,str):p['productSpecification']={'manufacturer':'SIGA','name':product,'partNumber':code.group(1)if code else None,'installation':p.get('attachment','Field-applied adhesive tape; actual substrate acceptance remains required')}
+  p['stock_parent_id']=p.get('stock_parent_id','FLOOR-TAPE-CUT-'+p['id']);length=p.get('cutLengthM');width=p.get('selectedDevelopedWidthMm',p.get('purchasedRollWidthMm'));thickness=p.get('publishedNominalThicknessM')
+  if all(isinstance(value,(int,float))and value>0 for value in [length,width,thickness]):p['minimum_blank_dimensions_in']=[length/I,width/25.4,thickness/I]
+  add(p,phase='Floor air-barrier tape and steel-head boots',role='floorStructure',kind='floorAssembly',material=p['material'],color=[.72,.76,.66])
+ # TIMESTAMP END 2026-11-06T00:50:22+00:00 | REVISION R000076
  # TIMESTAMP END 2026-11-05T21:51:55+00:00 | REVISION R000068
  # Compose every declared host tool against the CURRENT exact occupied
  # source, preserving all pre-existing floor holes and normalized boundaries.
@@ -208,6 +232,9 @@ def prepare(output):
  from cupola_joinery_recipe import native_record
  floor_path=ROOT/'src/floor-foundation-solids.json';floor=read_physical_json(floor_path);floor_hash=sha(floor_path.read_bytes())
  floor_parts={p['id']:p for p in floor['parts']};tools={};host_proofs=[]
+ # TIMESTAMP START 2026-11-06T00:50:22+00:00 | REVISION R000076
+ floor_air_lower_overlays=floor_air_lower(floor_parts,floor_air_source)
+ # TIMESTAMP END 2026-11-06T00:50:22+00:00 | REVISION R000076
  for key in ['floor_attachments','pier_attachments']:
   package=inputs[key];bindings=package.get('source_hashes',package.get('sourceHashes',{}));expected=[value for path,value in bindings.items() if Path(path).name=='floor-foundation-solids.json'];assert expected==[floor_hash],('Attachment input does not match current occupied floor',key,expected,floor_hash)
   for pid,records in package['host_cutting_tools'].items():tools.setdefault(pid,[]).extend(records)
@@ -215,6 +242,11 @@ def prepare(output):
  for pid,records in delta['head_cutting_tools_override'].items():
   assert pid in tools and len(records)==4,(pid,'Head hole override must replace all four original tools')
   tools[pid]=records
+ # TIMESTAMP START 2026-11-06T00:50:22+00:00 | REVISION R000076
+ assert not set(tools)&set(floor_air_lower_overlays['parts']),'Attachment and lower-seat overlays must compose against one current owner'
+ for p in floor_air_lower_overlays['parts'].values():
+  is_cork=p['id'].startswith('FLOOR-CORK-');add(p,phase='Finish floor cork underlayment'if is_cork else'Bookshelf feet after floor air tapes',role='floorFinish'if is_cork else'shelf',kind='floorAssembly'if is_cork else'shelf',material=p.get('material','wood'))
+ # TIMESTAMP END 2026-11-06T00:50:22+00:00 | REVISION R000076
  def updated_instance(original):
   replacement=updates.get(original['id'])
   if not replacement:return original
@@ -299,7 +331,9 @@ def prepare(output):
 # TIMESTAMP END 2026-11-05T16:27:06+00:00 | REVISION R000053
 # TIMESTAMP START 2026-11-05T14:38:03+00:00 | REVISION R000047
  # TIMESTAMP START 2026-11-05T21:51:55+00:00 | REVISION R000068
- payload.update(closureCoreComposition=closure['closureCoreComposition'],closureCoreStock=closure_stock(wall_parts,closure_source),closureCoreReleaseGroups=closure_source['groups'])
+ # TIMESTAMP START 2026-11-06T00:50:22+00:00 | REVISION R000076
+ payload.update(closureCoreComposition=closure['closureCoreComposition'],closureCoreStock=closure_stock(wall_parts,floor_air_stock_source),closureCoreReleaseGroups=closure_source['groups'],floorClosureComposition={**floor_air['report'],'lowerSeatReceipts':floor_air_lower_overlays['receipts'],'physicalFilms':253,'physicalFilmIds':sorted(floor_air_tapes),'individualFasteners':611,'threeStationDeltaManifestSha256':floor_air_fixings['stationDeltaManifestSha256'],'updatedFieldSealApplicationReferences':floor_air_fixings['updatedFieldSealApplicationReferences'],'remainingScope':'Final stock/contact/causal/lifetime readback across the complete integrated current scene is required; frozen partial input status is unchanged.'})
+ # TIMESTAMP END 2026-11-06T00:50:22+00:00 | REVISION R000076
  # TIMESTAMP END 2026-11-05T21:51:55+00:00 | REVISION R000068
  # TIMESTAMP START 2026-11-05T22:52:56+00:00 | REVISION R000070
  payload.update(mainRoofBarrierComposition=membranes['report'],mainRoofBarrierStock=membranes['stock'])

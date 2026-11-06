@@ -124,3 +124,83 @@ def cut_current_lower(part,tools):
       if result:return result
  raise AssertionError(('No strict current lower-seat serialization passed',part['id'],attempts))
 # TIMESTAMP END 2026-11-05T23:26:47+00:00 | REVISION R000072
+# TIMESTAMP START 2026-11-06T00:50:22+00:00 | REVISION R000076
+THREE_MANIFEST_SHA='f3164a2478b189e04ac49089c01f7681c79ae3b1c7c198e041d6bdfaddef7f2f'
+THREE_ARCHIVE_SHA='670d726872d83294069d4bb1fb7ec156e0f853ec3dbb61fab125a27901cc48e1'
+THREE_TRANSPORT_SHA='3a3325941ea458a2972dd82b3c071ec33d9df85493867a6619a4a9ed116caa16'
+def canonical_hash(value):return sha(json.dumps(value,sort_keys=True,separators=(',',':')).encode())
+def pose(part):return {key:part[key] for key in ['mesh_instance','head_m','axis_inward','withdrawal_direction','withdrawal_distance_m'] if key in part}
+@lru_cache(maxsize=1)
+def three_station_inputs():
+ descriptor=json.loads((FIXTURE.parent/'floor-three-station-inputs.json').read_text());assert descriptor['schema']=='octagon-frozen-three-floor-stations-1';path=PurePosixPath(descriptor['archive']);assert len(path.parts)==1 and not path.is_absolute();transport=(FIXTURE.parent/str(path)).read_bytes();assert len(transport)==descriptor['archiveBytes']==7565411 and sha(transport)==descriptor['archiveSha256']==THREE_TRANSPORT_SHA;outer={}
+ with tarfile.open(fileobj=io.BytesIO(transport),mode='r|gz')as archive:
+  for member in archive:
+   path=PurePosixPath(member.name);assert not path.is_absolute()and'..'not in path.parts and path.parts[0]=='floor-three-station-owner-inputs';assert member.isfile(),'No special or linked source dependencies';name=str(PurePosixPath(*path.parts[1:]));assert name not in outer;outer[name]=archive.extractfile(member).read()
+ original=descriptor['originalArchive'];assert original['path']=='floor-three-station-delta-v1.tar.gz';raw=outer.pop(original['path']);assert len(raw)==original['bytes']==154284 and sha(raw)==original['sha256']==THREE_ARCHIVE_SHA
+ assert set(outer)==set(descriptor['supplementalSourceFiles'])
+ for name,row in descriptor['supplementalSourceFiles'].items():assert len(outer[name])==row['bytes']and sha(outer[name])==row['sha256'],('Changed supplemental station input',name)
+ files={}
+ with tarfile.open(fileobj=io.BytesIO(raw),mode='r|gz') as archive:
+  for member in archive:
+   path=PurePosixPath(member.name);assert not path.is_absolute() and '..' not in path.parts and path.parts[0]=='floor-three-station-delta-v1'
+   if member.isdir():continue
+   assert member.isfile(),'No links or special floor station source entries';name=str(PurePosixPath(*path.parts[1:]));assert name not in files;files[name]=archive.extractfile(member).read()
+ assert sha(files['manifest.json'])==descriptor['manifestSha256']==THREE_MANIFEST_SHA;manifest=json.loads(files['manifest.json'])
+ for name,row in manifest['files'].items():assert len(files[name])==row['bytes'] and sha(files[name])==row['sha256'],('Changed three-station source',name)
+ delta=json.loads(gzip.decompress(files['delta.json.gz']));assert delta['status']=='PASS' and delta['sourceFrozenFloorManifestSHA256']==manifest['sourceFrozenFloorManifestSHA256']==MANIFEST_SHA;assert set(delta['fastenerReplacements'])==set(manifest['sameIdsReplaced']) and len(delta['fastenerReplacements'])==3
+ from closure_core_parts import inputs as core_inputs
+ from prepare_architecture import load_inputs
+ _,architectural_sources=load_inputs();represented={sha(value) for value in [*files.values(),*outer.values(),*inputs()['sourceFiles'].values()]}|{row['sha256']for row in core_inputs()['manifest']['completeBundleFiles']}|{row['content_sha256']for row in architectural_sources.values()}
+ for name,expected in delta['sourceGuards'].items():
+  if name.startswith(str(ROOT)+'/'):assert sha(Path(name).read_bytes())==expected,('Current station source changed',name);represented.add(expected)
+  assert expected in represented,('Incomplete station producer source closure',name)
+ return {'delta':delta,'manifest':manifest,'report':json.loads(files['report.json'])}
+def compose_envelope(current,data=None):
+ """Cut only current new-envelope bodies; add actual new return stock once."""
+ from closure_core_parts import verify_default
+ verify_default();data=data or inputs();fr=data['woodAndFirstNegativeTools'];films=data['filmsGapAndAdditionalNegativeTools'];parts=dict(current);added=[];receipts=[]
+ for pid,original in fr['add_parts'].items():
+  final=films['replaceNewEnvelopeParts_READBACK_ONLY'].get(pid,original)
+  if pid not in parts:parts[pid]=copy.deepcopy(final);added.append(pid)
+  else:assert amount(native_solid(parts[pid])-native_solid(final))<=TOL,('Existing return differs; never restore reference wood',pid)
+ tools={}
+ for pid,sequence in fr['requiredAdditionalNewEnvelopeFilmSeatToolSequence'].items():
+  assert pid.startswith(('ENV-','AIR-')),('Protected primary floor target',pid)
+  for rid in fr['splitConstructionGroups'].get(pid,[pid]):
+   if rid not in fr['add_parts']:tools.setdefault(rid,[]).extend(sequence)
+ for pid,sequence in films['requiredAdditionalNewEnvelopeToolSequence'].items():
+  if pid not in fr['add_parts']:tools.setdefault(pid,[]).extend(sequence)
+ for pid,sequence in tools.items():
+  assert pid in parts and pid.startswith('ENV-'),('No protected primary or old floor cut',pid);original=parts[pid];face=pid.split('-')[1];frame=np.asarray(next(row['basis']for row in data['frames']['mainFaces']if row['face']==face));axes={key:frame[:,index].tolist()for index,key in enumerate(['axis','width','depth'])};derived,receipt=cut_current_lower({**original,'stock_frame':original.get('stock_frame',axes)},sequence)
+  if 'stock_frame' not in original:derived.pop('stock_frame',None)
+  parts[pid]={**derived,'floorNegativeToolsComposedOnCurrent':True};receipts.append(receipt)
+ assert len(added)in [0,79],('Partial return inventory cannot be silently completed',len(added))
+ return {'parts':parts,'report':{'status':'CURRENT_NEGATIVE_TOOLS_COMPOSED','newReturnWoodCount':79,'addedIds':added,'currentEnvelopeSeatReceipts':receipts,'referenceSnapshotsOverwroteCurrentBodies':False,'canonicalFloorChanged':False,'wholeBuildingReady':False}}
+def films(data=None):
+ data=data or inputs();old=data['shared229'];result={**old['parts'],**old['bootParts'],**data['filmsGapAndAdditionalNegativeTools']['parts']};assert len(result)==253
+ for pid,part in result.items():
+  assert part['id']==pid;assert inspect_mesh(np.asarray(part['vertices']),np.asarray(part['triangles'],np.uint64),True)['status']=='PASS',('Invalid actual floor film',pid)
+ return copy.deepcopy(result)
+def compose_lower(current,data=None):
+ """Return twelve overlays of the actual current floor, never edit its cache."""
+ data=data or inputs();tools={pid:[row['tool']]for pid,row in data['footTools']['requiredSourceMinusSeatTools'].items()};cork=data['corkImportBlocker'];tools.update({pid:cork['requiredCutToolsInOrder']for pid in cork['canonicalSourceParts_UNCHANGED']});result={};receipts=[]
+ assert len(tools)==12
+ for pid,sequence in tools.items():
+  assert pid in current,('Missing current lower floor recipient',pid);part,receipt=cut_current_lower(current[pid],sequence);result[pid]={**part,'replaceExisting':True,'geometryFingerprintRegenerationRequired':True};receipts.append(receipt)
+ return {'parts':result,'receipts':receipts,'canonicalFloorChanged':False}
+def hardware(data=None,station_data=None):
+ """Preserve all611 products and bind causal metadata to each exact pose."""
+ data=data or inputs();station_data=station_data or three_station_inputs();delta=station_data['delta'];parts=[];changes=delta['fastenerReplacements']
+ for original in data['hardwareInstances']['instances']:
+  pid=original['id'];row=data['preferredCausalMetadata']['fasteners'][pid];source_pose=pose(original);assert source_pose==row['sourcePoseDescriptor'] and canonical_hash(source_pose)==row['sourcePoseSHA256'],('Floor causal source pose changed',pid)
+  if pid in changes:
+   change=changes[pid];assert source_pose==change['sourcePoseDescriptor'] and canonical_hash(source_pose)==change['sourcePoseSHA256'] and canonical_hash(original['fastenerSpec'])==change['sourceFastenerSpecSHA256'],('Three-station original source changed',pid);part=copy.deepcopy(change['replaceInstance']);assert canonical_hash(pose(part))==change['newPoseSHA256'] and part['fastenerSpec']==original['fastenerSpec'],'Station replacement changed product or pose';earlier=part['withdrawalReceiverIds'];later=part['removalPrerequisites'];fingerprint=change['newPoseSHA256']
+  else:
+   part=copy.deepcopy(original);earlier=row['withdrawalReceiverIds'];later=sorted(set(row['laterStaticContactIds'])|set(row['uncertainSamePhaseStaticContacts'])|set(row['flexibleWeatherReceiverIds']));fingerprint=row['sourcePoseSHA256'];part['assemblyPrerequisiteWoodIds']=row['assemblyPrerequisiteWoodIds']
+  assert set(earlier)<=set(part['receiverIds']) and not set(earlier)&set(later),('Later floor contact cannot be an axial exemption',pid);part.update(fastenerKind='nail'if part['fastenerSpec']['partNumber'].startswith('T')else'screw',intentionalFastenerPenetration=True,withdrawalReceiverIds=list(earlier),removalPrerequisites=sorted(set(part.get('removalPrerequisites',[]))|set(later)),causalSourcePoseSha256=fingerprint,causalMetadataStatus='FLOOR_SOURCE_BOUND_EARLIER_WOOD_AND_LATER_FILMS_APPLIED');parts.append(part)
+ assert len(parts)==611 and len({part['id']for part in parts})==611
+ return {'parts':parts,'prototypes':copy.deepcopy(data['hardwareInstances']['prototypes']),'stationDeltaManifestSha256':THREE_MANIFEST_SHA,'updatedFieldSealApplicationReferences':{pid:row['updatedFieldSealApplicationReference']for pid,row in changes.items()}}
+def stock_input_data(core,data=None):
+ """Use actual current children for every later changed purchased blank."""
+ data=data or inputs();fr=data['woodAndFirstNegativeTools'];merged={**core['wood']['stock'],**core['wood']['sourceStockRecordOverrides'],**fr['stock'],**fr['sourceWallStockRecordOverrides'],**data['stock43']['stockRecordOverrides']};new=set(core['wood']['stock'])|set(fr['stock']);return {**core,'wood':{**core['wood'],'stock':{sid:row for sid,row in merged.items()if sid in new},'sourceStockRecordOverrides':{sid:row for sid,row in merged.items()if sid not in new}}}
+# TIMESTAMP END 2026-11-06T00:50:22+00:00 | REVISION R000076

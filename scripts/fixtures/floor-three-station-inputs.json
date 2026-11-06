@@ -1,0 +1,22 @@
+{
+  "schema": "octagon-frozen-three-floor-stations-1",
+  "archive": "floor-three-station-inputs.tar.gz",
+  "archiveBytes": 7565411,
+  "archiveSha256": "3a3325941ea458a2972dd82b3c071ec33d9df85493867a6619a4a9ed116caa16",
+  "originalArchive": {
+    "path": "floor-three-station-delta-v1.tar.gz",
+    "bytes": 154284,
+    "sha256": "670d726872d83294069d4bb1fb7ec156e0f853ec3dbb61fab125a27901cc48e1"
+  },
+  "supplementalSourceFiles": {
+    "source-extras/three-floor-centered-stations.json": {
+      "bytes": 6649,
+      "sha256": "1e81a0107dd147889b4d3b68dfe8ad7401301bd03cccbaa2c1dbc299bab28a01"
+    },
+    "source-extras/wall-joinery-fit.json": {
+      "bytes": 48771580,
+      "sha256": "30bb7650e88565c7d142cf97d61aafd03b9e54ab1fbb4af3a593f3f4dedb5245"
+    }
+  },
+  "manifestSha256": "f3164a2478b189e04ac49089c01f7681c79ae3b1c7c198e041d6bdfaddef7f2f"
+}
