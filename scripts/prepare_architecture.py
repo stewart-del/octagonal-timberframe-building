@@ -80,6 +80,9 @@ def prepare(output):
    # TIMESTAMP START 2026-11-05T21:51:55+00:00 | REVISION R000068
    # TIMESTAMP START 2026-11-05T22:31:25+00:00 | REVISION R000069
    retained+=['causalMetadataStatus','assemblyPrerequisiteWoodIds','withdrawalObstacleCandidateIds','causalSourcePoseSha256']
+   # TIMESTAMP START 2026-11-06T02:53:16+00:00 | REVISION R000082
+   retained+=['assemblyPrerequisiteMaterialIds','floorEarlierReceiverIds','floorContactMetadataSha256']
+   # TIMESTAMP END 2026-11-06T02:53:16+00:00 | REVISION R000082
    # TIMESTAMP END 2026-11-05T22:31:25+00:00 | REVISION R000069
    # TIMESTAMP END 2026-11-05T21:51:55+00:00 | REVISION R000068
 # TIMESTAMP START 2026-11-05T16:27:06+00:00 | REVISION R000053
@@ -198,6 +201,10 @@ def prepare(output):
   # TIMESTAMP END 2026-11-06T00:50:22+00:00 | REVISION R000076
   phase,role,kind,color=wall_properties(p);add(p,phase=phase,role=role,kind=kind,material=p.get('material','wood'),color=color)
  wall_hardware=closure_hardware(closure_source)
+ # TIMESTAMP START 2026-11-06T02:53:16+00:00 | REVISION R000082
+ from floor_contact_metadata import apply as apply_floor_contacts
+ floor_air_tapes=floor_air_films(floor_air_source);floor_contacts=apply_floor_contacts(wall_hardware['parts'],{**wall_parts,**floor_air_tapes},wall_hardware['prototypes']);wall_hardware['parts']=floor_contacts['parts'];closure['closureCoreComposition']['floorContactMetadata']=floor_contacts['report']
+ # TIMESTAMP END 2026-11-06T02:53:16+00:00 | REVISION R000082
  # TIMESTAMP START 2026-11-05T22:31:25+00:00 | REVISION R000069
  from closure_core_parts import CAUSAL_DELTA_SHA
  closure['closureCoreComposition'].update(causalHardwareMetadataStatus='SOURCE_BOUND_EARLIER_WOOD_AND_LATER_COVERS_APPLIED',causalMetadataDeltaSha256=CAUSAL_DELTA_SHA)
@@ -215,7 +222,9 @@ def prepare(output):
  for original in floor_air_fixings['parts']:
   p={**original,'mesh_instance':{**original['mesh_instance'],'prototype':floor_air_prototypes[original['mesh_instance']['prototype']]}}
   add(p,phase='Floor air-barrier return attachments',role='floorStructure',kind='floorAssembly',material=p['material'])
- floor_air_tapes=floor_air_films(floor_air_source)
+ # TIMESTAMP START 2026-11-06T02:53:16+00:00 | REVISION R000082
+ # Reuse the same already validated physical tape inventory.
+ # TIMESTAMP END 2026-11-06T02:53:16+00:00 | REVISION R000082
  for original in floor_air_tapes.values():
   p=copy.deepcopy(original);product=p.get('product');code=re.search(r'#([^\s,]+)',product)if isinstance(product,str)else None
   if isinstance(product,str):p['productSpecification']={'manufacturer':'SIGA','name':product,'partNumber':code.group(1)if code else None,'installation':p.get('attachment','Field-applied adhesive tape; actual substrate acceptance remains required')}
