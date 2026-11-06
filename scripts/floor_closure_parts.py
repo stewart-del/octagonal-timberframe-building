@@ -190,13 +190,14 @@ def compose_lower(current,data=None):
  return {'parts':result,'receipts':receipts,'canonicalFloorChanged':False}
 def hardware(data=None,station_data=None):
  """Preserve all611 products and bind causal metadata to each exact pose."""
- data=data or inputs();station_data=station_data or three_station_inputs();delta=station_data['delta'];parts=[];changes=delta['fastenerReplacements']
+ data=data or inputs();station_data=station_data or three_station_inputs();delta=station_data['delta'];parts=[];changes=delta['fastenerReplacements'];physical_films=set(data['shared229']['parts'])|set(data['shared229']['bootParts'])|set(data['filmsGapAndAdditionalNegativeTools']['parts'])
  for original in data['hardwareInstances']['instances']:
   pid=original['id'];row=data['preferredCausalMetadata']['fasteners'][pid];source_pose=pose(original);assert source_pose==row['sourcePoseDescriptor'] and canonical_hash(source_pose)==row['sourcePoseSHA256'],('Floor causal source pose changed',pid)
   if pid in changes:
    change=changes[pid];assert source_pose==change['sourcePoseDescriptor'] and canonical_hash(source_pose)==change['sourcePoseSHA256'] and canonical_hash(original['fastenerSpec'])==change['sourceFastenerSpecSHA256'],('Three-station original source changed',pid);part=copy.deepcopy(change['replaceInstance']);assert canonical_hash(pose(part))==change['newPoseSHA256'] and part['fastenerSpec']==original['fastenerSpec'],'Station replacement changed product or pose';earlier=part['withdrawalReceiverIds'];later=part['removalPrerequisites'];fingerprint=change['newPoseSHA256']
   else:
    part=copy.deepcopy(original);earlier=row['withdrawalReceiverIds'];later=sorted(set(row['laterStaticContactIds'])|set(row['uncertainSamePhaseStaticContacts'])|set(row['flexibleWeatherReceiverIds']));fingerprint=row['sourcePoseSHA256'];part['assemblyPrerequisiteWoodIds']=row['assemblyPrerequisiteWoodIds']
+  static_films=set(row['flexibleWeatherReceiverIds'])|set(part.get('flexibleWeatherReceiverIds',[]));assert static_films<=physical_films,('Floor contact must name actual physical film',pid);part['receiverIds']=list(dict.fromkeys([*part['receiverIds'],*sorted(static_films)]))
   assert set(earlier)<=set(part['receiverIds']) and not set(earlier)&set(later),('Later floor contact cannot be an axial exemption',pid);part.update(fastenerKind='nail'if part['fastenerSpec']['partNumber'].startswith('T')else'screw',intentionalFastenerPenetration=True,withdrawalReceiverIds=list(earlier),removalPrerequisites=sorted(set(part.get('removalPrerequisites',[]))|set(later)),causalSourcePoseSha256=fingerprint,causalMetadataStatus='FLOOR_SOURCE_BOUND_EARLIER_WOOD_AND_LATER_FILMS_APPLIED');parts.append(part)
  assert len(parts)==611 and len({part['id']for part in parts})==611
  return {'parts':parts,'prototypes':copy.deepcopy(data['hardwareInstances']['prototypes']),'stationDeltaManifestSha256':THREE_MANIFEST_SHA,'updatedFieldSealApplicationReferences':{pid:row['updatedFieldSealApplicationReference']for pid,row in changes.items()}}

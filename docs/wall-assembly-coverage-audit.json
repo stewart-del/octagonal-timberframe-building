@@ -1,0 +1,35 @@
+{
+  "revision": "R000081",
+  "timestamp": "2026-11-06T02:18:27+00:00",
+  "status": "PASS_COVERAGE_AND_ORDER_GUARD_CURRENT_PLAN_BLOCKED",
+  "sources": {
+    "src/motion-modes.js": "b772ce0399ddabd8a99cc5c05e51d4355335efd337088ad411f5d7060fb9797e",
+    "src/viewer.template.html": "114322b2c5adae03a5f7092a7f544348e8fc4f0928462b6a95c441959e5ca3e4",
+    "tests/wall-assembly-coverage.cjs": "edeea228ce6e86de72e5c249bf997b5a492ee94cac5219fcd62e95b38635fb16",
+    "tests/motion-modes.cjs": "fd2fa1b1fe665bea5d2b85f14b6b215bad80d3f7033f8b10df4c0165c291fff4"
+  },
+  "problem": "Untracked actors previously appeared together at assembly progress1, and a legacy PASS plan could be applied to a different current actor set.",
+  "result": "Unknown and untracked physical pieces invalidate complete ordered playback. Wall installation must be individually represented, after primary posts; fasteners follow their receiving pieces and upper siding follows the lower boards and their fasteners. Explicit individual installation events must name an actual motion stage; no path is synthesized or split.",
+  "currentComposedContext": {
+    "actors": 33411,
+    "legacyStageCount": 2181,
+    "untrackedPieceCount": 32854,
+    "obsoleteStageActorIds": 729,
+    "recognizedCurrentWallActors": 8273,
+    "sourceReportSha256": "e321f5a1474fea1009096aafa9f7add54206027658b9afd71f96cde4d65147be",
+    "status": "BLOCKED"
+  },
+  "verification": [
+    "Individual wall order regressionPASS:posts-first, separate wall pieces, board-before-fastener, lower-course nails-before-next, invalid metadata stage refusal, purchased-unit visual aliases, missing/obsolete/collective plan rejection.",
+    "Actual33411actor context is correctlyBLOCKED; the old2181stage PASS label does not authorize current model playback.",
+    "Existing motion arithmetic/appearance/sphere/anchor testsPASS; runtime detail ownership regressionPASS."
+  ],
+  "newConstructionField": "construction.individual_install_release_stage_by_piece maps a physical wallpiece to an actual forward-disassembly stage containing that ID. It can expose individually modeled preassembly; it cannot invent an independent path from a coupled motion.",
+  "geometricPathsOrCollisionThresholdsChanged": false,
+  "currentIndividualWallSequenceReady": false,
+  "limits": [
+    "Thirteen current post-to-post girts still need a physically verified posts-first joint redesign; this guard is not that geometry change.",
+    "Real solid-wood siding and trueExterior continuous plywood must replace the legacy final material assumption before release.",
+    "Full source-bound routes, dynamic regeneration, whole build/CI and browser validation remain unfinished; no deployment."
+  ]
+}

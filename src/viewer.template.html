@@ -271,8 +271,11 @@ const disassemblyScene=new Map([...parts,...schematicParts].map(p=>[p.id,p]));
 // TIMESTAMP START 2026-11-03T13:30:29-05:00 | REVISION R005026
 /*__MOTION_MODES__*/
 const activeDisassemblyPlan=DISASSEMBLY_PLANS.variants[MODEL_CONTEXT.id];
-const disassembly=OctagonDisassembly.create(MODEL_CONTEXT.parametric?{...activeDisassemblyPlan,status:'PARTIAL',stages:[],excluded:[],unmoved_ids:[...disassemblyScene.keys()]}:activeDisassemblyPlan,[...disassemblyScene.keys()]);
-const motion=OctagonMotionModes.create(activeDisassemblyPlan,disassembly,[...disassemblyScene.values()],{center:[0,(MODEL_CONTEXT.parameters?.wallHeightIn||OctagonParametric.BASE_WALL)*.0254/2,0],sequenceAvailable:!MODEL_CONTEXT.parametric});
+// TIMESTAMP START 2026-11-06T02:18:27+00:00 | REVISION R000081
+const assemblyCoverage=OctagonMotionModes.inspectAssembly(activeDisassemblyPlan,[...disassemblyScene.values()]),routeAvailable=!MODEL_CONTEXT.parametric&&assemblyCoverage.routeCoverageComplete;
+const disassembly=OctagonDisassembly.create(routeAvailable?activeDisassemblyPlan:{...activeDisassemblyPlan,status:'PARTIAL',stages:[],excluded:[],unmoved_ids:[...disassemblyScene.keys()]},[...disassemblyScene.keys()]);
+const motion=OctagonMotionModes.create(activeDisassemblyPlan,disassembly,[...disassemblyScene.values()],{center:[0,(MODEL_CONTEXT.parameters?.wallHeightIn||OctagonParametric.BASE_WALL)*.0254/2,0],sequenceAvailable:routeAvailable});
+// TIMESTAMP END 2026-11-06T02:18:27+00:00 | REVISION R000081
 let motionMode='disassembly';
 // TIMESTAMP END 2026-11-03T13:30:29-05:00 | REVISION R005026
 // TIMESTAMP END 2026-11-02T15:57:59-05:00 | REVISION R004811
@@ -1216,13 +1219,17 @@ function updateDisassemblyStatus(){
  if(!openingAllowed&&Array.from(windowControls.states.values()).some(value=>value>0))windowControls.close();
 // TIMESTAMP END 2026-11-05T17:09:28+00:00 | REVISION R000057
 // TIMESTAMP START 2026-11-03T13:30:29-05:00 | REVISION R005026
- if(motionMode!=='disassembly'||MODEL_CONTEXT.parametric){
+ // TIMESTAMP START 2026-11-06T02:18:27+00:00 | REVISION R000081
+ if(motionMode!=='disassembly'||MODEL_CONTEXT.parametric||!motion.sequenceAvailable){
+ // TIMESTAMP END 2026-11-06T02:18:27+00:00 | REVISION R000081
 // TIMESTAMP START 2026-11-03T16:17:49-05:00 | REVISION R005051
   const unavailable=motionMode==='assembly'?!motion.assemblyAvailable:motionMode!=='sphere'&&!motion.sequenceAvailable;
 // TIMESTAMP END 2026-11-03T16:17:49-05:00 | REVISION R005051
   $('explode').disabled=unavailable;$('disassemblyPrevious').disabled=unavailable||explode<=0;$('disassemblyNext').disabled=unavailable||explode>=1;
   // TIMESTAMP START 2026-11-04T20:00:49+00:00 | REVISION R000006
-  $('disassemblyStatus').textContent=unavailable?'Use saved dimensions for the checked sequence, or choose Sphere.':motionMode==='sphere'?(explode===0?'Assembled':'Spherical spread · '+Math.round(explode*100)+'%'):(explode>=1?'Assembly complete':(motion.phaseAt(explode,'assembly')||'Assembly progress')+' · '+Math.round(explode*100)+'%');return;
+  // TIMESTAMP START 2026-11-06T02:18:27+00:00 | REVISION R000081
+  $('disassemblyStatus').textContent=unavailable?(motion.assemblyCoverage.status!=='PASS'?'Individual assembly steps are not complete for this model.':'Use saved dimensions for the checked sequence, or choose Sphere.'):motionMode==='sphere'?(explode===0?'Assembled':'Spherical spread · '+Math.round(explode*100)+'%'):(explode>=1?'Assembly complete':(motion.phaseAt(explode,'assembly')||'Assembly progress')+' · '+Math.round(explode*100)+'%');return;
+  // TIMESTAMP END 2026-11-06T02:18:27+00:00 | REVISION R000081
   // TIMESTAMP END 2026-11-04T20:00:49+00:00 | REVISION R000006
  }
 // TIMESTAMP END 2026-11-03T13:30:29-05:00 | REVISION R005026

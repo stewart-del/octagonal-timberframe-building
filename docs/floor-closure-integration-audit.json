@@ -2,13 +2,13 @@
   "revision": "R000076",
   "timestamp": "2026-11-06T00:50:22+00:00",
   "status": "BLOCKED_INTEGRATION_CHECKPOINT_DO_NOT_PUBLISH",
-  "logicalRevisionFinished": false,
+  "logicalRevisionFinished": true,
   "sources": {
-    "scripts/floor_closure_parts.py": "816efc655ebcb2c13ed45f91c6a642ba5812caf0e8bcbec0df42623af216a62c",
+    "scripts/floor_closure_parts.py": "309c80af7f1b62c7886b6dc2d0b6b137c23531fa7bf5da97314d253f172e04ac",
     "scripts/prepare_architecture.py": "b5a8109a2205921b0a60f16ce9a64afe3474c573d4859c5e96c2b5acde7ebc97",
     "scripts/fixtures/floor-three-station-inputs.json": "3e4e8cddb76b67dd1a98ff30eb1eec22bc709af4ecda32152eca5a7ce6c32efc",
     "scripts/fixtures/floor-three-station-inputs.tar.gz": "3a3325941ea458a2972dd82b3c071ec33d9df85493867a6619a4a9ed116caa16",
-    "tests/test_floor_closure_parts.py": "f5a1c8b70d05cc9d1aa3c2f5484ef221fc7eb77d584d9b647085c2dd13155bce",
+    "tests/test_floor_closure_parts.py": "e995f4580ff26733b74d05a279512b7887a0898a98383c3072ccd2f7fcd95c99",
     "tests/architecture.cjs": "afb240bbf48944300b66e20a363b2e4e342be2a9f94483a2d08e596ba28abe2b"
   },
   "sourceTransport": {
@@ -41,23 +41,35 @@
       "physicalWindowUnits": 14,
       "strictContactPolicy": true,
       "stageSha256": "ee074dce92f08b37b157791c8a48f0154f78b0bf594f142d195f4478e4145a03"
+    },
+    "staticPhysicalFilmRecipients": {
+      "test": "FloorHardwareMetadata.test_all_films_and_source_bound_hardware_with_three_station_delta",
+      "status": "PASS",
+      "seconds": 4.8,
+      "sameProductsAndPoses": true,
+      "fastenersChanged": 522,
+      "sourceDeclaredFilmRelationsAppended": 600,
+      "withdrawalExemptionsAdded": false,
+      "laterFilmMotionClassification": "Conservative unchanged pending exact source phase successor"
     }
   },
   "fullCurrentFloorContactCheck": {
     "status": "BLOCKED",
     "scope": "Contacts involving955 current floor closure actors against the complete assembled projection only; no whole-building route certificate",
-    "sceneSha256": "146713aaf77471eb697dc26a61e589ec062233dfe670efb6e502426a9ded8dd0",
+    "sceneSha256": "0509a99fff253ce552e95a116b4c1e9952f14a20936462c55ee6893de089673c",
     "physicalContextActors": 33411,
     "selectedActors": 955,
-    "nativeNonexemptPairs": 12306,
-    "sourceDeclaredFastenerPairs": 1531,
+    "nativeNonexemptPairs": 11706,
+    "sourceDeclaredFastenerPairs": 2131,
     "maximumNonexemptOverlapIn3": 112.16780333025034,
-    "unchangedToleranceIn3": 1e-06
+    "unchangedToleranceIn3": 1e-06,
+    "sceneKind": "Metadata-only diagnostic successor of actual v2 assembled projection; not a newly regenerated architecture or route proof.",
+    "reportSha256": "7403b2abd4313ccb2cb1c08a044e4138fb89179395ea8574148257de2efb8f45"
   },
   "knownContactFailures": {
-    "total": 1299,
-    "missingDeclaredFastenerReceivers": 1288,
-    "existingFloorCausalRowsAlreadyDescribe": 600,
+    "total": 699,
+    "missingDeclaredFastenerReceivers": 688,
+    "existingFloorCausalRowsAlreadyDescribe": 0,
     "additionalRetainedENVContacts": 688,
     "realThresholdClashes": 11,
     "realThresholdRows": [
@@ -117,7 +129,10 @@
         "overlapIn3": 0.12208570701096473
       }
     ],
-    "originalReportSha256": "05fe4018349e2148b123515421a5de261decabbfceb3d89bc5cbd770dd57a766"
+    "originalReportSha256": "05fe4018349e2148b123515421a5de261decabbfceb3d89bc5cbd770dd57a766",
+    "originalTotal": 1299,
+    "originalMissingDeclaredFastenerReceivers": 1288,
+    "resolvedByAppendingExistingStaticFilmReceivers": 600
   },
   "actualAxisCheck": {
     "checked": 25199,
@@ -146,5 +161,17 @@
   ],
   "historicalReceiptsRelabelled": false,
   "wholeBuildingReady": false,
-  "deployed": false
+  "deployed": false,
+  "logicalChangeScope": "Construct source-bound floor closure and current-only negative overlays; report actual downstream integration blockers without qualifying a release.",
+  "originalFullCurrentFloorContactCheck": {
+    "status": "BLOCKED",
+    "scope": "Contacts involving955 current floor closure actors against the complete assembled projection only; no whole-building route certificate",
+    "sceneSha256": "146713aaf77471eb697dc26a61e589ec062233dfe670efb6e502426a9ded8dd0",
+    "physicalContextActors": 33411,
+    "selectedActors": 955,
+    "nativeNonexemptPairs": 12306,
+    "sourceDeclaredFastenerPairs": 1531,
+    "maximumNonexemptOverlapIn3": 112.16780333025034,
+    "unchangedToleranceIn3": 1e-06
+  }
 }

@@ -46,11 +46,15 @@ class FloorEnvelopeIntegration(unittest.TestCase):
   from floor_closure_parts import compose_envelope
   second=compose_envelope(self.parts,self.data);self.assertEqual(second['report']['addedIds'],[])
   for pid in self.parts:self.assertLessEqual(diff(native_solid(self.parts[pid]),native_solid(second['parts'][pid])),TOL,pid)
+class FloorHardwareMetadata(unittest.TestCase):
+ @classmethod
+ def setUpClass(cls):cls.data=inputs()
  def test_all_films_and_source_bound_hardware_with_three_station_delta(self):
   from floor_closure_parts import films,hardware,three_station_inputs
   f=films(self.data);h=hardware(self.data);self.assertEqual(len(f),253);self.assertEqual(len(h['parts']),611);changed=three_station_inputs()['delta']['fastenerReplacements']
   for p in h['parts']:
    self.assertTrue(p['withdrawalReceiverIds']);self.assertFalse(set(p['withdrawalReceiverIds'])&set(p['removalPrerequisites']));self.assertTrue(set(p['withdrawalReceiverIds'])<=set(p['receiverIds']))
+   self.assertTrue(set(self.data['preferredCausalMetadata']['fasteners'][p['id']]['flexibleWeatherReceiverIds'])<=set(p['receiverIds']))
    if p['id']in changed:self.assertEqual(p['mesh_instance'],changed[p['id']]['replaceInstance']['mesh_instance'])
   bad={**self.data,'hardwareInstances':{**self.data['hardwareInstances'],'instances':list(self.data['hardwareInstances']['instances'])}};bad['hardwareInstances']['instances'][0]=copy.deepcopy(bad['hardwareInstances']['instances'][0]);bad['hardwareInstances']['instances'][0]['mesh_instance']['transform'][0][3]+=.001
   with self.assertRaisesRegex(AssertionError,'source pose changed'):hardware(bad)
