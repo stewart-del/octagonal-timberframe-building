@@ -1,0 +1,33 @@
+{
+  "schema": "octagon-wall-hardware-source-inventory-1",
+  "revision": "R000074",
+  "timestamp": "2026-11-05T23:58:27+00:00",
+  "status": "SOURCE_IDENTITY_CHECK_PASS",
+  "originalWallHardware": 7436,
+  "retainedWallHardware": 7434,
+  "retiredIds": [
+    "FAST-ENV-W-STUD-03-0-06",
+    "FAST-ENV-W-STUD-14-0-06"
+  ],
+  "reason": "The frozen west porch profile revision explicitly removes these two obsolete stud-top anchors. A strict all-old-IDs equality incorrectly rejected that already verified source revision. Every other identity must match; source receipt failure or unrelated additions/removals are rejected.",
+  "sourceEvidence": {
+    "fixtureManifestSha256": "841d073466a0d998f0f54d3998771c54a7889606d385710c8ab5c311096aeded",
+    "member": "assets/main-wall-hardware-final-receivers.json.gz",
+    "receipt": "freshWestHardwareCheck",
+    "sourceOriginalSha256": "5f475a0e298f15a3791f3ba440db63573a04ebef8bfb3631cfbe843382bd9fd8"
+  },
+  "tests": {
+    "path": "tests/test_closure_wall_inventory.py",
+    "status": "PASS",
+    "count": 3,
+    "scope": "Actual7436to7434inventory, unrelated additions/removals refused, failed retirement receipt refused."
+  },
+  "verificationSha256": {
+    "tests/test_closure_wall_inventory.py": "d43d7ed12abef01ba7b4c6141c385421187a06dac0f7f2ed6749c755883289f8",
+    "scripts/prepare_architecture.py": "6584dbb02fc883212301cbbe324fbe063ed56a6004afedc7c289cecd768b8d1f"
+  },
+  "physicalGeometryChangedByThisCheck": false,
+  "sourceHistoricalHeadersRewritten": false,
+  "wholeArchitectureStage": "PENDING_NEW_GENERATION",
+  "publication": false
+}

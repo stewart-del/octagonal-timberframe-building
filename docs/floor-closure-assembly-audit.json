@@ -1,0 +1,197 @@
+{
+  "revision": "R000072",
+  "timestamp": "2026-11-05T23:26:47+00:00",
+  "status": "PASS_CURRENT_LOWER_SEAT_CONSTRUCTOR_ONLY",
+  "sources": {
+    "scripts/floor_closure_parts.py": "90310e7561305ad103734cceadff38fa2eb57aee17cb9d55ed0a809dcc8ae13e",
+    "scripts/fixtures/floor-closure-inputs.json": "93c4b8c923816abe0097e6e43c74a6ea135277a517402cc93a4e8db1155efff6",
+    "scripts/fixtures/floor-closure-inputs.tar.gz": "7e65f8f7a5eb3b11a041899d78b0e9e10eb1e656a5171a4ebbf57f916fa49bcb",
+    "tests/test_floor_closure_parts.py": "365cc92644230e39268d26effb689ccb7f782a8af9e3336ed1fd7553b678776f",
+    "src/floor-foundation-solids.json": "e840f43b7e05ee9c1b407add96f8a0893baf1875954b5b622e88e776782bfde2",
+    "src/floor-foundation-geometries.json.gz": "3e646249e9e5c8819cbecd019cdb3a98d04f256ad834ae18f2e7539dd944b184"
+  },
+  "verification": {
+    "ownerRegression": "3 tests PASS in56.268s",
+    "caseCount": 8,
+    "strictBoundarySingleBody": true,
+    "thicknessM": 0.003,
+    "idempotence": true,
+    "currentExtraVoidPreserved": true,
+    "physicalSplitRequiresNewIdentities": true,
+    "sourceInputsUnchanged": true,
+    "reportSha256": "12cc6a394bfcee79725aa5994a71654e2900ba31fecce8a91955e99d2a26526f"
+  },
+  "unchangedOccupiedVolumeLimitIn3": 1e-06,
+  "acceptance": [
+    {
+      "id": "FLOOR-CORK-00-00",
+      "status": "PASS",
+      "removedIn3": 6.727855676145867,
+      "zeroMaterialNativeResidueIn3": 0,
+      "geometryWasDerivedFromCurrentPart": true,
+      "unchangedToleranceIn3": 1e-06,
+      "finalReadback": {
+        "edgeLimitM": 0,
+        "method": "conditioned current CSG and existing short-edge contraction",
+        "status": "PASS",
+        "worldDifferenceIn3": 0.0,
+        "localDifferenceIn3": 0.0,
+        "absoluteVolumeDeltaIn3": 0.0,
+        "addedOutsideOriginalIn3": 0.0
+      }
+    },
+    {
+      "id": "FLOOR-CORK-01-00",
+      "status": "PASS",
+      "removedIn3": 33.41171102758271,
+      "zeroMaterialNativeResidueIn3": 0,
+      "geometryWasDerivedFromCurrentPart": true,
+      "unchangedToleranceIn3": 1e-06,
+      "finalReadback": {
+        "edgeLimitM": 1e-08,
+        "method": "conditioned current CSG and existing short-edge contraction",
+        "status": "PASS",
+        "worldDifferenceIn3": 5.599369315611729e-07,
+        "localDifferenceIn3": 5.599369445540625e-07,
+        "absoluteVolumeDeltaIn3": 4.061076915300948e-07,
+        "addedOutsideOriginalIn3": 0.0,
+        "contracted_native_vertices": 38,
+        "removed_index_degenerate_faces": 76
+      }
+    },
+    {
+      "id": "FLOOR-CORK-02-00",
+      "status": "PASS",
+      "removedIn3": 51.813943788688384,
+      "zeroMaterialNativeResidueIn3": 0,
+      "geometryWasDerivedFromCurrentPart": true,
+      "unchangedToleranceIn3": 1e-06,
+      "finalReadback": {
+        "edgeLimitM": 2e-08,
+        "method": "layered current stock with balanced existing endpoint contraction",
+        "status": "PASS",
+        "worldDifferenceIn3": 2.5293705258164327e-07,
+        "localDifferenceIn3": 2.529488353366135e-07,
+        "absoluteVolumeDeltaIn3": 1.993966179267936e-07,
+        "addedOutsideOriginalIn3": 5.879299409080928e-12,
+        "horizontalLayerCount": 2,
+        "profileConstructionScale": 1000.0,
+        "profileSimplificationIn": 1e-07,
+        "layeredZeroMaterialResidueIn3": 0,
+        "endpointRepresentativePolicy": "surface_sweep",
+        "contractedNativeVertices": 66,
+        "removedIndexDegenerateFaces": 132,
+        "maximumExistingEndpointDisplacementIn": 6.559081317654353e-07,
+        "surfaceConstructionScoreIn3": 1.8594836656828396e-07
+      }
+    },
+    {
+      "id": "FLOOR-CORK-03-00",
+      "status": "PASS",
+      "removedIn3": 48.94831911617532,
+      "zeroMaterialNativeResidueIn3": 0,
+      "geometryWasDerivedFromCurrentPart": true,
+      "unchangedToleranceIn3": 1e-06,
+      "finalReadback": {
+        "edgeLimitM": 2e-08,
+        "method": "existing endpoint contraction with balanced cluster representative",
+        "status": "PASS",
+        "worldDifferenceIn3": 1.882349463666421e-07,
+        "localDifferenceIn3": 1.8823494914490687e-07,
+        "absoluteVolumeDeltaIn3": 1.7763363518106098e-07,
+        "addedOutsideOriginalIn3": 1.8297949121820866e-14,
+        "endpointRepresentativePolicy": "surface_sweep",
+        "contractedNativeVertices": 63,
+        "removedIndexDegenerateFaces": 126,
+        "maximumExistingEndpointDisplacementIn": 6.559057083286949e-07,
+        "surfaceConstructionScoreIn3": 1.8823497651024056e-07
+      }
+    },
+    {
+      "id": "FLOOR-CORK-04-00",
+      "status": "PASS",
+      "removedIn3": 48.94832041809887,
+      "zeroMaterialNativeResidueIn3": 0,
+      "geometryWasDerivedFromCurrentPart": true,
+      "unchangedToleranceIn3": 1e-06,
+      "finalReadback": {
+        "edgeLimitM": 2e-08,
+        "method": "existing endpoint contraction with balanced cluster representative",
+        "status": "PASS",
+        "worldDifferenceIn3": 8.599522922941294e-07,
+        "localDifferenceIn3": 8.599523072760846e-07,
+        "absoluteVolumeDeltaIn3": 1.460655386432009e-07,
+        "addedOutsideOriginalIn3": 0.0,
+        "endpointRepresentativePolicy": "mean",
+        "contractedNativeVertices": 59,
+        "removedIndexDegenerateFaces": 118,
+        "maximumExistingEndpointDisplacementIn": 5.866599027209533e-07,
+        "surfaceConstructionScoreIn3": null
+      }
+    },
+    {
+      "id": "FLOOR-CORK-05-00",
+      "status": "PASS",
+      "removedIn3": 51.81394572233997,
+      "zeroMaterialNativeResidueIn3": 0,
+      "geometryWasDerivedFromCurrentPart": true,
+      "unchangedToleranceIn3": 1e-06,
+      "finalReadback": {
+        "edgeLimitM": 2e-08,
+        "method": "existing endpoint contraction with balanced cluster representative",
+        "status": "PASS",
+        "worldDifferenceIn3": 2.2823972580738357e-07,
+        "localDifferenceIn3": 2.2823972496058173e-07,
+        "absoluteVolumeDeltaIn3": 2.072253381870177e-07,
+        "addedOutsideOriginalIn3": 7.567287433431002e-14,
+        "endpointRepresentativePolicy": "surface_sweep",
+        "contractedNativeVertices": 70,
+        "removedIndexDegenerateFaces": 140,
+        "maximumExistingEndpointDisplacementIn": 6.559056987038345e-07,
+        "surfaceConstructionScoreIn3": 2.3432206999198878e-07
+      }
+    },
+    {
+      "id": "FLOOR-CORK-06-00",
+      "status": "PASS",
+      "removedIn3": 33.411712754611266,
+      "zeroMaterialNativeResidueIn3": 0,
+      "geometryWasDerivedFromCurrentPart": true,
+      "unchangedToleranceIn3": 1e-06,
+      "finalReadback": {
+        "edgeLimitM": 1e-08,
+        "method": "conditioned current CSG and existing short-edge contraction",
+        "status": "PASS",
+        "worldDifferenceIn3": 6.234511729031086e-07,
+        "localDifferenceIn3": 6.234511605594753e-07,
+        "absoluteVolumeDeltaIn3": 5.107792714162994e-07,
+        "addedOutsideOriginalIn3": 0.0,
+        "contracted_native_vertices": 27,
+        "removed_index_degenerate_faces": 54
+      }
+    },
+    {
+      "id": "FLOOR-CORK-07-00",
+      "status": "PASS",
+      "removedIn3": 6.727855688478846,
+      "zeroMaterialNativeResidueIn3": 0,
+      "geometryWasDerivedFromCurrentPart": true,
+      "unchangedToleranceIn3": 1e-06,
+      "finalReadback": {
+        "edgeLimitM": 0,
+        "method": "conditioned current CSG and existing short-edge contraction",
+        "status": "PASS",
+        "worldDifferenceIn3": 0.0,
+        "localDifferenceIn3": 0.0,
+        "absoluteVolumeDeltaIn3": 2.646483036828329e-14,
+        "addedOutsideOriginalIn3": 1.3232415184141644e-14
+      }
+    }
+  ],
+  "integrationStatus": "NOT_INTEGRATED_FLOOR_CLOSURE",
+  "limits": [
+    "Frozen source intentionally retains readyForCompleteImport:false and original cork blocker diagnostics. These are new independent current-source construction results, not relabelled old certificates.",
+    "Full wall/floor returns, hardware611, revised threeRSS stations, films253, actual stock partitions, contacts and complete lifecycle route require separate integration and proof.",
+    "Canonical floor bytes and physical collision kernels are unchanged; this constructor does not write canonical floor source."
+  ]
+}

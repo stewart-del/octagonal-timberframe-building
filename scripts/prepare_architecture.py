@@ -191,7 +191,10 @@ def prepare(output):
  from closure_core_parts import CAUSAL_DELTA_SHA
  closure['closureCoreComposition'].update(causalHardwareMetadataStatus='SOURCE_BOUND_EARLIER_WOOD_AND_LATER_COVERS_APPLIED',causalMetadataDeltaSha256=CAUSAL_DELTA_SHA)
  # TIMESTAMP END 2026-11-05T22:31:25+00:00 | REVISION R000069
- assert wall_hardware['retainedIds']=={p['id'] for p in inputs['wall_hardware']['instances']},'Retained wall hardware must keep all original individual identities'
+ # TIMESTAMP START 2026-11-05T23:58:27+00:00 | REVISION R000074
+ from closure_core_parts import wall_hardware_inventory
+ closure['closureCoreComposition']['wallHardwareInventory']=wall_hardware_inventory(inputs['wall_hardware'],closure_source)
+ # TIMESTAMP END 2026-11-05T23:58:27+00:00 | REVISION R000074
  for key,value in wall_hardware['prototypes'].items():prototype(key,value)
  for p in wall_hardware['parts']:
   owner=wall_parts.get(p['parentId']);phase,role,kind,_=wall_properties(owner) if owner else ('Main wall framing','wallStructure','rail',None)

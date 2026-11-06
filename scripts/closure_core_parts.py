@@ -190,3 +190,9 @@ def apply_causal_metadata(part,delta=None):
  return result
 # TIMESTAMP END 2026-11-05T22:31:25+00:00 | REVISION R000069
 # TIMESTAMP END 2026-11-05T21:51:55+00:00 | REVISION R000068
+# TIMESTAMP START 2026-11-05T23:58:27+00:00 | REVISION R000074
+def wall_hardware_inventory(original,data=None):
+ """Keep exact identities; only two source-declared obsolete anchors retire."""
+ data=data or inputs();retained=data['retained'];before=[p['id'] for p in original['instances']];after=[p['id'] for p in retained['instances']];removed={'FAST-ENV-W-STUD-03-0-06','FAST-ENV-W-STUD-14-0-06'};revision=retained['freshWestHardwareCheck'];assert len(before)==len(set(before)) and len(after)==len(set(after)),'Duplicate wall hardware identity';assert original['sourceSHA256']==retained['sourceSHA256'],'Original wall hardware source changed';assert revision['status']=='PASS' and not revision['failed'] and revision['counts']['removedObsoleteStudTopAnchors']==2,'West profile anchor retirement lacks its source receipt';assert set(after)==set(before)-removed and removed<=set(before),('Wall hardware changed beyond the two source-declared obsolete anchors',sorted(set(before)-set(after)),sorted(set(after)-set(before)))
+ return {'status':'SOURCE_BOUND_RETAINED_AND_RETIRED_IDS_MATCH','originalCount':len(before),'retainedCount':len(after),'retiredIds':sorted(removed),'retirementReason':'The revised west porch profile removes these two stud-top anchor stations; actual retained poses and receivers come from the separately verified revised source.','retainedGeometryOrPosesChangedByThisCheck':False,'historicalSourceChecksPreserved':True}
+# TIMESTAMP END 2026-11-05T23:58:27+00:00 | REVISION R000074
