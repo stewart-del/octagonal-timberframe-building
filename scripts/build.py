@@ -32,6 +32,13 @@ def executable_blocks(html):
             if b['attrs'].get('type','').lower() in ('','text/javascript','application/javascript')]
 
 ROOT = Path(__file__).resolve().parents[1]
+# TIMESTAMP START 2026-11-06T03:14:49+00:00 | REVISION R000083
+import argparse
+from review_publication import load_architecture,unavailable_plans,notice_html
+publication_parser=argparse.ArgumentParser()
+publication_parser.add_argument('--review',action='store_true',help='Build the current explicitly unfinished progress publication; never mark its construction routes verified.')
+REVIEW_PUBLICATION=publication_parser.parse_args().review
+# TIMESTAMP END 2026-11-06T03:14:49+00:00 | REVISION R000083
 # TIMESTAMP START 2026-11-05T21:31:46+00:00 | REVISION R000067
 from restore_large_sources import restore as restore_large_sources
 restore_large_sources(ROOT)
@@ -48,6 +55,10 @@ grouped = [pid for g in materials['groups'] for pid in g['member_ids']]
 assert len(grouped) == len(set(grouped)) and set(grouped) == set(ids)
 
 template = (ROOT/'src/viewer.template.html').read_text()
+# TIMESTAMP START 2026-11-06T03:14:49+00:00 | REVISION R000083
+assert template.count('<!--__PUBLICATION_STATUS__-->')==1
+template=template.replace('<!--__PUBLICATION_STATUS__-->',notice_html(REVIEW_PUBLICATION))
+# TIMESTAMP END 2026-11-06T03:14:49+00:00 | REVISION R000083
 for code_marker in ['/*__STEP_LAP_REVIEW__*/','/*__MODEL_VARIANTS__*/']:
     assert sum(code_marker in b for b in executable_blocks(template))==1, code_marker+' must be in executable JavaScript, not a JSON data block'
 def encode(value):
@@ -124,8 +135,9 @@ from physical_data import read_physical_json
 foundation_data=load_cache('floor','baseline',cache_ownership,physical=True)
 # TIMESTAMP END 2026-11-05T20:08:59+00:00 | REVISION R000063
 # TIMESTAMP START 2026-11-05T12:40:59+00:00 | REVISION R000041
-architecture_data=read_physical_json(ROOT/'src/architectural-solids.json')
-assert architecture_data['status']=='PASS','The detailed architectural assembly is not ready for publication'
+# TIMESTAMP START 2026-11-06T03:14:49+00:00 | REVISION R000083
+architecture_data=load_architecture(ROOT,REVIEW_PUBLICATION)
+# TIMESTAMP END 2026-11-06T03:14:49+00:00 | REVISION R000083
 foundation_data={**foundation_data,'architecture':architecture_data}
 # TIMESTAMP END 2026-11-05T12:40:59+00:00 | REVISION R000041
 # TIMESTAMP END 2026-11-05T05:14:11+00:00 | REVISION R000024
@@ -192,37 +204,42 @@ def assembled_model(model,variant):
 # TIMESTAMP END 2026-11-02T20:38:50-05:00 | REVISION R004870
 # TIMESTAMP START 2026-11-02T18:39:35-05:00 | REVISION R004836
 # TIMESTAMP START 2026-11-04T23:17:24+00:00 | REVISION R000029
-sheet_audit=json.loads((ROOT/'docs/underlayment-sheet-audit.json').read_text())
-assert sheet_audit['status']=='PASS' and sheet_audit['sheetCount']==28
-for relative,sha in sheet_audit['sources'].items():
-    assert hashlib.sha256((ROOT/relative).read_bytes()).hexdigest()==sha,'Underlayment proof is stale: '+relative
-assert hashlib.sha256((ROOT/sheet_audit['image']['path']).read_bytes()).hexdigest()==sheet_audit['image']['sha256'],'Underlayment drawing is stale'
-# TIMESTAMP END 2026-11-04T23:17:24+00:00 | REVISION R000029
-brace_visibility=json.loads((ROOT/'docs/brace-visibility-audit.json').read_text())
-assert brace_visibility['status']=='PASS' and brace_visibility['physical_braces_in_complete']==24
-for relative,sha in brace_visibility['sources'].items():
-    assert hashlib.sha256((ROOT/relative).read_bytes()).hexdigest()==sha, 'Brace visibility audit is stale: '+relative
-visibility_image=brace_visibility['image']
-assert visibility_image['path']=='public/review/interior-braces.png'
-assert hashlib.sha256((ROOT/visibility_image['path']).read_bytes()).hexdigest()==visibility_image['sha256'], 'Interior brace image is stale'
-# TIMESTAMP END 2026-11-02T18:39:35-05:00 | REVISION R004836
-# TIMESTAMP START 2026-11-04T19:33:21+00:00 | REVISION R000014
-shoulder_audit=json.loads((ROOT/'docs/brace-shoulder-audit.json').read_text())
-assert shoulder_audit['status']=='PASS'
-assert shoulder_audit['script_sha256']==hashlib.sha256((ROOT/'scripts/audit_brace_shoulders.py').read_bytes()).hexdigest(),'Brace shoulder audit script is stale'
-for result in shoulder_audit['variants']:
-    for relative,sha in result['sources'].items():
-        assert hashlib.sha256((ROOT/relative).read_bytes()).hexdigest()==sha,'Brace shoulder geometry proof is stale: '+relative
-assert hashlib.sha256((ROOT/shoulder_audit['image']['path']).read_bytes()).hexdigest()==shoulder_audit['image']['sha256'],'Brace detail image is stale'
-# TIMESTAMP END 2026-11-04T19:33:21+00:00 | REVISION R000014
-# TIMESTAMP START 2026-11-02T19:03:48-05:00 | REVISION R004848
-brace_sections=json.loads((ROOT/'docs/brace-sections.json').read_text())
-assert brace_sections['status']=='PASS' and brace_sections['primary_brace_count']==24
-for relative,sha in brace_sections['sources'].items():
-    assert hashlib.sha256((ROOT/relative).read_bytes()).hexdigest()==sha, 'Brace section audit is stale: '+relative
-assert brace_sections['image']['path']=='public/review/brace-sections.svg'
-assert hashlib.sha256((ROOT/brace_sections['image']['path']).read_bytes()).hexdigest()==brace_sections['image']['sha256'], 'Brace section drawing is stale'
-# TIMESTAMP END 2026-11-02T19:03:48-05:00 | REVISION R004848
+# TIMESTAMP START 2026-11-06T03:14:49+00:00 | REVISION R000083
+# Historical illustrations and their certificates are not current progress evidence.
+if not REVIEW_PUBLICATION:
+    sheet_audit=json.loads((ROOT/'docs/underlayment-sheet-audit.json').read_text())
+    assert sheet_audit['status']=='PASS' and sheet_audit['sheetCount']==28
+    for relative,sha in sheet_audit['sources'].items():
+        assert hashlib.sha256((ROOT/relative).read_bytes()).hexdigest()==sha,'Underlayment proof is stale: '+relative
+    assert hashlib.sha256((ROOT/sheet_audit['image']['path']).read_bytes()).hexdigest()==sheet_audit['image']['sha256'],'Underlayment drawing is stale'
+    # TIMESTAMP END 2026-11-04T23:17:24+00:00 | REVISION R000029
+    brace_visibility=json.loads((ROOT/'docs/brace-visibility-audit.json').read_text())
+    assert brace_visibility['status']=='PASS' and brace_visibility['physical_braces_in_complete']==24
+    for relative,sha in brace_visibility['sources'].items():
+        assert hashlib.sha256((ROOT/relative).read_bytes()).hexdigest()==sha, 'Brace visibility audit is stale: '+relative
+    visibility_image=brace_visibility['image']
+    assert visibility_image['path']=='public/review/interior-braces.png'
+    assert hashlib.sha256((ROOT/visibility_image['path']).read_bytes()).hexdigest()==visibility_image['sha256'], 'Interior brace image is stale'
+    # TIMESTAMP END 2026-11-02T18:39:35-05:00 | REVISION R004836
+    # TIMESTAMP START 2026-11-04T19:33:21+00:00 | REVISION R000014
+    shoulder_audit=json.loads((ROOT/'docs/brace-shoulder-audit.json').read_text())
+    assert shoulder_audit['status']=='PASS'
+    assert shoulder_audit['script_sha256']==hashlib.sha256((ROOT/'scripts/audit_brace_shoulders.py').read_bytes()).hexdigest(),'Brace shoulder audit script is stale'
+    for result in shoulder_audit['variants']:
+        for relative,sha in result['sources'].items():
+            assert hashlib.sha256((ROOT/relative).read_bytes()).hexdigest()==sha,'Brace shoulder geometry proof is stale: '+relative
+    assert hashlib.sha256((ROOT/shoulder_audit['image']['path']).read_bytes()).hexdigest()==shoulder_audit['image']['sha256'],'Brace detail image is stale'
+    # TIMESTAMP END 2026-11-04T19:33:21+00:00 | REVISION R000014
+    # TIMESTAMP START 2026-11-02T19:03:48-05:00 | REVISION R004848
+    brace_sections=json.loads((ROOT/'docs/brace-sections.json').read_text())
+    assert brace_sections['status']=='PASS' and brace_sections['primary_brace_count']==24
+    for relative,sha in brace_sections['sources'].items():
+        assert hashlib.sha256((ROOT/relative).read_bytes()).hexdigest()==sha, 'Brace section audit is stale: '+relative
+    assert brace_sections['image']['path']=='public/review/brace-sections.svg'
+    assert hashlib.sha256((ROOT/brace_sections['image']['path']).read_bytes()).hexdigest()==brace_sections['image']['sha256'], 'Brace section drawing is stale'
+    # TIMESTAMP END 2026-11-02T19:03:48-05:00 | REVISION R004848
+
+# TIMESTAMP END 2026-11-06T03:14:49+00:00 | REVISION R000083
 
 
 # TIMESTAMP START 2026-11-02T15:07:59-05:00 | REVISION R004800
@@ -238,36 +255,41 @@ for selected_model in [data,proposed_model,top_model]:
         assert next(p for p in selected_model['parts'] if p['id']==pid)['center']==anchor, 'Porch anchor differs between models'
 mudroom_code=mudroom_roof_source+'\nconst MUDROOM_JOINERY_FIT='+encode(mudroom_fit)+';\n'+mudroom_source
 # TIMESTAMP START 2026-11-02T15:57:59-05:00 | REVISION R004811
-disassembly_plans=json.loads((ROOT/'src/disassembly-plan.json').read_text())
-for variant in ['baseline','proposed','top-entry']:
-    plan=disassembly_plans['variants'][variant]
-    assert plan['status'] in ['PASS','PARTIAL'] and plan['verification']['status']=='PASS', 'Disassembly path audit must pass: '+variant
-    # TIMESTAMP START 2026-11-02T18:14:42-05:00 | REVISION R004830
-    if variant=='top-entry':
-        assert plan['status']=='PASS', 'Default model requires a complete disassembly sequence'
-    # TIMESTAMP END 2026-11-02T18:14:42-05:00 | REVISION R004830
-    for relative,sha in plan['sources'].items():
-        assert hashlib.sha256((ROOT/relative).read_bytes()).hexdigest()==sha, 'Disassembly source is stale: '+relative
-    model_file={'baseline':'model-data.json','proposed':'step-lap-proposed-model.json','top-entry':'top-entry-proposed-model.json'}[variant]
-    enclosure_file={'baseline':'enclosure-fit.json','proposed':'step-lap-proposed-enclosure-fit.json','top-entry':'top-entry-proposed-enclosure-fit.json'}[variant]
-    # TIMESTAMP START 2026-11-02T20:38:50-05:00 | REVISION R004870
-    required_sources={'src/'+name for name in [model_file,enclosure_file,'wall-joinery-fit.json','wall-joinery.js','floor-foundation-solids.json','mudroom-joinery-fit.json','mudroom.js','mudroom-roof.js','roof-coverings.js','floor-foundation.js','schematic-walls.js','display-presets.js']}
-    # TIMESTAMP END 2026-11-02T20:38:50-05:00 | REVISION R004870
-    assert required_sources<=set(plan['sources']), 'Disassembly proof omits a physical geometry source'
-    physical=set(plan['physical_ids']);moved={pid for stage in plan['stages'] for motion in stage.get('motions',[stage]) for pid in motion['member_ids']}
-    blocked={pid for group in plan['blocked'] for pid in group['member_ids']}
-    assert len(physical)==len(plan['physical_ids']) and moved<=physical and blocked<=physical
-    # TIMESTAMP START 2026-11-03T06:58:53-05:00 | REVISION R004899
-    fixed=set(plan['anchored_ids'])
-    assert fixed==({'FLOOR-CENTRAL-HUB','PIER-C','PIER-C-BELOW'} if variant=='top-entry' else set())
-    assert not fixed & moved and fixed<=physical
-    assert moved==set(plan['moved_ids']) and physical-moved-fixed==set(plan['unmoved_ids'])
-    assert physical-moved-fixed<=blocked, 'Disassembly proof must account for every physical piece'
-    # TIMESTAMP END 2026-11-03T06:58:53-05:00 | REVISION R004899
-    assert len({stage['id'] for stage in plan['stages']})==len(plan['stages']), 'Disassembly stage identifiers must be unique'
-    assert all(entry.get('physical') is False and entry['id'] not in physical for entry in plan['excluded'])
-    if plan['status']=='PASS':
-        assert not plan.get('blocked') and not plan['unmoved_ids'], 'Complete disassembly cannot contain locked pieces'
+# TIMESTAMP START 2026-11-06T03:14:49+00:00 | REVISION R000083
+if REVIEW_PUBLICATION:
+    disassembly_plans=unavailable_plans()
+else:
+    disassembly_plans=json.loads((ROOT/'src/disassembly-plan.json').read_text())
+    for variant in ['baseline','proposed','top-entry']:
+        plan=disassembly_plans['variants'][variant]
+        assert plan['status'] in ['PASS','PARTIAL'] and plan['verification']['status']=='PASS', 'Disassembly path audit must pass: '+variant
+        # TIMESTAMP START 2026-11-02T18:14:42-05:00 | REVISION R004830
+        if variant=='top-entry':
+            assert plan['status']=='PASS', 'Default model requires a complete disassembly sequence'
+        # TIMESTAMP END 2026-11-02T18:14:42-05:00 | REVISION R004830
+        for relative,sha in plan['sources'].items():
+            assert hashlib.sha256((ROOT/relative).read_bytes()).hexdigest()==sha, 'Disassembly source is stale: '+relative
+        model_file={'baseline':'model-data.json','proposed':'step-lap-proposed-model.json','top-entry':'top-entry-proposed-model.json'}[variant]
+        enclosure_file={'baseline':'enclosure-fit.json','proposed':'step-lap-proposed-enclosure-fit.json','top-entry':'top-entry-proposed-enclosure-fit.json'}[variant]
+        # TIMESTAMP START 2026-11-02T20:38:50-05:00 | REVISION R004870
+        required_sources={'src/'+name for name in [model_file,enclosure_file,'wall-joinery-fit.json','wall-joinery.js','floor-foundation-solids.json','mudroom-joinery-fit.json','mudroom.js','mudroom-roof.js','roof-coverings.js','floor-foundation.js','schematic-walls.js','display-presets.js']}
+        # TIMESTAMP END 2026-11-02T20:38:50-05:00 | REVISION R004870
+        assert required_sources<=set(plan['sources']), 'Disassembly proof omits a physical geometry source'
+        physical=set(plan['physical_ids']);moved={pid for stage in plan['stages'] for motion in stage.get('motions',[stage]) for pid in motion['member_ids']}
+        blocked={pid for group in plan['blocked'] for pid in group['member_ids']}
+        assert len(physical)==len(plan['physical_ids']) and moved<=physical and blocked<=physical
+        # TIMESTAMP START 2026-11-03T06:58:53-05:00 | REVISION R004899
+        fixed=set(plan['anchored_ids'])
+        assert fixed==({'FLOOR-CENTRAL-HUB','PIER-C','PIER-C-BELOW'} if variant=='top-entry' else set())
+        assert not fixed & moved and fixed<=physical
+        assert moved==set(plan['moved_ids']) and physical-moved-fixed==set(plan['unmoved_ids'])
+        assert physical-moved-fixed<=blocked, 'Disassembly proof must account for every physical piece'
+        # TIMESTAMP END 2026-11-03T06:58:53-05:00 | REVISION R004899
+        assert len({stage['id'] for stage in plan['stages']})==len(plan['stages']), 'Disassembly stage identifiers must be unique'
+        assert all(entry.get('physical') is False and entry['id'] not in physical for entry in plan['excluded'])
+        if plan['status']=='PASS':
+            assert not plan.get('blocked') and not plan['unmoved_ids'], 'Complete disassembly cannot contain locked pieces'
+# TIMESTAMP END 2026-11-06T03:14:49+00:00 | REVISION R000083
 disassembly_code='const DISASSEMBLY_PLANS='+encode(disassembly_plans)+';\n'+(ROOT/'src/disassembly.js').read_text()
 assert template.count('/*__DISASSEMBLY__*/')==1
 template=template.replace('/*__DISASSEMBLY__*/',disassembly_code)
@@ -360,7 +382,9 @@ for name in ['about.html', 'r01.html', 'joinery.html', 'structural-audit.html', 
 downloads = dist/'downloads'
 downloads.mkdir(exist_ok=True)
 # TIMESTAMP START 2026-11-02T19:03:48-05:00 | REVISION R004848
-shutil.copyfile(ROOT/'docs/brace-sections.json',downloads/'brace-section-audit.json')
+# TIMESTAMP START 2026-11-06T03:14:49+00:00 | REVISION R000083
+if not REVIEW_PUBLICATION:shutil.copyfile(ROOT/'docs/brace-sections.json',downloads/'brace-section-audit.json')
+# TIMESTAMP END 2026-11-06T03:14:49+00:00 | REVISION R000083
 # TIMESTAMP END 2026-11-02T19:03:48-05:00 | REVISION R004848
 # TIMESTAMP START 2026-11-02T20:38:50-05:00 | REVISION R004870
 (downloads/'Octagon-R01-model.json').write_text(encode(assembled_model(data,'baseline'))+'\n')
@@ -377,6 +401,9 @@ audit_downloads.append('brace-visibility-audit.json')
 # TIMESTAMP END 2026-11-02T18:39:35-05:00 | REVISION R004836
 # TIMESTAMP END 2026-11-02T17:13:18-05:00 | REVISION R004819
 # TIMESTAMP END 2026-11-02T10:05:34-05:00 | REVISION R004758
+# TIMESTAMP START 2026-11-06T03:14:49+00:00 | REVISION R000083
+if REVIEW_PUBLICATION:audit_downloads=['cavity-fit-audit.json','step-lap-proposed-cavity-fit-audit.json','top-entry-cavity-fit-audit.json']
+# TIMESTAMP END 2026-11-06T03:14:49+00:00 | REVISION R000083
 for source_name in audit_downloads:
     source = ROOT/'docs'/source_name
     if source.exists():
@@ -407,11 +434,13 @@ for variant,model,prefix,revision,source_sha in [
               'disassembly_held_ids':sorted(exported_ids.intersection(plan['unmoved_ids']))}
     if variant!='baseline':
         metadata['status']=model['status']
+# TIMESTAMP START 2026-11-06T03:14:49+00:00 | REVISION R000083
     for exploded in [False,True]:
         target=downloads/(prefix+('exploded' if exploded else 'assembled')+'.glb')
-        pose_metadata={**metadata,'disassembly_pose':'checked-endpoint' if exploded else 'assembled-start',
-                       'disassembly_scope':'Canonical frame/cupola subset; '+('static endpoint' if exploded else 'assembled start')+' of the checked full-scene sequence.'}
+        pose_metadata={**metadata,'disassembly_pose':('unverified-assembled-progress' if REVIEW_PUBLICATION else 'checked-endpoint') if exploded else 'assembled-start',
+                       'disassembly_scope':('Progress model only; ordered construction remains unavailable.' if REVIEW_PUBLICATION else 'Canonical frame/cupola subset; '+('static endpoint' if exploded else 'assembled start')+' of the checked full-scene sequence.')}
         target.write_bytes(glb_exports['export'](endpoint_model if exploded else model,exploded,pose_metadata))
+# TIMESTAMP END 2026-11-06T03:14:49+00:00 | REVISION R000083
 # TIMESTAMP END 2026-11-02T18:14:42-05:00 | REVISION R004830
 # TIMESTAMP START 2026-11-02T20:38:50-05:00 | REVISION R004870
 (downloads/'Octagon-TOP-ENTRY-model.json').write_text(encode(assembled_model(top_model,'top-entry'))+'\n')

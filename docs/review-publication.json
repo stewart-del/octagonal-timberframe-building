@@ -1,0 +1,160 @@
+{
+  "revision": "R000083",
+  "timestamp": "2026-11-06T03:14:49+00:00",
+  "status": "WORK_IN_PROGRESS_PUBLICATION_BUILD_AND_BROWSER_CHECKS_PASS",
+  "requestedAction": "Fix the build and deploy the current work, with remaining construction issues explicitly identified.",
+  "sourceHashes": {
+    "scripts/build.py": "5d1f41d41e71cb562b15ccd81ccdf36cf4a82b5dcce01261db3fb5ef5df92a8a",
+    "scripts/review_publication.py": "f3f2c79c524ee3d33851255f79cdf60fae0a35e659e1c13bcafa09b363a56108",
+    "src/viewer.template.html": "def9c5d535d24f0eb227f5638a0ebce04d8455a77edaf0d15e44b0f512047ca1",
+    "tests/test_review_publication.py": "30d66deb6b89744009d2e29b79e708769154c687af56f08edb9105910fccec4e",
+    "scripts/build_runtime.py": "d40910dae5ac9225aebf8ad85d6eb4c3c9a7d46f9e9cb5f66a91962fad3ed568",
+    "tests/test_runtime_packaging.py": "dda6702665b317c64b4048b498c3c2f048bfb6925bb2829d8dcb79384f4a6bd3"
+  },
+  "publicationContract": {
+    "mode": "work-in-progress",
+    "constructionComplete": false,
+    "orderedMotionQualified": false,
+    "originalArchitecturalSourceStatus": "STAGING_INCOMPLETE_DO_NOT_PUBLISH",
+    "originalStatusOrProofsRewritten": false,
+    "normalFinalReleaseGatePreserved": true,
+    "historicalCertificatesPresentedAsCurrent": false,
+    "sphereControlsAvailable": true,
+    "unfinishedOrderedControlsDisabled": true,
+    "visibleProgressNotice": true
+  },
+  "generatedExport": {
+    "status": "CURRENT_INCOMPLETE_MODEL_GENERATED",
+    "parts": 29877,
+    "prototypes": 43,
+    "sourceStatusUnchanged": "STAGING_INCOMPLETE_DO_NOT_PUBLISH",
+    "generatorSha256": "0ae48ec54d5233690539baf9013bac11ede597a1a34f949862503ebcb5180a3a",
+    "files": {
+      "review-architectural-solids.json": {
+        "bytes": 4740343,
+        "sha256": "8e663497ff8c442a9ba90e9ce6e02ea80bf01cc8b5110de87a61ea4699c22421"
+      },
+      "review-architectural-geometries.json.gz": {
+        "bytes": 5722210,
+        "sha256": "b6242791014d369cc4ab9005d761a3bc293601607cc1485291205fa1d220afc8"
+      },
+      "review-architectural-parts.json.gz": {
+        "bytes": 2628647,
+        "sha256": "316fcc4d5da3a60f446f7fb2aa6b50e0f258069fedf354e85ab1337ac19f8456"
+      }
+    },
+    "constructionComplete": false,
+    "previousProofsRelabelled": false
+  },
+  "verification": {
+    "reviewPublicationRegressions": {
+      "tests": 4,
+      "pass": true
+    },
+    "runtimePackagingAndCacheRegressions": {
+      "tests": 2,
+      "pass": true
+    },
+    "actualRuntimeComponents": {
+      "pass": true,
+      "individualPieces": 29877,
+      "sharedPrototypes": 43,
+      "individualCedarPieces": 4291,
+      "physicalWindowUnits": 14
+    },
+    "actualHostedRuntimeSyntax": {
+      "pass": true,
+      "file": "assets/viewer.3a72752ab4b64a36.js"
+    },
+    "sharedLoaderAndCurrentDetailOwnership": "PASS; shared download/decode once, return to earlier model adds no requests and current overlays/edges preserved.",
+    "desktopAndMobileBrowser": {
+      "pass": true,
+      "errors": [],
+      "responsesFailed": [],
+      "cases": [
+        {
+          "mobile": false,
+          "loadSeconds": 9.133,
+          "state": {
+            "parts": 299,
+            "components": 33177,
+            "render": {
+              "instancedPieces": 25207,
+              "sharedTemplates": 45,
+              "ordinaryMeshes": 8269,
+              "batch": {
+                "pieces": 8269,
+                "vertices": 4913568,
+                "drawCalls": 24,
+                "stateUploads": 10
+              }
+            },
+            "overflow": false,
+            "canvas": {
+              "width": 838,
+              "height": 924
+            },
+            "publication": "Work in progressIndividual wall assembly, exterior siding, weather seals and dimension-dependent animation are still being completed."
+          },
+          "sharedAssetRequests": {
+            "assets/shared-data.4de0c7c096d27578.json.gz": 1,
+            "assets/shared-edges.7d3185d65d8d4262.bin.gz": 1
+          },
+          "sphereNextPrevious": true,
+          "unfinishedOrderedMotionDisabled": true,
+          "pieceInspector": true
+        },
+        {
+          "mobile": true,
+          "loadSeconds": 7.773,
+          "state": {
+            "parts": 299,
+            "components": 33177,
+            "render": {
+              "instancedPieces": 25207,
+              "sharedTemplates": 45,
+              "ordinaryMeshes": 8269,
+              "batch": {
+                "pieces": 8269,
+                "vertices": 4913568,
+                "drawCalls": 32,
+                "stateUploads": 10
+              }
+            },
+            "overflow": false,
+            "canvas": {
+              "width": 390,
+              "height": 591
+            },
+            "publication": "Work in progressIndividual wall assembly, exterior siding, weather seals and dimension-dependent animation are still being completed."
+          },
+          "sharedAssetRequests": {
+            "assets/shared-data.4de0c7c096d27578.json.gz": 1,
+            "assets/shared-edges.7d3185d65d8d4262.bin.gz": 1
+          },
+          "sphereNextPrevious": true,
+          "unfinishedOrderedMotionDisabled": true,
+          "pieceInspector": true
+        }
+      ]
+    }
+  },
+  "bundle": {
+    "htmlBytes": 51523,
+    "initialSelectedModelBytes": {
+      "baseline": 17767000,
+      "proposed": 17837778,
+      "top-entry": 18089600
+    },
+    "completeOfflineExportBytes": 208407344,
+    "comparisonScope": "These are generated bundle sizes. Browser times are local QA measurements, not an external network benchmark against the previous live version."
+  },
+  "remaining": [
+    "Posts-first individual wall assembly is not complete for all girts.",
+    "Solid cedar siding and true Exterior plywood successors are still being integrated.",
+    "The porch threshold still has11real floor-area contact failures and incomplete end weather returns.",
+    "Roof/weather interfaces, complete construction lifetimes/routes and dimension-dependent animation need final integration/validation."
+  ],
+  "allRequestedFixesDone": false,
+  "published": false
+}

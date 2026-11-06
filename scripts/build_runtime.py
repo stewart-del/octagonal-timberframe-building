@@ -26,6 +26,42 @@ ROOT = Path(__file__).resolve().parents[1]
 def encode(value):
     return json.dumps(value, separators=(',', ':'), ensure_ascii=True).replace('</', '<\\/')
 
+# TIMESTAMP START 2026-11-06T03:31:53+00:00 | REVISION R000085
+def rewrite_baseline_audit(runtime):
+    """Optional archived audit references must never require baseline meshes."""
+    runtime=runtime.replace('MODEL_VARIANTS.baseline.model.joinery_verification','SITE_DATA.baselineAudit.verification').replace('MODEL_VARIANTS.baseline.sha256','SITE_DATA.baselineAudit.sha256')
+    assert 'MODEL_VARIANTS.baseline' not in runtime,'Unsupported eager baseline dependency in selected-model runtime'
+    return runtime
+
+def build_edges(payload,base,*,root=ROOT,run=subprocess.run):
+    """Reuse drawing buffers only for identical source bytes and exact inputs."""
+    raw=encode(payload).encode();hasher=hashlib.sha256(raw)
+    sources=[root/'scripts/build_mesh_cache.cjs',*sorted(p for p in (root/'src').iterdir()if p.is_file()and p.suffix in ['.js','.json','.gz'])]
+    for path in sources:
+        hasher.update(str(path.relative_to(root)).encode()+b'\0')
+        with path.open('rb')as stream:
+            while chunk:=stream.read(1024*1024):hasher.update(chunk)
+    key=hasher.hexdigest();cache=root/'.codex-runtime/runtime-mesh-cache'/key;outputs=['.bin','.json']
+    if (cache/'manifest.json').exists():
+        try:
+            manifest=json.loads((cache/'manifest.json').read_text())
+            valid=manifest['key']==key and all(hashlib.sha256((cache/('output'+suffix)).read_bytes()).hexdigest()==manifest['outputs'][suffix]for suffix in outputs)
+        except (ValueError,KeyError,OSError):valid=False
+        if valid:
+            for suffix in outputs:shutil.copyfile(cache/('output'+suffix),base.with_suffix(suffix))
+            return
+    base.with_suffix('.input').write_bytes(raw)
+    run([os.environ.get('NODE','node'),str(root/'scripts/build_mesh_cache.cjs'),str(base.with_suffix('.input')),str(base)],check=True)
+    cache.parent.mkdir(parents=True,exist_ok=True)
+    with tempfile.TemporaryDirectory(prefix='pending-',dir=cache.parent)as directory:
+        temporary=Path(directory);manifest={'key':key,'outputs':{}}
+        for suffix in outputs:
+            content=base.with_suffix(suffix).read_bytes();(temporary/('output'+suffix)).write_bytes(content);manifest['outputs'][suffix]=hashlib.sha256(content).hexdigest()
+        (temporary/'manifest.json').write_text(json.dumps(manifest))
+        if cache.exists():shutil.rmtree(cache)
+        temporary.rename(cache)
+# TIMESTAMP END 2026-11-06T03:31:53+00:00 | REVISION R000085
+
 # TIMESTAMP START 2026-11-06T01:19:41+00:00 | REVISION R000080
 def split_foundation_detail(foundation):
     """Canonical lazy detail never owns an architectural replacement's ID."""
@@ -78,8 +114,9 @@ def write_runtime(html, *, model, variants, wall_joinery, foundation, mudroom, d
             selected={**variants['top-entry'],'model':variants['top-entry']['model']}
             payload={'variants':{'top-entry':selected},'wallJoinery':{'variants':{'top-entry':wall_joinery['variants']['top-entry']}},
                 'foundation':foundation,'onlyIds':list(detail_parts)}
-            base.with_suffix('.input').write_text(encode(payload))
-            subprocess.run([os.environ.get('NODE','node'),str(ROOT/'scripts/build_mesh_cache.cjs'),str(base.with_suffix('.input')),str(base)],check=True)
+            # TIMESTAMP START 2026-11-06T03:31:53+00:00 | REVISION R000085
+            build_edges(payload,base)
+            # TIMESTAMP END 2026-11-06T03:31:53+00:00 | REVISION R000085
             header=encode({'schema':'octagon-occupied-detail-1','parts':detail_parts,'meshRanges':json.loads(base.with_suffix('.json').read_text())}).encode()
             header+=b' '*((-len(header))%4)
             content=struct.pack('<I',len(header))+header+base.with_suffix('.bin').read_bytes()
@@ -89,8 +126,9 @@ def write_runtime(html, *, model, variants, wall_joinery, foundation, mudroom, d
     with tempfile.TemporaryDirectory(prefix='octagon-shared-edges-') as directory:
         base=Path(directory)/'common'
         payload={'variants':{'top-entry':variants['top-entry']},'wallJoinery':{'variants':{'top-entry':wall_joinery['variants']['top-entry']}},'foundation':initial_foundation,'onlyIds':shared_ids}
-        base.with_suffix('.input').write_text(encode(payload))
-        subprocess.run([os.environ.get('NODE','node'),str(ROOT/'scripts/build_mesh_cache.cjs'),str(base.with_suffix('.input')),str(base)],check=True)
+        # TIMESTAMP START 2026-11-06T03:31:53+00:00 | REVISION R000085
+        build_edges(payload,base)
+        # TIMESTAMP END 2026-11-06T03:31:53+00:00 | REVISION R000085
         common_mesh_ranges=json.loads(base.with_suffix('.json').read_text())
         manifest['commonMesh']=asset('shared-edges',base.with_suffix('.bin').read_bytes(),'bin',compress=True)
 # TIMESTAMP END 2026-11-05T13:07:26+00:00 | REVISION R000043
@@ -110,11 +148,14 @@ def write_runtime(html, *, model, variants, wall_joinery, foundation, mudroom, d
             base = Path(directory) / identifier
             # TIMESTAMP START 2026-11-05T06:13:38+00:00 | REVISION R000027
 # TIMESTAMP START 2026-11-05T13:07:26+00:00 | REVISION R000043
-            base.with_suffix('.input').write_text(encode({**payload,'foundation':initial_foundation,'excludeIds':shared_ids}))
+            # TIMESTAMP START 2026-11-06T03:31:53+00:00 | REVISION R000085
+            build_edges({**payload,'foundation':initial_foundation,'excludeIds':shared_ids},base)
+            # TIMESTAMP END 2026-11-06T03:31:53+00:00 | REVISION R000085
 # TIMESTAMP END 2026-11-05T13:07:26+00:00 | REVISION R000043
             # TIMESTAMP END 2026-11-05T06:13:38+00:00 | REVISION R000027
-            subprocess.run([os.environ.get('NODE', 'node'), str(ROOT / 'scripts/build_mesh_cache.cjs'),
-                            str(base.with_suffix('.input')), str(base)], check=True)
+            # TIMESTAMP START 2026-11-06T03:31:53+00:00 | REVISION R000085
+            # The exact-source drawing cache above owns this generation.
+            # TIMESTAMP END 2026-11-06T03:31:53+00:00 | REVISION R000085
             payload['meshRanges'] = json.loads(base.with_suffix('.json').read_text())
             manifest['meshBuffers'][identifier] = asset('edges-' + identifier, base.with_suffix('.bin').read_bytes(), 'bin', compress=True)
         # TIMESTAMP END 2026-11-04T19:29:44+00:00 | REVISION R000002
@@ -141,10 +182,9 @@ def write_runtime(html, *, model, variants, wall_joinery, foundation, mudroom, d
         assert runtime.count(before) == 1, 'Missing or repeated runtime data declaration: ' + before[:60]
         runtime = runtime.replace(before, after)
     # The historical audit needs its small summary, not the baseline mesh.
-    assert runtime.count('MODEL_VARIANTS.baseline.model.joinery_verification') == 2
-    runtime = runtime.replace('MODEL_VARIANTS.baseline.model.joinery_verification', 'SITE_DATA.baselineAudit.verification')
-    assert runtime.count('MODEL_VARIANTS.baseline.sha256') == 1
-    runtime = runtime.replace('MODEL_VARIANTS.baseline.sha256', 'SITE_DATA.baselineAudit.sha256')
+    # TIMESTAMP START 2026-11-06T03:31:53+00:00 | REVISION R000085
+    runtime=rewrite_baseline_audit(runtime)
+    # TIMESTAMP END 2026-11-06T03:31:53+00:00 | REVISION R000085
 
     # Dynamic imports resolve relative to an external script; use versioned paths
     # at the Site root for the optional geometry engine and its source data.
