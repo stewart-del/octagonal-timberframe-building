@@ -392,7 +392,9 @@ const shaders={vs:`attribute vec3 position;attribute vec3 normal;uniform mat4 vi
 let program,loc={},gridBuffer,gridCount=0;
 function shader(type,source){const s=gl.createShader(type);gl.shaderSource(s,source);gl.compileShader(s);if(!gl.getShaderParameter(s,gl.COMPILE_STATUS))throw Error(gl.getShaderInfoLog(s));return s;}
 if(gl){try{program=gl.createProgram();gl.attachShader(program,shader(gl.VERTEX_SHADER,shaders.vs));gl.attachShader(program,shader(gl.FRAGMENT_SHADER,shaders.fs));gl.linkProgram(program);if(!gl.getProgramParameter(program,gl.LINK_STATUS))throw Error(gl.getProgramInfoLog(program));gl.useProgram(program);for(const n of ['position','normal'])loc[n]=gl.getAttribLocation(program,n);for(const n of ['viewProjection','translation','color','lineMode','opacity','surfaceContrast'])loc[n]=gl.getUniformLocation(program,n);gl.enable(gl.DEPTH_TEST);gl.disable(gl.CULL_FACE);gl.clearColor(.945,.953,.93,1);}catch(e){$('error').textContent='3D display could not initialize: '+e.message;$('error').style.display='block';gl=null;}}
-function buildBuffer(data){const b=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,b);gl.bufferData(gl.ARRAY_BUFFER,new Float32Array(data),gl.STATIC_DRAW);return b;}
+// TIMESTAMP START 2026-11-08T21:51:01-05:00 | REVISION R000001
+function buildBuffer(data){const b=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,b);gl.bufferData(gl.ARRAY_BUFFER,data instanceof Float32Array?data:new Float32Array(data),gl.STATIC_DRAW);return b;}
+// TIMESTAMP END 2026-11-08T21:51:01-05:00 | REVISION R000001
 // Feature edges only: weld positions, combine collinear triangle segments,
 // then suppress edges whose adjacent surfaces are coplanar within0.1degree.
 /*__EDGE_MEASUREMENT_TOOLS__*/
@@ -410,12 +412,18 @@ for(const p of [...parts,...schematicParts]){
  if(p.mesh_instance&&physicalRenderer){physicalRenderer.register(p);continue;}
 // TIMESTAMP END 2026-11-05T04:29:18+00:00 | REVISION R000022
  // TIMESTAMP START 2026-11-04T19:29:44+00:00 | REVISION R000002
- const vertices=p.vertices||[],triangles=p.triangles||[];const raw=[];
+ // TIMESTAMP START 2026-11-08T21:51:01-05:00 | REVISION R000001
  const cachedEdges=MODEL_CONTEXT.parametric?null:MODEL_CONTEXT.meshCache?.get(p.id);
- if(MODEL_CONTEXT.meshCache&&!MODEL_CONTEXT.parametric&&!cachedEdges)throw Error('Missing drawing edges: '+p.id);
- const edgeRaw=cachedEdges||featureEdges(vertices,triangles);
+ if(MODEL_CONTEXT.meshCache&&!MODEL_CONTEXT.parametric&&!cachedEdges&&!p.mesh_instance)throw Error('Missing drawing edges: '+p.id);
+ // Canvas draws directly from occupied geometry and needs no GPU face arrays.
+ if(gl){
+ const raw=OctagonPhysicalParts.triangleBuffer(p);
+ const edgeRaw=cachedEdges||OctagonPhysicalParts.drawingEdges(p,featureEdges);
+ // TIMESTAMP END 2026-11-08T21:51:01-05:00 | REVISION R000001
  // TIMESTAMP END 2026-11-04T19:29:44+00:00 | REVISION R000002
- for(const tri of triangles){const a=vertices[tri[0]],b=vertices[tri[1]],c=vertices[tri[2]];if(!a||!b||!c)continue;const n=unit(cross(vsub(b,a),vsub(c,a)));for(const v of [a,b,c])raw.push(...v,...n);}
+ // TIMESTAMP START 2026-11-08T21:51:01-05:00 | REVISION R000001
+ // Exact face positions and normals are packed directly into the GPU buffer.
+ // TIMESTAMP END 2026-11-08T21:51:01-05:00 | REVISION R000001
  // TIMESTAMP START 2026-11-04T19:29:44+00:00 | REVISION R000002
  // Drawing edges reuse the matching build cache; changed dimensions compute their own.
  // TIMESTAMP END 2026-11-04T19:29:44+00:00 | REVISION R000002
@@ -423,6 +431,9 @@ for(const p of [...parts,...schematicParts]){
  if(batchRenderer)batchRenderer.register(p,raw,edgeRaw);
  meshParts.push({part:p,raw:batchRenderer?null:raw,count:raw.length/6,edgeCount:edgeRaw.length/6,batched:!!batchRenderer,buffer:gl&&!batchRenderer?buildBuffer(raw):null,edgeBuffer:gl&&!batchRenderer?buildBuffer(edgeRaw):null});
  // TIMESTAMP END 2026-11-05T06:06:56+00:00 | REVISION R000026
+ // TIMESTAMP START 2026-11-08T21:51:01-05:00 | REVISION R000001
+ }
+ // TIMESTAMP END 2026-11-08T21:51:01-05:00 | REVISION R000001
  if(p.schematic)continue;
  const lab=document.createElement('button');lab.className='label';lab.title='Select '+p.id;lab.addEventListener('click',e=>{e.stopPropagation();selectPart(p.id,!!e.shiftKey);});lab.dataset.part=p.id;labelLayer.appendChild(lab);p._label=lab;
 }
@@ -432,9 +443,10 @@ const windowControls=OctagonWindowAssemblies.bind(document,windowUnits,(ids,valu
  const affected=new Set(ids);
  for(const p of schematicParts){if(!p.windowReference||p.windowMotion!=='sash'||!affected.has(p.unitId))continue;
   p.vertices=OctagonWindowAssemblies.pose(p,value);p.center=[0,1,2].map(k=>(Math.min(...p.vertices.map(v=>v[k]))+Math.max(...p.vertices.map(v=>v[k])))/2);p.label_position=p.center;
-  const raw=[];for(const tri of p.triangles){const [a,b,c]=tri.map(i=>p.vertices[i]),n=unit(cross(vsub(b,a),vsub(c,a)));for(const v of [a,b,c])raw.push(...v,...n);}
-  const edges=featureEdges(p.vertices,p.triangles),mesh=meshParts.find(m=>m.part===p);
-  if(mesh){if(batchRenderer)batchRenderer.replace(p,raw,edges);else{if(gl){gl.deleteBuffer(mesh.buffer);gl.deleteBuffer(mesh.edgeBuffer);}Object.assign(mesh,{raw,count:raw.length/6,edgeCount:edges.length/6,buffer:gl?buildBuffer(raw):null,edgeBuffer:gl?buildBuffer(edges):null});}}
+  // TIMESTAMP START 2026-11-08T21:51:01-05:00 | REVISION R000001
+  const mesh=meshParts.find(m=>m.part===p);
+  if(mesh){const raw=OctagonPhysicalParts.triangleBuffer(p),edges=featureEdges(p.vertices,p.triangles);if(batchRenderer)batchRenderer.replace(p,raw,edges);else{if(gl){gl.deleteBuffer(mesh.buffer);gl.deleteBuffer(mesh.edgeBuffer);}Object.assign(mesh,{raw,count:raw.length/6,edgeCount:edges.length/6,buffer:gl?buildBuffer(raw):null,edgeBuffer:gl?buildBuffer(edges):null});}}
+  // TIMESTAMP END 2026-11-08T21:51:01-05:00 | REVISION R000001
  }
  requestRender();
 });
@@ -455,8 +467,10 @@ function ensurePhysicalDetail(){
    Object.assign(p,value);delete p.detail_ref;delete p.renderGeometry;
    const edgeRaw=detail.meshCache.get(p.id);if(!edgeRaw)throw Error('Missing occupied-mesh drawing edges: '+p.id);
    MODEL_CONTEXT.meshCache?.set(p.id,edgeRaw);
-   const raw=[];for(const tri of p.triangles){const [a,b,c]=tri.map(i=>p.vertices[i]),n=unit(cross(vsub(b,a),vsub(c,a)));for(const v of [a,b,c])raw.push(...v,...n);}
+   // TIMESTAMP START 2026-11-08T21:51:01-05:00 | REVISION R000001
    const mesh=meshParts.find(m=>m.part===p);if(mesh){
+    const raw=OctagonPhysicalParts.triangleBuffer(p);
+   // TIMESTAMP END 2026-11-08T21:51:01-05:00 | REVISION R000001
     if(batchRenderer)batchRenderer.replace(p,raw,edgeRaw);
     else{if(gl){gl.deleteBuffer(mesh.buffer);gl.deleteBuffer(mesh.edgeBuffer);}Object.assign(mesh,{raw,count:raw.length/6,edgeCount:edgeRaw.length/6,buffer:gl?buildBuffer(raw):null,edgeBuffer:gl?buildBuffer(edgeRaw):null});}
    }
@@ -681,12 +695,16 @@ function fallbackSegmentIndex(segments) {
   return points=>{const r=range(points);if(r.count>4096)return segments;const found=new Set(overflow);visit(r,key=>{for(const i of cells.get(key)||[])found.add(i);});return [...found].sort((a,b)=>a-b).map(i=>segments[i]);};
 }
 function fallbackFaceEdges(p, tri) {
+  // TIMESTAMP START 2026-11-08T21:51:01-05:00 | REVISION R000001
+  const vertices=p.vertices,triangles=p.triangles;
+  const edgeSource=MODEL_CONTEXT.parametric||p.windowMotion==='sash'?null:MODEL_CONTEXT.meshCache?.get(p.id);
   let cached = fallbackFeatureCache.get(p.id);
-  if (!cached) {
-    const raw = featureEdges(p.vertices, p.triangles), segments = [];
+  if (!cached||cached.vertices!==vertices||cached.triangles!==triangles||cached.edgeSource!==edgeSource) {
+    const raw = edgeSource||OctagonPhysicalParts.drawingEdges(p,featureEdges), segments = [];
     for (let i = 0; i < raw.length; i += 12) segments.push([raw.slice(i, i + 3), raw.slice(i + 6, i + 9)]);
-    cached = {segments, candidates:fallbackSegmentIndex(segments), faces: new Map()};fallbackFeatureCache.set(p.id, cached);
+    cached = {vertices,triangles,edgeSource,segments,candidates:fallbackSegmentIndex(segments),faces:new Map()};fallbackFeatureCache.set(p.id,cached);
   }
+  // TIMESTAMP END 2026-11-08T21:51:01-05:00 | REVISION R000001
   const key = tri.join(',');
   if (cached.faces.has(key)) return cached.faces.get(key);
   const result = [], tolerance = 3e-6;
@@ -1546,20 +1564,26 @@ window.octagonViewer={context:MODEL_CONTEXT,parts,schematicParts,motion,ensurePh
 }
 /* PARAMETRIC_VIEWER_BODY_END */
 /* PARAMETRIC_BOOT_START */
+// TIMESTAMP START 2026-11-08T21:51:01-05:00 | REVISION R000001
 (async()=>{
+ let context=SAVED_MODEL_CONTEXT,generationError=null;
  try{
   const cfg=OctagonParametricControls.requested(window.location.search||'');
-  if(!cfg.changed){startViewer(SAVED_MODEL_CONTEXT);return;}
-  document.getElementById('parameterStatus').textContent='Rebuilding members and matching recesses…';
-  // TIMESTAMP START 2026-11-05T06:13:38+00:00 | REVISION R000027
-  await loadFoundationDetail();
-  // TIMESTAMP END 2026-11-05T06:13:38+00:00 | REVISION R000027
-  const context=await OctagonParametricControls.generate(initialModelContext,SAVED_MODEL_CONTEXT,cfg,{walls:TimberSchematicWalls,floor:OctagonFloorFoundation,roof:TimberRoofCoverings,porch:OctagonMudroom,foundationData:FLOOR_FOUNDATION_DATA});
-  startViewer(context);
- }catch(error){
-  startViewer(SAVED_MODEL_CONTEXT);document.getElementById('parameterStatus').textContent='These dimensions could not be generated: '+error.message+'. Saved dimensions are shown.';console.error(error);
- }
-})();
+  if(cfg.changed){
+   document.getElementById('parameterStatus').textContent='Rebuilding members and matching recesses…';
+   await loadFoundationDetail();
+   context=await OctagonParametricControls.generate(initialModelContext,SAVED_MODEL_CONTEXT,cfg,{walls:TimberSchematicWalls,floor:OctagonFloorFoundation,roof:TimberRoofCoverings,porch:OctagonMudroom,foundationData:FLOOR_FOUNDATION_DATA});
+  }
+ }catch(error){generationError=error;}
+ // Generation may recover to saved dimensions; a partial viewer never restarts.
+ startViewer(context);
+ if(generationError){document.getElementById('parameterStatus').textContent='These dimensions could not be generated: '+generationError.message+'. Saved dimensions are shown.';console.error(generationError);}
+})().catch(error=>{
+ const status=document.getElementById('parameterStatus');
+ if(status)status.textContent='The model could not start. Reload to try again. '+error.message;
+ console.error(error);
+});
+// TIMESTAMP END 2026-11-08T21:51:01-05:00 | REVISION R000001
 /* PARAMETRIC_BOOT_END */
 // TIMESTAMP END 2026-11-03T13:30:29-05:00 | REVISION R005026
 </script>

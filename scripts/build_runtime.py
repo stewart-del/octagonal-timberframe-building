@@ -20,6 +20,9 @@ import gzip
 import struct
 # TIMESTAMP END 2026-11-05T06:13:38+00:00 | REVISION R000027
 # TIMESTAMP END 2026-11-04T19:29:44+00:00 | REVISION R000002
+# TIMESTAMP START 2026-11-08T21:51:47-05:00 | REVISION R000001
+from runtime_transport import encode_transport
+# TIMESTAMP END 2026-11-08T21:51:47-05:00 | REVISION R000001
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -133,9 +136,11 @@ def write_runtime(html, *, model, variants, wall_joinery, foundation, mudroom, d
         manifest['commonMesh']=asset('shared-edges',base.with_suffix('.bin').read_bytes(),'bin',compress=True)
 # TIMESTAMP END 2026-11-05T13:07:26+00:00 | REVISION R000043
 # TIMESTAMP START 2026-11-05T13:07:26+00:00 | REVISION R000043
-    manifest['common'] = asset('shared-data', encode({'foundation': initial_foundation, 'mudroom': mudroom,
+    # TIMESTAMP START 2026-11-08T21:51:47-05:00 | REVISION R000001
+    manifest['common'] = asset('shared-data', encode_transport({'foundation': initial_foundation, 'mudroom': mudroom,
         'commonMeshRanges':common_mesh_ranges,
-        'baselineAudit': {'sha256': variants['baseline']['sha256'], 'verification': model['joinery_verification']}}), 'json', compress=True)
+        'baselineAudit': {'sha256': variants['baseline']['sha256'], 'verification': model['joinery_verification']}}), 'pack', compress=True)
+    # TIMESTAMP END 2026-11-08T21:51:47-05:00 | REVISION R000001
 # TIMESTAMP END 2026-11-05T13:07:26+00:00 | REVISION R000043
     # TIMESTAMP END 2026-11-05T06:13:38+00:00 | REVISION R000027
     manifest['study'] = asset('earlier-joint-study', encode(study), 'json', compress=True)
@@ -159,28 +164,41 @@ def write_runtime(html, *, model, variants, wall_joinery, foundation, mudroom, d
             payload['meshRanges'] = json.loads(base.with_suffix('.json').read_text())
             manifest['meshBuffers'][identifier] = asset('edges-' + identifier, base.with_suffix('.bin').read_bytes(), 'bin', compress=True)
         # TIMESTAMP END 2026-11-04T19:29:44+00:00 | REVISION R000002
-        manifest['variants'][identifier] = asset('model-' + identifier, encode(payload), 'json', compress=True)
+        # TIMESTAMP START 2026-11-08T21:51:47-05:00 | REVISION R000001
+        manifest['variants'][identifier] = asset('model-' + identifier, encode_transport(payload), 'pack', compress=True)
+        # TIMESTAMP END 2026-11-08T21:51:47-05:00 | REVISION R000001
 
-    # Exact replacements fail closed when the executable template changes.
+    # TIMESTAMP START 2026-11-08T21:51:47-05:00 | REVISION R000001
+    # Remove the validated one-line JSON declarations in one pass before
+    # copying the executable script. The full offline export stays unchanged.
+    declarations = {
+        'MODEL_VARIANTS': 'SITE_DATA.variants',
+        'WALL_JOINERY_DATA': 'SITE_DATA.wallJoinery',
+        'FLOOR_FOUNDATION_DATA': 'SITE_DATA.foundation',
+        'MUDROOM_JOINERY_FIT': 'SITE_DATA.mudroom',
+        'DISASSEMBLY_PLANS': 'SITE_DATA.disassembly',
+        'STEP_LAP_PROPOSAL': '()=>OctagonSiteLoader.loadJSON(OctagonSiteLoader.manifest.study)',
+    }
+    counts = {name: 0 for name in declarations}
+    def external_data(match):
+        name = match.group(1)
+        counts[name] += 1
+        return 'const ' + name + '=' + declarations[name] + ';\n'
+    html = re.sub(r'^const (' + '|'.join(declarations) + r')=[^\n]*;\n', external_data, html, flags=re.M)
+    assert all(count == 1 for count in counts.values()), 'Missing or repeated runtime data declaration: ' + str(counts)
+    html, count = re.subn(r'<script type="application/json" id="model-data">.*?</script>', '', html, flags=re.S)
+    assert count == 1
     runtime_match = re.search(r"<script>\n'use strict';\n(.*?)</script>", html, re.S)
     assert runtime_match, 'Missing viewer script'
     runtime = "'use strict';\n" + runtime_match.group(1)
-    replacements = [
-        ('const MODEL_VARIANTS=' + encode(variants) + ';', 'const MODEL_VARIANTS=SITE_DATA.variants;'),
+    for before, after in [
         ("MODEL_VARIANTS.baseline.model=JSON.parse(document.getElementById('model-data').textContent);", ''),
-        ('const WALL_JOINERY_DATA=' + encode(wall_joinery) + ';', 'const WALL_JOINERY_DATA=SITE_DATA.wallJoinery;'),
-        ('const FLOOR_FOUNDATION_DATA=' + encode(foundation) + ';', 'const FLOOR_FOUNDATION_DATA=SITE_DATA.foundation;'),
-        ('const MUDROOM_JOINERY_FIT=' + encode(mudroom) + ';', 'const MUDROOM_JOINERY_FIT=SITE_DATA.mudroom;'),
-        ('const DISASSEMBLY_PLANS=' + encode(disassembly) + ';', 'const DISASSEMBLY_PLANS=SITE_DATA.disassembly;'),
-        ('const STEP_LAP_PROPOSAL=' + encode(study) + ';', 'const STEP_LAP_PROPOSAL=()=>OctagonSiteLoader.loadJSON(OctagonSiteLoader.manifest.study);'),
-        # TIMESTAMP START 2026-11-04T19:29:44+00:00 | REVISION R000002
         ("const initialModelContext=OctagonModelVariants.context(MODEL_VARIANTS,window.location.search||'');",
          "const initialModelContext={...OctagonModelVariants.context(MODEL_VARIANTS,window.location.search||''),meshCache:SITE_DATA.meshCache};"),
-        # TIMESTAMP END 2026-11-04T19:29:44+00:00 | REVISION R000002
-    ]
-    for before, after in replacements:
-        assert runtime.count(before) == 1, 'Missing or repeated runtime data declaration: ' + before[:60]
+    ]:
+        assert runtime.count(before) == 1, 'Missing or repeated runtime declaration: ' + before
         runtime = runtime.replace(before, after)
+    # TIMESTAMP END 2026-11-08T21:51:47-05:00 | REVISION R000001
     # The historical audit needs its small summary, not the baseline mesh.
     # TIMESTAMP START 2026-11-06T03:31:53+00:00 | REVISION R000085
     runtime=rewrite_baseline_audit(runtime)
@@ -205,13 +223,19 @@ def write_runtime(html, *, model, variants, wall_joinery, foundation, mudroom, d
 
     runtime = '(async()=>{\nconst SITE_DATA=await OctagonSiteLoader.data;\n' + runtime + '\n})().catch(OctagonSiteLoader.showError);\n'
     manifest['runtime'] = asset('viewer', runtime, 'js')
-    loader = (ROOT / 'src/runtime-loader.js').read_text()
+    # TIMESTAMP START 2026-11-08T21:51:47-05:00 | REVISION R000001
+    loader = (ROOT / 'src/runtime-transport.js').read_text() + '\n' + (ROOT / 'src/runtime-loader.js').read_text()
+    # TIMESTAMP END 2026-11-08T21:51:47-05:00 | REVISION R000001
     bootstrap = '<script type="application/json" id="site-assets">' + encode(manifest) + '</script>\n<script>\n' + loader
     bootstrap += "\nOctagonSiteLoader.configure(JSON.parse(document.getElementById('site-assets').textContent));\n</script>\n"
     bootstrap += '<script defer src="' + manifest['runtime'] + '"></script>'
-    html = html[:runtime_match.start()] + bootstrap + html[runtime_match.end():]
-    html, count = re.subn(r'<script type="application/json" id="model-data">.*?</script>', '', html, flags=re.S)
-    assert count == 1
+    # TIMESTAMP START 2026-11-08T21:51:47-05:00 | REVISION R000001
+    html = html[:runtime_match.start()] + html[runtime_match.end():]
+    # Begin the selected model's four downloads before the stylesheet blocks
+    # parsing; the deferred viewer still waits for the completed document.
+    assert 0 <= html.index('<style>') < html.index('</head>')
+    html = html.replace('<style>', bootstrap + '\n<style>', 1)
+    # TIMESTAMP END 2026-11-08T21:51:47-05:00 | REVISION R000001
     styles = re.findall(r'<style>(.*?)</style>', html, re.S)
     manifest['styles'] = asset('viewer', '\n'.join(styles), 'css')
     first = True
@@ -227,7 +251,9 @@ def write_runtime(html, *, model, variants, wall_joinery, foundation, mudroom, d
     (dist / 'index.html').write_text(html)
     (dist / '_headers').write_text('/assets/*\n  Cache-Control: public, max-age=31536000, immutable\n/\n  Cache-Control: no-cache\n/index.html\n  Cache-Control: no-cache\n')
     return {'offline_html_bytes': (ROOT / 'index.html').stat().st_size, 'page_bytes': len(html.encode()),
-            'initial_bytes': {key: len(html.encode()) + sum((dist / manifest[item]).stat().st_size for item in ['runtime', 'styles', 'common']) + (dist / path).stat().st_size
+            # TIMESTAMP START 2026-11-08T21:51:47-05:00 | REVISION R000001
+            'initial_bytes': {key: len(html.encode()) + sum((dist / manifest[item]).stat().st_size for item in ['runtime', 'styles', 'common', 'commonMesh']) + (dist / path).stat().st_size
+            # TIMESTAMP END 2026-11-08T21:51:47-05:00 | REVISION R000001
                               # TIMESTAMP START 2026-11-04T19:29:44+00:00 | REVISION R000002
                               + (dist / manifest['meshBuffers'][key]).stat().st_size
                               for key, path in manifest['variants'].items()}, 'manifest': manifest}

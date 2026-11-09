@@ -3,7 +3,9 @@ const source=fs.readFileSync('src/viewer.template.html','utf8');
 const code=source.slice(source.indexOf('function fallbackSegmentIndex('),source.indexOf('function drawFallback()'));
 const tools=require('../src/edge-measurements.js'),roof=require('../src/roof-coverings.js'),model=require('../src/top-entry-proposed-model.json');
 const sub=(a,b)=>a.map((x,i)=>x-b[i]),add=(a,b)=>a.map((x,i)=>x+b[i]),mul=(a,s)=>a.map(x=>x*s),dot=(a,b)=>a.reduce((s,x,i)=>s+x*b[i],0),length=a=>Math.hypot(...a);
-function harness(text){const context={fallbackFeatureCache:new Map(),featureEdges:tools.featureEdges,vsub:sub,vadd:add,vmul:mul,dot,length};vm.createContext(context);vm.runInContext(text,context);return context;}
+// TIMESTAMP START 2026-11-08T21:51:01-05:00 | REVISION R000001
+function harness(text){const context={fallbackFeatureCache:new Map(),MODEL_CONTEXT:{parametric:true},OctagonPhysicalParts:require('../src/physical-parts.js'),featureEdges:tools.featureEdges,vsub:sub,vadd:add,vmul:mul,dot,length};vm.createContext(context);vm.runInContext(text,context);return context;}
+// TIMESTAMP END 2026-11-08T21:51:01-05:00 | REVISION R000001
 const indexed=harness(code),legacy=harness(code.replace('cached.candidates(tri.map(i=>p.vertices[i]))','cached.segments'));
 const parts=[...model.parts.filter(p=>['P0','R0','J0-0','C0'].includes(p.id)),...roof.build(model).components];
 let tested=0,allPairs=0,candidatePairs=0,start=performance.now();

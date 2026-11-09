@@ -15,14 +15,48 @@ function hydrate(part,prototypes){
  Object.defineProperty(result,'vertices',{enumerable:true,get:()=>vertices??(vertices=prototype.vertices.map(v=>matrix.map(row=>row[0]*v[0]+row[1]*v[1]+row[2]*v[2]+row[3])))});
  return result;
 }
+// TIMESTAMP START 2026-11-08T21:51:01-05:00 | REVISION R000001
+const prototypeDrawingEdges=new WeakMap(),instanceDrawingEdges=new WeakMap();
+function triangleBuffer(part){
+ const vertices=part.vertices||[],triangles=part.triangles||[],values=new Float32Array(triangles.length*18);let at=0;
+ for(const triangle of triangles){
+  const a=vertices[triangle[0]],b=vertices[triangle[1]],c=vertices[triangle[2]];if(!a||!b||!c)continue;
+  const ab0=b[0]-a[0],ab1=b[1]-a[1],ab2=b[2]-a[2],ac0=c[0]-a[0],ac1=c[1]-a[1],ac2=c[2]-a[2];
+  let n0=ab1*ac2-ab2*ac1,n1=ab2*ac0-ab0*ac2,n2=ab0*ac1-ab1*ac0;const scale=1/(Math.hypot(n0,n1,n2)||1);n0*=scale;n1*=scale;n2*=scale;
+  for(let corner=0;corner<3;corner++){const point=vertices[triangle[corner]];values[at++]=point[0];values[at++]=point[1];values[at++]=point[2];values[at++]=n0;values[at++]=n1;values[at++]=n2;}
+ }
+ return at===values.length?values:values.subarray(0,at);
+}
+function drawingEdges(part,featureEdges){
+ if(!part.mesh_instance)return featureEdges(part.vertices||[],part.triangles||[]);
+ const instance=part.mesh_instance,prototype=part.instancePrototype,matrix=instance.transform;
+ if(!prototype)throw Error('Missing physical prototype '+instance.prototype);
+ // Rigid transforms preserve the prototype's feature angles and segments.
+ // Recompute from occupied world vertices if a future instance adds scaling.
+ const rigid=matrix.every((a,i)=>matrix.every((b,j)=>Math.abs(a.slice(0,3).reduce((sum,n,k)=>sum+n*b[k],0)-(i===j?1:0))<1e-10));
+ if(!rigid)return featureEdges(part.vertices||[],part.triangles||[]);
+ const values=matrix.flat(),previous=instanceDrawingEdges.get(part);
+ if(previous?.prototype===prototype&&previous.featureEdges===featureEdges&&values.every((n,i)=>n===previous.matrix[i]))return previous.edges;
+ let cached=prototypeDrawingEdges.get(prototype);
+ if(!cached||cached.featureEdges!==featureEdges){cached={featureEdges,edges:featureEdges(prototype.vertices,prototype.triangles)};prototypeDrawingEdges.set(prototype,cached);}
+ const source=cached.edges,edges=new Float64Array(source.length);
+ for(let i=0;i<source.length;i+=6){for(let row=0;row<3;row++)edges[i+row]=matrix[row][0]*source[i]+matrix[row][1]*source[i+1]+matrix[row][2]*source[i+2]+matrix[row][3];edges[i+4]=1;}
+ instanceDrawingEdges.set(part,{prototype,featureEdges,matrix:values,edges});return edges;
+}
 function createRenderer(gl,{fragmentShader,featureEdges}){
- const extension=gl.getExtension('ANGLE_instanced_arrays');if(!extension)return null;
- const vertexShader=`attribute vec3 position;attribute vec3 normal;attribute vec4 transform0;attribute vec4 transform1;attribute vec4 transform2;uniform mat4 viewProjection;varying vec3 N;varying vec3 W;void main(){vec4 p=vec4(position,1.0);W=vec3(dot(transform0,p),dot(transform1,p),dot(transform2,p));N=vec3(dot(transform0.xyz,normal),dot(transform1.xyz,normal),dot(transform2.xyz,normal));gl_Position=viewProjection*vec4(W,1.0);}`;
+ const extension=gl.getExtension('ANGLE_instanced_arrays'),transformQualifier=extension?'attribute':'uniform';
+ // Shared prototype buffers also serve WebGL implementations without ANGLE.
+ const vertexShader=`attribute vec3 position;attribute vec3 normal;${transformQualifier} vec4 transform0;${transformQualifier} vec4 transform1;${transformQualifier} vec4 transform2;uniform mat4 viewProjection;varying vec3 N;varying vec3 W;void main(){vec4 p=vec4(position,1.0);W=vec3(dot(transform0,p),dot(transform1,p),dot(transform2,p));N=vec3(dot(transform0.xyz,normal),dot(transform1.xyz,normal),dot(transform2.xyz,normal));gl_Position=viewProjection*vec4(W,1.0);}`;
+// TIMESTAMP END 2026-11-08T21:51:01-05:00 | REVISION R000001
  function shader(type,source){const value=gl.createShader(type);gl.shaderSource(value,source);gl.compileShader(value);if(!gl.getShaderParameter(value,gl.COMPILE_STATUS))throw Error(gl.getShaderInfoLog(value));return value;}
  const program=gl.createProgram();gl.attachShader(program,shader(gl.VERTEX_SHADER,vertexShader));gl.attachShader(program,shader(gl.FRAGMENT_SHADER,fragmentShader));gl.linkProgram(program);if(!gl.getProgramParameter(program,gl.LINK_STATUS))throw Error(gl.getProgramInfoLog(program));
- const attributes=Object.fromEntries(['position','normal','transform0','transform1','transform2'].map(name=>[name,gl.getAttribLocation(program,name)])),uniforms=Object.fromEntries(['viewProjection','color','lineMode','opacity','surfaceContrast'].map(name=>[name,gl.getUniformLocation(program,name)]));
- const records=[],templates=new Map(),instanceBuffer=gl.createBuffer();
- function buffer(data){const value=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,value);gl.bufferData(gl.ARRAY_BUFFER,new Float32Array(data),gl.STATIC_DRAW);return value;}
+// TIMESTAMP START 2026-11-08T21:51:01-05:00 | REVISION R000001
+ const attributes=Object.fromEntries(['position','normal',...(extension?['transform0','transform1','transform2']:[])].map(name=>[name,gl.getAttribLocation(program,name)])),uniforms=Object.fromEntries(['viewProjection','color','lineMode','opacity','surfaceContrast',...(!extension?['transform0','transform1','transform2']:[])].map(name=>[name,gl.getUniformLocation(program,name)]));
+ const records=[],templates=new Map(),instanceBuffer=extension?gl.createBuffer():null;
+// TIMESTAMP END 2026-11-08T21:51:01-05:00 | REVISION R000001
+// TIMESTAMP START 2026-11-08T21:51:01-05:00 | REVISION R000001
+ function buffer(data){const value=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,value);gl.bufferData(gl.ARRAY_BUFFER,data instanceof Float32Array?data:new Float32Array(data),gl.STATIC_DRAW);return value;}
+// TIMESTAMP END 2026-11-08T21:51:01-05:00 | REVISION R000001
  function register(part){
   const key=part.mesh_instance.prototype,prototype=part.instancePrototype;
   if(!templates.has(key)){
@@ -44,16 +78,28 @@ function createRenderer(gl,{fragmentShader,featureEdges}){
   }
   if(!batches.size)return;
   gl.useProgram(program);gl.uniformMatrix4fv(uniforms.viewProjection,false,viewProjection);gl.uniform1f(uniforms.surfaceContrast,surfaceContrast?1:0);
-  function bindMesh(value){gl.bindBuffer(gl.ARRAY_BUFFER,value);for(const [name,start] of [['position',0],['normal',12]]){const location=attributes[name];gl.enableVertexAttribArray(location);extension.vertexAttribDivisorANGLE(location,0);gl.vertexAttribPointer(location,3,gl.FLOAT,false,24,start);}}
+// TIMESTAMP START 2026-11-08T21:51:01-05:00 | REVISION R000001
+  function bindMesh(value){gl.bindBuffer(gl.ARRAY_BUFFER,value);for(const [name,start] of [['position',0],['normal',12]]){const location=attributes[name];gl.enableVertexAttribArray(location);extension?.vertexAttribDivisorANGLE(location,0);gl.vertexAttribPointer(location,3,gl.FLOAT,false,24,start);}}
+  function submit(batch,mode,count){
+   if(extension){extension.drawArraysInstancedANGLE(mode,0,count,batch.values.length/12);return;}
+   for(let at=0;at<batch.values.length;at+=12){for(let row=0;row<3;row++)gl.uniform4fv(uniforms['transform'+row],batch.values.slice(at+row*4,at+row*4+4));gl.drawArrays(mode,0,count);}
+  }
+// TIMESTAMP END 2026-11-08T21:51:01-05:00 | REVISION R000001
   try{
    for(const batch of batches.values()){
-    gl.bindBuffer(gl.ARRAY_BUFFER,instanceBuffer);gl.bufferData(gl.ARRAY_BUFFER,new Float32Array(batch.values),gl.DYNAMIC_DRAW);
-    for(let row=0;row<3;row++){const location=attributes['transform'+row];gl.enableVertexAttribArray(location);gl.vertexAttribPointer(location,4,gl.FLOAT,false,48,row*16);extension.vertexAttribDivisorANGLE(location,1);}
+// TIMESTAMP START 2026-11-08T21:51:01-05:00 | REVISION R000001
+    if(extension){gl.bindBuffer(gl.ARRAY_BUFFER,instanceBuffer);gl.bufferData(gl.ARRAY_BUFFER,new Float32Array(batch.values),gl.DYNAMIC_DRAW);
+     for(let row=0;row<3;row++){const location=attributes['transform'+row];gl.enableVertexAttribArray(location);gl.vertexAttribPointer(location,4,gl.FLOAT,false,48,row*16);extension.vertexAttribDivisorANGLE(location,1);}}
+// TIMESTAMP END 2026-11-08T21:51:01-05:00 | REVISION R000001
     gl.uniform3fv(uniforms.color,batch.tint);gl.uniform1f(uniforms.opacity,batch.alpha);gl.uniform1f(uniforms.lineMode,0);bindMesh(batch.template.buffer);gl.enable(gl.POLYGON_OFFSET_FILL);gl.polygonOffset(1,1);
-    try{extension.drawArraysInstancedANGLE(gl.TRIANGLES,0,batch.template.count,batch.values.length/12);}finally{gl.disable(gl.POLYGON_OFFSET_FILL);}
-    if(edges||batch.highlighted){gl.uniform3fv(uniforms.color,edgeColor(batch.highlighted));gl.uniform1f(uniforms.lineMode,1);bindMesh(batch.template.edgeBuffer);extension.drawArraysInstancedANGLE(gl.LINES,0,batch.template.edgeCount,batch.values.length/12);}
+// TIMESTAMP START 2026-11-08T21:51:01-05:00 | REVISION R000001
+    try{submit(batch,gl.TRIANGLES,batch.template.count);}finally{gl.disable(gl.POLYGON_OFFSET_FILL);}
+    if(edges||batch.highlighted){gl.uniform3fv(uniforms.color,edgeColor(batch.highlighted));gl.uniform1f(uniforms.lineMode,1);bindMesh(batch.template.edgeBuffer);submit(batch,gl.LINES,batch.template.edgeCount);}
+// TIMESTAMP END 2026-11-08T21:51:01-05:00 | REVISION R000001
    }
-  }finally{for(let row=0;row<3;row++){const location=attributes['transform'+row];extension.vertexAttribDivisorANGLE(location,0);gl.disableVertexAttribArray(location);}}
+// TIMESTAMP START 2026-11-08T21:51:01-05:00 | REVISION R000001
+  }finally{if(extension)for(let row=0;row<3;row++){const location=attributes['transform'+row];extension.vertexAttribDivisorANGLE(location,0);gl.disableVertexAttribArray(location);}}
+// TIMESTAMP END 2026-11-08T21:51:01-05:00 | REVISION R000001
  }
  return {register,draw,get count(){return records.length;},get templateCount(){return templates.size;}};
 }
@@ -128,9 +174,14 @@ function createBatchRenderer(gl,{fragmentShader}){
  const faces=storage(),lines=storage();
  function register(part,raw,edges){
   if(byId.has(part.id))throw Error('Repeated batched piece '+part.id);
-  const row={part,raw:new Float32Array(raw),edges:new Float32Array(edges),state:null};rows.push(row);byId.set(part.id,row);dirty=true;
+// TIMESTAMP START 2026-11-08T21:51:01-05:00 | REVISION R000001
+  // Viewer-owned typed buffers are immutable until replace supplies new ones.
+  const row={part,raw:raw instanceof Float32Array?raw:new Float32Array(raw),edges:edges instanceof Float32Array?edges:new Float32Array(edges),state:null};rows.push(row);byId.set(part.id,row);dirty=true;
+// TIMESTAMP END 2026-11-08T21:51:01-05:00 | REVISION R000001
  }
- function replace(part,raw,edges){const row=byId.get(part.id);if(!row)throw Error('Unknown batched piece '+part.id);row.raw=new Float32Array(raw);row.edges=new Float32Array(edges);dirty=true;}
+// TIMESTAMP START 2026-11-08T21:51:01-05:00 | REVISION R000001
+ function replace(part,raw,edges){const row=byId.get(part.id);if(!row)throw Error('Unknown batched piece '+part.id);row.raw=raw instanceof Float32Array?raw:new Float32Array(raw);row.edges=edges instanceof Float32Array?edges:new Float32Array(edges);dirty=true;}
+// TIMESTAMP END 2026-11-08T21:51:01-05:00 | REVISION R000001
  function rebuild(){
   for(const [store,key,range] of [[faces,'raw','faceRange'],[lines,'edges','edgeRange']]){
    const count=rows.reduce((sum,r)=>sum+r[key].length,0),values=new Float32Array(count);let start=0;
@@ -180,7 +231,9 @@ function createBatchRenderer(gl,{fragmentShader}){
  }
  return {register,replace,draw,get count(){return rows.length;},get stats(){return {pieces:rows.length,vertices:faces.count,drawCalls,stateUploads};}};
 }
-const api={hydrate,createRenderer,createBatchRenderer,resolveSourceData,bounds,rayBounds};root.OctagonPhysicalParts=api;if(typeof module!=='undefined'&&module.exports)module.exports=api;
+// TIMESTAMP START 2026-11-08T21:51:01-05:00 | REVISION R000001
+const api={hydrate,triangleBuffer,drawingEdges,createRenderer,createBatchRenderer,resolveSourceData,bounds,rayBounds};root.OctagonPhysicalParts=api;if(typeof module!=='undefined'&&module.exports)module.exports=api;
+// TIMESTAMP END 2026-11-08T21:51:01-05:00 | REVISION R000001
 // TIMESTAMP END 2026-11-05T06:06:56+00:00 | REVISION R000026
 })(typeof globalThis!=='undefined'?globalThis:this);
 // TIMESTAMP END 2026-11-05T04:29:18+00:00 | REVISION R000022

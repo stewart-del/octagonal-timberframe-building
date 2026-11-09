@@ -1,0 +1,38 @@
+<!-- TIMESTAMP START 2026-11-08T21:51:47-05:00 | REVISION R000001 -->
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Octagon loading verification</title>
+<style>body{margin:20px;font:15px system-ui;color:#243b40}button,select{font:inherit;padding:8px;margin-right:8px}pre{white-space:pre-wrap;background:#eef2ef;padding:16px}iframe{display:block;border:1px solid #bcc8c2;margin-top:20px;max-width:none}</style></head>
+<body><h1>Octagon loading verification</h1><p>Local verification only. The same viewer runs inside a desktop or mobile viewport.</p>
+<label>Page <select id="target"><option value="/">Current build</option><option value="/baseline/">Previous build</option></select></label>
+<label>Model <select id="model"><option value="top-entry">Removable joinery proposal</option><option value="baseline">Saved baseline</option><option value="proposed">Perimeter proposal</option></select></label>
+<button id="desktop">Load desktop</button><button id="mobile">Load mobile</button><button id="repeat">Repeat load</button>
+<pre id="results" aria-live="polite">Choose a viewport to measure.</pre><div id="viewer"></div>
+<script>
+'use strict';
+let frame,mode='desktop',generation=0;
+const output=document.getElementById('results');
+function start(nextMode=mode){
+ mode=nextMode;const current=++generation,errors=[],started=performance.now();
+ frame?.remove();frame=document.createElement('iframe');frame.title='Octagon '+mode+' test';frame.width=mode==='mobile'?390:1365;frame.height=mode==='mobile'?844:1000;
+ const url=new URL(document.getElementById('target').value,location.href);url.searchParams.set('model',document.getElementById('model').value);
+ frame.src=url.href;output.textContent='Loading '+mode+'…';document.getElementById('viewer').append(frame);
+ frame.addEventListener('load',()=>{
+  const child=frame.contentWindow,doc=frame.contentDocument;
+  child.addEventListener('error',event=>errors.push(event.message));child.addEventListener('unhandledrejection',event=>errors.push(String(event.reason)));
+  const timer=setInterval(()=>{
+   if(current!==generation){clearInterval(timer);return;}
+   const status=doc.getElementById('parameterStatus')?.textContent||'';
+   if(child.octagonViewer){clearInterval(timer);child.requestAnimationFrame(()=>child.requestAnimationFrame(()=>finish(child,doc,status,errors)));}
+   else if(performance.now()-started>120000||/could not load|could not initialize/i.test(status)){clearInterval(timer);output.textContent=JSON.stringify({ready:false,viewport:mode,status,errors},null,2);}
+  },100);
+ });
+}
+function finish(child,doc,status,errors){
+ const viewer=child.octagonViewer,nav=child.performance.getEntriesByType('navigation')[0];
+ const resources=child.performance.getEntriesByType('resource').filter(r=>r.name.includes('/assets/')).map(r=>({file:new URL(r.name).pathname.split('/').pop(),durationMs:Math.round(r.duration),transferBytes:r.transferSize,encodedBytes:r.encodedBodySize,decodedBytes:r.decodedBodySize}));
+ const result={ready:true,viewport:mode,width:child.innerWidth,scrollWidth:doc.documentElement.scrollWidth,canvasWidth:doc.getElementById('scene').getBoundingClientRect().width,readyAndPaintedMs:Math.round(child.performance.now()),domContentLoadedMs:Math.round(nav.domContentLoadedEventEnd),firstContentfulPaintMs:Math.round(child.performance.getEntriesByType('paint').find(p=>p.name==='first-contentful-paint')?.startTime||0),primaryParts:viewer.parts.length,architecturalParts:viewer.schematicParts.length,rendering:viewer.renderStats(),model:viewer.context.id,status,errors,resources};
+ output.textContent=JSON.stringify(result,null,2);
+}
+document.getElementById('desktop').onclick=()=>start('desktop');document.getElementById('mobile').onclick=()=>start('mobile');document.getElementById('repeat').onclick=()=>start();
+</script></body></html>
+<!-- TIMESTAMP END 2026-11-08T21:51:47-05:00 | REVISION R000001 -->
