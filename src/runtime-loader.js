@@ -17,7 +17,10 @@ function resource(path,type){
     response=new Response(buffer);
     if(magic[0]===31&&magic[1]===139)response=new Response(response.body.pipeThrough(new DecompressionStream('gzip')));
    }
+   // TIMESTAMP START 2026-11-08T21:51:47-05:00 | REVISION R000001
+   if(type==='json'&&new URL(url).pathname.endsWith('.pack.gz'))return root.OctagonRuntimeTransport.decode(await response.arrayBuffer());
    return type==='json'?response.json():response.arrayBuffer();
+   // TIMESTAMP END 2026-11-08T21:51:47-05:00 | REVISION R000001
   }).catch(error=>{pending.delete(key);throw error;});
   // TIMESTAMP END 2026-11-04T19:29:44+00:00 | REVISION R000002
   pending.set(key,request);

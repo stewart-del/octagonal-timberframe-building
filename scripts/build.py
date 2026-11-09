@@ -449,6 +449,13 @@ tests = ROOT/'tests'
 tests.mkdir(exist_ok=True)
 (tests/'embedded-model.json').write_text(encode(data))
 (tests/'viewer-script-check.js').write_text('\n'.join(scripts))
+# TIMESTAMP START 2026-11-08T21:51:47-05:00 | REVISION R000001
+# The complete offline harness is already on disk. Release its large strings
+# before packaging the separately loaded browser assets.
+del scripts, wall_joinery_code, mudroom_code, disassembly_code, value
+import gc
+gc.collect()
+# TIMESTAMP END 2026-11-08T21:51:47-05:00 | REVISION R000001
 # TIMESTAMP START 2026-11-04T19:27:13+00:00 | REVISION R000001
 from build_runtime import write_runtime
 print(json.dumps(write_runtime(template, model=data, variants=model_variants,
